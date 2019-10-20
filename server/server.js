@@ -14,9 +14,9 @@ const helmet = require("helmet");
 const session = require("express-session");
 
 const passport = require("./auth/passport");
-const MySQLStore = require('express-mysql-session')(session);
+const MySQLStore = require("express-mysql-session")(session);
 
- /**
+/**
  * Application Initiation
  */
 
@@ -44,13 +44,15 @@ app.use(express.static(publicPath));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  key: process.env.SESSION_KEY,
-  secret: process.env.SESSION_PASSWORD,
-  store: sessionStore,
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    key: process.env.SESSION_KEY,
+    secret: process.env.SESSION_PASSWORD,
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(helmet());
