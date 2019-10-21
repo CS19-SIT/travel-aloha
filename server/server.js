@@ -9,6 +9,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const cors = require('cors');
 const express = require("express");
 const helmet = require("helmet");
 const session = require("express-session");
@@ -40,6 +41,7 @@ const viewPath = path.join(publicPath + "/views");
 app.set("view engine", "ejs");
 app.set("views", viewPath);
 
+app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,6 +50,7 @@ app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
+    cookie: { maxAge: 900000 },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
@@ -63,9 +66,15 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
+const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 
-app.get("/", (req, res) => res.render("index"));
+app.get("/", (req, res) => res.render("index", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
+
+app.use(authRoutes);
 
 app.use(errorsController.get404);
 
