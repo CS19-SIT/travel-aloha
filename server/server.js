@@ -67,6 +67,8 @@ app.disable("x-powered-by");
  * Routes
  */
 const authRoutes = require("./routes/auth");
+const todoRoutes = require("./routes/todo");
+const apiTodoRoutes = require("./routes/api-todo");
 const errorsController = require("./controllers/errors");
 
 app.get("/", (req, res) => res.render("index", {
@@ -75,6 +77,8 @@ app.get("/", (req, res) => res.render("index", {
 }));
 
 app.use(authRoutes);
+app.use("/api/todo", apiTodoRoutes);
+app.use("/todo", todoRoutes);
 
 app.use(errorsController.get404);
 
