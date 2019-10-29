@@ -79,7 +79,10 @@ app.use(authRoutes);
 
 app.use(errorsController.get404);
 
-abc();
+const a = async () =>{
+ console.log(await findHotelAndRoom.getHotelRoom(2,1));}
+a();
+
 
 app.listen(process.env.APP_PORT, () => {
   if (process.env.NODE_ENV !== "production")
