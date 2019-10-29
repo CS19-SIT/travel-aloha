@@ -16,6 +16,7 @@ const session = require("express-session");
 
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
+const findHotelAndRoom = require("./models/hotelBookingModel/hotelBooking");
 
 /**
  * Application Initiation
@@ -32,7 +33,7 @@ const sessionStore = new MySQLStore({
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
 });
 
 const publicPath = path.join(__dirname + "/../public");
@@ -77,6 +78,8 @@ app.get("/", (req, res) => res.render("index", {
 app.use(authRoutes);
 
 app.use(errorsController.get404);
+
+abc();
 
 app.listen(process.env.APP_PORT, () => {
   if (process.env.NODE_ENV !== "production")
