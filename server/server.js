@@ -16,7 +16,7 @@ const session = require("express-session");
 
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
-const findHotelAndRoom = require("./models/hotelBookingModel/hotelBooking");
+const hotel = require("./models/hotelBookingModel/hotel");
 
 /**
  * Application Initiation
@@ -80,7 +80,7 @@ app.use(authRoutes);
 app.use(errorsController.get404);
 
 const a = async () =>{
- console.log(await findHotelAndRoom.getHotelRoom(2,1));}
+ console.log(await hotel.getHotelRoom(2,1));}
 a();
 
 
