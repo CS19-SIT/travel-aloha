@@ -36,3 +36,16 @@ exports.editRoomtype = async(room)=>{
     
   }
 }
+exports.getRoom() =async(room){
+  const {hotelIdroom,roomId}
+  try {
+    let roomiddetail = await db.query("select roomDetailId from room_head");
+    const result = await db.query("select * from room_detail where detailId = ?",[roomiddetail]);
+    if (result[0].length < 1) {
+      throw new Error(`Cannot find your room ${RoomId},${hotelId}.`);
+    } 
+    return result[0][0]; 
+  } catch (error) {
+    throw new Error(`[ERR] getRoomID: ${err}`);
+  }
+}
