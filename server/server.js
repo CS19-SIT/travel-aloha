@@ -79,11 +79,13 @@ app.use(authRoutes);
 
 app.use(errorsController.get404);
 
-const a = async () =>{
- console.log(await hotel.getHotelRoom(2,1));}
-a();
-
-
+// 
+//   const a = async (a,b) =>{
+//     console.log(await findHotelAndRoom.findHotelAndRoom(a,b));
+//   }
+// a(1,1);
+//
+// this is how to use await async
 app.listen(process.env.APP_PORT, () => {
   if (process.env.NODE_ENV !== "production")
     console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
