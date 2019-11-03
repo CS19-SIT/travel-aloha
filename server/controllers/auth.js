@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const passport = require("../auth/passport");
 const User = require("../models/user");
 
+
 exports.getRegister = (req, res) =>
   res.render("auth/register", {
     pageTitle: "TravelAloha - Register",
