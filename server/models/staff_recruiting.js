@@ -3,7 +3,7 @@ const db = require("../db/db");
 
 // console.log("HI");
 
-async function no(){
+exports.no = async function no(){
   try {
     const hahayes = await db.query("SELECT * FROM user");
     console.log(hahayes);
