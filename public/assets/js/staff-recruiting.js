@@ -1,12 +1,12 @@
+const testQuery = require("../../../server/models/staff_recruiting");
+
+	console.log(testQuery.test);
 
 	var existedInformation = [
-	  {
-		'user-id': 'saber-nano-da',
-		'firstname': 'UmU',
-		'lastname': 'Padoru Padoru',
-		'birthdate': '0000/12/25'
-	  }
-	]
+	  
+		testQuery.test()
+	  
+	];
 
 	var exInfos = document.getElementsByTagName('existedInformation')[0]
 	var exInfo = exInfos.getElementsByTagName('p')[0]
