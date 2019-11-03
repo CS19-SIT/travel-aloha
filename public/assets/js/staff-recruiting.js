@@ -1,10 +1,10 @@
 
 	var existedInformation = [
 	  {
-		'user-id': 'abcd-efgh-ijkl-mnop',
-		'firstname': 'Burning',
-		'lastname': 'Fighting Fighter',
-		'birthdate': '1999/12/31'
+		'user-id': 'saber-nano-da',
+		'firstname': 'UmU',
+		'lastname': 'Padoru Padoru',
+		'birthdate': '0000/12/25'
 	  }
 	]
 
