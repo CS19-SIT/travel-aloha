@@ -33,6 +33,6 @@ document.getElementById('submitButton').addEventListener('click', function() {
 			${newInformation['salary']}
 		)
 	`
-	sqlStatement = sqlStatement.replace(/\t/g, ' ') 
+	sqlStatement = sqlStatement.replace(/\t/g, ' ').replace(/\n/g, '').trim()
 	alert(sqlStatement)
 })
