@@ -8,7 +8,6 @@ body{
 
 .row {
    width: 100%;
-   /* margin-left: 0; */
 }
 
 .hotel-image {
@@ -64,11 +63,9 @@ body{
    color : #CACCCF;
 }
 
-@media only screen and (max-width: 800px) {
-	.form-title {
-		margin-left: 2rem;
-	}
-}
-
-@media only screen and (max-width: 414px) {
+/* media query */
+@media only screen and (max-width: 320px){
+   .price-detail-list{
+      font-size: 0.8rem;
+   }
 }
