@@ -39,12 +39,15 @@ const publicPath = path.join(__dirname + "/../public");
 const viewPath = path.join(publicPath + "/views");
 
 
-////TEST/////
+////////////////////////////TEST///////////////////////////////
+
+
 const no = require("../server/models/staff_recruiting");
 
 console.log(no.no());
 
-////////////
+
+///////////////////////////////////////////////////////////////
 
 app.set("view engine", "ejs");
 app.set("views", viewPath);
