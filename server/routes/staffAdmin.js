@@ -5,7 +5,7 @@ const staffAdminController = require('../controllers/staffAdmin')
 
 router.get('/staffAdminRec', staffAdminController.getApplicationForm)
 router.get('/staffAdminReq', staffAdminController.getStaffCandidatesList)
-router.get('/staffAdminMan', staffAdminController.getAllStaffDetail)
+router.get('/staffAdminMan', staffAdminController.getAllExistedStaffDetail)
 
 router.get('/hahayes', (req, res) => {
     res.send('Hello');
