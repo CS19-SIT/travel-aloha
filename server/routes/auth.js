@@ -19,6 +19,6 @@ router.get('/staffApp', function(req, res) {
         pageTitle: 'TravelAloha - StaffRecruiting',
         user: req.user
     })
-} )
+} );
 
 module.exports = router;
