@@ -187,7 +187,7 @@ a:active {
    #BACKGROUND
    ========================================================================== */
 .bg-img-1 {
-  background: url("../images/bg-img-01.jpg") center center/cover no-repeat;
+  background-color: #01558d;;
 }
 
 /* ==========================================================================
