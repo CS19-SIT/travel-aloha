@@ -73,7 +73,10 @@ app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
-
+app.get("/fav", (req, res) => res.render("./fav/favorite", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
 app.use(authRoutes);
 
 app.use(errorsController.get404);
