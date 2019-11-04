@@ -74,6 +74,11 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 
+app.get("/adminDash", (req, res) => res.render("./adminDash/adminDash", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
+
 app.use(authRoutes);
 
 app.use(errorsController.get404);
