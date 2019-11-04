@@ -2,10 +2,11 @@ const connector = require("../db/db")
 
 exports.getApplicationForm = async function(request, response) {
     try {
+        result = await connector.query(`SELECT * FROM user`)
         response.render('staff_admin/recruiting', {
             pageTitle: 'TravelAloha - StaffRecruiting',
             user: request.user,
-            data: await connector.query(`SELECT * FROM user`)
+            data: JSON.stringify(result[0])
         })
     } catch (error) {
         response.send(`

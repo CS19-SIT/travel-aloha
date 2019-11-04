@@ -34,7 +34,7 @@
 			<h2 class="text-center mt-3">Staff Recruiting Form</h2>
 			<hr class="w-100 p-1 my-4" />
 
-			<existedInformation class="d-block">
+			<existedInformation class="d-block" style="font-size: 0.9rem;">
 				<p>
 					<yTitle class="text-capitalize font-weight-bold"></yTitle>:
 					&nbsp;<yDetail></yDetail>
@@ -60,7 +60,8 @@
 		</submitForm>
 	</background>
 	<script>
-		console.log('<%= data[0] %>')
+		var data = JSON.parse('<%- data %>')
+		alert('<%- data %>')
 	</script>
 	<script src="../../assets/js/staff_admin/recruiting.js"></script>
 	<!-- <script src="../../../server/models/staff_recruiting.js"></script> -->
