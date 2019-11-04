@@ -3,77 +3,79 @@
 <%- include('../includes/navbar') %>
 </head>
 
-<div class="container mt-3">
-   <div class="row no-gutters">
-      <h1>Room Booking</h1>
-   </div>
-
-   <div class="row no-gutters">
-      <h3 class="hotel-name">Lorem Ipsum Hotel</h3>
-   </div>
-
-   <div class="row no-gutters">
-      <div class="col">
-         <div class="hotel-image"></div>
+<body>
+   <div class="container mt-3">
+      <div class="row no-gutters">
+         <h1>Room Booking</h1>
       </div>
-      <div class="col">
-         <div class="container container-bordered hotel-detail-list">
-            <p>Duration : <span>1 Night</span></p>
-            <p>Check-in : <span>5 Nov 2019, From 15:00</span></p>
-            <p>Check-out : <span>6 Nov 2019, Before 12:00</span></p>
-            <p>Room type: <span>Suite</span></p>
-            <p class="hotel-detail-accomodations">Accommodations</p>
-            <p>WIFI : <span>✅</span></p>
-            <p>Breakfast : <span>✅</span></p>
-            <p>Car park : <span>❌</span></p>
-            <p>Water heater: <span>✅</span></p>
+
+      <div class="row no-gutters">
+         <h3 class="hotel-name">Lorem Ipsum Hotel</h3>
+      </div>
+
+      <div class="row no-gutters">
+         <div class="col">
+            <div class="hotel-image"></div>
+         </div>
+         <div class="col">
+            <div class="container container-bordered hotel-detail-list">
+               <p>Duration : <span>1 Night</span></p>
+               <p>Check-in : <span>5 Nov 2019, From 15:00</span></p>
+               <p>Check-out : <span>6 Nov 2019, Before 12:00</span></p>
+               <p>Room type: <span>Suite</span></p>
+               <p class="hotel-detail-accomodations">Accommodations</p>
+               <p>WIFI : <span>✅</span></p>
+               <p>Breakfast : <span>✅</span></p>
+               <p>Car park : <span>❌</span></p>
+               <p>Water heater: <span>✅</span></p>
+            </div>
+         </div>
+
+
+      </div>
+
+      <div class="row no-gutters">
+         <h4 class="form-title">Your Information</h4>
+      </div>
+
+      <form action="/hotel-booking" method="POST" class="container-bordered" id="hotel-booking-form">
+         <div class="form-row">
+            <div class="form-group col-md-6">
+               <label for="inputFirstName">First Name</label>
+               <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" required>
+            </div>
+            <div class="form-group col-md-6">
+               <label for="inputLastName">Last Name</label>
+               <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" required>
+            </div>
+         </div>
+         <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+         </div>
+         <div class="form-group">
+            <label for="inputPhoneNo">Phone Number</label>
+            <input type="text" class="form-control" id="inputPhoneNo" placeholder="Phone Number" required>
+         </div>
+      </form>
+
+      <div class="row no-gutters">
+         <h4>Price Detail</h4>
+      </div>
+
+      <div class="row no-gutters">
+         <div class="container-bordered price-detail-list">
+            <h6>Lorem Ipsum Hotel</h6>
+            <p class="price-detail">(1x) Suite Room (1 Night) <span>THB 4200.00</span></p>
+            <p>Additional Fees <span>FREE</span></p>
+            <h5 class="price-total">Total <span>THB 4200.00</span></h5>
          </div>
       </div>
 
-
+      <button type="submit" form="hotel-booking-form" class="btn btn-primary btn-submit">Review and Payment</button>
    </div>
 
-   <div class="row no-gutters">
-      <h4 class="form-title">Your Information</h4>
-   </div>
-
-   <form action="/hotel-booking" method="POST" class="container-bordered" id="hotel-booking-form">
-      <div class="form-row">
-         <div class="form-group col-md-6">
-            <label for="inputFirstName">First Name</label>
-            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" required>
-         </div>
-         <div class="form-group col-md-6">
-            <label for="inputLastName">Last Name</label>
-            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" required>
-         </div>
-      </div>
-      <div class="form-group">
-         <label for="inputEmail">Email</label>
-         <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
-      </div>
-      <div class="form-group">
-         <label for="inputPhoneNo">Phone Number</label>
-         <input type="text" class="form-control" id="inputPhoneNo" placeholder="Phone Number" required>
-      </div>
-   </form>
-
-   <div class="row no-gutters">
-      <h4>Price Detail</h4>
-   </div>
-
-   <div class="row no-gutters">
-      <div class="container-bordered price-detail-list">
-         <h6>Lorem Ipsum Hotel</h6>
-         <p class="price-detail">(1x) Suite Room (1 Night) <span>THB 4200.00</span></p>
-         <p>Additional Fees <span>FREE</span></p>
-         <h5 class="price-total">Total <span>THB 4200.00</span></h5>
-      </div>
-   </div>
-
-   <button type="submit" form="hotel-booking-form" class="btn btn-primary btn-submit">Review and Payment</button>
-</div>
-
-<%- include('../includes/footer') %>
+   <%- include('../includes/footer') %>
+</body>
 
 <!-- note: logic parts will come later -->
