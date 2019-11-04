@@ -15,6 +15,21 @@ exports.getApplicationForm = async function(request, response) {
     }
 }
 
+exports.getApplicationForm2 = async (request, response) => {
+    try {
+        response.render('staff_admin/recruiting', {
+            pageTitle: 'TravelAloha - StaffRecruiting',
+            user: request.user,
+            data: await connector.query('SELECT * FROM user WHERE user_id  = ' + request.getparams(userId) +'')
+        })
+    } catch (error) {
+        response.send(`
+        <!DOCTYPE html><head><title></title></head>
+        <body><h1>Something was wrong</h1></body>
+        `)
+    }
+}
+
 exports.getStaffCandidatesList = function(request, response) {
     response.render('staff_admin/requisition', {
         pageTitle: 'TravelAloha - StaffRequisition',
