@@ -8,6 +8,10 @@ var existedInformation = [
 	}
 ];
 
+existedInformation = data
+delete existedInformation[0]['password']
+delete existedInformation[0]['profile_picture']
+
 var exInfos = document.getElementsByTagName('existedInformation')[0]
 var exInfo = exInfos.getElementsByTagName('p')[0]
 exInfos.removeChild(exInfo)
