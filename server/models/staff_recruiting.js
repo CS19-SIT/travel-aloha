@@ -23,4 +23,10 @@ exports.no = async function no(){
   }
 };
 
+function a(){
+    
+}
 
+() =>{
+
+}

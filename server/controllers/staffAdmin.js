@@ -18,10 +18,11 @@ exports.getApplicationForm = async function(request, response) {
 
 exports.getApplicationForm2 = async (request, response) => {
     try {
+        result = await connector.query(`SELECT * FROM user WHERE username = '${request.params.userId}'`)
         response.render('staff_admin/recruiting', {
             pageTitle: 'TravelAloha - StaffRecruiting',
             user: request.user,
-            data: await connector.query('SELECT * FROM user WHERE user_id  = ' + request.getparams(userId) +'')
+            data: JSON.stringify(result[0])
         })
     } catch (error) {
         response.send(`
