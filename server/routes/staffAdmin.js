@@ -22,6 +22,6 @@ router.get('/test/:userId', (req, res) =>{
 });
 
 //////////EXPERIMENTAL//////////
-router.get('/staffAdminRec/:userId', staffAdminController.getApplicationForm2);
+router.get('/recruiting/:userId', staffAdminController.getApplicationForm2);
 
 module.exports = router
