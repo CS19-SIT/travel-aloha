@@ -88,7 +88,7 @@ app.get("/", (req, res) => res.render("index", {
 
 app.use(authRoutes);
 
-app.use(staffAdminRoutes);
+app.use("/staff_admin", staffAdminRoutes);
 
 app.use(errorsController.get404);
 

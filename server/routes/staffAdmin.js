@@ -3,9 +3,9 @@ const router = express.Router()
 
 const staffAdminController = require('../controllers/staffAdmin')
 
-router.get('/staffAdminRec', staffAdminController.getApplicationForm)
-router.get('/staffAdminReq', staffAdminController.getStaffCandidatesList)
-router.get('/staffAdminMan', staffAdminController.getAllExistedStaffDetail)
+router.get('/recruiting', staffAdminController.getApplicationForm)
+router.get('/requisition', staffAdminController.getStaffCandidatesList)
+router.get('/manager', staffAdminController.getAllExistedStaffDetail)
 
 router.get('/hahayes', (req, res) => {
     res.send('Hello');
