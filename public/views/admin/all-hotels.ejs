@@ -1,0 +1,55 @@
+<%- include('../includes/header') %>
+<%- include('../includes/navbar') %>
+    <style>
+    .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+    }
+</style>
+
+</head>
+
+<div class="container mt-3" id="allHotel">
+    <h1>Manage a Hotels</h1>
+    <% for(var i = 0; i<hotel.length ; i++){%>
+    <div class="row" id="hotel1">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="" src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768" alt="Card image cap" style="max-width: 300px; max-height: 180px;">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"> <%= hotel[i].hotelName %> </h4>
+                        <p class="card-text"> <%= hotel[i].hotelDescription %> </p>
+                        <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>">
+                                Show detail
+                        </button>
+                    </div>
+                </div>
+                <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading1" data-parent="#allHotel">
+                        <div class="card-body">
+                              <img src="https://www.brandcrowd.com/gallery/brands/pictures/picture15367687629749.jpg" class="mx-auto d-block" alt="" style="max-height: 400px; max-width: 400px;">
+                              <h6>Address : <%= hotel[i].hotelAddress %></h6>
+                              <h6>Tel : <%=hotel[i].hotelTelNumber%> </h6>
+                              <h6>Email : <%=hotel[i].hotelEmail%> </h6>
+                        </div>
+                        
+                        <!-- add post route -->
+                        <form class="float-right mr-5 mb-5" action="" method="post">
+                            <input type="hidden" value="<%=hotel[i].hotelId%>">
+                            <button name="manageType" value="edit" class="btn btn-warning">edit</button>
+                            <button name="manageType" value="delete" class="btn btn-danger">Delete</button>
+                        </form>
+                        <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }%>
+    
+</div>
+
+<script src="/assets/js/admin-hotel.js"></script>
+
+<%- include('../includes/footer') %>
