@@ -1,0 +1,106 @@
+.card{
+    height: auto;
+    width: 100%;
+}
+.profilepic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin:5px 0px 5px 0px;
+}
+.btn-circle{
+    width: 50px; 
+    height: 50px; 
+    padding: 7px 10px; 
+    border-radius: 25px; 
+    font-size: 10px; 
+    text-align: center; 
+    position: sticky;
+    margin: 0px 20px 20px 0px;
+}
+.reviewpic{
+    width: 80px;
+    height: 80px;
+    border-radius: 10%;
+    margin:0px 5px 0px 5px;
+}
+.reviewtext{
+    margin:0;
+}
+body{
+  font-family: "Roboto";        
+}
+.cardreview{
+    display:flex;
+    flex-wrap:wrap;
+}
+.displayreview{
+    margin:20px 0px 40px 0px ;
+    border:0;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    white-space: normal;
+}
+.displayreviewcard{
+    display:flex;
+    flex-wrap:wrap;
+}
+.profile{
+    order:1;
+
+}
+.progress{
+    height: 2.5%;
+    width: 50%;   
+}
+.textreview{
+    order:2;
+}
+.rate{
+    order:3;
+}
+.rate p{
+    color: #388bf2;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: auto;
+    text-align: left;
+    text-decoration: underline;
+}
+.invent{
+     order:4;
+     margin: 0%;
+}
+.picview{
+    order:5;
+    margin: 0%;
+}
+.displayscore{
+    order:1;
+}
+.displayshowstar{
+    display: inline-block;
+    order:2;
+}
+.displayshowstar p{
+    display: inline-block;    
+}
+
+.displayshowallstar{
+    order:3;
+    display:inline-block
+}
+.block{
+    display: block;
+}
+
+.inline{
+    display: inline;
+}
+.inline-block{
+    display: inline-block;
+}
+p{
+    margin:0;
+}
