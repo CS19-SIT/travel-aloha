@@ -6,32 +6,50 @@
 			width: 85%;
 			min-width: 320px;
 		}
+		managementTool {
+			padding-top: 1.5rem; 
+			padding-bottom: 1.2rem;
+		}
 		staffCard {
-			width: 240px;
+			width: 220px;
+		}
+		profileStaff {
+			width: 80%;
+			height: 160px;
+			background-color: black;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 	</style>
 </head>
 <body>
 	<background class="d-flex w-100 justify-content-center">
-		<managementForm>
-			Work in process..
-			<staffList class="d-flex justify-content-center flex-wrap border">
-				<staffCard class="d-block flex-shrink-0 m-2 border">
-					hello1
+		<managementForm class="row flex-wrap justify-content-center my-4">
+
+			<managementTool class="col-auto px-5">
+				buttons
+			</managementTool>
+
+			<staffList class="col d-flex flex-shrink-0 justify-content-center flex-wrap border">
+				
+				<staffCard class="d-flex flex-wrap flex-shrink-0 justify-content-center align-items-center m-2 pt-3 border">
+					<profileStaff class="d-block flex-shrink-0"></profileStaff>
+					
+					<infoStaff class="d-block mt-3 flex-shrink-0">
+						<p style="font-size: 0.9rem;">
+							<yTitle class="text-capitalize font-weight-bold"></yTitle>:
+							&nbsp;<yDetail></yDetail>
+						</p>
+					</infoStaff>
+
+					<buttonDirection class="d-block w-100 flex-shrink-0 text-center text-md-right px-3 pt-2 pb-3">
+						<button id="checkingButton" type="button" class="btn btn-info" style="font-size: 0.85rem;">SEE & EDIT</button>
+					</buttonDirection>
 				</staffCard>
-				<staffCard class="d-block flex-shrink-0 m-2 border">
-					hello2
-				</staffCard>
-				<staffCard class="d-block flex-shrink-0 m-2 border">
-					hello3
-				</staffCard>
-				<staffCard class="d-block flex-shrink-0 m-2 border">
-					hello4
-				</staffCard>
-				<staffCard class="d-block flex-shrink-0 m-2 border">
-					hello5
-				</staffCard>
+
 			</staffList>
+			
 		</managementForm>
 	</background>
 
