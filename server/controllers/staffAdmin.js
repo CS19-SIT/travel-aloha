@@ -39,7 +39,7 @@ exports.getStaffCandidatesList = function(request, response) {
     })
 }
 
-exports.getAllExistedStaffDetail = function(request, response) {
+exports.getDetailAllExistedStaff = function(request, response) {
     response.render('staff_admin/management', {
         pageTitle: 'TravelAloha - StaffManagement',
         user: request.user,
