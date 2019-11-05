@@ -8,14 +8,14 @@ var existedInformation = [
 	}
 ];
 
-existedInformation = data
-delete existedInformation[0]['password']
-delete existedInformation[0]['profile_picture']
+existedInformation = data[0]
+delete existedInformation['password']
+delete existedInformation['profile_picture']
 
 var exInfos = document.getElementsByTagName('existedInformation')[0]
 var exInfo = exInfos.getElementsByTagName('p')[0]
 exInfos.removeChild(exInfo)
-for (const [key, value] of Object.entries(existedInformation[0])) {
+for (const [key, value] of Object.entries(existedInformation)) {
 	exInfo.getElementsByTagName('yTitle')[0].textContent = key
 	exInfo.getElementsByTagName('yDetail')[0].textContent = value
 	exInfos.appendChild(exInfo.cloneNode(true))
