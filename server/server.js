@@ -78,6 +78,7 @@ app.disable("x-powered-by");
  * Routes
  */
 const authRoutes = require("./routes/auth");
+const staffAdminRoutes = require("./routes/staffAdmin");
 const errorsController = require("./controllers/errors");
 
 app.get("/", (req, res) => res.render("index", {
@@ -86,6 +87,8 @@ app.get("/", (req, res) => res.render("index", {
 }));
 
 app.use(authRoutes);
+
+app.use(staffAdminRoutes);
 
 app.use(errorsController.get404);
 
