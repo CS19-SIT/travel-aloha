@@ -34,8 +34,6 @@ function approve(){
     else{
         alert("error!");
     }
-
-   
 }
 
 function reject(){
@@ -44,7 +42,6 @@ function reject(){
         alert("rip");
     }
     else{
-        
     }
 }
     
