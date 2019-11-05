@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 	alert('Requisition Test')
 });
-
+/*
 var StaffList = [
     {
         'slot1' : 'haha yes',
@@ -23,23 +23,24 @@ for(i = 0; i<StaffList.length;i++){
 		infos.appendChild(info.cloneNode(true))
     }
 }
+*/
 
 function approve(){
     var crud = 
     prompt("Please edit these 4 binary number to Manage the CRUD(Create Read Update Delete) for the selected staff"+
-    "\n 1 = True and 0 = False\n C R U D is the order","0100");
-    if(crud.match(/[0-1]{4}$/) && crud.length == 4){
+    "\n 1 = True and 0 = False\n C R U D","0100");
+    if(crud.match(/^[0-1]{4}$/)){
         alert("ok");
     }
     else{
-        alert("error!");
+        alert("Error!\nPlease input the correct pattern");
     }
 }
 
 function reject(){
     var conf = confirm("Are you sure?");
     if(conf){
-        alert("rip");
+        alert("Staff Rejected");
     }
     else{
     }
