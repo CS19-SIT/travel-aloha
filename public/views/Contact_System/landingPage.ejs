@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <% include partials/head %>
+<%- include('../includes/header') %>
+<%- include('../includes/navbar') %>
+<link rel="stylesheet" href="../../assets/stylesheet/style.css">
 </head>
 
 <body>
-  <% include partials/menu %>
   <div class="container-fluid vertical-center">
     <div class="row text-center">
       <div class="col-md-12">
@@ -14,13 +11,10 @@
       </div>
       <div class="col-md-12">
         <br>
-        <a href="newHotelInfo" class="btn btn-success" role="button">New Hotel</a>
-        <a href="newAirlineInfo" class="btn btn-danger" role="button">New Airline</a>
-        <a href="informationFlow" class="btn btn-info" role="button">Information Flow</a>
+        <a href="/contact_system/newHotelInfo" class="btn btn-success" role="button">New Hotel</a>
+        <a href="/contact_system/newAirlineInfo" class="btn btn-danger" role="button">New Airline</a>
+        <a href="/contact_system/informationFlow" class="btn btn-info" role="button">Information Flow</a>
       </div>
     </div>
   </div>
-</body>
-<% include partials/script %>
-
-</html>
+  <%- include('../includes/footer') %>

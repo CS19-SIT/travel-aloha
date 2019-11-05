@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <% include partials/head %>
+<%- include('../includes/header') %>
+<%- include('../includes/navbar') %>
+<link rel="stylesheet" href="../../assets/stylesheet/style.css">
 </head>
 
 <body>
-    <% include partials/menu %>
     <div class="container-fluid bg-3">
         <div class="row">
             <div class="col-md-3"></div>
@@ -87,5 +84,4 @@
             <div class="col-md-3"></div>
         </div>
     </div>
-</body>
-<% include partials/script %>
+    <%- include('../includes/footer') %>
