@@ -55,3 +55,4 @@ exports.postLogout = (req, res) => {
     res.redirect("/");
   });
 };
+
