@@ -44,7 +44,7 @@ const viewPath = path.join(publicPath + "/views");
 
 const no = require("../server/models/staff_recruiting");
 
-console.log(no.no());
+// console.log(no.no());
 
 
 ///////////////////////////////////////////////////////////////
