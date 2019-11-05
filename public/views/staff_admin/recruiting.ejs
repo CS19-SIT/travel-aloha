@@ -14,11 +14,7 @@
 			padding: 1.2rem 1.7rem;
 			width: 60%;
 			min-width: 280px;
-			max-width: 500px;
-		}
-		existedInformation {
-			width: fit-content;
-			margin: 0 auto;
+			max-width: 700px;
 		}
 		label {
 			display: inline-block;
@@ -28,20 +24,21 @@
 
 <body>
 	<background class="d-flex w-100 justify-content-center">
-		<submitForm class="d-block rounded">
+		<submitForm class="row rounded pt-5">
+			<iconZone class="col-md-6 col-12 pb-4 d-flex justify-content-center">
+				<img src="../../assets/Pictures/staff_admin/staff-icon.png" width="50%" style="margin: 0 30%;">
+			</iconZone>
+			<informationZone class="col-md-6 col-12 d-flex justify-content-center">
+				<existedInformation>
+					<p style="font-size: 0.9rem;">
+						<yTitle class="text-capitalize font-weight-bold"></yTitle>:
+						&nbsp;<yDetail></yDetail>
+					</p>
+				</existedInformation>
+			</informationZone>
 
-			<img src="../../assets/Pictures/staff_admin/staff-icon.png" width="40%" style="margin: 0 30%;">
-			<h2 class="text-center mt-3">Staff Recruiting Form</h2>
-			<hr class="w-100 p-1 my-4" />
-
-			<existedInformation class="d-block" style="font-size: 0.9rem;">
-				<p>
-					<yTitle class="text-capitalize font-weight-bold"></yTitle>:
-					&nbsp;<yDetail></yDetail>
-				</p>
-			</existedInformation>
-
-			<hr class="w-100 p-1 my-4" />
+			<hr class="w-100 p-1 mt-4" />
+			<h2 class="text-center py-2" style="font-size: 1.5rem;">Staff Recruiting Form</h2>
 			<newInformation class="d-block w-100">
 				<!-- Provide text fields here -->
 				<label for="department">Department</label><br/>

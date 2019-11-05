@@ -9,6 +9,7 @@ var existedInformation = [
 ];
 
 existedInformation = data[0]
+delete existedInformation['user_id']
 delete existedInformation['password']
 delete existedInformation['profile_picture']
 
@@ -28,7 +29,7 @@ document.getElementById('submitButton').addEventListener('click', function() {
 	}
 	var sqlStatement = `
 		INSERT INTO staff VALUES (
-			'${existedInformation[0]['user-id']}',
+			'${existedInformation['username']}',
 			'${newInformation['department']}',
 			${newInformation['salary']}
 		)
