@@ -5,6 +5,6 @@ const staffAdminController = require('../controllers/staffAdmin')
 
 router.get('/recruiting', staffAdminController.getApplicationForm)
 router.get('/requisition', staffAdminController.getStaffCandidatesList)
-router.get('/manager', staffAdminController.getDetailAllExistedStaff)
+router.get('/management', staffAdminController.getDetailAllExistedStaff)
 
 module.exports = router
