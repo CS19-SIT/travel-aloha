@@ -22,11 +22,3 @@ exports.no = async function no(){
     throw new Error(`REEE`);
   }
 };
-
-function a(){
-    
-}
-
-() =>{
-
-}

@@ -7,7 +7,5 @@ router.get('/recruiting', staffAdminController.getApplicationForm)
 router.get('/requisition', staffAdminController.getStaffCandidatesList)
 router.get('/manager', staffAdminController.getDetailAllExistedStaff)
 
-//////////EXPERIMENTAL//////////
-router.get('/recruiting/:userId', staffAdminController.getApplicationForm2);
 
 module.exports = router
