@@ -1,0 +1,114 @@
+<%- include('includes/header') %>
+
+<link href="./booking_style.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<%- include('includes/navbar') %>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-9 flight-head">
+                        <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
+                        <i class="fa fa-long-arrow-right"></i>
+                        &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
+                    </div>
+                    <div class="align-bottom date text-right col-md-3">
+                        03-Nov-2019
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Contact</h4>
+                        </div>
+                        <div class="card-text">
+                            <form>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Firstname</label>
+                                        <input type="name" class="form-control" id="fname" aria-describedby="firstname"
+                                            placeholder="Enter firstname">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Lastname</label>
+                                        <input type="name" class="form-control" id="lname" aria-describedby="lastname"
+                                            placeholder="Enter lastname">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone number</label>
+                                    <input type="phone" class="form-control" id="phone" aria-describedby="phone"
+                                        placeholder="Enter phone number">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="card-body">Passenger Information<span>
+                        <button type="submit" class="btn btn-outline-dark btn-sm">Add Passenger</button>
+                    </span></h3>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Passenger 1
+                        </h5>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Firstname</label>
+                                <input type="name" class="form-control" id="fname" aria-describedby="firstname"
+                                    placeholder="Enter firstname">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Lastname</label>
+                                <input type="name" class="form-control" id="lname" aria-describedby="lastname"
+                                    placeholder="Enter lastname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlSelect1">Gender</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Date of Birth</label>
+                                <input id="datepicker" />
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+
+</body>
+
+<%- include('includes/footer') %>

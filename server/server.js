@@ -79,8 +79,8 @@ app.get("/", (req, res) =>
  * For testing flight_booking ejs
  */
 app.get("/flight_booking/", (req, res) =>
-  res.render("flight_booking/index", {
-    pageTitle: "Flight list",
+  res.render("flight_booking/flight_info", {
+    pageTitle: "Flight Name",
     user: req.user
   })
 );
