@@ -12,7 +12,7 @@ exports.getAllHotel = async() =>{
 
 exports.modelUpdateHotel = async(data)=>{
     try {
-        console.log("From mode",data);
+        // console.log("From mode",data);
         await db.query("UPDATE hotel set hotelAddress = ? , hotelTelNumber = ?, hotelEmail = ? WHERE hotelId = ?",[
             data.hotelAddress,
             data.hotelTelNumber,

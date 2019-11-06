@@ -14,7 +14,7 @@ exports.getHotels = async (req, res) =>{
             user: req.user,
             hotel:data
         });
-    } catch (error) {
+    } catch (err) {
         res.sendStatus(404);
     }
 
@@ -24,8 +24,8 @@ exports.controllerUpdateHotel = async(req,res)=>{
     try {
         await Hotel.modelUpdateHotel(req.body);
         res.sendStatus(204)
-    } catch (error) {
-        console.log("err at controllerUpdateHotel",error)
+    } catch (err) {
+        console.log("err at controllerUpdateHotel",err)
         res.sendStatus(404);
     }
 }
