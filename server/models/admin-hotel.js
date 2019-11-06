@@ -9,3 +9,17 @@ exports.getAllHotel = async() =>{
         throw new Error(`[ERR] getAllHotel: ${err}`);
     }
 };
+
+exports.modelUpdateHotel = async(data)=>{
+    try {
+        console.log("From mode",data);
+        await db.query("UPDATE hotel set hotelAddress = ? , hotelTelNumber = ?, hotelEmail = ? WHERE hotelId = ?",[
+            data.hotelAddress,
+            data.hotelTelNumber,
+            data.hotelEmail,
+            data.hotelId
+        ]);
+    } catch (err) {
+        throw new Error(`[ERR] modelUpdateHotel: ${err}`);
+    }
+}

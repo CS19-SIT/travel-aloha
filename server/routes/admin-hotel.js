@@ -8,4 +8,6 @@ router.get("/register", authMiddleware.isAuthenticated, adminHotelController.get
 
 router.get("/", authMiddleware.isAuthenticated, adminHotelController.getHotels);
 
+router.put("/edit",authMiddleware.isAuthenticated, adminHotelController.controllerUpdateHotel);
+
 module.exports = router;

@@ -28,19 +28,19 @@
                     </div>
                 </div>
                 <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading1" data-parent="#allHotel">
-                        <div class="card-body">
-                              <img src="https://www.brandcrowd.com/gallery/brands/pictures/picture15367687629749.jpg" class="mx-auto d-block" alt="" style="max-height: 400px; max-width: 400px;">
-                              <h6>Address : <%= hotel[i].hotelAddress %></h6>
-                              <h6>Tel : <%=hotel[i].hotelTelNumber%> </h6>
-                              <h6>Email : <%=hotel[i].hotelEmail%> </h6>
+                    <div class="card-body">
+                        <form id="hotel-form-<%=hotel[i].hotelId%>" action="" method="post">
+                            <div class="form-group">
+                            <img src="https://www.brandcrowd.com/gallery/brands/pictures/picture15367687629749.jpg" class="mx-auto d-block" alt="" style="max-height: 400px; max-width: 400px;">
+                            <h6><label>Address : </label><input type="text" class="form-control" name="hotelAddress" value="<%= hotel[i].hotelAddress %>"></h6>
+                            <h6><label>Tel :  </label><input type="text" class="form-control" name="hotelTelNumber" value="<%=hotel[i].hotelTelNumber%>"></h6>
+                            <h6><label>Email :  </label><input type="text" class="form-control" name="hotelEmail" value="<%=hotel[i].hotelEmail%>"></h6>
+                            <input type="hidden" name="hotelId" value="<%=hotel[i].hotelId%>">
+                            <button type="button" id="editButton<%=hotel[i].hotelId%>" name="EditButton" onclick="putRequest()" value="edit" class="btn btn-warning">edit</button>
+                            <button type="button" name="DeleteButton" value="delete" class="btn btn-danger">Delete</button>
                         </div>
-                        
-                        <!-- add post route -->
-                        <form class="float-right mr-5 mb-5" action="" method="post">
-                            <input type="hidden" value="<%=hotel[i].hotelId%>">
-                            <button name="manageType" value="edit" class="btn btn-warning">edit</button>
-                            <button name="manageType" value="delete" class="btn btn-danger">Delete</button>
                         </form>
+                        </div>                        
                         <br>
                 </div>
             </div>
@@ -49,7 +49,20 @@
     <% }%>
     
 </div>
-
+<script>
+    function putRequest(){
+        console.log(this.event.target.form.id);
+        console.log($('#'+this.event.target.form.id).serialize());
+        let data = $('#'+this.event.target.form.id).serialize();
+        let JsonData = JSON.stringify(data);
+        console.log(JsonData);
+        $.ajax({
+            url: 'edit',
+            type: 'PUT',
+            data: data,
+ });
+    }
+</script>
 <script src="/assets/js/admin-hotel.js"></script>
 
 <%- include('../includes/footer') %>
