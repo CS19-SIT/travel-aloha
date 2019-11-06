@@ -20,6 +20,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -70,48 +72,62 @@
                                     <input type="phone" class="form-control" id="phone" aria-describedby="phone"
                                         placeholder="Enter phone number">
                                 </div>
-                                <div class="card-title">
-                                    <h5>Passenger Information</h5>
-                                </div>
-                                <div class="mb-0">Passenger 1</div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="firstname">Firstname</label>
-                                        <input type="name" class="form-control" id="fname" aria-describedby="firstname"
-                                            placeholder="Enter firstname">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="firstname">Lastname</label>
-                                        <input type="name" class="form-control" id="lname" aria-describedby="lastname"
-                                            placeholder="Enter lastname">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleFormControlSelect1">Gender</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Others</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="firstname">Lastname</label>
-                                        <input type="name" class="form-control" id="lname" aria-describedby="lastname"
-                                            placeholder="Enter lastname">
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                     </div>
                 </div>
+                <h3 class="card-body">Passenger Information<span>
+                        <button type="submit" class="btn btn-outline-dark btn-sm">Add Passenger</button>
+                    </span></h3>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Passenger 1
+                        </h5>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Firstname</label>
+                                <input type="name" class="form-control" id="fname" aria-describedby="firstname"
+                                    placeholder="Enter firstname">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Lastname</label>
+                                <input type="name" class="form-control" id="lname" aria-describedby="lastname"
+                                    placeholder="Enter lastname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlSelect1">Gender</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Date of Birth</label>
+                                <input id="datepicker" />
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="add_passenger"></div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-
-
     </div>
+
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+
 </body>
 
 </html>
