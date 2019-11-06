@@ -9,7 +9,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 const session = require("express-session");
@@ -69,10 +69,21 @@ app.disable("x-powered-by");
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 
-app.get("/", (req, res) => res.render("index", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
+app.get("/", (req, res) =>
+  res.render("index", {
+    pageTitle: "TravelAloha",
+    user: req.user
+  })
+);
+/**
+ * For testing flight_booking ejs
+ */
+app.get("/flight_booking/", (req, res) =>
+  res.render("flight_booking/index", {
+    pageTitle: "Flight list",
+    user: req.user
+  })
+);
 
 app.use(authRoutes);
 
