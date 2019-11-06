@@ -23,18 +23,6 @@ for(i = 0; i<StaffList.length;i++){
 }
 */
 
-function approve(){
-    var crud = 
-    prompt("Please edit these 4 binary number to Manage the CRUD(Create Read Update Delete) for the selected staff"+
-    "\n 1 = True and 0 = False\n C R U D","0100");
-    if(crud.match(/^[0-1]{4}$/)){
-        alert("ok");
-    }
-    else{
-        alert("Error!\nPlease input the correct pattern");
-    }
-}
-
 function reject(){
     var conf = confirm("Are you sure?");
     if(conf){
