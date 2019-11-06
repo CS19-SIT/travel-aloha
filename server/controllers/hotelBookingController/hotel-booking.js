@@ -1,7 +1,7 @@
 exports.getHotelBooking = (req, res) => 
    res.render("hotel_booking/hotel-booking", {
       pageTitle: "TravelAloha - Hotel Booking",
-      user: req.user
+      user: req.user,
    });
 
 exports.getHotelBookingPayment = (req, res) =>
@@ -12,7 +12,14 @@ exports.getHotelBookingPayment = (req, res) =>
 
 
    exports.postHotelBooking = (req,res) =>{
-      return res.send(req.body);
+      const result = JSON.stringify({
+         inputFirstName: req.body.inputFirstName
+         ,inputLastName: req.body.inputLastName
+         ,inputEmail: req.body.inputEmail
+         ,inputPhoneNo: req.body.inputPhoneNo});
+         
+      console.log(JSON.parse(result));
+      res.send(result);
      }
 //Probably needed in controller dont mind these comment
 // no idea...
