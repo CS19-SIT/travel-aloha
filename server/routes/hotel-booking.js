@@ -7,5 +7,6 @@ const hotelBookingController = require("../controllers/hotelBookingController/ho
 router.get("/hotel-booking",auth.isAuthenticated, hotelBookingController.getHotelBooking);
 
 router.get("/hotel-booking-payment", hotelBookingController.getHotelBookingPayment);
+router.post("/hotel-booking",hotelBookingController.postHotelBooking);
 
 module.exports = router;

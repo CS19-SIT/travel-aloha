@@ -29,3 +29,8 @@ exports.Deletebooking = async(bookingId) => {
     await db.query("delete from booking_detail where bookingId_detail = ?",[bookingDetailId]);
     
 }
+
+// Probably needed in model
+// still no idea again ...
+// room is reserved or free
+// lock room after reserve
