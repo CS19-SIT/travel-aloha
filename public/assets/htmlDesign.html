@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Reward/Level Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="extension1.css" type="text/css" />
+    <script
+      async=""
+      src="./Scriptable _ Pie _ Chart.js sample_files/analytics.js.download"
+    ></script>
+    <script src="./Scriptable _ Pie _ Chart.js sample_files/Chart.min.js.download"></script>
+    <script src="./Scriptable _ Pie _ Chart.js sample_files/utils.js.download"></script>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+    </div>
+    <br />
+    <h1>Level Management</h1>
+    <p>
+      ----Objective for using this features.---- (Add later)
+    </p>
+    <hr />
+
+    <div class="container" style="padding: 20px; margin: 20px">
+      <form action="/action_page.php">
+        <h2>Normal Level</h2>
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Criteria</label>
+          </div>
+          <div class="col-25">
+            <input
+              type="text"
+              id="normalCriteria"
+              name=""
+              placeholder="Example: 50,000"
+            />
+          </div>
+          <div class="col-25">
+            <button class="button button4">Change</button>
+          </div>
+        </div>
+
+        <hr />
+        <h2>Silver Level</h2>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Criteria</label>
+          </div>
+          <div class="col-25">
+            <input
+              type="text"
+              id="silverCriteria"
+              name=""
+              placeholder="Example: 100,000"
+            />
+          </div>
+          <div class="col-25">
+            <button class="button button4">Change</button>
+          </div>
+        </div>
+        <hr />
+        <h2>Gold Level</h2>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Criteria</label>
+          </div>
+          <div class="col-25">
+            <input
+              type="text"
+              id="goldCriteria"
+              name=""
+              placeholder="Example: 500,000"
+            />
+          </div>
+          <div class="col-25">
+            <button class="button button4">Change</button>
+          </div>
+        </div>
+        <hr />
+        <h2>Elite Level</h2>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Criteria</label>
+          </div>
+          <div class="col-25">
+            <input
+              type="text"
+              id="eliteCriteria"
+              name=""
+              placeholder="Example: 1,000,000"
+            />
+          </div>
+          <div class="col-25">
+            <button class="button button4">Change</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="chart" style="padding: 20px; margin: 20px">
+      <center><h1>Customer Level Chart</h1>
+      <p>Last Updated on: 03/11/2019 20:43</p></center>
+      <div class="content">
+        <div class="wrapper">
+          <div class="chartjs-size-monitor">
+            <div class="chartjs-size-monitor-expand"><div class=""></div></div>
+            <div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+          </div>
+          <canvas
+            id="chart-0"
+            width="1000"
+            height="500"
+            class="chartjs-render-monitor"
+            style="display: block; height: 400px; width: 800px;"
+          ></canvas>
+        </div>
+      </div>
+      <script>
+        var DATA_COUNT = 4;
+
+        var utils = Samples.utils;
+
+        utils.srand(270);
+
+        function colorize(opaque, hover, ctx) {
+          var v = ctx.dataset.data[ctx.dataIndex];
+          var c =
+            v < -50
+              ? "#D60000"
+              : v < 0
+              ? "#F46300"
+              : v < 50
+              ? "#0358B6"
+              : "#44DE28";
+
+          var opacity = hover
+            ? 1 - Math.abs(v / 150) - 0.2
+            : 1 - Math.abs(v / 150);
+
+          return opaque ? c : utils.transparentize(c, opacity);
+        }
+
+        function hoverColorize(ctx) {
+          return colorize(false, true, ctx);
+        }
+
+        function generateData() {
+          return utils.numbers({
+            count: DATA_COUNT,
+            min: -100,
+            max: 100
+          });
+        }
+
+        var data = {
+          datasets: [
+            {
+              data: generateData()
+            }
+          ]
+        };
+
+        var options = {
+          legend: false,
+          tooltips: false,
+          elements: {
+            arc: {
+              backgroundColor: colorize.bind(null, false, false),
+              hoverBackgroundColor: hoverColorize
+            }
+          }
+        };
+
+        var chart = new Chart("chart-0", {
+          type: "pie",
+          data: data,
+          options: options
+        });
+      </script>
+    </div>
+
+    <footer style="background-color: black; margin-top: 30px">Add Later</footer>
+  </body>
+</html>
