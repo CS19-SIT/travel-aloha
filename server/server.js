@@ -67,6 +67,7 @@ app.disable("x-powered-by");
  * Routes
  */
 const authRoutes = require("./routes/auth");
+const historyRoutes = require("./routes/historySystem");
 const errorsController = require("./controllers/errors");
 
 app.get("/", (req, res) => res.render("index", {
@@ -75,7 +76,7 @@ app.get("/", (req, res) => res.render("index", {
 }));
 
 app.use(authRoutes);
-
+app.use("/index", historyRoutes);
 app.use(errorsController.get404);
 
 app.listen(process.env.APP_PORT, () => {
