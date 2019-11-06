@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-	alert('Requisition Test')
-});
+
 /*
 var StaffList = [
     {
@@ -45,4 +43,35 @@ function reject(){
     else{
     }
 }
+
+function confirmCRUD(){
+    var cC = document.getElementById("cC").checked; var cR = document.getElementById("cR").checked;
+    var cU = document.getElementById("cU").checked; var cD = document.getElementById("cD").checked;
+    document.getElementById("crudshow").value = "";
+    document.getElementById("crudshow").append("asdasd");
     
+    if(cC){
+        document.getElementById("crudshow").value+="1";
+    } else{
+        document.getElementById("crudshow").value+="0";
+    }
+
+    if(cR){
+        document.getElementById("crudshow").value+="1";
+    } else{
+        document.getElementById("crudshow").value+="0";
+    }
+
+    if(cU){
+        document.getElementById("crudshow").value+="1";
+    } else{
+        document.getElementById("crudshow").value+="0";
+    }
+
+    if(cD){
+        document.getElementById("crudshow").value+="1";
+    } else{
+        document.getElementById("crudshow").value+="0";
+    }
+
+}
