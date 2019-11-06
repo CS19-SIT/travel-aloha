@@ -9,7 +9,10 @@ exports.getApplicationForm = async function(request, response) {
             data: JSON.stringify(result[0])
         })
     } catch (error) {
-        response.redirect('/login')
+        response.send(`
+            <!DOCTYPE html><head><title>Oops</title></head>
+            <body><p>Something was wrong !! ${error} </p></body>
+        `)
     }
 }
 
