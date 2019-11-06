@@ -36,25 +36,24 @@
    <div class="row no-gutters">
       <h4 class="form-title">Your Information</h4>
    </div>
-
-   <form action="/hotel-booking" method="POST" class="container-bordered" id="hotel-booking-form">
+   <form method="POST" class="container-bordered" id="hotel-booking-form">
       <div class="form-row">
          <div class="form-group col-md-6">
             <label for="inputFirstName">First Name</label>
-            <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" required>
+            <input type="text" class="form-control" name="inputFirstName" placeholder="First Name" required>
          </div>
          <div class="form-group col-md-6">
             <label for="inputLastName">Last Name</label>
-            <input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" required>
+            <input type="text" class="form-control" name="inputLastName" placeholder="Last Name" required>
          </div>
       </div>
       <div class="form-group">
          <label for="inputEmail">Email</label>
-         <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" required>
+         <input type="email" class="form-control" name="inputEmail" placeholder="Email" required>
       </div>
       <div class="form-group">
          <label for="inputPhoneNo">Phone Number</label>
-         <input type="text" class="form-control" id="inputPhoneNo" name="inputPhoneNo" placeholder="Phone Number" required>
+         <input type="text" class="form-control" name="inputPhoneNo" placeholder="Phone Number" required>
       </div>
    </form>
 
@@ -71,28 +70,8 @@
       </div>
    </div>
 
-   <button type="submit" form="hotel-booking-form" id="submit" class="btn btn-primary btn-submit">Review and Payment</button>
+   <button type="submit" form="hotel-booking-form" class="btn btn-primary btn-submit">Review and Payment</button>
 </div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
-<script>
-  $(document).ready(function(){
-    var inputFirstName, inputLastName, inputEmail, inputPhoneNo;
-    $("#submit").click(function(){
-      inputFirstName=$("#inputFirstName").val();
-      inputLastName=$("#inputLastName").val();
-      inputEmail=$("#inputEmail").val();
-      inputPhoneNo=$("#inputPhoneNo").val();
-      $.post("http://localhost:3000/hotel-booking",{inputFirstName: inputFirstName,inputLastName: inputLastName, inputEmail: inputEmail,  inputPhoneNo, inputPhoneNo}, function(data){
-        if(data==='done')
-          {
-            alert("HAHA YE");
-          }
-      });
-    });
-  });
-</script>
-
 <%- include('../includes/footer') %>
 
 <!-- note: logic parts will come later -->
