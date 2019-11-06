@@ -74,6 +74,11 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 
+app.get("/flights", (req, res) => res.render("flights", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
+
 app.use(authRoutes);
 
 app.use(errorsController.get404);

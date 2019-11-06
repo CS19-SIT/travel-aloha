@@ -4,8 +4,6 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const authMiddleware = require("../middlewares/auth");
 
-const flight = require("");
-
 router.get("/register", authController.getRegister);
 
 router.post("/register", authController.postRegister);
