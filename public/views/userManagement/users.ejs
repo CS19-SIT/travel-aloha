@@ -1,0 +1,54 @@
+<%- include('includes/header') %>
+
+    <div class="container-fluid">
+        <h1 align="center"><%= title %></h1><br>
+        <% if (users.length > 0) {%>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Profile Picture</th>
+                        <th scope="col">Role</th> 
+                        <th scope="col">id</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Gender</th>
+                        <!-- <th scope="col">Birth_date</th> -->
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                <% users.forEach((users, userIndex) => { %>
+                    <tr>
+                        <td>
+                            <% if(users.profile_picture){%>     
+                            <img src="/assets/uploads/<%= users.profile_picture %>" class="rounded-circle"  alt="<%= users.image %>"> 
+                            <%}%>                        
+                        </td>
+                        <td><%= users.userRole %></td>
+                        <td><%= users.user_id %></td>
+                        <td><%= users.username %></td>
+                        <td><%= users.firstname +" "+ users.lastname %></td>
+                        <td><%= users.gender %></td>
+
+                        <td><%= users.email %></td>
+                        <td><%= users.phoneNumber %></td>
+                        <td>
+                            <a href="/edit/<%= users.user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/delete/<%= users.user_id %>" class="btn btn-sm btn-danger">Delete</a>   
+                            <a href="/detail/<%= users.user_id %>" class="btn btn-primary" >More Info</a> 
+                        </td>
+                        
+                    </tr>
+                    
+                <%})%>  
+                </tbody>    
+            </table>
+        <% } else { %>
+            <p class="text-center">No Users found. Go <a href="/add" >here</a> to add users.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
