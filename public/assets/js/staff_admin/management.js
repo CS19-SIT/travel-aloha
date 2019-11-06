@@ -1,41 +1,46 @@
 staffRecord = [
     {
-        'firstname': 'Nino',
-        'lastname': 'Nakano',
+        'name': 'Nino Nakano',
         'department': 'culinary',
-        'profile': 'https://bit.ly/34BG24y'
+        'profile_picture': 'https://bit.ly/2NJfJ5n'
     },
     {
-        'firstname': 'Kurumi',
-        'lastname': 'Tokisaki',
+        'name': 'Kurumi Tokisaki',
         'department': 'veterinary',
-        'profile': 'https://i.ytimg.com/vi/HPynobNcZAU/hqdefault.jpg'
+        'profile_picture': 'https://i.ytimg.com/vi/HPynobNcZAU/hqdefault.jpg'
     },
     {
-        'firstname': 'Shido',
-        'lastname': 'Itsuka',
-        'department': 'siscon',
-        'profile': 'https://pbs.twimg.com/profile_images/820479236179783680/5EUm7iXl.jpg'
+        'name': 'Shido Itsuka',
+        'department': 'housewife',
+        'profile_picture': 'https://pbs.twimg.com/profile_images/820479236179783680/5EUm7iXl.jpg'
     },
     {
-        'firstname': 'Jeanne',
-        'lastname': 'd\'Arc',
+        'name': 'Jeanne d\'Arc',
         'department': 'saint',
-        'profile': 'https://bit.ly/33jXREF'
+        'profile_picture': 'https://bit.ly/2JW2wVX'
     },
     {
-        'firstname': 'Jibril',
-        'lastname': 'Archangel',
+        'name': 'Jibril Archangel',
         'department': 'bibliophile',
-        'profile': 'https://bit.ly/2qlxCiS'
+        'profile_picture': 'https://bit.ly/2qlxCiS'
     },
     {
-        'firstname': 'Origami',
-        'lastname': 'Tobiichi',
+        'name': 'Origami Tobiichi',
         'department': 'soldier',
-        'profile': 'https://66.media.tumblr.com/e69bd60591bf3765125db7fbc132316b/tumblr_ot5ic7qKwf1vy2tgqo7_250.jpg'
+        'profile_picture': 'https://66.media.tumblr.com/e69bd60591bf3765125db7fbc132316b/tumblr_ot5ic7qKwf1vy2tgqo7_250.jpg'
+    },
+    {
+        'name': 'Ririna Sanada',
+        'department': 'student',
+        'profile_picture': 'https://pbs.twimg.com/media/D18bKiaXQAMzT4q.jpg'
+    },
+    {
+        'name': 'Mikoto Misaka',
+        'department': 'student',
+        'profile_picture': 'http://www.ah.xinhuanet.com/2015-04/09/1114914317_14285490003871n.jpg'
     }
 ]
+var backup = 0
 
 var staffList = document.getElementsByTagName('staffList')[0]
 var staffCard = staffList.getElementsByTagName('staffCard')[0]
@@ -46,8 +51,8 @@ staffList.removeChild(staffCard)
 staffRecord.forEach(function(detail) {
     var newStaffCard = staffCard.cloneNode(true)
     var newInfo = info.cloneNode(true)
-    newStaffCard.getElementsByTagName('profileStaff')[0].style.backgroundImage = `url('${detail['profile']}')`
-    delete detail['profile']
+    newStaffCard.getElementsByTagName('profileStaff')[0].style.backgroundImage = `url('${detail['profile_picture']}')`
+    delete detail['profile_picture']
     for (const [key, value] of Object.entries(detail)) {
         newInfo.getElementsByTagName('yTitle')[0].textContent = key
         newInfo.getElementsByTagName('yDetail')[0].textContent = value

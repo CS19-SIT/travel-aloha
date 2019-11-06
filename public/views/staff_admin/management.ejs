@@ -2,24 +2,31 @@
 <%- include('../includes/navbar') %>
 
 	<style>
+		label, span {
+			display: inline-block;
+		}
+		background {
+			background-color: #dedede;
+		}
 		managementForm {
 			width: 85%;
 			min-width: 320px;
 		}
 		managementTool {
-			padding-top: 1.5rem; 
-			padding-bottom: 1.2rem;
+			width: 300px;
+			padding: 1rem 3.5rem 1.2rem 1.5rem;
 		}
 		staffCard {
+			background-color: rgba(248, 248, 248, 0.7);
 			width: 220px;
 		}
 		profileStaff {
 			width: 80%;
 			height: 160px;
 			background-color: black;
-			background-size: contain;
+			background-size: cover;
 			background-repeat: no-repeat;
-			background-position: center;
+			background-position: center 15%;
 		}
 	</style>
 </head>
@@ -27,14 +34,23 @@
 	<background class="d-flex w-100 justify-content-center">
 		<managementForm class="row flex-wrap justify-content-center my-4">
 
-			<managementTool class="col-auto px-5">
-				buttons
+			<managementTool class="flex-shrink-0">
+				Nothing works yet<br/>
+				<span>Sort by: </span><br/>
+				<span class="mt-2">Options: </span><br/>
+				<label class="mt-2">Search: </label><br/>
+				<input type="text" id="findStaff" class="form-control" placeholder="Type your wanted info">
+				<hr class="w-100 p-1 mt-4" />
+				<buttonDirection class="d-block w-100 flex-shrink-0 text-center text-md-right p-2">
+					<button id="reloadButton" type="button" class="btn btn-outline-success" style="font-size: 0.85rem;">RELOAD</button>
+					<button id="saveButton" type="button" class="btn btn-danger px-4" style="font-size: 0.85rem;">SAVE</button>
+				</buttonDirection> 
 			</managementTool>
 
-			<staffList class="col d-flex flex-shrink-0 justify-content-center flex-wrap border">
+			<staffList class="col d-flex justify-content-center flex-wrap">
 				
-				<staffCard class="d-flex flex-wrap flex-shrink-0 justify-content-center align-items-center m-2 pt-3 border">
-					<profileStaff class="d-block flex-shrink-0"></profileStaff>
+				<staffCard class="d-flex flex-wrap flex-shrink-0 justify-content-center align-items-center m-2 pt-3 border rounded">
+					<profileStaff class="d-block flex-shrink-0 border"></profileStaff>
 					
 					<infoStaff class="d-block mt-3 flex-shrink-0">
 						<p style="font-size: 0.9rem;">
@@ -44,7 +60,7 @@
 					</infoStaff>
 
 					<buttonDirection class="d-block w-100 flex-shrink-0 text-center text-md-right px-3 pt-2 pb-3">
-						<button id="checkingButton" type="button" class="btn btn-info" style="font-size: 0.85rem;">SEE & EDIT</button>
+						<button id="checkingButton" type="button" class="btn btn-primary" style="font-size: 0.85rem;">SEE & EDIT</button>
 					</buttonDirection>
 				</staffCard>
 
