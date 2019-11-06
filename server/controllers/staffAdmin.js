@@ -29,3 +29,10 @@ exports.getDetailAllExistedStaff = function(request, response) {
         user: request.user,
     })
 }
+
+exports.getIndexPage = function(request, response) {
+    response.render('staff_admin/index', {
+        pageTitle: 'TravelAloha - StaffManagement',
+        user: request.user,
+    })
+}
