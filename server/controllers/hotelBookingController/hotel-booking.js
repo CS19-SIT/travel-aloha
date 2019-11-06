@@ -9,3 +9,14 @@ exports.getHotelBookingPayment = (req, res) =>
       pageTitle: "TravelAloha - Review and Payment",
       user: req.user
    })
+
+
+   exports.postHotelBooking = (req,res) =>{
+      return res.send(req.body);
+     }
+//Probably needed in controller dont mind these comment
+// no idea...
+// no idea...
+// no idea...
+// received form from booking form
+// if no register, popup some register promote
