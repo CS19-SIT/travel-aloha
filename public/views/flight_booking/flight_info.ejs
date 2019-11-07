@@ -1,15 +1,15 @@
-<%- include('includes/header') %>
+<%- include('../includes/header') %>
 
-<link href="./booking_style.css" rel="stylesheet">
+<link href="../../assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-<%- include('includes/navbar') %>
+<%- include('../includes/navbar') %>
 
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-3">
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
@@ -34,7 +34,7 @@
                         </p>
                         <div class="row mb-2">
                             <div class="col-md-1">
-                                <img src="assets/nok-air-logo.jpg" alt="logo" class="airline-logo">
+                                <img src="../../assets/images/nok-air-logo.jpg" alt="logo" class="airline-logo">
                             </div>
                             <div class="col-md-11 pl-2">
                                 <span>Nok Air DD-8312
@@ -56,7 +56,7 @@
 
                     </div>
                 </div>
-                <a href="contact_form.html" class="btn btn-warning mt-2 book">Book Now</a>
+                <a href="/flight_booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a>
             </div>
             <div class="col-md-4">
                 <div class="card">
@@ -90,6 +90,5 @@
             </div>
         </div>
     </div>
-</body>
 
-<%- include('includes/footer') %>
+<%- include('../includes/footer') %>
