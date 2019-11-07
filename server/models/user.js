@@ -38,16 +38,22 @@ exports.createUser = async ({
   password,
   gender,
   birth_date,
-  profile_picture
+  profile_picture,
+  firstname,
+  lastname,
+  address
 }) => {
   try {
-    await db.query("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?)", [
+    await db.query("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", [
       user_id,
       username,
       password,
       gender,
       birth_date,
-      profile_picture
+      profile_picture,
+      firstname,
+      lastname,
+      address
     ]);
   } catch (err) {
     throw new Error(`[ERR] createUser: ${err}`);
