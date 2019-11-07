@@ -4,10 +4,18 @@ const router = express.Router();
 const adminHotelController = require("../controllers/admin-hotel");
 const authMiddleware = require("../middlewares/auth");
 
-router.get("/register", authMiddleware.isAuthenticated, adminHotelController.getIndex);
+router.get(
+  "/",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminHotelController.getIndex
+);
 
-router.get("/", authMiddleware.isAuthenticated, adminHotelController.getHotels);
-
-router.put("/edit",authMiddleware.isAuthenticated, adminHotelController.controllerUpdateHotel);
+router.put(
+  "/edit",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminHotelController.putHotel
+);
 
 module.exports = router;

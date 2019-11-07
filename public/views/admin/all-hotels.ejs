@@ -9,6 +9,8 @@
 
 </head>
 
+<body>
+
 <div class="container mt-3" id="allHotel">
     <h1>Manage a Hotels</h1>
     <% for(var i = 0; i<hotel.length ; i++){%>
@@ -51,16 +53,14 @@
 </div>
 <script>
     function putRequest(){
-        console.log(this.event.target.form.id);
-        console.log($('#'+this.event.target.form.id).serialize());
         let data = $('#'+this.event.target.form.id).serialize();
         let JsonData = JSON.stringify(data);
-        console.log(JsonData);
+
         $.ajax({
-            url: 'edit',
+            url: '/edit',
             type: 'PUT',
             data: data,
- });
+        });
     }
 </script>
 <script src="/assets/js/admin-hotel.js"></script>
