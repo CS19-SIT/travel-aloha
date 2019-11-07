@@ -85,6 +85,13 @@ app.get("/flight_booking/", (req, res) =>
   })
 );
 
+app.get("/flight_booking/contact", (req, res) =>
+  res.render("flight_booking/contact_form", {
+    pageTitle: "Contact information",
+    user: req.user
+  })
+);
+
 app.use(authRoutes);
 
 app.use(errorsController.get404);
