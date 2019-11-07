@@ -1,98 +1,96 @@
 <%- include('../includes/header') %>
+<style>
+     
+         body,html{
+             margin: 0;
+             padding: 0;
+             width: 100%;
+             height: 100%;
+             background: grey;
+             overflow: hidden;
+             
+         }
+         
+         .white{
+             width: 100%;
+             height: 37%;
+             background: rgb(255, 188, 235);
+			 /* opacity: 0%; */
+             
+         }
+     
+         .image{
+             width: 100%;
+             background: url('../../assets/Pictures/staff_admin/purple-mountain.jpg');
+             background-size: cover;
+             position: relative;
+             display: flex;
+             padding: 50px;
+             box-sizing: border-box;
+             justify-content: center;
+             height: 73%;
+         }
+     
+         #container{
+             width: 100%;
+             position: absolute;
+             bottom: -6px;
+             overflow: hidden;
+          
+         }
+     
+         #container svg{
+             width: 200%;
+             position: relative;
+             animation: move-left 5s linear infinite;
+             
+         }
+         
+         @keyframes move-left{
+             0%{
+                 left: 0%;
+             }
+             100%{
+                 left: -100%;
+             }
+             
+         }
+         
+         
+         
+         
+         
+         
+     </style>
+     
+     
+     
+ </head>
+ <body>
 <%- include('../includes/navbar') %>
-
-	<style>
-	
-		body,html{
-			margin: 0;
-			padding: 0;
-			width: 100%;
-			height: 100%;
-			background: grey;
-			overflow: hidden;
-			
-		}
-		
-		.white{
-			width: 100%;
-			height: 37%;
-			background: white;
-			
-		}
-	
-		.image{
-			width: 100%;
-			background: url(NB.jpeg);
-			background-size: cover;
-			position: relative;
-			display: flex;
-			padding: 50px;
-			box-sizing: border-box;
-			justify-content: center;
-			height: 73%;
-		}
-	
-		#container{
-			width: 100%;
-			position: absolute;
-			bottom: -6px;
-			overflow: hidden;
-		 
-		}
-	
-		#container svg{
-			width: 200%;
-			position: relative;
-			animation: move-left 5s linear infinite;
-			
-		}
-		
-		@keyframes move-left{
-			0%{
-				left: 0%;
-			}
-			100%{
-				left: -100%;
-			}
-			
-		}
-		
-		
-		
-		
-		
-		
-	</style>
-	
-	
-	
-</head>
-<body>
-	  <div class="image">
-  
+       <div class="image">
+   
 <div id="container">
-
+ 
 <svg  
-	x="0px"
-	y="0px" 
-	viewBox="0 0 3841 108.5"
-	style="overflow:scroll;enable-background:new 0 0 3841 108.5;" 
-	xml:space="preserve">
+	 x="0px"
+	 y="0px" 
+	 viewBox="0 0 3841 108.5"
+	 style="overflow:scroll;enable-background:new 0 0 3841 108.5;" 
+	 xml:space="preserve">
 <defs>
 </defs>
 
-<path style="fill:#FFFFFF;
-			stroke-miterlimit:10;" 
-		   d="M3360.5,97.739c-242,0-480-48.375-480-48.375
-			   S2647.5,0.5,2400.5,0.5s-480,48.375-480,48.375s-238,48.864-480,48.864s-480-48.375-480-48.375S727.5,0.5,480.5,0.5
-			   S0.5,48.875,0.5,48.875V108h1920h1920V48.875C3840.5,48.875,3602.5,97.739,3360.5,97.739z"/>
-		   </svg>
+<path style="fill:rgb(255, 188, 235);
+             stroke-miterlimit:10;" 
+            d="M3360.5,97.739c-242,0-480-48.375-480-48.375
+                S2647.5,0.5,2400.5,0.5s-480,48.375-480,48.375s-238,48.864-480,48.864s-480-48.375-480-48.375S727.5,0.5,480.5,0.5
+                S0.5,48.875,0.5,48.875V108h1920h1920V48.875C3840.5,48.875,3602.5,97.739,3360.5,97.739z"/>
+            </svg>
 
 </div>
 </div>
 <div class="white">
 </div>
-	
-</body>
-
-<%- include('../includes/footer') %>
+ </body>
+ <%- include('../includes/footer') %>
