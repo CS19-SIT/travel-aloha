@@ -13,6 +13,7 @@ var userId = existedInformation['user_id']
 existedInformation['birth_date'] = new Date(existedInformation['birth_date']).toDateString().substring(4) 
 delete existedInformation['user_id']
 delete existedInformation['password']
+document.getElementsByTagName('profilePicture')[0].style.backgroundImage = `url('${existedInformation['profile_picture']}')`
 delete existedInformation['profile_picture']
 
 var exInfos = document.getElementsByTagName('existedInformation')[0]
