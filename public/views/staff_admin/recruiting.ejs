@@ -16,14 +16,6 @@
 			min-width: 280px;
 			max-width: 700px;
 		}
-		profilePicture {
-			width: 80%;
-			height: 200px;
-			background-color: black;
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center 15%;
-		}
 		label {
 			display: inline-block;
 		}
@@ -35,7 +27,7 @@
 		<submitForm class="row rounded pt-5">
 
 			<iconZone class="col-md-6 col-12 pb-4 d-flex justify-content-center">
-				<profilePicture></profilePicture>
+				<img src="../../assets/Pictures/staff_admin/staff-icon.png" width="50%" style="margin: 0 30%;">
 			</iconZone>
 			<informationZone class="col-md-6 col-12 d-flex justify-content-center">
 				<existedInformation>
@@ -67,6 +59,7 @@
 
 	<script>
 		var data = JSON.parse('<%- data %>')
+		
 	</script>
 	<script src="../../assets/js/staff_admin/recruiting.js"></script>
 
