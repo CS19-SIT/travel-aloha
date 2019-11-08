@@ -8,7 +8,6 @@ exports.getApplicationForm = async function(request, response) {
             user: request.user,
             data: JSON.stringify(result[0])
         })
-        console.log(data);
     } catch (error) {
         response.send(`
             <!DOCTYPE html><head><title>Oops</title></head>
