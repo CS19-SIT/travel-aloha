@@ -3,6 +3,6 @@ const router = express.Router();
 
 const landingController = require("../controllers/landing");
 
-router.get("/find", landingController.find);
+router.post("/find", landingController.find);
 
 module.exports = router;
