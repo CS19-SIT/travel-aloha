@@ -18,19 +18,20 @@
     <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
     <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
     <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
-    <p>Name : no name</p>
-    <p>Job : no</p>
-    <p>Work Dept : not yet</p>
+    Name : Ferstnem Rastnem<br>
+    Gender : F <br>
+    Department : CS <br>
+    Desired Salary : 100 <br>
     <hr class="w-100 p-1 my-4" />
 
     <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
     <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
     <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
-    <p>Name : no name</p>
-    <p>Job : no</p>
-    <p>Work Dept : not yet</p>
-	<hr class="w-100 p-1 my-4" />
-    
+    Name : Ferstnem Rastnem<br>
+    Gender : M <br>
+    Department : CS <br>
+    Desired Salary : 100 <br>
+    <hr class="w-100 p-1 my-4" />
     
         <!--Modal Start-->
     <div class="modal" id="Appr">
@@ -43,16 +44,16 @@
             </div>
       
             <div class="modal-body">
+                <h4>Staff ID : 00</h4>
               <p>Please Check whether you want to grant these access to the selected staff</p>
               <input type="checkbox" id="cC">Create <br> 
-              <input type="checkbox" id="cR">Read <br>
+              <input type="checkbox" id="cR" checked>Read <br>
               <input type="checkbox" id="cU">Update <br> 
               <input type="checkbox" id="cD">Delete <br>
             </div>
             <div class="modal-footer">
-                Result<br>
-                <input type="text" value="0100" id="crudshow" readonly>
-                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()">Confirm</button>
+                <input type="text" value="0100" id="crudshow" readonly style="display:none">
+                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()" data-dismiss="modal">Confirm</button>
                 <button class="btn btn-warning" style="float:right" data-dismiss="modal">Cancel</button>
                
             </div>

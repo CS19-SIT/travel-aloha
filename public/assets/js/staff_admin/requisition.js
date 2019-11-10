@@ -62,4 +62,6 @@ function confirmCRUD(){
         document.getElementById("crudshow").value+="0";
     }
 
+    alert("Staff Registered \nCRUD:"+document.getElementById("crudshow").value);
+
 }
