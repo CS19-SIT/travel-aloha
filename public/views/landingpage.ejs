@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('includes/header') %>
+<link rel="stylesheet" href="../../assets/css/styles-hotel-booking.css">
+<%- include('includes/navbar') %>
 
 <head>
     <meta charset="UTF-8">
@@ -98,14 +99,14 @@
         </form>
     </div>
 </body>
-<script src="../../assets/js/choices.js"></script>
+<script src="../assets/js/choices.js"></script>
 <script>
     const choices = new Choices('[data-trigger]', {
         searchEnabled: false,
         itemSelectText: '',
     });
 </script>
-<script src="../../assets/js/flatpickr.js"></script>
+<script src="../assets/js/flatpickr.js"></script>
 <script>
     flatpickr(".datepicker", {
         dateFormat: "m/d/y"

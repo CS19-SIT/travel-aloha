@@ -69,7 +69,7 @@ app.disable("x-powered-by");
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 
-app.get("/", (req, res) => res.render("index", {
+app.get("/", (req, res) => res.render("landingpage", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
