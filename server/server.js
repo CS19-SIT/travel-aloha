@@ -17,6 +17,8 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 
+
+
 /**
  * Application Initiation
  */
@@ -68,11 +70,16 @@ app.disable("x-powered-by");
  */
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
+/*debug pless*/
+const hotelReviewRoutes =require("./routes/hotelReview");
+
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
+/*debug pless*/
+app.use(hotelReviewRoutes);
 
 app.use(authRoutes);
 
