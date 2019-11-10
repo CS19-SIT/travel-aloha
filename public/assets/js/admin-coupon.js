@@ -1,1 +1,3 @@
-$("select[multiple='multiple'].coupon-level-select").bsMultiSelect();
+$(document).ready(function() {
+    $("select[multiple='multiple'].coupon-level-select").select2();
+});
