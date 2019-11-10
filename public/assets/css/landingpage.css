@@ -1727,7 +1727,7 @@ html {
     background: transparent;
     width: 100%;
     border: 0;
-    padding: 8px 0;
+    /* padding: 8px 0; */
     font-family: 'Lato', sans-serif;
   }
   
@@ -1778,7 +1778,7 @@ html {
   
   .s012 form .input-select {
     height: 34px;
-    padding: 8px 0;
+    /* padding: 8px 0; */
   }
   
   .s012 form .choices__inner {
