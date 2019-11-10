@@ -36,7 +36,7 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-1">Level</label>
                 <div class="col-md-11">
-                    <select name="States1" id="edit-states1-id" class="form-control test" multiple="multiple"
+                    <select name="States1" id="edit-states1-id" class="form-control test coupon-level-select" multiple="multiple"
                         style="display: none;">
                         <option selected="" value="lv4">Diamond</option>
                         <option selected="" value="lv3">Platinum</option>
@@ -221,7 +221,7 @@
                             <div class="form-group row">
                                 <label class="col-form-label col-md-3">Level</label>
                                 <div class="col">
-                                    <select name="level" id="edit-states1-id" class="form-control test"
+                                    <select name="level" id="edit-states1-id" class="form-control test coupon-level-select"
                                         multiple="multiple" style="display: none;">
                                         <option selected value="lv4">Diamond</option>
                                         <option selected value="lv3">Platinum</option>
@@ -304,5 +304,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@0.4.2/dist/js/BsMultiSelect.min.js" integrity="sha256-Xv+uMqE8DSQGyXgmdL9dbqXRxaAfJ+0p9c+ROi8DSEU=" crossorigin="anonymous"></script>
-    <script>$("select[multiple='multiple']").bsMultiSelect();</script>
+    <script src="/assets/js/admin-coupon.js"></script>
 <%- include('../includes/footer') %>
