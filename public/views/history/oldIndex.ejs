@@ -1,30 +1,23 @@
-<!doctype html>
-<html>
+<%- include("../includes/header") %>
+<%- include("../includes/navbar") %>
 
-<head>
-  <title>Travel Aloha - History</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-  <script src="history.js"></script>
+  <script src="../../assets/js/history/history.js"></script>
 
   <!--This is custom CSS-->
-  <link rel="stylesheet" type="text/css" href="history.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
 
 <body onload="showDetail()">
 
   <!--Navbar-->
-  <nav class="navbar ta-navbar">
+  <!--<nav class="navbar ta-navbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Travel Aloha</a>
+        <a class="navbar-brand" href="#"></a>
       </div>
     </div>
   </nav>
-
+-->
   <div class="row">
 
     <!--User Info side (left)-->
@@ -71,8 +64,8 @@
 
             </span>
             <span class="icon">
-              <div class="bed-icon">
-                <img src="bed_icon.png" width="30px" height="30px">
+              <div class="book-icon">
+                <img src="../../assets/img/bed_icon.png" width="30px" height="30px">
               </div>
             </span>
           </div>
@@ -96,8 +89,8 @@
 
             </span>
             <span class="icon">
-              <div class="bed-icon">
-                <img src="plane_icon.png" width="30px" height="30px">
+              <div class="book-icon">
+                <img src="../../assets/img/plane_icon.png" width="30px" height="30px">
               </div>
             </span>
           </div>
@@ -110,6 +103,5 @@
     </div>
 
   </div>
-</body>
 
-</html>
+  <%- include("../includes/footer") %>
