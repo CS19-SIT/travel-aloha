@@ -1,8 +1,8 @@
-<%- include('includes/header') %>
+<%- include('../includes/header') %>
+<%- include('../includes/navbar') %>
 
     <div class="container-fluid">
-        <h1 align="center"><%= title %></h1><br>
-        <% if (users.length > 0) {%>
+        <h1 align="center"  id="title"></h1><br>
             <table class="table">
                 <thead>
                     <tr>
@@ -18,37 +18,10 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                <% users.forEach((users, userIndex) => { %>
-                    <tr>
-                        <td>
-                            <% if(users.profile_picture){%>     
-                            <img src="/assets/uploads/<%= users.profile_picture %>" class="rounded-circle"  alt="<%= users.image %>"> 
-                            <%}%>                        
-                        </td>
-                        <td><%= users.userRole %></td>
-                        <td><%= users.user_id %></td>
-                        <td><%= users.username %></td>
-                        <td><%= users.firstname +" "+ users.lastname %></td>
-                        <td><%= users.gender %></td>
 
-                        <td><%= users.email %></td>
-                        <td><%= users.phoneNumber %></td>
-                        <td>
-                            <a href="/edit/<%= users.user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
-                            <a href="/delete/<%= users.user_id %>" class="btn btn-sm btn-danger">Delete</a>   
-                            <a href="/detail/<%= users.user_id %>" class="btn btn-primary" >More Info</a> 
-                        </td>
-                        
-                    </tr>
-                    
-                <%})%>  
-                </tbody>    
             </table>
-        <% } else { %>
-            <p class="text-center">No Users found. Go <a href="/add" >here</a> to add users.</p>
-        <% } %>
     </div>
 </div>
 </body>
 </html>
+<%- include('../includes/footer') %>

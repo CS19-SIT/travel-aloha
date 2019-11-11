@@ -3,7 +3,7 @@ const router = express.Router();
 
 const userManagementController = require('../controllers/userManagement');
 
-router.get('/userManagement', userManagementController.getUsersPage);
+router.get('/', userManagementController.getUsersPage);
 router.get('/add', userManagementController.addUsersPage);
 router.get('/edit/:id',userManagementController.editUsersPage);
 router.get('/detail/:id', userManagementController.detailUsersPage);
