@@ -17,6 +17,8 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 
+const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
+
 /**
  * Application Initiation
  */
@@ -76,10 +78,16 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 
+
+
 app.use(authRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/payment/checkout", checkoutRoutes);
+
 app.use(errorsController.get404);
+
+
+
 
 app.listen(process.env.APP_PORT, () => {
   if (process.env.NODE_ENV !== "production")
