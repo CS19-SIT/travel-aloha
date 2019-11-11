@@ -75,7 +75,7 @@ app.get("/", (req, res) => res.render("index", {
 }));
 
 app.get("/flights", (req, res) => res.render("flights", {
-  pageTitle: "TravelAloha",
+  pageTitle: "Flights",
   user: req.user
 }));
 
