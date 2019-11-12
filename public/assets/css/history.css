@@ -64,6 +64,13 @@ hr.hrColor{
 
 
 /*Right side*/
+div.filter{
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 20px;
+}
+
 .ta-user-info{
     background-color: #DBEBFF;
     padding-bottom: 101.5%;
@@ -111,44 +118,68 @@ hr.hrColor{
 
 
 
-.headerInfo .left{
-    width: 70%;
+.headerInfo .brief-info{
+    width: 50%;
     float: left;
     padding: 2%;
     padding-top: 0px;
     padding-bottom: 0px;
-/*
-    border-style: solid ;
-*/
     height: inherit;
 }
 
-.headerInfo .right{
-    width: 20%;
-    float: left;
+.headerInfo .toDetail{
+    width: 15%;
+    float: right;
     text-align: center;
     padding: 2%;
     padding-top: 20px;
     padding-bottom: 0px;
-/*
-    border-style: solid ;*/
     height: inherit;
 }
 
 .headerInfo .icon{
     width: 10%;
-    float: right;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    padding: 2%;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    height: inherit;
+}
+.headerInfo .status{
+    width: 20%;
+    float: left;
     text-align: center;
     vertical-align: middle;
     padding: 2%;
     padding-top: 20px;
     padding-bottom: 0px;
-/*
-    border-style: solid ;*/
-    height: inherit;
-} 
-
+}
 
 .icon .book-icon{
     padding: 2%;
+}
+
+
+/*History status text*/
+.status.paid{
+    color: #109602 ;
+}
+.status.done{
+    color: #216bc4;
+}
+.status.canceled{
+    color: #db000f;
+}
+
+/*Image*/
+img.hotel{
+    width: 30px;
+    height: 30px;
+}
+
+img.flight{
+    width: 35px;
+    height: 35px;
 }
