@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    $("select[multiple='multiple'].coupon-level-select").select2();
+    $("select[multiple='multiple'].coupon-level-select").select2({
+        width: '100%'
+    });
 });
