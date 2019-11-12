@@ -4,7 +4,6 @@ exports.get400 = (req, res) =>
     user: req.user
   });
 
-
 exports.get404 = (req, res) =>
   res.status(404).render("errors/404", {
     pageTitle: "TravelAloha - Page Not Found",
