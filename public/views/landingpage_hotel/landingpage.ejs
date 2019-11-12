@@ -1,9 +1,5 @@
 <%- include('includes/header') %>
 <%- include('includes/navbar') %>
-<%- include('includes/footer') %>
-
-<head>
-    <title>Hotel Landing page</title>
     <!--css-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="vendors/linericon/style.css">
@@ -95,7 +91,7 @@
             </div>
         </form>
     </div>
-</body>
+
 <script src="../assets/js/choices.js"></script>
 <script>
     const choices = new Choices('[data-trigger]', {
@@ -119,4 +115,5 @@
     }
 </script>
 
-</html>
+
+<%- include('includes/footer') %>
