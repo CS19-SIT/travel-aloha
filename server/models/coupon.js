@@ -127,6 +127,12 @@ exports.updateCoupon = async ({
 
 exports.deleteCoupon = async code => {
     try {
+        const result = await db.query("SELECT 1 FROM coupon WHERE code = ?", [code]);
+
+        if (result[0].length === 0) {
+            throw new Error(`Code ${code} doesn't exists`);
+        }
+
         await db.query("DELETE FROM coupon WHERE code = ?", [code]);
     } catch (err) {
         throw new Error(`[ERR] deleteCoupon: ${err}`)
