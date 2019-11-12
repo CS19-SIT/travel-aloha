@@ -53,12 +53,12 @@
                 <div class="col-md-11">
                     <div class="form-check form-check-inline">
                         <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1"
-                            class="form-check-input">
+                            class="form-check-input" checked>
                         <label class="form-check-label" for="customCheckboxInline1">Flight</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input type="checkbox" id="customCheckboxInline2" name="customCheckboxInline1"
-                            class="form-check-input">
+                            class="form-check-input" checked>
                         <label class="form-check-label" for="customCheckboxInline2">Hotel</label>
                     </div>
                 </div>
@@ -73,81 +73,172 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">CODE</th>
-                            <th scope="col">TYPE</th>
                             <th scope="col">START DATE</th>
                             <th scope="col">EXPIRE DATE</th>
+                            <th scope="col">EDIT</th>
+                            <th scope="col">DELETE</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
                             <td>FTUFTGIK90</td>
-                            <td>Hotel</td>
                             <td>2019-11-5</td>
                             <td>2021-04-23</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="FTUFTGIK90">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="FTUFTGIK90">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>EERTDTRY20</td>
-                            <td>Flight</td>
                             <td>2019-11-5</td>
                             <td>2023-06-16</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="EERTDTRY20">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="EERTDTRY20">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
                             <td>TDRSTKKU60</td>
-                            <td>Hotel</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="TDRSTKKU60">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="TDRSTKKU60">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">4</th>
                             <td>HTEUKHY30</td>
-                            <td>Hotel</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HTEUKHY30">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HTEUKHY30">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">5</th>
                             <td>DRTNAQWX40</td>
-                            <td>Flight</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="DRTNAQWX40">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="DRTNAQWX40">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">6</th>
                             <td>HYWQLPOI80</td>
-                            <td>Flight</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HYWQLPOI80">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HYWQLPOI80">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">7</th>
                             <td>ZXQRTHLO40</td>
-                            <td>Hotel</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="ZXQRTHLO40">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="ZXQRTHLO40">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">8</th>
                             <td>HCNRELQW30</td>
-                            <td>Flight</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HCNRELQW30">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HCNRELQW30">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">9</th>
                             <td>GVMIUTGF75</td>
-                            <td>Flight</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="GVMIUTGF75">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="GVMIUTGF75">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">10</th>
                             <td>EDFULZAW40</td>
-                            <td>Hotel</td>
                             <td>2019-11-5</td>
                             <td>2024-02-24</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="EDFULZAW40">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="EDFULZAW40">
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -167,13 +258,41 @@
                 </li>
             </ul>
         </nav>
-
-        <%- include('admin-coupon-form-modal', {
-            id: "addModal",
-            title: "Add new coupon",
-            buttonActionValue: "Add"
-        }) %>
     </div>
+
+    <%- include('admin-coupon-form-modal', {
+        id: "addModal",
+        title: "Add new coupon",
+        buttonActionValue: "Add"
+    }) %>
+    
+    <%- include('admin-coupon-form-modal', {
+        id: "editModal",
+        title: "Edit coupon",
+        buttonActionValue: "Edit"
+    }) %>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete coupon</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="deleteModalForm">
+                    <div class="modal-body">
+                        <p>Delete ???</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js" integrity="sha256-wfVTTtJ2oeqlexBsfa3MmUoB77wDNRPqT1Q1WA2MMn4=" crossorigin="anonymous"></script>
     <script src="/assets/js/admin-coupon.js"></script>
