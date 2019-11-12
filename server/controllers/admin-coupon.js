@@ -41,18 +41,9 @@ exports.deleteCoupon = async (req, res) => {
     }
 };
 
-exports.searchCoupon = async (req, res) => {
+exports.findCoupon = async (req, res) => {
     try {
         await Coupon.findCoupon(req.body);
-        res.sendStatus(204);
-    } catch (err) {
-        res.sendStatus(404);
-    }
-};
-
-exports.generateCouponCode = async (req, res) => {
-    try {
-        await Coupon.generateCouponCode(req.body);
         res.sendStatus(204);
     } catch (err) {
         res.sendStatus(404);

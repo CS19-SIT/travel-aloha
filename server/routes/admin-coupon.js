@@ -5,10 +5,9 @@ const adminCouponController = require("../controllers/admin-coupon");
 const authMiddleware = require("../middlewares/auth");
 
 router.get("/", authMiddleware.isAuthenticated, adminCouponController.getIndex);
-router.get("/", authMiddleware.isAuthenticated, adminCouponController.createCoupon);
-router.get("/", authMiddleware.isAuthenticated, adminCouponController.editCoupon);
-router.get("/", authMiddleware.isAuthenticated, adminCouponController.deleteCoupon);
-router.get("/", authMiddleware.isAuthenticated, adminCouponController.searchCoupon);
-router.get("/", authMiddleware.isAuthenticated, adminCouponController.generateCouponCode);
+router.put("/new", authMiddleware.isAuthenticated, adminCouponController.createCoupon);
+router.post("/edit", authMiddleware.isAuthenticated, adminCouponController.editCoupon);
+router.delete("/delete", authMiddleware.isAuthenticated, adminCouponController.deleteCoupon);
+router.get("/detail", authMiddleware.isAuthenticated, adminCouponController.findCoupon);
 
 module.exports = router;
