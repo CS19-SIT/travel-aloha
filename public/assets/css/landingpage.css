@@ -1,3 +1,4 @@
+
 html {
     line-height: 1.15;
     /* 1 */
@@ -75,7 +76,7 @@ html {
    * 2. Correct the odd `em` font sizing in all browsers.
    */
   pre {
-    font-family: monospace, monospace;
+    font-family: 'Roboto', sans-serif;
     /* 1 */
     font-size: 1em;
     /* 2 */
@@ -130,7 +131,7 @@ html {
   code,
   kbd,
   samp {
-    font-family: monospace, monospace;
+    font-family: 'Roboto', sans-serif;
     /* 1 */
     font-size: 1em;
     /* 2 */
@@ -206,7 +207,7 @@ html {
   optgroup,
   select,
   textarea {
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     /* 1 */
     font-size: 100%;
     /* 1 */
@@ -1117,6 +1118,7 @@ html {
   
   .flatpickr-current-month span.cur-month {
     font-family: inherit;
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     color: inherit;
     display: inline-block;
@@ -1152,6 +1154,7 @@ html {
     display: inline-block;
     font-size: inherit;
     font-family: inherit;
+    font-family: 'Roboto', sans-serif;
     font-weight: 300;
     line-height: inherit;
     height: auto;
@@ -1559,7 +1562,7 @@ html {
     background-size: cover;
     background-position: center center;
     padding: 15px;
-    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Roboto', sans-serif;
   }
   
   .s012 form {
@@ -1582,7 +1585,7 @@ html {
     font-size: 36px;
     font-weight: bold;
     color: #25282b
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
   
   .s012 form .inner-form header {
@@ -1754,7 +1757,7 @@ html {
     width: 100%;
     border: 0;
     /* padding: 8px 0; */
-    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Roboto', sans-serif;
   }
 
   .s012 form .inner-form .main-form .row .input-wrap-des .input-field input {
@@ -1764,7 +1767,7 @@ html {
     width: 100%;
     border: 0;
     /* padding: 8px 0; */
-    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Roboto', sans-serif;
   }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field input.placeholder {
