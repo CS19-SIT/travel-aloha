@@ -72,6 +72,7 @@ app.disable("x-powered-by");
 const authRoutes = require("./routes/auth");
 const historyRoutes = require("./routes/historySystem");
 const adminHotelRoutes = require("./routes/admin-hotel");
+const adminCouponRoutes = require("./routes/admin-coupon");
 const hotelBookingRoutes = require("./routes/hotel-booking");
 const checkoutRoutes = require("./routes/checkout");
 const errorsController = require("./controllers/errors");
@@ -102,6 +103,8 @@ app.get("/flight_booking/contact", (req, res) =>
 app.use(authRoutes);
 app.use("/", historyRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
+app.use("/admin/coupon", adminCouponRoutes);
+
 app.use(hotelBookingRoutes);
 app.use("/payment/checkout", checkoutRoutes);
 app.use(errorsController.get404);
