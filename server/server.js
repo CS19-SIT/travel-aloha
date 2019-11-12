@@ -18,6 +18,8 @@ const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 const hotel = require("./models/hotelBookingModel/hotel");
 
+const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
+
 /**
  * Application Initiation
  */
@@ -70,6 +72,7 @@ app.disable("x-powered-by");
 const authRoutes = require("./routes/auth");
 const adminHotelRoutes = require("./routes/admin-hotel");
 const hotelBookingRoutes = require("./routes/hotel-booking");
+const checkoutRoutes = require("./routes/checkout");
 const errorsController = require("./controllers/errors");
 
 app.get("/", (req, res) =>
@@ -98,6 +101,7 @@ app.get("/flight_booking/contact", (req, res) =>
 app.use(authRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use(hotelBookingRoutes);
+app.use("/payment/checkout", checkoutRoutes);
 app.use(errorsController.get404);
 
 // 
