@@ -65,14 +65,48 @@ exports.createCoupon = async ({
     code,
     name,
     description,
+    creation_date,
+    create_by_user_id,
     levels,
     hotels,
     airlines,
     discount_percentage,
     start_date,
-    end_date
+    expire_date
 }) => {
+    try {
+        await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+            code,
+            discount_percentage,
+            creation_date,
+            expire_date,
+            create_by_user_id,
+            start_date,
+            hotels === true,
+            airlines === true,
+            name,
+            description
+        ]);
 
+        const errHandler = async err => {
+            await exports.deleteCoupon(code);
+            throw err;
+        };
+        
+        if (Array.isArray(hotels)) {
+            await db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
+                hotels.map(e => [code, e])
+            ]).catch(errHandler);
+        }
+
+        if (Array.isArray(airlines)) {
+            await db.query("INSERT INTO coupon_criteria_airlines VALUES ?", [
+                airlines.map(e => [code, e])
+            ]).catch(errHandler);
+        }
+    } catch (err) {
+        throw new Error(`[ERR] createCoupon: ${err}`);
+    }
 };
 
 exports.updateCoupon = async ({
