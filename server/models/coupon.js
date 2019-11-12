@@ -1,5 +1,11 @@
 const db = require("../db/db");
 
+const convertBooleans = e => {
+    e.for_every_hotel = !!e.for_every_hotel;
+    e.for_every_airline = !!e.for_every_airline;
+    return e;
+};
+
 exports.searchCoupons = async ({
     code,
     name,
@@ -37,11 +43,7 @@ exports.searchCoupons = async ({
             (page + 1) * entriesPerPage,
         ]);
 
-        return result[0].map(e => {
-            e.for_every_hotel = !!e.for_every_hotel;
-            e.for_every_airline = !!e.for_every_airline;
-            return e;
-        });
+        return result[0].map(convertBooleans);
     } catch (err) {
         throw new Error(`[ERR] findCoupons: ${err}`)
     }
@@ -52,7 +54,7 @@ exports.findCoupon = async code => {
         const result = await db.query("SELECT * FROM coupon WHERE code = ?", [code]);
 
         if (result[0].length >= 1) {
-            return result[0];
+            return convertBooleans(result[0][0]);
         }
 
         throw new Error(`Coupon code '${code}' not found`);
