@@ -1,0 +1,24 @@
+body{
+    background-color: #6c757d26;
+}
+.content{
+    margin: 15px 20px;
+    padding: 15px 20px;
+    background-color: #ffff;
+}
+.content-add {
+    margin: 15px;
+}
+.content-add button {
+    width: 150px;
+}
+.menu{
+    background-color: #007bff;
+}
+.menu a {
+    color: #ffffff !important;
+}
+.header-text{
+    margin-bottom: 10px;
+    font-weight: bold;
+}
