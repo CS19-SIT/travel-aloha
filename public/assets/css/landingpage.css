@@ -183,25 +183,10 @@ html {
   /**
    * Add the correct display in IE 9-.
    */
-  audio,
-  video {
-    display: inline-block;
-  }
-  
-  /**
-   * Add the correct display in iOS 4-7.
-   */
-  audio:not([controls]) {
-    display: none;
-    height: 0;
-  }
   
   /**
    * Remove the border on images inside links in IE 10-.
-   */
-  img {
-    border-style: none;
-  }
+
   
   /**
    * Hide the overflow in IE.
@@ -301,7 +286,7 @@ html {
   legend {
     box-sizing: border-box;
     /* 1 */
-    color: inherit;
+    color: #388bf2;
     /* 2 */
     display: table;
     /* 1 */
@@ -1300,10 +1285,10 @@ html {
   }
   
   .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
-    background: #569ff7;
+    background: #388bf2;
     box-shadow: none;
     color: #fff;
-    border-color: #569ff7;
+    border-color: #388bf2;
   }
   
   .flatpickr-day.selected.startRange, .flatpickr-day.startRange.startRange, .flatpickr-day.endRange.startRange {
@@ -1341,7 +1326,7 @@ html {
   
   .flatpickr-day.week.selected {
     border-radius: 0;
-    box-shadow: -5px 0 0 #569ff7,5px 0 0 #569ff7;
+    box-shadow: -5px 0 0 #388bf2,5px 0 0 #388bf2;
   }
   
   .flatpickr-day.hidden {
@@ -1564,27 +1549,29 @@ html {
   }
   
   .s012 {
-    min-height: 100vh;
+    min-height: 85vh;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
         justify-content: center;
     -ms-flex-align: center;
         align-items: center;
-    background: url("../images/Searchs_012.png");
     background-size: cover;
     background-position: center center;
     padding: 15px;
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
   }
   
   .s012 form {
     width: 100%;
     max-width: 940px;
     margin: 0;
-    background: linear-gradient(rgba(79, 172, 254, 0.8) 0%, rgba(0, 242, 254, 0.8) 100%);
+    /* background: linear-gradient(#DBEBFF 0%, #DBEBFF 100%); */
     padding: 50px 70px 80px 70px;
-    border-radius: 10px;
+    border : 2px solid #959799;
+    border-radius: 15px;
+    /* box-shadow: 10px 10px 5px #DBEBFF; */
+    
   }
   
   .s012 form fieldset {
@@ -1594,7 +1581,7 @@ html {
   .s012 form fieldset legend {
     font-size: 36px;
     font-weight: bold;
-    color: #333;
+    color: #25282b
     font-family: 'Poppins', sans-serif;
   }
   
@@ -1625,7 +1612,7 @@ html {
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #002c71;
+    border-top: 10px solid #388bf2;
     position: absolute;
     top: 100%;
     left: 50%;
@@ -1646,7 +1633,7 @@ html {
   .s012 form .inner-form header .travel-type-wrap .item .group-icon svg {
     width: 20px;
     height: 20px;
-    fill: #555;
+    fill: #25282b;
     margin: 0 4px;
   }
   
@@ -1657,7 +1644,7 @@ html {
   
   .s012 form .inner-form header .travel-type-wrap .item.active {
     color: #fff;
-    background: #002c71;
+    background: #5ba0f5;
   }
   
   .s012 form .inner-form header .travel-type-wrap .item.active:after {
@@ -1669,7 +1656,7 @@ html {
   }
   
   .s012 form .inner-form header .travel-type-wrap .item:hover, .s012 form .inner-form header .travel-type-wrap .item:focus {
-    background: #002c71;
+    background: #388bf2;
     color: #fff;
   }
   
@@ -1686,11 +1673,20 @@ html {
   }
   
   .s012 form .inner-form .main-form .row .input-wrap {
-    background: #fff;
+    border : 1px solid #959799;
     border-radius: 3px;
     height: 60px;
     position: relative;
-    padding: 10px 15px 10px 48px;
+    padding: 10px 15px 60px 48px;
+  }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des {
+    border : 1px solid #959799;
+    border-radius: 3px;
+    height: 60px;
+    position: relative;
+    padding: 10px 15px 60px 48px;
+    width: 1000px;
   }
   
   .s012 form .inner-form .main-form .row .input-wrap .icon-wrap {
@@ -1704,14 +1700,37 @@ html {
     -ms-flex-pack: center;
         justify-content: center;
   }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .icon-wrap {
+    width: 48px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+
+  
   
   .s012 form .inner-form .main-form .row .input-wrap .icon-wrap svg {
     fill: #ccc;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     -ms-flex-item-align: end;
         align-self: flex-end;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .icon-wrap svg {
+    fill: #ccc;
+    width: 30px;
+    height: 30px;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-bottom: 20px;
   }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field label {
@@ -1720,30 +1739,64 @@ html {
     display: block;
     color: #555;
   }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .input-field label {
+    font-size: 11px;
+    font-weight: 900;
+    display: block;
+    color: #555;
+  }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field input {
     font-size: 16px;
-    color: #333;
+    color: #25282b;
     background: transparent;
     width: 100%;
     border: 0;
     /* padding: 8px 0; */
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
+  }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .input-field input {
+    font-size: 16px;
+    color: #25282b;
+    background: transparent;
+    width: 100%;
+    border: 0;
+    /* padding: 8px 0; */
+    /* font-family: 'Lato', sans-serif; */
   }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field input.placeholder {
+    color: #808080;
+  }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .input-field input.placeholder {
     color: #808080;
   }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field input:-moz-placeholder {
     color: #808080;
   }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .input-field input:-moz-placeholder {
+    color: #808080;
+  }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field input::-webkit-input-placeholder {
     color: #808080;
   }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .input-field input::-webkit-input-placeholder {
+    color: #808080;
+  }
   
   .s012 form .inner-form .main-form .row .input-wrap .input-field input.hover, .s012 form .inner-form .main-form .row .input-wrap .input-field input:focus {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  .s012 form .inner-form .main-form .row .input-wrap-des .input-field input.hover, .s012 form .inner-form .main-form .row .input-wrap-des .input-field input:focus {
     box-shadow: none;
     outline: 0;
   }
@@ -1786,7 +1839,7 @@ html {
     border-radius: 0;
     border: 0;
     height: 100%;
-    color: #333;
+    color: #25282b;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -1813,7 +1866,7 @@ html {
         align-items: center;
     height: 100%;
     opacity: 1;
-    color: #666;
+    color:#808080;
   }
   
   .s012 form .choices__inner .choices__list--single .choices__item {
@@ -1822,7 +1875,7 @@ html {
     -ms-flex-align: center;
         align-items: center;
     height: 100%;
-    color: #333;
+    color: #25282b;
   }
   
   .s012 form .choices__list.choices__list--dropdown {
@@ -1840,7 +1893,7 @@ html {
   
   .s012 form .choices__list--dropdown .choices__item--selectable.is-highlighted {
     background: transparent;
-    color: #333;
+    color: #25282b;
   }
   
   .s012 form .choices__list--dropdown .choices__item {
@@ -1875,7 +1928,7 @@ html {
     min-width: 100px;
     height: 50px;
     padding: 0 15px;
-    background: #ff8300;
+    background: #388bf2;
     white-space: nowrap;
     border-radius: 3px;
     font-size: 16px;
@@ -1887,7 +1940,7 @@ html {
   }
   
   .s012 form .btn-search:hover {
-    background: #e67600;
+    background: #5ba0f5;
   }
   
   @media screen and (max-width: 767px) {
