@@ -9,15 +9,10 @@ exports.getDashboard = (req, res) => {
 exports.getEditProfile = (req, res) => {
 
     res.render("editProfile.ejs", {
-        user: {
-            username: "Firstname Lastname"
-        },
+        user:req.user,
         pageTitle: "edit profile"
     });
 };
 
-// exports.getUserId = (req, res) => {
-//     const userId = req.params.id;
-//     res.send(`<h1>UserId : ${userId}</h1>`)
-// };
+
 
