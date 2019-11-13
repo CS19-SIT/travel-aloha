@@ -2,37 +2,25 @@
 <%- include('../includes/navbar') %>
 	<style>
 	profileStaff{
-            width:100px;height:100px; 
+            width:8rem;height:8rem; 
             float:left;
             margin: 0.3%;
             background-size: cover;
         }
+    input.cb{
+      height:1.8em;
+      width:1.8em;
+      vertical-align: middle;
+      
+    }
 	</style>
 
 </head>
 <body style="background-color: whitesmoke;">
     <div style="padding:20px">
     <h1 style="font-size: 3em;">Staff Requisition</h1><br>
-    <h2>Staff List</h2>
 	<hr class="w-100 p-1 my-3" />
 	
-    <!--<img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
-    <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
-    <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
-    Name : Somsri Jalernmak<br>
-    Gender : F <br>
-    Department : CS <br>
-    Desired Salary: 17500 Baht <br>
-    <hr class="w-100 p-1 my-4" />
-
-    <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
-    <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
-    <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
-    Name : Soncye somgreat<br>
-    Gender : M <br>
-    Department : CS <br>
-    Desired Salary : 21000 Baht <br>
-    <hr class="w-100 p-1 my-4" />-->
     <staffList>
     <staffCard>
     <infoStaff>
@@ -61,14 +49,15 @@
             <div class="modal-body">
                 <h4>Staff ID : 00</h4>
               <p>Please Check whether you want to grant these access to the selected staff</p>
-              <input type="checkbox" id="cC" onclick="showUD()">Create <br> 
-              <input type="checkbox" id="cR" checked>Read <br>
-              <input type="checkbox" id="cU" style="display: none;">Update <br> 
-              <input type="checkbox" id="cD" style="display: none;">Delete <br>
+              <p>Note :You'll be able to check Update and Delete after you check Read permission</p>
+              <input type="checkbox" class="cb" id="cC">Create <br> 
+              <input type="checkbox" class="cb" id="cR" onclick="showUD()">Read <br>
+              <input type="checkbox" class="cb" id="cU" style="display: none;">Update <br> 
+              <input type="checkbox" class="cb" id="cD" style="display: none;">Delete <br>
             </div>
             <div class="modal-footer">
-                <input type="text" value="0100" id="crudshow" readonly style="display:none">
-                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()" data-dismiss="modal">Confirm</button>
+                <input type="text" value="0000" id="crudshow" readonly style="display:none">
+                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()"data-dismiss="modal">Confirm</button>
                 <button class="btn btn-warning" style="float:right" data-dismiss="modal">Cancel</button>
                
             </div>
@@ -79,5 +68,6 @@
 
     </div>
   <script src="../../assets/js/staff_admin/requisition.js"></script>
-
+  <script src="../../assets/js/staff_admin/swaltest.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <%- include('../includes/footer') %>

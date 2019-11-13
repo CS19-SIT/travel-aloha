@@ -1,17 +1,20 @@
 staffRecord = [
     {
+        'ID' : '111',
         'Name': 'Rick Roll',
         'Department': 'No',
         'Desired salary' : '696969',
         'profile_picture': 'https://i.ytimg.com/vi/oHg5SJYRHA0/hqdefault.jpg'
     },
     {
+        'ID' : '116',
         'Name': 'Rick Roll 2.0',
         'Department': 'Despacito HQ',
         'Desired salary' : '100',
         'profile_picture': 'https://static.stereogum.com/blogs.dir/2/files/2008/03/rickroll-still-compressed.jpg'
     },
     {
+        'ID' : '117',
         'Name': 'Jeff',
         'Department': 'Street',
         'Desired salary' : '35000',
@@ -41,9 +44,14 @@ staffRecord.forEach(function(detail) {
 })
 
 function reject(){
+    
     var conf = confirm("Are you sure?");
-    if(conf){
-        alert("Staff Rejected");
+    if(conf){   
+    Swal.fire({
+    icon: 'error',
+    title: 'Rejected',
+    text: 'You reject the application form',
+  })    
     }
     else{
     }
@@ -65,13 +73,11 @@ function showUD(){
 
     }
 
-
 function confirmCRUD(){
     var cC = document.getElementById("cC").checked; var cR = document.getElementById("cR").checked;
     var cU = document.getElementById("cU").checked; var cD = document.getElementById("cD").checked;
     document.getElementById("crudshow").value = "";
     document.getElementById("crudshow").append("asdasd");
-    
     if(cC){
         document.getElementById("crudshow").value+="1";
     } else{
@@ -96,6 +102,25 @@ function confirmCRUD(){
         document.getElementById("crudshow").value+="0";
     }
 
-    alert("Staff Registered \nCRUD:"+document.getElementById("crudshow").value);
-
+    if(document.getElementById("crudshow").value == "0000"){
+        alert("You didn't check any checkbox");
+    }
+    if(confirm("Complete the approval?")){
+    // SEND DATA HERE
+    Swal.fire({
+        icon: 'success',
+        title: 'Staff Approved!',
+        text: 'Staff CRUD : '+document.getElementById("crudshow").value,
+      })
+         
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Approval canceled',
+        })   
+    }
 }
+
+
+
