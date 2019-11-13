@@ -40,7 +40,6 @@ staffRecord = [
         'profile_picture': 'http://www.ah.xinhuanet.com/2015-04/09/1114914317_14285490003871n.jpg'
     }
 ]
-var backup = 0
 
 var staffList = document.getElementsByTagName('staffList')[0]
 var staffCard = staffList.getElementsByTagName('staffCard')[0]

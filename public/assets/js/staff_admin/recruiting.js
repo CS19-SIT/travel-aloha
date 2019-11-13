@@ -5,7 +5,7 @@ delete candidatesInfo['user_id']
 if (onPending == 'true') {
 	document.getElementById('withdraw').addEventListener('click', function() {
 		$.ajax({
-			url: '/staff_admin/sendQuery',
+			url: '/admin/staff/sendQuery',
 			method: 'POST',
 			data: {
 				sql: `DELETE FROM staff_admin_info WHERE staffID='${candidatesId}' AND status='pending'`
@@ -20,7 +20,7 @@ if (onPending == 'true') {
 				})
 				setTimeout(function() {
 					location.reload(true)
-				}, 1200)
+				}, 1000)
 			} else {
 				Swal.fire({
 					icon: 'error',
@@ -57,7 +57,7 @@ if (onPending == 'true') {
 		let [department, role] = [document.getElementById('department').value, document.getElementById('role').value]
 		if (department && role) {
 			$.ajax({
-				url: '/staff_admin/sendQuery',
+				url: '/admin/staff/sendQuery',
 				method: 'POST',
 				data: {
 					sql: `INSERT INTO staff_admin_info VALUES('${candidatesId}', '${department}', '${role}', 'pending')`
@@ -72,7 +72,7 @@ if (onPending == 'true') {
 					})
 					setTimeout(function() {
 						location.reload(true)
-					}, 1200)
+					}, 1000)
 				} else {
 					Swal.fire({
 						icon: 'error',

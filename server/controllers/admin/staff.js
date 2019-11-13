@@ -1,4 +1,12 @@
-const connector = require("../db/db")
+const connector = require('../../db/db')
+
+
+exports.getIndex = function(request, response) {
+    response.render('staff_admin/index', {
+        pageTitle: 'TravelAloha - StaffManagement',
+        user: request.user,
+    })
+}
 
 exports.getApplicationForm = async function(request, response) {
     try {
@@ -36,13 +44,6 @@ exports.getStaffCandidatesList = function(request, response) {
 
 exports.getDetailAllExistedStaff = function(request, response) {
     response.render('staff_admin/management', {
-        pageTitle: 'TravelAloha - StaffManagement',
-        user: request.user,
-    })
-}
-
-exports.getIndexPage = function(request, response) {
-    response.render('staff_admin/index', {
         pageTitle: 'TravelAloha - StaffManagement',
         user: request.user,
     })
