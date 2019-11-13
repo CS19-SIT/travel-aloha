@@ -19,7 +19,6 @@ const MySQLStore = require("express-mysql-session")(session);
 
 //TODO: Do something about this!
 const hotel = require("./models/hotelBookingModel/hotel");
-const stripe = require("stripe")("sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO");
 
 /**
  * Application Initiation
