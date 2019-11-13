@@ -1,10 +1,6 @@
-<%- include('includes/header') %>
+<%- include('../includes/header') %>
 
 <div class="container">
-    <h1><%= title %></h1>
-    <% if (message != '') { %>
-        <p class="text-center text-danger"><%= message %></p>
-    <% } %>
     <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
         <div class="form-group col-md-4">
             <input type="text" class="form-control" name="username" id="username" placeholder="Username">

@@ -1,5 +1,4 @@
 <%- include('../includes/header') %>
-<%- include('../includes/navbar') %>
 
     <div class="container-fluid">
         <h1 align="center"  id="title"></h1><br>
@@ -18,7 +17,31 @@
 
                     </tr>
                 </thead>
+                <% user.forEach(function(item){ %>
+                    <tr>
+                        <td>
+                            <% if(user.profile_picture){%>     
+                            <img src="/assets/uploads/<%= user.profile_picture %>" class="rounded-circle"  alt="<%= users.image %>"> 
+                            <%}%>                        
+                        </td>
+                        <td><%= user.userRole %></td>
+                        <td><%= user.user_id %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.firstname +" "+ users.lastname %></td>
+                        <td><%= user.gender %></td>
 
+                        <td><%= user.email %></td>
+                        <td><%= user.phoneNumber %></td>
+                        <td>
+                            <a href="/edit/<%= user.user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/delete/<%= user.user_id %>" class="btn btn-sm btn-danger">Delete</a>   
+                            <a href="/detail/<%= user.user_id %>" class="btn btn-primary" >More Info</a> 
+                        </td>
+                        
+                    </tr>
+                    
+                <%})%>  
+                </tbody>    
             </table>
     </div>
 </div>

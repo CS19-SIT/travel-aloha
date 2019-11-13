@@ -1,7 +1,7 @@
 const connector = require("../db/db")
 
 exports.getUsersPage = function(req, res){
-    let query = "SELECT * FROM `user` ORDER BY user_id ASC"; 
+    let query = "SELECT * FROM user"; 
     connector.query(query,function (err , result){
         res.render('userManagement/users', {
             user:result,
@@ -13,7 +13,7 @@ exports.getUsersPage = function(req, res){
 
 exports.addUsersPage = function(req,res) {
     res.render('userManagement/add-users.ejs', {
-        title: " Add a new user"
+        pageTitle: " Add a new user"
         ,message: ''
     });
 }
