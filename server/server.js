@@ -123,6 +123,11 @@ app.get("/reviewhotel", (req, res) => res.render("./review&rating/reviewHotel", 
 }));
 
 
+app.get("/flights", (req, res) => res.render("flights", {
+  pageTitle: "Flights",
+  user: req.user
+}));
+
 app.use(authRoutes);
 // app.use("/", historyRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
