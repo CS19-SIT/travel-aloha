@@ -20,6 +20,8 @@ const hotel = require("./models/hotelBookingModel/hotel");
 
 const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
 
+
+
 /**
  * Application Initiation
  */
@@ -81,10 +83,12 @@ const staffAdminRoutes = require("./routes/staffAdmin");
 const errorsController = require("./controllers/errors");
 const contactSystemRoutes = require("./routes/Contact_System"); 
 
+
 app.get("/", (req, res) => res.render("index", {
     pageTitle: "TravelAloha",
     user: req.user
 }));
+
 app.get("/", (req, res) =>
     res.render("index", {
         pageTitle: "TravelAloha",
@@ -107,6 +111,17 @@ app.get("/flight_booking/contact", (req, res) =>
         user: req.user
     })
 );
+
+app.get("/reviewflight", (req, res) => res.render("./review&rating/reviewAirline", {
+  pageTitle: "TravelAloha-reviewAirline",
+  user: req.user
+}));
+
+app.get("/reviewhotel", (req, res) => res.render("./review&rating/reviewHotel", {
+  pageTitle: "TravelAloha-reviewHotel",
+  user: req.user
+}));
+
 
 app.use(authRoutes);
 // app.use("/", historyRoutes);

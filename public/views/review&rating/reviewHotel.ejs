@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../assets/css/star-rating-svg.css">
+    <link rel="stylesheet" href="../../assets/css/review.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/400150cc58.js" crossorigin="anonymous"></script>
+    <title>Review Hotel</title>
+    <%- include('../includes/header') %>
+    <%- include('../includes/navbar') %>
+</head>
+<body>
+    <div class="container-fluid px-0 py-5 mx-auto">
+    <div class="row justify-content-center mx-0 mx-md-auto">
+        <div class="col-lg-10 col-md-11 px-1 px-sm-2">
+            <div class="card border-0 px-3">
+                
+                
+                <!-- top row -->
+                <div class="d-flex row py-5 px-5 bg-light">
+                        
+                    <div class="well well-sm">
+                                <div class="row">
+                                    <div class=" text-center white-tab p-2 px-3 mx-2">
+                                        <h1 class="rating-num sm-text mb-0">
+                                            4.0</h1>
+                                        <div class="rating">
+                                                <i class="fas fa-star green-star"></i><i class="fas fa-star green-star"></i><i class="fas fa-star green-star"></i><i class="fas fa-star yellow-star"></i><i class="fas fa-star red-star"></i>
+                                        </div>
+                                        <div>
+                                            <span class="glyphicon glyphicon-user sm-text mb-0"></span>1,050,008 total
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6">
+                                        <div class="row rating-desc">
+                                            <div class="col-xs-3 col-md-3 text-right">
+                                                    <i class="fas fa-star fivestar"></i>5
+                                            </div>
+                                            <div class="col-xs-5 col-md-6">
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <span class="sr-only">80%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3">
+                                            <spen class="text-muted">10</spen>
+                                            </div>
+                                            <!-- end 5 -->
+                                            <div class="col-xs-3 col-md-3 text-right">
+                                                    <i class="fas fa-star fourstar"></i>4
+                                            </div>
+                                            <div class="col-xs-5 col-md-6">
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <span class="sr-only">80%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3">
+                                            <spen class="text-muted">10</spen>
+                                            </div>
+                                            <!-- end 4 -->
+                                            <div class="col-xs-3 col-md-3 text-right">
+                                                    <i class="fas fa-star threestar"></i>3
+                                            </div>
+                                            <div class="col-xs-5 col-md-6">
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <span class="sr-only">80%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3">
+                                            <spen class="text-muted">10</spen>
+                                            </div>
+                                            <!-- end 3 -->
+                                            <div class="col-xs-3 col-md-3 text-right">
+                                                    <i class="fas fa-star twostar"></i>2
+                                            </div>
+                                            <div class="col-xs-5 col-md-6">
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <span class="sr-only">80%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3">
+                                            <spen class="text-muted">10</spen>
+                                            </div>
+                                            <!-- end 2 -->
+                                            <div class="col-xs-3 col-md-3 text-right">
+                                                    <i class="fas fa-star onestar"></i>1
+                                            </div>
+                                            <div class="col-xs-5 col-md-6">
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <span class="sr-only">80%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-md-3">
+                                            <spen class="text-muted">10</spen>
+                                            </div>
+                                            <!-- end 1 -->
+            
+                                        </div>
+                                        <!-- end row -->
+                                        
+                                    </div>
+                                    <div class="col-xs-4 col-md-4">
+                                            <div class="row rating-desc">
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    Cleanness
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <spen class="text-muted">4.75</spen>
+                                                </div>
+                                                <!-- end Cleaness-->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                     Comfort
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <spen class="text-muted">4.75</spen>
+                                                </div>
+                                                <!-- end Comfort -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    Meal
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <spen class="text-muted">4.75</spen>
+                                                </div>
+                                                <!-- end Meal -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    Location
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <spen class="text-muted">4.75</spen>     
+                                                </div>
+                                                <!-- end Location -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    service
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                                                        <spen class="text-muted">4.75</spen>
+                                                </div>
+                                                <!-- end service -->
+                
+                                            </div>
+                                            <!-- end row -->
+                                            
+                                        </div>
+                                </div>
+                            </div>    
+                           
+                        <!--<div class="white-tab p-2 px-3 mx-2">
+                                <p class="sm-text mb-0">ALL REVIEWS<h4>124</h4></p>
+                                <p class="sm-text mb-0">OVERALL RATING</p>
+                                <h4>4.8</h4>
+                            </div>
+                            <div class="white-tab p-2 mx-2 text-muted">
+                                <p class="sm-text mb-0">ALL REVIEWS</p>
+                                <h4>124</h4>
+                            </div>
+                            <div class="white-tab p-2 mx-2">
+                                <p class="sm-text mb-0 text-muted">POSITIVE REVIEWS</p>
+                                <h4 class="green-text">93%</h4>
+                            </div>-->
+                     <div class="ml-md-auto p-2 mx-md-2 pt-4 pt-md-3"> 
+                         <button class="btn btn-red px-4" data-toggle="modal" data-target="#exampleModal">WRITE A REVIEW</button> 
+                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">New review</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="form-group">
+                                      <label for="message-text" class="col-form-label">Conment:</label>
+                                      <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Uplord picture:</label>
+                                         <input type="file" name="" id="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Cleanness:</label>
+                                        <div class="my-rating"></div><span class="live-rating"></span></div>
+                                        <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Comfort:</label>
+                                        <div class="my-rating-2"></div><span class="live-rating-2"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Meal:</label>
+                                        <div class="my-rating-3"></div><span class="live-rating-3"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Location:</label>
+                                        <div class="my-rating-4"></div><span class="live-rating-4"></span>
+                                    </div>    
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Service:</label>
+                                        <div class="my-rating-5"></div><span class="live-rating-5"></span>
+                                    </div> 
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">Send message</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>    
+                        </div>
+                </div> <!-- middle row -->
+                <div class="row">
+                    <div class="text-center ml-md-auto ">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            sort by
+                            </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">Most recent</button>
+                            <button class="dropdown-item" type="button">Date</button>
+                            <button class="dropdown-item" type="button">Score</button>
+                        </div>
+                        </div>
+                   </div>
+                   <div class="text-center ">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            fitter
+                            </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">5 star</button>
+                            <button class="dropdown-item" type="button">4 star</button>
+                            <button class="dropdown-item" type="button">3 star</button>
+                            <button class="dropdown-item" type="button">2 star</button>
+                            <button class="dropdown-item" type="button">1 star</button>
+                        </div>
+                        </div>
+                   </div>
+                    <!--<div class="col-md-2 col-4 text-center block py-5">
+                        <div class="round-icon"> <img src="https://i.imgur.com/Grjnbah.png" width="50px" height="50px"> </div>
+                        <p class="sm-text-1 grey-text mb-0">100</p>
+                        <div class="fa fa-circle red-dot"></div>
+                        <div class="fa fa-circle red-dot"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                    </div>
+                    <div class="col-md-2 col-4 text-center block py-5">
+                        <div class="round-icon"> <img src="https://i.imgur.com/q2v8mqu.png" width="50px" height="50px"> </div>
+                        <p class="sm-text-1 grey-text mb-0">100</p>
+                        <div class="fa fa-circle yellow-dot"></div>
+                        <div class="fa fa-circle yellow-dot"></div>
+                        <div class="fa fa-circle yellow-dot"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                    </div>
+                    <div class="col-md-2 col-4 text-center block py-5">
+                        <div class="round-icon"> <img src="https://i.imgur.com/EkmVVM1.png" width="50px" height="50px"> </div>
+                        <p class="sm-text-1 grey-text mb-0">100</p>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                    </div>
+                    <div class="col-md-2 col-4 text-center block py-5">
+                        <div class="round-icon"> <img src="https://i.imgur.com/ZbZzavI.png" width="50px" height="50px"> </div>
+                        <p class="sm-text-1 grey-text mb-0">100</p>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                    </div>
+                    <div class="col-md-2 col-4 text-center block py-5">
+                        <div class="round-icon"> <img src="https://i.imgur.com/S6SGKFQ.png" width="50px" height="50px"> </div>
+                        <p class="sm-text-1 grey-text mb-0">100</p>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                        <div class="fa fa-circle"></div>
+                    </div>-->
+                </div> 
+                <!-- Review by user -->
+                <div class="review p-5">
+                        <div class="row d-flex">
+                            <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px" height="60px"></div>
+                            <div class="d-flex flex-column pl-3">
+                                <a class="black-text"href="#"><h4>Emily</h4></a>
+                                <p class="grey-text">30 min ago</p>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle yellow-dot my-auto rating-dot"></div>
+                            <div class="green-text">
+                                <h5 class="mb-0 pl-3">4.5</h5>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <p>This dive center is incredibly well organized and is at the top of its game.</p>
+                        </div>
+                        <div class="row ml-1">
+                            <img class="reviewpic"src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85" alt=""/>
+                             <img class="reviewpic" src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85" alt="">
+                        </div>
+                </div>
+                <div class="review p-5">
+                        <div class="row d-flex">
+                            <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px" height="60px"></div>
+                            <div class="d-flex flex-column pl-3">
+                                <a class="black-text"href="#"><h4>Emily</h4></a>
+                                <p class="grey-text">30 min ago</p>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle yellow-dot my-auto rating-dot"></div>
+                            <div class="green-text">
+                                <h5 class="mb-0 pl-3">4.5</h5>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <p>This dive center is incredibly well organized and is at the top of its game.</p>
+                        </div>
+                </div>
+                <div class="review p-5">
+                        <div class="row d-flex">
+                            <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px" height="60px"></div>
+                            <div class="d-flex flex-column pl-3">
+                                <a class="black-text"href="#"><h4>Emily</h4></a>
+                                <p class="grey-text">30 min ago</p>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle green-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle red-dot my-auto rating-dot"></div>
+                            <div class="fa fa-circle red-dot my-auto rating-dot"></div>
+                            <div class="green-text">
+                                <h5 class="mb-0 pl-3">3</h5>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <p>This dive center is incredibly well organized and is at the top of its game.</p>
+                        </div>
+                </div>
+                <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item nav">
+                            <a class="page-link nav" href="#" tabindex="-1">Previous</a>
+                          </li>
+                          <li class="page-item "><a class="page-link" href="#">1</a></li>
+                          <li class="page-item "><a class="page-link" href="#">2</a></li>
+                          <li class="page-item "><a class="page-link" href="#">3</a></li>
+                          <li class="page-item ">
+                            <a class="page-link " href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+<script src="review.js"></script>
+<script src="jquery.star-rating-svg.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</html>
