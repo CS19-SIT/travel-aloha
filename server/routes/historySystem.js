@@ -1,14 +1,21 @@
+const history = require("../controllers/history");
 const express = require("express");
 const router = express.Router();
 
 const authController = require("../controllers/auth");
 const authMiddleware = require("../middlewares/auth");
-router.get('/Hotel', (req, res) => {
-    res.render('history/Hotel', {
-        pageTitle: "HotelDetail",
-        user: req.user
-    })
-})
+ router.get('/Hotel', (req, res) => {
+     res.render('history/Hotel', {
+         pageTitle: "HotelDetail",
+         user: req.user
+     })
+ })
+
+router.get(
+    "/data",
+    authMiddleware.isAuthenticated,
+    history.getIndex
+  );
 
 router.get('/', (req, res) => {
     res.render('history/history', {
