@@ -68,6 +68,7 @@ app.disable("x-powered-by");
  */
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
+const rewardLevelRoutes = require("./routes/rewardLevel");
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
@@ -75,6 +76,9 @@ app.get("/", (req, res) => res.render("index", {
 }));
 
 app.use(authRoutes);
+app.use("/index", historyRoutes);
+app.use("/admin/hotel", adminHotelRoutes);
+app.use("/rewardLevel", rewardLevelRoutes);
 
 app.use(errorsController.get404);
 

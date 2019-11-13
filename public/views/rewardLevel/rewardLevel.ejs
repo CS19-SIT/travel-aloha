@@ -1,0 +1,153 @@
+
+
+
+
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <link rel="stylesheet" href="../../assets/css/extension.css" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <link href="https://code.jquery.com/jquery-3.3.1.slim.min.js" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../assets/js/rewardLevel/chart.js"></script>
+    </head>
+
+    <body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-12 mx-auto mb-5 text-center">
+                <h1 class="display-4">Level Management</h1>
+            </div>
+
+            <!-- Normal -->
+            <div class="col-xl-6 col-lg-6 mb-4">
+                <div class="rounded-lg p-5 shadow" style="background-color: #dbebff;border-bottom: 3px solid #114d96;">
+                    <h3 class="text-center mb-4">Normal Level</h3>
+                    <form action="/action_page.php">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-2 mt-3 text-center">
+                                <label for="normalCriteria" style="color: #52575c; text-align:center;">Criteria</label>
+                            </div>
+                            <div class="col-sm-6 col-xs-2">
+                                <input type="text" id="normalCriteria" name="" placeholder="Example: 50,000" />
+                            </div>
+                            <div class="col-sm-3 col-xs-2 mt-2 text-center">
+                                <button class="button button4">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Silver -->
+            <div class="col-xl-6 col-lg-6 mb-4">
+                <div class="rounded-lg p-5 shadow" style="background-color: #dbebff;border-bottom: 3px solid #114d96;">
+                    <h3 class="text-center mb-4">Silver Level</h3>
+                    <form action="/action_page.php">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-2 mt-3 text-center">
+                                <label for="silverCriteria" style="color: #52575c; text-align:center;">Criteria</label>
+                            </div>
+                            <div class="col-sm-6 col-xs-2">
+                                <input type="text" id="silverCriteria" name="" placeholder="Example: 100,000" />
+                                <!-- <% if (10 > 11){ %>
+                                    <p> 10 > 15 </p>
+                                <% } %> -->
+                            </div>
+                            <div class="col-sm-3 col-xs-2 mt-2 text-center">
+                                <button class="button button4">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Gold -->
+            <div class="col-xl-6 col-lg-6 mb-4">
+                <div class="rounded-lg p-5 shadow" style="background-color: #dbebff;border-bottom: 3px solid #114d96;">
+                    <h3 class="text-center mb-4">Gold Level</h3>
+                    <form action="/action_page.php">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-2 mt-3 text-center">
+                                <label for="goldCriteria" style="color: #52575c; text-align:center;">Criteria</label>
+                            </div>
+                            <div class="col-sm-6 col-xs-2">
+                                <input type="text" id="goldCriteria" name="" placeholder="Example: 500,000" />
+                            </div>
+                            <div class="col-sm-3 col-xs-2 mt-2 text-center">
+                                <button class="button button4">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- Elite -->
+            <div class="col-xl-6 col-lg-6 mb-4">
+                <div class="rounded-lg p-5 shadow" style="background-color: #dbebff;border-bottom: 3px solid #114d96;">
+                    <h3 class="text-center mb-4">Elite Level</h3>
+                    <form action="/action_page.php">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-2 mt-3 text-center">
+                                <label for="eliteCriteria" style="color: #52575c; text-align:center;">Criteria</label>
+                            </div>
+                            <div class="col-sm-6 col-xs-2">
+                                <input type="text" id="eliteCriteria" name="" placeholder="Example: 1,000,000" />
+                            </div>
+                            <div class="col-sm-3 col-xs-2 mt-2 text-center">
+                                <button class="button button4">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Amount of Member Chart -->
+        <div class="container py-5 mt-5 shadow" style="background: linear-gradient(to top, #114d96, #5ba0f5);border-radius: 20px;">
+            <div class="row">
+                <div class="col-lg-12 mx-auto mb-5 text-center">
+                    <h1 class="display-4">Members Tier Chart</h1>
+                    <p class="small" style="color:#e8e8e8">Last updated: 13/11/2019</p>
+                </div>
+
+                <!-- Normal -->
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-4">
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <h3 class="text-center my-2">Normal</h3>
+                        <div class="counter" data-cp-percentage="55" data-cp-color="#114d96"></div>
+                    </div>
+                </div>
+
+                <!-- Silver -->
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-4">
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <h3 class="text-center my-2">Silver</h3>
+                        <div class="counter" data-cp-percentage="25" data-cp-color="#216bc4"></div>
+                    </div>
+                </div>
+
+                <!-- Gold -->
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-4">
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <h3 class="text-center my-2">Gold</h3>
+                        <div class="counter" data-cp-percentage="20" data-cp-color="#388bf2"></div>
+                    </div>
+                </div>
+
+                <!-- Elite -->
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-4">
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <h3 class="text-center my-2">Elite</h3>
+                        <div class="counter" data-cp-percentage="5" data-cp-color="#5ba0f5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
