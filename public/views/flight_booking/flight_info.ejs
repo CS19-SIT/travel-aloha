@@ -29,9 +29,16 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <p>
-                            Sunday, 03-Nov-2019
-                        </p>
+                        <div class="row">
+                            <p class="col-md-10">
+                                Sunday, 03-Nov-2019
+                            </p>
+                            <div class="col-md-2 text-right save-flight">
+                                <i class="fa fa-bookmark-o" data-toggle="tooltip" data-placement="top"
+                                    title="Bookmark this flight"></i>
+                            </div>
+                        </div>
+
                         <div class="row mb-2">
                             <div class="col-md-1">
                                 <img src="../../assets/images/nok-air-logo.jpg" alt="logo" class="airline-logo">
@@ -86,5 +93,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
     <%- include('../includes/footer') %>
