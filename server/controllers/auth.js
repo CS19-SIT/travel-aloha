@@ -5,7 +5,6 @@ const passport = require("../auth/passport");
 const User = require("../models/user");
 const Customer = require("../models/customer");
 
-
 exports.getRegister = (req, res) =>
   res.render("auth/register", {
     pageTitle: "TravelAloha - Register",
@@ -73,6 +72,4 @@ exports.postLogout = (req, res) => {
   req.session.destroy(err => {
     res.redirect("/");
   });
-
 };
-

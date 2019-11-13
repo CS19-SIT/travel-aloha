@@ -1,18 +1,3 @@
-<!-- <!doctype html>
-<html>
-
-<head>
-  <title>Travel Aloha - History</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-  <script src="history.js"></script>
-
-  
-  <link rel="stylesheet" type="text/css" href="history.css">
-</head> -->
 <%- include("../includes/header") %>
 <%- include("../includes/navbar") %>
 
@@ -24,11 +9,11 @@
 
 <body onload="showDetail()">
 
-  <!--Navbar
-  <nav class="navbar ta-navbar">
+  <!--Navbar-->
+  <!--<nav class="navbar ta-navbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Travel Aloha</a>
+        <a class="navbar-brand" href="#"></a>
       </div>
     </div>
   </nav>
@@ -54,9 +39,8 @@
     <!--History Header side (right)-->
     <div class="col-sm-9 ta-user-history">
       <h1><b>History</b></h1>
-    <!--Filter-->
-      <div class="filter">
-        Dummy
+      <div>
+        <h3 style="color: #A0A4A8; text-align: center;">Filter area in progress</h3>
       </div>
       <div class="history-list" id="histList">
 
@@ -64,7 +48,7 @@
         <div class="history-item">
 
           <div class="headerInfo">
-            <span class="brief-info">
+            <span class="left">
               <div>
                 <h5><b>Dusit Thani Hotel</b></h5>
               </div>
@@ -72,25 +56,24 @@
                 <h6>31-10-2019 | 10:00</h6>
               </div>
             </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <!--<span class="icon">
-              <div class="book-icon">
-                <img src="../../assets/img/bed_icon.png" class="hotel">
-              </div>
-            </span> -->
-            <span class="toDetail">
+            <span class="right">
+
               <a href="#" style="vertical-align: middle;">
                 <button type="button" class="btn-link">View details</button>
               </a>
+
+            </span>
+            <span class="icon">
+              <div class="book-icon">
+                <img src="../../assets/img/bed_icon.png" width="30px" height="30px">
+              </div>
             </span>
           </div>
         </div>
 
         <div class="history-item">
           <div class="headerInfo">
-            <span class="brief-info">
+            <span class="left">
               <div>
                 <h5><b>Air Asia - Economy Class</b></h5>
               </div>
@@ -98,18 +81,17 @@
                 <h6>30-10-2019 | 2:00</h6>
               </div>
             </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-           <!-- <span class="icon">
-              <div class="book-icon">
-                <img src="../../assets/img/plane_icon.png" class="flight">
-              </div>
-            </span> -->
-            <span class="toDetail">
+            <span class="right">
+
               <a href="#">
                 <button type="button" class="btn-link">View details</button>
               </a>
+
+            </span>
+            <span class="icon">
+              <div class="book-icon">
+                <img src="../../assets/img/plane_icon.png" width="30px" height="30px">
+              </div>
             </span>
           </div>
         </div>
@@ -121,8 +103,5 @@
     </div>
 
   </div>
-  
-  
+
   <%- include("../includes/footer") %>
-
-
