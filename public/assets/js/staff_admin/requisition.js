@@ -111,8 +111,12 @@ function confirmCRUD(){
         icon: 'success',
         title: 'Staff Approved!',
         text: 'Staff CRUD : '+document.getElementById("crudshow").value,
+        showConfirmButton: false,
+        timer: 1500
       })
-         
+      setTimeout(function() {
+        location.reload(true)
+    }, 1200)
     }
     else{
         Swal.fire({
