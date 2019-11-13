@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const cors = require("cors");
-const csurf = require("csurf");
 const express = require("express");
 const helmet = require("helmet");
 const session = require("express-session");
@@ -39,8 +38,6 @@ const sessionStore = new MySQLStore({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE
 });
-
-const csrfProtection = csrf({ cookie: true });
 
 const publicPath = path.join(__dirname + "/../public");
 const viewPath = path.join(publicPath + "/views");
