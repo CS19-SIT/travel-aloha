@@ -1,12 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
+const checkoutController = require("../controllers/checkout");
+const authMiddleware = require("../middlewares/auth");
 
-router.get('/', function(req,res) {
-    res.render('payment/checkout',{
-        pageTitle: 'TravelAloha-Checkout',
-        user: req.user
-    });
-});
+router.get("/", authMiddleware.isAuthenticated, checkoutController.getIndex);
 
 module.exports = router;

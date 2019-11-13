@@ -70,11 +70,11 @@ const adminCouponRoutes = require("./routes/admin-coupon");
 const adminHotelRoutes = require("./routes/admin-hotel");
 const authRoutes = require("./routes/auth");
 const checkoutRoutes = require("./routes/checkout");
-const contactSystemRoutes = require("./routes/Contact_System");
+const contactRoutes = require("./routes/contact");
 const errorsController = require("./controllers/errors");
-const historyRoutes = require("./routes/historySystem");
 const hotelBookingRoutes = require("./routes/hotel-booking");
 const staffAdminRoutes = require("./routes/staffAdmin");
+const userHistoryRoutes = require("./routes/history");
 const userManagementRoutes = require("./routes/userManagement");
 
 //TODO: Create route list
@@ -85,11 +85,19 @@ app.get("/", (req, res) =>
   })
 );
 
+app.use(authRoutes);
+app.use("/admin/coupon", adminCouponRoutes);
+app.use("/admin/hotel", adminHotelRoutes);
+app.use("/checkout", checkoutRoutes);
+app.use("/contact", contactRoutes);
+app.use("/dashboard/history", userHistoryRoutes);
+
 //TODO: Refactor routes
-/**
- * For testing flight_booking ejs
- */
-app.use("/", historyRoutes);
+
+app.use(hotelBookingRoutes);
+
+app.use("/userManagement", userManagementRoutes);
+
 app.get("/flight_booking/", (req, res) =>
   res.render("flight_booking/flight_info", {
     pageTitle: "Flight Name",
@@ -136,14 +144,6 @@ app.get("/fav", (req, res) =>
     user: req.user
   })
 );
-app.use(authRoutes);
-// app.use("/", historyRoutes);
-app.use("/admin/hotel", adminHotelRoutes);
-app.use("/admin/coupon", adminCouponRoutes);
-
-app.use(hotelBookingRoutes);
-
-app.use("/userManagement", userManagementRoutes);
 
 app.use(errorsController.get404);
 

@@ -1,16 +1,30 @@
-const Hotel = require("../models/historySys");
+const Hotel = require("../models/history");
 
-exports.getIndex = async (req, res) => {
+exports.getIndex = (req, res) => {
+  res.render("history/index", {
+    pageTitle: "TravelAloha - Dashboard - History",
+    user: req.user
+  });
+};
+
+exports.getHotel = (req, res) => {
+  res.render("history/hotel", {
+    pageTitle: "TravelAloha - Dashboard - History - Hotel",
+    user: req.user
+  });
+};
+
+exports.getFlight = (req, res) => {
+  res.render("history/flight", {
+    pageTitle: "TravelAloha - Dashboard - History - Flight",
+    user: req.user
+  });
+};
+
+exports.getHotel = async (req, res) => {
   try {
-      console.log(req.user.user_id);
     let data = await Hotel.getHotelName(req.user.user_id);
 
-    // res.render("admin/all-hotels", {
-    //   pageTitle: "Travel Aloha - Admin - Manage All hotels",
-    //   user: req.user,
-    //   hotel: data
-    // });
-    
     res.send(data);
   } catch (err) {
     res.sendStatus(404);

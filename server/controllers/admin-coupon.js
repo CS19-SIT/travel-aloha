@@ -5,7 +5,7 @@ exports.getIndex = async (req, res) => {
         //  let data = await Hotel.getAllHotel();
 
         res.render("admin/admin-coupon", {
-            pageTitle: "Travel Aloha - Admin - Coupon Management",
+            pageTitle: "TravelAloha - Admin - Coupon Management",
             user: req.user
             //   hotel: data
         });
