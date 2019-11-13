@@ -35,6 +35,32 @@ exports.insertNewAirline = async (newAirlineInfo) => {
         ]);
 
     } catch (error) {
-        throw new Error(`[ERR] insertNewHotel: ${err}`);
+        throw new Error(`[ERR] insertNewAirline: ${err}`);
+    }
+}
+exports.getHotelInfo = async (hotelInfo) => {
+    const { hotelId, hotelName, hotelDescription, hotelAddress, hotelTelNumber,
+        hotelContactNumber, hotelEmail, hotelPicture, hotelLogo } = hotelInfo;
+    try {
+        await db.query("SELECT * FROM hotel",
+        [hotelId, hotelName, hotelDescription, hotelAddress, hotelTelNumber,
+        hotelContactNumber, hotelEmail, hotelPicture, hotelLogo]
+        );
+    } catch (error) {
+        throw new Error(`[ERR] getHotelInfo: ${err}`);
+    }
+}
+exports.getAirlineInfo = async (airlineInfo) => {
+    const { airline_Id, airlineName, airlineNationality, airlineEmail, airlineDescription,
+        airlineAddress, airlineTelNumber, airlineContactNumber, airlinePicture, airlineLogo } = airlineInfo;
+    try {
+        await db.query("SELECT * FROM new_airline",
+        [
+            airline_Id, airlineName, airlineNationality, airlineEmail, airlineDescription,
+            airlineAddress, airlineTelNumber, airlineContactNumber, airlinePicture, airlineLogo
+        ]
+        );
+    } catch (err) {
+        throw new Error(`[ERR] getAirlineInfo: ${err}`);
     }
 }
