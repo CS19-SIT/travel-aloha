@@ -9,13 +9,14 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 const session = require("express-session");
 
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
+const hotel = require("./models/hotelBookingModel/hotel");
 
 /**
  * Application Initiation
@@ -32,7 +33,7 @@ const sessionStore = new MySQLStore({
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
 });
 
 const publicPath = path.join(__dirname + "/../public");
@@ -69,20 +70,45 @@ app.disable("x-powered-by");
 const authRoutes = require("./routes/auth");
 const historyRoutes = require("./routes/historySystem");
 const adminHotelRoutes = require("./routes/admin-hotel");
+const hotelBookingRoutes = require("./routes/hotel-booking");
 const errorsController = require("./controllers/errors");
 
-app.get("/", (req, res) => res.render("index", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
+app.get("/", (req, res) =>
+  res.render("index", {
+    pageTitle: "TravelAloha",
+    user: req.user
+  })
+);
+/**
+ * For testing flight_booking ejs
+ */
+app.get("/flight_booking/", (req, res) =>
+  res.render("flight_booking/flight_info", {
+    pageTitle: "Flight Name",
+    user: req.user
+  })
+);
+
+app.get("/flight_booking/contact", (req, res) =>
+  res.render("flight_booking/contact_form", {
+    pageTitle: "Contact information",
+    user: req.user
+  })
+);
 
 app.use(authRoutes);
 app.use("/", historyRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
-
-
+app.use(hotelBookingRoutes);
 app.use(errorsController.get404);
 
+// 
+//   const a = async (a,b) =>{
+//     console.log(await findHotelAndRoom.findHotelAndRoom(a,b));
+//   }
+// a(1,1);
+//
+// this is how to use await async
 app.listen(process.env.APP_PORT, () => {
   if (process.env.NODE_ENV !== "production")
     console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);

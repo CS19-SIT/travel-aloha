@@ -1,0 +1,24 @@
+.flight-head{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.airport-code{
+    color: rgb(107, 107, 107);
+    font-weight: lighter;
+}
+
+.date{
+    font-size: 1.3em;
+    color: rgb(156, 156, 156);
+}
+
+.airline-logo{
+    width: 3em;
+    height: 3em;
+}
+
+.book{
+    width: 100%;
+    height: 3rem;
+}
