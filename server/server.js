@@ -76,8 +76,7 @@ app.get("/", (req, res) => res.render("index", {
 }));
 
 app.use(authRoutes);
-app.use("/index", historyRoutes);
-app.use("/admin/hotel", adminHotelRoutes);
+
 app.use("/rewardLevel", rewardLevelRoutes);
 
 app.use(errorsController.get404);
