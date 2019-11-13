@@ -64,3 +64,31 @@ exports.getAirlineInfo = async (airlineInfo) => {
         throw new Error(`[ERR] getAirlineInfo: ${err}`);
     }
 }
+exports.deleteHotelInfo = async (hotelId) => {
+    try {
+        await db.query("DELETE FROM hotel WHERE hotelId = ?",[hotelId]);
+    } catch (err) {
+        throw new Error(`[ERR] deleteHotelInfo: ${err}`);
+    }
+}
+exports.deleteAirlineInfo = async (airline_Id) => {
+    try {
+        await db.query("DELETE FROM new_airline WHERE airline_Id = ?",[airline_Id]);
+    } catch (err) {
+        throw new Error(`[ERR] deleteAirlineInfo: ${err}`);
+    }
+}
+exports.getSubHotelInfo = async (hotelName,hotelDescription,timestamp) => {
+    try {
+        await db.query("SELECT hotelName,hotelDescription,timestamp FROM hotel",[hotelName,hotelDescription,timestamp]);
+    } catch (err) {
+        throw new Error(`[ERR] getSubHotelInfo: ${err}`);
+    }
+}
+exports.getSubAirlineInfo = async (airlineName,airlineDescription,timestamp) => {
+    try {
+        await db.query("SELECT airlineName,airlineDescription,timestamp FROM new_airline",[airlineName,airlineDescription,timestamp]);
+    } catch (err) {
+        throw new Error(`[ERR] getSubHotelInfo: ${err}`);
+    }
+}
