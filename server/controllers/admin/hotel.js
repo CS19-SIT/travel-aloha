@@ -1,11 +1,11 @@
-const Hotel = require("../models/admin-hotel");
+const Hotel = require("../../models/admin-hotel");
 
 exports.getIndex = async (req, res) => {
   try {
     let data = await Hotel.getAllHotel();
 
     res.render("admin/all-hotels", {
-      pageTitle: "Travel Aloha - Admin - Manage All hotels",
+      pageTitle: "TravelAloha - Admin - Hotel Management",
       user: req.user,
       hotel: data
     });
