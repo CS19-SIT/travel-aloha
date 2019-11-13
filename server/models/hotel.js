@@ -1,4 +1,4 @@
-const db = require("../../db/db"); //connect to db
+const db = require("../db/db"); //connect to db
  // we also need roomid
 
 exports.getHotelRoomOne = async (hotelId,roomId) => {

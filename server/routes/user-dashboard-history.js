@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const historyController = require("../controllers/history");
+const historyController = require("../controllers/user-dashboard-history");
 const authMiddleware = require("../middlewares/auth");
 
 router.get("/", authMiddleware.isAuthenticated, historyController.getIndex);

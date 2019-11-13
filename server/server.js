@@ -72,29 +72,26 @@ const authRoutes = require("./routes/auth");
 const checkoutRoutes = require("./routes/checkout");
 const contactRoutes = require("./routes/contact");
 const errorsController = require("./controllers/errors");
+const indexRoutes = require("./routes/index");
 const hotelBookingRoutes = require("./routes/hotel-booking");
+const userHistoryRoutes = require("./routes/user-dashboard-history");
+
 const staffAdminRoutes = require("./routes/staffAdmin");
-const userHistoryRoutes = require("./routes/history");
 const userManagementRoutes = require("./routes/userManagement");
 
 //TODO: Create route list
-app.get("/", (req, res) =>
-  res.render("index", {
-    pageTitle: "TravelAloha",
-    user: req.user
-  })
-);
+app.get("/");
 
+app.use(indexRoutes);
 app.use(authRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
+app.use("/hotel/booking", hotelBookingRoutes);
 
 //TODO: Refactor routes
-
-app.use(hotelBookingRoutes);
 
 app.use("/userManagement", userManagementRoutes);
 
