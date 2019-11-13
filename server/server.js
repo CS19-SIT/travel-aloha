@@ -66,22 +66,22 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
-const adminRoutes = require("./routes/admin");
-const adminCouponRoutes = require("./routes/admin-coupon");
-const adminHotelRoutes = require("./routes/admin-hotel");
-const adminStaffRoutes = require("./routes/admin-staff");
-const adminUserRoutes = require("./routes/admin-user");
-const authRoutes = require("./routes/auth");
-const checkoutRoutes = require("./routes/checkout");
-const contactRoutes = require("./routes/contact");
+const adminRoutes = require("./routes/admin/index");
+const adminCouponRoutes = require("./routes/admin/coupon");
+const adminHotelRoutes = require("./routes/admin/hotel");
+const adminStaffRoutes = require("./routes/admin/staff");
+const adminUserRoutes = require("./routes/admin/user");
+const authRoutes = require("./routes/auth/index");
+const checkoutRoutes = require("./routes/checkout/index");
+const contactRoutes = require("./routes/contact/index");
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
-const hotelBookingRoutes = require("./routes/hotel-booking");
-const flightRoutes = require("./routes/flight");
-const flightBookingRoutes = require("./routes/flight-booking");
-const reviewRoutes = require("./routes/review");
-const userHistoryRoutes = require("./routes/user-dashboard-history");
-const userFavoriteRoutes = require("./routes/user-dashboard-favorite");
+const hotelBookingRoutes = require("./routes/hotel/booking");
+const flightRoutes = require("./routes/flight/index");
+const flightBookingRoutes = require("./routes/flight/booking");
+const reviewRoutes = require("./routes/review/index");
+const userHistoryRoutes = require("./routes/user/dashboard/history");
+const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
 app.use(indexRoutes);
 app.use(authRoutes);
