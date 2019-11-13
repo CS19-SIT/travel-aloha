@@ -75,6 +75,7 @@ const adminHotelRoutes = require("./routes/admin-hotel");
 const adminCouponRoutes = require("./routes/admin-coupon");
 const hotelBookingRoutes = require("./routes/hotel-booking");
 const checkoutRoutes = require("./routes/checkout");
+const staffAdminRoutes = require("./routes/staffAdmin");
 const errorsController = require("./controllers/errors");
 
 app.get("/", (req, res) => res.render("index", {
@@ -114,6 +115,8 @@ app.use("/history", historyRoutes);
 
 app.use(hotelBookingRoutes);
 app.use("/payment/checkout", checkoutRoutes);
+app.use("/staff_admin", staffAdminRoutes);
+
 app.use(errorsController.get404);
 
 // 
