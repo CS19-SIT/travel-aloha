@@ -55,9 +55,8 @@
         console.log($('#'+this.event.target.form.id).serialize());
         let data = $('#'+this.event.target.form.id).serialize();
         let JsonData = JSON.stringify(data);
-        console.log(JsonData);
         $.ajax({
-            url: 'edit',
+            url: '/admin/hotel/edit',
             type: 'PUT',
             data: data,
  });
