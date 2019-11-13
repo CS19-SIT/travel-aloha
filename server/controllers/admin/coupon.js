@@ -1,4 +1,4 @@
-const Coupon = require("../../models/");
+const Coupon = require("../../models/coupon");
 
 exports.getIndex = async (req, res) => {
   try {
