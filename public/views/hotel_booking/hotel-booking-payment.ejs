@@ -4,7 +4,7 @@
 </head>
 
 <body>
-  <%= hotelData %>
+  <!-- <%= hotelData %> -->
   <div class="container mt-3">
     <div class="row no-gutters">
       <h1>Room Booking</h1>
@@ -23,9 +23,9 @@
       <div class="container-bordered detail-container">
         <div class="detail-list user-detail-list">
           <h5>Your Information</h5>
-          <p>Contact Name <span>John Doe</span></p>
-          <p>Email <span>johndoe@mail.com</span></p>
-          <p>Phone Number <span>015-555-5555</span></p>
+          <p>Contact Name <span><%-hotelData.inputFirstName+"   "+hotelData.inputLastName -%></span></p>
+          <p>Email <span><%- hotelData.inputEmail-%></span></p>
+          <p>Phone Number <span><%- hotelData.inputPhoneNo-%>></span></p>
         </div>
         <div class="detail-list booking-detail-list">
           <h5>Booking Detail</h5>

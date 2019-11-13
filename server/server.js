@@ -18,6 +18,10 @@ const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 const hotel = require("./models/hotelBookingModel/hotel");
 
+const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
+
+
+
 /**
  * Application Initiation
  */
@@ -62,18 +66,22 @@ app.use(passport.session());
 app.use(helmet());
 app.use(compression());
 
+
 app.disable("x-powered-by");
 
 /**
  * Routes
  */
 const authRoutes = require("./routes/auth");
+const userManagementRoutes = require("./routes/userManagement")
 const historyRoutes = require("./routes/historySystem");
 const adminHotelRoutes = require("./routes/admin-hotel");
+const adminCouponRoutes = require("./routes/admin-coupon");
 const hotelBookingRoutes = require("./routes/hotel-booking");
+const checkoutRoutes = require("./routes/checkout");
+const staffAdminRoutes = require("./routes/staffAdmin");
 const errorsController = require("./controllers/errors");
-
-
+const contactSystemRoutes = require("./routes/Contact_System"); 
 
 
 app.get("/", (req, res) =>
@@ -101,13 +109,37 @@ app.get("/flight_booking/contact", (req, res) =>
 );
 
 
+app.get("/adminDash", (req, res) => res.render("./adminDash/adminDash", {
+  pageTitle: "TravelAloha",  user: req.user
+}));
+app.get("/reviewflight", (req, res) => res.render("./review&rating/reviewAirline", {
+  pageTitle: "TravelAloha-reviewAirline",
+  user: req.user
+}));
+
+app.get("/reviewhotel", (req, res) => res.render("./review&rating/reviewHotel", {
+  pageTitle: "TravelAloha-reviewHotel",
+  user: req.user
+}));
+
+
+app.get("/flights", (req, res) => res.render("flights", {
+  pageTitle: "Flights",
+  user: req.user
+}));
+app.get("/fav", (req, res) => res.render("./fav/favorite", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
 app.use(authRoutes);
 // app.use("/", historyRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
-app.use("/history", historyRoutes);
-
+app.use("/admin/coupon", adminCouponRoutes);
 
 app.use(hotelBookingRoutes);
+
+app.use("/userManagement", userManagementRoutes);
+
 app.use(errorsController.get404);
 
 // 
