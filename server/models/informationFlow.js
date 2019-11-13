@@ -8,8 +8,9 @@ exports.getAllHotel = async () => {
         throw new Error(`[ERR] getAllHotel: ${err}`);
     }
 };
-exports.insertNewHotel = async (hotelId, hotelName, hotelDescription, hotelAddress,
-    hotelTelNumber, hotelContactNumber, hotelEmail, hotelPicture, hotelLogo) => {
+exports.insertNewHotel = async (newHotelInfo) => {
+    const { hotelId, hotelName, hotelDescription, hotelAddress,
+        hotelTelNumber, hotelContactNumber, hotelEmail, hotelPicture, hotelLogo } = newHotelInfo;
     try {
         await db.query("Insert into hotel(hotelId,hotelName,hotelDescription,hotelAddress" +
             "hotelTelNumber,hotelContactNumber,hotelEmail,hotelPicture,hotelLogo) " +
@@ -22,14 +23,15 @@ exports.insertNewHotel = async (hotelId, hotelName, hotelDescription, hotelAddre
         throw new Error(`[ERR] insertNewHotel: ${err}`);
     }
 }
-exports.insertNewAirline = async (airline_Id, airlineName, airlineNationality, airlineEmail, airlineDescription,
-    airlineAddress, airlineTelNumber, airlineContactNumber, airlinePicture, airlineLogo) => {
+exports.insertNewAirline = async (newAirlineInfo) => {
+    const { airline_Id, airlineName, airlineNationality, airlineEmail, airlineDescription,
+        airlineAddress, airlineTelNumber, airlineContactNumber, airlinePicture, airlineLogo } = newAirlineInfo;
     try {
         await db.query("Insert into hotel(airline_Id, airlineName, airlineNationality, airlineEmail" +
             "airlineDescription,airlineAddress, airlineTelNumber, airlineContactNumber, airlinePicture, airlineLogo) " +
             "values(`?`,`?`,`?`,`?`,?`,`?`,`?`,`?`,`?`,`?`)", [
-            hotelId, hotelName, hotelDescription, hotelAddress, hotelTelNumber,
-            hotelContactNumber, hotelEmail, hotelPicture, hotelLogo
+            airline_Id, airlineName, airlineNationality, airlineEmail, airlineDescription,
+            airlineAddress, airlineTelNumber, airlineContactNumber, airlinePicture, airlineLogo
         ]);
 
     } catch (error) {
