@@ -11,20 +11,26 @@ exports.getIndex = function(request, response) {
 exports.getApplicationForm = async function(request, response) {
     try {
         let staffStatus = await connector.query(`SELECT * FROM staff_admin_info WHERE staffId='${request.user.user_id}'`)
-        let isStaff = 'false'
-        if (staffStatus[0] && staffStatus[0].length) {
+        if (staffStatus[0].length) {
             if (staffStatus[0][0]['status'] == 'active') {
-                isStaff = 'true'
+                staffStatus = 'active'
+            } else if (staffStatus[0][0]['status'] == 'pending') {
+                staffStatus = 'pending'
+            } else {
+                staffStatus = 'inactive'
             }
+        } else {
+            staffStatus = 'user'
         }
-        if (isStaff == 'true') {
-            response.redirect('/staff_admin/management')
+        if (staffStatus == 'active') {
+            response.redirect('/admin/staff/management')
         }
         let matchedInfo = await connector.query(`SELECT user_id, birth_date, profile_picture, username, CONCAT(firstname, ' ', lastname) AS name, gender, address FROM user WHERE user_id='${request.user.user_id}'`)
         response.render('staff_admin/recruiting', {
             pageTitle: 'TravelAloha - StaffRecruiting',
             user: request.user,
-            onPending: (staffStatus[0] && staffStatus[0].length && staffStatus[0][0]['status'] == 'pending')?'true':'false',
+            onPending: (staffStatus == 'pending')?'true':'false',
+            isDisband: (staffStatus == 'inactive')?'true':'false',
             data: JSON.stringify(matchedInfo[0][0])
         })
     } catch (error) {

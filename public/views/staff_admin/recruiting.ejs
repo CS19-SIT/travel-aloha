@@ -37,6 +37,8 @@
 
 <body>
 	<%- include('../includes/navbar') %>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	
 	<background class="d-flex w-100 justify-content-center">
 	<myForm class="row rounded pt-5 justify-content-end align-content-start">
@@ -44,6 +46,15 @@
 		<p class="col-12 text-center">You already sent an application one.</p>
 		<button id="withdraw" class="btn btn-danger">Withdraw</button>
 	<% } else { %>
+		<% if (isDisband == 'true') { %>
+			<script>
+				Swal.fire({
+					icon: 'error',
+					title: 'You are fired from the department',
+					showConfirmButton: true
+				})
+			</script>
+		<% } %>
 		<existedInfo class="row col-md col-12 pb-4 d-flex justify-content-center align-content-center">
 			<profileImage class="mb-4"></profileImage>
 			<briefInfo class="col-auto pt-3">
@@ -71,7 +82,6 @@
 		let onPending = '<%- onPending %>'
 		let data = JSON.parse('<%- data %>')
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="../../assets/js/staff_admin/recruiting.js"></script>
 
 <%- include('../includes/footer') %>
