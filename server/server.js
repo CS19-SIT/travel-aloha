@@ -71,6 +71,7 @@ app.disable("x-powered-by");
  * Routes
  */
 const authRoutes = require("./routes/auth");
+const userManagementRoutes = require("./routes/userManagement")
 const historyRoutes = require("./routes/historySystem");
 const adminHotelRoutes = require("./routes/admin-hotel");
 const adminCouponRoutes = require("./routes/admin-coupon");
@@ -112,14 +113,7 @@ app.use(authRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 
-app.use("/history", historyRoutes);
-
-
-app.use(hotelBookingRoutes);
-app.use("/payment/checkout", checkoutRoutes);
-app.use("/staff_admin", staffAdminRoutes);
-
-app.use("/contact_system", contactSystemRoutes);
+app.use("/userManagement", userManagementRoutes);
 
 app.use(errorsController.get404);
 
