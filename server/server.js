@@ -78,6 +78,10 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 
+app.get("/dashboardPage", (req, res) => res.render("dashboardPage", {
+  pageTitle: "Dashboard",
+  user: req.user
+}));
 
 app.get("/hotel", (req, res) =>
   res.render("landingpage_hotel/landingpage", {
