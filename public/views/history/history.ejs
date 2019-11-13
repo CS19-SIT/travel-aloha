@@ -7,29 +7,19 @@
   <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
 
-<body onload="showDetail()">
-
-  <!--Navbar
-  <nav class="navbar ta-navbar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Travel Aloha</a>
-      </div>
-    </div>
-  </nav>
--->
+<body onload="printAllRec()">
   <div class="row">
     <!--User Info side (left)-->
     <div class="col-sm-3 ta-user-info">
-      <h4 class="user-name"><b>Carl 'CJ' Johnson</b></h4>
+      <h4 class="user-name"><b id="userName">Carl 'CJ' Johnson</b></h4>
       <hr class="hrColor">
       <div class="user-info">
         <div class="user-level">
-          <b class="badge badge-level">Level: 30</b>
+          <b class="badge badge-level">Level: <span id="userLvl">30</span></b>
         </div>
         <div class="user-points">
-          <span class="left badge badge-points-rank badge-points-rank">Points: 200</span>
-          <span class="right badge badge-silver badge-points-rank">Silver</span>
+          <span class="left badge badge-points-rank badge-points-rank">Points: <span id="userPoints">200</span></span>
+          <span class="right badge-points-rank badge " id="userRank">Silver</span>
         </div>
       </div>
     </div>
@@ -39,9 +29,20 @@
       <h1><b>History</b></h1>
       <!--Filter-->
       <div class="filter">
+<<<<<<< Updated upstream
           <input type="checkbox"> Paid<br>
           <input type="checkbox"> Done<br>
           <input type="checkbox"> Canceled
+=======
+        <div class="filter-check">
+          <input type="checkbox" id="paidCheck" checked> Paid<br>
+          <input type="checkbox" id="doneCheck" checked> Done<br>
+          <input type="checkbox" id="cancelCheck" checked> Canceled
+        </div>
+        <div class="filter-button">
+          <button class="btn-primary" onclick="showByFilter()">Show by filter</button>
+        </div>
+>>>>>>> Stashed changes
       </div>
       <div class="history-list" id="histList">
 
@@ -65,7 +66,7 @@
               </div>
             </span>
             <span class="toDetail">
-              <a href="#" style="vertical-align: middle;">
+              <a href="detail-hotel.html" style="vertical-align: middle;">
                 <button type="button" class="btn-link">View details</button>
               </a>
             </span>
@@ -91,13 +92,14 @@
               </div>
             </span>
             <span class="toDetail">
-              <a href="#">
+              <a href="detail-flight.html">
                 <button type="button" class="btn-link">View details</button>
               </a>
             </span>
           </div>
         </div>
         <!--End of HTML List-->
+<<<<<<< Updated upstream
       </div>
       <div>
         
@@ -106,3 +108,16 @@
 
   </div>
   <%- include("../includes/footer") %>
+=======
+        <hr>
+      </div>
+      <div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
+>>>>>>> Stashed changes

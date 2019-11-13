@@ -69,6 +69,10 @@ div.filter{
     border-style: solid;
     border-width: 1px;
     padding: 20px;
+<<<<<<< Updated upstream
+=======
+    height: 110px;
+>>>>>>> Stashed changes
 }
 
 .ta-user-info{
@@ -183,3 +187,19 @@ img.flight{
     width: 35px;
     height: 35px;
 }
+<<<<<<< Updated upstream
+=======
+
+/*Filter*/
+.filter .filter-check{
+    float: left;
+    width: 20%;
+}
+
+.filter .filter-button{
+    float: right;
+    width: 15%;
+    text-align: center;
+    padding-top: 20px;
+}
+>>>>>>> Stashed changes
