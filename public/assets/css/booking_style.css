@@ -22,3 +22,7 @@
     width: 100%;
     height: 3rem;
 }
+
+.save-flight :hover{
+    transform: scale(1.5);
+}
