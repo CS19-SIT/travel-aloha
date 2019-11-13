@@ -1,12 +1,15 @@
 * {
   font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   /* background: #114d96;
   background: -webkit-linear-gradient(to right, #114d96, #5ba0f5);
   background: linear-gradient(to right, #114d96, #5ba0f5); */
-  background: white;
+  /* background: white; */
+  height: auto;
+  background: linear-gradient(141deg, #fafafa 0%, #e8e8e8 51%, #cacccf 75%);
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
 }
@@ -61,6 +64,7 @@ small {
 .button4 {
   border-radius: 12px;
 }
+
 .button4:hover {
   background-color: white;
   color: #5ba0f5;
@@ -111,10 +115,9 @@ input[type="text"]:focus {
 }
 canvas {
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 }
 input {
   width: 200px;
 }
-
