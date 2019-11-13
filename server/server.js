@@ -64,6 +64,7 @@ app.use(passport.session());
 app.use(helmet());
 app.use(compression());
 
+
 app.disable("x-powered-by");
 
 /**
@@ -77,6 +78,7 @@ const hotelBookingRoutes = require("./routes/hotel-booking");
 const checkoutRoutes = require("./routes/checkout");
 const staffAdminRoutes = require("./routes/staffAdmin");
 const errorsController = require("./controllers/errors");
+const contactSystemRoutes = require("./routes/Contact_System"); 
 
 app.get("/", (req, res) => res.render("index", {
     pageTitle: "TravelAloha",
@@ -116,6 +118,8 @@ app.use("/history", historyRoutes);
 app.use(hotelBookingRoutes);
 app.use("/payment/checkout", checkoutRoutes);
 app.use("/staff_admin", staffAdminRoutes);
+
+app.use("/contact_system", contactSystemRoutes);
 
 app.use(errorsController.get404);
 
