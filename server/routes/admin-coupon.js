@@ -9,5 +9,6 @@ router.put("/new", authMiddleware.isAuthenticated, adminCouponController.createC
 router.post("/edit", authMiddleware.isAuthenticated, adminCouponController.editCoupon);
 router.delete("/delete", authMiddleware.isAuthenticated, adminCouponController.deleteCoupon);
 router.get("/detail/:code", authMiddleware.isAuthenticated, adminCouponController.findCoupon);
+router.get("/:page", authMiddleware.isAuthenticated, adminCouponController.getIndex);
 
 module.exports = router;
