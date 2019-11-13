@@ -27,3 +27,23 @@ exports.insertNewHotel = async (data) => {
         throw new Error(`[ERR] insertNewHotel: ${err}`);
     }
 }
+
+exports.insertNewAirline = async (data) => {
+    try{
+        await db.query("INSERT INTO new_airline (airline_Id,airlineName,airlineNationality,airlineEmail,airlineDescription,airlineAddress,airlineTelNumber,airlineContactNumber,airlinePicture,airlineLogo), VALUES(airline_Id = ?,airlineName = ?,airlineNationality = ?,airlineEmail = ?,airlineDescription = ?,airlineAddress = ?,airlineTelNumber = ?,airlineContactNumber = ?,airlinePicture = ?,airlineLogo = ?)",
+        [
+            data.airline_Id,
+            data.airlineName,
+            data.airlineNationality,
+            data.airlineEmail,
+            data.airlineDescription,
+            data.airlineAddress,
+            data.airlineTelNumber,
+            data.airlineContactNumber,
+            data.airlinePicture,
+            data.airlineLogo
+        ]);
+    } catch (err) {
+        throw new Error(`[ERR] insertNewAirline: ${err}`);
+    }
+}
