@@ -17,6 +17,7 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 const hotel = require("./models/hotelBookingModel/hotel");
+const userRoute = require("./routes/user");
 
 const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
 
@@ -132,7 +133,13 @@ app.use(hotelBookingRoutes);
 
 app.use("/userManagement", userManagementRoutes);
 
+app.use("/user",userRoute);
+
+
+
 app.use(errorsController.get404);
+
+
 
 // 
 //   const a = async (a,b) =>{
