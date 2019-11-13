@@ -34,11 +34,6 @@ const sessionStore = new MySQLStore({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
 });
 
 const publicPath = path.join(__dirname + "/../public");
@@ -83,26 +78,26 @@ app.get("/", (req, res) => res.render("index", {
     user: req.user
 }));
 app.get("/", (req, res) =>
-  res.render("index", {
-    pageTitle: "TravelAloha",
-    user: req.user
-  })
+    res.render("index", {
+        pageTitle: "TravelAloha",
+        user: req.user
+    })
 );
 /**
  * For testing flight_booking ejs
  */
 app.get("/flight_booking/", (req, res) =>
-  res.render("flight_booking/flight_info", {
-    pageTitle: "Flight Name",
-    user: req.user
-  })
+    res.render("flight_booking/flight_info", {
+        pageTitle: "Flight Name",
+        user: req.user
+    })
 );
 
 app.get("/flight_booking/contact", (req, res) =>
-  res.render("flight_booking/contact_form", {
-    pageTitle: "Contact information",
-    user: req.user
-  })
+    res.render("flight_booking/contact_form", {
+        pageTitle: "Contact information",
+        user: req.user
+    })
 );
 
 app.use(authRoutes);

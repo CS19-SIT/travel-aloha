@@ -10,13 +10,13 @@ router.get('/Hotel', (req, res) => {
     })
 })
 
-router.get('/history', (req, res) => {
+router.get('/', (req, res) => {
     res.render('history/history', {
         pageTitle: "hisrory", //ชื่อtitleของNAV
         user: req.user
     })
 })
-router.get('/flight', (req, res) => {
+router.get('/Flight', (req, res) => {
     res.render('history/flight', {
         pageTitle: "FlightDetail",
         user: req.user
