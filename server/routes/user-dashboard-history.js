@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
 
-const historyController = require("../controllers/user-dashboard-history");
+const userDashboardController = require("../controllers/user-dashboard-history");
 const authMiddleware = require("../middlewares/auth");
 
-router.get("/", authMiddleware.isAuthenticated, historyController.getIndex);
+router.get("/", authMiddleware.isAuthenticated, userDashboardController.getIndex);
 
-router.get("/", authMiddleware.isAuthenticated, historyController.getHotel);
+router.get("/", authMiddleware.isAuthenticated, userDashboardController.getHotel);
 
 router.get(
   "/hotel",
   authMiddleware.isAuthenticated,
-  historyController.getHotel
+  userDashboardController.getHotel
 );
 
 router.get(
   "/flight",
   authMiddleware.isAuthenticated,
-  historyController.getFlight
+  userDashboardController.getFlight
 );
 
 module.exports = router;

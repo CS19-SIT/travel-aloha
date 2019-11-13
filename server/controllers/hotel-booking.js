@@ -1,4 +1,5 @@
-const hotelbook = require("../../models/hotel-booking");
+const hotelbook = require("../models/hotel-booking");
+
 exports.getIndex = (req, res) =>
   res.render("hotel_booking/hotel-booking", {
     pageTitle: "TravelAloha - Hotel Booking",

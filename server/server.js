@@ -66,81 +66,44 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
+const adminRoutes = require("./routes/admin");
 const adminCouponRoutes = require("./routes/admin-coupon");
 const adminHotelRoutes = require("./routes/admin-hotel");
+const adminStaffRoutes = require("./routes/admin-staff");
+const adminUserRoutes = require("./routes/admin-user");
 const authRoutes = require("./routes/auth");
 const checkoutRoutes = require("./routes/checkout");
 const contactRoutes = require("./routes/contact");
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
 const hotelBookingRoutes = require("./routes/hotel-booking");
+const flightRoutes = require("./routes/flight");
+const flightBookingRoutes = require("./routes/flight-booking");
+const reviewRoutes = require("./routes/review");
 const userHistoryRoutes = require("./routes/user-dashboard-history");
-
-const staffAdminRoutes = require("./routes/staffAdmin");
-const userManagementRoutes = require("./routes/userManagement");
-
-//TODO: Create route list
-app.get("/");
+const userFavoriteRoutes = require("./routes/user-dashboard-favorite");
 
 app.use(indexRoutes);
 app.use(authRoutes);
+
+app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
+app.use("/admin/staff", adminStaffRoutes);
+app.use("/admin/user", adminUserRoutes);
+
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
+
 app.use("/dashboard/history", userHistoryRoutes);
+app.use("/dashboard/favorite", userFavoriteRoutes);
+
 app.use("/hotel/booking", hotelBookingRoutes);
 
-//TODO: Refactor routes
+app.use("/flight", flightRoutes);
+app.use("/flight/booking", flightBookingRoutes);
 
-app.use("/userManagement", userManagementRoutes);
-
-app.get("/flight_booking/", (req, res) =>
-  res.render("flight_booking/flight_info", {
-    pageTitle: "Flight Name",
-    user: req.user
-  })
-);
-
-app.get("/flight_booking/contact", (req, res) =>
-  res.render("flight_booking/contact_form", {
-    pageTitle: "Contact information",
-    user: req.user
-  })
-);
-
-app.get("/adminDash", (req, res) =>
-  res.render("./adminDash/adminDash", {
-    pageTitle: "TravelAloha",
-    user: req.user
-  })
-);
-app.get("/reviewflight", (req, res) =>
-  res.render("./review&rating/reviewAirline", {
-    pageTitle: "TravelAloha-reviewAirline",
-    user: req.user
-  })
-);
-
-app.get("/reviewhotel", (req, res) =>
-  res.render("./review&rating/reviewHotel", {
-    pageTitle: "TravelAloha-reviewHotel",
-    user: req.user
-  })
-);
-
-app.get("/flights", (req, res) =>
-  res.render("flights", {
-    pageTitle: "Flights",
-    user: req.user
-  })
-);
-app.get("/fav", (req, res) =>
-  res.render("./fav/favorite", {
-    pageTitle: "TravelAloha",
-    user: req.user
-  })
-);
+app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
 
