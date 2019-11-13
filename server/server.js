@@ -93,14 +93,18 @@ app.get("/", (req, res) =>
 /**
  * For testing flight_booking ejs
  */
-app.use('/',historyRoutes);
+
 app.get("/flight_booking/", (req, res) =>
     res.render("flight_booking/flight_info", {
         pageTitle: "Flight Name",
         user: req.user
     })
 );
-
+app.get("/history",(req, res)=> 
+    res.render("history/history", {
+        pageTitle: "history",
+        user: req.user
+    }));
 app.get("/flight_booking/contact", (req, res) =>
     res.render("flight_booking/contact_form", {
         pageTitle: "Contact information",
