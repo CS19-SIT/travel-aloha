@@ -17,9 +17,6 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 
-//TODO: Do something about this!
-const hotel = require("./models/hotelBookingModel/hotel");
-
 /**
  * Application Initiation
  */
@@ -69,17 +66,16 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
-//TODO: Manage routes
-const authRoutes = require("./routes/auth");
-const userManagementRoutes = require("./routes/userManagement");
-const historyRoutes = require("./routes/historySystem");
-const adminHotelRoutes = require("./routes/admin-hotel");
 const adminCouponRoutes = require("./routes/admin-coupon");
-const hotelBookingRoutes = require("./routes/hotel-booking");
+const adminHotelRoutes = require("./routes/admin-hotel");
+const authRoutes = require("./routes/auth");
 const checkoutRoutes = require("./routes/checkout");
-const staffAdminRoutes = require("./routes/staffAdmin");
-const errorsController = require("./controllers/errors");
 const contactSystemRoutes = require("./routes/Contact_System");
+const errorsController = require("./controllers/errors");
+const historyRoutes = require("./routes/historySystem");
+const hotelBookingRoutes = require("./routes/hotel-booking");
+const staffAdminRoutes = require("./routes/staffAdmin");
+const userManagementRoutes = require("./routes/userManagement");
 
 //TODO: Create route list
 app.get("/", (req, res) =>
