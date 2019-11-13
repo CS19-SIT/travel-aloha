@@ -73,10 +73,9 @@ const adminHotelRoutes = require("./routes/admin-hotel");
 const hotelBookingRoutes = require("./routes/hotel-booking");
 const errorsController = require("./controllers/errors");
 
-app.get("/", (req, res) => res.render("index", {
-    pageTitle: "TravelAloha",
-    user: req.user
-}));
+
+
+
 app.get("/", (req, res) =>
     res.render("index", {
         pageTitle: "TravelAloha",
@@ -86,6 +85,7 @@ app.get("/", (req, res) =>
 /**
  * For testing flight_booking ejs
  */
+app.use('/',historyRoutes);
 app.get("/flight_booking/", (req, res) =>
     res.render("flight_booking/flight_info", {
         pageTitle: "Flight Name",
@@ -99,6 +99,7 @@ app.get("/flight_booking/contact", (req, res) =>
         user: req.user
     })
 );
+
 
 app.use(authRoutes);
 // app.use("/", historyRoutes);

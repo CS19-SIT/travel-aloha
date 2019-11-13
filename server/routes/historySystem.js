@@ -1,4 +1,5 @@
 const history = require("../controllers/history");
+const hisroryRoutes = require("../controllers/history")
 const express = require("express");
 const router = express.Router();
 
