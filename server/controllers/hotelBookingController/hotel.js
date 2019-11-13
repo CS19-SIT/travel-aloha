@@ -1,1 +1,1 @@
-const hotel  = require("../../models/hotelBookingModel/hotel")
+const hotel  = require("../../models/hotelBookingModel/hotel");
