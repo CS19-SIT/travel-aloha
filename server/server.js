@@ -66,6 +66,7 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
+const favoriteRoutes = require("./routes/favorite")
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 
@@ -73,10 +74,8 @@ app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
-app.get("/fav", (req, res) => res.render("./fav/favorite", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
+
+app.use("/fav", favoriteRoutes);
 app.use(authRoutes);
 
 app.use(errorsController.get404);
