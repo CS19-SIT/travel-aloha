@@ -113,6 +113,8 @@ app.use(authRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 
+app.use(hotelBookingRoutes);
+
 app.use("/userManagement", userManagementRoutes);
 
 app.use(errorsController.get404);
