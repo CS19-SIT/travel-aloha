@@ -1,0 +1,45 @@
+<%- include('includes/header') %>
+
+<div class="container">
+    <h1><%= title %></h1>
+    <% if (message != '') { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+    <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+        </div>
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
+        </div>
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
+        </div>
+        <div class="form-group col-md-4">
+                <input type="email" class="form-control" name="email" id="email" placeholder="email">
+        </div>
+        <div class="form-group col-md-4">
+            <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+        </div>
+        <div class="form-group col-md-4">
+            <select id="gender" name="gender" class="form-control" required>
+                <option selected disabled>Choose Gender</option>
+                <option>M</option>
+                <option>F</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <input type="date" class="form-control" name="birthDate" id="birthDate" placeholder="birth_date">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="profile_picture"><b>User Image</b></label><br>
+            <input type="file" name="profile_picture" id="profile_picture" class="">
+        </div>
+
+        <button type="submit" class="btn btn-primary float-right" value="add">Add user</button>
+    </form>
+</div>
+
+</div>
+</body>
+</html>
