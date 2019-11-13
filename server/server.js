@@ -108,6 +108,11 @@ app.get("/flight_booking/contact", (req, res) =>
     })
 );
 
+app.get("/adminDash", (req, res) => res.render("./adminDash/adminDash", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
+
 app.use(authRoutes);
 // app.use("/", historyRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
