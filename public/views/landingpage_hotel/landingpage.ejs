@@ -1,20 +1,35 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navbar') %>
-    <!--css-->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="vendors/linericon/style.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+<!--css-->
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="vendors/linericon/style.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
 
-    <link rel="stylesheet" href="../../assets/css/landingpage.css">
+<link rel="stylesheet" href="../../assets/css/landingpage.css">
 
 </head>
 
 <body>
+    <div class="header-pic">
+        <img src="../../assets/images/dr5cbbya3md01.jpg ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- <h1 class="mt-5">The Big Picture</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt voluptates rerum eveniet sapiente repellat esse, doloremque quod recusandae deleniti nostrum assumenda vel beatae sed aut modi nesciunt porro quisquam voluptatem.</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="s012">
+
+        <!-- form -->
         <form>
             <fieldset>
                 <legend>Search Hotels</legend>
@@ -92,28 +107,28 @@
         </form>
     </div>
 
-<script src="../assets/js/choices.js"></script>
-<script>
-    const choices = new Choices('[data-trigger]', {
-        searchEnabled: false,
-        itemSelectText: '',
-    });
-</script>
-<script src="../assets/js/flatpickr.js"></script>
-<script>
-    flatpickr(".datepicker", {
-        dateFormat: "m/d/y"
-    });
-    var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
-    for (let i = 0; i < btnTypes.length; i++) {
-        btnTypes[i].addEventListener('click', function () {
-            for (let i = 0; i < btnTypes.length; i++) {
-                btnTypes[i].classList.remove('active')
-            }
-            btnTypes[i].classList.add('active')
-        })
-    }
-</script>
+    <script src="../assets/js/choices.js"></script>
+    <script>
+        const choices = new Choices('[data-trigger]', {
+            searchEnabled: false,
+            itemSelectText: '',
+        });
+    </script>
+    <script src="../assets/js/flatpickr.js"></script>
+    <script>
+        flatpickr(".datepicker", {
+            dateFormat: "m/d/y"
+        });
+        var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
+        for (let i = 0; i < btnTypes.length; i++) {
+            btnTypes[i].addEventListener('click', function () {
+                for (let i = 0; i < btnTypes.length; i++) {
+                    btnTypes[i].classList.remove('active')
+                }
+                btnTypes[i].classList.add('active')
+            })
+        }
+    </script>
 
 
-<%- include('../includes/footer') %>
+    <%- include('../includes/footer') %>
