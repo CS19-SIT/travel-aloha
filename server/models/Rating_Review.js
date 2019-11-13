@@ -1,4 +1,4 @@
-/*const db = require("../db/db");
+const db = require("../db/db");
 
 exports.getAllHotelReview = async() =>{
     try{
@@ -22,5 +22,5 @@ exports.modelUpdateHotel = async(data)=>{
     } catch (err) {
         throw new Error(`[ERR] modelUpdateHotel: ${err}`);
     }
-}*/
+}
 

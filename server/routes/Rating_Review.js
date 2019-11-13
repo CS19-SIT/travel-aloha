@@ -1,4 +1,4 @@
-/*const express = require("express");
+const express = require("express");
 const router = express.Router();
 
 const ratingReviewController = require("../controllers/Rating_Review");
@@ -14,4 +14,4 @@ router.get("/flightreview", authController.getLogin);
 
 router.post("/logout", authMiddleware.isAuthenticated, authController.postLogout);
 
-module.exports = router;*/
+module.exports = router;
