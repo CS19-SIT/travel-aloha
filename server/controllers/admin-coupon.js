@@ -2,12 +2,13 @@ const Coupon = require("../models/coupon");
 
 exports.getIndex = async (req, res) => {
     try {
-        //  let data = await Hotel.getAllHotel();
+          let data = await Coupon.searchCoupons();
 
         res.render("admin/admin-coupon", {
             pageTitle: "Travel Aloha - Admin - Coupon Management",
-            user: req.user
-            //   hotel: data
+            user: req.user,
+            //coupons: data
+            pageCount: 10
         });
     } catch (err) {
         res.sendStatus(404);
@@ -34,8 +35,7 @@ exports.editCoupon = async (req, res) => {
 
 exports.deleteCoupon = async (req, res) => {
     try {
-        await Coupon.deleteCoupon(req.body.code);
-        res.sendStatus(204);
+        res.send(await Coupon.deleteCoupon(req.params.code));
     } catch (err) {
         res.sendStatus(404);
     }
