@@ -34,7 +34,7 @@ exports.editCoupon = async (req, res) => {
 
 exports.deleteCoupon = async (req, res) => {
     try {
-        await Coupon.deleteCoupon(req.body);
+        await Coupon.deleteCoupon(req.body.code);
         res.sendStatus(204);
     } catch (err) {
         res.sendStatus(404);
@@ -43,8 +43,7 @@ exports.deleteCoupon = async (req, res) => {
 
 exports.findCoupon = async (req, res) => {
     try {
-        await Coupon.findCoupon(req.body);
-        res.sendStatus(204);
+        res.send(await Coupon.findCoupon(req.params.code));
     } catch (err) {
         res.sendStatus(404);
     }

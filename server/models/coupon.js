@@ -1,5 +1,11 @@
 const db = require("../db/db");
 
+const convertBooleans = e => {
+    e.for_every_hotel = !!e.for_every_hotel;
+    e.for_every_airline = !!e.for_every_airline;
+    return e;
+};
+
 exports.searchCoupons = async ({
     code,
     name,
@@ -37,11 +43,7 @@ exports.searchCoupons = async ({
             (page + 1) * entriesPerPage,
         ]);
 
-        return result[0].map(e => {
-            e.for_every_hotel = !!e.for_every_hotel;
-            e.for_every_airline = !!e.for_every_airline;
-            return e;
-        });
+        return result[0].map(convertBooleans);
     } catch (err) {
         throw new Error(`[ERR] findCoupons: ${err}`)
     }
@@ -52,7 +54,7 @@ exports.findCoupon = async code => {
         const result = await db.query("SELECT * FROM coupon WHERE code = ?", [code]);
 
         if (result[0].length >= 1) {
-            return result[0];
+            return convertBooleans(result[0][0]);
         }
 
         throw new Error(`Coupon code '${code}' not found`);
@@ -65,14 +67,48 @@ exports.createCoupon = async ({
     code,
     name,
     description,
+    creation_date,
+    create_by_user_id,
     levels,
     hotels,
     airlines,
     discount_percentage,
     start_date,
-    end_date
+    expire_date
 }) => {
+    try {
+        await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+            code,
+            discount_percentage,
+            creation_date,
+            expire_date,
+            create_by_user_id,
+            start_date,
+            hotels === true,
+            airlines === true,
+            name,
+            description
+        ]);
 
+        const errHandler = async err => {
+            await exports.deleteCoupon(code);
+            throw err;
+        };
+        
+        if (Array.isArray(hotels)) {
+            await db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
+                hotels.map(e => [code, e])
+            ]).catch(errHandler);
+        }
+
+        if (Array.isArray(airlines)) {
+            await db.query("INSERT INTO coupon_criteria_airlines VALUES ?", [
+                airlines.map(e => [code, e])
+            ]).catch(errHandler);
+        }
+    } catch (err) {
+        throw new Error(`[ERR] createCoupon: ${err}`);
+    }
 };
 
 exports.updateCoupon = async ({
@@ -91,6 +127,12 @@ exports.updateCoupon = async ({
 
 exports.deleteCoupon = async code => {
     try {
+        const result = await db.query("SELECT 1 FROM coupon WHERE code = ?", [code]);
+
+        if (result[0].length === 0) {
+            throw new Error(`Code ${code} doesn't exists`);
+        }
+
         await db.query("DELETE FROM coupon WHERE code = ?", [code]);
     } catch (err) {
         throw new Error(`[ERR] deleteCoupon: ${err}`)

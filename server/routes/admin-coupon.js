@@ -8,6 +8,6 @@ router.get("/", authMiddleware.isAuthenticated, adminCouponController.getIndex);
 router.put("/new", authMiddleware.isAuthenticated, adminCouponController.createCoupon);
 router.post("/edit", authMiddleware.isAuthenticated, adminCouponController.editCoupon);
 router.delete("/delete", authMiddleware.isAuthenticated, adminCouponController.deleteCoupon);
-router.get("/detail", authMiddleware.isAuthenticated, adminCouponController.findCoupon);
+router.get("/detail/:code", authMiddleware.isAuthenticated, adminCouponController.findCoupon);
 
 module.exports = router;
