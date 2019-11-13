@@ -1,29 +1,45 @@
 body {
-    overflow-x: hidden
+    overflow-x: hidden;
+    font-family: roboto;
 }
 
 .container-fluid {
-    background-image: linear-gradient(to right, #7B1FA2, #E91E63)
+    background-image: radial-gradient(#dbebff,#216bc4,#5ba0f5,#388bf2,#114D96)
 }
 
 .sm-text {
     font-size: 10px;
-    letter-spacing: 1px
+    letter-spacing: 1px;
 }
 
 .sm-text-1 {
-    font-size: 14px
+    font-size: 14px;
 }
-.blue-star{
-    color: blue;
+.green-star,.fivestar{
+    color: #4CAF50;
     margin: 0.5px;
 }
-
+.yellow-star,.threestar{
+    color: #FFD54F;
+    margin: 0.5px;
+}
+.red-star,.onestar{
+    color: #E64A19;
+    margin: 0.5px;
+}
+.fourstar{
+    color: rgb(157, 255, 0);
+    margin: 0.5px;
+}
+.twostar{
+    color: rgb(243, 139, 2);
+    margin: 0.5px;
+}
 .green-tab {
     background-color: #00C853;
     color: #fff;
     border-radius: 5px;
-    padding: 5px 3px 5px 3px
+    padding: 5px 3px 5px 3px;
 }
 
 .btn-red {
@@ -31,48 +47,48 @@ body {
     color: #fff;
     border-radius: 20px;
     border: none;
-    outline: none
+    outline: none;
 }
 
 .btn-red:hover {
-    background-color: #BF360C
+    background-color: #BF360C;
 }
 
 .btn-red:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    outline-width: 0
+    outline-width: 0;
 }
 
 .round-icon {
     font-size: 40px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 
 .fa-circle {
     font-size: 10px;
-    color: #EEEEEF
+    color: #EEEEEF;
 }
 
 .green-dot {
-    color: #4CAF50
+    color: #4CAF50;
 }
 
 .red-dot {
-    color: #E64A19
+    color: #E64A19;
 }
 
 .yellow-dot {
-    color: #FFD54F
+    color: #FFD54F;
 }
 
 .grey-text {
-    color: #BDBDBD
+    color: #BDBDBD;
 }
 
 .green-text {
-    color: #4CAF50
+    color: #4CAF50;
 }
 
 .block {
@@ -82,11 +98,11 @@ body {
 }
 
 .profile-pic img {
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .rating-dot {
-    letter-spacing: 5px
+    letter-spacing: 5px;
 }
 
 .via {
@@ -125,4 +141,7 @@ body {
         border-radius: 8px;
         padding: 5px;
         width: 125px;
+}
+.live-rating{
+    display: inline;
 }
