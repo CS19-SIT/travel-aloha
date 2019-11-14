@@ -19,7 +19,7 @@ exports.insertNewHotel = async (newHotelInfo) => {
         hotelEmail, hotelPicture, 
         hotelLogo } = newHotelInfo;
     try {
-        await db.query("INSERT INTO hotel VALUES(`?`,`?`,`?`,`?`,?`,`?`,`?`,`?`,`?`)", [
+        await db.query("INSERT INTO hotel VALUES(?,?,?,?,?,?,?,?,?)", [
             hotelId, 
             hotelName, 
             hotelDescription, 
