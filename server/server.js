@@ -69,7 +69,7 @@ app.disable("x-powered-by");
  */
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
-const contactSystemRoutes = require("./routes/Contact_System"); 
+const contactRoutes = require("./routes/contact"); 
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
@@ -78,7 +78,7 @@ app.get("/", (req, res) => res.render("index", {
 
 app.use(authRoutes);
 
-app.use("/contact_system", contactSystemRoutes);
+app.use("/contact", contactRoutes);
 
 app.use(errorsController.get404);
 
