@@ -1,4 +1,4 @@
-const Contact_SystemModel = require("../models/contact");
+const contactModel = require("../models/contact");
 exports.getIndex = (req, res) => {
     res.render('contact/index', {
         pageTitle: 'TravelAloha - Contact',
