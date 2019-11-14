@@ -1,11 +1,11 @@
 exports.getHotel = (req, res) =>
-  res.render("review&rating/reviewHotel", {
+  res.render("review_rating/hotel", {
     pageTitle: "TravelAloha - Review - Hotel",
     user: req.user
   });
 
 exports.getFlight = (req, res) =>
-  res.render("review&rating/reviewAirline", {
+  res.render("review_rating/airline", {
     pageTitle: "TravelAloha - Review - Airline",
     user: req.user
   });
