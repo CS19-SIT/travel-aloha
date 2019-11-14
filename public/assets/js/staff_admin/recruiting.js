@@ -8,10 +8,7 @@ if (onPending == 'true') {
 			url: '/admin/staff/sendQuery',
 			method: 'POST',
 			data: {
-				sql: `DELETE FROM staff_admin_info 
-					  	WHERE	staffID='${candidatesId}' 
-								AND status='pending'
-				`
+				sql: `DELETE FROM staff_admin_info WHERE staffID='${candidatesId}' AND status='pending'`
 			}
 		}).done(function(data, textStatus, jqXHR) {
 			if (data.status == 200) {
@@ -63,12 +60,7 @@ if (onPending == 'true') {
 				url: '/admin/staff/sendQuery',
 				method: 'POST',
 				data: {
-					sql: `INSERT INTO staff_admin_info 
-										 VALUES		('${candidatesId}', '${department}', '${role}', 'pending') 
-			  			ON DUPLICATE KEY UPDATE		department=VALUES(department), 
-													role=VALUES(role), 
-													status='pending'
-					`
+					sql: `INSERT INTO staff_admin_info VALUES ('${candidatesId}', '${department}', '${role}', 'pending') ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role), status='pending'`
 				}
 			}).done(function(data, textStatus, jqXHR) {
 				if (data.status == 200) {
