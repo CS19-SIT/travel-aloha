@@ -18,11 +18,16 @@ exports.getAirlineInfo = (req, res) => {
         user: req.user
     });
 }
-exports.getHotelInfo = (req, res) => {
-    res.render('contact/add-new-hotel', {
-        pageTitle: 'TravelAloha - Contact - Register New Hotel',
-        user: req.user
-    });
+exports.getHotelInfo = async(req, res) => {
+    let data = contactModel.getHotelInfo;
+    try{
+        res.render('contact/add-new-hotel', {
+            pageTitle: 'TravelAloha - Contact - Register New Hotel',
+            user: req.user
+        });
+    }catch(err){
+        res.sendStatus(404);
+    }
 }
 exports.getHotelDetail = (req, res, next) => { 
     res.render('contact/new-hotel-detail', {
