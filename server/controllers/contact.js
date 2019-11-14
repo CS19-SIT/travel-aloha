@@ -18,18 +18,42 @@ exports.getAirlineInfo = (req, res) => {
         user: req.user
     });
 }
-exports.getHotelInfo = async(req, res) => {
-    let data = contactModel.getHotelInfo;
-    try{
-        res.render('contact/add-new-hotel', {
-            pageTitle: 'TravelAloha - Contact - Register New Hotel',
-            user: req.user
+exports.getHotelInfo = (req, res) => {
+    res.render('contact/add-new-hotel', {
+        pageTitle: 'TravelAloha - Contact - Register New Hotel',
+        user: req.user
+    });
+}
+exports.postHotelInfo = async (req, res) => {
+    const {
+        hotelId,
+        hotelName,
+        hotelDescription,
+        hotelAddress,
+        hotelTelNumber,
+        hotelContactNumber,
+        hotelEmail,
+        hotelPicture,
+        hotelLogo
+      } = req.body;
+    try {
+        await contactModel.getHotelInfo({
+            hotelId,
+            hotelName,
+            hotelDescription,
+            hotelAddress,
+            hotelTelNumber,
+            hotelContactNumber,
+            hotelEmail,
+            hotelPicture,
+            hotelLogo
         });
-    }catch(err){
-        res.sendStatus(404);
+        res.redirect("/contact");
+    } catch (err) {
+        res.sendStatus(400);
     }
 }
-exports.getHotelDetail = (req, res, next) => { 
+exports.getHotelDetail = (req, res) => {
     res.render('contact/new-hotel-detail', {
         pageTitle: 'TravelAloha - Contact - New Hotel Detail',
         user: req.user
