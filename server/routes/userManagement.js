@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const userManagementController = require('../controllers/userManagement');
+const authMiddleware = require("../middlewares/auth");
 
-router.get('/', userManagementController.getUsersPage);
+router.get('/', authMiddleware.isAuthenticated ,userManagementController.getUsersPage);
 router.get('/add', userManagementController.addUsersPage);
 router.get('/edit',userManagementController.editUsersPage);
 router.get('/detail', userManagementController.detailUsersPage);

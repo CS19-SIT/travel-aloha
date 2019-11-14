@@ -18,6 +18,7 @@
 
     <div class="container-fluid">
         <h1 align="center"  id="title"></h1><br>
+       
             <table class="table">
                 <thead>
                     <tr class="punvp">
@@ -35,20 +36,13 @@
 
                     </tr>
                 </thead>
-              
+                <tbody>
+                    <% for(var i = 0; i <data.length;i++) { %>
                     <tr class="userinfo">
                         <td class="profilepicture1">
                             <img src="" class="rounded-circle"  alt="image">                                  
                         </td>
-                        <td>Admin</td>  
-                        <td>Silver</td>   
-                        <td>61130500258</td>
-                        
-                        <td>Panupongflame</td>
-                        <td>Panupong</td>   
-                        <td>Male</td>   
-                        <td>Naheejanraidoktong@hotmail.com</td>
-                        <td>0617673332</td>
+                        <td><%= data[i].firstname %></td>  
                         
                         <td>
                             <a href="/edit/" rel="noopener" class="btn btn-sm btn-success">Edit</a>
@@ -57,30 +51,8 @@
                         </td>
                         
                     </tr>
-                    <tr class="userinfo">
-                            <td class="profilepicture1">
-                                <img src="" class="rounded-circle"  alt="image">                                  
-                            </td>
-                            <td>Admin</td>  
-                            <td>Silver</td>   
-                            <td>61130500258</td>
-                            <td>Panupongflame</td>
-                            <td>Panupong</td>   
-                            <td>Male</td>   
-                            <td>Naheejanraidoktong@hotmail.com</td>
-                            <td>0617673332</td>       
-                            <td>
-                                <a href="/edit/" rel="noopener" class="btn btn-sm btn-success">Edit</a>
-                                <a href="/delete/" class="btn btn-sm btn-danger">Delete</a>   
-                                <a href="/detail/" class="btn btn-sm btn-primary" >More Info</a> 
-                            </td>
-                            
-                        </tr>
-                            
-                        
-                    
-                  
-                </tbody>    
+                    <% } %>
+                </tbody>
             </table>
     </div>
 </div>
