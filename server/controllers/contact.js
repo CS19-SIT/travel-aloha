@@ -37,7 +37,7 @@ exports.postHotelInfo = async (req, res) => {
         hotelLogo
       } = req.body;
     try {
-        await contactModel.getHotelInfo({
+        await contactModel.insertNewHotel({
             hotelId,
             hotelName,
             hotelDescription,
