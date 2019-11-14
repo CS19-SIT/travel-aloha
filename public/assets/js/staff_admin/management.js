@@ -68,7 +68,6 @@ if (canRead == 'true') {
     infos.removeChild(info)
     staffList.removeChild(staffCard)
     let generateStaffCard = function (staffs, isMockup) {
-        if (!staffs) return
         staffs.forEach(function(staff) {
             let newStaffCard = staffCard.cloneNode(true)
             let newInfo = info.cloneNode(true)
@@ -103,9 +102,10 @@ if (canRead == 'true') {
                         showCancelButton: true,
                         preConfirm: function() {
                             [...editableList].forEach(function(item) {
-                                if (thisStaffInfo.getElementsByClassName(item)[0].textContent != document.getElementById(item).value) {
-                                    thisStaffInfo.getElementsByClassName(item)[0].textContent = document.getElementById(item).value
-                                    thisStaffInfo.getElementsByClassName(item)[0].parentNode.classList.add('isChanged')
+                                let oldInfo = thisStaffInfo.getElementsByClassName(item)[0] 
+                                if (document.getElementById(item).value && document.getElementById(item).value != oldInfo.textContent) {
+                                    oldInfo.textContent = document.getElementById(item).value
+                                    oldInfo.parentNode.classList.add('isChanged')
                                 }
                             })
                         }
@@ -131,10 +131,7 @@ if (canRead == 'true') {
                 })
             })
         }
-        if (isMockup) {
-            return
-        }
-        if (canUpdate == 'true' || canDelete == 'true') {
+        if (!isMockup && (canUpdate == 'true' || canDelete == 'true')) {
             document.getElementById('save').addEventListener('click', function() {
                 Swal.fire({
                     icon: 'warning',
@@ -202,9 +199,9 @@ if (canRead == 'true') {
         cancelButtonText: 'No, don\'t use mockup'
     }).then(function(result) {
         if (result.value) {
-            generateStaffCard(staffRecord, false)
+            generateStaffCard(staffRecord, true)
         } else {
-            generateStaffCard(data, true)
+            generateStaffCard(data, false)
         }
     })
 }

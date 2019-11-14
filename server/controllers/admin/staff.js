@@ -72,7 +72,7 @@ exports.getDetailAllExistedStaff = function(request, response) {
             canRead: 'true',
             canUpdate: 'true',
             canDelete: 'true',
-            data: JSON.stringify([[]])
+            data: JSON.stringify([])
         })
     } catch (error) {
         response.send(`
