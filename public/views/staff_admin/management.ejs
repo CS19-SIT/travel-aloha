@@ -74,7 +74,10 @@
 		</noPermission>
 	<% } else { %>
 		<tools class="p-3 mt-4 mr-lg-3">
-			<p>Tools</p>
+			<p class="d-flex justify-content-between">
+				<span>Tools</span><% if (canCreate == 'true') { %>
+				<button type="button" class="btn btn-outline-secondary p-1" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
+			<% } %></p>
 			<hr class="p-2 my-1">
 			<% if (canUpdate == 'true' || canDelete == 'true') { %>
 			<buttonDirection class="d-block w-100 text-right flex-shrink-0">
