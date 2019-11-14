@@ -6,8 +6,8 @@ const authMiddleware = require("../middlewares/auth");
 
 router.get('/', authMiddleware.isAuthenticated ,userManagementController.getUsersPage);
 router.get('/add', userManagementController.addUsersPage);
-router.get('/edit',userManagementController.editUsersPage);
-router.get('/detail', userManagementController.detailUsersPage);
+router.get('/edit/:id', authMiddleware.isAuthenticated ,userManagementController.editUsersPage);
+router.get('/detail/:id', userManagementController.detailUsersPage);
 router.get('/delete', userManagementController.deleteUsers);
 // router.post('/add', userManagementController.addUsers);
 // router.post('/edit/:id', userManagementController.editUsers);
