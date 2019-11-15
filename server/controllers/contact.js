@@ -30,6 +30,7 @@ exports.postAirlineInfo = async (req, res) => {
         airlineContactNumber,
         airlineDescription
     } = req.body;
+
     try {
         await contactModel.insertNewAirline({
             airlineName,
@@ -44,7 +45,7 @@ exports.postAirlineInfo = async (req, res) => {
         res.sendStatus(200);
     } catch (error) {
         res.sendStatus(400);
-        throw new Error(`[ERR] insertNewAirline: ${error}`);
+        throw new Error(`[ERR] insertNewHotel: ${error}`);
     }
 }
 exports.getHotelInfo = (req, res) => {
