@@ -17,20 +17,20 @@ exports.insertNewHotel = async ({
       hotelEmail
     ]);
   } catch (error) {
-    throw new Error(`[ERR] insertNewHotel: ${err}`);
+    throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
 exports.insertNewAirline = async ({
   airlineName,
-  airlineNationality,
   airlineEmail,
-  airlineDescription,
   airlineAddress,
+  airlineNationality,
   airlineTelNumber,
-  airlineContactNumber
+  airlineContactNumber,
+  airlineDescription
 }) => {
   try {
-    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber) values(?,?,?,?,?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber) VALUES(?,?,?,?,?,?,?)`, [
       airlineName,
       airlineNationality,
       airlineEmail,
@@ -40,7 +40,7 @@ exports.insertNewAirline = async ({
       airlineContactNumber
     ]);
   } catch (error) {
-    throw new Error(`[ERR] insertNewAirline: ${err}`);
+    throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
 exports.getHotelInfo = async ({

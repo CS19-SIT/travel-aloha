@@ -20,6 +20,33 @@ exports.getAirlineInfo = (req, res) => {
         user: req.user
     });
 }
+exports.postAirlineInfo = async (req, res) => {
+    const {
+        airlineName,
+        airlineEmail,
+        airlineAddress,
+        airlineNationality,
+        airlineTelNumber,
+        airlineContactNumber,
+        airlineDescription
+    } = req.body;
+    try {
+        await contactModel.insertNewAirline({
+            airlineName,
+            airlineNationality,
+            airlineEmail,
+            airlineDescription,
+            airlineAddress,
+            airlineTelNumber,
+            airlineContactNumber
+        });
+        res.redirect('dashboard');
+        res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(400);
+        throw new Error(`[ERR] insertNewAirline: ${error}`);
+    }
+}
 exports.getHotelInfo = (req, res) => {
     res.render('contact/add-new-hotel', {
         pageTitle: 'TravelAloha - Contact - Register New Hotel',
@@ -46,16 +73,13 @@ exports.postHotelInfo = async (req, res) => {
             hotelEmail
         });
         res.redirect('dashboard');
-        res.sendStatus(204);
+        res.sendStatus(200);
     } catch (error) {
-        res.sendStatus(404);
+        res.sendStatus(400);
         throw new Error(`[ERR] insertNewHotel: ${error}`);
     }
 }
 exports.getHotelDetail = (req, res) => {
-    const {
-
-    }
     try{
         res.render('contact/new-hotel-detail', {
             pageTitle: 'TravelAloha - Contact - New Hotel Detail',
@@ -66,36 +90,6 @@ exports.getHotelDetail = (req, res) => {
         res.sendStatus(404);
     }
 }
-
-exports.postAirlineInfo = async (req, res) => {
-    const {
-        airlineName,
-        airlineNationality,
-        airlineEmail,
-        airlineDescription,
-        airlineAddress,
-        airlineTelNumber,
-        airlineContactNumber
-    } = req.body;
-    try {
-        console.log(airlineName);
-        await contactModel.insertNewAirline({
-            airlineName,
-            airlineNationality,
-            airlineEmail,
-            airlineDescription,
-            airlineAddress,
-            airlineTelNumber,
-            airlineContactNumber
-        });
-        res.redirect('dashboard');
-        res.sendStatus(200);
-    } catch (error) {
-        res.sendStatus(400);
-        throw new Error(`[ERR] insertNewAirline: ${error}`);
-    }
-}
-
 exports.getAirlineDetail = (req, res) => {
     res.render('contact/new-airline-detail', {
         pageTitle: 'TravelAloha - Contact - New Airline Detail',
