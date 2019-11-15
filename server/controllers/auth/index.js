@@ -1,9 +1,9 @@
 const uuid = require("uuid/v4");
 const bcrypt = require("bcrypt");
 
-const passport = require("../auth/passport");
-const User = require("../models/user");
-const Customer = require("../models/customer");
+const passport = require("../../auth/passport");
+const User = require("../../models/user");
+const Customer = require("../../models/customer");
 
 
 exports.getRegister = (req, res) =>
@@ -13,7 +13,16 @@ exports.getRegister = (req, res) =>
   });
 
 exports.postRegister = async (req, res) => {
-  const { username, password, retypePassword, firstname, lastname, birth_date, gender, address} = req.body;
+  const {
+    username,
+    password,
+    retypePassword,
+    firstname,
+    lastname,
+    birth_date,
+    gender,
+    address
+  } = req.body;
   try {
     if (!username || !password || !retypePassword) throw new Error();
     let existedUsername;
@@ -41,7 +50,7 @@ exports.postRegister = async (req, res) => {
 
     await Customer.createCustomer({
       user_id: userId,
-      total_spend:0
+      total_spend: 0
     });
     res.redirect("/login");
   } catch (err) {
@@ -64,5 +73,6 @@ exports.postLogout = (req, res) => {
   req.session.destroy(err => {
     res.redirect("/");
   });
+
 };
 
