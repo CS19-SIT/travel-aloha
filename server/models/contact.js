@@ -1,57 +1,44 @@
 const db = require("../db/db");
-exports.getAllHotel = async () => {
-    try {
-        const result = await db.query(`SELECT * FROM hotel`);
-
-        return result[0];
-    } catch (err) {
-        throw new Error(`[ERR] getAllHotel: ${err}`);
-    }
-};
 exports.insertNewHotel = async ({
-    hotelName, 
+    hotelName,
+    hotelEmail,
     hotelDescription, 
     hotelAddress,
     hotelTelNumber,
     hotelContactNumber
 }) => {
     try {
-        await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber) VALUES(?,?,?,?,?)`, [
+        await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail) VALUES(?,?,?,?,?,?)`, [
             hotelName, 
             hotelDescription, 
             hotelAddress, 
             hotelTelNumber,
-            hotelContactNumber
+            hotelContactNumber,
+            hotelEmail
         ]);
 
     } catch (error) {
         throw new Error(`[ERR] insertNewHotel: ${err}`);
     }
 }
-exports.insertNewAirline = async (newAirlineInfo) => {
-    const { 
-        airline_Id, 
+exports.insertNewAirline = async ({ 
         airlineName, 
         airlineNationality, 
         airlineEmail, 
         airlineDescription,
         airlineAddress, 
         airlineTelNumber, 
-        airlineContactNumber, 
-        airlinePicture, 
-        airlineLogo } = newAirlineInfo;
+        airlineContactNumber
+}) => {
     try {
-        await db.query("INSERT INTO new_airline values(`?`,`?`,`?`,`?`,?`,`?`,`?`,`?`,`?`,`?`)", [
-            airline_Id,
+        await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber) values(?,?,?,?,?,?,?,?,?,?)`, [
             airlineName,
             airlineNationality, 
             airlineEmail, 
             airlineDescription,
             airlineAddress, 
             airlineTelNumber, 
-            airlineContactNumber, 
-            airlinePicture, 
-            airlineLogo
+            airlineContactNumber
         ]);
 
     } catch (error) {

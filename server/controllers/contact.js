@@ -1,5 +1,4 @@
 const contactModel = require("../models/contact");
-const db = require("../db/db");
 
 
 exports.getIndex = (req, res) => {
@@ -40,18 +39,16 @@ exports.postHotelInfo = async (req, res) => {
         console.log(hotelName);
         await contactModel.insertNewHotel({
             hotelName, 
+            hotelEmail,
             hotelDescription, 
             hotelAddress, 
             hotelTelNumber,
             hotelContactNumber
         });
         res.redirect('dashboard');
-        // console.group(GAY.hotelDescription);
-
-        // await db.query(`INSERT INTO hotel (hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber)  VALUES ('${GAY.hotelName}', '${GAY.hotelDescription}', '${GAY.hotelAddress}', '${GAY.hotelTelNumber}', '${GAY.hotelContactNumber}');`);
-        // res.send(GAY);
+        res.sendStatus(200);
     } catch (error) {
-        console.log("UR MOM GAY");
+        res.sendStatus(400);
         throw new Error(`[ERR] insertNewHotel: ${error}`);
     }
 }
