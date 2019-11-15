@@ -8,27 +8,20 @@ exports.getAllHotel = async () => {
         throw new Error(`[ERR] getAllHotel: ${err}`);
     }
 };
-exports.insertNewHotel = async (newHotelInfo) => {
-    const { 
-        hotelId, 
-        hotelName, 
-        hotelDescription, 
-        hotelAddress,
-        hotelTelNumber,
-        hotelContactNumber, 
-        hotelEmail, hotelPicture, 
-        hotelLogo } = newHotelInfo;
+exports.insertNewHotel = async ({
+    hotelName, 
+    hotelDescription, 
+    hotelAddress,
+    hotelTelNumber,
+    hotelContactNumber
+}) => {
     try {
-        await db.query("INSERT INTO hotel VALUES(?,?,?,?,?,?,?,?,?)", [
-            hotelId, 
+        await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber) VALUES(?,?,?,?,?)`, [
             hotelName, 
             hotelDescription, 
             hotelAddress, 
             hotelTelNumber,
-            hotelContactNumber, 
-            hotelEmail, 
-            hotelPicture, 
-            hotelLogo
+            hotelContactNumber
         ]);
 
     } catch (error) {

@@ -28,23 +28,28 @@ exports.getHotelInfo = (req, res) => {
     });
 }
 exports.postHotelInfo = async (req, res) => {
-    const GAY  = {
-        hotelId,
+    const {
         hotelName,
         hotelDescription,
         hotelAddress,
         hotelTelNumber,
-        hotelContactNumber,
-        hotelEmail,
-        hotelPicture,
-        hotelLogo
-      } = req.body;
+        hotelContactNumber
+    } = req.body;
 
-      try {
-        console.group(GAY.hotelDescription);
+    try {
+        console.log(hotelName);
+        await contactModel.insertNewHotel({
+            hotelName, 
+            hotelDescription, 
+            hotelAddress, 
+            hotelTelNumber,
+            hotelContactNumber
+        });
+        res.redirect('dashboard');
+        // console.group(GAY.hotelDescription);
 
-        await db.query(`INSERT INTO hotel (hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber)  VALUES ('${GAY.hotelName}', '${GAY.hotelDescription}', '${GAY.hotelAddress}', '${GAY.hotelTelNumber}', '${GAY.hotelContactNumber}');`);
-        res.send(GAY);
+        // await db.query(`INSERT INTO hotel (hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber)  VALUES ('${GAY.hotelName}', '${GAY.hotelDescription}', '${GAY.hotelAddress}', '${GAY.hotelTelNumber}', '${GAY.hotelContactNumber}');`);
+        // res.send(GAY);
     } catch (error) {
         console.log("UR MOM GAY");
         throw new Error(`[ERR] insertNewHotel: ${error}`);
