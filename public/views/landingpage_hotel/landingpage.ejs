@@ -107,53 +107,13 @@
     </div>
 
     <!-- recommended card -->
-    <div class="card-recommended">
-        <div class="card" style="width: 18rem;">
-            <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="card-recommended">
-        <div class="card" style="width: 18rem;">
-            <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-recommended">
-        <div class="card" style="width: 18rem;">
-            <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-recommended">
-        <div class="card" style="width: 18rem;">
-            <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-recommended">
-        <div class="card" style="width: 18rem;">
-            <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+    <div class="card-box">
+        <div class="card-recommended">
+            <div class="card" style="width: 18rem;">
+                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1>Place Country</h1>
+                </div>
             </div>
         </div>
 
@@ -161,36 +121,76 @@
             <div class="card" style="width: 18rem;">
                 <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <h1>Place Country</h1>
                 </div>
             </div>
+        </div>
+
+        <div class="card-recommended">
+            <div class="card" style="width: 18rem;">
+                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1>Place Country</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-recommended">
+            <div class="card" style="width: 18rem;">
+                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1>Place Country</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-recommended">
+            <div class="card" style="width: 18rem;">
+                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1>Place Country</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-recommended">
+            <div class="card" style="width: 18rem;">
+                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1>Place Country</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
-        <script src="../assets/js/choices.js"></script>
-        <script>
-            const choices = new Choices('[data-trigger]', {
-                searchEnabled: false,
-                itemSelectText: '',
-            });
-        </script>
-        <script src="../assets/js/flatpickr.js"></script>
-        <script>
-            flatpickr(".datepicker", {
-                dateFormat: "m/d/y"
-            });
-            var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
-            for (let i = 0; i < btnTypes.length; i++) {
-                btnTypes[i].addEventListener('click', function () {
-                    for (let i = 0; i < btnTypes.length; i++) {
-                        btnTypes[i].classList.remove('active')
-                    }
-                    btnTypes[i].classList.add('active')
-                })
-            }
-        </script>
 
 
-        <%- include('../includes/footer') %>
+
+    <script src="../assets/js/choices.js"></script>
+    <script>
+        const choices = new Choices('[data-trigger]', {
+            searchEnabled: false,
+            itemSelectText: '',
+        });
+    </script>
+    <script src="../assets/js/flatpickr.js"></script>
+    <script>
+        flatpickr(".datepicker", {
+            dateFormat: "m/d/y"
+        });
+        var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
+        for (let i = 0; i < btnTypes.length; i++) {
+            btnTypes[i].addEventListener('click', function () {
+                for (let i = 0; i < btnTypes.length; i++) {
+                    btnTypes[i].classList.remove('active')
+                }
+                btnTypes[i].classList.add('active')
+            })
+        }
+    </script>
+
+
+    <%- include('../includes/footer') %>
