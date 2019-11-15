@@ -1,5 +1,5 @@
-candidatesInfo = data
-let candidatesId = candidatesInfo['user_id']
+const candidatesInfo = data
+const candidatesId = candidatesInfo['user_id']
 delete candidatesInfo['user_id']
 
 if (onPending == 'true') {
@@ -29,13 +29,6 @@ if (onPending == 'true') {
 					timer: 1200
 				})
 			}
-		}).fail(function(jqXHR, textStatus, errorThrown) {
-			Swal.fire({
-				icon: 'error',
-				title: 'Problems occured',
-				showConfirmButton: false,
-				timer: 1200
-			})
 		})
 	})
 } else {
@@ -54,7 +47,7 @@ if (onPending == 'true') {
 	}
 
 	document.getElementById('submit').addEventListener('click', function() {
-		let [department, role] = [document.getElementById('department').value, document.getElementById('role').value]
+		const [department, role] = [document.getElementById('department').value, document.getElementById('role').value]
 		if (department && role) {
 			$.ajax({
 				url: '/admin/staff/sendQuery',
@@ -81,13 +74,6 @@ if (onPending == 'true') {
 						timer: 1200
 					})
 				}
-			}).fail(function(jqXHR, textStatus, errorThrown) {
-				Swal.fire({
-					icon: 'error',
-					title: 'Can\'t insert your info, please try again',
-					showConfirmButton: false,
-					timer: 1200
-				})
 			})
 		} else {
 			Swal.fire({
