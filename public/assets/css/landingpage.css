@@ -1583,10 +1583,11 @@ html {
   }
   
   .s012 form fieldset legend {
+    font-family: 'Roboto', sans-serif;
     font-size: 36px;
     font-weight: bold;
     color: #25282b
-    font-family : 'Roboto', sans-serif;
+    
   }
   
   .s012 form .inner-form header {
@@ -1995,8 +1996,12 @@ html {
 
   }
   .card-recommended{
+    display: inline-block;
     padding-top: 80px;
     padding-bottom: 50px;
+    padding-left: 90px;
+    padding-right: 50px;
+
   }
 
   
