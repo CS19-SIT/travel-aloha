@@ -39,9 +39,9 @@ exports.postHotelInfo = async (req, res) => {
     try {
         console.log(hotelName);
         await contactModel.insertNewHotel({
-            hotelName, 
-            hotelDescription, 
-            hotelAddress, 
+            hotelName,
+            hotelDescription,
+            hotelAddress,
             hotelTelNumber,
             hotelContactNumber,
             hotelEmail
@@ -56,6 +56,42 @@ exports.postHotelInfo = async (req, res) => {
 exports.getHotelDetail = (req, res) => {
     res.render('contact/new-hotel-detail', {
         pageTitle: 'TravelAloha - Contact - New Hotel Detail',
+        user: req.user
+    });
+}
+
+exports.postAirlineInfo = async (req, res) => {
+    const {
+        airlineName,
+        airlineNationality,
+        airlineEmail,
+        airlineDescription,
+        airlineAddress,
+        airlineTelNumber,
+        airlineContactNumber
+    } = req.body;
+    try {
+        console.log(airlineName);
+        await contactModel.insertNewAirline({
+            airlineName,
+            airlineNationality,
+            airlineEmail,
+            airlineDescription,
+            airlineAddress,
+            airlineTelNumber,
+            airlineContactNumber
+        });
+        res.redirect('dashboard');
+        res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(400);
+        throw new Error(`[ERR] insertNewAirline: ${error}`);
+    }
+}
+
+exports.getAirlineDetail = (req, res) => {
+    res.render('contact/new-airline-detail', {
+        pageTitle: 'TravelAloha - Contact - New Airline Detail',
         user: req.user
     });
 }
