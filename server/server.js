@@ -86,6 +86,13 @@ app.get("/hotel", (req, res) =>
   })
 );
 
+app.get("/hotel_result", (req, res) =>
+  res.render("result/result", {
+    pageTitle: "All result hotel",
+    user: req.user
+  })
+);
+
 app.use(authRoutes);
 
 app.use(errorsController.get404);
