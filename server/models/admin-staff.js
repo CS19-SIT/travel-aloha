@@ -1,24 +1,22 @@
-const db = require("../db/db");
-const EventEmitter = require('events');
-const event = new EventEmitter();
+const connector = require('../db/db')
 
-event.on("NO", (args) => {
-    console.log(args);
-})
+exports.getStaffStatus = async function(id) {
+	try {
+		const status = await connector.query(`SELECT status FROM staff_admin_info WHERE staffId='${id}'`)
+		if (status[0].length) {
+			return status[0][0]['status']
+		}
+		return 'user'
+	} catch (error) {
+		throw error
+	}
+}
 
-event.emit("NO", {data: 'hello', id: 123});
-
-
-
-// console.log("HI");
-
-exports.no = async function no(){
-  try {
-    const result = await db.query("SELECT * FROM user");
-    console.log(result);
-    return result[0][0];
-  } catch (err) {
-    console.log(err);
-    throw new Error(`REEE`);
-  }
-};
+exports.getStaffCRUD = async function(id) {
+	try {
+		const crud = await connector.query(`SELECT can_create, can_read, can_update, can_delete FROM staff_admin_CRUD WHERE staffId='${id}'`)
+		return crud[0][0]
+	} catch (error) {
+		throw error
+	}
+}

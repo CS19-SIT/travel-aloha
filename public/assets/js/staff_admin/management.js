@@ -89,10 +89,10 @@ if (canRead == 'true') {
             Array.prototype.forEach.call(document.getElementsByClassName('editButton'), function(item, index) {
                 item.addEventListener('click', function() {
                     let thisStaffInfo = this.parentNode.parentNode.getElementsByTagName('information')[0]
-                    let strInput = [...editableList].map(function(s) {
+                    let strInput = Array.from(editableList, function(s) {
                         return `<div class="form-group">
                         <label for="${s}">${s}</label>
-                        <input type="text" class="form-control" id="${s}" value="${thisStaffInfo.getElementsByClassName(s)[0].textContent}">
+                        <input type="text" class="form-control" id="${s}" placeholder="${thisStaffInfo.getElementsByClassName(s)[0].textContent}">
                       </div>`
                     }).join('')
                     Swal.fire({
@@ -106,6 +106,9 @@ if (canRead == 'true') {
                                 if (document.getElementById(item).value && document.getElementById(item).value != oldInfo.textContent) {
                                     oldInfo.textContent = document.getElementById(item).value
                                     oldInfo.parentNode.classList.add('isChanged')
+                                }
+                                if (false && document.getElementById(item).value == '') {
+                                    oldInfo.parentNode.classList.remove('isChanged')
                                 }
                             })
                         }
@@ -191,7 +194,7 @@ if (canRead == 'true') {
     Swal.fire({
         icon: 'info',
         title: 'Mockup?',
-        text: 'We recommend to use mockup first\n\'Save\' system are still in development',
+        html: '<p>We recommend to use mockup first<p><span>\'Save\' system are still in development</span>',
         showCancelButton: true,
         cancelButtonColor: '#d33',
         confirmButtonColor: '#3085d6',

@@ -3,15 +3,17 @@ const router = express.Router()
 
 const staffAdminController = require('../../controllers/admin/staff')
 const authMiddleware = require('../../middlewares/auth')
+const connector = require('../../db/db')
 
 
 router.get(
     '/',
+    authMiddleware.isAuthenticated,
     staffAdminController.getIndex
 );
 router.get(
     '/recruiting', 
-    authMiddleware.isAuthenticated, 
+    authMiddleware.isAuthenticated,
     staffAdminController.getApplicationForm
 )
 router.get(
@@ -27,7 +29,6 @@ router.get(
 router.post(
     '/sendQuery', 
     async function(request, response) {
-        const connector = require('../../db/db')
         try {
             await connector.query(request.body.sql)
             response.json({
@@ -43,7 +44,6 @@ router.post(
 router.post(
     '/getQuery',
     async function(request, response) {
-        const connector = require('../../db/db')
         try {
             let data = await connector.query(request.body.sql)
             response.json({
