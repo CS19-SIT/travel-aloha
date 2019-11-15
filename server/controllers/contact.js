@@ -37,7 +37,6 @@ exports.postHotelInfo = async (req, res) => {
     } = req.body;
 
     try {
-        console.log(hotelName);
         await contactModel.insertNewHotel({
             hotelName, 
             hotelDescription, 
@@ -47,15 +46,23 @@ exports.postHotelInfo = async (req, res) => {
             hotelEmail
         });
         res.redirect('dashboard');
-        res.sendStatus(200);
+        res.sendStatus(204);
     } catch (error) {
-        res.sendStatus(400);
+        res.sendStatus(404);
         throw new Error(`[ERR] insertNewHotel: ${error}`);
     }
 }
 exports.getHotelDetail = (req, res) => {
-    res.render('contact/new-hotel-detail', {
-        pageTitle: 'TravelAloha - Contact - New Hotel Detail',
-        user: req.user
-    });
+    const {
+
+    }
+    try{
+        res.render('contact/new-hotel-detail', {
+            pageTitle: 'TravelAloha - Contact - New Hotel Detail',
+            user: req.user
+        });
+        res.sendStatus(204);
+    }catch(error){
+        res.sendStatus(404);
+    }
 }
