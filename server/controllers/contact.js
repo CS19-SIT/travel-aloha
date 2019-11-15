@@ -29,6 +29,7 @@ exports.getHotelInfo = (req, res) => {
 exports.postHotelInfo = async (req, res) => {
     const {
         hotelName,
+        hotelEmail,
         hotelDescription,
         hotelAddress,
         hotelTelNumber,
@@ -39,11 +40,11 @@ exports.postHotelInfo = async (req, res) => {
         console.log(hotelName);
         await contactModel.insertNewHotel({
             hotelName, 
-            hotelEmail,
             hotelDescription, 
             hotelAddress, 
             hotelTelNumber,
-            hotelContactNumber
+            hotelContactNumber,
+            hotelEmail
         });
         res.redirect('dashboard');
         res.sendStatus(200);

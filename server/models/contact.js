@@ -16,7 +16,6 @@ exports.insertNewHotel = async ({
             hotelContactNumber,
             hotelEmail
         ]);
-
     } catch (error) {
         throw new Error(`[ERR] insertNewHotel: ${err}`);
     }
