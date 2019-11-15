@@ -1,4 +1,7 @@
 const contactModel = require("../models/contact");
+const db = require("../db/db");
+
+
 exports.getIndex = (req, res) => {
     res.render('contact/index', {
         pageTitle: 'TravelAloha - Contact',
@@ -25,7 +28,7 @@ exports.getHotelInfo = (req, res) => {
     });
 }
 exports.postHotelInfo = async (req, res) => {
-    const {
+    const GAY  = {
         hotelId,
         hotelName,
         hotelDescription,
@@ -36,21 +39,15 @@ exports.postHotelInfo = async (req, res) => {
         hotelPicture,
         hotelLogo
       } = req.body;
-    try {
-        await contactModel.insertNewHotel({
-            hotelId,
-            hotelName,
-            hotelDescription,
-            hotelAddress,
-            hotelTelNumber,
-            hotelContactNumber,
-            hotelEmail,
-            hotelPicture,
-            hotelLogo
-        });
-        res.redirect("/contact");
-    } catch (err) {
-        res.sendStatus(400);
+
+      try {
+        console.group(GAY.hotelDescription);
+
+        await db.query(`INSERT INTO hotel (hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber)  VALUES ('${GAY.hotelName}', '${GAY.hotelDescription}', '${GAY.hotelAddress}', '${GAY.hotelTelNumber}', '${GAY.hotelContactNumber}');`);
+        res.send(GAY);
+    } catch (error) {
+        console.log("UR MOM GAY");
+        throw new Error(`[ERR] insertNewHotel: ${error}`);
     }
 }
 exports.getHotelDetail = (req, res) => {
