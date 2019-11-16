@@ -5,7 +5,7 @@ const adminCouponController = require("../../controllers/admin/coupon");
 const authMiddleware = require("../../middlewares/auth");
 
 router.get(
-  "/",
+  "/:page(\\d+)?",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminCouponController.getIndex

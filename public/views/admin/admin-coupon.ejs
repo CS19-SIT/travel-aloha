@@ -17,33 +17,33 @@
                 <button class="btn btn-primary w-100" data-toggle="modal" data-target="#addModal">Add</button>
             </div>
         </div>
-        <form>
+        <form method="GET">
             <div class="form-row">
                 <div class="form-group col-sm-3">
-                    <select class="form-control" id="inlineFormCustomSelectPref">
-                        <option value="1" selected>Code</option>
-                        <option value="2">Description</option>
-                        <option value="3">Name</option>
+                    <select class="form-control" name="opt">
+                        <option value="1" <%= query.opt === "1" ? "selected" : "" %>>Code</option>
+                        <option value="2" <%= query.opt === "2" ? "selected" : "" %>>Description</option>
+                        <option value="3" <%= query.opt === "3" ? "selected" : "" %>>Name</option>
                     </select>
                 </div>
                 <div class="form-group col-sm-8">
                     <!-- Search-->
-                    <input class="form-control" type="text" placeholder="Search" id="search">
+                    <input class="form-control" type="text" placeholder="Search" name="q" value="<%= query.q %>">
                 </div>
                 <div class="form-group col-sm-1">
                     <!-- Search button-->
-                    <button type="button" class="btn btn-primary" id="searchBut">Search</button>
+                    <button type="submit" class="btn btn-primary" id="searchButton">Search</button>
                 </div>
             </div>
             <!-- Level-->
             <div class="form-group row">
                 <label class="col-form-label col-md-1">Level</label>
                 <div class="col-md-11">
-                    <select name="coupon-search-level" class="form-control coupon-level-select" multiple="multiple">
-                        <option value="lv4" selected>Diamond</option>
-                        <option value="lv3" selected>Platinum</option>
-                        <option value="lv2" selected>Gold</option>
-                        <option value="lv1" selected>Silver</option>
+                    <select name="levels" class="form-control coupon-level-select" multiple="multiple">
+                        <% for (level of allLevels) { %>
+                            <option value="<%= level[0] %>" <%=
+                                query.levels.indexOf(level[0].toString()) < 0 ? "" : "selected"%>><%= level[1] %></option>
+                        <% } %>
                     </select>
                 </div>
             </div>
@@ -52,14 +52,14 @@
                 <div class="col-md-1">Type</div>
                 <div class="col-md-11">
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1"
-                            class="form-check-input" checked>
-                        <label class="form-check-label" for="customCheckboxInline1">Flight</label>
+                        <input type="checkbox" id="typeFlightCheckbox" name="types" value="flight"
+                            class="form-check-input" <%= query.types.indexOf("flight") < 0 ? "" : "checked" %>>
+                        <label class="form-check-label" for="typeFlightCheckbox">Flight</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="customCheckboxInline2" name="customCheckboxInline1"
-                            class="form-check-input" checked>
-                        <label class="form-check-label" for="customCheckboxInline2">Hotel</label>
+                        <input type="checkbox" id="typeHotelCheckbox" name="types" value="hotel"
+                            class="form-check-input" <%= query.types.indexOf("hotel") < 0 ? "" : "checked" %>>
+                        <label class="form-check-label" for="typeHotelCheckbox">Hotel</label>
                     </div>
                 </div>
             </div>
@@ -104,13 +104,14 @@
         <!-- Pagination-->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                <li class="page-item <% if (page === 0) { %>disabled<% } %>">
+                    <a class="page-link" href="/admin/coupon/1?<%= queryString %>" <% if (page === 0) { %>tabindex="-1" aria-disabled="true"<% } %>>&laquo;</a>
                 </li>
-                <% for(let i = 1; i <= pageCount; i++) { %>
-                    <li class="page-item"><a class="page-link" href="/admin/coupon/<%= i %>"><%= i %></a></li>
+                <% for(let i = 0; i < pageCount; i++) { %>
+                    <li class="page-item"><a class="page-link" href="/admin/coupon/<%= i + '?' + queryString %>"><%= i + 1 %></a></li>
                 <% } %>
-                    <a class="page-link" href="#">&raquo;</a>
+                <li class="page-item <% if (page === pageCount - 1) { %>disabled<% } %>">
+                    <a class="page-link" href="/admin/coupon/<%= (pageCount - 1) + '?' + queryString %>" <% if (page === 0) { %>tabindex="-1" aria-disabled="true"<% } %>>&raquo;</a>
                 </li>
             </ul>
         </nav>
