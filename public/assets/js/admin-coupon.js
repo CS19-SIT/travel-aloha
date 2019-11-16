@@ -82,12 +82,9 @@ $(document).ready(function () {
   $("#deleteModalForm").submit(function (e) {
     e.preventDefault();
 
-    const form = $(this);
-
     $.ajax({
       type: "DELETE",
-      url: "/admin/coupon/delete/" + form.data("coupon-code"),
-      data: form.serialize()
+      url: "/admin/coupon/delete/" + form.data("coupon-code")
     }).done(() => {
       alert("Success!");
       location.reload();
