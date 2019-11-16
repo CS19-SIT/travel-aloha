@@ -65,6 +65,14 @@ staffRecord = [
 		'profile_picture': 'http://pm1.narvii.com/6142/b4a0169bfcd00579c80c49417f4ece2a5ee8f07b_00.jpg'
 	},{
 		'user_id': '017',
+		'name': 'Isokaze', 'birth_date': '1989-10-24', 'department': 'youtuber', 'role': 'a man of culture',
+		'profile_picture': 'https://pm1.narvii.com/6716/940b28b9f1fb582ced38766ef2414f1eb8121f38_hq.jpg'
+	},{
+		'user_id': '018',
+		'name': 'Misaki Tobisawa', 'birth_date': '1939-06-19', 'department': 'docker', 'role': 'destroyer',
+		'profile_picture': 'https://static.zerochan.net/Tobisawa.Misaki.full.1999117.jpg'
+	},{
+		'user_id': '019',
 		'name': 'Sakura Miyawaki', 'birth_date': '1998-03-19', 'department': 'youtuber', 'role': 'idol, gamer',
 		'profile_picture': 'https://66.media.tumblr.com/fcda27db6797572f886e48c90cac91f6/tumblr_pegczw3Qn61vgdokn_540.jpg'
 	}
