@@ -4,7 +4,7 @@ const convertFromDB = e => {
   e.for_every_hotel = !!e.for_every_hotel;
   e.for_every_airline = !!e.for_every_airline;
   e.start_date = e.start_date == null ? null : new Date(e.start_date);
-  e.end_date = e.end_date == null ? null : new Date(e.end_date);
+  e.expire_date = e.expire_date == null ? null : new Date(e.expire_date);
   e.creation_date = e.creation_date == null ? null : new Date(e.creation_date);
   return e;
 };
