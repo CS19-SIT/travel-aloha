@@ -2,10 +2,10 @@ const querystring = require('querystring');
 const Coupon = require("../../models/coupon");
 
 const allLevels = [
-  [1, "Silver"],
-  [2, "Gold"],
-  [3, "Platinum"],
-  [4, "Diamond"],
+  ["silver", "Silver"],
+  ["gold", "Gold"],
+  ["elite", "Elite"],
+  ["normal", "Normal"],
 ];
 
 const defaultLevels = allLevels.map(e => e[0].toString());
