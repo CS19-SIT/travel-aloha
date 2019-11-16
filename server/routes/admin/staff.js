@@ -7,55 +7,55 @@ const connector = require('../../db/db')
 
 
 router.get(
-    '/',
-    authMiddleware.isAuthenticated,
-    staffAdminController.getIndex
+	'/',
+	authMiddleware.isAuthenticated,
+	staffAdminController.getIndex
 );
 router.get(
-    '/recruiting', 
-    authMiddleware.isAuthenticated,
-    staffAdminController.getApplicationForm
+	'/recruiting', 
+	authMiddleware.isAuthenticated,
+	staffAdminController.getApplicationForm
 )
 router.get(
-    '/requisition',
-    authMiddleware.isAuthenticated,
-    staffAdminController.getStaffCandidatesList
+	'/requisition',
+	authMiddleware.isAuthenticated,
+	staffAdminController.getStaffCandidatesList
 )
 router.get(
-    '/management', 
-    authMiddleware.isAuthenticated,
-    staffAdminController.getDetailAllExistedStaff
+	'/management', 
+	authMiddleware.isAuthenticated,
+	staffAdminController.getDetailAllExistedStaff
 )
 router.post(
-    '/sendQuery', 
-    async function(request, response) {
-        try {
-            await connector.query(request.body.sql)
-            response.json({
-                status: 200
-            })
-        } catch {
-            response.json({
-                status: 400
-            })
-        }
-    }
+	'/sendQuery', 
+	async function(request, response) {
+		try {
+			await connector.query(request.body.sql)
+			response.json({
+				status: 200
+			})
+		} catch {
+			response.json({
+				status: 400
+			})
+		}
+	}
 )
 router.post(
-    '/getQuery',
-    async function(request, response) {
-        try {
-            let data = await connector.query(request.body.sql)
-            response.json({
-                result: data[0],
-                status: 200
-            })
-        } catch {
-            response.json({
-                status: 400
-            })
-        }
-    }
+	'/getQuery',
+	async function(request, response) {
+		try {
+			let data = await connector.query(request.body.sql)
+			response.json({
+				result: data[0],
+				status: 200
+			})
+		} catch {
+			response.json({
+				status: 400
+			})
+		}
+	}
 )
 
 module.exports = router
