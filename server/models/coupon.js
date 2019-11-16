@@ -13,19 +13,19 @@ const addCouponCriteriaHotel = async (code, hotels) => {
   return db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
     hotels.map(e => [code, e])
   ]);
-}
+};
 
 const addCouponCriteriaAirline = async (code, airlines) => {
   return db.query("INSERT INTO coupon_criteria_airline VALUES ?", [
     airlines.map(e => [code, e])
   ]);
-}
+};
 
 const addCouponCriteriaLevel = async (code, levels) => {
   return db.query("INSERT INTO coupon_criteria_level VALUES ?", [
     levels.map(e => [code, e])
   ]);
-}
+};
 
 const getCouponCriteriaHotel = async code => {
   const result = await db.query("SELECT hotel_id FROM coupon_criteria_hotel WHERE code = ?", [code]);
