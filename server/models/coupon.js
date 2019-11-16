@@ -1,8 +1,11 @@
 const db = require("../db/db");
 
-const convertBooleans = e => {
+const convertFromDB = e => {
   e.for_every_hotel = !!e.for_every_hotel;
   e.for_every_airline = !!e.for_every_airline;
+  e.start_date = e.start_date == null ? null : new Date(e.start_date);
+  e.end_date = e.end_date == null ? null : new Date(e.end_date);
+  e.creation_date = e.creation_date == null ? null : new Date(e.creation_date);
   return e;
 };
 
@@ -33,16 +36,7 @@ exports.searchCoupons = async ({
   entriesPerPage = 10
 } = {}) => {
   try {
-    const result = await db.query(`
-      SELECT DISTINCT coupon.*
-      FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
-      WHERE ? OR (
-        (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
-        (? AND UPPER(name) LIKE UPPER(?)) OR
-        (? AND UPPER(description) LIKE UPPER(?))
-      ) AND (lvl.level IN (?) OR ?)
-      LIMIT ?, ?
-    `, [
+    const params = [
       code == null && name == null && description == null,
 
       code != null,
@@ -59,9 +53,38 @@ exports.searchCoupons = async ({
 
       page * entriesPerPage,
       (page + 1) * entriesPerPage,
-    ]);
+    ];
 
-    return result[0].map(convertBooleans);
+    // Yikes.
+    const countResult = await db.query(`
+      SELECT COUNT(*) AS couponCount
+      FROM (
+        SELECT DISTINCT coupon.*
+        FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
+        WHERE ? OR (
+          (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
+          (? AND UPPER(name) LIKE UPPER(?)) OR
+          (? AND UPPER(description) LIKE UPPER(?))
+        ) AND (lvl.level IN (?) OR ?)
+      ) AS t
+    `, params);
+
+    const dataResult = await db.query(`
+      SELECT DISTINCT coupon.*
+      FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
+      WHERE ? OR (
+        (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
+        (? AND UPPER(name) LIKE UPPER(?)) OR
+        (? AND UPPER(description) LIKE UPPER(?))
+      ) AND (lvl.level IN (?) OR ?)
+      ORDER BY coupon.creation_date DESC
+      LIMIT ?, ?
+    `, params);
+
+    return {
+      pageCount: Math.ceil(countResult[0][0]["couponCount"] / entriesPerPage),
+      coupons: dataResult[0].map(convertFromDB)
+    };
   } catch (err) {
     throw new Error(`[ERR] findCoupons: ${err}`)
   }
@@ -72,7 +95,7 @@ exports.findCoupon = async code => {
     const result = await db.query("SELECT * FROM coupon WHERE code = ?", [code]);
 
     if (result[0].length >= 1) {
-      return convertBooleans(result[0][0]);
+      return convertFromDB(result[0][0]);
     }
 
     throw new Error(`Coupon code '${code}' not found`);

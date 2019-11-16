@@ -71,7 +71,6 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">No.</th>
                             <th scope="col">CODE</th>
                             <th scope="col">START DATE</th>
                             <th scope="col">EXPIRE DATE</th>
@@ -80,166 +79,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% for(const coupon of coupons) { %>
                         <tr>
-                            <th scope="row">1</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">FTUFTGIK90</a></td>
-                            <td>2019-11-5</td>
-                            <td>2021-04-23</td>
+                            <td><a href="#" data-toggle="modal" data-target="#viewModal"><%= coupon.code %></a></td>
+                            <td><%= coupon.start_date == null ? "-" : coupon.start_date.toLocaleDateString() %></td>
+                            <td><%= coupon.end_date == null ? "-" : coupon.end_date.toLocaleDateString() %></td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="FTUFTGIK90">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>">
                                     Edit
                                 </button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="FTUFTGIK90">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="<%= coupon.code %>">
                                     Delete
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">EERTDTRY20</a></td>
-                            <td>2019-11-5</td>
-                            <td>2023-06-16</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="EERTDTRY20">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="EERTDTRY20">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">TDRSTKKU60</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="TDRSTKKU60">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="TDRSTKKU60">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">HTEUKHY30</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HTEUKHY30">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HTEUKHY30">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">DRTNAQWX40</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="DRTNAQWX40">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="DRTNAQWX40">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">HYWQLPOI80</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HYWQLPOI80">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HYWQLPOI80">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">ZXQRTHLO40</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="ZXQRTHLO40">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="ZXQRTHLO40">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">HCNRELQW30</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HCNRELQW30">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HCNRELQW30">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">GVMIUTGF75</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="GVMIUTGF75">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="GVMIUTGF75">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">EDFULZAW40</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="EDFULZAW40">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="EDFULZAW40">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>

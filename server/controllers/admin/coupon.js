@@ -2,13 +2,12 @@ const Coupon = require("../../models/coupon");
 
 exports.getIndex = async (req, res) => {
   try {
-    let data = await Coupon.searchCoupons();
+    let coupons = await Coupon.searchCoupons();
 
     res.render("admin/admin-coupon", {
       pageTitle: "TravelAloha - Admin - Coupon Management",
       user: req.user,
-      //coupons: data
-      pageCount: 10
+      ...coupons
     });
   } catch (err) {
     res.sendStatus(404);
