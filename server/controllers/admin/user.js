@@ -1,4 +1,5 @@
 const db = require("../../db/db");
+const User = require("../../models/admin-user");
 
 exports.getUsersPage = function(req, res){
     let query = "SELECT * FROM user";
@@ -18,23 +19,11 @@ exports.addUsersPage = function(req,res) {
     });
 }
 
-exports.editUsersPage = function(req,res) {
-    let user_id = req.params.user_id;
-    let query = "SELECT * FROM user WHERE user_id = '" + user_id + "' ";
-    db.query(query, function(err, result) {
-        if (err) {
-            return res.status(500).send(err);
-        }
-        res.render('userManagement/edit-users.ejs', {
-            data: result,
-            user: req.user,
-            pageTitle: 'TravelAloha'
-        });
+exports.editUsersPage = function(req, res) {
+    res.render('userManagement/edit-users.ejs', {
+        pageTitle: " Edit a user"
+        ,message: ''
     });
-    // res.render('userManagement/edit-users.ejs', {
-    //     pageTitle: " Edit a user"
-    //     ,message: ''
-    // });
 }
 
 exports.detailUsersPage = function(req,res) {
