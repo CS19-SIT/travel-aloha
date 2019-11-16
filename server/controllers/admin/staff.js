@@ -37,10 +37,11 @@ exports.getStaffCandidatesList = async function(request, response) {
 		if (staffStatus != 'active' || userAuth['can_create'] == 'F') {
 			response.redirect('/admin/staff/recruiting')
 		}
-		const candidatesList = await connector.query(`SELECT * FROM user, staff_admin_info sdi WHERE user_id=staffId AND sdi.status='pending'`)
+		const candidatesList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS Name, sdi.department, sdi.role FROM user, staff_admin_info sdi WHERE user_id=staffID AND sdi.status='pending'`)
 		response.render('staff_admin/requisition', {
-			pageTitle: 'TravelAloha - Admin - StaffRequisition',
-			user: request.user,
+            pageTitle: 'TravelAloha - Admin - StaffRequisition',
+            user: request.user,
+            canCreate: (userAuth['can_create']=='T')?'true':'false',
 			data: JSON.stringify(candidatesList[0])
 		})
 	} catch (error) {
