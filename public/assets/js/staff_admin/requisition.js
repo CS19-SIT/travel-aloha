@@ -32,7 +32,7 @@ staffRecord = [
 ]
 
 if(canCreate == 'true'){
-    const TheForm = new Set(['cC','cR','cU','cD'])
+    const TheForm = new Set(['Create','Read','Update','Delete'])
     var staffList = document.getElementsByTagName('staffList')[0]
     var staffCard = staffList.getElementsByTagName('staffCard')[0]
     var infos = staffCard.getElementsByTagName('infoStaff')[0]
@@ -48,7 +48,7 @@ if(canCreate == 'true'){
                newStaffCard.getElementsByTagName('profileStaff')[0].style.backgroundImage = `url('${detail['profile_picture']}')`
            }
             delete detail['profile_picture']
-            newStaffCard.getElementsByClassName('user_id')[0].textContent = detail['user_id']
+            newStaffCard.getElementsByClassName('staffID')[0].textContent = detail['staffID']
             for (const [key, value] of Object.entries(detail)) {
                 newInfo.getElementsByTagName('yTitle')[0].textContent = key
                 newInfo.getElementsByTagName('yDetail')[0].textContent = value
@@ -56,30 +56,63 @@ if(canCreate == 'true'){
             }
             staffList.appendChild(newStaffCard)
         })
-        /*Array.prototype.forEach.call(document.getElementsByClassName('stapprove'), function(item, index) {
+        Array.prototype.forEach.call(document.getElementsByClassName('stapprove'), function(item, index) {
             item.addEventListener('click', function() {
                 let thisStaffCard = this.parentNode.parentNode
                 let strInput = Array.from(TheForm, function(s) {
                     return `<div class="form-group">
                     <label for="${s}">${s}</label>
-                    <input type="text" class="form-control" id="${s}" placeholder="${thisStaffCard.getElementsByClassName(s)[0].textContent}">
+                    <input type="checkbox" class="form-control" id="${s}">
                 </div>`
                 }).join('')
                 Swal.fire({
-                    title: 'Staff CRUD',
-                    text:'Please select which permission you will give to this staff?',
-                    html: strInput,
+                    title: '<b>HTML Staff Approval</b>',
+                    icon:'warning',
+                    html: 'Please select which permission you will give to this staff?'+strInput,
                     focusConfirm: false,
                     showCancelButton: true,
+                    cancelButtonColor: 'green',
                     preConfirm: function() {
                         [...TheForm].forEach(function(item) {
-                            
+                            const thisStaffId = thisStaffCard.getElementsByClassName('staffID')[0].textContent
+                            const cC = (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()
+                            const cR = (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()
+                            const cU = (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()
+                            const cD = (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase()
                         })
                     }
+                }).then(function(result){
+                    if(result.value){
+                        Swal.fire({
+                            icon: 'question',
+                            title: '<b>Are you sure?</b>',
+                            text: 'C R U D : '+
+                            (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()+" "+
+                            (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()+" "+
+                            (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()+" "+
+                            (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase(),
+                            showCancelButton: true,
+                            cancelButtonColor: 'green',
+                            confirmButtonColor: 'blue',
+                            confirmButtonText: 'APPROVE',
+                            cancelButtonText: 'No'
+                        }).then(function(result){
+                            if(result.value){
+                                Swal.fire({
+                                    icon:'success',
+                                    title: 'Staff Approved!',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                })
+                                setTimeout(function() {
+                                 location.reload(true)
+                             }, 1200) }else{}
+                        })
+                    }else{}
                 })
             })
-        }*/
-        
+        })
+    
     }
     
     Swal.fire({
@@ -103,7 +136,7 @@ if(canCreate == 'true'){
 
 
  
-function reject(){
+/*function reject(){
     
     var conf = confirm("Are you sure?");
     if(conf){   
@@ -115,7 +148,33 @@ function reject(){
     }
     else{
     }
+}*/
+
+function reject(){
+    Swal.fire({
+        icon: 'warning',
+        title: '<h1 style="color:red">Are you sure?</h1>',
+        html: '<h2 style="color:red">This action cannot be undone!</h2>',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+    }).then(function(result) {
+        if (result.value) {
+           Swal.fire({
+               icon: 'error',
+               title:'Staff Rejected',
+               showConfirmButton: false,
+               timer: 1000
+           })
+           setTimeout(function() {
+            location.reload(true)
+        }, 1200)
+        } else {
+            
+        }
+    })
 }
+
 
 function showUD(){
     if (cU.style.display === "none") {
