@@ -33,7 +33,7 @@ router.put(
 );
 
 router.delete(
-  "/delete",
+  "/delete/:code",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminCouponController.deleteCoupon

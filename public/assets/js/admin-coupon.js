@@ -18,6 +18,14 @@ $(document).ready(function() {
         });
         $("#viewModal").modal('hide');
     });
+
+    $("#deleteModal").on("show.bs.modal", function (e) {
+        const button = $(e.relatedTarget);
+        const code = button.data("coupon-code");
+        const modal = $(this);
+        modal.find(".modal-body p").text('Are you sure to delete coupon "' + code + '"?');
+        modal.find("form").data("coupon-code", code);
+    });
     
     $("#addModalForm").submit(function (e) {
         e.preventDefault();
@@ -28,6 +36,22 @@ $(document).ready(function() {
         $.ajax({
             type: "PUT",
             url: url,
+            data: form.serialize(),
+            success: () => {
+                alert("Success!");
+                location.reload();
+            }
+        });
+    });
+
+    $("#deleteModalForm").submit(function (e) {
+        e.preventDefault();
+
+        const form = $(this);
+        
+        $.ajax({
+            type: "DELETE",
+            url: "/admin/coupon/delete/" + form.data("coupon-code"),
             data: form.serialize(),
             success: () => {
                 alert("Success!");
