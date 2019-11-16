@@ -41,7 +41,6 @@ exports.getStaffCandidatesList = async function(request, response) {
 		response.render('staff_admin/requisition', {
             pageTitle: 'TravelAloha - Admin - StaffRequisition',
             user: request.user,
-            canCreate: (userAuth['can_create']=='T')?'true':'false',
 			data: JSON.stringify(candidatesList[0])
 		})
 	} catch (error) {

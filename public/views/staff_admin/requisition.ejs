@@ -1,116 +1,59 @@
 <%- include('../includes/header') %>
 	<style>
-	profileStaff{
-            width:8rem;height:8rem; 
-            float:left;
-            margin: 0.3%;
-            background-size: cover;
-        }
-    input.cb{
-      height:1.8em;
-      width:1.8em;
-      vertical-align: middle;
-      
-    }
-
-    /*#cR:not(:checked) ~ * {
-      display: none;
-    }*/
-    candidateCard {
-      width: fit-content;
-      height: fit-content;
-      padding: 1rem;
-      border: 1px solid black;
-    }
-    ProfilePicture {
-      width: 80%;
-      height: 160px;
-      margin: 1rem;
-      background-color: black;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
+		body {
+			min-height: calc(100% - 56px);
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: aqua;
+		}
+		candidateCard {
+			background-color: rgba(208, 208, 208, 0.75);
+			width: fit-content;
+			height: fit-content;
+			padding: 1rem;
+			border: 1px solid black;
+		}
+		ProfilePicture {
+			width: 80%;
+			height: 160px;
+			margin: 1rem;
+			background-color: black;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		#read:not(:checked) ~ *:not(.visible) {
+			display: none;
+		}
 	</style>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
-<body style="background-color: whitesmoke;">
-    <%- include('../includes/navbar') %>
-    <div style="padding:20px">
-    <h1 style="font-size: 3em;">Staff Requisition</h1><br>
-  <hr class="w-100 p-1 my-3" />
-  
-  <!-- <CandidateList class="d-flex justify-content-around">
+<body style="background-image: url('https://i.redd.it/breluv06gbc31.png');">
+<%- include('../includes/navbar') %>
+<h2 class="text-center my-4">Requested List</h2>
+<CandidateList class="d-flex justify-content-center flex-wrap">
 	<% let cdd = JSON.parse(data);
-  for (let i = 0; i < cdd.length; i++) { %>
-      <CandidateCard class="d-flex flex-column align-items-center">
-        <ProfilePicture class="d-block" style="background-image: url('<%= cdd[i][`profile_picture`] %>');"></ProfilePicture>
-        <p class="userid d-none"><%= cdd[i]['user_id'] %></p>
-        <% delete cdd[i]['profile_picture'];
-          delete cdd[i]['user_id'];
-        for(const [key, val] of Object.entries(cdd[i])) { %>
-          <p> 
-            <span class="<%= key %> text-upper"><%= key %></span>: 
-            <span><%= val %></span> 
-          </p>
-        <% } %>
-      </CandidateCard>
-    <% } %>
-  </CandidateList> -->
-    <staffList>
-    <staffCard>
-    <infoStaff>
-        <!--<button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
-        <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>-->
-        <button class="btn btn-danger streject" style="float:right" onclick="reject()">Reject</button>
-        <button class="btn btn-primary stapprove" style="float:right">Approve</button>
-      <profileStaff class="d-block flex-shrink-0 border"></profileStaff>
-      <span class="staffID d-none"></span>
-      <p style="font-size: 0.9rem;">
-      <yTitle class="text-capitalize font-weight-bold"></yTitle>:
-      &nbsp;<yDetail></yDetail>
-      </p>
-    </infoStaff>
-    <hr class="w-100 p-1 my-4" />
-    </staffCard>
-    </staffList>
-    
-        <!--Modal Start-->
-    <div class="modal" id="Appr">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h3 class="modal-title">Approve this staff?</h3>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-      
-            <div class="modal-body">
-                <h4>Staff ID : 00</h4>
-              <p>Please Check whether you want to grant these access to the selected staff</p>
-              <p>Note :You'll be able to check Update and Delete after you check Read permission</p>
-              <input type="checkbox" class="cb" id="cC">Create <br> 
-              <input type="checkbox" class="cb" id="cR" onclick="showUD()">Read <br>
-              <input type="checkbox" class="cb" id="cU" style="display: none;">Update <br> 
-              <input type="checkbox" class="cb" id="cD" style="display: none;">Delete <br>
-            </div>
-            <div class="modal-footer">
-                <input type="text" value="0000" id="crudshow" readonly style="display:none">
-                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()">Confirm</button>
-                <button class="btn btn-warning" style="float:right" data-dismiss="modal">Cancel</button>
-               
-            </div>
+	for (let i = 0; i < cdd.length; i++) { %>
+		<CandidateCard class="rounded d-flex flex-column align-items-center m-3">
+			<ProfilePicture class="d-block" style="background-image: url('<%= cdd[i][`profile_picture`] %>');"></ProfilePicture>
+			<p class="userid d-none"><%= cdd[i]['user_id'] %></p>
+			<% delete cdd[i]['profile_picture'];
+			delete cdd[i]['user_id'];
+			for(const [key, val] of Object.entries(cdd[i])) { %>
+			<p> 
+				<span class="<%= key %> text-upper"><%= key %></span>: 
+				<span><%= val %></span> 
+			</p>
+			<% } %>
+			<p data-descript="groupButtonToTheSameLine">
+			<button type="button" class="reject btn btn-outline-danger">REJECT</button>
+			<button type="button" class="approve btn btn-success">APPROVE</button>
+			</p>
+		</CandidateCard>
+	<% } %>
+</CandidateList>
+	
+<script src="../../assets/js/staff_admin/requisition.js"></script>
 
-           </div>
-    </div>
-    </div><!-- Modal End-->
-
-    </div>
-    <script>
-    let data = JSON.parse('<%- data %>')
-		const canCreate = '<%- canCreate %>'
-    </script>
-  <script src="../../assets/js/staff_admin/requisition.js"></script>
-  
 <%- include('../includes/footer') %>
