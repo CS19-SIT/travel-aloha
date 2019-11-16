@@ -1,66 +1,50 @@
 staffRecord = [
 	{
-		'user_id': '001',
-		'name': 'Nino Nakano',
-		'birth_date': '2000-05-05',
-		'department': 'culinary',
-		'role': 'best girl',
+		'user_id': '001', 
+		'name': 'Nino Nakano', 'birth_date': '2000-05-05',
+		'department': 'culinary', 'role': 'best girl',
 		'profile_picture': 'https://bit.ly/2NJfJ5n'
 	},
 	{
 		'user_id': '002',
-		'name': 'Kurumi Tokisaki',
-		'birth_date': '2000-01-01',
-		'department': 'veterinary',
-		'role': 'best girl',
+		'name': 'Kurumi Tokisaki', 'birth_date': '2000-01-01',
+		'department': 'veterinary', 'role': 'best girl',
 		'profile_picture': 'https://i.ytimg.com/vi/HPynobNcZAU/hqdefault.jpg'
 	},
 	{
 		'user_id': '003',
-		'name': 'Shido Itsuka',
-		'birth_date': '2000-08-03',
-		'department': 'housewife',
-		'role': 'best boy',
+		'name': 'Shido Itsuka', 'birth_date': '2000-08-03',
+		'department': 'housewife', 'role': 'best boy',
 		'profile_picture': 'https://pbs.twimg.com/profile_images/820479236179783680/5EUm7iXl.jpg'
 	},
 	{
 		'user_id': '004',
-		'name': 'Jeanne d\'Arc',
-		'birth_date': '1412-01-06',
-		'department': 'saint',
-		'role': 'best girl',
+		'name': 'Jeanne d\'Arc', 'birth_date': '1412-01-06',
+		'department': 'saint', 'role': 'best girl',
 		'profile_picture': 'https://bit.ly/2JW2wVX'
 	},
 	{
 		'user_id': '005',
-		'name': 'Jibril Archangel',
-		'birth_date': '0000-01-01',
-		'department': 'bibliophile',
-		'role': 'best girl',
+		'name': 'Jibril Archangel', 'birth_date': '0000-01-01',
+		'department': 'bibliophile', 'role': 'best girl',
 		'profile_picture': 'https://bit.ly/2qlxCiS'
 	},
 	{
 		'user_id': '006',
-		'name': 'Origami Tobiichi',
-		'birth_date': '2000-04-10',
-		'department': 'soldier',
-		'role': 'best girl',
+		'name': 'Origami Tobiichi', 'birth_date': '2000-04-10',
+		'department': 'soldier', 'role': 'best girl',
 		'profile_picture': 'https://66.media.tumblr.com/e69bd60591bf3765125db7fbc132316b/tumblr_ot5ic7qKwf1vy2tgqo7_250.jpg'
 	},
 	{
 		'user_id': '007',
-		'name': 'Ririna Sanada',
-		'birth_date': '2001-03-31',
-		'department': 'student',
-		'role': 'best girl',
+		'name': 'Ririna Sanada', 'birth_date': '2001-03-31',
+		'department': 'student', 'role': 'best girl',
 		'profile_picture': 'https://pbs.twimg.com/media/D18bKiaXQAMzT4q.jpg'
 	},
 	{
 		'user_id': '008',
-		'name': 'Mikoto Misaka',
-		'birth_date': '2000-05-02',
-		'department': 'student',
-		'role': 'best girl',
+		'name': 'Mikoto Misaka', 'birth_date': '2000-05-02',
+		'department': 'student', 'role': 'best girl',
 		'profile_picture': 'http://www.ah.xinhuanet.com/2015-04/09/1114914317_14285490003871n.jpg'
 	}
 ]
@@ -185,46 +169,48 @@ if (canRead == 'true') {
 	}
 
 	const checkConflict = function(callback) {
-		$.ajax({
-			url: '/admin/staff/getQuery',
-			method: 'POST',
-			data: {
-				sql: `SELECT * FROM staff_admin_info WHERE status='inactive'`
-			}
-		}).done(function(data, textStatus, jqXHR) {
-			if (data.status == 200) {
-				let denied = 'false'
-				// Check if some of staff was just changed to be inactive
-				if (updateList.size) {
+		if (updateList.size == 0) {
+			callback(deleteFn)
+			return
+		}
+		try {
+			const updatedStaffs = Array.from(updateList, function(s) {
+				return `'${s}'`
+			}).join(',')
+			$.ajax({ // Check if some of staff was just changed to be inactive
+				url: '/admin/staff/getQuery',
+				method: 'POST',
+				data: {
+					sql: `SELECT status FROM staff_admin_info WHERE staffId IN (${updatedStaffs})`
+				}
+			}).done(function(data, textStatus, jqXHR) {
+				if (data.status == 200 && data.result.length == updateList.size) {
+					let denied = 'false'
 					for (let i = 0; i < data.result.length; ++i) {
-						if (updateList.has(data.result[i]['user_id'])) {
+						if (data.result[i]['status'] == 'inactive') {
 							denied = 'true'
 							break
 						}
 					}
-				}
-				if (denied == 'false') {
-					callback(deleteFn)
-					return
+					if (denied == 'false') {
+						callback(deleteFn)
+					} else {
+						throw `Some staff have been deleted`	
+					}
 				} else {
-					Swal.fire({
-						icon: 'error',
-						title: 'Something was wrong',
-						text: 'some information of staff has been changed',
-						showConfirmButton: false,
-						timer: 1200
-					})
-					refreshPage(1000)
+					throw `Some staff doesn't exist`
 				}
-			} else {
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops, something went wrong',
-					showConfirmButton: false,
-					timer: 1200
-				})
-			}
-		})
+			})
+		} catch (err) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Something was wrong',
+				text: `${err}`,
+				showConfirmButton: false,
+				timer: 1500
+			})
+			refreshPage(1500)
+		}
 	}
 	const updateFn = function(callback) {
 		if (updateList.size == 0) {
@@ -274,14 +260,14 @@ if (canRead == 'true') {
 			callback()
 			return
 		}
-		const deleteStaffs = Array.from(deleteList, function(s) {
+		const deletedStaffs = Array.from(deleteList, function(s) {
 			return `'${s}'`
 		}).join(',')
 		$.ajax({ // Call to delete staff
 			url: '/admin/staff/sendQuery',
 			method: 'POST',
 			data: {
-				sql: `UPDATE staff_admin_info SET status='inactive' WHERE staffId IN (${deleteStaffs})`
+				sql: `UPDATE staff_admin_info SET status='inactive' WHERE staffId IN (${deletedStaffs})`
 			}
 		}).done(function(data, textStatus, jqXHR) {
 			if (data.status == 200) {
