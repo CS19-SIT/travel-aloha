@@ -135,35 +135,39 @@ exports.createCoupon = async ({
   expire_date
 }) => {
   try {
-    await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
-      code,
-      discount_percentage,
-      creation_date,
-      expire_date,
-      create_by_user_id,
-      start_date,
-      for_every_hotel,
-      for_every_airline,
-      name,
-      description
-    ]);
+    await db.query("START TRANSACTION");
 
-    const errHandler = async err => {
-      await exports.deleteCoupon(code);
+    try {
+      await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+        code,
+        discount_percentage,
+        creation_date,
+        expire_date,
+        create_by_user_id,
+        start_date,
+        for_every_hotel,
+        for_every_airline,
+        name,
+        description
+      ]);
+
+      if (!for_every_hotel && Array.isArray(hotels)) {
+        await addCouponCriteriaHotel(code, hotels);
+      }
+
+      if (!for_every_airline && Array.isArray(airlines)) {
+        await addCouponCriteriaAirline(code, airlines);
+      }
+
+      if (Array.isArray(levels)) {
+        await addCouponCriteriaLevel(code, levels);
+      }
+    } catch (err) {
+      await db.query("ROLLBACK");
       throw err;
-    };
-
-    if (!for_every_hotel && Array.isArray(hotels)) {
-      await addCouponCriteriaHotel(code, hotels).catch(errHandler);
     }
 
-    if (!for_every_airline && Array.isArray(airlines)) {
-      await addCouponCriteriaAirline(code, airlines).catch(errHandler);
-    }
-
-    if (Array.isArray(levels)) {
-      await addCouponCriteriaLevel(code, levels).catch(errHandler);
-    }
+    await db.query("COMMIT");
   } catch (err) {
     throw new Error(`[ERR] createCoupon: ${err}`);
   }
@@ -184,57 +188,56 @@ exports.editCoupon = async ({
 }) => {
   try {
     await db.query("START TRANSACTION");
-    await db.query(`
-            UPDATE coupon
-            SET
-                name = ?,
-                description = ?,
-                for_every_hotel = ?,
-                for_every_airline = ?,
-                discount_percentage = ?,
-                start_date = ?,
-                expire_date = ?
-            WHERE code = ?
+
+    try {
+      await db.query(`
+          UPDATE coupon
+          SET
+            name = ?,
+            description = ?,
+            for_every_hotel = ?,
+            for_every_airline = ?,
+            discount_percentage = ?,
+            start_date = ?,
+            expire_date = ?
+          WHERE code = ?
         `, [
-      name,
-      description,
-      for_every_hotel,
-      for_every_airline,
-      discount_percentage,
-      start_date,
-      expire_date,
-      code
-    ]);
+        name,
+        description,
+        for_every_hotel,
+        for_every_airline,
+        discount_percentage,
+        start_date,
+        expire_date,
+        code
+      ]);
 
-    console.log(new Date(start_date));
+      if (!for_every_hotel && Array.isArray(hotels)) {
+        const result = await getCouponCriteriaHotel(code);
 
-    const onError = async (err) => {
+        if (result.length > 0) {
+          await addCouponCriteriaHotel(code, hotels.filter(e => result.indexOf(e) !== -1));
+        }
+      }
+
+      if (!for_every_airline && Array.isArray(airlines)) {
+        const result = await getCouponCriteriaAirline(code);
+
+        if (result.length > 0) {
+          await addCouponCriteriaAirline(code, airlines.filter(e => result.indexOf(e) !== -1));
+        }
+      }
+
+      if (Array.isArray(levels)) {
+        const result = await getCouponCriteriaLevel(code);
+
+        if (result.length > 0) {
+          await addCouponCriteriaLevel(code, levels.filter(e => result.indexOf(e) !== -1));
+        }
+      }
+    } catch (err) {
       await db.query("ROLLBACK");
       throw err;
-    };
-
-    if (!for_every_hotel && Array.isArray(hotels)) {
-      const result = await getCouponCriteriaHotel(code);
-
-      if (result.length > 0) {
-        await addCouponCriteriaHotel(code, hotels.filter(e => result.indexOf(e) !== -1)).catch(onError);
-      }
-    }
-
-    if (!for_every_airline && Array.isArray(airlines)) {
-      const result = await getCouponCriteriaAirline(code);
-
-      if (result.length > 0) {
-        await addCouponCriteriaAirline(code, airlines.filter(e => result.indexOf(e) !== -1)).catch(onError);
-      }
-    }
-
-    if (Array.isArray(levels)) {
-      const result = await getCouponCriteriaLevel(code);
-
-      if (result.length > 0) {
-        await addCouponCriteriaLevel(code, levels.filter(e => result.indexOf(e) !== -1)).catch(onError);
-      }
     }
 
     await db.query("COMMIT");
