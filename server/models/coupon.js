@@ -110,6 +110,8 @@ exports.createCoupon = async ({
   description,
   creation_date,
   create_by_user_id,
+  for_every_hotel,
+  for_every_airline,
   levels,
   hotels,
   airlines,
@@ -125,8 +127,8 @@ exports.createCoupon = async ({
       expire_date,
       create_by_user_id,
       start_date,
-      hotels === true,
-      airlines === true,
+      for_every_hotel,
+      for_every_airline,
       name,
       description
     ]);
@@ -136,11 +138,11 @@ exports.createCoupon = async ({
       throw err;
     };
 
-    if (Array.isArray(hotels)) {
+    if (!for_every_hotel && Array.isArray(hotels)) {
       await addCouponCriteriaHotel.catch(errHandler);
     }
 
-    if (Array.isArray(airlines)) {
+    if (!for_every_airline && Array.isArray(airlines)) {
       await addCouponCriteriaAirline.catch(errHandler);
     }
   } catch (err) {
@@ -152,6 +154,8 @@ exports.editCoupon = async ({
   code,
   name,
   description,
+  for_every_hotel,
+  for_every_airline,
   levels,
   hotels,
   airlines,
@@ -160,9 +164,6 @@ exports.editCoupon = async ({
   expire_date
 }) => {
   try {
-    const for_every_hotel = hotels === true;
-    const for_every_airline = airlines === true;
-
     await db.query("START TRANSACTION");
     await db.query(`
             UPDATE coupon
@@ -193,7 +194,7 @@ exports.editCoupon = async ({
       throw err;
     };
 
-    if (Array.isArray(hotels)) {
+    if (!for_every_hotel && Array.isArray(hotels)) {
       const result = await db.query(`
                 SELECT hotel_id FROM coupon_criteria_hotel WHERE code = ?
             `, [
@@ -210,7 +211,7 @@ exports.editCoupon = async ({
       }
     }
 
-    if (Array.isArray(airlines)) {
+    if (!for_every_hotel && Array.isArray(airlines)) {
       const result = await db.query(`
                 SELECT ? MINUS
                 SELECT airline_id FROM coupon_criteria_airline WHERE code = ?
