@@ -1,15 +1,10 @@
 const uuid = require("uuid/v4");
 const bcrypt = require("bcrypt");
 
-<<<<<<< HEAD:server/controllers/auth.js
-const passport = require("../auth/passport");
-const User = require("../models/user");
-=======
 const passport = require("../../auth/passport");
 const User = require("../../models/user");
 const Customer = require("../../models/customer");
 
->>>>>>> dev:server/controllers/auth/index.js
 
 exports.getRegister = (req, res) =>
   res.render("auth/register", {
@@ -18,7 +13,16 @@ exports.getRegister = (req, res) =>
   });
 
 exports.postRegister = async (req, res) => {
-  const { username, password, retypePassword } = req.body;
+  const {
+    username,
+    password,
+    retypePassword,
+    firstname,
+    lastname,
+    birth_date,
+    gender,
+    address
+  } = req.body;
   try {
     if (!username || !password || !retypePassword) throw new Error();
     let existedUsername;
@@ -36,9 +40,6 @@ exports.postRegister = async (req, res) => {
     await User.createUser({
       user_id: userId,
       username,
-<<<<<<< HEAD:server/controllers/auth.js
-      password: hashedPassword
-=======
       password: hashedPassword,
       gender,
       birth_date,
@@ -46,9 +47,12 @@ exports.postRegister = async (req, res) => {
       lastname,
       address,
       email: undefined
->>>>>>> dev:server/controllers/auth/index.js
     });
 
+    await Customer.createCustomer({
+      user_id: userId,
+      total_spend: 0
+    });
     res.redirect("/login");
   } catch (err) {
     console.log(err)
@@ -71,4 +75,6 @@ exports.postLogout = (req, res) => {
   req.session.destroy(err => {
     res.redirect("/");
   });
+
 };
+

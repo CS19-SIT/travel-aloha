@@ -74,7 +74,6 @@ const adminUserRoutes = require("./routes/admin/user");
 const authRoutes = require("./routes/auth/index");
 const checkoutRoutes = require("./routes/checkout/index");
 const contactRoutes = require("./routes/contact/index");
-const userManagementRoutes = require("./routes/userManagement")
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
@@ -106,7 +105,6 @@ app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
 
-app.use("/userManagement", userManagementRoutes);
 app.use(errorsController.get404);
 
 app.listen(process.env.APP_PORT, () => {
