@@ -1,27 +1,27 @@
 staffRecord = [
     {
-        'ID' : '111',
+        'StaffID' : '111',
         'Name': 'Rick Roll',
         'Department': 'No',
         'Role' : 'not fixed',
         'profile_picture': 'https://i.ytimg.com/vi/oHg5SJYRHA0/hqdefault.jpg'
     },
     {
-        'ID' : '116',
+        'StaffID' : '116',
         'Name': 'Rick Roll 2.0',
         'Department': 'Despacito HQ',
         'Role' : 'Singer',
         'profile_picture': 'https://static.stereogum.com/blogs.dir/2/files/2008/03/rickroll-still-compressed.jpg'
     },
     {
-        'ID' : '117',
+        'StaffID' : '117',
         'Name': 'Jeff',
         'Department': 'Street',
         'Role' : 'Detective',
         'profile_picture': 'https://i.kym-cdn.com/entries/icons/original/000/016/894/mynameehhjeff.jpg'
     },
     {
-        'ID' : '118',
+        'StaffID' : '118',
         'Name': 'Chen',
         'Department': 'Bicycler',
         'Role' : 'Honk Honk',
@@ -32,6 +32,7 @@ staffRecord = [
 ]
 
 if(canCreate == 'true'){
+    let thisStaffId='0'; let cC='F';   let cR='F';   let cU='F';   let cD='F'
     const TheForm = new Set(['Create','Read','Update','Delete'])
     var staffList = document.getElementsByTagName('staffList')[0]
     var staffCard = staffList.getElementsByTagName('staffCard')[0]
@@ -63,7 +64,7 @@ if(canCreate == 'true'){
                     return `<div class="form-group">
                     <label for="${s}">${s}</label>
                     <input type="checkbox" class="form-control" id="${s}">
-                </div>`
+                    </div>`
                 }).join('')
                 Swal.fire({
                     title: '<b>HTML Staff Approval</b>',
@@ -74,11 +75,11 @@ if(canCreate == 'true'){
                     cancelButtonColor: 'green',
                     preConfirm: function() {
                         [...TheForm].forEach(function(item) {
-                            const thisStaffId = thisStaffCard.getElementsByClassName('staffID')[0].textContent
-                            const cC = (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()
-                            const cR = (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()
-                            const cU = (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()
-                            const cD = (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase()
+                            thisStaffId = thisStaffCard.getElementsByClassName('staffID')[0].textContent
+                            cC = (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()
+                            cR = (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()
+                            cU = (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()
+                            cD = (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase()
                         })
                     }
                 }).then(function(result){
@@ -86,11 +87,7 @@ if(canCreate == 'true'){
                         Swal.fire({
                             icon: 'question',
                             title: '<b>Are you sure?</b>',
-                            text: 'C R U D : '+
-                            (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()+" "+
-                            (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()+" "+
-                            (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()+" "+
-                            (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase(),
+                            text: 'C R U D : '+cC+" "+cR+" "+cU+" "+cD,
                             showCancelButton: true,
                             cancelButtonColor: 'green',
                             confirmButtonColor: 'blue',
@@ -98,6 +95,37 @@ if(canCreate == 'true'){
                             cancelButtonText: 'No'
                         }).then(function(result){
                             if(result.value){
+                                /*$.ajax({
+                                    url: '/admin/staff/sendQuery',
+                                    method: 'POST',
+                                    data: {
+                                        sql: `UPDATE staff_admin_info SET status='active' WHERE staffID = ('${thisStaffId}')`
+                                    }  
+                                })
+                                $.ajax({
+                                    url: '/admin/staff/sendQuery',
+                                    method: 'POST',
+                                    data: {
+                                        sql: `INSERT INTO staff_admin_CRUD VALUES ('${thisStaffId}','${cC}','${cR}','${cU}','${cD}') 
+                                        ON DUPLICATE KEY UPDATE can_create=VALUES('${cC}'), can_read=VALUES('${cR}'), can_update=VALUES('${cU}'), can_delete=VALUES('${cD}')`
+                                    }  
+                                }).done(function(data, textStatus, jqXHR) {
+                                    if (data.status == 200) {
+                                        callback(function() {
+                                            refreshPage(1200)
+                                        })
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Something went wrong!',
+                                            showConfirmButton: false,
+                                            timer: 1200
+                                        })
+                                        setTimeout(function() {
+                                            location.reload(true)
+                                        }, 1200) 
+                                    }
+                                })*/
                                 Swal.fire({
                                     icon:'success',
                                     title: 'Staff Approved!',
@@ -111,7 +139,8 @@ if(canCreate == 'true'){
                     }else{}
                 })
             })
-        })
+        
+    })
     
     }
     
