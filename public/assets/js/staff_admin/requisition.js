@@ -113,7 +113,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
                         sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${thisManId}'`
                     }
                 }).done(function() {
-                    if (data.status == 200) {
+                    if (data.textStatus.jqXHR == 200) {
                         $.ajax({
                             url: '/admin/staff/sendQuery',
                             method: 'POST',
