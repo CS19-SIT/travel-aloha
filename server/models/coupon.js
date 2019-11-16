@@ -27,6 +27,21 @@ const addCouponCriteriaLevel = async (code, levels) => {
   ]);
 }
 
+const getCouponCriteriaHotel = async code => {
+  const result = await db.query("SELECT hotel_id FROM coupon_criteria_hotel WHERE code = ?", [code]);
+  return result[0].map(e => e["hotel_id"]);
+};
+
+const getCouponCriteriaAirline = async code => {
+  const result = await db.query("SELECT airline_id FROM coupon_criteria_airline WHERE code = ?", [code]);
+  return result[0].map(e => e["airline_id"]);
+};
+
+const getCouponCriteriaLevel = async code => {
+  const result = await db.query("SELECT level FROM coupon_criteria_level WHERE code = ?", [code]);
+  return result[0].map(e => e["level"]);
+};
+
 exports.searchCoupons = async ({
   code,
   name,
@@ -195,19 +210,13 @@ exports.editCoupon = async ({
     };
 
     if (!for_every_hotel && Array.isArray(hotels)) {
-      const result = await db.query(`
-                SELECT hotel_id FROM coupon_criteria_hotel WHERE code = ?
-            `, [
-        code
-      ]);
+      const result = await getCouponCriteriaHotel(code);
 
       console.log(result);
       await onError("yay");
 
-      if (result[0].length > 0) {
-        await addCouponCriteriaHotel(code, hotels.filter(e => result[0].indexOf({
-          hotel_id: e
-        }) !== -1)).catch(onError);
+      if (result.length > 0) {
+        await addCouponCriteriaHotel(code, hotels.filter(e => result.indexOf(e) !== -1)).catch(onError);
       }
     }
 
