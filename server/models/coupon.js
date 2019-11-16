@@ -154,11 +154,15 @@ exports.createCoupon = async ({
     };
 
     if (!for_every_hotel && Array.isArray(hotels)) {
-      await addCouponCriteriaHotel.catch(errHandler);
+      await addCouponCriteriaHotel(code, hotels).catch(errHandler);
     }
 
     if (!for_every_airline && Array.isArray(airlines)) {
-      await addCouponCriteriaAirline.catch(errHandler);
+      await addCouponCriteriaAirline(code, airlines).catch(errHandler);
+    }
+
+    if (Array.isArray(levels)) {
+      await addCouponCriteriaLevel(code, levels).catch(errHandler);
     }
   } catch (err) {
     throw new Error(`[ERR] createCoupon: ${err}`);
