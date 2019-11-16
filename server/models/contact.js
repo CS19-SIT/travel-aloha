@@ -20,6 +20,17 @@ exports.insertNewHotel = async ({
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
+exports.insertNewHotelFile = async({
+  hotelPicture
+}) => {
+  try{
+    await db.query(`INSERT INTO hotel(hotelPicture) VALUES(?)`, [
+      hotelPicture
+    ]);
+  } catch(error){
+    throw new Error(`[ERR] insertNewHotelFile: ${error}`)
+  }
+};
 exports.insertNewAirline = async ({
   airlineName,
   airlineEmail,

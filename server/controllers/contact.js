@@ -25,7 +25,9 @@ exports.postHotelInfo = async (req, res) => {
     hotelDescription,
     hotelAddress,
     hotelTelNumber,
-    hotelContactNumber
+    hotelContactNumber,
+    hotelProfile,
+    hotelPicture
   } = req.body;
 
   try {
