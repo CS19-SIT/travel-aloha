@@ -98,7 +98,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
             preConfirm: function() {
                 let [canCreate, canRead, canUpdate, canDelete] = [
                     document.getElementById('create').checked.toString().substring(0, 1).toUpperCase(),
-                    document.getElementById('reade').checked.toString().substring(0, 1).toUpperCase(),
+                    document.getElementById('read').checked.toString().substring(0, 1).toUpperCase(),
                     document.getElementById('update').checked.toString().substring(0, 1).toUpperCase(),
                     document.getElementById('delete').checked.toString().substring(0, 1).toUpperCase()
                 ]
@@ -106,13 +106,14 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
                     canUpdate = 'F'
                     canDelete = 'F'
                 }
+                console.log([canCreate, canRead, canUpdate, canDelete])
                 $.ajax({
                     url: '/admin/staff/sendQuery',
                     method: 'POST',
                     data: {
                         sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${thisManId}'`
                     }
-                }).done(function() {
+                }).done(function(data, textStatus, jqXHR) {
                     if (data.status == 200) {
                         $.ajax({
                             url: '/admin/staff/sendQuery',

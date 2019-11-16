@@ -59,6 +59,7 @@ exports.getDetailAllExistedStaff = async function(request, response) {
 		}
 		const userAuth = await adminStaffModel.getStaffCRUD(request.user.user_id)
 		const staffList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS name, birth_date, gender, address, sdi.department, sdi.role FROM user, staff_admin_info sdi WHERE user_id=staffID AND sdi.status='active' AND user_id<>'${request.user.user_id}'`)
+		console.log(userAuth)
 		response.render('staff_admin/management', {
 			pageTitle: 'TravelAloha - StaffManagement',
 			user: request.user,
