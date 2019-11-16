@@ -106,14 +106,15 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
                     canUpdate = 'F'
                     canDelete = 'F'
                 }
+                console.log([canCreate, canRead, canUpdate, canDelete])
                 $.ajax({
                     url: '/admin/staff/sendQuery',
                     method: 'POST',
                     data: {
                         sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${thisManId}'`
                     }
-                }).done(function() {
-                    if (data.textStatus.jqXHR == 200) {
+                }).done(function(data, textStatus, jqXHR) {
+                    if (data.status == 200) {
                         $.ajax({
                             url: '/admin/staff/sendQuery',
                             method: 'POST',
