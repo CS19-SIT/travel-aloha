@@ -16,7 +16,21 @@
     /*#cR:not(:checked) ~ * {
       display: none;
     }*/
-    
+    candidateCard {
+      width: fit-content;
+      height: fit-content;
+      padding: 1rem;
+      border: 1px solid black;
+    }
+    ProfilePicture {
+      width: 80%;
+      height: 160px;
+      margin: 1rem;
+      background-color: black;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
 
 	</style>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -25,8 +39,25 @@
     <%- include('../includes/navbar') %>
     <div style="padding:20px">
     <h1 style="font-size: 3em;">Staff Requisition</h1><br>
-	<hr class="w-100 p-1 my-3" />
-	
+  <hr class="w-100 p-1 my-3" />
+  
+  <!-- <CandidateList class="d-flex justify-content-around">
+	<% let cdd = JSON.parse(data);
+  for (let i = 0; i < cdd.length; i++) { %>
+      <CandidateCard class="d-flex flex-column align-items-center">
+        <ProfilePicture class="d-block" style="background-image: url('<%= cdd[i][`profile_picture`] %>');"></ProfilePicture>
+        <p class="userid d-none"><%= cdd[i]['user_id'] %></p>
+        <% delete cdd[i]['profile_picture'];
+          delete cdd[i]['user_id'];
+        for(const [key, val] of Object.entries(cdd[i])) { %>
+          <p> 
+            <span class="<%= key %> text-upper"><%= key %></span>: 
+            <span><%= val %></span> 
+          </p>
+        <% } %>
+      </CandidateCard>
+    <% } %>
+  </CandidateList> -->
     <staffList>
     <staffCard>
     <infoStaff>
