@@ -12,7 +12,7 @@ const defaultLevels = allLevels.map(e => e[0].toString());
 const defaultTypes = ["flight", "hotel"];
 const defaultOption = "1"; // "Code"
 
-exports.getIndex = async (req, res) => {
+exports.getIndex = async (req, res, next) => {
   try {
     const query = {
       ...req.query,
@@ -43,7 +43,9 @@ exports.getIndex = async (req, res) => {
       queryString: querystring.stringify(query)
     });
   } catch (err) {
-    res.sendStatus(404);
+    console.log(err);
+    res.sendStatus(500);
+    next();
   }
 };
 
