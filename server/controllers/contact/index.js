@@ -40,7 +40,7 @@ exports.postHotelInfo = async (req, res) => {
       hotelEmail
     });
     // ** Wait for learning upload file
-    // await contactModel.insertNewHotelFile({                    
+    // await contactModel.insertNewHotelFile({
     //   hotelPicture
     // })
     res.redirect("dashboard");

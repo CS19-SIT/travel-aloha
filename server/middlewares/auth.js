@@ -1,5 +1,10 @@
 exports.isAuthenticated = (req, res, next) => {
-    return req.isAuthenticated() ? next() : res.redirect("/login");
+  return req.isAuthenticated() ? next() : res.redirect("/login");
+};
+
+exports.isStaff = (req, res, next) => {
+  return req.isAuthenticated() ? next() : res.redirect("/login");
+  //TODO: Handle logic to check if the user has staff privileges
 };
 
 exports.isStaff = (req, res, next) => {
@@ -8,6 +13,6 @@ exports.isStaff = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-    return req.isAuthenticated() ? next() : res.redirect("/login");
-    //TODO: Handle logic to check if the user has admin privileges
+  return req.isAuthenticated() ? next() : res.redirect("/login");
+  //TODO: Handle logic to check if the user has admin privileges
 };

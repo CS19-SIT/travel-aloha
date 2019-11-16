@@ -1,0 +1,98 @@
+<%- include('../includes/header') %>
+
+	<style>
+		background {
+			color: #dedede;
+			min-height: 100vh;
+			background-image: url("../../assets/Pictures/staff_admin/recruiting-wallpaper.png");
+			background-color: #dedede;
+			background-repeat: no-repeat;
+			background-position: center;
+			padding: 3.5rem 0;
+		}
+		pendingCard, existedInfo, newInfo {
+			background-color: rgba(34, 43, 59, 0.7);
+		}
+		pendingCard {
+			padding: 1.2rem 1.7rem;
+			width: 60%;
+			min-width: 280px;
+			max-width: 750px;
+		}
+		existedInfo {
+			width: 280px;
+		}
+		newInfo {
+			width: calc(90% - 280px);
+			min-width: 280px;
+			max-width: 500px;
+		}
+		profileImage {
+			width: 60%;
+			height: 180px;
+			background-color: black;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center 15%;
+		}
+		label {
+			display: inline-block;
+		}
+		label, input {
+			font-size: 0.9rem;
+		}
+	</style>
+</head>
+
+<body>
+	<%- include('../includes/navbar') %>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	
+	<background class="row w-100 justify-content-center align-content-start mx-0">
+	<% if (onPending == 'true') { %>
+		<pendingCard class="row rounded pt-5 justify-content-end">
+			<p class="col-12 text-center">You already sent an application one.</p>
+			<button id="withdraw" class="btn btn-danger">Withdraw</button>
+		</pendingCard>
+	<% } else { %>
+		<% if (isDisband == 'true') { %>
+			<script>
+				Swal.fire({
+					icon: 'error',
+					title: 'You are fired from the department',
+					showConfirmButton: true
+				})
+			</script>
+		<% } %>
+		<existedInfo class="row rounded py-3 m-2 justify-content-center align-content-center">
+			<profileImage class="mb-2 rounded"></profileImage>
+			<p class="w-100"></p>
+			<briefInfo class="col-auto pt-3 text-break">
+				<p style="font-size: 0.9rem;">
+					<yTitle class="text-capitalize font-weight-bolder"></yTitle>:
+					&nbsp;<yDetail></yDetail>
+				</p>
+			</briefInfo>
+		</existedInfo>
+		<newInfo class="d-block rounded p-3 m-2">
+			<h2 class="text-center py-2" style="font-size: 1.4rem;">Staff Recruiting Form</h2>
+			<label for="department">Department</label><br/>
+			<input type="text" id="department" class="form-control" placeholder="Your wanted department"/><br/>
+			<label for="role">Role</label><br/>
+			<input type="text" id="role" class="form-control" placeholder="Your wanted role" />
+			<buttonDirection class="d-block w-100 text-right mt-4">
+				<button id="submit" type="button" class="btn btn-primary">submit</button>
+			</buttonDirection>
+		</newInfo>
+	<% } %>
+	</myForm>
+	</background>
+
+	<script>
+		let onPending = '<%- onPending %>'
+		let data = JSON.parse('<%- data %>')
+	</script>
+	<script src="../../assets/js/staff_admin/recruiting.js"></script>
+
+<%- include('../includes/footer') %>
