@@ -1,8 +1,15 @@
 const uuid = require("uuid/v4");
 const bcrypt = require("bcrypt");
 
+<<<<<<< HEAD:server/controllers/auth.js
 const passport = require("../auth/passport");
 const User = require("../models/user");
+=======
+const passport = require("../../auth/passport");
+const User = require("../../models/user");
+const Customer = require("../../models/customer");
+
+>>>>>>> dev:server/controllers/auth/index.js
 
 exports.getRegister = (req, res) =>
   res.render("auth/register", {
@@ -29,11 +36,22 @@ exports.postRegister = async (req, res) => {
     await User.createUser({
       user_id: userId,
       username,
+<<<<<<< HEAD:server/controllers/auth.js
       password: hashedPassword
+=======
+      password: hashedPassword,
+      gender,
+      birth_date,
+      firstname,
+      lastname,
+      address,
+      email: undefined
+>>>>>>> dev:server/controllers/auth/index.js
     });
 
     res.redirect("/login");
   } catch (err) {
+    console.log(err)
     res.sendStatus(400);
   }
 };

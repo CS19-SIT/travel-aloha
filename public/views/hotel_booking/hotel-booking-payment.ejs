@@ -1,0 +1,49 @@
+<%- include('../includes/header') %>
+<link rel="stylesheet" href="../../assets/css/styles-hotel-booking-payment.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navbar') %>
+  <!-- <%= hotelData %> -->
+  <div class="container mt-3">
+    <div class="row no-gutters">
+      <h1>Room Booking</h1>
+    </div>
+
+
+    <div class="row no-gutters mt-4">
+      <h3 class="hotel-name">Review and Payment</h3>
+    </div>
+
+    <div class="row no-gutters mt-3">
+      <h4>Details</h4>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="container-bordered detail-container">
+        <div class="detail-list user-detail-list">
+          <h5>Your Information</h5>
+          <p>Contact Name <span><%-hotelData.inputFirstName+"   "+hotelData.inputLastName -%></span></p>
+          <p>Email <span><%- hotelData.inputEmail-%></span></p>
+          <p>Phone Number <span><%- hotelData.inputPhoneNo-%>></span></p>
+        </div>
+        <div class="detail-list booking-detail-list">
+          <h5>Booking Detail</h5>
+          <h6>Hotel <span>Lorem Ipsum Hotel</span></h6>
+          <p>Duration <span>1 Night</span></p>
+          <p>Room Type <span>Suite</span></p>
+        </div>
+        <div class="detail-list price-detail-list">
+          <h5>Price Detail</h5>
+          <p class="price-detail">(1x) Suite Room (1 Night) <span>THB 4200.00</span></p>
+          <p>Additional Fees <span>FREE</span></p>
+          <h5 class="price-total">Total <span>THB 4200.00</span></h5>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-submit">Book</button>
+  </div>
+
+  <%- include('../includes/footer') %>
+</body>
