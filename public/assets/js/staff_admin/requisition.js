@@ -97,10 +97,10 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
             showCancelButton: true,
             preConfirm: function() {
                 let [canCreate, canRead, canUpdate, canDelete] = [
-                    document.getElementById('create').checked.toString().substring(0, 1).toUppercase(),
-                    document.getElementById('reade').checked.toString().substring(0, 1).toUppercase(),
-                    document.getElementById('update').checked.toString().substring(0, 1).toUppercase(),
-                    document.getElementById('delete').checked.toString().substring(0, 1).toUppercase()
+                    document.getElementById('create').checked.toString().substring(0, 1).toUpperCase(),
+                    document.getElementById('reade').checked.toString().substring(0, 1).toUpperCase(),
+                    document.getElementById('update').checked.toString().substring(0, 1).toUpperCase(),
+                    document.getElementById('delete').checked.toString().substring(0, 1).toUpperCase()
                 ]
                 if (canRead == 'F') {
                     canUpdate = 'F'
