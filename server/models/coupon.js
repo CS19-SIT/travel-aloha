@@ -6,6 +6,24 @@ const convertBooleans = e => {
   return e;
 };
 
+const addCouponCriteriaHotel = async (code, hotels) => {
+  return db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
+    hotels.map(e => [code, e])
+  ]);
+}
+
+const addCouponCriteriaAirline = async (code, airlines) => {
+  return db.query("INSERT INTO coupon_criteria_airline VALUES ?", [
+    airlines.map(e => [code, e])
+  ]);
+}
+
+const addCouponCriteriaLevel = async (code, levels) => {
+  return db.query("INSERT INTO coupon_criteria_level VALUES ?", [
+    levels.map(e => [code, e])
+  ]);
+}
+
 exports.searchCoupons = async ({
   code,
   name,
@@ -96,22 +114,18 @@ exports.createCoupon = async ({
     };
 
     if (Array.isArray(hotels)) {
-      await db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
-        hotels.map(e => [code, e])
-      ]).catch(errHandler);
+      await addCouponCriteriaHotel.catch(errHandler);
     }
 
     if (Array.isArray(airlines)) {
-      await db.query("INSERT INTO coupon_criteria_airlines VALUES ?", [
-        airlines.map(e => [code, e])
-      ]).catch(errHandler);
+      await addCouponCriteriaAirline.catch(errHandler);
     }
   } catch (err) {
     throw new Error(`[ERR] createCoupon: ${err}`);
   }
 };
 
-exports.updateCoupon = async ({
+exports.editCoupon = async ({
   code,
   name,
   description,
@@ -119,10 +133,93 @@ exports.updateCoupon = async ({
   hotels,
   airlines,
   discount_percentage,
-  start_dte,
-  end_date
+  start_date,
+  expire_date
 }) => {
+  try {
+    const for_every_hotel = hotels === true;
+    const for_every_airline = airlines === true;
 
+    await db.query("START TRANSACTION");
+    await db.query(`
+            UPDATE coupon
+            SET
+                name = ?,
+                description = ?,
+                for_every_hotel = ?,
+                for_every_airline = ?,
+                discount_percentage = ?,
+                start_date = ?,
+                expire_date = ?
+            WHERE code = ?
+        `, [
+      name,
+      description,
+      for_every_hotel,
+      for_every_airline,
+      discount_percentage,
+      start_date == null ? null : new Date(start_date),
+      expire_date == null ? null : new Date(expire_date),
+      code
+    ]);
+
+    console.log(new Date(start_date));
+
+    const onError = async (err) => {
+      await db.query("ROLLBACK");
+      throw err;
+    };
+
+    if (Array.isArray(hotels)) {
+      const result = await db.query(`
+                SELECT hotel_id FROM coupon_criteria_hotel WHERE code = ?
+            `, [
+        code
+      ]);
+
+      console.log(result);
+      await onError("yay");
+
+      if (result[0].length > 0) {
+        await addCouponCriteriaHotel(code, hotels.filter(e => result[0].indexOf({
+          hotel_id: e
+        }) !== -1)).catch(onError);
+      }
+    }
+
+    if (Array.isArray(airlines)) {
+      const result = await db.query(`
+                SELECT ? MINUS
+                SELECT airline_id FROM coupon_criteria_airline WHERE code = ?
+            `,
+        airlines,
+        code
+      );
+
+      if (result[0].length > 0) {
+        await addCouponCriteriaAirline(code, result[0]).catch(onError);
+      }
+    }
+
+
+    if (Array.isArray(levels)) {
+      const result = await db.query(`
+                SELECT ? MINUS
+                SELECT level FROM coupon_criteria_level WHERE code = ?
+            `,
+        [levels],
+        code
+      );
+
+      if (result[0].length > 0) {
+        await addCouponCriteriaLevel(code, result[0]).catch(onError);
+      }
+    }
+
+    await db.query("COMMIT");
+  } catch (err) {
+    throw new Error(`[ERR] updateCoupon: ${err}`);
+  }
 };
 
 exports.deleteCoupon = async code => {
