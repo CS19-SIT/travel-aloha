@@ -12,41 +12,6 @@ exports.getDashboard = (req, res) => {
     user: req.user
   });
 };
-
-exports.getAirlineInfo = (req, res) => {
-  res.render("contact/add-new-airline", {
-    pageTitle: "TravelAloha - Contact - Register New Airline",
-    user: req.user
-  });
-};
-exports.postAirlineInfo = async (req, res) => {
-  const {
-    airlineName,
-    airlineEmail,
-    airlineAddress,
-    airlineNationality,
-    airlineTelNumber,
-    airlineContactNumber,
-    airlineDescription
-  } = req.body;
-
-  try {
-    await contactModel.insertNewAirline({
-      airlineName,
-      airlineNationality,
-      airlineEmail,
-      airlineDescription,
-      airlineAddress,
-      airlineTelNumber,
-      airlineContactNumber
-    });
-    res.redirect("dashboard");
-    res.sendStatus(204);
-  } catch (error) {
-    res.sendStatus(404);
-    throw new Error(`[ERR] insertNewHotel: ${error}`);
-  }
-};
 exports.getHotelInfo = (req, res) => {
   res.render("contact/add-new-hotel", {
     pageTitle: "TravelAloha - Contact - Register New Hotel",
@@ -88,6 +53,40 @@ exports.getHotelDetail = (req, res) => {
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(404);
+  }
+};
+exports.getAirlineInfo = (req, res) => {
+  res.render("contact/add-new-airline", {
+    pageTitle: "TravelAloha - Contact - Register New Airline",
+    user: req.user
+  });
+};
+exports.postAirlineInfo = async (req, res) => {
+  const {
+    airlineName,
+    airlineEmail,
+    airlineAddress,
+    airlineNationality,
+    airlineTelNumber,
+    airlineContactNumber,
+    airlineDescription
+  } = req.body;
+
+  try {
+    await contactModel.insertNewAirline({
+      airlineName,
+      airlineNationality,
+      airlineEmail,
+      airlineDescription,
+      airlineAddress,
+      airlineTelNumber,
+      airlineContactNumber
+    });
+    res.redirect("dashboard");
+    res.sendStatus(204);
+  } catch (error) {
+    res.sendStatus(404);
+    throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
 exports.getAirlineDetail = (req, res) => {
