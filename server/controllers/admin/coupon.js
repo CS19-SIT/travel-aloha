@@ -19,7 +19,7 @@ exports.getIndex = async (req, res, next) => {
       opt: req.query.opt || defaultOption,
       // Not a fan of this, but whatever.
       levels: Array.isArray(req.query.levels) ? req.query.levels :
-        (req.query.level == null ? defaultLevels : [req.query.levels]),
+        (req.query.levels == null ? defaultLevels : [req.query.levels]),
       types: Array.isArray(req.query.types) ? req.query.types :
         (req.query.types == null ? defaultTypes : [req.query.types])
     }
