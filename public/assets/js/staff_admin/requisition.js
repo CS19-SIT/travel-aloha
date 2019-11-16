@@ -98,7 +98,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
             preConfirm: function() {
                 let [canCreate, canRead, canUpdate, canDelete] = [
                     document.getElementById('create').checked.toString().substring(0, 1).toUpperCase(),
-                    document.getElementById('reade').checked.toString().substring(0, 1).toUpperCase(),
+                    document.getElementById('read').checked.toString().substring(0, 1).toUpperCase(),
                     document.getElementById('update').checked.toString().substring(0, 1).toUpperCase(),
                     document.getElementById('delete').checked.toString().substring(0, 1).toUpperCase()
                 ]
