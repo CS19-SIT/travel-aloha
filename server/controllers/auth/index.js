@@ -45,7 +45,8 @@ exports.postRegister = async (req, res) => {
       birth_date,
       firstname,
       lastname,
-      address
+      address,
+      email: undefined
     });
 
     await Customer.createCustomer({
@@ -54,6 +55,7 @@ exports.postRegister = async (req, res) => {
     });
     res.redirect("/login");
   } catch (err) {
+    console.log(err)
     res.sendStatus(400);
   }
 };
