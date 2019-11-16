@@ -10,12 +10,6 @@ exports.getTest = (req, res) =>
     user: req.user
   });
 
-exports.getV2 = (req, res) =>
-  res.render("flight_booking/flight_v2", {
-    pageTitle: "TravelAloha - Flight - NEW BOOKING",
-    user: req.user
-  });
-
 exports.getContact = (req, res) =>
   res.render("flight_booking/contact_form", {
     pageTitle: "Contact information",
