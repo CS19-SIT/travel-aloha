@@ -29,7 +29,8 @@ exports.postHotelInfo = async (req, res) => {
     hotelProfile,
     hotelPicture
   } = req.body;
-
+  let formidable = require('formidable');
+  var form = new formidable.IncomingForm();
   try {
     await contactModel.insertNewHotel({
       hotelName,
@@ -39,6 +40,10 @@ exports.postHotelInfo = async (req, res) => {
       hotelContactNumber,
       hotelEmail
     });
+        // ** Wait for learning upload file
+    // await contactModel.insertNewHotelFile({                    
+    //   hotelPicture
+    // })
     res.redirect("dashboard");
     res.sendStatus(204);
   } catch (error) {
