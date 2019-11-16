@@ -11,17 +11,30 @@ $(document).ready(function() {
         $("#viewModal").modal('hide');
     });
     
-    $("#view-delete-button").click((ev) => {
-        $("#viewModal").on("hidden.bs.modal", (e) => {
+    $("#view-delete-button").click(function (e) {
+        const button = $(this);
+        const code = button.data("coupon-code");
+
+        $("#viewModal").on("hidden.bs.modal", function (e) {
+            $("#deleteModal").data("coupon-code", code);
             $("#deleteModal").modal('show');
             $("#viewModal").off("hidden.bs.modal");
         });
         $("#viewModal").modal('hide');
     });
 
-    $("#deleteModal").on("show.bs.modal", function (e) {
+    $("#viewModal").on("show.bs.modal", function (e) {
         const button = $(e.relatedTarget);
         const code = button.data("coupon-code");
+        const modal = $(this);
+
+        $("#view-edit-button").data("coupon-code", code);
+        $("#view-delete-button").data("coupon-code", code);
+    });
+
+    $("#deleteModal").on("show.bs.modal", function (e) {
+        const button = $(e.relatedTarget);
+        const code = button.data("coupon-code") || $(this).data("coupon-code");
         const modal = $(this);
         modal.find(".modal-body p").text('Are you sure to delete coupon "' + code + '"?');
         modal.find("form").data("coupon-code", code);
@@ -48,7 +61,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         const form = $(this);
-        
+
         $.ajax({
             type: "DELETE",
             url: "/admin/coupon/delete/" + form.data("coupon-code"),
