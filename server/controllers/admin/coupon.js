@@ -51,7 +51,20 @@ exports.getIndex = async (req, res, next) => {
 
 exports.createCoupon = async (req, res) => {
   try {
-    await Coupon.createCoupon(req.body);
+    const data = {
+      ...req.body,
+      create_by_user_id: req.user.user_id,
+      creation_date: new Date(Date.now()),
+      for_every_hotel: req.body.for_every_hotel === "on",
+      for_every_airline: req.body.for_every_airline === "on",
+      levels: Array.isArray(req.body.levels) ? req.body.levels :
+        (req.body.levels == null ? null : [req.body.levels]),
+      hotels: Array.isArray(req.body.hotels) ? req.body.hotels :
+        (req.body.hotels == null ? null : [req.body.hotels]),
+      airlines: Array.isArray(req.body.airlines) ? req.body.airlines :
+        (req.body.airlines == null ? null : [req.body.airlines]),
+    }
+    await Coupon.createCoupon(data);
     res.sendStatus(204);
   } catch (err) {
     res.sendStatus(404);

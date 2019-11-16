@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="<%= id %>Form">
+            <form id="<%= id %>Form" action="<%= url %>">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">
@@ -38,32 +38,30 @@
                             Start date
                         </label>
                         <div class="col">
-                            <input type="date" class="form-control" name="startDate">
+                            <input type="date" class="form-control" name="start_date">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">
-                            End date
+                            Expire date
                         </label>
                         <div class="col">
-                            <input type="date" class="form-control" name="endDate">
+                            <input type="date" class="form-control" name="expire_date">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">Level</label>
                         <div class="col">
-                            <select name="coupon-new-level" class="form-control coupon-level-select"
-                                multiple="multiple">
-                                <option value="lv4" selected>Diamond</option>
-                                <option value="lv3" selected>Platinum</option>
-                                <option value="lv2" selected>Gold</option>
-                                <option value="lv1" selected>Silver</option>
+                            <select name="levels" class="form-control coupon-level-select" multiple="multiple">
+                                <% for (level of allLevels) { %>
+                                <option value="<%= level[0] %>"><%= level[1] %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
                     <hr>
                     <div>
-                        <input class="d-inline" type="checkbox" name="hotel">
+                        <input class="d-inline" type="checkbox" name="use_hotel">
                         <div class="ml-1 d-inline"></div>
                         <h4 class="d-inline">Hotel</h4>
 
@@ -71,14 +69,9 @@
                             <div class="col-md-3">Allow</div>
                             <div class="col">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="hotelForAll" name="hotelFor"
-                                        value="all" checked>
+                                    <input class="form-check-input" type="checkbox" id="hotelForAll"
+                                        name="for_every_hotel" checked>
                                     <label class="form-check-label" for="hotelForAll">For every hotel</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="hotelForSome" name="hotelFor"
-                                        value="some" checked>
-                                    <label class="form-check-label" for="hotelForSome">For some hotel</label>
                                 </div>
                             </div>
                             <div class="border w-100 my-2" style="height: 250px;">
@@ -96,14 +89,9 @@
                             <div class="col-md-3">Allow</div>
                             <div class="col">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="flightForAll" name="flightFor"
-                                        value="all" checked>
-                                    <label class="form-check-label" for="flightForAll">For every airline</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="flightForAll" name="flightFor"
-                                        value="some" checked>
-                                    <label class="form-check-label" for="flightForAll">For some airline</label>
+                                    <input class="form-check-input" type="checkbox" id="airlineForAll"
+                                        name="for_every_airline" checked>
+                                    <label class="form-check-label" for="airlineForAll">For every airline</label>
                                 </div>
                             </div>
                             <div class="border w-100 my-2" style="height: 250px;">
@@ -115,7 +103,8 @@
                             <label class="col-form-label col-md-3">Discount</label>
                             <div class="col">
                                 <div class="input-group">
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" name="discount_percentage" min="1"
+                                        max="100">
                                     <div class="input-group-append">
                                         <div class="input-group-text">%</div>
                                     </div>
@@ -126,7 +115,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"><%= buttonActionValue %></button>
+                    <button type="submit" class="btn btn-primary"><%= buttonActionValue %></button>
                 </div>
             </form>
         </div>

@@ -120,12 +120,16 @@
     <%- include('admin-coupon-form-modal', {
         id: "addModal",
         title: "Add new coupon",
+        allLevels,
+        url: "/admin/coupon/new",
         buttonActionValue: "Add"
     }) %>
     
     <%- include('admin-coupon-form-modal', {
         id: "editModal",
         title: "Edit coupon",
+        allLevels,
+        url: "/admin/coupon/edit",
         buttonActionValue: "Edit"
     }) %>
 
