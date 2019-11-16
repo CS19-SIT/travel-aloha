@@ -127,7 +127,7 @@ exports.deleteAirlineInfo = async airline_Id => {
 };
 exports.getSubHotelInfo = async (hotelName, hotelDescription, timestamp) => {
   try {
-    await db.query("SELECT hotelName,hotelDescription,timestamp FROM hotel", [hotelName, hotelDescription, timestamp]);
+    await db.query(`SELECT hotelName,hotelDescription,timestamp FROM hotel`, [hotelName, hotelDescription, timestamp]);
   } catch (err) {
     throw new Error(`[ERR] getSubHotelInfo: ${err}`);
   }

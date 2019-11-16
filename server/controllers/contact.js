@@ -40,7 +40,7 @@ exports.postHotelInfo = async (req, res) => {
       hotelContactNumber,
       hotelEmail
     });
-        // ** Wait for learning upload file
+    // ** Wait for learning upload file
     // await contactModel.insertNewHotelFile({                    
     //   hotelPicture
     // })
@@ -52,16 +52,11 @@ exports.postHotelInfo = async (req, res) => {
   }
 };
 exports.getHotelDetail = (req, res) => {
-  try {
-    res.render("contact/new-hotel-detail", {
-      pageTitle: "TravelAloha - Contact - New Hotel Detail",
-      user: req.user
-    });
-    res.sendStatus(204);
-  } catch (error) {
-    res.sendStatus(404);
-  }
-};
+  res.render("contact/new-hotel-detail", {
+    pageTitle: "TravelAloha - Contact - New Hotel Detail",
+    user: req.user
+  });
+}
 exports.getAirlineInfo = (req, res) => {
   res.render("contact/add-new-airline", {
     pageTitle: "TravelAloha - Contact - Register New Airline",
