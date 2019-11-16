@@ -47,17 +47,13 @@ $(document).ready(function () {
   $("#addModalForm").submit(function (e) {
     e.preventDefault();
 
-    const form = $(this);
-    const url = form.attr("action");
-
     $.ajax({
       type: "PUT",
-      url: url,
-      data: form.serialize(),
-      success: () => {
-        alert("Success!");
-        location.reload();
-      }
+      url: "/admin/coupon/new",
+      data: $(this).serialize()
+    }).done(() => {
+      alert("Success!");
+      location.reload();
     });
   });
 
@@ -95,11 +91,10 @@ $(document).ready(function () {
     $.ajax({
       type: "DELETE",
       url: "/admin/coupon/delete/" + form.data("coupon-code"),
-      data: form.serialize(),
-      success: () => {
-        alert("Success!");
-        location.reload();
-      }
+      data: form.serialize()
+    }).done(() => {
+      alert("Success!");
+      location.reload();
     });
   })
 });
