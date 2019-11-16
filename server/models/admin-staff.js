@@ -8,7 +8,7 @@ exports.getStaffStatus = async function(id) {
 		}
 		return 'user'
 	} catch (error) {
-		throw error
+		next(err)
 	}
 }
 
@@ -17,6 +17,6 @@ exports.getStaffCRUD = async function(id) {
 		const crud = await connector.query(`SELECT can_create, can_read, can_update, can_delete FROM staff_admin_CRUD WHERE staffId='${id}'`)
 		return crud[0][0]
 	} catch (error) {
-		throw error
+		next(err)
 	}
 }

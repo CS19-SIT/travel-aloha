@@ -63,6 +63,10 @@ staffRecord = [
 		'user_id': '016',
 		'name': 'Felix Arvid Ulf Kjellberg', 'birth_date': '1989-10-24', 'department': 'youtuber', 'role': 'a man of culture',
 		'profile_picture': 'http://pm1.narvii.com/6142/b4a0169bfcd00579c80c49417f4ece2a5ee8f07b_00.jpg'
+	},{
+		'user_id': '017',
+		'name': 'Sakura Miyawaki', 'birth_date': '1998-03-19', 'department': 'youtuber', 'role': 'idol, gamer',
+		'profile_picture': 'https://66.media.tumblr.com/fcda27db6797572f886e48c90cac91f6/tumblr_pegczw3Qn61vgdokn_540.jpg'
 	}
 ]
 

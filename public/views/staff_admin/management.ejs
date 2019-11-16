@@ -50,6 +50,10 @@
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center 15%;
+			transition: 0.1s;
+		}
+		profilePicture:hover {
+			transform: scale(1.45);
 		}
 		.isChanged {
 			color: rgb(240, 94, 35);
@@ -90,7 +94,7 @@
 		<staffList class="d-flex flex-wrap justify-content-around align-content-start px-1 py-2 mt-4">
 			<staffCard class="d-flex flex-column align-items-center p-3 my-2 border rounded">
 				<span class="user_id d-none"></span>
-				<profilePicture class="mb-3"></profilePicture>
+				<profilePicture class="rounded mb-3"></profilePicture>
 				<information class="w-100 text-break">
 					<p style="font-size: 0.9rem;">
 						<yTitle class="text-capitalize font-weight-bold"></yTitle>:
