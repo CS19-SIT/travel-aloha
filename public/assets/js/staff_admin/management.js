@@ -1,51 +1,68 @@
 staffRecord = [
 	{
 		'user_id': '001', 
-		'name': 'Nino Nakano', 'birth_date': '2000-05-05',
-		'department': 'culinary', 'role': 'best girl',
+		'name': 'Nino Nakano', 'birth_date': '2000-05-05', 'department': 'culinary', 'role': 'best girl',
 		'profile_picture': 'https://bit.ly/2NJfJ5n'
-	},
-	{
+	},{
 		'user_id': '002',
-		'name': 'Kurumi Tokisaki', 'birth_date': '2000-01-01',
-		'department': 'veterinary', 'role': 'best girl',
+		'name': 'Kurumi Tokisaki', 'birth_date': '2000-01-01', 'department': 'veterinary', 'role': 'best girl',
 		'profile_picture': 'https://i.ytimg.com/vi/HPynobNcZAU/hqdefault.jpg'
-	},
-	{
+	},{
 		'user_id': '003',
-		'name': 'Shido Itsuka', 'birth_date': '2000-08-03',
-		'department': 'housewife', 'role': 'best boy',
+		'name': 'Shido Itsuka', 'birth_date': '2000-08-03', 'department': 'housewife', 'role': 'best boy',
 		'profile_picture': 'https://pbs.twimg.com/profile_images/820479236179783680/5EUm7iXl.jpg'
-	},
-	{
+	},{
 		'user_id': '004',
-		'name': 'Jeanne d\'Arc', 'birth_date': '1412-01-06',
-		'department': 'saint', 'role': 'best girl',
+		'name': 'Jeanne d\'Arc', 'birth_date': '1412-01-06', 'department': 'saint', 'role': 'best girl',
 		'profile_picture': 'https://bit.ly/2JW2wVX'
-	},
-	{
+	},{
 		'user_id': '005',
-		'name': 'Jibril Archangel', 'birth_date': '0000-01-01',
-		'department': 'bibliophile', 'role': 'best girl',
-		'profile_picture': 'https://bit.ly/2qlxCiS'
-	},
-	{
+		'name': 'Momo Deviluke', 'birth_date': '2000-08-08', 'department': 'foreigner', 'role': 'best girl',
+		'profile_picture': 'https://bit.ly/2KsrtbT'
+	},{
 		'user_id': '006',
-		'name': 'Origami Tobiichi', 'birth_date': '2000-04-10',
-		'department': 'soldier', 'role': 'best girl',
+		'name': 'Origami Tobiichi', 'birth_date': '2000-04-10', 'department': 'seirei', 'role': 'best girl',
 		'profile_picture': 'https://66.media.tumblr.com/e69bd60591bf3765125db7fbc132316b/tumblr_ot5ic7qKwf1vy2tgqo7_250.jpg'
-	},
-	{
+	},{
 		'user_id': '007',
-		'name': 'Ririna Sanada', 'birth_date': '2001-03-31',
-		'department': 'student', 'role': 'best girl',
+		'name': 'Ririna Sanada', 'birth_date': '2001-03-31', 'department': 'student', 'role': 'best girl',
 		'profile_picture': 'https://pbs.twimg.com/media/D18bKiaXQAMzT4q.jpg'
-	},
-	{
+	},{
 		'user_id': '008',
-		'name': 'Mikoto Misaka', 'birth_date': '2000-05-02',
-		'department': 'student', 'role': 'best girl',
+		'name': 'Mikoto Misaka', 'birth_date': '2000-05-02', 'department': 'student', 'role': 'best girl',
 		'profile_picture': 'http://www.ah.xinhuanet.com/2015-04/09/1114914317_14285490003871n.jpg'
+	},{
+		'user_id': '009',
+		'name': 'Yui Yuigahama', 'birth_date': '2000-06-18', 'department': 'student', 'role': 'best girl',
+		'profile_picture': 'https://bit.ly/32RUPqn'
+	},{
+		'user_id': '010',
+		'name': 'Jibril Archangel', 'birth_date': '0000-01-01', 'department': 'bibliophile', 'role': 'best girl',
+		'profile_picture': 'https://bit.ly/2qlxCiS'
+	},{
+		'user_id': '011',
+		'name': 'Gabriel Tenma', 'birth_date': '2000-04-20', 'department': 'angel', 'role': 'best girl',
+		'profile_picture': 'https://i.pinimg.com/originals/0a/9a/f3/0a9af314fa4408fe2ad56f6ac78b3df4.png'
+	},{
+		'user_id': '012',
+		'name': 'Shirakiin Ririchiyo', 'birth_date': '2000-02-21', 'department': 'seirei', 'role': 'best girl',
+		'profile_picture': 'https://pm1.narvii.com/6529/9b7be48bc218879c62d6246843b2bcfdeb68e696_hq.jpg'
+	},{
+		'user_id': '013',
+		'name': 'Emi Yusa', 'birth_date': '2000-10-26', 'department': 'yuusha', 'role': 'best girl',
+		'profile_picture': 'https://pbs.twimg.com/media/CkbOs4TVAAEIF-N.jpg:small'
+	},{
+		'user_id': '014',
+		'name': 'Juliet Persia', 'birth_date': '2000-07-01', 'department': 'student council', 'role': 'best girl',
+		'profile_picture': 'http://tse1.mm.bing.net/th?id=OIP.U9HlYlsLZAPIAo-0xOCoTgAAAA&pid=15.1'
+	},{
+		'user_id': '015',
+		'name': 'Mizuki Usami', 'birth_date': '2000-07-24', 'department': 'art', 'role': 'best girl',
+		'profile_picture': 'https://thumbs.gfycat.com/GraveNextAsiansmallclawedotter-poster.jpg'
+	},{
+		'user_id': '016',
+		'name': 'Felix Arvid Ulf Kjellberg', 'birth_date': '1989-10-24', 'department': 'youtuber', 'role': 'a man of culture',
+		'profile_picture': 'http://pm1.narvii.com/6142/b4a0169bfcd00579c80c49417f4ece2a5ee8f07b_00.jpg'
 	}
 ]
 
@@ -295,7 +312,7 @@ if (canRead == 'true') {
 	Swal.fire({
 		icon: 'info',
 		title: 'Mockup?',
-		html: '<p>We recommend to use mockup first</p><span>\'Save\' system are still in development</span>',
+		html: `<p>We recommend to use mockup first</p><span>\'Info\' in the database doesn't has enough</span>`,
 		showCancelButton: true,
 		cancelButtonColor: '#d33',
 		confirmButtonColor: '#3085d6',
