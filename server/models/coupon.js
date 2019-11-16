@@ -42,6 +42,20 @@ const getCouponCriteriaLevel = async code => {
   return result[0].map(e => e["level"]);
 };
 
+const mergeWithCriteria = async e => {
+  if (!e.for_every_hotel) {
+    e.hotels = await getCouponCriteriaHotel(e.code);
+  }
+
+  if (!e.for_every_airline) {
+    e.airlines = await getCouponCriteriaAirline(e.code);
+  }
+
+  e.levels = await getCouponCriteriaLevel(e.code);
+
+  return e;
+}
+
 exports.searchCoupons = async ({
   code,
   name,
@@ -98,7 +112,7 @@ exports.searchCoupons = async ({
 
     return {
       pageCount: Math.ceil(countResult[0][0]["couponCount"] / entriesPerPage),
-      coupons: dataResult[0].map(convertFromDB)
+      coupons: await Promise.all(dataResult[0].map(convertFromDB).map(mergeWithCriteria))
     };
   } catch (err) {
     throw new Error(`[ERR] findCoupons: ${err}`)
@@ -110,7 +124,7 @@ exports.findCoupon = async code => {
     const result = await db.query("SELECT * FROM coupon WHERE code = ?", [code]);
 
     if (result[0].length >= 1) {
-      return convertFromDB(result[0][0]);
+      return mergeWithCriteria(convertFromDB(result[0][0]));
     }
 
     throw new Error(`Coupon code '${code}' not found`);

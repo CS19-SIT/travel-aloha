@@ -85,7 +85,8 @@
                             <td><%= coupon.start_date == null ? "-" : coupon.start_date.toLocaleDateString() %></td>
                             <td><%= coupon.expire_date == null ? "-" : coupon.expire_date.toLocaleDateString() %></td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>"
+                                    data-coupon="<%= JSON.stringify(coupon) %>">
                                     Edit
                                 </button>
                             </td>
