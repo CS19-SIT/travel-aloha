@@ -59,13 +59,9 @@ $(document).ready(function () {
 
   $("#editModal").on("show.bs.modal", function (e) {
     const button = $(e.relatedTarget);
-    let coupon = button.data("coupon");;
-
-    if (coupon == null) {
-      const code = button.data("coupon-code") || $(this).data("coupon-code");
-      const node = $("button[data-coupon]").filter((i, e) => $(e).data("coupon-code") == code);
-      coupon = node.data("coupon");
-    }
+    const code = button.data("coupon-code") || $(this).data("coupon-code");
+    const node = $("a[data-coupon]").filter((i, e) => $(e).data("coupon-code") == code);
+    const coupon = node.data("coupon");
 
     const modal = $(this);
     const form = modal.find("form");

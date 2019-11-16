@@ -81,12 +81,11 @@
                     <tbody>
                         <% for(const coupon of coupons) { %>
                         <tr>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal" data-coupon-code="<%= coupon.code %>"><%= coupon.code %></a></td>
+                            <td><a href="#" data-toggle="modal" data-target="#viewModal" data-coupon-code="<%= coupon.code %>" data-coupon="<%= JSON.stringify(coupon) %>"><%= coupon.code %></a></td>
                             <td><%= coupon.start_date == null ? "-" : coupon.start_date.toLocaleDateString() %></td>
                             <td><%= coupon.expire_date == null ? "-" : coupon.expire_date.toLocaleDateString() %></td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>"
-                                    data-coupon="<%= JSON.stringify(coupon) %>">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>">
                                     Edit
                                 </button>
                             </td>
