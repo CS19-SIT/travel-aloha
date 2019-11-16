@@ -1,16 +1,14 @@
 <%- include('../includes/header') %>
 
 <link rel="stylesheet" href="../../assets/stylesheet/style.css">
-
 </head>
-
 <body>
     <%- include('../includes/navbar') %>
   <div class="container-fluid bg-3">
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <form action="/contact/add-new-hotel">
+        <form method="POST" action="/contact/add-new-hotel">
           <h1 class="display-4">Hotel Information</h1>
           <br>
           <div class="form-row">
@@ -75,7 +73,7 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Sent Your Information</button>
+          <button type="submit" class="btn btn-primary" value="submit">Sent Your Information</button>
         </form>
       </div>
       <div class="col-md-3"></div>

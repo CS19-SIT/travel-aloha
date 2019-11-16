@@ -21,15 +21,13 @@ exports.postHotelInfo = async (req, res) => {
   const {
     hotelName,
     hotelEmail,
-    hotelDescription,
     hotelAddress,
     hotelTelNumber,
     hotelContactNumber,
+    hotelDescription,
     hotelProfile,
     hotelPicture
   } = req.body;
-  let formidable = require('formidable');
-  var form = new formidable.IncomingForm();
   try {
     await contactModel.insertNewHotel({
       hotelName,
