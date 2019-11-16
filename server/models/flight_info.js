@@ -12,7 +12,7 @@ exports.getFlightInfoByNumber = async flight_number =>{
 
     return result[0][0];
     } catch (err) {
-        throw new Error(`[ERR] findUserById: ${err}`);
+        throw new Error(`[ERR] findFlight: ${err}`);
     }
 };
 
@@ -25,5 +25,8 @@ exports.getAllTransit = async flight_number =>{
             transit.push(result[0][0]);
             flight_number = result[0][0]['transit'];
         }while(flight_number !== null);
+    }
+    catch(err){
+        throw new Error(`[ERR] findTransit: ${err}`);
     }
 };
