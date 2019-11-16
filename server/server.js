@@ -67,9 +67,9 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
-const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth/index");
 const errorsController = require("./controllers/errors");
-const contactRoutes = require("./routes/contact"); 
+const contactRoutes = require("./routes/contact/index");
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",

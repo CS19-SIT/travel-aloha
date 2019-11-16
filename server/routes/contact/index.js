@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const contactController = require("../controllers/contact");
-const authMiddleware = require("../middlewares/auth"); //wait for it
+const contactController = require("../../controllers/contact/index");
+//const authMiddleware = require("../../middlewares/auth"); wait for it
 
 router.get("/", contactController.getIndex);
 router.get("/dashboard", contactController.getDashboard);

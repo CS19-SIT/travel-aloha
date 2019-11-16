@@ -1,9 +1,9 @@
 const uuid = require("uuid/v4");
 const bcrypt = require("bcrypt");
 
-const passport = require("../auth/passport");
-const User = require("../models/user");
-const Customer = require("../models/customer");
+const passport = require("../../auth/passport");
+const User = require("../../models/user");
+const Customer = require("../../models/customer");
 
 
 exports.getRegister = (req, res) =>
