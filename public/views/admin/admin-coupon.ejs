@@ -83,7 +83,7 @@
                         <tr>
                             <td><a href="#" data-toggle="modal" data-target="#viewModal"><%= coupon.code %></a></td>
                             <td><%= coupon.start_date == null ? "-" : coupon.start_date.toLocaleDateString() %></td>
-                            <td><%= coupon.end_date == null ? "-" : coupon.end_date.toLocaleDateString() %></td>
+                            <td><%= coupon.expire_date == null ? "-" : coupon.expire_date.toLocaleDateString() %></td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>">
                                     Edit
