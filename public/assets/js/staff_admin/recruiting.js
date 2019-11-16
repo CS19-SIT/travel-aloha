@@ -34,7 +34,9 @@ if (onPending == 'true') {
 } else {
 	candidatesInfo['birth_date'] = new Date(candidatesInfo['birth_date']).toDateString().substring(4)
 	delete candidatesInfo['birth_date']
-	document.getElementsByTagName('profileImage')[0].style.backgroundImage = `url('${candidatesInfo['profile_picture']}')`
+	if (candidatesInfo['profile_picture']) {
+		document.getElementsByTagName('profileImage')[0].style.backgroundImage = `url('${candidatesInfo['profile_picture']}')`
+	}
 	delete candidatesInfo['profile_picture']
 
 	let exInfos = document.getElementsByTagName('briefInfo')[0]

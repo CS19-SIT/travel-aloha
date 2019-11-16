@@ -10,13 +10,22 @@
 			background-position: center;
 			padding: 3.5rem 0;
 		}
-		myForm {
+		pendingCard, existedInfo, newInfo {
 			background-color: rgba(34, 43, 59, 0.7);
+		}
+		pendingCard {
 			padding: 1.2rem 1.7rem;
 			width: 60%;
-			height: fit-content;
 			min-width: 280px;
 			max-width: 750px;
+		}
+		existedInfo {
+			width: 280px;
+		}
+		newInfo {
+			width: calc(90% - 280px);
+			min-width: 280px;
+			max-width: 500px;
 		}
 		profileImage {
 			width: 60%;
@@ -40,11 +49,12 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	
-	<background class="d-flex w-100 justify-content-center">
-	<myForm class="row rounded pt-5 justify-content-end align-content-start">
+	<background class="row w-100 justify-content-center align-content-start mx-0">
 	<% if (onPending == 'true') { %>
-		<p class="col-12 text-center">You already sent an application one.</p>
-		<button id="withdraw" class="btn btn-danger">Withdraw</button>
+		<pendingCard class="row rounded pt-5 justify-content-end">
+			<p class="col-12 text-center">You already sent an application one.</p>
+			<button id="withdraw" class="btn btn-danger">Withdraw</button>
+		</pendingCard>
 	<% } else { %>
 		<% if (isDisband == 'true') { %>
 			<script>
@@ -55,17 +65,17 @@
 				})
 			</script>
 		<% } %>
-		<existedInfo class="row col-md col-12 pb-4 d-flex justify-content-center align-content-center">
+		<existedInfo class="row rounded py-3 m-2 justify-content-center align-content-center">
 			<profileImage class="mb-2 rounded"></profileImage>
 			<p class="w-100"></p>
-			<briefInfo class="col-auto pt-3">
+			<briefInfo class="col-auto pt-3 text-break">
 				<p style="font-size: 0.9rem;">
-					<yTitle class="text-capitalize font-weight-bold"></yTitle>:
+					<yTitle class="text-capitalize font-weight-bolder"></yTitle>:
 					&nbsp;<yDetail></yDetail>
 				</p>
 			</briefInfo>
 		</existedInfo>
-		<newInfo class="d-block col-md col-12 pb-4">
+		<newInfo class="d-block rounded p-3 m-2">
 			<h2 class="text-center py-2" style="font-size: 1.4rem;">Staff Recruiting Form</h2>
 			<label for="department">Department</label><br/>
 			<input type="text" id="department" class="form-control" placeholder="Your wanted department"/><br/>
