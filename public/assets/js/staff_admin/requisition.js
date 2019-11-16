@@ -110,7 +110,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
                     url: '/admin/staff/sendQuery',
                     method: 'POST',
                     data: {
-                        sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${deletedStaffs}'`
+                        sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${thisManId}'`
                     }
                 }).done(function() {
                     if (data.status == 200) {
