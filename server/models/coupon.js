@@ -197,8 +197,8 @@ exports.editCoupon = async ({
       for_every_hotel,
       for_every_airline,
       discount_percentage,
-      start_date == null ? null : new Date(start_date),
-      expire_date == null ? null : new Date(expire_date),
+      start_date,
+      expire_date,
       code
     ]);
 
@@ -212,40 +212,24 @@ exports.editCoupon = async ({
     if (!for_every_hotel && Array.isArray(hotels)) {
       const result = await getCouponCriteriaHotel(code);
 
-      console.log(result);
-      await onError("yay");
-
       if (result.length > 0) {
         await addCouponCriteriaHotel(code, hotels.filter(e => result.indexOf(e) !== -1)).catch(onError);
       }
     }
 
-    if (!for_every_hotel && Array.isArray(airlines)) {
-      const result = await db.query(`
-                SELECT ? MINUS
-                SELECT airline_id FROM coupon_criteria_airline WHERE code = ?
-            `,
-        airlines,
-        code
-      );
+    if (!for_every_airline && Array.isArray(airlines)) {
+      const result = await getCouponCriteriaAirline(code);
 
-      if (result[0].length > 0) {
-        await addCouponCriteriaAirline(code, result[0]).catch(onError);
+      if (result.length > 0) {
+        await addCouponCriteriaAirline(code, airlines.filter(e => result.indexOf(e) !== -1)).catch(onError);
       }
     }
 
-
     if (Array.isArray(levels)) {
-      const result = await db.query(`
-                SELECT ? MINUS
-                SELECT level FROM coupon_criteria_level WHERE code = ?
-            `,
-        [levels],
-        code
-      );
+      const result = await getCouponCriteriaLevel(code);
 
-      if (result[0].length > 0) {
-        await addCouponCriteriaLevel(code, result[0]).catch(onError);
+      if (result.length > 0) {
+        await addCouponCriteriaLevel(code, levels.filter(e => result.indexOf(e) !== -1)).catch(onError);
       }
     }
 
