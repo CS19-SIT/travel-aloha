@@ -52,7 +52,7 @@ if (submitButton) {
 						url: '/admin/staff/sendQuery',
 						method: 'POST',
 						data: {
-							sql: `INSERT INTO staff_admin_info VALUES ('${userId}', '${department.value.trim()}', '${role.value.trim()}', 'pending') ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role), status='pending'`
+							sql: `INSERT INTO staff_admin_info VALUES ('${userId}', '${department.value.trim().replace(/ {1,}/g, ' ')}', '${role.value.trim().replace(/ {1,}/g, ' ')}', 'pending') ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role), status='pending'`
 						}
 					}).done(function(data) {
 						if (data.status == 200)  {

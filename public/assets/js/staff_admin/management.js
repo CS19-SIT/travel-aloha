@@ -35,7 +35,7 @@ if (canUpdate == 'true') {
 				showCancelButton: true,
 				preConfirm: function() {
 					try {
-						const [newDepartment, newRole] = [department.value.trim(), role.value.trim()]
+						const [newDepartment, newRole] = [department.value.trim().replace(/ {1,}/g, ' '), role.value.trim().replace(/ {1,}/g, ' ')]
 						if (/^[A-Za-z ]{1,}$/.test(newDepartment) == false) throw 'department [Can only use alphabets]'
 						if (/^[A-Za-z ]{1,}$/.test(newRole) == false) throw 'role [Can only use alphabets]'
 						thisStaffCard.getElementsByClassName('department')[0].textContent = newDepartment
