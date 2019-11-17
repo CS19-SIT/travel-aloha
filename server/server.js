@@ -44,13 +44,17 @@ app.set("views", viewPath);
 app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
-    cookie: { maxAge: 900000 },
+    cookie: {
+      maxAge: 900000
+    },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
