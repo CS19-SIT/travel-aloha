@@ -125,7 +125,7 @@ exports.searchCoupons = async ({
       coupons: await Promise.all(dataResult[0].map(convertFromDB).map(mergeWithCriteria))
     };
   } catch (err) {
-    throw new Error(`[ERR] findCoupons: ${err}`)
+    throw new Error(`[ERR] searchCoupons: ${err}`)
   }
 };
 
@@ -287,7 +287,7 @@ exports.editCoupon = async (oldCode, {
       throw err;
     }
   } catch (err) {
-    throw new Error(`[ERR] updateCoupon: ${err}`);
+    throw new Error(`[ERR] editCoupon: ${err}`);
   }
 };
 
