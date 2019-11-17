@@ -84,7 +84,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: "DELETE",
-      url: "/admin/coupon/delete/" + form.data("coupon-code")
+      url: "/admin/coupon/delete/" + $(this).data("coupon-code")
     }).done(() => {
       alert("Success!");
       location.reload();
