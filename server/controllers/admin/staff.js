@@ -8,13 +8,13 @@ exports.getIndex = function(request, response) {
 	})
 }
 
-exports.getApplicationForm = async function(request, response) {
+exports.showApplicationForm = async function(request, response) {
 	try {
 		const staffStatus = await adminStaffModel.getStaffStatus(request.user.user_id)
 		if (staffStatus == 'active') {
 			response.redirect('/admin/staff/management')
 		}
-		const matchedInfo = await connector.query(`SELECT user_id, birth_date, profile_picture, username, CONCAT(firstname, ' ', lastname) AS name, gender, address FROM user WHERE user_id='${request.user.user_id}'`)
+		const matchedInfo = await connector.query(`SELECT username, profile_picture, CONCAT(firstname, ' ', lastname) AS name, gender, birth_date, address FROM user WHERE user_id='${request.user.user_id}'`)
 		response.render('staff_admin/recruiting', {
 			pageTitle: 'TravelAloha - Admin - StaffRecruiting',
 			user: request.user,

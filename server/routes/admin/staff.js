@@ -14,7 +14,7 @@ router.get(
 router.get(
 	'/recruiting', 
 	authMiddleware.isAuthenticated,
-	staffAdminController.getApplicationForm
+	staffAdminController.showApplicationForm
 )
 router.get(
 	'/requisition',
