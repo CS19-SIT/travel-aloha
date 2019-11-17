@@ -6,7 +6,11 @@
 		}
 		background {
 			min-height: calc(100vh - 56px);
+			background-image: url('https://www.tokkoro.com/picsup/2970908-arsenixc-moon-beach-sea-clouds-trees-everlasting-summer-visual-novel___anime-wallpapers.jpg');
 			background-color: #dedede;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
 		}
 		noPermission {
 			width: 80%;
@@ -17,6 +21,8 @@
 		tools {
 			width: 300px;
 			height: fit-content;
+			background-color: rgba(39, 39, 39, 0.39);
+			color: white;
 		}
 		staffList {
 			width: calc(95% - 300px);
@@ -79,7 +85,7 @@
 		<tools class="p-3 mt-4 mr-lg-3">
 			<p class="d-flex justify-content-between">
 				<span>Tools</span><% if (canCreate == 'true') { %>
-				<button type="button" class="btn btn-outline-secondary p-1" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
+				<button type="button" class="btn btn-secondary p-1" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
 			<% } %></p>
 			<hr class="p-2 my-1">
 			<% if (canUpdate == 'true' || canDelete == 'true') { %>
