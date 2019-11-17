@@ -22,10 +22,13 @@ router.post("/charge", (req, res) => {
                     // amount: req.body.amount * 100,
                     amount:  100,
                     currency: "usd",
-                    customer: 1
+                    customer: customer.id
                 })
             )
-            .then(() => res.render("index"))
+            .then(() => res.render('payment/completedPayment',{
+                pageTitle: 'TravelAloha-completed',
+                user: req.user
+            }))
             .catch(err => console.log(err));
     } catch (err) {
         console.log("ERROR",err)
