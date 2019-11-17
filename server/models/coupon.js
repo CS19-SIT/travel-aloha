@@ -302,3 +302,28 @@ exports.deleteCoupon = async code => {
     throw new Error(`[ERR] deleteCoupon: ${err}`)
   }
 };
+
+exports.redeemCoupon = async (code, user_id) => {
+  try {
+    if (await exports.isCouponRedeemedByUser(code, user_id)) {
+      throw new Error(`User with id '${user_id}' already redeemed this coupon (code: '${code}')`);
+    }
+
+    if (!(await isCouponExists(code))) {
+      throw new Error(`Coupon with code '${code}' doesn't exists`);
+    }
+
+    await db.query("INSERT INTO coupon_redeemed VALUES (?, ?)", [code, user_id]);
+  } catch (err) {
+    throw new Error(`[ERR] redeemCoupon: ${err}`);
+  }
+}
+
+exports.isCouponRedeemedByUser = async (code, user_id) => {
+  try {
+    const result = await db.query("SELECT 1 FROM coupon_redeemed WHERE code = ? AND user_id = ?", [code, user_id]);
+    return result[0].length > 0;
+  } catch (err) {
+    throw new Error(`[ERR] isCouponRedeemedByUser: ${err}`);
+  }
+}
