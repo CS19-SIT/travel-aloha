@@ -65,4 +65,5 @@ $(document).ready(function(){
         $('.live-rating-5').text(currentRating);
       }
   });
+  
 });
