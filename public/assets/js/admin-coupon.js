@@ -5,40 +5,33 @@ $(document).ready(function () {
 
   $("#view-edit-button").click(function (e) {
     const button = $(this);
-    const code = button.data("coupon-code");
-
     $("#viewModal").on("hidden.bs.modal", (e) => {
-      $("#editModal").data("coupon-code", code);
-      $("#editModal").modal('show');
+      $("#editModal").modal("show", button);
       $("#viewModal").off("hidden.bs.modal");
     });
-    $("#viewModal").modal('hide');
+    $("#viewModal").modal("hide");
   });
 
   $("#view-delete-button").click(function (e) {
     const button = $(this);
-    const code = button.data("coupon-code");
-
     $("#viewModal").on("hidden.bs.modal", function (e) {
-      $("#deleteModal").data("coupon-code", code);
-      $("#deleteModal").modal('show');
+      $("#deleteModal").modal("show", button);
       $("#viewModal").off("hidden.bs.modal");
     });
-    $("#viewModal").modal('hide');
+    $("#viewModal").modal("hide");
   });
 
   $("#viewModal").on("show.bs.modal", function (e) {
     const button = $(e.relatedTarget);
     const code = button.data("coupon-code");
-    const modal = $(this);
-
+    
     $("#view-edit-button").data("coupon-code", code);
     $("#view-delete-button").data("coupon-code", code);
   });
 
   $("#deleteModal").on("show.bs.modal", function (e) {
     const button = $(e.relatedTarget);
-    const code = button.data("coupon-code") || $(this).data("coupon-code");
+    const code = button.data("coupon-code");
     const modal = $(this);
     modal.find(".modal-body p").text('Are you sure to delete coupon "' + code + '"?');
     modal.find("form").data("coupon-code", code);
@@ -59,7 +52,7 @@ $(document).ready(function () {
 
   $("#editModal").on("show.bs.modal", function (e) {
     const button = $(e.relatedTarget);
-    const code = button.data("coupon-code") || $(this).data("coupon-code");
+    const code = button.data("coupon-code");
     const node = $("a[data-coupon]").filter((i, e) => $(e).data("coupon-code") == code);
     const coupon = node.data("coupon");
     const modal = $(this);
@@ -100,7 +93,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: "DELETE",
-      url: "/admin/coupon/delete/" + $(this).data("coupon-code")
+      url: "/admin/coupon/delete/" + encodeURIComponent($(this).data("coupon-code"))
     }).done(() => {
       alert("Success!");
       location.reload();
