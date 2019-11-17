@@ -15,7 +15,7 @@ router.get(
   "/detail/:code",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminCouponController.findCoupon
+  adminCouponController.getCoupon
 );
 
 router.post(

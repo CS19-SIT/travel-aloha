@@ -129,7 +129,7 @@ exports.searchCoupons = async ({
   }
 };
 
-exports.findCoupon = async code => {
+exports.getCoupon = async code => {
   try {
     const result = await db.query("SELECT * FROM coupon WHERE code = ?", [code]);
 
@@ -216,7 +216,7 @@ exports.editCoupon = async (oldCode, {
       throw new Error(`Coupon with code '${oldCode}' doesn't exists`);
     }
 
-    const oldCoupon = await exports.findCoupon(oldCode);
+    const oldCoupon = await exports.getCoupon(oldCode);
 
     try {
       await db.query(`
