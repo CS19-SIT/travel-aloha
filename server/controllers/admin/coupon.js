@@ -12,6 +12,22 @@ const defaultLevels = allLevels.map(e => e[0].toString());
 const defaultTypes = ["flight", "hotel"];
 const defaultOption = "1"; // "Code"
 
+const formRequestDataToModelData = (req) => {
+  return {
+    ...req.body,
+    create_by_user_id: req.user.user_id,
+    creation_date: new Date(Date.now()),
+    for_every_hotel: req.body.for_every_hotel === "on",
+    for_every_airline: req.body.for_every_airline === "on",
+    levels: Array.isArray(req.body.levels) ? req.body.levels :
+      (req.body.levels == null ? null : [req.body.levels]),
+    hotels: Array.isArray(req.body.hotels) ? req.body.hotels :
+      (req.body.hotels == null ? null : [req.body.hotels]),
+    airlines: Array.isArray(req.body.airlines) ? req.body.airlines :
+      (req.body.airlines == null ? null : [req.body.airlines]),
+  };
+}
+
 exports.getIndex = async (req, res, next) => {
   try {
     const query = {
@@ -51,20 +67,7 @@ exports.getIndex = async (req, res, next) => {
 
 exports.createCoupon = async (req, res) => {
   try {
-    const data = {
-      ...req.body,
-      create_by_user_id: req.user.user_id,
-      creation_date: new Date(Date.now()),
-      for_every_hotel: req.body.for_every_hotel === "on",
-      for_every_airline: req.body.for_every_airline === "on",
-      levels: Array.isArray(req.body.levels) ? req.body.levels :
-        (req.body.levels == null ? null : [req.body.levels]),
-      hotels: Array.isArray(req.body.hotels) ? req.body.hotels :
-        (req.body.hotels == null ? null : [req.body.hotels]),
-      airlines: Array.isArray(req.body.airlines) ? req.body.airlines :
-        (req.body.airlines == null ? null : [req.body.airlines]),
-    }
-    await Coupon.createCoupon(data);
+    await Coupon.createCoupon(formRequestDataToModelData(req));
     res.sendStatus(204);
   } catch (err) {
     res.sendStatus(404);
@@ -73,7 +76,7 @@ exports.createCoupon = async (req, res) => {
 
 exports.editCoupon = async (req, res) => {
   try {
-    await Coupon.editCoupon(req.body);
+    await Coupon.editCoupon(req.params.code, formRequestDataToModelData(req));
     res.sendStatus(204);
   } catch (err) {
     res.sendStatus(404);

@@ -62,11 +62,11 @@ $(document).ready(function () {
     const code = button.data("coupon-code") || $(this).data("coupon-code");
     const node = $("a[data-coupon]").filter((i, e) => $(e).data("coupon-code") == code);
     const coupon = node.data("coupon");
-
     const modal = $(this);
     const form = modal.find("form");
-
     const find = name => form.find("input[name=" + name + "]");
+
+    form.data("coupon-code", code);
 
     for (const key in coupon) {
       find(key).val(coupon[key]);
@@ -76,7 +76,23 @@ $(document).ready(function () {
     find("expire_date").get(0).valueAsDate = new Date(coupon["expire_date"]);
     find("for_every_hotel").prop("checked", coupon.for_every_hotel);
     find("for_every_airline").prop("checked", coupon.for_every_airline);
+    form.find("textarea[name=description]").val(coupon["description"]);
     form.find('select[name="levels"]').val(coupon.levels).trigger("change");
+  });
+
+  $("#editModalForm").submit(function (e) {
+    const form = $(this);
+
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/admin/coupon/edit/" + encodeURIComponent(form.data("coupon-code")),
+      data: form.serialize()
+    }).done(() => {
+      alert("Success!");
+      location.reload();
+    });
   });
 
   $("#deleteModalForm").submit(function (e) {

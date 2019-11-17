@@ -19,7 +19,7 @@ router.get(
 );
 
 router.post(
-  "/edit",
+  "/edit/:code",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminCouponController.editCoupon

@@ -10,21 +10,27 @@ const convertFromDB = e => {
 };
 
 const addCouponCriteriaHotel = async (code, hotels) => {
-  return db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
-    hotels.map(e => [code, e])
-  ]);
+  if (hotels.length > 0) {
+    return db.query("INSERT INTO coupon_criteria_hotel VALUES ?", [
+      hotels.map(e => [code, e])
+    ]);
+  }
 };
 
 const addCouponCriteriaAirline = async (code, airlines) => {
-  return db.query("INSERT INTO coupon_criteria_airline VALUES ?", [
-    airlines.map(e => [code, e])
-  ]);
+  if (airlines.length > 0) {
+    return db.query("INSERT INTO coupon_criteria_airline VALUES ?", [
+      airlines.map(e => [code, e])
+    ]);
+  }
 };
 
 const addCouponCriteriaLevel = async (code, levels) => {
-  return db.query("INSERT INTO coupon_criteria_level VALUES ?", [
-    levels.map(e => [code, e])
-  ]);
+  if (levels.length > 0) {
+    return db.query("INSERT INTO coupon_criteria_level VALUES ?", [
+      levels.map(e => [code, e])
+    ]);
+  }
 };
 
 const getCouponCriteriaHotel = async code => {
@@ -54,6 +60,10 @@ const mergeWithCriteria = async e => {
   e.levels = await getCouponCriteriaLevel(e.code);
 
   return e;
+}
+
+const isCouponExists = async code => {
+  return db.query("SELECT 1 FROM coupon WHERE code = ?", [code]).then(r => r[0].length > 0);
 }
 
 exports.searchCoupons = async ({
@@ -149,7 +159,9 @@ exports.createCoupon = async ({
   expire_date
 }) => {
   try {
-    await db.query("START TRANSACTION");
+    if (await isCouponExists(code)) {
+      throw new Error(`Coupon with code '${code}' already existed`);
+    }
 
     try {
       await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
@@ -177,17 +189,16 @@ exports.createCoupon = async ({
         await addCouponCriteriaLevel(code, levels);
       }
     } catch (err) {
-      await db.query("ROLLBACK");
+      // Revert
+      await exports.deleteCoupon(code);
       throw err;
     }
-
-    await db.query("COMMIT");
   } catch (err) {
     throw new Error(`[ERR] createCoupon: ${err}`);
   }
 };
 
-exports.editCoupon = async ({
+exports.editCoupon = async (oldCode, {
   code,
   name,
   description,
@@ -199,14 +210,19 @@ exports.editCoupon = async ({
   discount_percentage,
   start_date,
   expire_date
-}) => {
+}, noRevert = false) => {
   try {
-    await db.query("START TRANSACTION");
+    if (!(await isCouponExists(oldCode))) {
+      throw new Error(`Coupon with code '${oldCode}' doesn't exists`);
+    }
+
+    const oldCoupon = await exports.findCoupon(oldCode);
 
     try {
       await db.query(`
           UPDATE coupon
           SET
+            code = ?,
             name = ?,
             description = ?,
             for_every_hotel = ?,
@@ -216,6 +232,7 @@ exports.editCoupon = async ({
             expire_date = ?
           WHERE code = ?
         `, [
+        code,
         name,
         description,
         for_every_hotel,
@@ -223,38 +240,52 @@ exports.editCoupon = async ({
         discount_percentage,
         start_date,
         expire_date,
-        code
+        oldCode
       ]);
 
       if (!for_every_hotel && Array.isArray(hotels)) {
-        const result = await getCouponCriteriaHotel(code);
+        // Maybe we can do something else here...
+        const dbData = oldCoupon.hotels || [];
+        const toDelete = dbData.filter(e => hotels.indexOf(e) < 0);
+        const toInsert = hotels.filter(e => dbData.indexOf(e) < 0);
 
-        if (result.length > 0) {
-          await addCouponCriteriaHotel(code, hotels.filter(e => result.indexOf(e) !== -1));
-        }
+        if (toDelete.length > 0)
+          await db.query("DELETE FROM coupon_criteria_hotel WHERE code = ? AND hotel_id IN (?)",
+            [code, toDelete]);
+          
+        await addCouponCriteriaHotel(code, toInsert);
       }
 
       if (!for_every_airline && Array.isArray(airlines)) {
-        const result = await getCouponCriteriaAirline(code);
+        const dbData = oldCoupon.airlines || [];
+        const toDelete = dbData.filter(e => airlines.indexOf(e) < 0);
+        const toInsert = airlines.filter(e => dbData.indexOf(e) < 0);
 
-        if (result.length > 0) {
-          await addCouponCriteriaAirline(code, airlines.filter(e => result.indexOf(e) !== -1));
-        }
+        if (toDelete.length > 0)
+          await db.query("DELETE FROM coupon_criteria_airline WHERE code = ? AND airline_id IN (?)",
+            [code, toDelete]);
+          
+        await addCouponCriteriaAirline(code, toInsert);
       }
 
       if (Array.isArray(levels)) {
-        const result = await getCouponCriteriaLevel(code);
+        const dbData = oldCoupon.levels || [];
+        const toDelete = dbData.filter(e => levels.indexOf(e) < 0);
+        const toInsert = levels.filter(e => dbData.indexOf(e) < 0);
 
-        if (result.length > 0) {
-          await addCouponCriteriaLevel(code, levels.filter(e => result.indexOf(e) !== -1));
-        }
+        if (toDelete.length > 0)
+          await db.query("DELETE FROM coupon_criteria_level WHERE code = ? AND level IN (?)",
+            [code, toDelete]);
+        
+        await addCouponCriteriaLevel(code, toInsert);
       }
     } catch (err) {
-      await db.query("ROLLBACK");
+      if (!noRevert) {
+        // Revert
+        await exports.editCoupon(code, oldCoupon, true);
+      }
       throw err;
     }
-
-    await db.query("COMMIT");
   } catch (err) {
     throw new Error(`[ERR] updateCoupon: ${err}`);
   }
@@ -262,10 +293,8 @@ exports.editCoupon = async ({
 
 exports.deleteCoupon = async code => {
   try {
-    const result = await db.query("SELECT 1 FROM coupon WHERE code = ?", [code]);
-
-    if (result[0].length === 0) {
-      throw new Error(`Code ${code} doesn't exists`);
+    if (!(await isCouponExists(code))) {
+      throw new Error(`Coupon with code '${code}' doesn't exists`);
     }
 
     await db.query("DELETE FROM coupon WHERE code = ?", [code]);
