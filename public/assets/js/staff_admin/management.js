@@ -18,31 +18,45 @@ if (canUpdate == 'true') {
 	Array.prototype.forEach.call(document.getElementsByClassName('editButton'), function(item) {
 		item.addEventListener('click', function() {
 			let thisStaffCard = this.parentNode.parentNode
-			let inputForm = Array.from(editableProperties, function(item) {
-				return `<div class="form-group">
-				<label for="${item}">${item}</label>
-				<input type="text" class="form-control" id="${item}" placeholder="${thisStaffCard.getElementsByClassName(item)[0].textContent}">
-			</div>`
-			}).join('')
+			const thisStaffId = thisStaffCard.getElementsByClassName('user_id')[0].textContent
 			Swal.fire({
 				title: 'Edit some information',
-				html: inputForm,
+				html: `
+					<div class="form-group">
+						<label for="department">department</label>
+						<input type="text" class="form-control" id="department" value="${thisStaffCard.getElementsByClassName('department')[0].textContent}">
+					</div>
+					<div class="form-group">
+						<label for="role">role</label>
+						<input type="text" class="form-control" id="role" value="${thisStaffCard.getElementsByClassName('role')[0].textContent}">
+					</div>
+				`,
 				focusConfirm: false,
 				showCancelButton: true,
 				preConfirm: function() {
-					editableProperties.forEach(function(item) {
-						let previousInfo = thisStaffCard.getElementsByClassName(item)[0]
-						const thisStaffId = thisStaffCard.getElementsByClassName('user_id')[0].textContent
-						if (document.getElementById(item).value && document.getElementById(item).value != previousInfo.textContent) {
-							previousInfo.textContent = document.getElementById(item).value
-							previousInfo.parentNode.classList.add('isChanged')
-							updatedList.add(thisStaffId)
+					try {
+						const [newDepartment, newRole] = [department.value.trim(), role.value.trim()]
+						if (/^[A-Za-z ]{1,}$/.test(newDepartment) == false) throw 'department [Can only use alphabets]'
+						if (/^[A-Za-z ]{1,}$/.test(newRole) == false) throw 'role [Can only use alphabets]'
+						thisStaffCard.getElementsByClassName('department')[0].textContent = newDepartment
+						thisStaffCard.getElementsByClassName('department')[0].parentNode.classList.remove('isChanged')
+						thisStaffCard.getElementsByClassName('role')[0].textContent = newRole
+						thisStaffCard.getElementsByClassName('role')[0].parentNode.classList.remove('isChanged')
+						const originalInfo = getStaffFromId(thisStaffId)
+						updatedList.delete(thisStaffId)
+						let count = 0
+						if (newDepartment != originalInfo['department']) {
+							thisStaffCard.getElementsByClassName('department')[0].parentNode.classList.add('isChanged')
+							++count
 						}
-						if (document.getElementById(item).value == getStaffFromId(thisStaffId)[item]) {
-							previousInfo.parentNode.classList.remove('isChanged')
-							updatedList.delete(thisStaffId)
+						if (newRole != originalInfo['role']) {
+							thisStaffCard.getElementsByClassName('role')[0].parentNode.classList.add('isChanged')
+							++count
 						}
-					})
+						if (count) updatedList.add(thisStaffId)
+					} catch (error) {
+						Swal.showValidationMessage(`Wrong format: ${error}`)
+					}
 				}
 			})
 		})

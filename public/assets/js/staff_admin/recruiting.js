@@ -33,8 +33,8 @@ if (withdrawButton) {
 
 if (submitButton) {
 	const formValidation = function() {
-		if (/^[A-Za-z]{1,}$/.test(document.getElementById('department').value) == false) return false
-		if (/^[A-Za-z]{1,}$/.test(document.getElementById('role').value) == false) return false
+		if (/^[A-Za-z ]{1,}$/.test(department.value.trim()) == false) return false
+		if (/^[A-Za-z ]{1,}$/.test(role.value.trim()) == false) return false
 		return true
 	}
 	submitButton.addEventListener('click', function() {
@@ -52,7 +52,7 @@ if (submitButton) {
 						url: '/admin/staff/sendQuery',
 						method: 'POST',
 						data: {
-							sql: `INSERT INTO staff_admin_info VALUES ('${userId}', '${document.getElementById('department').value}', '${document.getElementById('role').value}', 'pending') ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role), status='pending'`
+							sql: `INSERT INTO staff_admin_info VALUES ('${userId}', '${department.value.trim()}', '${role.value.trim()}', 'pending') ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role), status='pending'`
 						}
 					}).done(function(data) {
 						if (data.status == 200)  {
