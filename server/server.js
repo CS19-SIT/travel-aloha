@@ -66,6 +66,8 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
+
+const adminFlightRoute = require("./routes/admin/admin-flight");
 const adminRoutes = require("./routes/admin/index");
 const adminCouponRoutes = require("./routes/admin/coupon");
 const adminHotelRoutes = require("./routes/admin/hotel");
@@ -92,6 +94,7 @@ app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
+app.use("/admin/flight", adminFlightRoute);
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
