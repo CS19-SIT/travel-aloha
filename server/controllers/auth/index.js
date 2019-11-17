@@ -77,4 +77,3 @@ exports.postLogout = (req, res) => {
   });
 
 };
-
