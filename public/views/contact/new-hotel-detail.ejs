@@ -1,0 +1,46 @@
+<%- include('../includes/header') %>
+
+<link rel="stylesheet" href="../../assets/stylesheet/style.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navbar') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="h2 text-center p-4">Hotel Name</div>
+            </div>
+            <div class="col-md-12">
+                <div class="text-center"><img class="hotel-pic rounded mx-auto d-block"
+                        src ="../../assets/Pictures/Contact_System/naples-grande-palm-pool.jpg"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <br>
+                <br>
+                <form>
+                    <h1 class="h4 pt-4 text-center">Information</h1>
+                    <br>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputAirline_ID">Hotel ID</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputAirlineName">Hotel Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAirlineAddress">Hotel Address</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <%- include('../includes/footer') %>
