@@ -1,6 +1,6 @@
 {
   "name": "travel-aloha",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Travel platform that let you find flights and hotels in one place. So, you will plan your trip in just one platform.",
   "main": "server/server.js",
   "scripts": {
