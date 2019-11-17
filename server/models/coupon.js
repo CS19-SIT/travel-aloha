@@ -299,7 +299,7 @@ exports.deleteCoupon = async code => {
 
     await db.query("DELETE FROM coupon WHERE code = ?", [code]);
   } catch (err) {
-    throw new Error(`[ERR] deleteCoupon: ${err}`)
+    throw new Error(`[ERR] deleteCoupon: ${err}`);
   }
 };
 
