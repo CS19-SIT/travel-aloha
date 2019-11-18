@@ -100,7 +100,7 @@ exports.insertNewHotelReviewPicture = async({
     Hotel_Review_Picture_URL
   }) => {
     try{
-      await db.query(`INSERT INTO Hotel_Review_Picture_URL(Hotel_Review_Picture_URL, Hotel_Review_idHotel_Review) VALUES(?)`, [
+      await db.query(`INSERT INTO Hotel_Review_Picture_URL(Hotel_Review_Picture_URL, Hotel_Review_idHotel_Review) VALUES(?,?)`, [
         Hotel_Review_Picture_URL
       ]);
     } catch(error){
@@ -139,7 +139,7 @@ exports.insertNewFlightReviewPicture = async({
     Flight_Review_Picture_URL
   }) => {
     try{
-      await db.query(`INSERT INTO Flight_Review_Picture_URL(Flight_Review_Picture_URL, Flight_Review_idFlight_Review) VALUES(?)`, [
+      await db.query(`INSERT INTO Flight_Review_Picture_URL(Flight_Review_Picture_URL, Flight_Review_idFlight_Review) VALUES(?,?)`, [
         Flight_Review_Picture_URL
       ]);
     } catch(error){
