@@ -39,7 +39,7 @@ exports.getFlightReviewInfo = async ({
     Flight_Flight_number
   }) => {
     try {
-      await db.query("SELECT * FROM Hotel_Review where hotel_hotelId = ?", [
+      await db.query("SELECT * FROM Flight_Review where Flight_Flight_number = ?", [
         Title_Flight,
         Text_Flight_Review,
         timestamp,
