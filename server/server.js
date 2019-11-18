@@ -77,12 +77,12 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 /*debug pless*/
-app.get("/reviewflight", (req, res) => res.render("./review&rating/reviewAirline", {
+app.get("/review/flight", (req, res) => res.render("./review&rating/reviewAirline", {
   pageTitle: "TravelAloha-reviewAirline",
   user: req.user
 }));
 
-app.get("/reviewhotel", (req, res) => res.render("./review&rating/reviewHotel", {
+app.get("/review/hotel", (req, res) => res.render("./review&rating/reviewHotel", {
   pageTitle: "TravelAloha-reviewHotel",
   user: req.user
 }));

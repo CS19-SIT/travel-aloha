@@ -18,11 +18,8 @@
     <div class="row justify-content-center mx-0 mx-md-auto">
         <div class="col-lg-10 col-md-11 px-1 px-sm-2">
             <div class="card border-0 px-3">
-                
-                
                 <!-- top row -->
                 <div class="d-flex row py-5 px-5 bg-light">
-                        
                     <div class="well well-sm">
                                 <div class="row">
                                     <div class=" text-center white-tab p-2 px-3 mx-2">
@@ -189,8 +186,8 @@
                                 <h4 class="green-text">93%</h4>
                             </div>-->
                      <div class="ml-md-auto p-2 mx-md-2 pt-4 pt-md-3"> 
-                         <button class="btn btn-red px-4" data-toggle="modal" data-target="#exampleModal">WRITE A REVIEW</button> 
-                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <button class="btn btn-red px-4 border" data-toggle="modal" data-target="#flight">WRITE A REVIEW</button> 
+                         <div class="modal fade" id="flight" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -202,11 +199,10 @@
                                 <div class="modal-body">
                                   <form>
                                     <div class="form-group">
-                                      <label for="message-text" class="col-form-label">Conment:</label>
-                                      <textarea class="form-control" id="message-text"></textarea>
+                                      <textarea class="form-control" id="message-text" placeholder="wrire comment"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Uplord picture:(*if have)</label>
+                                        <label for="message-text" class="col-form-label">Upload picture:(*if have)</label>
                                          <input type="file" name="" id="">
                                     </div>
                                     <div class="form-group">
@@ -242,9 +238,9 @@
                             sort by
                             </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">Most recent</button>
                             <button class="dropdown-item" type="button">Date</button>
-                            <button class="dropdown-item" type="button">Score</button>
+                            <button class="dropdown-item" type="button">Score(Descending)</button>
+                            <button class="dropdown-item" type="button">Score(Ascending)</button>
                         </div>
                         </div>
                    </div>

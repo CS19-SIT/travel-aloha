@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/400150cc58.js" crossorigin="anonymous"></script>
-    <title>Review Hotel</title>
+    <title>Review hotel</title>
     <%- include('../includes/header') %>
     <%- include('../includes/navbar') %>
 </head>
@@ -18,11 +18,8 @@
     <div class="row justify-content-center mx-0 mx-md-auto">
         <div class="col-lg-10 col-md-11 px-1 px-sm-2">
             <div class="card border-0 px-3">
-                
-                
                 <!-- top row -->
                 <div class="d-flex row py-5 px-5 bg-light">
-                        
                     <div class="well well-sm">
                                 <div class="row">
                                     <div class=" text-center white-tab p-2 px-3 mx-2">
@@ -130,10 +127,9 @@
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <spen class="text-muted">4.75</spen>
                                                 </div>
-                                                <!-- end Cleaness-->
                                                 <div class="col-xs-3 col-md-3 text-right">
                                                      Comfort
-                                                </div>
+                                                    </div>
                                                 <div class="col-xs-8 col-md-9">
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
@@ -142,10 +138,9 @@
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <spen class="text-muted">4.75</spen>
                                                 </div>
-                                                <!-- end Comfort -->
                                                 <div class="col-xs-3 col-md-3 text-right">
-                                                    Meal
-                                                </div>
+                                                        Meal
+                                                    </div>
                                                 <div class="col-xs-8 col-md-9">
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
@@ -154,10 +149,9 @@
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <spen class="text-muted">4.75</spen>
                                                 </div>
-                                                <!-- end Meal -->
                                                 <div class="col-xs-3 col-md-3 text-right">
-                                                    Location
-                                                </div>
+                                                        Location
+                                                    </div>
                                                 <div class="col-xs-8 col-md-9">
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
@@ -166,19 +160,17 @@
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <spen class="text-muted">4.75</spen>     
                                                 </div>
-                                                <!-- end Location -->
                                                 <div class="col-xs-3 col-md-3 text-right">
-                                                    service
+                                                       Service
                                                 </div>
-                                                <div class="col-xs-8 col-md-9">
+                                                    <div class="col-xs-8 col-md-9">
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
                                                         <div class="fa fa-circle green-dot my-auto rating-dot"></div>
-                                                        <spen class="text-muted">4.75</spen>
+                                                        <spen class="text-muted">4.75</spen>     
                                                 </div>
-                                                <!-- end service -->
                 
                                             </div>
                                             <!-- end row -->
@@ -201,8 +193,8 @@
                                 <h4 class="green-text">93%</h4>
                             </div>-->
                      <div class="ml-md-auto p-2 mx-md-2 pt-4 pt-md-3"> 
-                         <button class="btn btn-red px-4" data-toggle="modal" data-target="#exampleModal">WRITE A REVIEW</button> 
-                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <button class="btn btn-red px-4 border" data-toggle="modal" data-target="#hotel">WRITE REVIEW</button> 
+                         <div class="modal fade" id="hotel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -214,11 +206,10 @@
                                 <div class="modal-body">
                                   <form>
                                     <div class="form-group">
-                                      <label for="message-text" class="col-form-label">Conment:</label>
-                                      <textarea class="form-control" id="message-text"></textarea>
+                                      <textarea class="form-control" id="message-text" placeholder="wrire comment"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Uplord picture:</label>
+                                        <label for="message-text" class="col-form-label">Upload picture:(*if have)</label>
                                          <input type="file" name="" id="">
                                     </div>
                                     <div class="form-group">
@@ -235,11 +226,11 @@
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Location:</label>
                                         <div class="my-rating-4"></div><span class="live-rating-4"></span>
-                                    </div>    
+                                    </div>
                                     <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Service:</label>
-                                        <div class="my-rating-5"></div><span class="live-rating-5"></span>
-                                    </div> 
+                                            <label for="message-text" class="col-form-label">Service:</label>
+                                            <div class="my-rating-5"></div><span class="live-rating-5"></span>
+                                    </div>     
                                   </form>
                                 </div>
                                 <div class="modal-footer">
@@ -258,9 +249,9 @@
                             sort by
                             </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">Most recent</button>
                             <button class="dropdown-item" type="button">Date</button>
-                            <button class="dropdown-item" type="button">Score</button>
+                            <button class="dropdown-item" type="button">Score(Descending)</button>
+                            <button class="dropdown-item" type="button">Score(Ascending)</button>
                         </div>
                         </div>
                    </div>
@@ -414,7 +405,7 @@
         </div>
     </div>
 </div>
-    
+<%- include('../includes/footer') %>
 </body>
 <script src="../../assets/js/review.js"></script>
 <script src="../../assets/js/jquery.star-rating-svg.js"></script>
