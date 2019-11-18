@@ -1,3 +1,5 @@
+const db = require("../../db/db"); //connect to db
+
 const hotelbook = require('../../models/hotelBookingModel/bookingHotel');
 exports.getHotelBooking = (req, res) =>
 	res.render('hotel_booking/hotel-booking', {
@@ -38,7 +40,10 @@ exports.postHotelBooking = (req, res) => {
 	res.render('hotel_booking/hotel-booking-payment', {
 		pageTitle: 'TravelAloha - Hotel - Payment',
 		user: req.user,
-		hotelData: result
+		hotelData: result,
+		//hotelbook.setIsbooked(roomId,hotelId)
+		//hotelbook.insertBooking()
+		//db.query(a); query ? 
 
 	});
 	// res.redirect('/hotel-booking/payment')
