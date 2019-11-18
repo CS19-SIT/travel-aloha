@@ -13,6 +13,7 @@ exports.showApplicationForm = async function(request, response) {
 		const staffStatus = await adminStaffModel.getStaffStatus(request.user.user_id)
 		if (staffStatus == 'active') {
 			response.redirect('/admin/staff/management')
+			return
 		}
 		const matchedInfo = await connector.query(`SELECT username, profile_picture, CONCAT(firstname, ' ', lastname) AS name, gender, birth_date, address FROM user WHERE user_id='${request.user.user_id}'`)
 		response.render('staff_admin/recruiting', {
@@ -36,6 +37,7 @@ exports.getStaffCandidatesList = async function(request, response) {
 		const userAuth = await adminStaffModel.getStaffCRUD(request.user.user_id)
 		if (staffStatus != 'active' || userAuth['can_create'] == 'F') {
 			response.redirect('/admin/staff/recruiting')
+			return
 		}
 		const candidatesList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS Name, sdi.department, sdi.role FROM user, staff_admin_info sdi WHERE user_id=staffID AND sdi.status='pending'`)
 		response.render('staff_admin/requisition', {
@@ -56,6 +58,7 @@ exports.getDetailAllExistedStaff = async function(request, response) {
 		const staffStatus = await adminStaffModel.getStaffStatus(request.user.user_id)
 		if (staffStatus != 'active') {
 			response.redirect('/admin/staff/recruiting')
+			return
 		}
 		const userAuth = await adminStaffModel.getStaffCRUD(request.user.user_id)
 		const staffList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS name, birth_date, gender, address, sdi.department, sdi.role FROM user, staff_admin_info sdi WHERE user_id=staffID AND sdi.status='active' AND user_id<>'${request.user.user_id}'`)
