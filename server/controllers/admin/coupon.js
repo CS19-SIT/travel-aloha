@@ -30,33 +30,52 @@ const formRequestDataToModelData = (req) => {
 
 exports.getIndex = async (req, res, next) => {
   try {
-    const query = {
-      ...req.query,
-      opt: req.query.opt || defaultOption,
-      // Not a fan of this, but whatever.
-      levels: Array.isArray(req.query.levels) ? req.query.levels :
-        (req.query.levels == null ? defaultLevels : [req.query.levels]),
-      types: Array.isArray(req.query.types) ? req.query.types :
-        (req.query.types == null ? defaultTypes : [req.query.types])
-    }
     const page = parseInt(req.params.page) || 0;
-    
-    let coupons = await Coupon.searchCoupons({
-      code: query.opt === "1" ? query.q : null,
-      name: query.opt === "2" ? query.q : null,
-      description: query.opt === "3" ? query.q : null,
-      levels: query.levels,
-      page
-    });
+    let searchParam;
+    let query;
+    let queryString = "";
+
+    if (req.query.search === "true") {
+      query = {
+        ...req.query,
+        opt: req.query.opt || defaultOption,
+        // Not a fan of this, but whatever.
+        levels: Array.isArray(req.query.levels) ? req.query.levels : [req.query.levels],
+        types: Array.isArray(req.query.types) ? req.query.types : [req.query.types]
+      };
+
+      searchParam = {
+        code: query.opt === "1" ? query.q : null,
+        name: query.opt === "2" ? query.q : null,
+        description: query.opt === "3" ? query.q : null,
+        levels: query.levels,
+        page
+      };
+
+      queryString = "?" + querystring.stringify(query);
+    } else {
+      query = {
+        opt: "1",
+        levels: defaultLevels,
+        types: defaultTypes
+      };
+
+      searchParam = {
+        page
+      };
+    }
+
+    let coupons = await Coupon.searchCoupons(searchParam);
 
     res.render("admin/admin-coupon", {
       pageTitle: "TravelAloha - Admin - Coupon Management",
       user: req.user,
-      page: page,
+      page,
       allLevels,
-      ...coupons,
+      coupons: coupons.coupons,
+      pageCount: coupons.pageCount || 1,
       query,
-      queryString: querystring.stringify(query)
+      queryString
     });
   } catch (err) {
     console.log(err);
