@@ -9,7 +9,6 @@ const allLevels = [
 ];
 
 const defaultLevels = allLevels.map(e => e[0].toString());
-const defaultTypes = ["flight", "hotel"];
 const defaultOption = "1"; // "Code"
 
 const formRequestDataToModelData = (req) => {
@@ -39,9 +38,7 @@ exports.getIndex = async (req, res, next) => {
       query = {
         ...req.query,
         opt: req.query.opt || defaultOption,
-        // Not a fan of this, but whatever.
-        levels: Array.isArray(req.query.levels) ? req.query.levels : [req.query.levels],
-        types: Array.isArray(req.query.types) ? req.query.types : [req.query.types]
+        levels: Array.isArray(req.query.levels) ? req.query.levels : [req.query.levels]
       };
 
       searchParam = {
@@ -56,8 +53,7 @@ exports.getIndex = async (req, res, next) => {
     } else {
       query = {
         opt: "1",
-        levels: defaultLevels,
-        types: defaultTypes
+        levels: defaultLevels
       };
 
       searchParam = {

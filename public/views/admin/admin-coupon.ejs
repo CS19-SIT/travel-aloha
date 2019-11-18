@@ -48,22 +48,6 @@
                     </select>
                 </div>
             </div>
-            <!--Type-->
-            <div class="form-group row">
-                <div class="col-md-1">Type</div>
-                <div class="col-md-11">
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="typeFlightCheckbox" name="types" value="flight"
-                            class="form-check-input" <%= query.types.indexOf("flight") < 0 ? "" : "checked" %>>
-                        <label class="form-check-label" for="typeFlightCheckbox">Flight</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="typeHotelCheckbox" name="types" value="hotel"
-                            class="form-check-input" <%= query.types.indexOf("hotel") < 0 ? "" : "checked" %>>
-                        <label class="form-check-label" for="typeHotelCheckbox">Hotel</label>
-                    </div>
-                </div>
-            </div>
         </form>
         <div>
             <br>
