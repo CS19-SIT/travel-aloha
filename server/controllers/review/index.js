@@ -46,26 +46,26 @@ exports.postHotelReview = async (req, res) => {
   }
 };
 
-exports.postAirlineInfo = async (req, res) => {
+exports.postFlightInfo = async (req, res) => {
   const {
-    airlineName,
-    airlineEmail,
-    airlineAddress,
-    airlineNationality,
-    airlineTelNumber,
-    airlineContactNumber,
-    airlineDescription
+    Title_Flight,
+    Text_Flight_Review,
+    CabinCrewRating_Flight_Rating,
+    Comfort_Flight_Rating,
+    Meal_Flight_Rating,
+    Entertainment_Flight_Rating,
+    Flight_Flight_number
   } = req.body;
 
   try {
-    await contactModel.insertNewAirline({
-      airlineName,
-      airlineNationality,
-      airlineEmail,
-      airlineDescription,
-      airlineAddress,
-      airlineTelNumber,
-      airlineContactNumber
+    await contactModel.insertNewFlight({
+      Title_Flight,
+      Text_Flight_Review,
+      CabinCrewRating_Flight_Rating,
+      Comfort_Flight_Rating,
+      Meal_Flight_Rating,
+      Entertainment_Flight_Rating,
+      Flight_Flight_number
     });
     res.redirect("review_rating/airline");
     res.sendStatus(204);
