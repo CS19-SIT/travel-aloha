@@ -39,7 +39,7 @@ exports.getIndex = async (req, res, next) => {
       types: Array.isArray(req.query.types) ? req.query.types :
         (req.query.types == null ? defaultTypes : [req.query.types])
     }
-    const page = req.params.page || 0;
+    const page = parseInt(req.params.page) || 0;
     
     let coupons = await Coupon.searchCoupons({
       code: query.opt === "1" ? query.q : null,

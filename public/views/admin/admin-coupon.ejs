@@ -105,13 +105,15 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item <% if (page === 0) { %>disabled<% } %>">
-                    <a class="page-link" href="/admin/coupon/1?<%= queryString %>" <% if (page === 0) { %>tabindex="-1" aria-disabled="true"<% } %>>&laquo;</a>
+                    <a class="page-link" href="/admin/coupon/0?<%= queryString %>" <% if (page === 0) { %>tabindex="-1" aria-disabled="true"<% } %>>&laquo;</a>
                 </li>
                 <% for(let i = 0; i < pageCount; i++) { %>
-                    <li class="page-item"><a class="page-link" href="/admin/coupon/<%= i + '?' + queryString %>"><%= i + 1 %></a></li>
+                    <li class="page-item <% if (page === i) { %>disabled<% } %>">
+                        <a class="page-link" href="/admin/coupon/<%= i + '?' + queryString %>" <% if (page === i) { %>tabindex="-1" aria-disabled="true"<% } %>><%= i + 1 %></a>
+                    </li>
                 <% } %>
                 <li class="page-item <% if (page === pageCount - 1) { %>disabled<% } %>">
-                    <a class="page-link" href="/admin/coupon/<%= (pageCount - 1) + '?' + queryString %>" <% if (page === 0) { %>tabindex="-1" aria-disabled="true"<% } %>>&raquo;</a>
+                    <a class="page-link" href="/admin/coupon/<%= (pageCount - 1) + '?' + queryString %>" <% if (page === pageCount - 1) { %>tabindex="-1" aria-disabled="true"<% } %>>&raquo;</a>
                 </li>
             </ul>
         </nav>
