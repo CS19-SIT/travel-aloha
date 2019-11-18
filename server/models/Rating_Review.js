@@ -78,8 +78,24 @@ exports.insertNewFlight_Review = async ({
   }
 };
 
-// CREATE TABLE IF NOT EXISTS `development`.`Flight_Review` (
-//     `idHotel_Review` INT(10) NOT NULL,
+exports.deleteHotelReviewInfo = async idHotel_Review => {
+    try {
+      await db.query("DELETE FROM Hotel_Review WHERE idHotel_Review = ?", [idHotel_Review]);
+    } catch (err) {
+      throw new Error(`[ERR] deleteHotelReviewInfo: ${err}`);
+    }
+  };
+
+exports.deleteFlightReviewInfo = async idFlight_Review => {
+    try {
+      await db.query("DELETE FROM Flight_Review WHERE idFlight_Review = ?", [idFlight_Review]);
+    } catch (err) {
+      throw new Error(`[ERR] deleteFlightReviewInfo: ${err}`);
+    }
+  };
+
+//   CREATE TABLE IF NOT EXISTS `development`.`Flight_Review` (
+//     `idFlight_Review` INT(10) NOT NULL,
 //     `Title_Flight` VARCHAR(300) NULL DEFAULT NULL,
 //     `Text_Flight_Review` VARCHAR(300) NULL DEFAULT NULL,
 //     `timestamp` TIMESTAMP NULL DEFAULT NULL,
@@ -87,36 +103,31 @@ exports.insertNewFlight_Review = async ({
 //     `Comfort_Flight_Rating` INT(10) NULL DEFAULT NULL,
 //     `Meal_Flight_Rating` INT(10) NULL DEFAULT NULL,
 //     `Entertainment_Flight_Rating` INT(10) NULL DEFAULT NULL,
-//     `Flight_Flight_number` CHAR(7) NOT NULL,
-//     PRIMARY KEY (`idHotel_Review`),
-//     INDEX `fk_Flight_Review_Flight1_idx` (`Flight_Flight_number` ASC) VISIBLE,
-//     CONSTRAINT `fk_Flight_Review_Flight1`
-//       FOREIGN KEY (`Flight_Flight_number`)
-//       REFERENCES `development`.`Flight` (`Flight_number`)
-//       ON DELETE NO ACTION
-//       ON UPDATE NO ACTION)
+//     PRIMARY KEY (`idFlight_Review`))
 //   ENGINE = InnoDB
 //   DEFAULT CHARACTER SET = utf8
 //   COLLATE = utf8_unicode_ci
 
-//   CREATE TABLE IF NOT EXISTS `development`.`Member_Review` (
+// CREATE TABLE IF NOT EXISTS `development`.`Member_Review` (
 //     `idMember_Review` INT(11) NOT NULL,
 //     `Hotel_Review_idHotel_Review` INT(10) NOT NULL,
-//     `Flight_Review_idHotel_Review` INT(10) NOT NULL,
 //     `user_user_id` CHAR(36) NOT NULL,
+//     `Flight_Review_idFlight_Review` INT(10) NOT NULL,
 //     PRIMARY KEY (`idMember_Review`),
 //     INDEX `fk_Member_Review_Hotel_Review1_idx` (`Hotel_Review_idHotel_Review` ASC) VISIBLE,
-//     INDEX `fk_Member_Review_Flight_Review1_idx` (`Flight_Review_idHotel_Review` ASC) VISIBLE,
 //     INDEX `fk_Member_Review_user1_idx` (`user_user_id` ASC) VISIBLE,
-//     CONSTRAINT `fk_Member_Review_Flight_Review1`
-//       FOREIGN KEY (`Flight_Review_idHotel_Review`)
-//       REFERENCES `development`.`Flight_Review` (`idHotel_Review`),
+//     INDEX `fk_Member_Review_Flight_Review1_idx` (`Flight_Review_idFlight_Review` ASC) VISIBLE,
 //     CONSTRAINT `fk_Member_Review_Hotel_Review1`
 //       FOREIGN KEY (`Hotel_Review_idHotel_Review`)
 //       REFERENCES `development`.`Hotel_Review` (`idHotel_Review`),
 //     CONSTRAINT `fk_Member_Review_user1`
 //       FOREIGN KEY (`user_user_id`)
-//       REFERENCES `development`.`user` (`user_id`))
+//       REFERENCES `development`.`user` (`user_id`),
+//     CONSTRAINT `fk_Member_Review_Flight_Review1`
+//       FOREIGN KEY (`Flight_Review_idFlight_Review`)
+//       REFERENCES `development`.`Flight_Review` (`idFlight_Review`)
+//       ON DELETE NO ACTION
+//       ON UPDATE NO ACTION)
 //   ENGINE = InnoDB
 //   DEFAULT CHARACTER SET = utf8
 //   COLLATE = utf8_unicode_ci
