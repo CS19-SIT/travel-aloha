@@ -14,23 +14,25 @@ exports.getFlight = (req, res) =>
 
 exports.postHotelReview = async (req, res) => {
   const {
-    hotelName,
-    hotelEmail,
-    hotelAddress,
-    hotelTelNumber,
-    hotelContactNumber,
-    hotelDescription,
-    hotelProfile,
-    hotelPicture
+    Title_Hotel,
+    Text_Hotel_Review,
+    Cleanliness_Hotel_Rating,
+    Comfort_Hotel_Rating,
+    Meal_Hotel_Rating,
+    Location_Hotel_Rating,
+    Service_Hotel_Rating,
+    hotel_hotelId
   } = req.body;
   try {
     await contactModel.insertNewHotel({
-      hotelName,
-      hotelDescription,
-      hotelAddress,
-      hotelTelNumber,
-      hotelContactNumber,
-      hotelEmail
+      Title_Hotel,
+      Text_Hotel_Review,
+      Cleanliness_Hotel_Rating,
+      Comfort_Hotel_Rating,
+      Meal_Hotel_Rating,
+      Location_Hotel_Rating,
+      Service_Hotel_Rating,
+      hotel_hotelId
     });
     // ** Wait for learning upload file
     // await contactModel.insertNewHotelFile({
@@ -43,7 +45,6 @@ exports.postHotelReview = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-
 
 exports.postAirlineInfo = async (req, res) => {
   const {
@@ -73,4 +74,3 @@ exports.postAirlineInfo = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-
