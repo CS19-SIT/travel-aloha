@@ -14,9 +14,9 @@ Array.prototype.forEach.call(document.getElementsByClassName('reject'), function
                     url: '/admin/staff/getQuery',
                     method: 'POST',
                     data: {
-                        sql: `SELECT * FROM staff_admin_info WHERE staffID='${thisManId}' AND status='active'`
+                        sql: `SELECT * FROM staff_admin_info WHERE staffId='${thisManId}' AND status='active'`
                     }
-                }).done(function(data, textStatus, jqXHR) {
+                }).done(function(data) {
                     if (data.status == 200) {
                         if (data.result.length) {
                             Swal.fire({
@@ -29,33 +29,49 @@ Array.prototype.forEach.call(document.getElementsByClassName('reject'), function
                                 location.reload(true)
                             }, 1500)   
                         } else {
-                            $.ajax({
-                                url: '/admin/staff/sendQuery',
-                                method: 'POST',
-                                data: {
-                                    sql: `DELETE FROM staff_admin_info WHERE staffId='${thisManId}'`
-                                }
-                            }).done(function(data, textStatus, jqXHR) {
-                                if (data.status == 200) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: `Just a poor man passing through`,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                    thisManCard.parentNode.removeChild(thisManCard)
-                                } else {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: `Something went wrong`,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                    setTimeout(function(){
-                                        location.reload(true)
-                                    }, 1500)            
-                                }
-                            })
+                            try {
+                                $.ajax({
+                                    url: '/admin/staff/sendQuery',
+                                    method: 'POST',
+                                    data: {
+                                        sql: `DELETE FROM staff_admin_CRUD WHERE staffId='${thisManId}'`
+                                    }
+                                }).done(function(data) {
+                                    if (data.status == 200) {
+                                        $.ajax({
+                                            url: '/admin/staff/sendQuery',
+                                            method: 'POST',
+                                            data: {
+                                                sql: `DELETE FROM staff_admin_info WHERE staffId='${thisManId}'`
+                                            }
+                                        }).done(function(data) {
+                                            if (data.status == 200) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: `What a shame`,
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                                thisManCard.parentNode.removeChild(thisManCard)
+                                            } else {
+                                                throw 'Wrong one'                  
+                                            }
+                                        })
+                                    } else {
+                                        throw 'Wrong one'
+                                    }
+                                })
+                            } catch {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: `Something went wrong`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                setTimeout(function(){
+                                    location.reload(true)
+                                }, 1500)
+                            }
                         }
                     } else {
                         Swal.fire({
@@ -79,41 +95,41 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
         let thisManCard = this.parentNode.parentNode
         let thisManId = thisManCard.getElementsByClassName('userid')[0].textContent
         Swal.fire({
-            title: `Give the Auth to this man`,
+            title: `Give this man some Auth.`,
             html: `
                 <img class="my-3" style="width: 80%; height: 200px;" src="https://i.kym-cdn.com/entries/icons/original/000/010/843/ricardo.jpg">
-                <div class="m-auto text-left" style="width: fit-content;">
-                    <input id="create" class="m-2" type="checkbox" style="transform: scale(2);">
-                    <label for="create">Ability to create an army</label>
-                    <br/><input id="read" class="m-2" type="checkbox" style="transform: scale(2);">
-                    <label for="read" class="visible">Ability to read people information</label>
-                    <br/><input id="update" class="m-2" type="checkbox" style="transform: scale(2);">
-                    <label for="update">Ability to change people mind</label>
-                    <br/><input id="delete" class="m-2" type="checkbox" style="transform: scale(2);">
-                    <label for="delete">Ability to end a man's whole career</label>
+                <div class="m-auto" style="width: fit-content;">
+                    <input id="createAuth" class="d-none" type="checkbox">
+                    <label for="createAuth" class="btn m-1">CREATE</label>
+                    <input id="readAuth" class="d-none" type="checkbox" checked="true">
+                    <label for="readAuth" class="visible btn m-1">READ</label><br/>
+                    <input id="updateAuth" class="d-none" type="checkbox">
+                    <label for="updateAuth" class="btn m-1">UPDATE</label>
+                    <input id="deleteAuth" class="d-none" type="checkbox">
+                    <label for="deleteAuth" class="btn m-1">DELETE</label>
                 </div>
             `,
             focusConfirm: false,
+            confirmButtonColor: '#28a745',
             showCancelButton: true,
             preConfirm: function() {
                 let [canCreate, canRead, canUpdate, canDelete] = [
-                    document.getElementById('create').checked.toString().substring(0, 1).toUpperCase(),
-                    document.getElementById('read').checked.toString().substring(0, 1).toUpperCase(),
-                    document.getElementById('update').checked.toString().substring(0, 1).toUpperCase(),
-                    document.getElementById('delete').checked.toString().substring(0, 1).toUpperCase()
+                    createAuth.checked.toString().substring(0, 1).toUpperCase(),
+                    readAuth.checked.toString().substring(0, 1).toUpperCase(),
+                    updateAuth.checked.toString().substring(0, 1).toUpperCase(),
+                    deleteAuth.checked.toString().substring(0, 1).toUpperCase()
                 ]
                 if (canRead == 'F') {
                     canUpdate = 'F'
                     canDelete = 'F'
                 }
-                console.log([canCreate, canRead, canUpdate, canDelete])
                 $.ajax({
                     url: '/admin/staff/sendQuery',
                     method: 'POST',
                     data: {
                         sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${thisManId}'`
                     }
-                }).done(function(data, textStatus, jqXHR) {
+                }).done(function(data) {
                     if (data.status == 200) {
                         $.ajax({
                             url: '/admin/staff/sendQuery',
@@ -121,7 +137,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
                             data: {
                                 sql: `INSERT INTO staff_admin_CRUD VALUES('${thisManId}', '${canCreate}', '${canRead}', '${canUpdate}', '${canDelete}') ON DUPLICATE KEY UPDATE can_create=VALUES(can_create), can_read=VALUES(can_read), can_update=VALUES(can_update), can_delete=VALUES(can_delete)`
                             }
-                        }).done(function(data, textStatus, jqXHR) {
+                        }).done(function(data) {
                             if (data.status == 200) {
                                 Swal.fire({
                                     icon: 'success',
