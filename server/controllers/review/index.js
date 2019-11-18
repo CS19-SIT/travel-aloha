@@ -43,20 +43,8 @@ exports.postHotelReview = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-exports.getHotelDetail = (req, res) => {
-  res.render("contact/new-hotel-detail", {
-    pageTitle: "TravelAloha - Contact - New Hotel Detail",
-    user: req.user
-  });
-}
 
 
-exports.getAirlineInfo = (req, res) => {
-  res.render("contact/add-new-airline", {
-    pageTitle: "TravelAloha - Contact - Register New Airline",
-    user: req.user
-  });
-};
 exports.postAirlineInfo = async (req, res) => {
   const {
     airlineName,
@@ -78,7 +66,7 @@ exports.postAirlineInfo = async (req, res) => {
       airlineTelNumber,
       airlineContactNumber
     });
-    res.redirect("dashboard");
+    res.redirect("review_rating/airline");
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(404);
@@ -86,9 +74,3 @@ exports.postAirlineInfo = async (req, res) => {
   }
 };
 
-exports.getAirlineDetail = (req, res) => {
-  res.render("contact/new-airline-detail", {
-    pageTitle: "TravelAloha - Contact - New Airline Detail",
-    user: req.user
-  });
-};
