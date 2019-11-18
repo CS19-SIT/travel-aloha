@@ -59,9 +59,11 @@
 	<% } else { %>
 		<% if (isDisband == 'true') { %>
 			<script>
+				const comm = '<%- message %>'
 				Swal.fire({
+					title: 'You got declined',
+					text: `[Comment]: ${'<%- message %>' || 'None'}`,
 					icon: 'error',
-					title: 'You are fired from the department',
 					showConfirmButton: true
 				})
 			</script>
@@ -73,7 +75,7 @@
 			personalInfo['profile_picture'] = ''
 		}
 		%>
-		<existedInfo class="row rounded py-3 m-2 justify-content-center align-content-center">
+		<existedInfo class="row rounded pt-3 m-2 justify-content-center align-content-center">
 			<profileImage class="mb-2 rounded" style="background-image: url('<%= personalInfo[`profile_picture`] %>')"></profileImage>
 			<% delete personalInfo['profile_picture'] %>
 			<p class="w-100"></p>
@@ -89,11 +91,13 @@
 			</briefInfo>
 		</existedInfo>
 		<newInfo class="d-block rounded p-3 m-2">
-			<h2 class="text-center py-2" style="font-size: 1.4rem;">Staff Recruiting Form</h2>
+			<h2 class="text-center py-2" style="font-size: 1.4rem;"><u>STAFF Recruiting Form</u></h2>
 			<label for="department">Department (format: [A-Za-z])</label><br/>
-			<input type="text" id="department" class="form-control" placeholder="Your wanted department"/><br/>
+			<input id="department" class="form-control" type="text" placeholder="Your wanted department"/><br/>
 			<label for="role">Role (format: [A-Za-z])</label><br/>
-			<input type="text" id="role" class="form-control" placeholder="Your wanted role" />
+			<input id="role" class="form-control" type="text" placeholder="Your wanted role" /><br/>
+			<label for="message">Other (max length: 50)</label><br/>
+			<textarea id="message" class="form-control" rows="3" maxlength="50" style="resize: none;" placeholder="Anything you want to say"></textarea>
 			<buttonDirection class="d-block w-100 text-right mt-4">
 				<button id="submit" type="button" class="btn btn-primary">submit</button>
 			</buttonDirection>

@@ -1,17 +1,30 @@
+const AJAXget = function(script, callback) {
+	$.ajax({
+		url: '/admin/staff/getQuery', method: 'POST', 
+		data: {
+			sql: script
+		}
+	}).done(callback)
+}
+const AJAXsend = function(script, callback) {
+	$.ajax({
+		url: '/admin/staff/sendQuery', method: 'POST',
+		data: {
+			sql: script
+		}
+	}).done(callback)
+}
+
 let updatedList = new Set()
 let deletedList = new Set()
 const editableProperties = new Set(['department', 'role'])
 
 const getStaffFromId = function(id) {
-	return staffs.find(function(item) {
-		return item['user_id'] == id
-	})
+	return staffs.find((item) => item['user_id'] == id)
 }
 
 const refreshPage = function() {
-	setTimeout(function() {
-		location.reload(true)
-	}, 1300)
+	setTimeout(() => location.reload(true), 1200)
 }
 
 if (canUpdate == 'true') {
@@ -91,25 +104,22 @@ if (canUpdate == 'true' || canDelete == 'true') {
 					updateValues.push(`('${item.getElementsByClassName('user_id')[0].textContent}','${item.getElementsByClassName('department')[0].textContent}','${item.getElementsByClassName('role')[0].textContent}')`)
 				}
 			})
-			$.ajax({ // Call to update info
-				url: '/admin/staff/sendQuery',
-				method: 'POST',
-				data: {
-					sql: `INSERT INTO staff_admin_info(staffId, department, role) VALUES ${updateValues.join(',')} ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role)`
-				}  
-			}).done(function(data) {
-				if (data.status == 200) {
-					callback(refreshPage)
-				} else {
-					Swal.fire({
-						title: 'Something was wrong',
-						text: 'can\'t update new information',
-						icon: 'error',
-						showConfirmButton: false
-					})
-					refreshPage()
+			AJAXsend(
+				`INSERT INTO staff_admin_info(staffId, department, role) VALUES ${updateValues.join(',')} ON DUPLICATE KEY UPDATE department=VALUES(department), role=VALUES(role)`,
+				function(data) {
+					if (data.status == 200) {
+						callback(refreshPage)
+					} else {
+						Swal.fire({
+							title: 'Something was wrong',
+							text: 'can\'t update new information',
+							icon: 'error',
+							showConfirmButton: false
+						})
+						refreshPage()
+					}
 				}
-			})
+			)
 		} else {
 			callback(refreshPage)
 		}
@@ -120,31 +130,41 @@ if (canUpdate == 'true' || canDelete == 'true') {
 				return `'${id}'`
 			}).join(',')
 
-			$.ajax({ // Call to delete staff
-				url: '/admin/staff/sendQuery',
-				method: 'POST',
-				data: {
-					sql: `UPDATE staff_admin_info SET status='inactive' WHERE staffId IN (${deletedId})`
-				}
-			}).done(function(data) {
-				if (data.status == 200) {
-					Swal.fire({
-						title: 'No problem',
-						text: 'all information has been updated',
-						icon: 'success',
-						showConfirmButton: false,
-					})
-					callback()
-				} else {
-					Swal.fire({
-						title: 'Something went wrong',
-						text: 'cannot delete some information',
-						icon: 'error',
-						showConfirmButton: false,
-					})
-					callback()
-				}
-			})
+			try {
+				AJAXsend(
+					`DELETE FROM staff_admin_CRUD WHERE staffId IN (${deletedId})`,
+					function(data) {
+						if (data.status == 200) {
+							AJAXsend(
+								`DELETE FROM staff_admin_info WHERE staffId IN (${deletedId})`,
+								function(data) {
+									if (data.status == 200) {
+										Swal.fire({
+											title: 'No problem',
+											text: 'all information has been updated',
+											icon: 'success',
+											showConfirmButton: false,
+										})
+										callback()
+									} else {
+										throw 'wrong one'
+									}
+								}
+							)
+						} else {
+							throw 'wrong one'
+						}		
+					}
+				)
+			} catch {
+				Swal.fire({
+					title: 'Something went wrong',
+					text: 'cannot delete some information',
+					icon: 'error',
+					showConfirmButton: false,
+				})
+				callback()
+			}
 		} else {
 			Swal.fire({
 				title: 'No problem',
@@ -171,25 +191,21 @@ if (canUpdate == 'true' || canDelete == 'true') {
 			const updatedId = Array.from(updatedList, function(id) {
 				return `'${id}'`
 			}).join(',')
-
-			$.ajax({ // Check if some of staff was just changed to be inactive
-				url: '/admin/staff/getQuery',
-				method: 'POST',
-				data: {
-					sql: `SELECT status FROM staff_admin_info WHERE staffId IN (${updatedId}) AND status='active'`
+			AJAXget(
+				`SELECT status FROM staff_admin_info WHERE staffId IN (${updatedId}) AND status='active'`,
+				function(data) {
+					if (data.status == 200 && data.result.length == updatedList.size) {
+						updateFn(deleteFn)
+					} else {
+						Swal.fire({
+							icon: 'error',
+							title: 'Something was wrong',
+							showConfirmButton: false
+						})
+						refreshPage()
+					}
 				}
-			}).done(function(data) {
-				if (data.status == 200 && data.result.length == updatedList.size) {
-					updateFn(deleteFn)
-				} else {
-					Swal.fire({
-						icon: 'error',
-						title: 'Something was wrong',
-						showConfirmButton: false
-					})
-					refreshPage()
-				}
-			})
+			)
 		}
 	})
 }

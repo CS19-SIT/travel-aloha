@@ -69,6 +69,19 @@
 <body>
 	<%- include('../includes/navbar') %>
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+	<% if (message) { %>
+		<script>
+			Swal.fire({
+				title: 'Congrats!!',
+				text: `<%- message %>`,
+				icon: 'successs'
+			})
+		</script>
+	<% } %>
+	
+
 	<background class="d-flex w-100 justify-content-around justify-content-lg-center align-content-start flex-wrap">
 	<% if (canRead == 'false') { %>
 		<noPermission class="d-flex mt-4 justify-content-center flex-column border rounded">
@@ -126,8 +139,6 @@
 		</staffList>
 	<% } %>
 	</background>
-
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 	<script>
 		const staffs = JSON.parse('<%- data %>')

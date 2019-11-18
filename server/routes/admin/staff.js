@@ -19,12 +19,12 @@ router.get(
 router.get(
 	'/requisition',
 	authMiddleware.isAuthenticated,
-	staffAdminController.getStaffCandidatesList
+	staffAdminController.showStaffCandidatesList
 )
 router.get(
 	'/management', 
 	authMiddleware.isAuthenticated,
-	staffAdminController.getDetailAllExistedStaff
+	staffAdminController.showDetailAllExistedStaff
 )
 router.post(
 	'/sendQuery', 
