@@ -90,6 +90,12 @@ body {
 .green-text {
     color: #4CAF50;
 }
+.red-text{
+    color: #E64A19;
+}
+.yellow-text {
+    color: #FFD54F;
+}
 
 .block {
     border-right: 1px solid #F5EEEE;

@@ -70,22 +70,14 @@ app.disable("x-powered-by");
  */
 const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
+const reviewRoutes = require("./routes/review/index");
 
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
-/*debug pless*/
-app.get("/review/flight", (req, res) => res.render("./review&rating/reviewAirline", {
-  pageTitle: "TravelAloha-reviewAirline",
-  user: req.user
-}));
-
-app.get("/review/hotel", (req, res) => res.render("./review&rating/reviewHotel", {
-  pageTitle: "TravelAloha-reviewHotel",
-  user: req.user
-}));
+app.use("/review", reviewRoutes);
 
 app.use(authRoutes);
 
