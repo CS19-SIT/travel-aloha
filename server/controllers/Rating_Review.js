@@ -1,24 +1,93 @@
-const Hotel_Review = require("../models/HotelReview");
+const Rating_Review = require("../models/Rating_Review");
 
-exports.getIndex = async (req, res) => {
+exports.getHotel = (req, res) =>
+  res.render("review_rating/hotel", {
+    pageTitle: "TravelAloha - Review - Hotel",
+    user: req.user
+  });
+
+exports.getFlight = (req, res) =>
+  res.render("review_rating/airline", {
+    pageTitle: "TravelAloha - Review - Airline",
+    user: req.user
+  });
+
+exports.postHotelInfo = async (req, res) => {
+  const {
+    hotelName,
+    hotelEmail,
+    hotelAddress,
+    hotelTelNumber,
+    hotelContactNumber,
+    hotelDescription,
+    hotelProfile,
+    hotelPicture
+  } = req.body;
   try {
-    let data = await Hotel_Review.getAllHotel_Review();
-
-    res.render("./Hotel_Review", {
-      pageTitle: "Travel Aloha - Hotel Review",
-      user: req.user,
-      hotel: data
+    await contactModel.insertNewHotel({
+      hotelName,
+      hotelDescription,
+      hotelAddress,
+      hotelTelNumber,
+      hotelContactNumber,
+      hotelEmail
     });
-  } catch (err) {
+    // ** Wait for learning upload file
+    // await contactModel.insertNewHotelFile({
+    //   hotelPicture
+    // })
+    res.redirect("dashboard");
+    res.sendStatus(204);
+  } catch (error) {
     res.sendStatus(404);
+    throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
+exports.getHotelDetail = (req, res) => {
+  res.render("contact/new-hotel-detail", {
+    pageTitle: "TravelAloha - Contact - New Hotel Detail",
+    user: req.user
+  });
+}
 
-exports.putHotel_Review = async (req, res) => {
+
+exports.getAirlineInfo = (req, res) => {
+  res.render("contact/add-new-airline", {
+    pageTitle: "TravelAloha - Contact - Register New Airline",
+    user: req.user
+  });
+};
+exports.postAirlineInfo = async (req, res) => {
+  const {
+    airlineName,
+    airlineEmail,
+    airlineAddress,
+    airlineNationality,
+    airlineTelNumber,
+    airlineContactNumber,
+    airlineDescription
+  } = req.body;
+
   try {
-    await Hotel.modelUpdateHotel_Review(req.body);
+    await contactModel.insertNewAirline({
+      airlineName,
+      airlineNationality,
+      airlineEmail,
+      airlineDescription,
+      airlineAddress,
+      airlineTelNumber,
+      airlineContactNumber
+    });
+    res.redirect("dashboard");
     res.sendStatus(204);
-  } catch (err) {
+  } catch (error) {
     res.sendStatus(404);
+    throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
+};
+exports.getAirlineDetail = (req, res) => {
+  res.render("contact/new-airline-detail", {
+    pageTitle: "TravelAloha - Contact - New Airline Detail",
+    user: req.user
+  });
 };

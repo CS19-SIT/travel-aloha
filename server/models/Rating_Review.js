@@ -142,7 +142,7 @@ exports.deleteFlightReviewInfo = async idFlight_Review => {
   }
 };
 
-//   CREATE TABLE IF NOT EXISTS `development`.`Flight_Review` (
+// CREATE TABLE IF NOT EXISTS `development`.`Flight_Review` (
 //     `idFlight_Review` INT(10) NOT NULL,
 //     `Title_Flight` VARCHAR(300) NULL DEFAULT NULL,
 //     `Text_Flight_Review` VARCHAR(300) NULL DEFAULT NULL,
@@ -208,13 +208,13 @@ exports.deleteFlightReviewInfo = async idFlight_Review => {
 //   COLLATE = utf8_unicode_ci
 
 //   CREATE TABLE IF NOT EXISTS `development`.`Flight_Review_Picture_URL` (
-//     `Hotel_Review_Picture_URL` VARCHAR(300) NOT NULL,
+//     `Flight_Review_Picture_URL` VARCHAR(300) NOT NULL,
 //     `Flight_Review_idHotel_Review` INT(10) NOT NULL,
-//     PRIMARY KEY (`Hotel_Review_Picture_URL`),
+//     PRIMARY KEY (`Flight_Review_Picture_URL`),
 //     INDEX `fk_Flight_Review_Picture_URL_Flight_Review1_idx` (`Flight_Review_idHotel_Review` ASC) VISIBLE,
 //     CONSTRAINT `fk_Flight_Review_Picture_URL_Flight_Review1`
 //       FOREIGN KEY (`Flight_Review_idHotel_Review`)
-//       REFERENCES `development`.`Flight_Review` (`idHotel_Review`))
+//       REFERENCES `development`.`Flight_Review` (`idFlight_Review`))
 //   ENGINE = InnoDB
 //   DEFAULT CHARACTER SET = utf8
 //   COLLATE = utf8_unicode_ci
