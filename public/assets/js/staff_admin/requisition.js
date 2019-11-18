@@ -1,246 +1,177 @@
-staffRecord = [
-    {
-        'ID' : '111',
-        'Name': 'Rick Roll',
-        'Department': 'No',
-        'Role' : 'not fixed',
-        'profile_picture': 'https://i.ytimg.com/vi/oHg5SJYRHA0/hqdefault.jpg'
-    },
-    {
-        'ID' : '116',
-        'Name': 'Rick Roll 2.0',
-        'Department': 'Despacito HQ',
-        'Role' : 'Singer',
-        'profile_picture': 'https://static.stereogum.com/blogs.dir/2/files/2008/03/rickroll-still-compressed.jpg'
-    },
-    {
-        'ID' : '117',
-        'Name': 'Jeff',
-        'Department': 'Street',
-        'Role' : 'Detective',
-        'profile_picture': 'https://i.kym-cdn.com/entries/icons/original/000/016/894/mynameehhjeff.jpg'
-    },
-    {
-        'ID' : '118',
-        'Name': 'Chen',
-        'Department': 'Bicycler',
-        'Role' : 'Honk Honk',
-        'profile_picture': 'http://i.imgur.com/WE3suWE.png?1'
-    },
-    
-
-]
-
-if(canCreate == 'true'){
-    const TheForm = new Set(['Create','Read','Update','Delete'])
-    var staffList = document.getElementsByTagName('staffList')[0]
-    var staffCard = staffList.getElementsByTagName('staffCard')[0]
-    var infos = staffCard.getElementsByTagName('infoStaff')[0]
-    var info = infos.getElementsByTagName('p')[0]
-    infos.removeChild(info)
-    staffList.removeChild(staffCard)
-
-    let generateStaffCard = function(staffs, isMockup) {
-        staffs.forEach(function(detail) {
-            var newStaffCard = staffCard.cloneNode(true)
-            var newInfo = info.cloneNode(true)
-            if (detail['profile_picture']) {
-               newStaffCard.getElementsByTagName('profileStaff')[0].style.backgroundImage = `url('${detail['profile_picture']}')`
-           }
-            delete detail['profile_picture']
-            newStaffCard.getElementsByClassName('staffID')[0].textContent = detail['staffID']
-            for (const [key, value] of Object.entries(detail)) {
-                newInfo.getElementsByTagName('yTitle')[0].textContent = key
-                newInfo.getElementsByTagName('yDetail')[0].textContent = value
-                newStaffCard.getElementsByTagName('infoStaff')[0].appendChild(newInfo.cloneNode(true))
-            }
-            staffList.appendChild(newStaffCard)
-        })
-        Array.prototype.forEach.call(document.getElementsByClassName('stapprove'), function(item, index) {
-            item.addEventListener('click', function() {
-                let thisStaffCard = this.parentNode.parentNode
-                let strInput = Array.from(TheForm, function(s) {
-                    return `<div class="form-group">
-                    <label for="${s}">${s}</label>
-                    <input type="checkbox" class="form-control" id="${s}">
-                </div>`
-                }).join('')
-                Swal.fire({
-                    title: '<b>HTML Staff Approval</b>',
-                    icon:'warning',
-                    html: 'Please select which permission you will give to this staff?'+strInput,
-                    focusConfirm: false,
-                    showCancelButton: true,
-                    cancelButtonColor: 'green',
-                    preConfirm: function() {
-                        [...TheForm].forEach(function(item) {
-                            const thisStaffId = thisStaffCard.getElementsByClassName('staffID')[0].textContent
-                            const cC = (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()
-                            const cR = (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()
-                            const cU = (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()
-                            const cD = (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase()
-                        })
-                    }
-                }).then(function(result){
-                    if(result.value){
-                        Swal.fire({
-                            icon: 'question',
-                            title: '<b>Are you sure?</b>',
-                            text: 'C R U D : '+
-                            (document.getElementById('Create').checked).toString().substring(0,1).toUpperCase()+" "+
-                            (document.getElementById('Read').checked).toString().substring(0,1).toUpperCase()+" "+
-                            (document.getElementById('Update').checked).toString().substring(0,1).toUpperCase()+" "+
-                            (document.getElementById('Delete').checked).toString().substring(0,1).toUpperCase(),
-                            showCancelButton: true,
-                            cancelButtonColor: 'green',
-                            confirmButtonColor: 'blue',
-                            confirmButtonText: 'APPROVE',
-                            cancelButtonText: 'No'
-                        }).then(function(result){
-                            if(result.value){
-                                Swal.fire({
-                                    icon:'success',
-                                    title: 'Staff Approved!',
-                                    showConfirmButton: false,
-                                    timer: 1000
-                                })
-                                setTimeout(function() {
-                                 location.reload(true)
-                             }, 1200) }else{}
-                        })
-                    }else{}
-                })
-            })
-        })
-    
-    }
-    
-    Swal.fire({
-        icon: 'info',
-        title: 'Use Mockup?',
-        text: 'Some system are still in development, would you like to use the mockup version?',
-        showCancelButton: true,
-        cancelButtonColor: '#d33',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, use mockup',
-        cancelButtonText: 'No, don\'t use mockup'
-    }).then(function(result) {
-        if (result.value) {
-            generateStaffCard(staffRecord, true)
-        } else {
-            generateStaffCard(data, false)
-        }
-    })
-
- }
-
-
- 
-/*function reject(){
-    
-    var conf = confirm("Are you sure?");
-    if(conf){   
-    Swal.fire({
-    icon: 'error',
-    title: 'Rejected',
-    text: 'You reject the application form',
-  })    
-    }
-    else{
-    }
-}*/
-
-function reject(){
-    Swal.fire({
-        icon: 'warning',
-        title: '<h1 style="color:red">Are you sure?</h1>',
-        html: '<h2 style="color:red">This action cannot be undone!</h2>',
-        showCancelButton: true,
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
-    }).then(function(result) {
-        if (result.value) {
-           Swal.fire({
-               icon: 'error',
-               title:'Staff Rejected',
-               showConfirmButton: false,
-               timer: 1000
-           })
-           setTimeout(function() {
-            location.reload(true)
-        }, 1200)
-        } else {
-            
-        }
-    })
-}
-
-
-function showUD(){
-    if (cU.style.display === "none") {
-        cU.style.display = "inline";
-      } else {
-        cU.style.display = "none";
-        document.getElementById("cU").checked = false;
-      }
-    if (cD.style.display === "none") {
-        cD.style.display = "inline";
-      } else {
-        document.getElementById("cD").checked = false;
-        cD.style.display = "none";
-      }  
-
-    }
-
-function confirmCRUD(){
-    var cC = document.getElementById("cC").checked; var cR = document.getElementById("cR").checked;
-    var cU = document.getElementById("cU").checked; var cD = document.getElementById("cD").checked;
-    document.getElementById("crudshow").value = "";
-    document.getElementById("crudshow").append("asdasd");
-    if(cC){
-        document.getElementById("crudshow").value+="1";
-    } else{
-        document.getElementById("crudshow").value+="0";
-    }
-
-    if(cR){
-        document.getElementById("crudshow").value+="1";
-    } else{
-        document.getElementById("crudshow").value+="0";
-    }
-
-    if(cU){
-        document.getElementById("crudshow").value+="1";
-    } else{
-        document.getElementById("crudshow").value+="0";
-    }
-
-    if(cD){
-        document.getElementById("crudshow").value+="1";
-    } else{
-        document.getElementById("crudshow").value+="0";
-    }
-
-    if(document.getElementById("crudshow").value == "0000"){
-        alert("You didn't check any checkbox");
-    }
-    if(confirm("Complete the approval?")){
-    // SEND DATA HERE
-    Swal.fire({
-        icon: 'success',
-        title: 'Staff Approved!',
-        text: 'Staff CRUD : '+document.getElementById("crudshow").value,
-        showConfirmButton: false,
-        timer: 1500
-      })
-      setTimeout(function() {
-        location.reload(true)
-    }, 1200)
-    }
-    else{
+Array.prototype.forEach.call(document.getElementsByClassName('reject'), function(item) {
+    item.addEventListener('click', function() {
+        let thisManCard = this.parentNode.parentNode
+        let thisManId = thisManCard.getElementsByClassName('userid')[0].textContent
         Swal.fire({
-            icon: 'error',
-            title: 'Approval canceled',
-        })   
-    }
-}
+            html: `
+                <img class="my-3" style="width: 80%; height: 200px;" src="https://i.kym-cdn.com/entries/icons/original/000/028/223/hmlspst6qjo11.jpg">
+                <p class="text-center font-weight-bold" style="font-size: 1.5rem;">You're about to end this man's whole career</p>
+            `,
+            showCancelButton: true
+        }).then(function(result) {
+            if(result.value) {
+                $.ajax({
+                    url: '/admin/staff/getQuery',
+                    method: 'POST',
+                    data: {
+                        sql: `SELECT * FROM staff_admin_info WHERE staffId='${thisManId}' AND status='active'`
+                    }
+                }).done(function(data) {
+                    if (data.status == 200) {
+                        if (data.result.length) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: `Sorry, this man just got away from your hand`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(function(){
+                                location.reload(true)
+                            }, 1500)   
+                        } else {
+                            try {
+                                $.ajax({
+                                    url: '/admin/staff/sendQuery',
+                                    method: 'POST',
+                                    data: {
+                                        sql: `DELETE FROM staff_admin_CRUD WHERE staffId='${thisManId}'`
+                                    }
+                                }).done(function(data) {
+                                    if (data.status == 200) {
+                                        $.ajax({
+                                            url: '/admin/staff/sendQuery',
+                                            method: 'POST',
+                                            data: {
+                                                sql: `DELETE FROM staff_admin_info WHERE staffId='${thisManId}'`
+                                            }
+                                        }).done(function(data) {
+                                            if (data.status == 200) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: `What a shame`,
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                                thisManCard.parentNode.removeChild(thisManCard)
+                                            } else {
+                                                throw 'Wrong one'                  
+                                            }
+                                        })
+                                    } else {
+                                        throw 'Wrong one'
+                                    }
+                                })
+                            } catch {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: `Something went wrong`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                setTimeout(function(){
+                                    location.reload(true)
+                                }, 1500)
+                            }
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `Something went wrong`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        setTimeout(function(){
+                            location.reload(true)
+                        }, 1500)
+                    }
+                })
+            }
+        })
+    })
+})
+
+Array.prototype.forEach.call(document.getElementsByClassName('approve'), function(item) {
+    item.addEventListener('click', function() {
+        let thisManCard = this.parentNode.parentNode
+        let thisManId = thisManCard.getElementsByClassName('userid')[0].textContent
+        Swal.fire({
+            title: `Give this man some Auth.`,
+            html: `
+                <img class="my-3" style="width: 80%; height: 200px;" src="https://i.kym-cdn.com/entries/icons/original/000/010/843/ricardo.jpg">
+                <div class="m-auto" style="width: fit-content;">
+                    <input id="createAuth" class="d-none" type="checkbox">
+                    <label for="createAuth" class="btn m-1">CREATE</label>
+                    <input id="readAuth" class="d-none" type="checkbox" checked="true">
+                    <label for="readAuth" class="visible btn m-1">READ</label><br/>
+                    <input id="updateAuth" class="d-none" type="checkbox">
+                    <label for="updateAuth" class="btn m-1">UPDATE</label>
+                    <input id="deleteAuth" class="d-none" type="checkbox">
+                    <label for="deleteAuth" class="btn m-1">DELETE</label>
+                </div>
+            `,
+            focusConfirm: false,
+            confirmButtonColor: '#28a745',
+            showCancelButton: true,
+            preConfirm: function() {
+                let [canCreate, canRead, canUpdate, canDelete] = [
+                    createAuth.checked.toString().substring(0, 1).toUpperCase(),
+                    readAuth.checked.toString().substring(0, 1).toUpperCase(),
+                    updateAuth.checked.toString().substring(0, 1).toUpperCase(),
+                    deleteAuth.checked.toString().substring(0, 1).toUpperCase()
+                ]
+                if (canRead == 'F') {
+                    canUpdate = 'F'
+                    canDelete = 'F'
+                }
+                $.ajax({
+                    url: '/admin/staff/sendQuery',
+                    method: 'POST',
+                    data: {
+                        sql: `UPDATE staff_admin_info SET status='active' WHERE staffId='${thisManId}'`
+                    }
+                }).done(function(data) {
+                    if (data.status == 200) {
+                        $.ajax({
+                            url: '/admin/staff/sendQuery',
+                            method: 'POST',
+                            data: {
+                                sql: `INSERT INTO staff_admin_CRUD VALUES('${thisManId}', '${canCreate}', '${canRead}', '${canUpdate}', '${canDelete}') ON DUPLICATE KEY UPDATE can_create=VALUES(can_create), can_read=VALUES(can_read), can_update=VALUES(can_update), can_delete=VALUES(can_delete)`
+                            }
+                        }).done(function(data) {
+                            if (data.status == 200) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: `Just a poor man passing through`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                thisManCard.parentNode.removeChild(thisManCard)
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: `Eew`,
+                                    text: `This man just got nothing in CRUD system`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                setTimeout(function(){
+                                    location.reload(true)
+                                }, 1500)            
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `Something went wrong`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        setTimeout(function(){
+                            location.reload(true)
+                        }, 1500)
+                    }
+                })
+            }
+        })
+    })
+})
