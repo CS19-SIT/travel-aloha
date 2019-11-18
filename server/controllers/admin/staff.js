@@ -43,6 +43,11 @@ exports.showStaffCandidatesList = async function(request, response) {
 			response.redirect('/admin/staff/recruiting')
 			return
 		}
+		const formStatus = await adminStaffModel.formStatus(request.user.user_id)
+		if (formStatus.length) {
+			response.redirect('/admin/staff/management')
+			return
+		}
 		const candidatesList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS Name, sdi.department, sdi.role, sdi.message FROM user, staff_admin_pre sdi WHERE user_id=staffId AND sdi.status='pending'`)
 		response.render('staff_admin/requisition', {
             pageTitle: 'TravelAloha - Admin - StaffRequisition',
