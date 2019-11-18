@@ -5,11 +5,6 @@ const landingController = require("../controllers/landing");
 
 router.post("/find", landingController.find);
 
-router.get("/hotel", (req, res) =>
-    res.render("landingpage_hotel/landingpage", {
-        pageTitle: "Find Hotel",
-        user: req.user
-    })
-);
+router.get("/hotel", landingController.index);
 
 module.exports = router;

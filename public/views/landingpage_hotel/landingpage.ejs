@@ -108,59 +108,16 @@
 
     <!-- recommended card -->
     <div class="card-box">
+    <% hotels.forEach( hotel => { %>
         <div class="card-recommended">
             <div class="card" style="width: 18rem;">
-                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
+                <img src="<%= hotel.hotelPicture %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h1>Place Country</h1>
+                    <h1><%= hotel.hotelName %></h1>
                 </div>
             </div>
         </div>
-
-        <div class="card-recommended">
-            <div class="card" style="width: 18rem;">
-                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>Place Country</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-recommended">
-            <div class="card" style="width: 18rem;">
-                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>Place Country</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-recommended">
-            <div class="card" style="width: 18rem;">
-                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>Place Country</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-recommended">
-            <div class="card" style="width: 18rem;">
-                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>Place Country</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-recommended">
-            <div class="card" style="width: 18rem;">
-                <img src="../../assets/images/dr5cbbya3md01.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>Place Country</h1>
-                </div>
-            </div>
-        </div>
+    <% }) %>
     </div>
 
 
