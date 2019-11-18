@@ -1,26 +1,26 @@
 const db = require("../db/db");
 
 exports.getHotelReviewInfo = async ({
-  Title_Hotel,
-  Text_Hotel_Review,
-  timestamp,
-  Cleanliness_Hotel_Rating,
-  Comfort_Hotel_Rating,
-  Meal_Hotel_Rating,
-  Location_Hotel_Rating,
-  Service_Hotel_Rating,
+  // Title_Hotel,
+  // Text_Hotel_Review,
+  // timestamp,
+  // Cleanliness_Hotel_Rating,
+  // Comfort_Hotel_Rating,
+  // Meal_Hotel_Rating,
+  // Location_Hotel_Rating,
+  // Service_Hotel_Rating,
   hotel_hotelId
 }) => {
   try {
     await db.query("SELECT * FROM Hotel_Review where hotel_hotelId = ?", [
-      Title_Hotel,
-      Text_Hotel_Review,
-      timestamp,
-      Cleanliness_Hotel_Rating,
-      Comfort_Hotel_Rating,
-      Meal_Hotel_Rating,
-      Location_Hotel_Rating,
-      Service_Hotel_Rating,
+      // Title_Hotel,
+      // Text_Hotel_Review,
+      // timestamp,
+      // Cleanliness_Hotel_Rating,
+      // Comfort_Hotel_Rating,
+      // Meal_Hotel_Rating,
+      // Location_Hotel_Rating,
+      // Service_Hotel_Rating,
       hotel_hotelId
     ]);
   } catch (error) {
@@ -30,24 +30,24 @@ exports.getHotelReviewInfo = async ({
 
 
 exports.getFlightReviewInfo = async ({
-    Title_Flight,
-    Text_Flight_Review,
-    timestamp,
-    CabinCrewRating_Flight_Rating,
-    Comfort_Flight_Rating,
-    Meal_Flight_Rating,
-    Entertainment_Flight_Rating,
+    // Title_Flight,
+    // Text_Flight_Review,
+    // timestamp,
+    // CabinCrewRating_Flight_Rating,
+    // Comfort_Flight_Rating,
+    // Meal_Flight_Rating,
+    // Entertainment_Flight_Rating,
     Flight_Flight_number
   }) => {
     try {
       await db.query("SELECT * FROM Flight_Review where Flight_Flight_number = ?", [
-        Title_Flight,
-        Text_Flight_Review,
-        timestamp,
-        CabinCrewRating_Flight_Rating,
-        Comfort_Flight_Rating,
-        Meal_Flight_Rating,
-        Entertainment_Flight_Rating,
+        // Title_Flight,
+        // Text_Flight_Review,
+        // timestamp,
+        // CabinCrewRating_Flight_Rating,
+        // Comfort_Flight_Rating,
+        // Meal_Flight_Rating,
+        // Entertainment_Flight_Rating,
         Flight_Flight_number
       ]);
     } catch (error) {
