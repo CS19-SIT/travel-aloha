@@ -1,4 +1,4 @@
-const Rating_Review = require("../models/Rating_Review");
+const Rating_Review = require("../../models/Rating_Review");
 
 exports.getHotel = (req, res) =>
   res.render("review_rating/hotel", {
