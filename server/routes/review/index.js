@@ -12,4 +12,6 @@ router.get("/flight", reviewController.getFlight);
 
 // router.get("/flight/:Flight_Flight_number", reviewController.getFlight);
 
+router.post("/hotel", reviewController.postHotelReview);
+
 module.exports = router;

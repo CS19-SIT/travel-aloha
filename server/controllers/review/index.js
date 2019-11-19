@@ -1,4 +1,4 @@
-const Rating_Review = require("../../models/Rating_Review");
+const Rating_ReviewModel = require("../../models/Rating_Review");
 
 exports.getHotel = (req, res) =>
   res.render("review_rating/hotel", {
@@ -24,7 +24,7 @@ exports.postHotelReview = async (req, res) => {
     hotel_hotelId
   } = req.body;
   try {
-    await contactModel.insertNewHotel({
+    await Rating_ReviewModel.insertNewHotel_Review({
       Title_Hotel,
       Text_Hotel_Review,
       Cleanliness_Hotel_Rating,
@@ -38,7 +38,7 @@ exports.postHotelReview = async (req, res) => {
     // await contactModel.insertNewHotelFile({
     //   hotelPicture
     // })
-    res.redirect("review_rating/hotel");
+    res.redirect("/hotel");
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(404);
