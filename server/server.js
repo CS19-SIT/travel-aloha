@@ -81,13 +81,13 @@ const checkoutRoutes = require("./routes/checkout/index");
 const contactRoutes = require("./routes/contact/index");
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
+const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
-const hotelRoutes = require("./routes/landing");
 
 app.use(indexRoutes);
 app.use(authRoutes);
@@ -112,8 +112,6 @@ app.use("/flight", flightRoutes);
 app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
-
-app.use(landingRoutes);
 
 app.use(errorsController.get404);
 
