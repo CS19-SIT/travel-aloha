@@ -30,7 +30,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('reject'), function
             confirmButtonText: 'Yeah',
             showCancelButton: true,
             preConfirm: function() {
-                rejectedMessage = message.value.trim().replace(/ {1,}/g, ' ')
+                rejectedMessage = message.value.trim().replace(/ {1,}/g, ' ').replace(/'/g, "\\'")
             }
         }).then(function(result) {
             if(result.value) {
@@ -114,7 +114,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
             showCancelButton: true,
             preConfirm: function() {
                 [approveMessage, canCreate, canRead, canUpdate, canDelete] = [
-                    message.value.trim().replace(/ {1,}/g, ' '),
+                    message.value.trim().replace(/ {1,}/g, ' ').replace(/'/g, "\\'"),
                     createAuth.checked.toString().substring(0, 1).toUpperCase(),
                     readAuth.checked.toString().substring(0, 1).toUpperCase(),
                     updateAuth.checked.toString().substring(0, 1).toUpperCase(),

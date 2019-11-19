@@ -54,7 +54,7 @@ if (submitButton) {
 			}).then(function(result) {
 				if (result.value) {
 					AJAXsend(
-						`INSERT INTO staff_admin_pre VALUES ('${userId}', '${department.value.trim().replace(/ {1,}/g, ' ')}', '${role.value.trim().replace(/ {1,}/g, ' ')}', 'pending', '${message.value.trim().replace(/ {1,}/g, ' ')}')`,
+						`INSERT INTO staff_admin_pre VALUES ('${userId}', '${department.value.trim().replace(/ {1,}/g, ' ')}', '${role.value.trim().replace(/ {1,}/g, ' ')}', 'pending', '${message.value.trim().replace(/ {1,}/g, ' ').replace(/'/g, "\\'")}')`,
 						function(data) {
 							if (data.status == 200)  {
 								Swal.fire({
