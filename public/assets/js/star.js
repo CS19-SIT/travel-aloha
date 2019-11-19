@@ -2,13 +2,16 @@
 function displayStar(dots,score){
     const allStar=Math.floor(score);
     const halfstar=(allStar<score);
-    const tStar=Math.ceil(5-score);
     for(var i=1;i<=score;i++){
       $('div.dot-'+i,dots).addClass('green-dot');
     }
     if(halfstar){
       $('.dot-'+i,dots).addClass('yellow-dot');
     }
+    for(var j=1;j<=5;j++){
+    if(!$('.dot-'+i,dots).hasClass('green-dot')&&!$('.dot-'+i,dots).hasClass('yellow-dot')){
+      $('.dot-'+i,dots).addClass('red-dot');
+    }}
   }
 
 function displaytextscore(score){
@@ -21,5 +24,4 @@ function displaytextscore(score){
     else{
         $('#text').addClass('green-text');
     }
-
 }
