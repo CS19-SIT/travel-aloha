@@ -1,0 +1,122 @@
+<%- include('../includes/header') %>
+
+</head>
+
+<body>
+<%- include('../includes/navbar') %>
+
+<div class="container my-4">
+    <div class="card py-4 px-4">
+            <!-- Search box here -->
+            <div class="container my-2">
+                <form class="form-inline my-lg-0 justify-content-end">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+
+            <!-- Table Here -->
+            <table class="table table-striped py-2">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Flight</th>
+                        <th scope="col">Airline</th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Departure time</th>
+                        <th scope="col">Arrival</th>
+                        <th scope="col">Arrival time</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>SL001</td>
+                        <td>Thai Lion Air</td>
+                        <td>Hatyai</td>
+                        <td>17.15</td>
+                        <td>Bangkok</td>
+                        <td>19.00</td>
+                        <td>105 min</td>
+                        <td>
+                            <div class="form-inline justify-content-center">
+                                <button type="button" class="btn btn-secondary mr-1">edit</button>
+                                <button type="button" class="btn btn-danger">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>SL002</td>
+                        <td>Thai Lion Air</td>
+                        <td>Hatyai</td>
+                        <td>17.15</td>
+                        <td>Bangkok</td>
+                        <td>19.00</td>
+                        <td>105 min</td>
+                        <td>
+                            <div class="form-inline justify-content-center">
+                                <button type="button" class="btn btn-secondary mr-1">edit</button>
+                                <button type="button" class="btn btn-danger">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>SL003</td>
+                        <td>Thai Lion Air</td>
+                        <td>Hatyai</td>
+                        <td>17.15</td>
+                        <td>Bangkok</td>
+                        <td>19.00</td>
+                        <td>105 min</td>
+                        <td>
+                            <div class="form-inline justify-content-center">
+                                <button type="button" class="btn btn-secondary mr-1">edit</button>
+                                <button type="button" class="btn btn-danger">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                            <th scope="row">4</th>
+                            <td>SL004</td>
+                            <td>Thai Lion Air</td>
+                            <td>Hatyai</td>
+                            <td>17.15</td>
+                            <td>Bangkok</td>
+                            <td>19.00</td>
+                            <td>105 min</td>
+                            <td>
+                                <div class="form-inline justify-content-center">
+                                    <button type="button" class="btn btn-secondary mr-1">edit</button>
+                                    <button type="button" class="btn btn-danger">delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>SL005</td>
+                            <td>Thai Lion Air</td>
+                            <td>Hatyai</td>
+                            <td>17.15</td>
+                            <td>Bangkok</td>
+                            <td>19.00</td>
+                            <td>105 min</td>
+                            <td>
+                                <div class="form-inline justify-content-center">
+                                    <button type="button" class="btn btn-secondary mr-1">edit</button>
+                                    <button type="button" class="btn btn-danger">delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+
+        </div>
+</div>
+
+<script src="/assets/js/admin-flight.js"></script>
+
+<%- include('../includes/footer') %>
