@@ -1,9 +1,10 @@
 <%- include('../includes/header') %>
 <link rel="stylesheet" href="../../assets/css/styles-hotel-booking-payment.css">
-<%- include('../includes/navbar') %>
+
 </head>
 
 <body>
+    <%- include('../includes/navbar') %>
   <!-- <%= hotelData %> -->
   <div class="container mt-3">
     <div class="row no-gutters">
@@ -25,7 +26,7 @@
           <h5>Your Information</h5>
           <p>Contact Name <span><%-hotelData.inputFirstName+"   "+hotelData.inputLastName -%></span></p>
           <p>Email <span><%- hotelData.inputEmail-%></span></p>
-          <p>Phone Number <span><%- hotelData.inputPhoneNo-%>></span></p>
+          <p>Phone Number <span><%- hotelData.inputPhoneNo-%></span></p>
         </div>
         <div class="detail-list booking-detail-list">
           <h5>Booking Detail</h5>
