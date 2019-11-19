@@ -2,36 +2,42 @@
 
 <link href="../../assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
 <%- include('../includes/navbar') %>
-
 </head>
 
 <body>
-    <div class="container mt-3">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-9 flight-head">
-                        <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
-                        <i class="fa fa-long-arrow-right"></i>
-                        &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
-                    </div>
-                    <div class="align-bottom date text-right col-md-3">
-                        03-Nov-2019
+    <div class="container my-3">
+        <div class="row">
+            <!-- Flight info part -->
+            <div class="col-md-8">
+                <!-- Flight header -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9 flight-head">
+                                <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
+                                <i class="fa fa-long-arrow-right"></i>
+                                &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
+                            </div>
+                            <div class="align-bottom date text-right col-md-3">
+                                03-Nov-2019
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8">
+                <!-- Info card -->
                 <div class="card">
                     <div class="card-body">
-                        <p>
-                            Sunday, 03-Nov-2019
-                        </p>
+                        <div class="row">
+                            <p class="col-md-10">
+                                Sunday, 03-Nov-2019
+                            </p>
+                            <div class="col-md-2 text-right save-flight">
+                                <i class="fa fa-bookmark-o" data-toggle="tooltip" data-placement="top"
+                                    title="Bookmark this flight"></i>
+                            </div>
+                        </div>
+
                         <div class="row mb-2">
                             <div class="col-md-1">
                                 <img src="../../assets/images/nok-air-logo.jpg" alt="logo" class="airline-logo">
@@ -53,11 +59,12 @@
                                 Chiang Mai<span class="airport-code">&nbsp;CNX</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <a href="/flight_booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a>
+                <a href="/flight/booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a>
             </div>
+
+            <!-- Billing part -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -80,11 +87,17 @@
                                 <div class="col-md-4">1964.43 &#3647; </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
     <%- include('../includes/footer') %>

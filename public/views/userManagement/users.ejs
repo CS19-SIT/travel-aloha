@@ -1,27 +1,64 @@
 <%- include('../includes/header') %>
+</head>
+
+<body>
 <%- include('../includes/navbar') %>
 
+<style> 
+    .profilepicture1{
+      width:90px;
+      height:90px;
+    }   
+    .punvp{
+        color:#25282B;
+        font-size: 18px; 
+            }
+.userinfo{
+    color:#52575C;
+ 
+}
+</style>
+
     <div class="container-fluid">
-        <h1 align="center"  id="title"></h1><br>
+        <h1 align="center"  id="title">User Management</h1><br>
+       
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class="punvp">
                         <th scope="col">Profile Picture</th>
                         <th scope="col">Role</th> 
-                        <th scope="col">id</th>
+                        <th scope="col">Level</th> 
                         <th scope="col">Username</th>
                         <th scope="col">Name</th>
                         <th scope="col">Gender</th>
                         <!-- <th scope="col">Birth_date</th> -->
                         <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
+                        <th scope="col">button</th>
 
                     </tr>
                 </thead>
-
+                <tbody>
+                    <% for(var i = 0; i <data.length;i++) { %>
+                    <tr class="userinfo">
+                        <td class="profilepicture1">
+                            <img src="" class="rounded-circle"  alt="image">                                  
+                        </td>
+                        <td><%= data[i].role %></td>
+                        <td><%= data[i].level %></td> 
+                        <td><%= data[i].username %></td> 
+                        <td><%= data[i].firstname +" "+data[i].lastname %></td> 
+                        <td><%= data[i].gender %></td> 
+                        <td><%= data[i].email %></td>
+                        <td>
+                            <a href="/edit/<%= data[i].user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/delete/<%= data[i].user_id %>" class="btn btn-sm btn-danger">Delete</a>   
+                            <a href="/detail/<%= data[i].user_id %>" class="btn btn-sm btn-primary" >More Info</a> 
+                        </td>
+                        
+                    </tr>
+                    <% } %>
+                </tbody>
             </table>
     </div>
 </div>
-</body>
-</html>
 <%- include('../includes/footer') %>
