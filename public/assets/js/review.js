@@ -12,6 +12,7 @@ $(document).ready(function(){
     onLeave: function(currentIndex, currentRating, $el){
         $('.live-rating').text(currentRating);
       }
+  
   });
   $(".my-rating-2").starRating({
     initialRating: 0,
@@ -25,6 +26,7 @@ $(document).ready(function(){
     onLeave: function(currentIndex, currentRating, $el){
         $('.live-rating-2').text(currentRating);
       }
+      
   });
   $(".my-rating-3").starRating({
     initialRating: 0,
@@ -51,6 +53,7 @@ $(document).ready(function(){
     onLeave: function(currentIndex, currentRating, $el){
         $('.live-rating-4').text(currentRating);
       }
+      
   });
   $(".my-rating-5").starRating({
     initialRating: 0,
@@ -64,6 +67,7 @@ $(document).ready(function(){
     onLeave: function(currentIndex, currentRating, $el){
         $('.live-rating-5').text(currentRating);
       }
+    
   });
   
 });
