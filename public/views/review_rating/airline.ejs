@@ -232,7 +232,7 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <form method="POST" action="">
+                                  <form method="POST" action="/review/flight">
                                     <div class="form-group">
                                                 <textarea class="form-control" id="message-text" placeholder="title" name="Title_Flight"></textarea>
                                     </div>
@@ -262,7 +262,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Send message</button>
+                                  <button type="submit" class="btn btn-primary">Send message</button>
                                 </div>
                               </div>
                             </div>
@@ -343,9 +343,7 @@
                     </div>-->
                 </div> 
                 <!-- Review by user -->
-                <% drinks.forEach(function(drink) { %>
-                    <%- include('../includes/reviewcard') %>
-                <% }); %>
+
                 <!--<div class="review p-5">
                         <div class="row d-flex">
                             <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px" height="60px"></div>
