@@ -95,7 +95,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), functio
         Swal.fire({
             title: `Give this man some Auth.`,
             html: `
-                <img class="my-3" style="width: 80%; height: 200px;" src="https://i.kym-cdn.com/entries/icons/original/000/010/843/ricardo.jpg">
+                <img class="my-3" style="width: 80%; height: 200px;" src="https://media.tenor.com/images/2057f20854ca8a9fc52de07839cc60a1/tenor.gif">
                 <div class="mx-auto mb-2" style="width: fit-content;">
                     <input id="createAuth" class="d-none" type="checkbox">
                     <label for="createAuth" class="btn m-1">CREATE</label>
