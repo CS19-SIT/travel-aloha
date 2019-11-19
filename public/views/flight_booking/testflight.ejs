@@ -27,14 +27,14 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                <label class="form-check-label" for="exampleRadios3">
                     3 radio
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                <label class="form-check-label" for="exampleRadios4">
                     4 radio
                 </label>
             </div>
@@ -42,35 +42,65 @@
         <div class="my-3">
             <h1>Back flight</h1>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios1" value="option1"
+                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios5" value="option5"
                     checked>
-                <label class="form-check-label" for="exampleRadios1">
+                <label class="form-check-label" for="exampleRadios5">
                     1 radio
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
+                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios6" value="option6">
+                <label class="form-check-label" for="exampleRadios6">
                     2 radio
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
+                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios7" value="option7">
+                <label class="form-check-label" for="exampleRadios7">
                     3 radio
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
+                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios8" value="option8">
+                <label class="form-check-label" for="exampleRadios8">
                     4 radio
                 </label>
             </div>
         </div>
-        <button type="submit" class="btn btn-info">Book now</button>
+        <button type="submit" class="btn btn-info" onclick="hahayes()">Book now</button>
     </div>
 
+    <script>
+        function hahayes() {
+            // const radio = document.getElementsByName('exampleRadio');
+            // const radio2 = document.getElementsByName('exampleRadio2')
+            $.ajax({
+                url: "/flight/booking/donut",
+                method: "POST",
+                data: {
+                    option1: document.getElementById('exampleRadios1').value,
+                    option2: document.getElementById('exampleRadios2').value,
+                    option3: document.getElementById('exampleRadios3').value,
+                    option4: document.getElementById('exampleRadios4').value,
+                    option5: document.getElementById('exampleRadios5').value,
+                    option6: document.getElementById('exampleRadios6').value,
+                    option7: document.getElementById('exampleRadios7').value,
+                    option8: document.getElementById('exampleRadios8').value,
+                }
+            }).done(function(data) { // check what I sent in comtroller :'(
+                if (data.status == 200){
+                    const ha = data.data;
 
+                    console.log(ha);
+                }
+    
+                
+                    //Here aft
+                else
+                    console.log('Oh no')
+            })
+        }
+    </script>
 
 
     <%- include('../includes/footer') %>

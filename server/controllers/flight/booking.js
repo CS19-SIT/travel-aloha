@@ -1,7 +1,7 @@
 const Flight = require("../../models/flight_info");
 
 exports.getIndex = async (req, res) => {
-  info = await Flight.getFlightInfoByNumber("cs00002");
+  info = await Flight.getFlightInfoByNumber("cs00420");
   console.log(info);
   // console.log(req);
   res.render("flight_booking/flight_info", {
@@ -13,7 +13,8 @@ exports.getIndex = async (req, res) => {
     depart_date: info['Dep_Date'],
     destinationCity: info['des_city'],
     des: info['Destination'],
-    depTime: info['Depart_Time']
+    depTime: info['Dep_time'],
+    arrTime: info['Arr_time']
 
   });
   console.log("getIndex");
@@ -31,8 +32,37 @@ exports.getTest = (req, res) =>
     user: req.user
   });
 
+
 exports.getContact = (req, res) =>
   res.render("flight_booking/contact_form", {
     pageTitle: "Contact information",
     user: req.user
   });
+
+exports.getDonut = (req, res) =>{
+  try {
+    const db = require('../../db/db');
+
+    const ha= req.body;
+    console.log(req.body.option1)
+    console.log(req.body.option2)
+    console.log(req.body.option3)
+    console.log(req.body.option4)
+    console.log(req.body.option5)
+    console.log(req.body.option6)
+    console.log(req.body.option7)
+    console.log(req.body.option8)
+    //Do query statements using "req.body" value in here and send it back to Ajax 
+
+    //U can also do Query statements in Ajax
+
+    res.json({
+      status: 200, // means OKKKKKKK
+      data: ha
+    })
+  } catch {
+    res.json({
+      status: 400 // means error
+    })
+  }
+}

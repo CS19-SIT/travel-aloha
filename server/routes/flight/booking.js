@@ -9,8 +9,11 @@ router.get("/", flightBookingController.getIndex);
 // router.post("/", flightBookingController.postIndex);
 
 router.get("/test", flightBookingController.getTest);
+// router.post("/test", flightBookingController.postTest);
 
 router.get("/contact", flightBookingController.getContact);
+
+router.post("/donut", flightBookingController.getDonut);
 
 
 
