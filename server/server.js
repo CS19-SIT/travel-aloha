@@ -9,7 +9,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 const session = require("express-session");
@@ -44,13 +44,19 @@ app.set("views", viewPath);
 app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 app.use(cookieParser());
 app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
-    cookie: { maxAge: 900000 },
+    cookie: {
+      maxAge: 900000
+    },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
@@ -77,13 +83,15 @@ const checkoutRoutes = require("./routes/checkout/index");
 const contactRoutes = require("./routes/contact/index");
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
+const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
+const userRoutes = require("./routes/user/dashboard");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
-const userDashboardRoutes = require('./routes/user/dashboard/userDashboard');
+
 app.use(indexRoutes);
 app.use(authRoutes);
 
@@ -97,10 +105,11 @@ app.use("/admin/user", adminUserRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
-app.use("/dashboard/user",userDashboardRoutes);
+app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
+app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);
