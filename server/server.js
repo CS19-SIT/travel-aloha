@@ -44,13 +44,17 @@ app.set("views", viewPath);
 app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
-    cookie: { maxAge: 900000 },
+    cookie: {
+      maxAge: 900000
+    },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
@@ -83,6 +87,7 @@ const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
+const hotelRoutes = require("./routes/landing");
 
 app.use(indexRoutes);
 app.use(authRoutes);
@@ -100,12 +105,15 @@ app.use("/contact", contactRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
+app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);
 app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
+
+app.use(landingRoutes);
 
 app.use(errorsController.get404);
 
