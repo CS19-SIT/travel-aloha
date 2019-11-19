@@ -87,4 +87,5 @@ typings/
 .dynamodb/
 
 # PHP storm
+.idea
 .idea/
