@@ -83,7 +83,7 @@ const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
-
+const userDashboardRoutes = require('./routes/user/dashboard/userDashboard');
 app.use(indexRoutes);
 app.use(authRoutes);
 
@@ -97,6 +97,7 @@ app.use("/admin/user", adminUserRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
+app.use("/dashboard/user",userDashboardRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 

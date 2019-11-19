@@ -94,3 +94,41 @@ div.col-md-9{
     font-weight: 600;
     color: #0062cc;
 }
+.card-title{
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.namebox{
+    position:inherit;
+    width:100%;
+    padding-right:15px;
+}
+
+/* Size of text */
+h1{
+    font-size: 28px;
+    font-weight: 500 / Medium;
+    line-height: 36px;
+}
+h2{
+    font-size: 24px;
+    font-weight: 700 / Bold;
+    line-height: 32px;
+}
+h3{
+    font-size: 20px;
+    font-weight: 700 / Bold;
+    line-height: 24px;
+}
+h4{
+    font-size: 16px;
+    font-weight: 700 / Bold;
+    line-height: 20px;
+}
+h5{
+    font-size: 16px;
+    font-weight: 400 / Regular;
+    line-height: 20px;
+}
+
+
