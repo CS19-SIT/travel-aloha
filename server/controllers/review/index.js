@@ -46,7 +46,7 @@ exports.postHotelReview = async (req, res) => {
   }
 };
 
-exports.postFlightInfo = async (req, res) => {
+exports.postFlightReview = async (req, res) => {
   const {
     Title_Flight,
     Text_Flight_Review,
@@ -67,7 +67,7 @@ exports.postFlightInfo = async (req, res) => {
       Entertainment_Flight_Rating,
       Flight_Flight_number
     });
-    res.redirect("review_rating/airline");
+    res.redirect("/airline");
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(404);
