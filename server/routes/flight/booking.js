@@ -6,8 +6,6 @@ const authMiddleware = require("../../middlewares/auth");
 
 router.get("/", flightBookingController.getIndex);
 
-router.get("/test", flightBookingController.getTest);
-
 router.get("/contact", flightBookingController.getContact);
 
 module.exports = router;

@@ -1,11 +1,4 @@
-exports.get400 = (req, res) =>
-  res.status(404).render("errors/400", {
-    pageTitle: "TravelAloha - Bad Request",
-    user: req.user
-  });
-
-exports.get404 = (req, res) =>
-  res.status(404).render("errors/404", {
+exports.get404 = (req, res) => res.status(404).render("404", {
     pageTitle: "TravelAloha - Page Not Found",
     user: req.user
   });

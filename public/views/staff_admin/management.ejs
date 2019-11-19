@@ -5,145 +5,70 @@
 			display: inline-block;
 		}
 		background {
-			min-height: calc(100vh - 56px);
-			background-image: url('https://www.tokkoro.com/picsup/2970908-arsenixc-moon-beach-sea-clouds-trees-everlasting-summer-visual-novel___anime-wallpapers.jpg');
 			background-color: #dedede;
-			background-size: cover;
-			background-position: center;
-			background-repeat: no-repeat;
 		}
-		noPermission {
-			width: 80%;
-			min-width: 280px;
-			height: fit-content;
-			padding: 1rem;
+		managementForm {
+			width: 85%;
+			min-width: 320px;
 		}
-		tools {
+		managementTool {
 			width: 300px;
-			height: fit-content;
-			background-color: rgba(39, 39, 39, 0.39);
-			color: white;
-		}
-		staffList {
-			width: calc(95% - 300px);
-			min-width: 300px;
-			max-width: 900px;
-			height: 82vh;
-			min-height: 500px;
-			overflow: auto;
-		}
-		staffList::-webkit-scrollbar {
-			width: 8px;
-		}
-		staffList::-webkit-scrollbar-track {
-			background: #f1f1f1; 
-		}
-		staffList::-webkit-scrollbar-thumb {
-			background: #888; 
-		}
-		staffList::-webkit-scrollbar-thumb:hover {
-			background: #555; 
+			padding: 1rem 3.5rem 1.2rem 1.5rem;
 		}
 		staffCard {
-			width: 215px;
-			height: fit-content;
-			background-color: rgba(248, 248, 248, 0.75);
+			background-color: rgba(248, 248, 248, 0.7);
+			width: 220px;
 		}
-		profilePicture {
-			width: 85%;
+		profileStaff {
+			width: 80%;
 			height: 160px;
 			background-color: black;
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center 15%;
-			transition: 0.1s;
-		}
-		profilePicture:hover {
-			transform: scale(1.45);
-		}
-		.isChanged {
-			color: rgb(240, 94, 35);
 		}
 	</style>
 </head>
 <body>
-	<%- include('../includes/navbar') %>
+		<%- include('../includes/navbar') %>
+	<background class="d-flex w-100 justify-content-center">
+		<managementForm class="row flex-wrap justify-content-center my-4">
 
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+			<managementTool class="flex-shrink-0">
+				Nothing works yet<br/>
+				<span>Sort by: </span><br/>
+				<span class="mt-2">Options: </span><br/>
+				<label class="mt-2">Search: </label><br/>
+				<input type="text" id="findStaff" class="form-control" placeholder="Type your wanted info">
+				<hr class="w-100 p-1 mt-4" />
+				<buttonDirection class="d-block w-100 flex-shrink-0 text-center text-md-right p-2">
+					<button id="reloadButton" type="button" class="btn btn-outline-success" style="font-size: 0.85rem;">RELOAD</button>
+					<button id="saveButton" type="button" class="btn btn-danger px-4" style="font-size: 0.85rem;">SAVE</button>
+				</buttonDirection> 
+			</managementTool>
 
-	<% if (message) { %>
-		<script>
-			Swal.fire({
-				title: 'Congrats!!',
-				text: `<%- message %>`,
-				icon: 'success'
-			})
-		</script>
-	<% } %>
-	
-
-	<background class="d-flex w-100 justify-content-around justify-content-lg-center align-content-start flex-wrap">
-	<% if (canRead == 'false') { %>
-		<noPermission class="d-flex mt-4 justify-content-center flex-column border rounded">
-			<p class="w-100 text-center flex-shrink-0" style="font-size: 2.5rem;">&#128064;</p>
-			<p class="w-100 text-center flex-shrink-0">You don't have permission here</p>
-			<% if (canCreate == 'true') { %>
-			<buttonDirection class="d-block w-100 text-right flex-shrink-0">
-				<span class="mr-3"> But, </span>
-				<button id="checkingButton" type="button" class="btn btn-outline-success" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
-			</buttonDirection>
-			<% } %>
-		</noPermission>
-	<% } else { %>
-		<tools class="p-3 mt-4 mr-lg-3">
-			<p class="d-flex justify-content-between">
-				<span>Tools</span><% if (canCreate == 'true') { %>
-				<button type="button" class="btn btn-secondary p-1" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
-			<% } %></p>
-			<hr class="p-2 my-1">
-			<% if (canUpdate == 'true' || canDelete == 'true') { %>
-			<buttonDirection class="d-block w-100 text-right flex-shrink-0">
-				<button type="button" class="btn btn-outline-info" style="font-size: 0.85rem;" onclick="location.reload(true)">RELOAD</button>
-				<button id="save" type="button" class="btn btn-success" style="font-size: 0.85rem;">SAVE</button>
-			</buttonDirection>
-			<% } %>
-		</tools>
-		<staffList class="d-flex flex-wrap justify-content-around align-content-start px-1 py-2 mt-4">
-			<% 
-			let staffs = JSON.parse(data)
-			for (let i = 0; i < staffs.length; ++i) { %>
-			<staffCard class="d-flex flex-column align-items-center p-3 my-2 border rounded">
-				<%	staffs[i]['profile_picture'] = staffs[i]['profile_picture'] || ''
-					staffs[i]['birth_date'] = staffs[i]['birth_date'] || '0000-01-01'
-					staffs[i]['birth_date'] = new Date(staffs[i]['birth_date']).toDateString().substring(4) %>
-				<span class="user_id d-none"><%= staffs[i]['user_id'] %></span>
-				<profilePicture class="rounded mb-3" style="background-image: url('<%= staffs[i][`profile_picture`] %>');"></profilePicture>
-				<information class="w-100 text-break">
-					<%	delete staffs[i]['user_id']
-						delete staffs[i]['profile_picture']
-					for (const [key, val] of Object.entries(staffs[i])) { 
-						if (val) { %>
+			<staffList class="col d-flex justify-content-center flex-wrap">
+				
+				<staffCard class="d-flex flex-wrap flex-shrink-0 justify-content-center align-items-center m-2 pt-3 border rounded">
+					<profileStaff class="d-block flex-shrink-0 border"></profileStaff>
+					
+					<infoStaff class="d-block mt-3 flex-shrink-0">
 						<p style="font-size: 0.9rem;">
-							<yTitle class="text-capitalize font-weight-bold"><%= key %></yTitle>:
-							&nbsp;<yDetail class="<%= key %>"><%= val %></yDetail>
+							<yTitle class="text-capitalize font-weight-bold"></yTitle>:
+							&nbsp;<yDetail></yDetail>
 						</p>
-					<%	}
-					} %>
-				</information>
-				<buttonDirection class="d-block w-100 text-right pr-3 flex-shrink-0">
-					<% if (canDelete == 'true') { %><button type="button" class="deleteButton btn btn-danger" style="font-size: 0.85rem;">DELETE</button><% } %>
-					<% if (canUpdate == 'true') { %><button type="button" class="editButton btn btn-info" style="font-size: 0.85rem;">EDIT</button><% } %>
-				</buttonDirection>
-			</staffCard>
-			<% } %>
-		</staffList>
-	<% } %>
+					</infoStaff>
+
+					<buttonDirection class="d-block w-100 flex-shrink-0 text-center text-md-right px-3 pt-2 pb-3">
+						<button id="checkingButton" type="button" class="btn btn-primary" style="font-size: 0.85rem;">SEE & EDIT</button>
+					</buttonDirection>
+				</staffCard>
+
+			</staffList>
+			
+		</managementForm>
 	</background>
 
-	<script>
-		const currentStaffId = '<%- user.user_id %>'
-		const [canCreate, canRead, canUpdate, canDelete] = ['<%- canCreate %>', '<%- canRead %>', '<%- canUpdate %>', '<%- canDelete %>'];
-	</script>
 	<script src="../../assets/js/staff_admin/management.js"></script>
 
 <%- include('../includes/footer') %>
