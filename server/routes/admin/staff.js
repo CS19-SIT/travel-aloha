@@ -27,7 +27,7 @@ router.post("/sendQuery", async function(request, response) {
     response.json({
       status: 200
     });
-  } catch {
+  } catch (err) {
     response.json({
       status: 400
     });
@@ -40,7 +40,7 @@ router.post("/getQuery", async function(request, response) {
       result: data[0],
       status: 200
     });
-  } catch {
+  } catch (err) {
     response.json({
       status: 400
     });
