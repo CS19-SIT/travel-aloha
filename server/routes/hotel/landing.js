@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const landingController = require("../controllers/landing");
+const landingController = require("../../controllers/hotel");
 
 router.post("/find", landingController.find);
 

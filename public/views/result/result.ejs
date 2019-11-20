@@ -172,8 +172,14 @@
                             <h4><%= hotel.hotelAddress %></h4>
                             <h4><%= hotel.hotelDescription %></h4>
                             <h4><%= hotel.hoteltelNumber %></h4>
-                            <h1>Price</h1>
-                            
+                            <% if (!user) { %>
+                                <h1>Price</h1>
+                                <a href="/login">Log in</a> to check better price!
+                            <% } %>
+                            <% if (user) { %>
+                                <h1>Price</h1>
+                                <u><h1>from: price</h1></u>
+                            <% } %>
                         </div>
 
                     </div>

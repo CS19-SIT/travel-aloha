@@ -87,7 +87,7 @@ const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
-const hotelRoutes = require("./routes/landing");
+const hotelRoutes = require("./routes/hotel/landing");
 
 app.use(indexRoutes);
 app.use(authRoutes);
@@ -113,7 +113,7 @@ app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
 
-app.use(landingRoutes);
+app.use(hotelRoutes);
 
 app.use(errorsController.get404);
 

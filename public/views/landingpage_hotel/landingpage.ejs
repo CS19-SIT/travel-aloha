@@ -111,7 +111,7 @@
     <% hotels.forEach( hotel => { %>
         <div class="card-recommended">
             <div class="card" style="width: 18rem;">
-                <img src="<%= hotel.hotelPicture %>" class="card-img-top" alt="...">
+                <img src="<%= hotel.hotelPicture %>" class="card-img-top" alt="<%= hotel.hotelName %>">
                 <div class="card-body">
                     <h1><%= hotel.hotelName %></h1>
                 </div>
