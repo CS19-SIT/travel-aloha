@@ -1,9 +1,11 @@
 const Hotel = require("../../../models/history");
-
-exports.getIndex = (req, res) => {
-  res.render("history/index", {
+exports.getIndex = async (req, res) => {
+  let info = await Hotel.getHotelName(req.user.user_id);
+    res.render("history/index",{
     pageTitle: "TravelAloha - Dashboard - History",
-    user: req.user
+    user: req.user,
+    hotelName : info["hotelName"],
+    timestamp : info['timestamp']
   });
 };
 
@@ -23,7 +25,7 @@ exports.getFlight = (req, res) => {
 
 exports.getHotelData = async (req, res) => {
   try {
-    let data = await Hotel.getHotelName(req.user.user_id);
+    //let data = await Hotel.getHotelName(req.user.user_id);
 
     res.send(data);
   } catch (err) {

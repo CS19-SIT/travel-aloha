@@ -1,17 +1,19 @@
 <%- include("../includes/header") %>
 <%- include("../includes/navbar") %>
-
+<!-- <script>
+  const hotelName = JSON.parse ('<%- hotelName %>');
+</script> -->
   <script src="../../assets/js/history/history.js"></script>
 
   <!--This is custom CSS-->
   <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
-
+<body>
 <body onload="printAllRec()">
   <div class="row">
     <!--User Info side (left)-->
     <div class="col-sm-3 ta-user-info">
-      <h4 class="user-name"><b id="userName">Carl 'CJ' Johnson</b></h4>
+      <h4 class="user-name"><b id="userName"><'userName'></b></h4>
       <hr class="hrColor">
       <div class="user-info">
         <div class="user-level">
@@ -47,10 +49,10 @@
           <div class="headerInfo">
             <span class="brief-info">
               <div>
-                <h5><b>Dusit Thani Hotel (Show from HTML)</b></h5>
+                <h5><b><%= hotelName %></b></h5>
               </div>
               <div>
-                <h6>31-10-2019 | 10:00</h6>
+                <h6><%= timestamp %></h6>
               </div>
             </span>
             <span class="status paid">
@@ -58,7 +60,7 @@
             </span>
             <span class="icon">
               <div class="book-icon">
-                <img src="bed_icon.png" class="hotel">
+                <img src="../../assets/img/bed_icon.png" class="hotel">
               </div>
             </span>
             <span class="toDetail">
@@ -84,7 +86,7 @@
             </span>
             <span class="icon">
               <div class="book-icon">
-                <img src="plane_icon.jpg" class="flight">
+                <img src="../../assets/img/plane_icon.png" class="flight">
               </div>
             </span>
             <span class="toDetail">
@@ -95,7 +97,6 @@
           </div>
         </div>
         <!--End of HTML List-->
-
       </div>
       <div>
         
