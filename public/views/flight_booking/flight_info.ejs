@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <div class="row">
                             <p class="col-md-10">
-                                Sunday, <%=depart_date%>
+                                <%=depart_day%>, <%=depart_date%>
                             </p>
                             <div class="col-md-2 text-right save-flight">
                                 <i class="fa fa-bookmark-o" data-toggle="tooltip" data-placement="top"
@@ -40,7 +40,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-1">
-                                <img src="../../assets/images/nok-air-logo.jpg" alt="logo" class="airline-logo">
+                                <img src="../../assets/images/<%=airline_logo%>" alt="logo" class="airline-logo">
                             </div>
                             <div id = "flightNumber"class="col-md-11 pl-2">
                                 <span><%= flightNumber %>
@@ -69,13 +69,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Summary</h4>
-                        <div class="font-weight-bold">BKK&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;CNX</div>
+                        <div class="font-weight-bold"><%=dep%>&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;<%=des%></div>
                         <div>1 Person Economy Class</div>
-                        <div>Sunday, 03-Nov-2019</div>
-                        <div>20:25 - 21:45 <span class="airport-code">(1.20 Hours)</span></div>
+                        <div><%=depart_day%>, <%=depart_date%></div>
+                        <div><%=depTime%> - <%=arrTime%> <span class="airport-code">(1.20 Hours)</span></div>
                         <div class="text-right mt-5">
                             <div class="row">
-                                <div class="col-md-8">Nok Air Economy</div>
+                                <div class="col-md-8"><%=airline_name%> Economy (1)</div>
                                 <div class="col-md-4">1,649 &#3647; </div>
                             </div>
                             <div class="row">
