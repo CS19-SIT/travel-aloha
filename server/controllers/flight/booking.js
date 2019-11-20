@@ -1,20 +1,27 @@
 const Flight = require("../../models/flight_info");
 
 exports.getIndex = async (req, res) => {
-  info = await Flight.getFlightInfoByNumber("cs00420");
+
+  //Get URL parameters
+  // var id = req.query.Flight_number; // $_GET["id"]
+
+  info = await Flight.getFlightInfoByNumber('cs00002');
   console.log(info);
   // console.log(req);
   res.render("flight_booking/flight_info", {
     pageTitle: "TravelAloha - Flight - Booking",
-    user: req.user, 
+    user: req.user,
     flightNumber: info['Flight_number'],
     departureCity: info['dep_city'],
     dep: info['Departure'],
     depart_date: info['Dep_Date'],
+    depart_day: info['Dep_Day'],
     destinationCity: info['des_city'],
     des: info['Destination'],
     depTime: info['Dep_time'],
-    arrTime: info['Arr_time']
+    arrTime: info['Arr_time'],
+    airline_logo: info['airline_logo'],
+    airline_name: info['airlineName']
 
   });
   console.log("getIndex");
@@ -39,11 +46,11 @@ exports.getContact = (req, res) =>
     user: req.user
   });
 
-exports.getDonut = (req, res) =>{
+exports.getDonut = (req, res) => {
   try {
     const db = require('../../db/db');
 
-    const ha= req.body;
+    const ha = req.body;
     console.log(req.body.option1)
     console.log(req.body.option2)
     console.log(req.body.option3)
