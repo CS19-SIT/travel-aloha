@@ -82,7 +82,8 @@ app.get("/", (req, res) => res.render("index", {
 
 app.use(authRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
-app.use("/payment/checkout", checkoutRoutes);
+app.use("/checkout", checkoutRoutes);
+app.use("/checkout/Intern", checkoutRoutes);
 app.use("/charge", checkoutRoutes);
 
 app.use(errorsController.get404);
