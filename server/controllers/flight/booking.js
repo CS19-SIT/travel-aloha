@@ -2,9 +2,6 @@ const Flight = require("../../models/flight_info");
 
 exports.getIndex = async (req, res) => {
 
-  //Get URL parameters
-  // var id = req.query.Flight_number; // $_GET["id"]
-
   info = await Flight.getFlightInfoByNumber('cs00002');
   console.log(info);
   // console.log(req);
