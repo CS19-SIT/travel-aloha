@@ -5,7 +5,7 @@ exports.insertRoom = async (hotelId, roomid, roomidDetail) => {
       "insert into room_head(hotelIdroom,roomId,roomDetailId) values (?,?,?)",
       [hotelId, roomid, roomidDetail]
     );
-  } catch (error) {}
+  } catch (error) { }
 }; // dont know how to response the detailId that created yet
 
 exports.insertRoomDetail = async room => {
@@ -33,7 +33,7 @@ exports.insertRoomDetail = async room => {
         capacity
       ]
     );
-  } catch (error) {}
+  } catch (error) { }
 };
 
 exports.editRoomfacility = async room => {
@@ -44,7 +44,7 @@ exports.editRoomfacility = async room => {
       "update room_detail set wifi=?,breakfast=?,carpark=?,waterheater=? where detailId=?",
       [wifi, breakfast, carpark, waterHeater, roomdetailId]
     );
-  } catch (error) {}
+  } catch (error) { }
 };
 
 exports.editRoomtype = async room => {
@@ -54,7 +54,7 @@ exports.editRoomtype = async room => {
       type,
       roomdetailId
     ]);
-  } catch (error) {}
+  } catch (error) { }
 };
 
 exports.getRoom = async room => {
@@ -73,3 +73,17 @@ exports.getRoom = async room => {
     throw new Error(`[ERR] getRoomID: ${err}`);
   }
 };
+
+exports.getAllFreeRoom = async hotelId =>{
+  const { hotelId } = hotelId;
+  try {
+    let allRoom = await db.query("select price,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity from room_head as rh, room_detail as rd where hotelIdroom = ? and rh.roomDetailId = rd.detailId and isBook <> true order by price;", [hotelId]);
+    if (result[0].length < 1) {
+      throw new Error(`Cannot find your room ${RoomId},${hotelId}.`);
+    }
+    return result[0][0];
+  } catch (error) {
+    throw new Error(`[ERR] get room from hotelId: ${hotelId}`);
+  }
+
+}
