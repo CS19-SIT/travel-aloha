@@ -50,9 +50,9 @@
                         <td><%= data[i].gender %></td> 
                         <td><%= data[i].email %></td>
                         <td>
-                            <a href="/edit/<%= data[i].user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
-                            <a href="/delete/<%= data[i].user_id %>" class="btn btn-sm btn-danger">Delete</a>   
-                            <a href="/detail/<%= data[i].user_id %>" class="btn btn-sm btn-primary" >More Info</a> 
+                            <a href="/admin/user/edit/<%= data[i].user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/admin/user/delete/<%= data[i].user_id %>" class="btn btn-sm btn-danger">Delete</a>   
+                            <a href="/admin/user/detail/<%= data[i].user_id %>" class="btn btn-sm btn-primary" >More Info</a> 
                         </td>
                         
                     </tr>

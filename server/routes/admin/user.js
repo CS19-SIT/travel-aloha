@@ -17,19 +17,19 @@ router.get(
   adminUserController.addUsersPage
 );
 router.get(
-  "/edit/:id",
+  "/edit/:user_id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminUserController.editUsersPage
 );
 router.get(
-  "/detail/:id",
+  "/detail/:user_id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminUserController.detailUsersPage
 );
 router.get(
-  "/delete/:id",
+  "/delete/:user_id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminUserController.deleteUsers

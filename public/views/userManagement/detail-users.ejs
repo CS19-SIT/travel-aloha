@@ -1,21 +1,22 @@
 <%- include('../includes/header') %>
+</head>
 
 <body>
 <%- include('../includes/navbar') %>
 
 
 <div class="container">
-    <h1><%= title %></h1>
+    <h1><%= pageTitle %></h1>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><br><img src="/assets/uploads/<%=users.profile_picture%>" class="rounded-circle" width="90" > </li>
-        <li class="list-group-item">User Name: <%=users.username%></li>
-        <li class="list-group-item">Email: <%=users.email%></li>
-        <li class="list-group-item">First Name: <%=users.firstname%></li>
-        <li class="list-group-item">Last Name: <%=users.lastname%></li>
-        <li class="list-group-item">Gender: <%=users.gender%></li>
-        <li class="list-group-item">Birth Date: <%=users.birthDate%></li>
-        <li class="list-group-item">Phone Number: <%=users.phoneNumber%></li>
-        <li class="list-group-item">User Role: <%=users.userRole%></li>
+        <li class="list-group-item"><br><img src="/assets/uploads/<%=data.profile_picture%>" class="rounded-circle" width="90" > </li>
+        <li class="list-group-item">User Name: <%=data.username%></li>
+        <li class="list-group-item">Email: <%=data.email%></li>
+        <li class="list-group-item">First Name: <%=data.firstname%></li>
+        <li class="list-group-item">Last Name: <%=data.lastname%></li>
+        <li class="list-group-item">Gender: <%=data.gender%></li>
+        <li class="list-group-item">Birth Date: <%=data.birthDate%></li>
+        <li class="list-group-item">Phone Number: <%=data.phoneNumber%></li>
+        <li class="list-group-item">User Role: <%=data.userRole%></li>
     </ul>
 
 </div>
