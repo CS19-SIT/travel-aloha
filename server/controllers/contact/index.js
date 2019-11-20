@@ -5,17 +5,29 @@ exports.getIndex = (req, res) => {
     user: req.user
   });
 };
-exports.getDashboard = (req, res) => {
-  res.render("contact/dashboard", {
-    pageTitle: "TravelAloha - Contact - Dashboard",
-    user: req.user
-  });
+exports.getDashboard = async(req, res) => {
+  try{
+    let hotelData = await contactModel.getHotelInfo();
+    let airlineData = await contactModel.getAirlineInfo();
+    res.render("contact/dashboard", {
+      pageTitle: "TravelAloha - Contact - Dashboard",
+      user: req.user,
+      hotel: hotelData,
+      airline: airlineData
+    });
+  }catch (err) {
+    res.sendStatus(404);
+  }
 };
 exports.getHotelInfo = (req, res) => {
-  res.render("contact/add-new-hotel", {
-    pageTitle: "TravelAloha - Contact - Register New Hotel",
-    user: req.user
-  });
+  try{
+    res.render("contact/add-new-hotel", {
+      pageTitle: "TravelAloha - Contact - Register New Hotel",
+      user: req.user
+    });
+  }catch (err) {
+    res.sendStatus(404);
+  }
 };
 exports.postHotelInfo = async (req, res) => {
   const {
