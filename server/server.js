@@ -119,6 +119,14 @@ app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
 
+app.use((err, req, res, next) => {
+  res.status(400).render("errors/400", {
+    pageTitle: "TravelAloha - Bad Request",
+    user: req.user,
+    error: err
+  });
+})
+
 app.listen(process.env.APP_PORT, () => {
   if (process.env.NODE_ENV !== "production")
     console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
