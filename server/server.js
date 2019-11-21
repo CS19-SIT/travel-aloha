@@ -92,6 +92,9 @@ const userRoutes = require("./routes/user/dashboard");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
+const exampleRouter = require("./routes/example");
+
+
 app.use(indexRoutes);
 app.use(authRoutes);
 
@@ -116,6 +119,8 @@ app.use("/flight", flightRoutes);
 app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
+
+app.use("/example",exampleRouter);
 
 app.use(errorsController.get404);
 

@@ -1,0 +1,25 @@
+<%- include('includes/header') %>
+
+</head>
+
+<body>
+    
+        <%- include('includes/navbar') %>
+        
+<div class="container mt-3">
+    <h1 class="display-3">TravelAloha</h1>
+    <select id="country" name="country">
+      <option value="" disabled selected hidden>Choose country</option>
+      <% country.forEach(element => { %>
+
+          <option value="<%=element.NAMEINENGLISH%>"><%=element.NAMEINENGLISH%></option>
+
+          <%});%>
+    </select>  
+</div>
+<script>
+    $(document).ready(function() {
+    $('#country').select2();
+});
+</script>
+<%- include('includes/footer') %>
