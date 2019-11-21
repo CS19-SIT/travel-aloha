@@ -33,7 +33,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="GAYYY">
                 <label class="form-check-label" for="exampleRadios4">
                     4 radio
                 </label>
@@ -69,32 +69,35 @@
         </div>
         <button type="submit" class="btn btn-info" onclick="hahayes()">Book now</button>
     </div>
+    <br>
+    <div id="gay">s</div>
 
     <script>
         function hahayes() {
             // const radio = document.getElementsByName('exampleRadio');
-            // const radio2 = document.getElementsByName('exampleRadio2')
+            // const radio2 = document.getElementsByName('exampleRadio2 ')
+
+            var lis = []
+            Array.prototype.forEach.call(document.getElementsByClassName('form-check-input'), function(item) {
+                if (item.checked)
+                    lis.push(item.value)
+            })
             $.ajax({
                 url: "/flight/booking/donut",
                 method: "POST",
                 data: {
-                    option1: document.getElementById('exampleRadios1').value,
-                    option2: document.getElementById('exampleRadios2').value,
-                    option3: document.getElementById('exampleRadios3').value,
-                    option4: document.getElementById('exampleRadios4').value,
-                    option5: document.getElementById('exampleRadios5').value,
-                    option6: document.getElementById('exampleRadios6').value,
-                    option7: document.getElementById('exampleRadios7').value,
-                    option8: document.getElementById('exampleRadios8').value,
+                    olaola: JSON.stringify(lis)
                 }
-            }).done(function(data) { // check what I sent in comtroller :'(
-                if (data.status == 200){
-                    const ha = data.data;
+            }).done(function(urMom) { // check what I sent in comtroller :'(
+                if (urMom.status == 200){
+                    const ha = urMom.data;
 
                     console.log(ha);
+
+                    gay.textContent = ha;
                 }
     
-                
+                 
                     //Here aft
                 else
                     console.log('Oh no')

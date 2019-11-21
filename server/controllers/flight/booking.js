@@ -47,15 +47,16 @@ exports.getDonut = (req, res) => {
   try {
     const db = require('../../db/db');
 
-    const ha = req.body;
-    console.log(req.body.option1)
-    console.log(req.body.option2)
-    console.log(req.body.option3)
-    console.log(req.body.option4)
-    console.log(req.body.option5)
-    console.log(req.body.option6)
-    console.log(req.body.option7)
-    console.log(req.body.option8)
+    const ha = JSON.parse(req.body.olaola);
+    console.log(ha)
+    // console.log(req.body.option1)
+    // console.log(req.body.option2)
+    // console.log(req.body.option3)
+    // console.log(req.body.option4)
+    // console.log(req.body.option5)
+    // console.log(req.body.option6)
+    // console.log(req.body.option7)
+    // console.log(req.body.option8)
     //Do query statements using "req.body" value in here and send it back to Ajax 
 
     //U can also do Query statements in Ajax
