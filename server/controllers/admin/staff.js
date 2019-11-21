@@ -92,3 +92,16 @@ exports.showDetailAllExistedStaff = async function(request, response) {
 		`)
 	}
 }
+
+
+exports.showHomepage = async function(request, response) {
+	try {
+		const department = await connector.query(`SELECT * FROM staff_department`)
+		response.render('staff_admin/homepage', {
+			pageTitle: 'TravelAloha - Company',
+			departmentList: JSON.stringify(department[0])
+		})
+	} catch (error) {
+		response.status(500)
+	}
+}

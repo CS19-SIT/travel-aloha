@@ -57,5 +57,10 @@ router.post(
 		}
 	}
 )
+router.get(
+	'/new',
+	staffAdminController.showHomepage
+)
+
 
 module.exports = router
