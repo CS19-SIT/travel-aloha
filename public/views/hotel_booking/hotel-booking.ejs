@@ -3,8 +3,32 @@
 </head>
 
 <body>
-    <%- include('../includes/navbar') %>
-  <div class="container mt-3">
+  <%- include('../includes/navbar') %>
+
+  <% if(!user){%>
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">You are not registered</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you want to register for a promotion?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary mr-auto" id="toRegisterButton">Register</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No, thanks</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%}%>
+
+  <div class="container pt-3">
     <div class="row no-gutters">
       <h1>Room Booking</h1>
     </div>
