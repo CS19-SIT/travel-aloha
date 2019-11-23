@@ -60,12 +60,18 @@ exports.postHotelInfo = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-exports.getHotelDetail = (req, res) => {
-  res.render("contact/new-hotel-detail", {
-    pageTitle: "TravelAloha - Contact - New Hotel Detail",
-    user: req.user
-  });
-}
+exports.getHotelDetail = async (req, res) => {
+  try{
+    let hotelData = await contactModel.getHotelInfo();
+    res.render("contact/new-hotel-detail", {
+      pageTitle: "TravelAloha - Contact - New Hotel Detail",
+      user: req.user,
+      hotel: hotelData
+    });
+  }catch(err){
+    throw new Error(`[ERR] getHotelDetail: ${error}`);
+  }
+};
 exports.getAirlineInfo = (req, res) => {
   res.render("contact/add-new-airline", {
     pageTitle: "TravelAloha - Contact - Register New Airline",
