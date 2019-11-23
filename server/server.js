@@ -74,7 +74,7 @@ const adminRoutes = require("./routes/admin/index");
 const adminCouponRoutes = require("./routes/admin/coupon");
 const adminFlightRoutes = require("./routes/admin/flight");
 const adminHotelRoutes = require("./routes/admin/hotel");
-const adminStaffRoutes = require("./routes/admin/staff");
+// const adminStaffRoutes = require("./routes/admin/staff");
 const adminUserRoutes = require("./routes/admin/user");
 const authRoutes = require("./routes/auth/index");
 const checkoutRoutes = require("./routes/checkout/index");
@@ -96,7 +96,7 @@ app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/flight", adminFlightRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
-app.use("/admin/staff", adminStaffRoutes);
+//app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
 app.use("/checkout", checkoutRoutes);

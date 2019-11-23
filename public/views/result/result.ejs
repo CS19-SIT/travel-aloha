@@ -173,8 +173,8 @@
                             <h4><%= hotel.hotelDescription %></h4>
                             <h4><%= hotel.hoteltelNumber %></h4>
                             <% if (!user) { %>
-                                <h1>Price</h1>
-                                <a href="/login">Log in</a> to check better price!
+                                <h1><%= hotel.fullPrice %></h1>
+                                <a href="/login">Log in</a> to check out your price!
                             <% } %>
                             <% if (user) { %>
                                 <h1>Price</h1>

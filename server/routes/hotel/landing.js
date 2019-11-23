@@ -5,6 +5,8 @@ const landingController = require("../../controllers/hotel");
 
 router.post("/find", landingController.find);
 
+router.get('/findFilter',landingController.findFilters);
+
 router.get("/hotel", landingController.index);
 
 module.exports = router;
