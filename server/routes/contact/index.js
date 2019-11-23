@@ -14,7 +14,7 @@ router.get("/dashboard",
     authMiddleware.isAuthenticated,
     authMiddleware.isStaff
 );
-router.get("/dashboard/detail/", 
+router.get("/dashboard/detail", 
 contactController.getHotelDetail,
 authMiddleware.isAuthenticated,
 authMiddleware.isStaff
