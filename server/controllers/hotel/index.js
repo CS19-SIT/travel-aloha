@@ -19,12 +19,14 @@ exports.find = async (req, res) => {
         const result = await db.query("SELECT * " +
             "FROM hotel as h, room_head  as r, room_detail as d " +
             "WHERE h.hotelId=r.hotelIdroom and r.roomDetailId=d.detailId and " +
-            "hotelName LIKE '%"+place+"%' OR hotelAddress LIKE '%"+place+"%' and d.capacity >= "+persons+"");
+            "hotelName LIKE '%"+place+"%' OR hotelAddress LIKE '%"+place+"%' and d.capacity <= "+persons+"");
 
         const prices = await  db.query("SELECT min(d.fullPrice) as minPrice, max(d.fullPrice) as maxPrice " +
             "FROM hotel as h, room_head  as r, room_detail as d " +
             "WHERE h.hotelId=r.hotelIdroom and r.roomDetailId=d.detailId and " +
-            "hotelName LIKE '%"+place+"%' OR hotelAddress LIKE '%"+place+"%' and d.capacity >= "+persons+"");
+            "hotelName LIKE '%"+place+"%' OR hotelAddress LIKE '%"+place+"%' and d.capacity <= "+persons+"");
+
+        //save history of searching method??
 
         if (result[0].length < 1) {
             console.log("Brak wyników");
@@ -37,7 +39,8 @@ exports.find = async (req, res) => {
             pageTitle: "All result hotel for " + req.body.place,
             user: req.user,
             hotels: result[0],
-            prices: prices[0]
+            prices: prices[0],
+            main_query: req.body
         });
     } catch (err) {
         console.log(err);

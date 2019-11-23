@@ -139,7 +139,7 @@
                                         </span>
                                     </span>
                                 </label>
-                                <label>option 1</label>
+                                <label>Wifi</label>
                             </div>
                             <div>
                                 <label class="label">
@@ -150,7 +150,7 @@
                                         </span>
                                     </span>
                                 </label>
-                                <label>option 1</label>
+                                <label>Breakfast</label>
                             </div>
 
 
@@ -172,14 +172,22 @@
                             <h4><%= hotel.hotelAddress %></h4>
                             <h4><%= hotel.hotelDescription %></h4>
                             <h4><%= hotel.hoteltelNumber %></h4>
+
                             <% if (!user) { %>
                                 <h1><%= hotel.fullPrice %></h1>
+
                                 <a href="/login">Log in</a> to check out your price!
                             <% } %>
                             <% if (user) { %>
                                 <h1>Price</h1>
                                 <u><h1>from: price</h1></u>
                             <% } %>
+                            <% if (hotel.wifi==1) { %>
+                               MEE WIFI
+                            <% } %>
+                             <% if (hotel.breakfast==1) { %>
+                                MEE Breakfast
+                             <% } %>
                         </div>
 
                     </div>
