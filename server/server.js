@@ -125,9 +125,13 @@ app.use((err, req, res, next) => {
     user: req.user,
     error: err
   });
-})
-
-app.listen(process.env.APP_PORT, () => {
-  if (process.env.NODE_ENV !== "production")
-    console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
 });
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.APP_PORT, () => {
+    if (process.env.NODE_ENV !== "production")
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+  });
+}
+
+module.exports = app;
