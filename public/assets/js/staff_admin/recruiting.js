@@ -1,42 +1,81 @@
-//const testQuery = require("../../../server/models/staff_recruiting");
-//console.log(testQuery.test);
-
-var existedInformation = [
-	{
-		'firstname': 'Nino',
-		'lastname': 'Nakano'
-	}
-];
-
-existedInformation = data[0]
-var userId = existedInformation['user_id']
-existedInformation['birth_date'] = new Date(existedInformation['birth_date']).toDateString().substring(4) 
-delete existedInformation['user_id']
-delete existedInformation['password']
-document.getElementsByTagName('profilePicture')[0].style.backgroundImage = `url('${existedInformation['profile_picture']}')`
-delete existedInformation['profile_picture']
-
-var exInfos = document.getElementsByTagName('existedInformation')[0]
-var exInfo = exInfos.getElementsByTagName('p')[0]
-exInfos.removeChild(exInfo)
-for (const [key, value] of Object.entries(existedInformation)) {
-	exInfo.getElementsByTagName('yTitle')[0].textContent = key
-	exInfo.getElementsByTagName('yDetail')[0].textContent = value
-	exInfos.appendChild(exInfo.cloneNode(true))
+const AJAXsend = function(script, callback) {
+	$.ajax({
+		url: '/admin/staff/sendQuery', method: 'POST',
+		data: {
+			sql: script
+		}
+	}).done(callback)
 }
 
-document.getElementById('submitButton').addEventListener('click', function() {
-	newInformation = {
-		'department': document.getElementById('department').value || 'Computer Science',
-		'salary': document.getElementById('salary').value || 0
-	}
-	var sqlStatement = `
-		INSERT INTO staff VALUES (
-			'${userId}',
-			'${newInformation['department']}',
-			${newInformation['salary']}
+const [withdrawButton, submitButton] = [document.getElementById('withdraw'), document.getElementById('submit')]
+
+if (withdrawButton) {
+	withdrawButton.addEventListener('click', function() {
+		AJAXsend(
+			`DELETE FROM staff_admin_pre WHERE staffId='${userId}' AND status='pending'`, 
+			function(data) {
+				if (data.status == 200)  {
+					Swal.fire({
+						title: 'Success', 
+						text: 'you just canceled the application',
+						icon: 'success',
+						showConfirmButton: false
+					})
+				} else {
+					Swal.fire({
+						title: 'Oops', 
+						text: 'something went wrong',
+						icon: 'error',
+						showConfirmButton: false
+					})
+				}
+				setTimeout(() => location.reload(true), 1200)
+			}
 		)
-	`
-	sqlStatement = sqlStatement.replace(/\t/g, ' ').replace(/\n/g, '').trim()
-	alert(sqlStatement)
-})
+	})
+}
+
+if (submitButton) {
+	const formValidation = function() {
+		if (/^[A-Za-z ]{1,}$/.test(department.value.trim()) == false) return false
+		if (/^[A-Za-z ]{1,}$/.test(role.value.trim()) == false) return false
+		return true
+	}
+	submitButton.addEventListener('click', function() {
+		if (formValidation() == false) {
+			Swal.fire('Wrong format', 'please re-check the form', 'error')
+		} else {
+			Swal.fire({
+				title: 'Are you sure',
+				text: 'have you checked what you typed carefully',
+				icon: 'info',
+				confirmButtonText: 'Yes, I have checked',
+				showCancelButton: true
+			}).then(function(result) {
+				if (result.value) {
+					AJAXsend(
+						`INSERT INTO staff_admin_pre VALUES ('${userId}', '${department.value.trim().replace(/ {1,}/g, ' ')}', '${role.value.trim().replace(/ {1,}/g, ' ')}', 'pending', '${message.value.trim().replace(/ {1,}/g, ' ').replace(/'/g, "\\'")}')`,
+						function(data) {
+							if (data.status == 200)  {
+								Swal.fire({
+									title: 'Success', 
+									text: 'your application have been sent',
+									icon: 'success',
+									showConfirmButton: false
+								})
+							} else {
+								Swal.fire({
+									title: 'Oops', 
+									text: 'something went wrong',
+									icon: 'error',
+									showConfirmButton: false
+								})
+							}
+							setTimeout(() => location.reload(true), 1200)
+						}
+					)
+				}
+			})
+		}
+	})
+}

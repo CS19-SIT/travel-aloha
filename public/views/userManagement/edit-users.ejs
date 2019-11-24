@@ -1,30 +1,23 @@
 <%- include('../includes/header') %>
-</head>
-
-<body>
-<%- include('../includes/navbar') %>
 
 <div class="container">
-    <h1><%= title %></h1>
-    <form class="add-player-form" action="" method="post">
+    <h1><%= pageTitle %></h1>
+    <form class="" action="" method="post">
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="username" id="username" value="<%= users.username%>" required>
+            <input type="text" class="form-control" name="username" id="username" value="<%= data.username%>" required>
         </div>
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="firstname" id="firstname" value="<%= users.firstname%>" required>
+            <input type="text" class="form-control" name="firstname" id="firstname" value="<%= data.firstname%>" required>
         </div>
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="lastname" id="lastname" value="<%= users.lastname%>" required>
+            <input type="text" class="form-control" name="lastname" id="lastname" value="<%= data.lastname%>" required>
         </div>
         <div class="form-group col-md-4">
-                <input type="email" class="form-control" name="email" id="email" value="<%=users.email%>" required> 
+                <input type="email" class="form-control" name="email" id="email" value="<%=data.email%>" required> 
         </div>
         <div class="form-group col-md-4">
-            <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" value="<%= users.phoneNumber%>" required>
-        </div>
-        <div class="form-group col-md-4">
-            <select id="gender" name="gender" class="form-control" value="<%= users.gender%>" required >
-                <option selected><%=users.gender %></option>
+            <select id="gender" name="gender" class="form-control" value="<%= data.gender%>" required >
+                <option selected><%=data.gender %></option>
                 <option>M</option>
                 <option>F</option>
             </select>
