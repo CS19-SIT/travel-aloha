@@ -24,3 +24,37 @@ exports.findAllFlightData = async () => {
     throw new Error(`[ERR] Flight.findAllFlightData: ${err}`);
   }
 };
+
+exports.findById = async flightId => {
+  try {
+    const flightsData = await db.query(
+      "SELECT * FROM Flight WHERE Flight_number = ?",
+      [flightId]
+    );
+    const flights = await flightsData[0][0];
+    return flights;
+  } catch (err) {
+    throw new Error(`[ERR] Flight.findById: ${err}`);
+  }
+};
+
+exports.create = async () => {
+  try {
+  } catch (err) {
+    throw new Error(`[ERR] Flight.create: ${err}`);
+  }
+};
+
+exports.updateById = async () => {
+  try {
+  } catch (err) {
+    throw new Error(`[ERR] Flight.updateById: ${err}`);
+  }
+};
+
+exports.deleteById = async () => {
+  try {
+  } catch (err) {
+    throw new Error(`[ERR] Flight.deleteById: ${err}`);
+  }
+};

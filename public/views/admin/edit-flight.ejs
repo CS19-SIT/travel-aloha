@@ -1,0 +1,116 @@
+<%- include('../includes/header') %>
+
+</head>
+
+<body>
+<%- include('../includes/navbar') %>
+
+<div class="container my-3">
+    <form id="admin-flight" data-isEdit=<%= flightData ? "true" : "false" %>>
+        <div class="form-group">
+          <label for="flight-number">Flight Number</label>
+          <% if (flightData) { %>
+            <input type="text" class="form-control" id="flight-number" name="flight-number" value=<%= flightData.Flight_number %> disabled>
+          <% } else { %>
+            <input type="text" class="form-control" id="flight-number" name="flight-number" placeholder="Enter Flight Number">
+          <% } %>
+        </div>
+        <div class="form-group">
+            <label for="departure">Departure</label>
+            <% if (flightData) { %>
+                <select class="form-control" id="departure" name="departure">
+                    <% airports.map(airport => { %>
+                        <% if (flightData.Departure === airport.Airport_ID) { %>
+                            <option value=<%= airport.Airport_ID %> selected><%= airport.Airport_ID %> - <%= airport.Airport_name %></option>
+                        <% } else { %>
+                            <option value=<%= airport.Airport_ID %>><%= airport.Airport_ID %> - <%= airport.Airport_name %></option>
+                        <% } %>
+                    <% }) %>
+                </select>
+            <% } else { %>
+                <select class="form-control" id="departure" name="departure">
+                    <% airports.map(airport => { %>
+                        <option value=<%= airport.Airport_ID %>><%= airport.Airport_ID %> - <%= airport.Airport_name %></option>
+                    <% }) %>
+                </select>
+            <% } %>
+          </div>
+          <div class="form-group">
+                <label for="destination">Destination</label>
+                <% if (flightData) { %>
+                    <select class="form-control" id="destination" name="destination">
+                        <% airports.map(airport => { %>
+                            <% if (flightData.Destination === airport.Airport_ID) { %>
+                                <option value=<%= airport.Airport_ID %> selected><%= airport.Airport_ID %> - <%= airport.Airport_name %></option>
+                            <% } else { %>
+                                <option value=<%= airport.Airport_ID %>><%= airport.Airport_ID %> - <%= airport.Airport_name %></option>
+                            <% } %>
+                        <% }) %>
+                    </select>
+                <% } else { %>
+                    <select class="form-control" id="destination" name="destination">
+                        <% airports.map(airport => { %>
+                            <option value=<%= airport.Airport_ID %>><%= airport.Airport_ID %> - <%= airport.Airport_name %></option>
+                        <% }) %>
+                    </select>
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label for="airline">Airline</label>
+                <% if (flightData) { %>
+                    <select class="form-control" id="airline" name="airline">
+                        <% airlines.map(airline => { %>
+                            <% if (flightData.Airline_ID === airline.airline_Id) { %>
+                                <option value=<%= airline.airline_Id %> selected><%= airline.airline_Id %> - <%= airline.airlineName %></option>
+                            <% } else { %>
+                                <option value=<%= airline.airline_Id %>><%= airline.airline_Id %> - <%= airline.airlineName %></option>
+                            <% } %>
+                        <% }) %>
+                    </select>
+                <% } else { %>
+                    <select class="form-control" id="airline" name="destination">
+                        <% airlines.map(airline => { %>
+                            <option value=<%= airline.airline_Id %>><%= airline.airline_Id %> - <%= airline.airlineName %></option>
+                        <% }) %>
+                    </select>
+                <% } %>
+              </div>
+              <div class="form-group">
+                    <label for="depart-date">Departure Date</label>
+                    <% if (flightData) { %>
+                      <input type="date" class="form-control" id="depart-date" name="depart-date" value=<%= flightData.Depart_Date.getFullYear() + "-" + String(flightData.Depart_Date.getMonth() + 101).slice(-2) + "-" + String(flightData.Depart_Date.getDate() + 100).slice(-2); %>>
+                    <% } else { %>
+                      <input type="date" class="form-control" id="depart-date" name="depart-date" value=<%= new Date().getFullYear() + "-" + String(new Date().getMonth() + 101).slice(-2) + "-" + String(new Date().getDate() + 100).slice(-2); %>>
+                    <% } %>
+                  </div>
+                  <div class="form-group">
+                        <label for="depart-time">Departure Time</label>
+                        <% if (flightData) { %>
+                          <input type="time" class="form-control" id="depart-time" name="depart-time" value=<%= flightData.Depart_Time %>>
+                        <% } else { %>
+                          <input type="time" class="form-control" id="depart-time" name="depart-time" value=<%= String(new Date().getHours() + 100).slice(-2) + ":" + String(new Date().getMinutes() + 100).slice(-2) %>>
+                        <% } %>
+                      </div>
+                  <div class="form-group">
+                        <label for="arrive-date">Arrival Date</label>
+                        <% if (flightData) { %>
+                          <input type="date" class="form-control" id="arrive-date" name="arrive-date" value=<%= flightData.Arrive_Date.getFullYear() + "-" + String(flightData.Arrive_Date.getMonth() + 101).slice(-2) + "-" + String(flightData.Arrive_Date.getDate() + 100).slice(-2); %>>
+                        <% } else { %>
+                          <input type="date" class="form-control" id="arrive-date" name="arrive-date" value=<%= new Date().getFullYear() + "-" + String(new Date().getMonth() + 101).slice(-2) + "-" + String(new Date().getDate() + 100).slice(-2); %>>
+                        <% } %>
+                      </div>
+                      <div class="form-group">
+                            <label for="arrive-time">Arrival Time</label>
+                            <% if (flightData) { %>
+                              <input type="time" class="form-control" id="arrive-time" name="arrive-time" value=<%= flightData.Arrive_Time %>>
+                            <% } else { %>
+                              <input type="time" class="form-control" id="arrive-time" name="arrive-time" value=<%= String(new Date().getHours() + 100).slice(-2) + ":" + String(new Date().getMinutes() + 100).slice(-2) %>>
+                            <% } %>
+                          </div>
+        <button type="submit" class="btn btn-info"><%= flightData ? "Save" : "Add New Flight" %></button>
+      </form>
+</div>
+
+<script src="/assets/js/admin/flight.js"></script>
+
+<%- include('../includes/footer') %>
