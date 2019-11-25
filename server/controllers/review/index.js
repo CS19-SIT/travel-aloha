@@ -1,4 +1,7 @@
+
 const Rating_ReviewModel = require("../../models/Rating_Review");
+
+
 
 exports.getHotel = (req, res) =>
   res.render("review_rating/hotel", {
@@ -11,6 +14,7 @@ exports.getFlight = (req, res) =>
     pageTitle: "TravelAloha - Review - Airline",
     user: req.user
   });
+
 
 exports.postHotelReview = async (req, res) => {
   const {
@@ -74,3 +78,4 @@ exports.postFlightReview = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
+

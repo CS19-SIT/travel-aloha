@@ -1,0 +1,65 @@
+/*form css*/
+.form-control{
+    border-radius: 5px;
+    border: 1.5px solid #28252B;
+    color: #A0A4A8;
+}
+.form-control::placeholder{
+    color: #CACCCF;
+}
+.custom-select{
+    border-radius: 5px;
+    border: 1.5px solid #28252B;
+    color: #A0A4A8;
+}
+.input-group-text{
+    background-color: #28252b;
+    border-color: #28252b;
+    color: #CACCCF;
+}
+
+
+
+.invalid-feedback{
+    color: #CF212A;
+}
+label{
+    color: #28252b;
+}
+
+
+/*Botton*/
+
+
+.btn-primary{
+    background-color: #388BF2;
+    border-color: #388BF2;
+    color: #FFFFFF;
+}
+
+/* Size of text */
+h1{
+    font-size: 28px;
+    font-weight: 500 / Medium;
+    line-height: 36px;
+}
+h2{
+    font-size: 24px;
+    font-weight: 700 / Bold;
+    line-height: 32px;
+}
+h3{
+    font-size: 20px;
+    font-weight: 700 / Bold;
+    line-height: 24px;
+}
+h4{
+    font-size: 16px;
+    font-weight: 700 / Bold;
+    line-height: 20px;
+}
+h5{
+    font-size: 16px;
+    font-weight: 400 / Regular;
+    line-height: 20px;
+}
