@@ -74,20 +74,6 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
-<<<<<<< HEAD
-const authRoutes = require("./routes/auth");
-const adminHotelRoutes = require("./routes/admin-hotel");
-const checkoutRoutes = require("./routes/checkout");
-const errorsController = require("./controllers/errors");
-
-app.get("/", (req, res) => res.render("index", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
-
-
-
-=======
 const adminRoutes = require("./routes/admin/index");
 const adminCouponRoutes = require("./routes/admin/coupon");
 const adminFlightRoutes = require("./routes/admin/flight");
@@ -109,31 +95,18 @@ const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
 app.use(indexRoutes);
->>>>>>> dev
 app.use(authRoutes);
 
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/flight", adminFlightRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
-<<<<<<< HEAD
-app.use("/checkout", checkoutRoutes);
-app.use("/checkout/Intern", checkoutRoutes);
-app.use("/charge", checkoutRoutes);
-
-app.use(errorsController.get404);
-
-
-
-
-app.listen(process.env.APP_PORT, () => {
-  if (process.env.NODE_ENV !== "production")
-    console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
-=======
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
 app.use("/checkout", checkoutRoutes);
+app.use("/checkout/Intern", checkoutRoutes);
+app.use("/charge", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
 app.use("/dashboard", userRoutes);
@@ -156,7 +129,6 @@ app.use((err, req, res, next) => {
     user: req.user,
     error: err
   });
->>>>>>> dev
 });
 
 if (process.env.NODE_ENV !== "test") {
