@@ -7,6 +7,17 @@ app.controller('indexPageController', [
         $scope.overviewConfirm = false
         $scope.deptList = []
         $scope.roleList = []
+        $http({
+            url: '/admin/staff/getQuery',
+            method: 'POST',
+            data: {
+                sql: 'SELECT deptPicture, deptNo, deptName FROM staff_department'
+            }
+        }).then(function(response) {
+            if (response.data.status == 200) {
+                $scope.deptList = response.data.result
+            } 
+        })
         $scope.generateRole = function(deptNo) {
             $http({
                 url: '/admin/staff/getQuery',
@@ -22,19 +33,6 @@ app.controller('indexPageController', [
         }
 
         $scope.showLandingPage = function() {
-            if ($scope.overviewConfirm == false) {
-                $http({
-                    url: '/admin/staff/getQuery',
-                    method: 'POST',
-                    data: {
-                        sql: 'SELECT deptNo, deptName FROM staff_department'
-                    }
-                }).then(function(response) {
-                    if (response.data.status == 200) {
-                        $scope.deptList = response.data.result
-                    } 
-                })
-            }
             $scope.overviewConfirm = true
             setTimeout(function() {
                 document.getElementById('myOverview').scrollIntoView({

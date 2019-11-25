@@ -75,6 +75,16 @@
 			text-align: center;
 			margin: 1.5rem 0;
 		}
+		#departmentPicture {
+			width: 70vw;
+			height: 50vw;
+		}
+		deptPicture {
+			background-color: black;
+			background-size: cover;
+			background-position: center 10%;
+			background-repeat: no-repeat;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 </head>
@@ -132,6 +142,28 @@
 		<section class="d-block">
 			<sectionName class="d-block my-1" style="font-size: 1.5rem;">How many departments we have...</sectionName>
 			<sectionDetail class="d-block my-1 font-weight-light" style="font-size: 1.1rem;">
+				<div id="departmentPicture" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li ng-repeat="dept in deptList" data-target="#departmentPicture" data-slide-to="{{ $index }}" ng-class="{'active': $index==0}"></li>
+					</ol>
+					<div class="carousel-inner w-100 h-100">
+						<div ng-repeat="dept in deptList" class="carousel-item w-100 h-100" ng-class="{'active': $index==0}">
+							<deptPicture class="d-block w-100 h-100" style="background-image: url('{{ dept.deptPicture }}');"></deptPicture>
+							<div class="carousel-caption">
+								<h3 class="text-dark">{{ dept.deptName }}</h3>
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#departmentPicture" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#departmentPicture" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+
 				<label>Select a department: </label>
 				<select ng-model="selectedDept" 
 						ng-options="dept.deptNo as dept.deptName for dept in deptList" 
@@ -147,7 +179,7 @@
 			</sectionDetail>
 		</section>
 	</article>
-	
+
 	<script src="../../assets/js/staff_admin/index.js"></script>
 
 <%- include('../includes/footer') %>
