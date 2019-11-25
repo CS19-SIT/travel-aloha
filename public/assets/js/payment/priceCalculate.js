@@ -1,9 +1,13 @@
+document.onload =CartTotal();
 function CartTotal() {
-    const total = 0;
-    const price = parseFloat(document.getElementsByClassName("shop-item-price"));
-    const quantity = parseFloat(document.getElementsByClassName("cart-quantity"));
-    total += (price * quantity);
-    total = Math.round(total * 100) / 100;
-    document.getElementsByClassName("cart-total-price").innerText = total + "฿";
+    let total = 0;
+    const price = document.getElementsByClassName("shop-item-price");
+    const quantity = document.getElementsByClassName("cart-quantity");
+    // total += (price * quantity);
+    // total = Math.round(total * 100) / 100;
+    for (let i = 0; i < price.length; i++) {
+        total +=(parseFloat(price[i].innerText)*parseFloat(quantity[i].innerText));
+    }
+    document.getElementById("cart-total-price").innerText = total + "฿";
     
 };
