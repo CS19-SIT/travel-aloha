@@ -31,9 +31,17 @@ exports.insertNewHotelFile = async ({
     throw new Error(`[ERR] insertNewHotelFile: ${error}`)
   }
 };
-exports.getHotelInfo = async() =>{
+exports.getHotelDashboard= async() =>{
   try{
       const result = await db.query(`SELECT * FROM hotel`);
+      return result[0];
+  } catch (err) {
+      throw new Error(`[ERR] getHotelDashboard: ${err}`);
+  }
+};
+exports.getHotelInfo = async hotelId =>{
+  try{
+      const result = await db.query(`SELECT * FROM hotel WHERE hotelId = ?`,[hotelId]);
       return result[0];
   } catch (err) {
       throw new Error(`[ERR] getHotelInfo: ${err}`);
@@ -69,9 +77,17 @@ exports.insertNewAirline = async ({
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
-exports.getAirlineInfo = async() => {
+exports.getAirlineDashboard = async() => {
   try {
       const result = await db.query(`SELECT * FROM airline`);
+      return result[0];
+  } catch (err) {
+    throw new Error(`[ERR] getAirlineDashboard: ${err}`);
+  }
+};
+exports.getAirlineInfo = async() => {
+  try {
+      const result = await db.query(`SELECT * FROM airline WHERE airline_Id = ?`);
       return result[0];
   } catch (err) {
     throw new Error(`[ERR] getAirlineInfo: ${err}`);

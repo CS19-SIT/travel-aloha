@@ -5,20 +5,6 @@ exports.getIndex = (req, res) => {
     user: req.user
   });
 };
-exports.getDashboard = async(req, res) => {
-  try{
-    let hotelData = await contactModel.getHotelInfo();
-    let airlineData = await contactModel.getAirlineInfo();
-    res.render("contact/dashboard", {
-      pageTitle: "TravelAloha - Contact - Dashboard",
-      user: req.user,
-      hotel: hotelData,
-      airline: airlineData
-    });
-  }catch (err) {
-    res.sendStatus(404);
-  }
-};
 exports.getHotelInfo = (req, res) => {
   try{
     res.render("contact/add-new-hotel", {
@@ -28,6 +14,12 @@ exports.getHotelInfo = (req, res) => {
   }catch (err) {
     res.sendStatus(404);
   }
+};
+exports.getAirlineInfo = (req, res) => {
+  res.render("contact/add-new-airline", {
+    pageTitle: "TravelAloha - Contact - Register New Airline",
+    user: req.user
+  });
 };
 exports.postHotelInfo = async (req, res) => {
   const {
@@ -60,17 +52,20 @@ exports.postHotelInfo = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-exports.getHotelDetail = (req, res) => {
-  res.render("contact/new-hotel-detail", {
-    pageTitle: "TravelAloha - Contact - New Hotel Detail",
-    user: req.user
-  });
-}
-exports.getAirlineInfo = (req, res) => {
-  res.render("contact/add-new-airline", {
-    pageTitle: "TravelAloha - Contact - Register New Airline",
-    user: req.user
-  });
+exports.getDashboard = async(req, res) => {
+  try{
+    let hotelData = await contactModel.getHotelDashboard();
+    let airlineData = await contactModel.getAirlineDashboard();
+    res.render("contact/dashboard", {
+      pageTitle: "TravelAloha - Contact - Dashboard",
+      user: req.user,
+      hotel: hotelData,
+      airline: airlineData
+    });
+    res.sendStatus(204);
+  }catch (err) {
+    res.sendStatus(404);
+  }
 };
 exports.postAirlineInfo = async (req, res) => {
   const {
@@ -100,9 +95,31 @@ exports.postAirlineInfo = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
+exports.getHotelDetail = (req, res) => {
+  let data = contactModel.getHotelInfo();
+  try{
+    res.render("contact/new-hotel-detail", {
+      pageTitle: "TravelAloha - Contact - New Hotel Detail",
+      user: req.user,
+      hotel: data
+    });
+    res.sendStatus(204);
+  }catch(error){
+    res.sendStatus(404);
+    throw new Error(`[ERR] getHotelInfo: ${error}`);
+  }
+};
 exports.getAirlineDetail = (req, res) => {
-  res.render("contact/new-airline-detail", {
-    pageTitle: "TravelAloha - Contact - New Airline Detail",
-    user: req.user
-  });
+  let data = contactModel.getAirlineInfo();
+  try{
+    res.render("contact/new-airline-detail", {
+      pageTitle: "TravelAloha - Contact - New Airline Detail",
+      user: req.user,
+      airline: data
+    });
+    res.sendStatus(204);
+  }catch(error){
+    res.sendStatus(404);
+    throw new Error(`[ERR] getAirlineInfo: ${error}`);
+  }
 };
