@@ -162,6 +162,7 @@
                                 <p class="sm-text mb-0 text-muted">POSITIVE REVIEWS</p>
                                 <h4 class="green-text">93%</h4>
                             </div>-->
+                            <% if (user) { %>
                         <div class="ml-md-auto p-2 mx-md-2 pt-4 pt-md-3">
                             <button class="shadow btn  btn-red text-dark px-4 " data-toggle="modal" data-target="#exampleModal">WRITE A
                                 REVIEW</button>
@@ -232,11 +233,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><% } %>
                     </div> <!-- middle row -->
                     <div class="d-flex">
                         <div class="col-xs-4 col-md-4 ">
-                        <label for="Sort">Sort reviews by:/label>
+                        <label for="Sort">Sort reviews by:</label>
                         <select  class="form-control"name="" id="">
                                 <option>Recommended</option>
                                 <option>Date(newer to older)</option>
