@@ -1,0 +1,123 @@
+<div class="modal fade" id="<%= id %>" tabindex="-1" role="dialog" aria-labelledby="<%= id %>Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="<%= id %>Label"><%= title %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="<%= id %>Form" action="<%= url %>">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">
+                            Code
+                        </label>
+                        <div class="col">
+                            <input type="text" class="form-control" name="code">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">
+                            Name
+                        </label>
+                        <div class="col">
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">
+                            Description
+                        </label>
+                        <div class="col">
+                            <textarea class="form-control" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">
+                            Start date
+                        </label>
+                        <div class="col">
+                            <input type="date" class="form-control" name="start_date">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">
+                            Expire date
+                        </label>
+                        <div class="col">
+                            <input type="date" class="form-control" name="expire_date">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">Level</label>
+                        <div class="col">
+                            <select name="levels" class="form-control coupon-level-select" multiple="multiple">
+                                <% for (level of allLevels) { %>
+                                <option value="<%= level[0] %>"><%= level[1] %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <input class="d-inline" type="checkbox" name="use_hotel">
+                        <div class="ml-1 d-inline"></div>
+                        <h4 class="d-inline">Hotel</h4>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">Allow</div>
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="hotelForAll"
+                                        name="for_every_hotel" checked>
+                                    <label class="form-check-label" for="hotelForAll">For every hotel</label>
+                                </div>
+                            </div>
+                            <div class="border w-100 my-2" style="height: 250px;">
+                                TODO
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <input class="d-inline" type="checkbox" name="hotel">
+                        <div class="ml-1 d-inline"></div>
+                        <h4 class="d-inline">Airline</h4>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">Allow</div>
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="airlineForAll"
+                                        name="for_every_airline" checked>
+                                    <label class="form-check-label" for="airlineForAll">For every airline</label>
+                                </div>
+                            </div>
+                            <div class="border w-100 my-2" style="height: 250px;">
+                                TODO
+                            </div>
+                        </div>
+                        <div class="mb-3"></div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3">Discount</label>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input class="form-control" type="number" name="discount_percentage" min="1"
+                                        max="100">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"><%= buttonActionValue %></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
