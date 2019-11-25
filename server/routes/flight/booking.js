@@ -10,6 +10,4 @@ router.get("/test", flightBookingController.getTest);
 
 router.get("/contact", flightBookingController.getContact);
 
-
-
 module.exports = router;

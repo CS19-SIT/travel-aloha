@@ -6,7 +6,11 @@
 		}
 		background {
 			min-height: calc(100vh - 56px);
+			background-image: url('https://www.tokkoro.com/picsup/2970908-arsenixc-moon-beach-sea-clouds-trees-everlasting-summer-visual-novel___anime-wallpapers.jpg');
 			background-color: #dedede;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
 		}
 		noPermission {
 			width: 80%;
@@ -17,6 +21,8 @@
 		tools {
 			width: 300px;
 			height: fit-content;
+			background-color: rgba(39, 39, 39, 0.39);
+			color: white;
 		}
 		staffList {
 			width: calc(95% - 300px);
@@ -65,6 +71,17 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+	<% if (message) { %>
+		<script>
+			Swal.fire({
+				title: 'Congrats!!',
+				text: `<%- message %>`,
+				icon: 'success'
+			})
+		</script>
+	<% } %>
+	
+
 	<background class="d-flex w-100 justify-content-around justify-content-lg-center align-content-start flex-wrap">
 	<% if (canRead == 'false') { %>
 		<noPermission class="d-flex mt-4 justify-content-center flex-column border rounded">
@@ -81,7 +98,7 @@
 		<tools class="p-3 mt-4 mr-lg-3">
 			<p class="d-flex justify-content-between">
 				<span>Tools</span><% if (canCreate == 'true') { %>
-				<button type="button" class="btn btn-outline-secondary p-1" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
+				<button type="button" class="btn btn-secondary p-1" style="font-size: 0.85rem;" onclick="window.location='/admin/staff/requisition'">ADD NEW</button>
 			<% } %></p>
 			<hr class="p-2 my-1">
 			<% if (canUpdate == 'true' || canDelete == 'true') { %>
@@ -92,30 +109,40 @@
 			<% } %>
 		</tools>
 		<staffList class="d-flex flex-wrap justify-content-around align-content-start px-1 py-2 mt-4">
+			<% 
+			let staffs = JSON.parse(data)
+			for (let i = 0; i < staffs.length; ++i) { %>
 			<staffCard class="d-flex flex-column align-items-center p-3 my-2 border rounded">
-				<span class="user_id d-none"></span>
-				<profilePicture class="rounded mb-3"></profilePicture>
+				<%	staffs[i]['profile_picture'] = staffs[i]['profile_picture'] || ''
+					staffs[i]['birth_date'] = staffs[i]['birth_date'] || '0000-01-01'
+					staffs[i]['birth_date'] = new Date(staffs[i]['birth_date']).toDateString().substring(4) %>
+				<span class="user_id d-none"><%= staffs[i]['user_id'] %></span>
+				<profilePicture class="rounded mb-3" style="background-image: url('<%= staffs[i][`profile_picture`] %>');"></profilePicture>
 				<information class="w-100 text-break">
-					<p style="font-size: 0.9rem;">
-						<yTitle class="text-capitalize font-weight-bold"></yTitle>:
-						&nbsp;<yDetail></yDetail>
-					</p>
+					<%	delete staffs[i]['user_id']
+						delete staffs[i]['profile_picture']
+					for (const [key, val] of Object.entries(staffs[i])) { 
+						if (val) { %>
+						<p style="font-size: 0.9rem;">
+							<yTitle class="text-capitalize font-weight-bold"><%= key %></yTitle>:
+							&nbsp;<yDetail class="<%= key %>"><%= val %></yDetail>
+						</p>
+					<%	}
+					} %>
 				</information>
 				<buttonDirection class="d-block w-100 text-right pr-3 flex-shrink-0">
 					<% if (canDelete == 'true') { %><button type="button" class="deleteButton btn btn-danger" style="font-size: 0.85rem;">DELETE</button><% } %>
 					<% if (canUpdate == 'true') { %><button type="button" class="editButton btn btn-info" style="font-size: 0.85rem;">EDIT</button><% } %>
 				</buttonDirection>
 			</staffCard>
+			<% } %>
 		</staffList>
 	<% } %>
 	</background>
 
 	<script>
-		let data = JSON.parse('<%- data %>')
-		const canCreate = '<%- canCreate %>'
-		const canRead = '<%- canRead %>'
-		const canUpdate = '<%- canUpdate %>'
-		const canDelete = '<%- canDelete %>'
+		const currentStaffId = '<%- user.user_id %>'
+		const [canCreate, canRead, canUpdate, canDelete] = ['<%- canCreate %>', '<%- canRead %>', '<%- canUpdate %>', '<%- canDelete %>'];
 	</script>
 	<script src="../../assets/js/staff_admin/management.js"></script>
 
