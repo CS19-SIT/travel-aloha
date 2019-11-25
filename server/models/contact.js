@@ -5,16 +5,22 @@ exports.insertNewHotel = async ({
   hotelDescription,
   hotelAddress,
   hotelTelNumber,
-  hotelContactNumber
+  hotelContactNumber,
+  hotelRoomType,
+  hotelRoomPrice,
+  hotelPromotion
 }) => {
   try {
-    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail) VALUES(?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail, hotelRoomType, hotelRoomPrice, hotelPromotion) VALUES(?,?,?,?,?,?,?,?,?)`, [
       hotelName,
       hotelDescription,
       hotelAddress,
       hotelTelNumber,
       hotelContactNumber,
-      hotelEmail
+      hotelEmail,
+      hotelRoomType,
+      hotelRoomPrice,
+      hotelPromotion
     ]);
   } catch (error) {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
@@ -61,17 +67,23 @@ exports.insertNewAirline = async ({
   airlineNationality,
   airlineTelNumber,
   airlineContactNumber,
-  airlineDescription
+  airlineDescription,
+  airlineSeatType,
+  airlineSeatPrice,
+  airlinePlaneDes
 }) => {
   try {
-    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber) VALUES(?,?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber, airlineSeatType, airlineSeatPrice, airlinePlaneDes) VALUES(?,?,?,?,?,?,?,?,?,?)`, [
       airlineName,
       airlineNationality,
       airlineEmail,
       airlineDescription,
       airlineAddress,
       airlineTelNumber,
-      airlineContactNumber
+      airlineContactNumber,
+      airlineSeatType,
+      airlineSeatPrice,
+      airlinePlaneDes
     ]);
   } catch (error) {
     throw new Error(`[ERR] insertNewAirline: ${error}`);

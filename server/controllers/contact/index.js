@@ -30,6 +30,9 @@ exports.postHotelInfo = async (req, res) => {
     hotelTelNumber,
     hotelContactNumber,
     hotelDescription,
+    hotelRoomType,
+    hotelRoomPrice,
+    hotelPromotion,
     hotelProfile,
     hotelPicture
   } = req.body;
@@ -40,7 +43,10 @@ exports.postHotelInfo = async (req, res) => {
       hotelAddress,
       hotelTelNumber,
       hotelContactNumber,
-      hotelEmail
+      hotelEmail,
+      hotelRoomType,
+      hotelRoomPrice,
+      hotelPromotion
     });
     // ** Wait for learning upload file
     // await contactModel.insertNewHotelFile({
@@ -76,7 +82,10 @@ exports.postAirlineInfo = async (req, res) => {
     airlineNationality,
     airlineTelNumber,
     airlineContactNumber,
-    airlineDescription
+    airlineDescription,
+    airlineSeatType,
+    airlineSeatPrice,
+    airlinePlaneDes
   } = req.body;
 
   try {
@@ -87,7 +96,10 @@ exports.postAirlineInfo = async (req, res) => {
       airlineDescription,
       airlineAddress,
       airlineTelNumber,
-      airlineContactNumber
+      airlineContactNumber,
+      airlineSeatType,
+      airlineSeatPrice,
+      airlinePlaneDes
     });
     res.redirect("dashboard");
     res.sendStatus(204);
