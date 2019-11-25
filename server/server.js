@@ -107,7 +107,19 @@ app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
 
-app.listen(process.env.APP_PORT, () => {
-  if (process.env.NODE_ENV !== "production")
-    console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+app.use((err, req, res, next) => {
+  res.status(400).render("errors/400", {
+    pageTitle: "TravelAloha - Bad Request",
+    user: req.user,
+    error: err
+  });
 });
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.APP_PORT, () => {
+    if (process.env.NODE_ENV !== "production")
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+  });
+}
+
+module.exports = app;
