@@ -50,7 +50,7 @@
                             <td>
                                 <div class="form-inline justify-content-center">
                                     <a href=<%= `/admin/flight/edit/${flight.Flight_number}` %>><button type="button" class="btn btn-secondary mr-1">EDIT</button></a>
-                                    <button type="button" class="btn btn-danger">DELETE</button>
+                                    <button type="button" class="btn btn-danger" onclick=<%= `deleteFlight("${flight.Flight_number}")` %>>DELETE</button>
                                 </div>
                             </td>
                         </tr>

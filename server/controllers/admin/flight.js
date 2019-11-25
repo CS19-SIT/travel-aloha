@@ -1,7 +1,7 @@
 const moment = require("moment");
 
 const Airport = require("../../models/airport");
-const Airline = require("../../models/airline")
+const Airline = require("../../models/airline");
 const Flight = require("../../models/flight");
 
 exports.getIndex = async (req, res) => {
@@ -46,8 +46,77 @@ exports.getEdit = async (req, res) => {
   });
 };
 
-exports.postIndex = async (req, res) => {};
+exports.postIndex = async (req, res) => {
+  const {
+    flightNumber,
+    departure,
+    destination,
+    airline,
+    departDate,
+    departTime,
+    arriveDate,
+    arriveTime
+  } = req.body;
 
-exports.putIndex = async (req, res) => {};
+  for (key in req.body) if (!req.body[key]) return res.sendStatus(400);
 
-exports.deleteIndex = async (req, res) => {};
+  try {
+    await Flight.create(
+      flightNumber,
+      departure,
+      destination,
+      airline,
+      departDate,
+      departTime,
+      arriveDate,
+      arriveTime
+    );
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+exports.putIndex = async (req, res) => {
+  const { flightId } = req.params;
+  const {
+    departure,
+    destination,
+    airline,
+    departDate,
+    departTime,
+    arriveDate,
+    arriveTime
+  } = req.body;
+
+  if (!flightId) return res.sendStatus(400);
+  for (key in req.body) if (!req.body[key]) return res.sendStatus(400);
+
+  try {
+    await Flight.updateById(
+      flightId,
+      departure,
+      destination,
+      airline,
+      departDate,
+      departTime,
+      arriveDate,
+      arriveTime
+    );
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+exports.deleteIndex = async (req, res) => {
+  const { flightId } = req.params;
+  if (!flightId) return res.sendStatus(400);
+  
+  try {
+    await Flight.deleteById(flightId);
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};

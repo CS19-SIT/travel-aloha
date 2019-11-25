@@ -38,22 +38,76 @@ exports.findById = async flightId => {
   }
 };
 
-exports.create = async () => {
+exports.create = async (
+  flightNumber,
+  departure,
+  destination,
+  airline,
+  departDate,
+  departTime,
+  arriveDate,
+  arriveTime
+) => {
   try {
+    const newFlight = await db.query(
+      "INSERT INTO Flight VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        flightNumber,
+        departDate,
+        departTime,
+        arriveDate,
+        arriveTime,
+        departure,
+        destination,
+        null,
+        airline
+      ]
+    );
+    if (newFlight.affectedRows < 1) throw new Error("Database has problem!");
   } catch (err) {
     throw new Error(`[ERR] Flight.create: ${err}`);
   }
 };
 
-exports.updateById = async () => {
+exports.updateById = async (
+  flightId,
+  departure,
+  destination,
+  airline,
+  departDate,
+  departTime,
+  arriveDate,
+  arriveTime
+) => {
   try {
+    const updatedFlight = await db.query(
+      "UPDATE Flight SET Depart_Date = ?, Depart_Time = ?, Arrive_Date = ?, Arrive_Time = ?, Departure = ?, Destination = ?, Airline_ID = ? WHERE Flight_number = ?",
+      [
+        departDate,
+        departTime,
+        arriveDate,
+        arriveTime,
+        departure,
+        destination,
+        airline,
+        flightId
+      ]
+    );
+    if (updatedFlight.affectedRows < 1)
+      throw new Error("Database has problem!");
   } catch (err) {
     throw new Error(`[ERR] Flight.updateById: ${err}`);
   }
 };
 
-exports.deleteById = async () => {
+exports.deleteById = async flightId => {
   try {
+    const deletedFlight = await db.query(
+      "DELETE FROM Flight WHERE Flight_number = ?",
+      [flightId]
+    );
+    if (deletedFlight.affectedRows < 1)
+      throw new Error("Database has problem!");
   } catch (err) {
     throw new Error(`[ERR] Flight.deleteById: ${err}`);
   }
