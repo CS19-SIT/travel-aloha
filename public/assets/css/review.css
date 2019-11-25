@@ -43,9 +43,9 @@ body {
 }
 
 .btn-red {
-    background-color: #E64A19;
-    color: #fff;
-    border-radius: 50%;
+    background-color: #1ba0e2;
+    color: #000;
+    border-radius: 20px;
     border: none;
     outline: none;
 }
@@ -217,7 +217,6 @@ body {
     margin: 0;
     font-size: 100%;
     font-weight: inherit;
-    vertical-align: baseline;
 }
 .tableopition
 {display: table;
