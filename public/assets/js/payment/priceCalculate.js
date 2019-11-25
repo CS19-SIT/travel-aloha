@@ -8,6 +8,6 @@ function CartTotal() {
     for (let i = 0; i < price.length; i++) {
         total +=(parseFloat(price[i].innerText)*parseFloat(quantity[i].innerText));
     }
-    document.getElementById("cart-total-price").innerText = total + "฿";
+    document.getElementById("cart-total-price").innerText = total+(total*0.07) + "฿";
     
 };
