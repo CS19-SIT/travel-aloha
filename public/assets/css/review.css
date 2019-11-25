@@ -45,20 +45,14 @@ body {
 .btn-red {
     background-color: #E64A19;
     color: #fff;
-    border-radius: 20px;
+    border-radius: 50%;
     border: none;
     outline: none;
 }
 
 .btn-red:hover {
-    background-color: #BF360C;
-}
-
-.btn-red:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0;
+    background-color: #235d9f;
+    color: #fff;
 }
 
 .round-icon {
@@ -90,12 +84,6 @@ body {
 .green-text {
     color: #4CAF50;
 }
-.red-text{
-    color: #E64A19;
-}
-.yellow-text {
-    color: #FFD54F;
-}
 
 .block {
     border-right: 1px solid #F5EEEE;
@@ -116,9 +104,7 @@ body {
     height: 28px
 }
 /*review card*/
-.glyphicon { 
-    margin-right:5px;
-}
+
 .rating .glyphicon {
     font-size: 22px;
 }
@@ -128,9 +114,7 @@ body {
 .progress { 
     margin-bottom: 5px;
 }
-.progress-bar { 
-    text-align: left; 
-}
+
 .rating-desc .col-md-3 {
     padding-right: 0px;
 }
@@ -151,23 +135,95 @@ body {
 .live-rating{
     display: inline;
 }
-.rangeslider{
-    width: 50%;
-    }
-.myslider {
-        -webkit-appearance: none;
-        background: #FCF3CF  ;
-        width: 50%;
-        height: 20px;
-        opacity: 2;
+.circlescore{
+    background-color: #fff;
+    border-radius: 50%;
+    color: #fff;
+    height: 128px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    position: relative;
+    width: 128px;
+    border: 8px solid #235d9f;
+    padding: 4px;
 }
-.myslider:hover {
-    opacity: 1;
+.circlescorein{
+    background-color: #1ba0e2;
+    border-radius: 50%;
+    width: 104px;
+    height: 104px;
+    line-height: 104px;
+    font-size: 56px;
+    font-weight: 500;
+    text-align: center;
 }
-.myslider::-webkit-slider-thumb {
-    -webkit-appearance: none;
+.divcircle{
+    display: block;
+    float: left;
+    width: 160px;
+    padding: 0 16px;
+} 
+.textscore{
+    color: #1ba0e2;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+.white-tab{
+    margin: 10px 20px 0px 20px;
+}
+.progressbar{
+    margin: 10px 0px 10px 0px  
+}
+.scoretext{
+    align-content: flex-end;
+    text-align: right;
+}
+
+.rating {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .like,
+  .dislike {
+    display: inline-block;
     cursor: pointer;
-    background: #34495E  ;
-    width: 5%;
-    height: 20px;
+    margin: 10px;
+
+  }
+  
+  .dislike:hover,
+  .like:hover {
+    color: #2EBDD1;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+  
+  .active {
+    color: #2EBDD1;
+  }
+
+  .opitionby{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 16px;
+    border: 1px solid #dadada;
+    border-radius: 2px;
+    display: block;
+    position: relative;
+    letter-spacing: .3px;
+    box-sizing: inherit;
+    margin: 0;
+    font-size: 100%;
+    font-weight: inherit;
+    vertical-align: baseline;
+}
+.tableopition
+{display: table;
+width: 100%;} 
+.pic{
+    padding-right: 16px;
+    vertical-align: top;
+    display: table-cell;
 }
