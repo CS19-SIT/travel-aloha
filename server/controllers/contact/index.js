@@ -1,5 +1,6 @@
 const contactModel = require("../../models/contact");
-const multer = require("../../utils/multer-config")
+const multer = require("../../utils/multer-config");
+
 exports.getIndex = (req, res) => {
   res.render("contact/index", {
     pageTitle: "TravelAloha - Contact",
