@@ -8,24 +8,14 @@ const connector = require('../../db/db')
 
 router.get(
 	'/',
-	authMiddleware.isAuthenticated,
-	staffAdminController.getIndex
-);
-router.get(
-	'/recruiting', 
-	authMiddleware.isAuthenticated,
-	staffAdminController.showApplicationForm
+	staffAdminController.showIndex
 )
 router.get(
-	'/requisition',
+	'/application',
 	authMiddleware.isAuthenticated,
-	staffAdminController.showStaffCandidatesList
+	staffAdminController.showApplication
 )
-router.get(
-	'/management', 
-	authMiddleware.isAuthenticated,
-	staffAdminController.showDetailAllExistedStaff
-)
+
 router.post(
 	'/sendQuery', 
 	async function(request, response) {
@@ -34,8 +24,9 @@ router.post(
 			response.json({
 				status: 200
 			})
-		} catch {
+		} catch (error) {
 			response.json({
+				result: error,
 				status: 400
 			})
 		}
@@ -50,17 +41,13 @@ router.post(
 				result: data[0],
 				status: 200
 			})
-		} catch {
+		} catch (error) {
 			response.json({
+				result: error,
 				status: 400
 			})
 		}
 	}
 )
-router.get(
-	'/new',
-	staffAdminController.showHomepage
-)
-
 
 module.exports = router

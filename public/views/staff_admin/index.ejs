@@ -1,160 +1,153 @@
 <%- include('../includes/header') %>
-<style>
-     
-         body,html{
-             margin: 0;
-             padding: 0;
-             width: 100%;
-             height: 100%;
-             background: grey;
-             overflow: hidden;
-             
-         }
-         
-         .white{
-             width: 100%;
-             height: 37%;
-             background:rgb(255, 188, 216);
-			 /* opacity: 0%; */
-             
-         }
-     
-         .image{
-             width: 100%;
-             background: url('../../assets/Pictures/staff_admin/purple-mountain.jpg');
-             background-size: cover;
-             position: relative;
-             display: flex;
-             padding: 50px;
-             box-sizing: border-box;
-             justify-content: center;
-             height: 73%;
-         }
-     
-         #container{
-             width: 100%;
-             position: absolute;
-             bottom: -6px;
-             overflow: hidden;
-          
-         }
-     
-         #container svg{
-             width: 200%;
-             position: relative;
-             animation: move-left 3s linear infinite;
-             
-         }
 
-         #title{
-             font-size: 6vh;
-             animation: bounce 2s linear infinite;
-         }
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<style>
+		body {
+			width: 100vw;
+			min-width: 320px;
+			-webkit-user-select: none;
+		}
+		/** BEGIN: header setting */
+		header {
+			position: relative;
+			height: calc(100vh - 56px);
+			min-height: 550px;
+			background-image: url("https://nucleuscoshare.org/wp-content/uploads/2014/06/working-at-desk-nucleus.jpg");
+			background-color: #000;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+		@media screen and (min-width: 992px) {
+			header {
+			   height: calc(100vh - 70px);
+			}
+		}
+		header > h7 {
+			font-size: 8.75vw;
+		}
+		@media screen and (min-width: 630px) {
+			header > h7 {
+			   font-size: 55px;
+			}
+		}
+		@media screen and (max-width: 320px) {
+			header > h7 {
+			   font-size: 28px;
+			}
+		}
+		/** END: header setting */
+		header > detail {
+			width: 60%;
+			min-width: 290px;
+			max-width: 800px;
+		}
+		.create-button, .overview-button {
+			display: inline-block;
+			min-width: 100px;
+			font-size: 0.95rem;
+			padding: 0.8rem 1.3rem;
+			transition: all 0.3s;
+		}
+		.create-button {
+			color: white;
+			border: 1px solid white;
+			background-color: transparent;
+		}
+		.overview-button {
+			color: black;
+			border: 1px solid black;
+			background-color: white;
+		}
+		.create-button:hover, .overview-button:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		.create-button:active, .overview-button:active {
+			transform: scale(0.7);
+		}
+		article {
+			padding: 6rem 1rem;
+		}
+		section {
+			min-width: 300px;
+			max-width: 750px;
+			text-align: center;
+			margin: 1.5rem 0;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
 
-         @keyframes wiggle{
-             0%{
-                 bottom: 10%;
-             }
-             50%{
-                 bottom: 0;
-             }
-             100%{
-                 bottom: 10%;
-             }
-         }
+<body ng-app="indexPage" ng-controller="indexPageController as iCtrl"> 
 
-         @keyframes bounce {
-            from {
-                top: 100px;
-                animation-timing-function: ease-out;
-            }
-            25% {
-                top: 50px;
-                animation-timing-function: ease-in;
-            }
-            50% {
-                top: 150px;
-                animation-timing-function: ease-out;
-            }
-            75% {
-                top: 75px;
-                animation-timing-function: ease-in;
-            }
-            to {
-                top: 100px;
-            }
-            }
+	<%- include('../includes/navbar') %>
 
-            @keyframes fall {
-    from, 15% {
-        transform: rotate(0) translateX(0);
-        opacity: 1;
-        animation-timing-function: cubic-bezier(.07,2.02,.67,.57);
-    }
-    50%, 60% {
-        transform: rotate(90deg) translateX(0);
-        opacity: 1;
-        animation-timing-function: cubic-bezier(.13,.84,.82,1);
-    }
-    85%, to {
-        transform: rotate(90deg) translateX(200px);
-        opacity: 0;
-    }
-}
-              
-         
-         @keyframes move-left{
-             0%{
-                 left: 0%;
-             }
-             100%{
-                 left: -100%;
-             }
-             
-         }
-         
-         
-         
-         
-         
-         
-         
-     </style>
-     
-     
-     
- </head>
- <body>
-<%- include('../includes/navbar') %>
+	<header class="d-flex w-100 flex-column justify-content-center align-items-center">
+		<h7 class="d-block text-white">Travelaloha - Company</h7>
+		<detail class="d-block font-weight-light text-white text-center text-break">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, asperiores.
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit?
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, nostrum recusandae!
+		</detail>
+		<groupButton class="d-block mt-3 pb-5">
+			<% if (user) { %>
+			<span class="create-button text-center mx-1 rounded"onclick="window.location='/admin/staff/application'">Send your application</span>
+			<% } else { %>
+			<span class="create-button text-center mx-1 rounded" onclick="window.location='/login'">sign in to join us</span>
+			<% } %>
+			<span class="overview-button text-center mx-1 rounded" ng-click="showLandingPage()">overview</span>
+		</groupButton>
+	</header>
 
-<div class="image flex-row row justify-content-around align-content-around">
+	<article ng-if="overviewConfirm" id="myOverview" class="d-flex flex-column align-items-center w-100">
+		<!-- BEGIN: static mockup -->
+		<section class="d-block">
+			<sectionName class="d-block my-1" style="font-size: 1.5rem;">SECTION 1</sectionName>
+			<sectionDetail class="d-block my-1 font-weight-light" style="font-size: 1.1rem;">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eius!
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eius!
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, unde?
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eius!
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, unde?
+			</sectionDetail>
+		</section>
+		<section class="d-block">
+			<sectionName class="d-block my-1" style="font-size: 1.5rem;">SECTION 2</sectionName>
+			<sectionDetail class="d-block my-1 font-weight-light" style="font-size: 1.1rem;">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eius!
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, unde?
+			</sectionDetail>
+		</section>
+		<section class="d-block">
+			<sectionName class="d-block my-1" style="font-size: 1.5rem;">SECTION 3</sectionName>
+			<sectionDetail class="d-block my-1 font-weight-light" style="font-size: 1.1rem;">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eius!
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, unde?
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, et.
+			</sectionDetail>
+		</section>
+		<!-- END: static mockup -->
 
-    <h1 id="title" class="col-12 text-center" style="height: 100px;"> Staff Admin Dashboard </h1>
+		<section class="d-block">
+			<sectionName class="d-block my-1" style="font-size: 1.5rem;">How many departments we have...</sectionName>
+			<sectionDetail class="d-block my-1 font-weight-light" style="font-size: 1.1rem;">
+				<label>Select a department: </label>
+				<select ng-model="selectedDept" 
+						ng-options="dept.deptNo as dept.deptName for dept in deptList" 
+						class="d-inline-block form-control mt-3 ml-1"
+						style="width: fit-content;" 
+						ng-change="generateRole(selectedDept)"
+				></select>
 
-    <button class="col-3 btn btn-info" onclick="window.location='/admin/staff/recruiting'">Staff Recruiting Requests</button>
-    <button class="col-3 btn btn-danger" onclick="window.location='/admin/staff/requisition'">Staff Requsition <br> (For admin use only) </button>
-    <button class="col-3 btn btn-success" onclick="window.location='/admin/staff/management'">Staff Dashboard</button>
-   
-<div id="container">
- 
-<svg  
-	 x="0px"
-	 y="0px" 
-	 viewBox="0 0 3841 108.5"
-	 style="overflow:scroll;enable-background:new 0 0 3841 108.5;" 
-	 xml:space="preserve">
-<defs>
-</defs>
+				<div class="text-left" ng-repeat="role in roleList" style="width: fit-content; margin: 1rem auto;">
+					<p class="font-weight-bold">{{ role.roleName }}</p>
+					<p>{{ role.roleDetail }}</p>
+				</div>
+			</sectionDetail>
+		</section>
+	</article>
+	
+	<script src="../../assets/js/staff_admin/index.js"></script>
 
-<path style="fill: rgb(255, 188, 216);
-             stroke-miterlimit:10;" 
-            d="M3360.5,97.739c-242,0-480-48.375-480-48.375
-                S2647.5,0.5,2400.5,0.5s-480,48.375-480,48.375s-238,48.864-480,48.864s-480-48.375-480-48.375S727.5,0.5,480.5,0.5
-                S0.5,48.875,0.5,48.875V108h1920h1920V48.875C3840.5,48.875,3602.5,97.739,3360.5,97.739z"/>
-            </svg>
-
-</div>
-</div>
-<div class="white">
-</div>
- <%- include('../includes/footer') %>
+<%- include('../includes/footer') %>
