@@ -109,9 +109,9 @@ exports.postAirlineInfo = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-exports.getHotelDetail = (req, res) => {
-  let data = contactModel.getHotelInfo();
+exports.getHotelDetail = async(req, res) => {
   try{
+    let data = contactModel.getHotelDetailInfo();
     res.render("contact/new-hotel-detail", {
       pageTitle: "TravelAloha - Contact - New Hotel Detail",
       user: req.user,
@@ -120,11 +120,11 @@ exports.getHotelDetail = (req, res) => {
     res.sendStatus(204);
   }catch(error){
     res.sendStatus(404);
-    throw new Error(`[ERR] getHotelInfo: ${error}`);
+    throw new Error(`[ERR] getHotelDetail: ${error}`);
   }
 };
-exports.getAirlineDetail = (req, res) => {
-  let data = contactModel.getAirlineInfo();
+exports.getAirlineDetail = async(req, res) => {
+  let data = contactModel.getAirlineDetailInfo();
   try{
     res.render("contact/new-airline-detail", {
       pageTitle: "TravelAloha - Contact - New Airline Detail",
@@ -134,6 +134,6 @@ exports.getAirlineDetail = (req, res) => {
     res.sendStatus(204);
   }catch(error){
     res.sendStatus(404);
-    throw new Error(`[ERR] getAirlineInfo: ${error}`);
+    throw new Error(`[ERR] getAirlineDetail: ${error}`);
   }
 };

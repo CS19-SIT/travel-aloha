@@ -45,12 +45,12 @@ exports.getHotelDashboard= async() =>{
       throw new Error(`[ERR] getHotelDashboard: ${err}`);
   }
 };
-exports.getHotelInfo = async hotelId =>{
+exports.getHotelDetailInfo = async() =>{
   try{
-      const result = await db.query(`SELECT * FROM hotel WHERE hotelId = ?`,[hotelId]);
+      const result = await db.query(`SELECT * FROM hotel`);
       return result[0];
   } catch (err) {
-      throw new Error(`[ERR] getHotelInfo: ${err}`);
+      throw new Error(`[ERR] getHotelDetailInfo: ${err}`);
   }
 };
 exports.deleteHotelInfo = async hotelId => {
@@ -97,12 +97,12 @@ exports.getAirlineDashboard = async() => {
     throw new Error(`[ERR] getAirlineDashboard: ${err}`);
   }
 };
-exports.getAirlineInfo = async() => {
+exports.getAirlineDetailInfo = async() => {
   try {
-      const result = await db.query(`SELECT * FROM airline WHERE airline_Id = ?`);
+      const result = await db.query(`SELECT * FROM airline`);
       return result[0];
   } catch (err) {
-    throw new Error(`[ERR] getAirlineInfo: ${err}`);
+    throw new Error(`[ERR] getAirlineDetailInfo: ${err}`);
   }
 };
 exports.deleteAirlineInfo = async airline_Id => {
