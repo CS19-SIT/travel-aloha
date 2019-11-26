@@ -73,15 +73,22 @@ exports.getRoom = async room => {
     throw new Error(`[ERR] getRoomID: ${err}`);
   }
 };
-
+exports.testFunc = function (){
+  result = this.getAllFreeRoom(2);
+  for(let i =0;i<result[0].length;i++){
+    console.log(result[0][i]);
+  }
+}
 exports.getAllFreeRoom = async hotelId =>{
   const { hotelId } = hotelId;
   try {
-    let allRoom = await db.query("select price,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity from room_head as rh, room_detail as rd where hotelIdroom = ? and rh.roomDetailId = rd.detailId and isBook <> true order by price;", [hotelId]);
+    let allRoom = await db.query("select price,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity "+
+                                "from room_head as rh, room_detail as rd where hotelIdroom = ? "+
+                                "and rh.roomDetailId = rd.detailId and isBook <> true order by price;", [hotelId]);
     if (result[0].length < 1) {
       throw new Error(`Cannot find your room ${RoomId},${hotelId}.`);
     }
-    return result[0][0];
+    return result;
   } catch (error) {
     throw new Error(`[ERR] get room from hotelId: ${hotelId}`);
   }
