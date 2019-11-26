@@ -58,9 +58,8 @@
     function putRequest(){
         let data = $('#'+this.event.target.form.id).serialize();
         let JsonData = JSON.stringify(data);
-
         $.ajax({
-            url: '/edit',
+            url: '/admin/hotel/edit',
             type: 'PUT',
             data: data,
         });
