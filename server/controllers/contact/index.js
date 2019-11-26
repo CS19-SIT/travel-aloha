@@ -115,7 +115,7 @@ exports.getHotelDetail = async(req, res) => {
     res.render("contact/new-hotel-detail", {
       pageTitle: "TravelAloha - Contact - New Hotel Detail",
       user: req.user,
-      hotel: data
+      hotelDetail: data
     });
     res.sendStatus(204);
   }catch(error){
@@ -129,7 +129,7 @@ exports.getAirlineDetail = async(req, res) => {
     res.render("contact/new-airline-detail", {
       pageTitle: "TravelAloha - Contact - New Airline Detail",
       user: req.user,
-      airline: data
+      airlineDetail: data
     });
     res.sendStatus(204);
   }catch(error){
