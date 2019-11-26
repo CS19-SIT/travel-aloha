@@ -1,21 +1,6 @@
-.bg-3 { 
-  background-color: #ffffff;
-  color: #555555;
-}
-.navbar {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border: 0;
-  border-radius: 0;
-  margin-bottom: 0;
-  font-size: 12px;
-  letter-spacing: 5px;
-}
-.navbar-nav  li a:hover {
-  color: #1abc9c !important;
-}
-.active>a {
-color: #1abc9c !important;;
+.success-color{
+  background-color: #388BF2;
+  color: white;
 }
 .form-check{
   margin-bottom: 20px !important;
@@ -35,4 +20,7 @@ color: #1abc9c !important;;
   height: auto;
   background: no-repeat center;
   background-size: contain;
+}
+h1{
+  color: #25282B;
 }

@@ -12,9 +12,5 @@ router.get("/test", flightBookingController.getTest);
 // router.post("/test", flightBookingController.postTest);
 
 router.get("/contact", flightBookingController.getContact);
-
 router.post("/donut", flightBookingController.getDonut);
-
-
-
 module.exports = router;
