@@ -79,18 +79,22 @@ exports.testFunc = function (){
     console.log(result[0][i]);
   }
 }
-exports.getAllFreeRoom = async hotelId =>{
-  const { hotelId } = hotelId;
+
+
+exports.getAllFreeRoom = async paramHotelId =>{
   try {
-    let allRoom = await db.query("select price,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity "+
-                                "from room_head as rh, room_detail as rd where hotelIdroom = ? "+
-                                "and rh.roomDetailId = rd.detailId and isBook <> true order by price;", [hotelId]);
-    if (result[0].length < 1) {
-      throw new Error(`Cannot find your room ${RoomId},${hotelId}.`);
+    // let allRoom = await db.query("select * from hotel"); //for testing
+    let allRoom = await db.query(
+      "select fullprice,Saleprice,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity "+
+      "from room_head as rh, room_detail as rd where rh.hotelIdroom = ? "+
+      "and rh.roomDetailId = rd.detailId and isBooked <> true order by Saleprice,fullprice;", [paramHotelId]);
+    if (allRoom[0].length < 1) {
+      throw new Error(`Cannot find your room from hotel,${paramHotelId}.`);
     }
-    return result;
+    
+    return allRoom;
   } catch (error) {
-    throw new Error(`[ERR] get room from hotelId: ${hotelId}`);
+    throw new Error(`[ERR] get room from hotelId: ${paramHotelId}`);
   }
 
 }
