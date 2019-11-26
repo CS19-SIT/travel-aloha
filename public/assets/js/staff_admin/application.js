@@ -1,9 +1,11 @@
 const app = angular.module('applicationPage', [])
 
+
 app.controller('applicationPageController', [
     '$scope',
     '$http',
     function($scope, $http) {
+        this.haha = 3;
         $scope.overviewConfirm = false
         $scope.deptList = []
         $scope.roleList = []
@@ -31,5 +33,8 @@ app.controller('applicationPageController', [
                 } 
             })
         }
+        // $scope.test = function(){
+        //     SweetAlert.swal("HAHAYES");
+        // }
     }
 ])
