@@ -16,20 +16,15 @@ router.get(
   authMiddleware.isStaff
 );
 router.get(
-  "/dashboard/detail",
+  "/dashboard/detail/new-hotel",
   contactController.getHotelDetail,
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff
 );
-// router.get("/dashboard/detail/:hotelId", 
-// contactController.getHotelDetail,
-// authMiddleware.isAuthenticated,
-// authMiddleware.isStaff
-// );
-// router.get("/dashboard/detail/:airlineId", 
-// contactController.getAirlineDetail,
-// authMiddleware.isAuthenticated,
-// authMiddleware.isStaff
-// );
-
+router.get(
+  "/dashboard/detail/new-airline",
+  contactController.getAirlineDetail,
+  authMiddleware.isAuthenticated,
+  authMiddleware.isStaff
+);
 module.exports = router;

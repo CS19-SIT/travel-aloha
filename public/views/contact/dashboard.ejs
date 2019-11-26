@@ -13,7 +13,7 @@
                 <% for(var i = 0; i < hotel.length; i++){ %>
                 <div class="row">
                     <div class="col-md-2">
-                        <a href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><%- hotel[i].hotelName %></strong></a>
+                        <strong><%- hotel[i].hotelName %></strong>
                         <p class="float-left"><%- hotel[i].timestamp %></p>
                     </div>
                     <div class="col-md-8">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="clearfix"></div>
-                        <a href="./dashboard/detail" class="btn btn-info text-center" role="button">Show more</a>
+                        <a href="./dashboard/detail/new-hotel" class="btn btn-info text-center" role="button">Show more</a>
                     </div>
                 </div>
                 <% }%>
@@ -34,8 +34,7 @@
                 <% for(var i = 0; i < airline.length; i++){ %>
                 <div class="row">
                     <div class="col-md-2">
-                        <a class="float-left"
-                            href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><%- airline[i].airlineName %></strong></a>
+                        <strong><%- airline[i].airlineName %></strong>
                         <p class="float-left"><%- airline[i].timestamp %></p>
                     </div>
                     <div class="col-md-8">
@@ -44,7 +43,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="clearfix"></div>
-                        <a href="./dashboard/detail" class="btn btn-info" role="button">Show more</a>
+                        <a href="./dashboard/detail/new-airline" class="btn btn-info" role="button">Show more</a>
                     </div>
                 </div>
                 <% }%>
