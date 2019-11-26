@@ -5,8 +5,9 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "NODE_ENV=test jest",
+    "test": "NOV=test jest",
     "test:watch": "NODE_ENV=test jest --watchAll"
+    "live": "nodemon server/server.js"
   },
   "author": "",
   "license": "ISC",
