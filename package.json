@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "NOV=test jest",
-    "test:watch": "NODE_ENV=test jest --watchAll"
+    "test:watch": "NODE_ENV=test jest --watchAll",
     "live": "nodemon server/server.js"
   },
   "author": "",
