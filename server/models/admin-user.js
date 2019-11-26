@@ -40,3 +40,17 @@ exports.findUserById = async user_id => {
       throw new Error(`[ERR] findUserById: ${err}`);
     }
   };
+
+  exports.deleteUser = async user_id => {
+    try {
+        const result = await db.query("SELECT 1 FROM user WHERE user_id = ?", [user_id]);
+
+        if (result[0].length === 0) {
+            throw new Error(`User ${user_id} doesn't exists`);
+        }
+
+        await db.query("DELETE FROM user WHERE user_id = ?", [user_id]);
+    } catch (err) {
+        throw new Error(`[ERR] deleteCoupon: ${err}`)
+    }
+};

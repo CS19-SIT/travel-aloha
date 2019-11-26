@@ -37,9 +37,20 @@
               <input type="file" name="profile_picture" id="profile_picture" class="" required>
           </div> -->
 
-      <button type="submit" class="btn btn-primary float-right">Edit</button>
+          <button type="button" id="editButton<%=data.user_id%>" name="EditButton" onclick="putRequest()" value="edit" class="btn btn-warning">edit</button>
   </form>
 </div>
-</div>
+<script>
+    function putRequest(){
+        let data = $('#'+this.event.target.form.id).serialize();
+        let JsonData = JSON.stringify(data);
+
+        $.ajax({
+            url: '/edit',
+            type: 'PUT',
+            data: data,
+        });
+    }
+</script>
 </body>
 </html>

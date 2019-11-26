@@ -35,7 +35,17 @@ router.get(
   adminUserController.deleteUsers
 );
 // router.post('/add', userManagementController.addUsers);
-// router.post('/edit/:id', userManagementController.editUsers);
-// router.post('/detail/:id', userManagementController.detailUsers);
+router.put(
+  "/edit",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminUserController.putUser
+);
+router.delete(
+  "/delete",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminUserController.deleteUsers
+);
 
 module.exports = router;
