@@ -95,6 +95,7 @@ const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 app.use(indexRoutes);
 app.use(authRoutes);
 
+
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/flight", adminFlightRoutes);
@@ -102,12 +103,18 @@ app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
+app.get("/", (req, res) => res.render("index", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
+
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
 app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
+
 
 app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
@@ -119,7 +126,19 @@ app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
 
-app.listen(process.env.APP_PORT, () => {
-  if (process.env.NODE_ENV !== "production")
-    console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+app.use((err, req, res, next) => {
+  res.status(400).render("errors/400", {
+    pageTitle: "TravelAloha - Bad Request",
+    user: req.user,
+    error: err
+  });
 });
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.APP_PORT, () => {
+    if (process.env.NODE_ENV !== "production")
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+  });
+}
+
+module.exports = app;
