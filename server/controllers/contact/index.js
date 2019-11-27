@@ -8,13 +8,13 @@ exports.getIndex = (req, res) => {
   });
 };
 exports.getHotelInfo = (req, res) => {
-  try{
+  try {
     res.render("contact/add-new-hotel", {
       pageTitle: "TravelAloha - Contact - Register New Hotel",
       user: req.user
     });
-  }catch (err) {
-    res.sendStatus(404);
+  } catch (err) {
+    res.sendStatus(400);
   }
 };
 exports.getAirlineInfo = (req, res) => {
@@ -38,7 +38,7 @@ exports.postHotelInfo = async (req, res) => {
     hotelPicture
   } = req.body;
   try {
-    await contactModel.insertNewHotel({
+    const hotelNoPic = await contactModel.insertNewHotel({
       hotelName,
       hotelDescription,
       hotelAddress,
@@ -49,30 +49,36 @@ exports.postHotelInfo = async (req, res) => {
       hotelRoomPrice,
       hotelPromotion
     });
-    // ** Wait for learning upload file
-    // await contactModel.insertNewHotelFile({
-    //   hotelPicture
-    // })
-    res.redirect("dashboard");
-    res.sendStatus(204);
+    multer.uploadPicture(req, res, async err => {
+      if (err) {
+        res.status(400)
+        return;
+      }
+    });
+    const hotelWithPic = await contactModel.insertNewHotelFile({
+      hotelPicture
+    });
+    return hotelNoPic, hotelWithPic;
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
+  } finally {
+    res.redirect("dashboard");
   }
 };
-exports.getDashboard = async(req, res) => {
-  try{
+exports.getDashboard = async (req, res) => {
+  try {
     let hotelData = await contactModel.getHotelDashboard();
     let airlineData = await contactModel.getAirlineDashboard();
+    res.status(200);
     res.render("contact/dashboard", {
       pageTitle: "TravelAloha - Contact - Dashboard",
       user: req.user,
       hotel: hotelData,
       airline: airlineData
     });
-    res.sendStatus(204);
-  }catch (err) {
-    res.sendStatus(404);
+  } catch (err) {
+    res.sendStatus(400);
   }
 };
 exports.postAirlineInfo = async (req, res) => {
@@ -102,38 +108,38 @@ exports.postAirlineInfo = async (req, res) => {
       airlineSeatPrice,
       airlinePlaneDes
     });
-    res.redirect("dashboard");
-    res.sendStatus(204);
+    res.status(200);
   } catch (error) {
-    res.sendStatus(404);
+    res.sendStatus(400);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
+  } finally {
+    res.redirect("dashboard");
   }
 };
-exports.getHotelDetail = async(req, res) => {
-  try{
+exports.getHotelDetail = async (req, res) => {
+  try {
     let data = contactModel.getHotelDetailInfo();
+    res.status(200);
     res.render("contact/new-hotel-detail", {
       pageTitle: "TravelAloha - Contact - New Hotel Detail",
       user: req.user,
       hotelDetail: data
-    });
-    res.sendStatus(204);
-  }catch(error){
-    res.sendStatus(404);
-    throw new Error(`[ERR] getHotelDetail: ${error}`);
+    })
+  } catch (error) {
+    res.sendStatus(400);
   }
 };
-exports.getAirlineDetail = async(req, res) => {
+exports.getAirlineDetail = async (req, res) => {
   let data = contactModel.getAirlineDetailInfo();
-  try{
+  try {
+    res.status(200);
     res.render("contact/new-airline-detail", {
       pageTitle: "TravelAloha - Contact - New Airline Detail",
       user: req.user,
       airlineDetail: data
     });
-    res.sendStatus(204);
-  }catch(error){
-    res.sendStatus(404);
+  } catch (error) {
+    res.sendStatus(400);
     throw new Error(`[ERR] getAirlineDetail: ${error}`);
   }
 };

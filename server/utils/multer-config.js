@@ -3,7 +3,7 @@ const multer = require("multer");
 
 const storageForPicture = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, path.join(__dirname, "../uploads/pictures/"));
+    callback(null, path.join(__dirname, "../uploads/contact/pictures"));
   },
   filename: (req, file, callback) => {
     callback(
@@ -15,7 +15,7 @@ const storageForPicture = multer.diskStorage({
 
 const storageForDocument = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, path.join(__dirname, "../uploads/documents/"));
+    callback(null, path.join(__dirname, "../uploads/contact/documents"));
   },
   filename: (req, file, callback) => {
     callback(
