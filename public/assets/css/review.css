@@ -226,3 +226,7 @@ width: 100%;}
     vertical-align: top;
     display: table-cell;
 }
+.show{
+    margin-top: 30px;
+    margin-left: 20px;
+}
