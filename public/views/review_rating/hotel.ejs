@@ -156,14 +156,18 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="">
+                                            <form method="POST" action="/hotel">
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Title:</label>
-                                                    <input type="text" class="form-control" name="" id="title">
+                                                    <input type="text" class="form-control" name="Title_Hotel" id="title">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Id hotel:</label>
+                                                        <input type="text" class="form-control" name="hotel_hotelId" id="title">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Category">Category:</label>
-                                                    <select class="form-control" id="Category" name="">
+                                                    <select class="form-control" id="Category" name="Type_Of_Hotel_Reviewer">
                                                         <option>Business Trip</option>
                                                         <option>Family Vacation</option>
                                                         <option>Romantic Vacation</option>
@@ -174,37 +178,37 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Comment:</label>
-                                                    <textarea class="form-control" id="message-text" name=""></textarea>
+                                                    <textarea class="form-control" id="message-text" name="Text_Hotel_Review"></textarea>
                                                 </div>
-                                                <div class="form-group">
+                                                <!--<div class="form-group">
                                                     <label for="message-text" class="col-form-label">Upload
                                                         picture:</label>
                                                     <input type="file" name="" id="Uploadpicture">
-                                                </div>
+                                                </div>-->
                                                 <label for="message-text">Score (between 1 and 10):</label>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Cleanliness</label>
-                                                    <input type="number" class="form-control" name="" id="Cleanliness"
+                                                    <input type="number" class="form-control" name="Cleanliness_Hotel_Rating" id="Cleanliness"
                                                         min="1" max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Comfort</label>
-                                                    <input type="number" class="form-control" name="" id="comfort"
+                                                    <input type="number" class="form-control" name="Comfort_Hotel_Rating" id="comfort"
                                                         min="1" max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Meal</label>
-                                                    <input type="number" class="form-control" name="" id="meal" min="1"
+                                                    <input type="number" class="form-control" name="Meal_Hotel_Rating" id="meal" min="1"
                                                         max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Location</label>
-                                                    <input type="number" class="form-control" name="" id="location"
+                                                    <input type="number" class="form-control" name="Location_Hotel_Rating" id="location"
                                                         min="1" max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Service</label>
-                                                    <input type="number" class="form-control" name="" id="service"
+                                                    <input type="number" class="form-control" name="Service_Hotel_Rating" id="service"
                                                         min="1" max="10" value="1">
                                                 </div>
                                         </div>
@@ -220,7 +224,7 @@
                         </div><% } %>
                     </div>
                     <div class="d-flex">
-                        <div class="col-xs-4 col-md-4 ">
+                        <div class="col-xs-3 col-md-3 ">
                             <label for="Sort">Sort reviews by:</label>
                             <select class="form-control" name="" id="">
                                 <option>Recommended</option>
@@ -230,7 +234,7 @@
                                 <option>Score(lower to higher)</option>
                             </select>
                         </div>
-                        <div class="col-xs-4 col-md-4 ">
+                        <div class="col-xs-3 col-md-3 ">
                             <label for="Category">Show reviews from:</label>
                             <select class="form-control" name="" id="">
                                 <option>All reviewers</option>
@@ -242,7 +246,7 @@
                                 <option>Medical Travel</option>
                             </select>
                         </div>
-                        <div class="col-xs-4 col-md-4 ">
+                        <div class="col-xs-3 col-md-3 ">
                             <label for="Score">Show reviews by score: </label>
                             <select class="form-control" name="" id="">
                                 <option>All review scores</option>
@@ -253,7 +257,9 @@
                                 <option>Very poor</option>
                             </select>
                         </div>
-
+                        <div class="col-xs-3 col-md-3 ">
+                                
+                        </div>
                     </div>
                     <!-- Review by user -->
                     <section class="review p-5 border-1">
