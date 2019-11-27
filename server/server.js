@@ -72,15 +72,9 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
-const adminRoutes = require("./routes/admin/index");
-const adminCouponRoutes = require("./routes/admin/coupon");
-const adminFlightRoutes = require("./routes/admin/flight");
-const adminHotelRoutes = require("./routes/admin/hotel");
-const adminStaffRoutes = require("./routes/admin/staff");
-const adminUserRoutes = require("./routes/admin/user");
-const authRoutes = require("./routes/auth/index");
-const checkoutRoutes = require("./routes/checkout/index");
-const contactRoutes = require("./routes/contact/index");
+const authRoutes = require("./routes/auth");
+const todoRoutes = require("./routes/todo");
+const apiTodoRoutes = require("./routes/api-todo");
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
 const hotelRoutes = require("./routes/hotel/index");
@@ -108,21 +102,9 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 
-app.use("/checkout", checkoutRoutes);
-app.use("/contact", contactRoutes);
-
-app.use("/dashboard", userRoutes);
-app.use("/dashboard/history", userHistoryRoutes);
-app.use("/dashboard/favorite", userFavoriteRoutes);
-
-
-app.use("/hotel", hotelRoutes);
-app.use("/hotel/booking", hotelBookingRoutes);
-
-app.use("/flight", flightRoutes);
-app.use("/flight/booking", flightBookingRoutes);
-
-app.use("/review", reviewRoutes);
+app.use(authRoutes);
+app.use("/api/todo", apiTodoRoutes);
+app.use("/todo", todoRoutes);
 
 app.use(errorsController.get404);
 

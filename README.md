@@ -4,6 +4,8 @@ Central platform for your dream travel.
 
 This project compose of many subsystems.
 
+This branch serves as an example for you to understand better. You can check out the file ```todo``` and ```api-todo``` in each directory.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
