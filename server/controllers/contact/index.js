@@ -34,7 +34,6 @@ exports.postHotelInfo = async (req, res) => {
     hotelRoomType,
     hotelRoomPrice,
     hotelPromotion,
-    hotelProfile,
     hotelPicture
   } = req.body;
   try {
@@ -51,7 +50,7 @@ exports.postHotelInfo = async (req, res) => {
     });
     multer.uploadPicture(req, res, async err => {
       if (err) {
-        res.status(400)
+        res.sendStatus(400)
         return;
       }
     });
