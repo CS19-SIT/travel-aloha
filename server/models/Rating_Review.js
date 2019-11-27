@@ -81,7 +81,7 @@ exports.insertNewHotel_Review = async ({
 }) => {
   try {
     await db.query(
-      `INSERT INTO Hotel_Review(Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating, hotel_hotelId) VALUES(?,?,?,?,?,?,?,?)`,
+      `INSERT INTO Hotel_Review(Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating,Type_Of_Hotel_Reviewer, hotel_hotelId) VALUES(?,?,?,?,?,?,?,?,?)`,
       [
         Title_Hotel,
         Text_Hotel_Review,
