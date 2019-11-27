@@ -44,7 +44,7 @@ exports.postHotelReview = async (req, res) => {
     // await contactModel.insertNewHotelFile({
     //   hotelPicture
     // })
-    res.redirect("/hotel");
+    res.redirect("review_rating/hotel");
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(404);
@@ -73,7 +73,7 @@ exports.postFlightReview = async (req, res) => {
       Entertainment_Flight_Rating,
       Flight_Flight_number
     });
-    res.redirect("/airline");
+    res.redirect("review_rating/airline");
     res.sendStatus(204);
   } catch (error) {
     res.sendStatus(404);
