@@ -35,7 +35,7 @@ exports.postHotelInfo = async (req, res) => {
     hotelRoomPrice
   } = req.body;
   try {
-    const hotelNoPic = await contactModel.insertNewHotel({
+    await contactModel.insertNewHotel({
       hotelName,
       hotelDescription,
       hotelAddress,
@@ -50,11 +50,13 @@ exports.postHotelInfo = async (req, res) => {
         res.sendStatus(400)
         return;
       }
+      const {
+        hotelPicture
+      } = req.file;
+      await contactModel.insertNewHotelFile({
+        hotelPicture
+      })
     });
-    const hotelWithPic = await contactModel.insertNewHotelFile({
-      hotelPicture
-    });
-    return hotelNoPic, hotelWithPic;
   } catch (error) {
     res.status(400);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
