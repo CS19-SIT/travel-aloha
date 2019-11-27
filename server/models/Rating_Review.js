@@ -70,6 +70,7 @@ exports.getFlightReviewInfo = async ({
 
 exports.insertNewHotel_Review = async ({
   Title_Hotel,
+  Type_Of_Hotel_Reviewer,
   Text_Hotel_Review,
   Cleanliness_Hotel_Rating,
   Comfort_Hotel_Rating,
@@ -89,6 +90,7 @@ exports.insertNewHotel_Review = async ({
         Meal_Hotel_Rating,
         Location_Hotel_Rating,
         Service_Hotel_Rating,
+        Type_Of_Hotel_Reviewer,
         hotel_hotelId
       ]
     );
