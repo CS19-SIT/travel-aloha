@@ -51,8 +51,25 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                          <label for="">Airline Seat Type</label>
-                          <input type="text" class="form-control" placeholder="Airline Seat Type" name="airlineSeatType" required>
+                            <label for="">Airline Seat Type</label>
+                            <select class="form-control" name="airlineSeatType" required>
+                                <option value="">---Choose an option---</option>
+                                <optgroup label="F Class">
+                                <option value="First Class">First Class</option>
+                                <option value="First Class Premium">First Class Premium</option>
+                                <option value="First Class Discounted">First Class Discounted</option>
+                                </optgroup>
+                                <optgroup label="C Class">
+                                <option value="Business Class">Business Class</option>
+                                <option value="Business Class Premium">Business Class Premium</option>
+                                <option value="Business Class Discounted">Business Class Discounted</option>
+                                </optgroup>
+                                <optgroup label="E Class">
+                                <option value="Economy Class">Economy Class</option>
+                                <option value="Economy Class Premium">Economy Class Premium</option>
+                                <option value="Economy Class Discounted">Economy Class Discounted</option>
+                                </optgroup>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                           <label for="">Airline Seat Price</label>
