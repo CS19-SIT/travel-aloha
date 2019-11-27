@@ -89,6 +89,19 @@ exports.insertNewAirline = async ({
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
+exports.insertNewAirlineFile = async ({
+  airlineProfile,
+  airlinePicture
+}) => {
+  try {
+    await db.query(`INSERT INTO hotel(airlineProfile, airlinePicture) VALUES(?,?)`, [
+      airlineProfile,
+      airlinePicture
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewAirlineFile: ${error}`)
+  }
+};
 exports.getAirlineDashboard = async() => {
   try {
       const result = await db.query(`SELECT * FROM airline`);
