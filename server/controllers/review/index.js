@@ -19,6 +19,7 @@ exports.getFlight = (req, res) =>
 exports.postHotelReview = async (req, res) => {
   const {
     Title_Hotel,
+    Type_Of_Hotel_Reviewer,
     Text_Hotel_Review,
     Cleanliness_Hotel_Rating,
     Comfort_Hotel_Rating,
@@ -30,6 +31,7 @@ exports.postHotelReview = async (req, res) => {
   try {
     await Rating_ReviewModel.insertNewHotel_Review({
       Title_Hotel,
+      Type_Of_Hotel_Reviewer,
       Text_Hotel_Review,
       Cleanliness_Hotel_Rating,
       Comfort_Hotel_Rating,
