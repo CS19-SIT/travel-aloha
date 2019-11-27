@@ -2,6 +2,7 @@ const db = require("../db/db");
 
 exports.getHotelReviewInfo = async ({
   Title_Hotel,
+  Type_Of_Hotel_Reviewer,
   Text_Hotel_Review,
   timestamp,
   Cleanliness_Hotel_Rating,
@@ -21,6 +22,7 @@ exports.getHotelReviewInfo = async ({
       Meal_Hotel_Rating,
       Location_Hotel_Rating,
       Service_Hotel_Rating,
+      Type_Of_Hotel_Reviewer,
       hotel_hotelId
     ]);
   } catch (error) {
