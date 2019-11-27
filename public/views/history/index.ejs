@@ -3,107 +3,156 @@
 <!-- <script>
   const hotelName = JSON.parse ('<%- hotelName %>');
 </script> -->
-  <script src="../../assets/js/history/history.js"></script>
+<script src="../../assets/js/history/history.js"></script>
 
-  <!--This is custom CSS-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
+<!--This is custom CSS-->
+<link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
+<script>
+  var x = 5;
+
+  var allRecord = [
+    { name: "<%= hotelName %>", timeStamp: 1573644567, stat: 0, type: 0 },
+    { name: "Hotel 2", timeStamp: 1573599966, stat: 0, type: 1 },
+    { name: "Airline 3", timeStamp: 1573435554, stat: 0, type: 1 },
+    { name: "Airline 4", timeStamp: 1573211444, stat: 0, type: 1 },
+    { name: "Hotel 5", timeStamp: 1572242267, stat: 0, type: 0 },
+    { name: "Hotel 6", timeStamp: 1511144567, stat: 2, type: 1 },
+    { name: "Hotel 7", timeStamp: 1500044522, stat: 2, type: 1 },
+    { name: "Hotel 8", timeStamp: 1500044511, stat: 1, type: 0 },
+    { name: "Hotel 9", timeStamp: 1500044500, stat: 1, type: 0 },
+    { name: "Hotel 10", timeStamp: 1500044111, stat: 1, type: 1 },
+    { name: "Hotel 11", timeStamp: 1500044000, stat: 2, type: 0 },
+    { name: "Hotel 12", timeStamp: 1500049999, stat: 1, type: 1 },
+    { name: "Hotel 13", timeStamp: 1500048888, stat: 1, type: 0 },
+    { name: "Hotel 14", timeStamp: 1500048888, stat: 2, type: 0 },
+    { name: "Hotel 15", timeStamp: 1500048888, stat: 2, type: 0 },
+    { name: "Hotel 16", timeStamp: 1500048888, stat: 1, type: 0 },
+    { name: "Hotel 17", timeStamp: 1500048888, stat: 1, type: 0 },
+    { name: "Hotel 18", timeStamp: 1500048888, stat: 1, type: 0 },
+  ];
+
+  var allDetail = [
+    "Detail of 1", "Detail of 2", "Detail of 3",
+    "Detail of 4", "Detail of 5", "Detail of 6",
+    "Detail of 7", "Detail of 8", "Detail of 9",
+    "Detail of 10", "Detail of 11", "Detail of 12",
+    "Detail of 13", "Detail of 14", "Detail of 15",
+    "Detail of 16", "Detail of 17", "Detail of 18",
+  ];
+
+
+</script>
+
 <body>
-<body onload="printAllRec()">
-  <div class="row">
-    <!--User Info side (left)-->
-    <div class="col-sm-3 ta-user-info">
-      <h4 class="user-name"><b id="userName"><'userName'></b></h4>
-      <hr class="hrColor">
-      <div class="user-info">
-        <div class="user-level">
-          <b class="badge badge-level">Level: <span id="userLvl">30</span></b>
+
+  <body onload="loadPage()">
+    <div class="row">
+      <!--User Info side (left)-->
+      <div class="col-sm-3 ta-user-info">
+        <h4 class="user-name"><b id="userName">
+            <'userName'>
+          </b></h4>
+        <hr class="hrColor">
+        <div class="user-info">
+          <div class="user-level">
+            <b class="badge badge-level">Level: <span id="userLvl">30</span></b>
+          </div>
+          <div class="user-points">
+            <span class="left badge badge-points-rank badge-points-rank">Points: <span id="userPoints">200</span></span>
+            <span class="right badge-points-rank badge " id="userRank">Silver</span>
+          </div>
         </div>
-        <div class="user-points">
-          <span class="left badge badge-points-rank badge-points-rank">Points: <span id="userPoints">200</span></span>
-          <span class="right badge-points-rank badge " id="userRank">Silver</span>
+      </div>
+
+      <!--History Header side (right)-->
+      <div class="col-sm-9 ta-user-history">
+        <h1><b>History</b></h1>
+        <!--Filter-->
+
+        <div class="filter">
+          <!--Activate from JS-->
+        </div>
+        <div class="history-list" id="histList">
+
+          <!--This is header for each history-->
+          <div class="history-item">
+            <div class="headerInfo">
+              <span class="brief-info">
+                <div>
+                  <h5><b><%= hotelName %><%= hotelName %></b></h5>
+                </div>
+                <div>
+                  <h6><%= timestamp %></h6>
+                </div>
+              </span>
+              <span class="status paid">
+                Paid - Trip Upcoming
+              </span>
+              <span class="icon">
+                <div class="book-icon">
+                  <img src="../../assets/img/bed_icon.png" class="hotel">
+                </div>
+              </span>
+              <span class="toDetail">
+                <a href="hotel.ejs" style="vertical-align: middle;">
+                  <button type="button" class="btn-link">View details</button>
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="headerInfo">
+              <span class="brief-info">
+                <div>
+                  <h5><b>Air Asia - Economy Class (Show from HTML)</b></h5>
+                </div>
+                <div>
+                  <h6>30-10-2019 | 2:00</h6>
+                </div>
+              </span>
+              <span class="status paid">
+                Paid - Trip Upcoming
+              </span>
+              <span class="icon">
+                <div class="book-icon">
+                  <img src="../../assets/img/plane_icon.png" class="flight">
+                </div>
+              </span>
+              <span class="toDetail">
+                <a href="/dashboard/history/flight">
+                  <button type="button" class="btn-link">View details</button>
+                </a>
+              </span>
+            </div>
+          </div>
+          <!--End of HTML List-->
+        </div>
+        <div class="text-center pagerdiv" id="pager">
+          <button class="btn btn-primary older" onclick="oldRec()">Older</button>
+          <button class="btn btn-primary newer" onclick="newRec()">Newer</button>
+        </div>
+      </div>
+      <div id="detailModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Booking details</h4>
+            </div>
+            <!--Content-->
+            <div class="modal-body" id="detailContent">
+              <p>Your booking is canceled</p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!--History Header side (right)-->
-    <div class="col-sm-9 ta-user-history">
-      <h1><b>History</b></h1>
-      <!--Filter-->
-      
-      <div class="filter">
-        <div class="filter-check">
-          <input type="checkbox" id="paidCheck" checked> Paid<br>
-          <input type="checkbox" id="doneCheck" checked> Done<br>
-          <input type="checkbox" id="cancelCheck" checked> Canceled
-        </div>
-        <div class="filter-button">
-          <button class="btn-primary" onclick="showByFilter()">Show by filter</button>
-        </div>
-
-      </div>
-      <div class="history-list" id="histList">
-
-        <!--This is header for each history-->
-        <div class="history-item">
-          <div class="headerInfo">
-            <span class="brief-info">
-              <div>
-                <h5><b><%= hotelName %></b></h5>
-              </div>
-              <div>
-                <h6><%= timestamp %></h6>
-              </div>
-            </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <span class="icon">
-              <div class="book-icon">
-                <img src="../../assets/img/bed_icon.png" class="hotel">
-              </div>
-            </span>
-            <span class="toDetail">
-              <a href="hotel.ejs" style="vertical-align: middle;">
-                <button type="button" class="btn-link">View details</button>
-              </a>
-            </span>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="headerInfo">
-            <span class="brief-info">
-              <div>
-                <h5><b>Air Asia - Economy Class (Show from HTML)</b></h5>
-              </div>
-              <div>
-                <h6>30-10-2019 | 2:00</h6>
-              </div>
-            </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <span class="icon">
-              <div class="book-icon">
-                <img src="../../assets/img/plane_icon.png" class="flight">
-              </div>
-            </span>
-            <span class="toDetail">
-              <a href="flight.ejs">
-                <button type="button" class="btn-link">View details</button>
-              </a>
-            </span>
-          </div>
-        </div>
-        <!--End of HTML List-->
-      </div>
-      <div>
-        
-      </div>
     </div>
-
-  </div>
-  <%- include("../includes/footer") %>
-
-     
+    <%- include("../includes/footer") %>
