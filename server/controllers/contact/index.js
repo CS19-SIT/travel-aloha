@@ -51,9 +51,11 @@ exports.postHotelInfo = async (req, res) => {
         return;
       }
       const {
+        hotelProfile,
         hotelPicture
       } = req.file;
       await contactModel.insertNewHotelFile({
+        hotelProfile,
         hotelPicture
       })
     });

@@ -25,10 +25,12 @@ exports.insertNewHotel = async ({
   }
 };
 exports.insertNewHotelFile = async ({
+  hotelProfile,
   hotelPicture
 }) => {
   try {
-    await db.query(`INSERT INTO hotel(hotelPicture) VALUES(?)`, [
+    await db.query(`INSERT INTO hotel(hotelProfile, hotelPicture) VALUES(?,?)`, [
+      hotelProfile,
       hotelPicture
     ]);
   } catch (error) {
