@@ -55,7 +55,7 @@ function loadPage() {
     alert(allRecord[0].name + allRecord[2]);
     renderUser();
     if (allRecord.length > 0) {
-        printRecFrom(recordFrom);
+        showByFilter();
         document.getElementById('filter').innerHTML = '<div class="filter-check"><input type="checkbox" id="paidCheck" checked><b class="status paid"> Paid</b><br><input type="checkbox" id="doneCheck" checked><b class="status done"> Done</b><br><input type="checkbox" id="cancelCheck" checked><b class="status canceled"> Canceled</b></div><div class="filter-type"> <input type="checkbox" id="hotelCheck" style="margin-bottom: 10px;" checked><b> Show Hotels</b><br><input type="checkbox" id="flightCheck" checked><b> Show Flights</b></div><div class="filter-button"><button class="btn btn-primary" onclick="showByFilter()">Show by filter</button></div>';
     }
     else {

@@ -5,7 +5,9 @@ exports.getIndex = async (req, res) => {
     pageTitle: "TravelAloha - Dashboard - History",
     user: req.user,
     hotelName : info["hotelName"],
-    timestamp : info['timestamp']
+    timestamp : info['timestamp'],
+    airlineName : info['airlineName'],
+    flight_number :info['flight_number'],
   });
 };
 
