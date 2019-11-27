@@ -7,11 +7,10 @@ exports.insertNewHotel = async ({
   hotelTelNumber,
   hotelContactNumber,
   hotelRoomType,
-  hotelRoomPrice,
-  hotelPromotion
+  hotelRoomPrice
 }) => {
   try {
-    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail, hotelRoomType, hotelRoomPrice, hotelPromotion) VALUES(?,?,?,?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail, hotelRoomType, hotelRoomPrice) VALUES(?,?,?,?,?,?,?,?)`, [
       hotelName,
       hotelDescription,
       hotelAddress,
@@ -19,8 +18,7 @@ exports.insertNewHotel = async ({
       hotelContactNumber,
       hotelEmail,
       hotelRoomType,
-      hotelRoomPrice,
-      hotelPromotion
+      hotelRoomPrice
     ]);
   } catch (error) {
     throw new Error(`[ERR] insertNewHotel: ${error}`);

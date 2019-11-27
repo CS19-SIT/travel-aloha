@@ -32,9 +32,7 @@ exports.postHotelInfo = async (req, res) => {
     hotelContactNumber,
     hotelDescription,
     hotelRoomType,
-    hotelRoomPrice,
-    hotelPromotion,
-    hotelPicture
+    hotelRoomPrice
   } = req.body;
   try {
     const hotelNoPic = await contactModel.insertNewHotel({
@@ -45,8 +43,7 @@ exports.postHotelInfo = async (req, res) => {
       hotelContactNumber,
       hotelEmail,
       hotelRoomType,
-      hotelRoomPrice,
-      hotelPromotion
+      hotelRoomPrice
     });
     multer.uploadPicture(req, res, async err => {
       if (err) {
