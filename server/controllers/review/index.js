@@ -1,8 +1,6 @@
 
 const Rating_ReviewModel = require("../../models/Rating_Review");
 
-
-
 exports.getHotel = (req, res) =>
   res.render("review_rating/hotel", {
     pageTitle: "TravelAloha - Review - Hotel",
@@ -44,10 +42,9 @@ exports.postHotelReview = async (req, res) => {
     // await contactModel.insertNewHotelFile({
     //   hotelPicture
     // })
-    res.redirect("review_rating/hotel");
-    res.sendStatus(204);
+    res.redirect(204, "/review/hotel");
   } catch (error) {
-    res.sendStatus(404);
+    res.sendStatus(500);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
@@ -73,8 +70,7 @@ exports.postFlightReview = async (req, res) => {
       Entertainment_Flight_Rating,
       Flight_Flight_number
     });
-    res.redirect("review_rating/airline");
-    res.sendStatus(204);
+    res.redirect(204, "/review/airline");
   } catch (error) {
     res.sendStatus(404);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
