@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const multer = require("../../utils/multer-config");
 
 const contactController = require("../../controllers/contact/index");
 const authMiddleware = require("../../middlewares/auth");

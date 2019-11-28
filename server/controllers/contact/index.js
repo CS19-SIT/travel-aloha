@@ -24,40 +24,39 @@ exports.getAirlineInfo = (req, res) => {
   });
 };
 exports.postHotelInfo = async (req, res) => {
-  const {
-    hotelName,
-    hotelEmail,
-    hotelAddress,
-    hotelTelNumber,
-    hotelContactNumber,
-    hotelDescription,
-    hotelRoomType,
-    hotelRoomPrice
-  } = req.body;
   try {
-    await contactModel.insertNewHotel({
-      hotelName,
-      hotelDescription,
-      hotelAddress,
-      hotelTelNumber,
-      hotelContactNumber,
-      hotelEmail,
-      hotelRoomType,
-      hotelRoomPrice
-    });
-    multer.uploadPicture(req, res, async err => {
+    multer.upload(req, res, async err => {
+      const {
+        hotelName,
+        hotelEmail,
+        hotelAddress,
+        hotelTelNumber,
+        hotelContactNumber,
+        hotelDescription,
+        hotelRoomType,
+        hotelRoomPrice
+      } = req.body;
+
       if (err) {
         res.sendStatus(400)
         return;
       }
-      const {
+      
+      const hotelProfile = req.files["hotelProfile"][0].filename;
+      const hotelPicture = req.files["hotelPicture"][0].filename;
+
+      await contactModel.insertNewHotel({
+        hotelName,
+        hotelDescription,
+        hotelAddress,
+        hotelTelNumber,
+        hotelContactNumber,
+        hotelEmail,
+        hotelRoomType,
+        hotelRoomPrice,
         hotelProfile,
         hotelPicture
-      } = req.file;
-      await contactModel.insertNewHotelFile({
-        hotelProfile,
-        hotelPicture
-      })
+      });
     });
   } catch (error) {
     res.status(400);

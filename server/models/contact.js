@@ -7,10 +7,14 @@ exports.insertNewHotel = async ({
   hotelTelNumber,
   hotelContactNumber,
   hotelRoomType,
-  hotelRoomPrice
+  hotelRoomPrice,
+  hotelProfile,
+  hotelPicture
 }) => {
   try {
-    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail, hotelRoomType, hotelRoomPrice) VALUES(?,?,?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress,
+                    hotelTelNumber, hotelContactNumber, hotelEmail, hotelRoomType, hotelRoomPrice, 
+                    hotelProfile, hotelPicture) VALUES(?,?,?,?,?,?,?,?,?,?)`, [
       hotelName,
       hotelDescription,
       hotelAddress,
@@ -18,23 +22,12 @@ exports.insertNewHotel = async ({
       hotelContactNumber,
       hotelEmail,
       hotelRoomType,
-      hotelRoomPrice
-    ]);
-  } catch (error) {
-    throw new Error(`[ERR] insertNewHotel: ${error}`);
-  }
-};
-exports.insertNewHotelFile = async ({
-  hotelProfile,
-  hotelPicture
-}) => {
-  try {
-    await db.query(`INSERT INTO hotel(hotelProfile, hotelPicture) VALUES(?,?)`, [
+      hotelRoomPrice,
       hotelProfile,
       hotelPicture
     ]);
   } catch (error) {
-    throw new Error(`[ERR] insertNewHotelFile: ${error}`)
+    throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
 exports.getHotelDashboard= async() =>{

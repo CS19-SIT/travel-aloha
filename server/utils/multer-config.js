@@ -1,9 +1,12 @@
 const path = require("path");
 const multer = require("multer");
 
-const storageForPicture = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, path.join(__dirname, "../uploads/contact/pictures"));
+    if (file.fieldname === "hotelProfile")
+      callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
+    else
+      callback(null, path.join(__dirname, "../../public/assets/uploads/contact/pictures"));
   },
   filename: (req, file, callback) => {
     callback(
@@ -13,38 +16,13 @@ const storageForPicture = multer.diskStorage({
   }
 });
 
-const storageForDocument = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, path.join(__dirname, "../uploads/contact/documents"));
-  },
-  filename: (req, file, callback) => {
-    callback(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  }
-});
-
-const fileFilterForPicture = (req, file, callback) => {
-  const fileExtension = path.extname(file.originalname).toLowerCase();
-  if (
-    fileExtension == ".jpg" ||
-    fileExtension == ".jpeg" ||
-    fileExtension == ".png"
-  ) {
-    callback(null, true);
-  } else {
-    callback(new Error(`Not supported file extension: ${fileExtension}`));
-  }
-};
-
-const fileFilterForDocument = (req, file, callback) => {
+const fileFilter = (req, file, callback) => {
   const fileExtension = path.extname(file.originalname).toLowerCase();
   if (
     fileExtension == ".jpg" ||
     fileExtension == ".jpeg" ||
     fileExtension == ".png" ||
-    fileExtension == ".pdf"
+    (file.fieldname === "hotelProfile" && fileExtension == ".pdf")
   ) {
     callback(null, true);
   } else {
@@ -52,23 +30,17 @@ const fileFilterForDocument = (req, file, callback) => {
   }
 };
 
-const uploadPicture = multer({
-  storage: storageForPicture,
-  fileFilter: fileFilterForPicture,
-  limits: {
-    fileSize: 5 * 1024 * 1024
-  }
-}).single("picture");
-
-const uploadDocument = multer({
-  storage: storageForDocument,
-  fileFilter: fileFilterForDocument,
+const upload = multer({
+  storage,
+  fileFilter,
   limits: {
     fileSize: 10 * 1024 * 1024
   }
-}).single("document");
+}).fields([
+ { name: "hotelProfile", maxCount: 1 },
+ { name: "hotelPicture", maxCount: 1 }
+]);
 
 module.exports = {
-  uploadPicture,
-  uploadDocument
+  upload
 };
