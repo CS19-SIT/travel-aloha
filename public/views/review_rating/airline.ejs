@@ -150,52 +150,54 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form method="POST" action="">
+                                                <form method="POST" action="/review/airline">
                                                     <div class="form-group">
                                                         <label for="message-text" class="col-form-label">Title:</label>
-                                                        <input type="text" class="form-control" name="" id="title">
+                                                        <input type="text" class="form-control" name="Title_Flight" id="title">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Category">Category:</label>
-                                                        <select class="form-control" id="Category" name="">
-                                                            <option>Econamic</option>
-                                                            <option>Premium Econamic</option>
-                                                            <option>Business</option>
-                                                            <option>First Class</option>
+                                                        <select class="form-control" id="Category" name="Type_Of_Flight_Reviewer">
+                                                            <option value="Econamic">Econamic</option>
+                                                            <option value="Premium Econamic">Premium Econamic</option>
+                                                            <option value="Business">Business</option>
+                                                            <option value="First Class">First Class</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Id airline:</label>
+                                                        <input type="number" class="form-control" name="Flight_Flight_number" id="title">
+                                                </div>
+                                                    <div class="form-group">
                                                         <label for="message-text"
                                                             class="col-form-label">Comment:</label>
-                                                        <textarea class="form-control" id="message-text"
-                                                            name=""></textarea>
+                                                        <textarea class="form-control" id="message-text" name="Text_Flight_Review"></textarea>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                         <label for="message-text" class="col-form-label">Upload
                                                             picture:</label>
                                                         <input type="file" name="" id="Uploadpicture">
-                                                    </div>
+                                                    </div>-->
                                                     <label for="message-text">Score (between 1 and 10):</label>
                                                     <div>
-                                                        <label for="message-text" class="col-form-label"> Cabin
-                                                            Crew</label>
-                                                        <input type="number" class="form-control" name="" id="cabincrew"
+                                                        <label for="message-text" class="col-form-label"> Cabin Crew</label>
+                                                        <input type="number" class="form-control" name="CabinCrewRating_Flight_Rating" id="CabinCrewRating_Flight_Rating"
                                                             min="1" max="10" value="1">
                                                     </div>
                                                     <div>
                                                         <label for="message-text" class="col-form-label">Comfort</label>
-                                                        <input type="number" class="form-control" name="" id="comfort"
+                                                        <input type="number" class="form-control" name="Comfort_Flight_Rating" id="Comfort_Flight_Rating"
                                                             min="1" max="10" value="1">
                                                     </div>
                                                     <div>
                                                         <label for="message-text" class="col-form-label">Meal</label>
-                                                        <input type="number" class="form-control" name="" id="meal"
+                                                        <input type="number" class="form-control" name="Meal_Flight_Rating" id="meal"
                                                             min="1" max="10" value="1">
                                                     </div>
                                                     <div>
                                                         <label for="message-text"
                                                             class="col-form-label">Entertainment</label>
-                                                        <input type="number" class="form-control" name=""
+                                                        <input type="number" class="form-control" name="Entertainment_Flight_Rating"
                                                             id="entertainment" min="1" max="10" value="1">
                                                     </div>
                                             </div>
