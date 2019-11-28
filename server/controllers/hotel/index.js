@@ -1,8 +1,8 @@
+const Hotel = require('../../models/hotel');
 const db = require("../../db/db");
 
-exports.index = async (req, res) => {
-    result = await db.query("SELECT * FROM hotel as h, room_head  as r, room_detail as d " +
-        "WHERE h.hotelId=r.hotelIdroom and r.roomDetailId=d.detailId LIMIT 6");
+exports.getIndex = async (req, res) => {
+    result = await db.query("SELECT hotelId,hotelName,hotelPicture FROM hotel LIMIT 6");
 
     res.render("landingpage_hotel/landingpage", {
         pageTitle: "Find Hotel",
@@ -11,10 +11,12 @@ exports.index = async (req, res) => {
     });
 };
 
-exports.find = async (req, res) => {
+
+exports.getHotel = async (req, res) => {
     const { place, checkIn, checkOut, persons } = req.body;
     try {
         if (!place || !checkIn || !checkOut || !persons) { throw new Error();}
+
 
         const result = await db.query("SELECT * " +
             "FROM hotel as h, room_head  as r, room_detail as d " +
@@ -32,6 +34,7 @@ exports.find = async (req, res) => {
             console.log("Brak wyników");
             throw new Error(`Cannot find hotel in ${place}.`);
         }
+
         if(prices[0]['minPrice']==prices[0]['maxPrice']) {
             prices[0]['minPrice']=0;
         }
@@ -42,12 +45,14 @@ exports.find = async (req, res) => {
             prices: prices[0],
             main_query: req.body
         });
+
     } catch (err) {
         console.log(err);
         console.log(place+" "+checkIn+" "+checkOut+" "+persons);
         res.redirect("/hotel");
     }
 };
+
 
 exports.findFilters = async (req, res) => {
     //plus filters
@@ -84,3 +89,4 @@ exports.findFilters = async (req, res) => {
         res.redirect("/hotel");
     }
 };
+
