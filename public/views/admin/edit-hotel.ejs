@@ -1,0 +1,92 @@
+<%- include('../includes/header') %>
+
+</head>
+
+<body>
+<%- include('../includes/navbar') %>
+
+<div class="container my-3">
+    <form id="admin-hotel" data-isEdit=<%= hotelData ? "true" : "false" %>>
+        <% if (hotelData) { %>
+        <div class="form-group">
+            <label for="hotelId">Hotel ID</label>
+            <input type="text" class="form-control" id="hotelId" name="hotelId" value=<%= hotelData.hotelId %> disabled>
+        </div>
+        <% } %>
+        <div class="form-group">
+            <label for="hotelName">Hotel Name</label>
+            <% if (hotelData) { %>
+                <input type="text" class="form-control" id="hotelName" name="hotelName" value=<%= hotelData.hotelName %>>
+            <% } else { %>
+                <input type="text" class="form-control" id="hotelName" name="hotelName" >
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelDescription">Hotel Description</label>
+            <% if (hotelData) { %>
+                <textarea class="form-control" id="hotelDescription" name="hotelDescription"><%= hotelData.hotelDescription %></textarea>
+            <% } else { %>
+                <textarea class="form-control" id="hotelDescription" name="hotelDescription" ></textarea>
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelAddress">Hotel Address</label>
+            <% if (hotelData) { %>
+                <textarea class="form-control" id="hotelAddress" name="hotelAddress"><%= hotelData.hotelAddress %></textarea>
+            <% } else { %>
+                <textarea class="form-control" id="hotelAddress" name="hotelAddress" ></textarea>
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelTelNumber">Hotel Telephone Number</label>
+            <% if (hotelData) { %>
+                <input type="tel" class="form-control" id="hotelTelNumber" name="hotelTelNumber" value=<%= hotelData.hotelTelNumber %>>
+            <% } else { %>
+                <input type="tel" class="form-control" id="hotelTelNumber" name="hotelTelNumber" >
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelContactNumber">Hotel Contact Number</label>
+            <% if (hotelData) { %>
+                <input type="tel" class="form-control" id="hotelContactNumber" name="hotelContactNumber" value=<%= hotelData.hotelContactNumber %>>
+            <% } else { %>
+                <input type="tel" class="form-control" id="hotelContactNumber" name="hotelContactNumber" >
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelEmail">Hotel Email</label>
+            <% if (hotelData) { %>
+                <input type="email" class="form-control" id="hotelEmail" name="hotelEmail" value=<%= hotelData.hotelEmail %>>
+            <% } else { %>
+                <input type="email" class="form-control" id="hotelEmail" name="hotelEmail" >
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelPicture">Hotel Picture</label>
+            <% if (hotelData) { %>
+                <input type="text" class="form-control" id="hotelPicture" name="hotelPicture" value=<%= hotelData.hotelPicture %>>
+            <% } else { %>
+                <input type="text" class="form-control" id="hotelPicture" name="hotelPicture" >
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="hotelLogo">Hotel Logo</label>
+            <% if (hotelData) { %>
+                <input type="text" class="form-control" id="hotelLogo" name="hotelLogo" value=<%= hotelData.hotelLogo %>>
+            <% } else { %>
+                <input type="text" class="form-control" id="hotelLogo" name="hotelLogo" >
+            <% } %>
+        </div>
+        <% if (hotelData) { %>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="hotelVerify" name="hotelVerify" <%= hotelData.hotelVerify ? 'checked' : '' %>>
+            <label for="hotelVerify">Verify Hotel</label>
+        </div>
+        <% } %>
+        <button type="submit" class="btn btn-info"><%= hotelData ? "Save" : "Add New Hotel" %></button>
+      </form>
+</div>
+
+<script src="/assets/js/admin/hotel.js"></script>
+
+<%- include('../includes/footer') %>
