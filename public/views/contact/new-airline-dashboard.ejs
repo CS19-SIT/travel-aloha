@@ -7,27 +7,6 @@
 <body>
     <%- include('../includes/navbar') %>
     <div class="container">
-        <h2 class="text-center pt-4 pb-3">New Hotel Announcement</h2>
-        <div class="card border-info mb-3">
-            <div class="card-body">
-                <% for(var i = 0; i < hotel.length; i++){ %>
-                <div class="row">
-                    <div class="col-md-2">
-                        <strong><%- hotel[i].hotelName %></strong>
-                        <p class="float-left"><%- hotel[i].timestamp %></p>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="clearfix"></div>
-                        <p><%- hotel[i].hotelDescription %></p>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="clearfix"></div>
-                        <a href="./dashboard/detail/new-hotel" class="btn btn-info text-center" role="button">Show more</a>
-                    </div>
-                </div>
-                <% }%>
-            </div>
-        </div>
         <h2 class="text-center pt-4 pb-3">New Airline Announcement</h2>
         <div class="card border-info mb-3">
             <div class="card-body">
@@ -43,7 +22,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="clearfix"></div>
-                        <a href="./dashboard/detail/new-airline" class="btn btn-info" role="button">Show more</a>
+                        <a href="./new-airline-dashboard/detail/new-airline" class="btn btn-info text-center" role="button">Show more</a>
                     </div>
                 </div>
                 <% }%>

@@ -59,25 +59,10 @@ exports.postHotelInfo = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(400);
+    res.sendStatus(400);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   } finally {
-    res.redirect("dashboard");
-  }
-};
-exports.getDashboard = async (req, res) => {
-  try {
-    let hotelData = await contactModel.getHotelDashboard();
-    let airlineData = await contactModel.getAirlineDashboard();
-    res.status(200);
-    res.render("contact/dashboard", {
-      pageTitle: "TravelAloha - Contact - Dashboard",
-      user: req.user,
-      hotel: hotelData,
-      airline: airlineData
-    });
-  } catch (err) {
-    res.sendStatus(400);
+    res.redirect("dashboard-new-hotel");
   }
 };
 exports.postAirlineInfo = async (req, res) => {
@@ -110,9 +95,35 @@ exports.postAirlineInfo = async (req, res) => {
     res.status(200);
   } catch (error) {
     res.sendStatus(400);
-    throw new Error(`[ERR] insertNewHotel: ${error}`);
+    throw new Error(`[ERR] insertNewAirline: ${error}`);
   } finally {
-    res.redirect("dashboard");
+    res.redirect("dashboard-new-airline");
+  }
+};
+exports.getHotelDashboard = async (req, res) => {
+  try {
+    let hotelData = await contactModel.getHotelDashboard();
+    res.status(200);
+    res.render("contact/new-hotel-dashboard", {
+      pageTitle: "TravelAloha - Contact - New Hotel Dashboard",
+      user: req.user,
+      hotel: hotelData
+    });
+  } catch (err) {
+    res.sendStatus(400);
+  }
+};
+exports.getAirlineDashboard = async (req, res) => {
+  try {
+    let airlineData = await contactModel.getAirlineDashboard();
+    res.status(200);
+    res.render("contact/new-airline-dashboard", {
+      pageTitle: "TravelAloha - Contact - New Airline Dashboard",
+      user: req.user,
+      airline: airlineData
+    });
+  } catch (err) {
+    res.sendStatus(400);
   }
 };
 exports.getHotelDetail = async (req, res) => {
