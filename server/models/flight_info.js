@@ -12,7 +12,7 @@ exports.getFlightInfoByNumber = async flight_number =>{
 
         const result1 = await db.query("SELECT * FROM Flight");
 
-        console.log(result1[0]);
+        // console.log(result1[0]);
 
         if (result[0].length < 1) {
             throw new Error(`Cannot find flight with id ${flight_number}.`);
