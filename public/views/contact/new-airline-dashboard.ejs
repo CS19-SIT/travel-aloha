@@ -13,7 +13,7 @@
                 <% for(var i = 0; i < airline.length; i++){ %>
                 <div class="row">
                     <div class="col-md-2">
-                        <strong><%- airline[i].airlineName %></strong>
+                        <strong id="kek<%= i %>"  value="<%= airline[i].airlineName %>"><%- airline[i].airlineName %></strong>
                         <p class="float-left"><%- airline[i].timestamp %></p>
                     </div>
                     <div class="col-md-8">
@@ -21,12 +21,21 @@
                         <p><%- airline[i].airlineDescription %></p>
                     </div>
                     <div class="col-md-2">
+
+                        <form method="POST" action="  ./new-airline-dashboard/detail/new-airline">
                         <div class="clearfix"></div>
-                        <a href="./new-airline-dashboard/detail/new-airline" class="btn btn-info text-center" role="button">Show more</a>
+                        <button id="GAY" onlclick="hahayes(this)" type="submit" class="btn btn-info text-center" role="button" value="<%= airline[i].airline_Id %>">Show more</button>
+                        
+                        <input type="hidden" id="urmomgay" name="CHALETOWESMEHAROYBAHT" value="<%= airline[i].airline_Id %>"> 
+
+                        </form>   
+
+                      
                     </div>
                 </div>
                 <% }%>
             </div>
         </div>
     </div>
+
     <%- include('../includes/footer') %>

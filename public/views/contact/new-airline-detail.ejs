@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="display-4 p-3 text-center">New Airline Name</h1>
+                    <h1 class="display-4 p-3 text-center"> <%= JSON.parse(data)[0].airlineName %></h1>
                 </div>
                 <div class="col-md-12">
                     <div class="text-center"><img class="hotel-pic rounded mx-auto d-block"
@@ -39,6 +39,8 @@
                         including versions of Lorem Ipsum.<p>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="pb-2 pl-4">Airline Picture and Detail</h3>
@@ -88,7 +90,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Name</h5>
-                            <p class="card-text">New Airline Name</p>
+                            <p class="card-text"> <%= JSON.parse(data)[0].airlineName %> </p>
                         </div>
                     </div>
                     <div class="card text-center">
@@ -125,6 +127,19 @@
             </div>
             <br>
             <br>
+        </div>
+    </div>
+
+    <div>
+
+        <h1> <%- data %></h1>
+
+        <strong><%- data.airlineName %></strong>
+        <p class="float-left"><%- data.timestamp %></p>
+
+        <div class="col-md-8">
+            <div class="clearfix"></div>
+            <p><%- data.airlineDescription %></p>
         </div>
     </div>
     <%- include('../includes/footer') %>

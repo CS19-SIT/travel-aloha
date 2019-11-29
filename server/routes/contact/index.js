@@ -33,4 +33,11 @@ router.get(
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff
 );
+
+router.post(
+  "/new-airline-dashboard/detail/new-airline",
+  contactController.getFlukeMaYet,
+  authMiddleware.isAuthenticated,
+  authMiddleware.isStaff
+);
 module.exports = router;

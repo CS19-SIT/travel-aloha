@@ -1,5 +1,6 @@
 const contactModel = require("../../models/contact");
 const multer = require("../../utils/multer-config");
+const db = require("../../db/db");
 
 exports.getIndex = (req, res) => {
   res.render("contact/index", {
@@ -151,3 +152,29 @@ exports.getAirlineDetail = async (req, res) => {
     throw new Error(`[ERR] getAirlineDetail: ${error}`);
   }
 };
+exports.getFlukeMaYet = async (req, res) => {
+  const faggit = req.body.CHALETOWESMEHAROYBAHT;
+
+  console.log(faggit);
+
+  try {
+    const narongrit = await db.query(`SELECT * FROM airline WHERE airLine_Id = '${faggit}' `);
+    const chonlameth = JSON.stringify(narongrit[0]);
+    res.render("contact/new-airline-detail", {pageTitle: "Ur mom gay", user: req.user, data: chonlameth });
+  } catch (err) {
+    throw new Error(`[ERR] getFlukeMaYet: ${err}`);
+  }
+
+  // try {
+  //   res.status(200);
+  //   res.render("contact/new-airline-detail", {
+  //     pageTitle: "TravelAloha - Contact - New Airline Detail",
+  //     user: req.user,
+  //     airlineDetail: data
+  //   });
+  // } catch (error) {
+  //   res.sendStatus(400);
+  //   throw new Error(`[ERR] getAirlineDetail: ${error}`);
+  // }
+};
+

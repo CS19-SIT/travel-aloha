@@ -118,3 +118,12 @@ exports.deleteAirlineInfo = async airline_Id => {
     throw new Error(`[ERR] deleteAirlineInfo: ${err}`);
   }
 };
+
+
+exports.soGay = async function() {
+  try {
+    await db.query("SELECT * FROM hotel WHERE hotelName = ?", [hotelName]);
+  } catch (err) {
+    throw new Error(`[ERR] deleteHotelInfo: ${err}`);
+  }
+};
