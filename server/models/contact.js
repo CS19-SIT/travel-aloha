@@ -41,7 +41,7 @@ exports.getHotelDashboard= async() =>{
 exports.getHotelDetailInfo = async() =>{
   try{
       const result = await db.query(`SELECT * FROM hotel`);
-      return result[0][0];
+      return result[0];
   } catch (err) {
       throw new Error(`[ERR] getHotelDetailInfo: ${err}`);
   }
