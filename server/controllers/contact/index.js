@@ -61,38 +61,42 @@ exports.postHotelInfo = async (req, res) => {
   }
 };
 exports.postAirlineInfo = async (req, res) => {
-  const {
-    airlineName,
-    airlineEmail,
-    airlineAddress,
-    airlineNationality,
-    airlineTelNumber,
-    airlineContactNumber,
-    airlineDescription,
-    airlineSeatType,
-    airlineSeatPrice,
-    airlinePlaneDes
-  } = req.body;
-
   try {
-    await contactModel.insertNewAirline({
-      airlineName,
-      airlineNationality,
-      airlineEmail,
-      airlineDescription,
-      airlineAddress,
-      airlineTelNumber,
-      airlineContactNumber,
-      airlineSeatType,
-      airlineSeatPrice,
-      airlinePlaneDes
+    multer.upload(req, res, async err => {
+      const {
+        airlineName,
+        airlineNationality,
+        airlineEmail,
+        airlineDescription,
+        airlineAddress,
+        airlineTelNumber,
+        airlineContactNumber,
+        airlinePlaneDes
+      } = req.body;
+      if (err) {
+        res.sendStatus(400);
+        return;
+      }
+      const airlineProfile = req.files["airlineProfile"][0].filename;
+      const airlinePicture = req.files["airlinePicture"][0].filename;
+      await contactModel.insertNewAirline({
+        airlineName,
+        airlineNationality,
+        airlineEmail,
+        airlineDescription,
+        airlineAddress,
+        airlineTelNumber,
+        airlineContactNumber,
+        airlinePlaneDes,  
+        airlineProfile,
+        airlinePicture
+      });
     });
-    res.status(200);
   } catch (error) {
     res.sendStatus(400);
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   } finally {
-    res.redirect("dashboard-new-airline");
+    res.redirect("new-airline-dashboard");
   }
 };
 exports.getHotelDashboard = async (req, res) => {

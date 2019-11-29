@@ -7,6 +7,10 @@ const storage = multer.diskStorage({
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
     else
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/pictures"));
+    if (file.fieldname === "airlineProfile")
+      callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
+    else
+      callback(null, path.join(__dirname, "../../public/assets/uploads/contact/pictures"));
   },
   filename: (req, file, callback) => {
     callback(
@@ -22,7 +26,8 @@ const fileFilter = (req, file, callback) => {
     fileExtension == ".jpg" ||
     fileExtension == ".jpeg" ||
     fileExtension == ".png" ||
-    (file.fieldname === "hotelProfile" && fileExtension == ".pdf")
+    (file.fieldname === "hotelProfile" && fileExtension == ".pdf") ||
+    (file.fieldname === "airlineProfile" && fileExtension == ".pdf")
   ) {
     callback(null, true);
   } else {
@@ -38,7 +43,9 @@ const upload = multer({
   }
 }).fields([
  { name: "hotelProfile", maxCount: 1 },
- { name: "hotelPicture", maxCount: 1 }
+ { name: "hotelPicture", maxCount: 1 },
+ { name: "airlineProfile", maxCount: 1},
+ { name: "airlinePicture", maxCount: 1},
 ]);
 
 module.exports = {

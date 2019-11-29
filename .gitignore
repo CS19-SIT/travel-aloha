@@ -92,3 +92,11 @@ typings/
 yarn.lock
 public/assets/uploads/contact/pictures/hotelPicture-1574932167021.png
 public/assets/uploads/contact/documents/hotelProfile-1574932167018.png
+public/assets/uploads/contact/documents/airlineProfile-1575041504691.jpg
+public/assets/uploads/contact/documents/airlineProfile-1575041956960.jpg
+public/assets/uploads/contact/documents/airlineProfile-1575042009005.jpg
+public/assets/uploads/contact/documents/airlineProfile-1575042049528.jpg
+public/assets/uploads/contact/documents/airlineProfile-1575042166944.jpg
+public/assets/uploads/contact/documents/airlineProfile-1575042603375.jpg
+*.jpg
+*.png

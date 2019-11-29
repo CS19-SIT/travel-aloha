@@ -6,8 +6,6 @@ exports.insertNewHotel = async ({
   hotelAddress,
   hotelTelNumber,
   hotelContactNumber,
-  hotelRoomType,
-  hotelRoomPrice,
   hotelProfile,
   hotelPicture
 }) => {
@@ -44,12 +42,14 @@ exports.insertNewAirline = async ({
   airlineTelNumber,
   airlineContactNumber,
   airlineDescription,
-  airlineSeatType,
-  airlineSeatPrice,
-  airlinePlaneDes
+  airlinePlaneDes,
+  airlineProfile,
+  airlinePicture
 }) => {
   try {
-    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber, airlineSeatType, airlineSeatPrice, airlinePlaneDes) VALUES(?,?,?,?,?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, 
+                    airlineAddress, airlineTelNumber, airlineContactNumber, airlinePlaneDes, airlineProfile, 
+                    airlinePicture) VALUES(?,?,?,?,?,?,?,?.?.?)`, [
       airlineName,
       airlineNationality,
       airlineEmail,
@@ -57,25 +57,12 @@ exports.insertNewAirline = async ({
       airlineAddress,
       airlineTelNumber,
       airlineContactNumber,
-      airlineSeatType,
-      airlineSeatPrice,
-      airlinePlaneDes
-    ]);
-  } catch (error) {
-    throw new Error(`[ERR] insertNewAirline: ${error}`);
-  }
-};
-exports.insertNewAirlineFile = async ({
-  airlineProfile,
-  airlinePicture
-}) => {
-  try {
-    await db.query(`INSERT INTO hotel(airlineProfile, airlinePicture) VALUES(?,?)`, [
+      airlinePlaneDes,
       airlineProfile,
       airlinePicture
     ]);
   } catch (error) {
-    throw new Error(`[ERR] insertNewAirlineFile: ${error}`)
+    throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
 exports.getAirlineDashboard = async() => {

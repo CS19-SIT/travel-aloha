@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form method="POST" action="/contact/add-new-airline">
+                <form method="POST" action="/contact/add-new-airline" enctype="multipart/form-data">
                     <h1 class="display-4">Airline Information</h1>
                     <br>
                     <div class="form-row">
@@ -52,7 +52,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="">Airline Seat Type</label>
-                            <select class="form-control" name="airlineSeatType" required>
+                            <select class="form-control" name="airlineSeatType">
                                 <option value="">---Choose an option---</option>
                                 <optgroup label="F Class">
                                 <option value="First Class">First Class</option>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group col-md-6">
                           <label for="">Airline Seat Price</label>
-                          <input type="text" class="form-control" placeholder="Airline Seat Price" name="airlineSeatPrice" required>
+                          <input type="text" class="form-control" placeholder="Airline Seat Price" name="airlineSeatPrice">
                         </div>
                       </div>
                       <div class="form-group">
