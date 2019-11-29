@@ -41,10 +41,8 @@ exports.postHotelInfo = async (req, res) => {
         res.sendStatus(400)
         return;
       }
-      
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
-
       await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
@@ -133,7 +131,7 @@ exports.getHotelDetail = async (req, res) => {
     res.render("contact/new-hotel-detail", {
       pageTitle: "TravelAloha - Contact - New Hotel Detail",
       user: req.user,
-      hotelDetail: data
+      hotel: data
     })
   } catch (error) {
     res.sendStatus(400);
