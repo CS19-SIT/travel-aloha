@@ -33,9 +33,7 @@ exports.postHotelInfo = async (req, res) => {
         hotelAddress,
         hotelTelNumber,
         hotelContactNumber,
-        hotelDescription,
-        hotelRoomType,
-        hotelRoomPrice
+        hotelDescription
       } = req.body;
 
       if (err) {
@@ -51,8 +49,6 @@ exports.postHotelInfo = async (req, res) => {
         hotelTelNumber,
         hotelContactNumber,
         hotelEmail,
-        hotelRoomType,
-        hotelRoomPrice,
         hotelProfile,
         hotelPicture
       });
@@ -61,7 +57,7 @@ exports.postHotelInfo = async (req, res) => {
     res.sendStatus(400);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   } finally {
-    res.redirect("dashboard-new-hotel");
+    res.redirect("new-hotel-dashboard");
   }
 };
 exports.postAirlineInfo = async (req, res) => {
@@ -126,55 +122,33 @@ exports.getAirlineDashboard = async (req, res) => {
   }
 };
 exports.getHotelDetail = async (req, res) => {
+  const hotelId = req.body.hotelId;
   try {
-    let data = contactModel.getHotelDetailInfo();
+    const result = await db.query(`SELECT * FROM hotel WHERE hotelId = '${hotelId}' `);
+    const data = JSON.stringify(result[0]);
     res.status(200);
     res.render("contact/new-hotel-detail", {
       pageTitle: "TravelAloha - Contact - New Hotel Detail",
       user: req.user,
       hotel: data
-    })
-  } catch (error) {
+    });
+  } catch (err) {
     res.sendStatus(400);
   }
 };
 exports.getAirlineDetail = async (req, res) => {
-  let data = contactModel.getAirlineDetailInfo();
+  const airline_Id = req.body.airline_Id;
   try {
+    const result = await db.query(`SELECT * FROM airline WHERE airline_Id = '${airline_Id}' `);
+    const data = JSON.stringify(result[0]);
     res.status(200);
     res.render("contact/new-airline-detail", {
       pageTitle: "TravelAloha - Contact - New Airline Detail",
       user: req.user,
-      airlineDetail: data
+      airline: data
     });
-  } catch (error) {
-    res.sendStatus(400);
-    throw new Error(`[ERR] getAirlineDetail: ${error}`);
-  }
-};
-exports.getFlukeMaYet = async (req, res) => {
-  const faggit = req.body.CHALETOWESMEHAROYBAHT;
-
-  console.log(faggit);
-
-  try {
-    const narongrit = await db.query(`SELECT * FROM airline WHERE airLine_Id = '${faggit}' `);
-    const chonlameth = JSON.stringify(narongrit[0]);
-    res.render("contact/new-airline-detail", {pageTitle: "Ur mom gay", user: req.user, data: chonlameth });
   } catch (err) {
-    throw new Error(`[ERR] getFlukeMaYet: ${err}`);
+    res.sendStatus(400);
   }
-
-  // try {
-  //   res.status(200);
-  //   res.render("contact/new-airline-detail", {
-  //     pageTitle: "TravelAloha - Contact - New Airline Detail",
-  //     user: req.user,
-  //     airlineDetail: data
-  //   });
-  // } catch (error) {
-  //   res.sendStatus(400);
-  //   throw new Error(`[ERR] getAirlineDetail: ${error}`);
-  // }
 };
 

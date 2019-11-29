@@ -21,22 +21,15 @@ router.get(
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff
 );
-router.get(
+router.post(
   "/new-hotel-dashboard/detail/new-hotel",
   contactController.getHotelDetail,
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff
 );
-router.get(
-  "/new-airline-dashboard/detail/new-airline",
-  contactController.getAirlineDetail,
-  authMiddleware.isAuthenticated,
-  authMiddleware.isStaff
-);
-
 router.post(
   "/new-airline-dashboard/detail/new-airline",
-  contactController.getFlukeMaYet,
+  contactController.getAirlineDetail,
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff
 );

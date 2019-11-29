@@ -9,11 +9,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="display-4 p-3 text-center">New Hotel Name</h1>
+                    <h1 class="display-4 p-3 text-center"><%= JSON.parse(hotel)[0].hotelName %></h1>
                 </div>
                 <div class="col-md-12">
                     <div class="text-center"><img class="hotel-pic rounded mx-auto d-block"
-                            src="/assets/Pictures/contact/naples-grande-palm-pool.jpg">
+                            src="/assets/uploads/contact/pictures/<%= JSON.parse(hotel)[0].hotelPicture %>">
                     </div>
                 </div>
             </div>
@@ -22,21 +22,7 @@
                     <h3 class="pt-4 pb-1 pl-4">Hotel Description</h3>
                 </div>
                 <div class="col-md-12">
-                    <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">Lorem Ipsum is simply dummy text of
-                        the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not
-                        only five centuries, but also the leap into electronic typesetting, remaining essentially
-                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-                        Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-                        including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of
-                        the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not
-                        only five centuries, but also the leap into electronic typesetting, remaining essentially
-                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-                        Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-                        including versions of Lorem Ipsum.<p>
+                    <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel)[0].hotelDescription %><p>
                 </div>
             </div>
             <div class="row">
@@ -54,21 +40,21 @@
                             <div class="carousel-item active">
                                 <img class="d-block detail-pic" src="/assets/images/hotel.jpg" alt="First slide">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Room type 1</h5>
+                                    <h5>Room type 1 - 5990 Baht</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img class="d-block detail-pic" src="/assets/images/mbr-1920x1280.jpg"
                                     alt="Second slide">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Room type 2</h5>
+                                    <h5>Room type 2 - 7990 Baht</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img class="d-block detail-pic" src="/assets/images/dr5cbbya3md01.jpg"
                                     alt="Third slide">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Room type 3</h5>
+                                    <h5>Room type 3 - 6990 Baht</h5>
                                 </div>
                             </div>
                         </div>
@@ -88,13 +74,13 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Name</h5>
-                            <p class="card-text">New Hotel Name</p>
+                            <p class="card-text"><%= JSON.parse(hotel)[0].hotelName %></p>
                         </div>
                     </div>
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
-                            <p class="card-text">New Hotel Email</p>
+                            <p class="card-text"><%= JSON.parse(hotel)[0].hotelEmail %></p>
                         </div>
                     </div>
                     <div class="card text-center">
@@ -102,23 +88,19 @@
                             <h5 class="card-title">
                                 <address>Address</address>
                             </h5>
-                            <p class="card-text">New Hotel Address</p>
+                            <p class="card-text"><%= JSON.parse(hotel)[0].hotelAddress %></p>
                         </div>
                     </div>
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">
-                                <address>Telephone Number</address>
-                            </h5>
-                            <p class="card-text">02-xxxxxxxx</p>
+                            <h5 class="card-title">Telephone Number</h5>
+                            <p class="card-text"><%= JSON.parse(hotel)[0].hotelTelNumber %></p>
                         </div>
                     </div>
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">
-                                <address>Contact Number</address>
-                            </h5>
-                            <p class="card-text">02-xxxxxxxx</p>
+                            <h5 class="card-title">Contact Number</h5>
+                            <p class="card-text"><%= JSON.parse(hotel)[0].hotelContactNumber %></p>
                         </div>
                     </div>
                 </div>

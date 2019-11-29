@@ -13,16 +13,14 @@ exports.insertNewHotel = async ({
 }) => {
   try {
     await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress,
-                    hotelTelNumber, hotelContactNumber, hotelEmail, hotelRoomType, hotelRoomPrice, 
-                    hotelProfile, hotelPicture) VALUES(?,?,?,?,?,?,?,?,?,?)`, [
+                    hotelTelNumber, hotelContactNumber, hotelEmail, 
+                    hotelProfile, hotelPicture) VALUES(?,?,?,?,?,?,?,?)`, [
       hotelName,
       hotelDescription,
       hotelAddress,
       hotelTelNumber,
       hotelContactNumber,
       hotelEmail,
-      hotelRoomType,
-      hotelRoomPrice,
       hotelProfile,
       hotelPicture
     ]);
@@ -36,21 +34,6 @@ exports.getHotelDashboard= async() =>{
       return result[0];
   } catch (err) {
       throw new Error(`[ERR] getHotelDashboard: ${err}`);
-  }
-};
-exports.getHotelDetailInfo = async() =>{
-  try{
-      const result = await db.query(`SELECT * FROM hotel`);
-      return result[0];
-  } catch (err) {
-      throw new Error(`[ERR] getHotelDetailInfo: ${err}`);
-  }
-};
-exports.deleteHotelInfo = async hotelId => {
-  try {
-    await db.query("DELETE FROM hotel WHERE hotelId = ?", [hotelId]);
-  } catch (err) {
-    throw new Error(`[ERR] deleteHotelInfo: ${err}`);
   }
 };
 exports.insertNewAirline = async ({
@@ -101,29 +84,5 @@ exports.getAirlineDashboard = async() => {
       return result[0];
   } catch (err) {
     throw new Error(`[ERR] getAirlineDashboard: ${err}`);
-  }
-};
-exports.getAirlineDetailInfo = async() => {
-  try {
-      const result = await db.query(`SELECT * FROM airline`);
-      return result[0];
-  } catch (err) {
-    throw new Error(`[ERR] getAirlineDetailInfo: ${err}`);
-  }
-};
-exports.deleteAirlineInfo = async airline_Id => {
-  try {
-    await db.query("DELETE FROM new_airline WHERE airline_Id = ?", [airline_Id]);
-  } catch (err) {
-    throw new Error(`[ERR] deleteAirlineInfo: ${err}`);
-  }
-};
-
-
-exports.soGay = async function() {
-  try {
-    await db.query("SELECT * FROM hotel WHERE hotelName = ?", [hotelName]);
-  } catch (err) {
-    throw new Error(`[ERR] deleteHotelInfo: ${err}`);
   }
 };

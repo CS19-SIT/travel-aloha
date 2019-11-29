@@ -22,7 +22,12 @@
                     </div>
                     <div class="col-md-2">
                         <div class="clearfix"></div>
-                        <a href="./new-hotel-dashboard/detail/new-hotel" class="btn btn-info text-center" role="button">Show more</a>
+                        <form method="POST" action="./new-hotel-dashboard/detail/new-hotel">
+                            <div class="clearfix"></div>
+                            <button type="submit" class="btn btn-info text-center" role="button"
+                                value="<%= hotel[i].hotelId %>">Show more</button>
+                            <input type="hidden" name="hotelId" value="<%= hotel[i].hotelId %>">
+                        </form>
                     </div>
                 </div>
                 <% }%>
