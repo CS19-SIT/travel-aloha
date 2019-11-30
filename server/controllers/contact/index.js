@@ -37,7 +37,6 @@ exports.postHotelInfo = async (req, res) => {
         hotelRoomType,
         hotelRoomPrice
       } = req.body;
-      console.log(req.body);
       if (err) {
         res.sendStatus(400)
         return;
@@ -54,7 +53,6 @@ exports.postHotelInfo = async (req, res) => {
         hotelProfile,
         hotelPicture
       });
-      console.log(req.files);
       await contactModel.insertNewHotelRoom({
         hotelRoomType,
         hotelRoomPrice
