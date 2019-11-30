@@ -26,6 +26,19 @@ exports.insertNewHotel = async ({
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
+exports.insertNewHotelRoom = async ({
+  hotelRoomType,
+  hotelRoomPrice
+}) => {
+  try {
+    await db.query(`INSERT INTO room_detail(typeOfRoom,Saleprice) VALUES(?,?)`, [
+      hotelRoomType,
+      hotelRoomPrice
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
 exports.getHotelDashboard= async() =>{
   try{
       const result = await db.query(`SELECT * FROM hotel`);
