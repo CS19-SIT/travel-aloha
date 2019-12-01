@@ -4,13 +4,20 @@ $('.like, .dislike').on('click', function() {
     $('.active').removeClass('active');
     $(this).addClass('active');
 });
-$('#hotelsend').click(function(){
-  $.get("/review/hotel",{
-    hotel_hotelId:"55"
-  },
-  function(data,status){
-    alert("Data: " + data + "\nStatus: " + status);
+$("#hotelsend").submit(function(event) {
+  event.preventDefault();
+  $.ajax({
+    url:"/review/hotel",
+    method: "POST",
+    data: { hotel_hotelId : "2"},
+    type:json,
+    success: function(data) {
+      alert("Data updated!");
+      location.reload();
+    },
+    error: function(data) {
+      console.log("ERR: " + data);
+    }
   });
 });
-
 });
