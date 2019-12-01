@@ -1,25 +1,32 @@
 const Flight = require("../../models/flight_info");
 
 exports.getIndex = async (req, res) => {
-  // const flightnumber = JSON.parse(req.body.olaola[0]);
-  // info = await Flight.getFlightInfoByNumber(flightNumber);
-  info = await Flight.getFlightInfoByNumber("cs00001");
+  const flightNumber = JSON.parse(req.body.selectedFlight);
+  const seatClass = req.body.seatClass;
+  const passager = req.body.passager;
+  console.log(passager);
+  console.log(seatClass);
+  console.log(flightNumber);
+  info = await Flight.getFlightInfoByNumber(flightNumber);
   console.log(info);
   // console.log(req);
   res.render("flight_booking/flight_info", {
     pageTitle: "TravelAloha - Flight - Booking",
     user: req.user,
-    flightNumber: info['Flight_number'],
-    departureCity: info['dep_city'],
-    dep: info['Departure'],
-    depart_date: info['Dep_Date'],
-    depart_day: info['Dep_Day'],
-    destinationCity: info['des_city'],
-    des: info['Destination'],
-    depTime: info['Dep_time'],
-    arrTime: info['Arr_time'],
-    airline_logo: info['airline_logo'],
-    airline_name: info['airlineName']
+    info: info,
+    seatClass: seatClass,
+    passager: passager
+    // flightNumber: info[0]['Flight_number'],
+    // departureCity: info[0]['dep_city'],
+    // dep: info[0]['Departure'],
+    // depart_date: info[0]['Dep_Date'],
+    // depart_day: info[0]['Dep_Day'],
+    // destinationCity: info[0]['des_city'],
+    // des: info[0]['Destination'],
+    // depTime: info[0]['Dep_time'],
+    // arrTime: info[0]['Arr_time'],
+    // airline_logo: info[0]['airline_logo'],
+    // airline_name: info[0]['airlineName']
 
   });
 }
@@ -45,17 +52,20 @@ exports.getContact = (req, res) =>
 
 exports.getDonut = (req, res) => {
   try {
-    const db = require('../../db/db');
-
-    const ha = JSON.parse(req.body.olaola);
-    console.log(ha+" eiei")
+    const ha = JSON.parse(req.body.selectedFlight);
+    console.log(ha[0]+" eiei")
+    res.render("flight_booking/renderTest",{
+      pageTitle: "render Test",
+      user: req.user,
+      NIGGER: ha
+    });
     //Do query statements using "req.body" value in here and send it back to Ajax 
 
     // U can also do Query statements in Ajax
-    res.json({
-      status: 200, // means OKKKKKKK
-      data: ha
-    })
+    // res.json({
+    //   status: 200, // means OKKKKKKK
+    //   data: ha
+    // })
   } catch {
     res.json({
       status: 400 // means error
