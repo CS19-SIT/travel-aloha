@@ -162,10 +162,6 @@
                                                     <input type="text" class="form-control" name="Title_Hotel" id="title">
                                                 </div>
                                                 <div class="form-group">
-                                                        <label for="message-text" class="col-form-label">Id hotel:</label>
-                                                        <input type="number" class="form-control" name="hotel_hotelId" id="title">
-                                                </div>
-                                                <div class="form-group">
                                                     <label for="Category">Category:</label>
                                                     <select class="form-control" id="Category" name="Type_Of_Hotel_Reviewer">
                                                         <option value="Business Trip">Business Trip</option>
@@ -215,7 +211,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" value="Submit">Send message</button>
+                                            <button type="submit" class="btn btn-primary" id="hotelsend" value="Submit">Send message</button>
                                         </div>
                                         </form>
                                     </div>
@@ -227,7 +223,7 @@
                         <div class="col-xs-3 col-md-3 ">
                             <label for="Sort">Sort reviews by:</label>
                             <select class="form-control" name="" id="">
-                                <option>Recommended</option>
+                                <option >Recommended</option>
                                 <option>Date(newer to older)</option>
                                 <option>Date(older to newer)</option>
                                 <option>Score(higher to lower)</option>
