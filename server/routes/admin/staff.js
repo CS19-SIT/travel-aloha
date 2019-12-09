@@ -1,53 +1,55 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const staffAdminController = require('../../controllers/admin/staff')
-const authMiddleware = require('../../middlewares/auth')
-const connector = require('../../db/db')
+const conn = require('../../db/db');
+const passport = require('../../auth/passport');
+const adminStaffCtrl = require('../../controllers/admin/staff');
 
 
-router.get(
-	'/',
-	staffAdminController.showIndex
-)
-router.get(
-	'/application',
-	authMiddleware.isAuthenticated,
-	staffAdminController.showApplication
-)
+router.get('/', adminStaffCtrl.showIndex);
 
-router.post(
-	'/sendQuery', 
-	async function(request, response) {
-		try {
-			await connector.query(request.body.sql)
-			response.json({
-				status: 200
-			})
-		} catch (error) {
-			response.json({
-				result: error,
-				status: 400
-			})
-		}
+router.get('/login', (req, res) => {
+	if (req.isAuthenticated()) {
+		return res.redirect('/admin/staff/register');
 	}
-)
-router.post(
-	'/getQuery',
-	async function(request, response) {
-		try {
-			let data = await connector.query(request.body.sql)
-			response.json({
-				result: data[0],
-				status: 200
-			})
-		} catch (error) {
-			response.json({
-				result: error,
-				status: 400
-			})
-		}
-	}
-)
+	return adminStaffCtrl.showLoginForm(req, res);
+});
+router.post('/login', passport.authenticate("local", {
+	successRedirect: "/admin/staff/register",
+	failureRedirect: "/admin/staff/login"
+}));
 
-module.exports = router
+router.get('/register', (req, res) => {
+	if (req.isAuthenticated()) {
+		return adminStaffCtrl.showRegistrationForm(req, res);
+	}
+	return res.redirect('/admin/staff/login');
+});
+
+router.get('/home', (req, res) => {
+	if (req.isAuthenticated()) {
+		return adminStaffCtrl.showHomepage(req, res);
+	}
+	return res.redirect('/admin/staff/login');
+});
+
+
+router.post('/getQuery', async (req, res) => {
+	try {
+		const data = await conn.query(req.body.sql);
+		res.json({data: data[0], status: 200});
+	} catch (error) {
+		res.json({message: error, status: 400});
+	}
+});
+router.post('/sendQuery', async (req, res) => {
+	try {
+		await conn.query(req.body.sql);
+		res.json({status: 200});
+	} catch (err) {
+		res.json({message: err, status: 400});
+	}
+});
+
+
+module.exports = router;

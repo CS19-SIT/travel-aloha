@@ -1,18 +1,54 @@
-const connector = require('../../db/db')
-const adminStaffModel = require('../../models/admin-staff')
+const adminStaffModel = require('../../models/admin-staff');
+const conn = require('../../db/db');
 
-exports.showIndex = function(request, response) {
-	response.render('staff_admin/index', {
-		pageTitle: 'TravelAloha - Admin - StaffLandingPage',
-		user: request.user,
-	})
-}
+exports.showIndex = async (req, res) => {
+	try {
+		const deptList = await conn.query(`SELECT * FROM staff_department`);
+		const rolesFirstDept = await conn.query(`SELECT * FROM staff_role WHERE deptNo='${deptList[0][0].deptNo}'`);
+		res.render('staff_admin/index', {
+			pageTitle: 'TravelAloha - Admin - StaffLandingPage',
+			user: req.user,
+			deptList: deptList[0],
+			rolesFirstDept: rolesFirstDept
+		});
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
 
-exports.showApplication = async function(request, response) {
-	const existedInfo = await connector.query(`SELECT username, profile_picture, CONCAT(firstname, ' ', lastname) AS name, IF(gender='M','Male', 'Female') as gender, birth_date, address FROM user WHERE user_id='${request.user.user_id}'`)
-	response.render('staff_admin/application', {
-		pageTitle: 'TravelAloha - Admin - StaffApplication',
-		user: request.user,
-		info: JSON.stringify(existedInfo[0])
-	})
-}
+exports.showLoginForm = (req, res) => {
+	res.render('staff_admin/login', {
+		pageTitle: 'TravelAloha - Admin - StaffLogin',
+		user: req.user
+	});
+};
+
+exports.showRegistrationForm = async (req, res) => {
+	try {
+		const isStaff = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}'`);
+		if (!!isStaff[0].length) {
+			return res.redirect('/admin/staff/home');
+		}
+		res.render('staff_admin/registration', {
+			pageTitle: 'TravelAloha - Admin - StaffRegistration',
+			user: req.user
+		});
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
+
+exports.showHomepage = async (req, res) => {
+	try {
+		const isStaff = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}'`);
+		if (!isStaff[0].length) {
+			return res.redirect('/admin/staff/register');
+		}
+		res.render('staff_admin/homepage', {
+			pageTitle: 'TravelAloha - Admin - StaffHomepage',
+			user: req.user
+		});
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
