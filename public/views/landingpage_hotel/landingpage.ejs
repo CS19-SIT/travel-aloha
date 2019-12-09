@@ -35,13 +35,13 @@
         <div class="s012">
 
             <!-- form -->
-            <form action="/find" method="POST">
+            <form action="/find" method="POST" onsubmit="return validateForm()">
                 <fieldset>
                     <legend>Search Hotels</legend>
                 </fieldset>
                 <div class="inner-form">
                     <div class="main-form" id="main-form">
-                        <div class="row">
+                        <div class="row second">
                             <div class="input-wrap-des">
                                 <div class="icon-wrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -53,6 +53,26 @@
                                 <div class="input-field">
                                     <label>GOING TO</label>
                                     <input type="text" name="place" placeholder="Destination, hotel name" />
+                                </div>
+                            </div>
+                            <div class="input-wrap">
+                                <div class="icon-wrap">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path
+                                            d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="input-field">
+                                    <label>TRAVELERS</label>
+                                    <div class="input-select">
+                                        <select data-trigger="" name="adult">
+                                            <option value="1">1 adult</option>
+                                            <option value="2">2 adults</option>
+                                            <option value="3">3 adults</option>
+                                            <option value="4">4 adults</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,11 +114,11 @@
                                 <div class="input-field">
                                     <label>TRAVELERS</label>
                                     <div class="input-select">
-                                        <select data-trigger="" name="persons">
-                                            <option value="1">1 adult</option>
-                                            <option value="2">2 adults</option>
-                                            <option value="3">3 adults</option>
-                                            <option value="4">4 adults</option>
+                                        <select data-trigger="" name="child">
+                                            <option value="1">1 child</option>
+                                            <option value="2">2 children</option>
+                                            <option value="3">3 children</option>
+                                            <option value="4">4 children</option>
                                         </select>
                                     </div>
                                 </div>
@@ -115,6 +135,7 @@
 
     <!-- recommended card -->
     <div class="card-box">
+            <a href="#" class="btn btn-fix text-left">
         <% hotels.forEach( hotel => { %>
         <div class="card-recommended">
             <div class="card" style="width: 18rem;">
@@ -154,6 +175,16 @@
                 btnTypes[i].classList.add('active')
             })
         }
+    </script>
+
+<script>
+    function validateForm() {
+      var x = document.forms["myForm"]["place"].value;
+      if (x == "") {
+        alert("Name must be filled out");
+        return false;
+      }
+    }
     </script>
 
 
