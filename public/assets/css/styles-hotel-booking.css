@@ -1,72 +1,77 @@
-body{
-  color: #25282b;
+body {
+    color: #25282b;
 }
 
 .container {
-  max-width: 800px;
+    max-width: 800px;
 }
 
 .row {
-	width: 100%;
+    width: 100%;
 }
 
-.hotel-image {
-	width: 70%;
-	height: auto;
-	max-height: 500px;
-	max-width: 100%;
-	background-color: black;
-	margin: 1rem auto 2rem auto;
-
-	/* placeholder dimensions */
-	width: 300px;
-	height: 250px;
+#largepic {
+    margin-left: 50px;
 }
 
-.hotel-detail {
-	padding-left: 0;
-	padding-right: 0;
+.smallpic {
+    display: block;
+    margin-bottom: 15px;
+    margin-left: 180px;
 }
 
+
+/* .hotel-image {
+    width: 70%;
+    height: auto;
+    max-height: 500px;
+    max-width: 100%;
+    background-color: black;
+    margin: 1rem auto 2rem auto;
+    /* placeholder dimensions */
+
+width: 300px;
+height: 250px;
+
+}
+*/ .hotel-detail {
+    padding-left: 0;
+    padding-right: 0;
+}
 .hotel-detail-accomodations {
-	margin-top: 1.3rem;
-	margin-bottom: 0.8rem;
-	color: #52575c;
+    margin-top: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #52575c;
 }
-
 .container-bordered {
-	border: 1px solid #e8e8e8;
-	padding: 1rem;
-	width: 100%;
-	margin-bottom: 2rem;
+    border: 1px solid #e8e8e8;
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
 }
-
 .price-detail-list * {
-	margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
-
 .hotel-detail-list span,
 .price-detail-list span {
-	float: right;
+    float: right;
 }
-
 #hotel-booking-form {
-	width: 100%;
+    width: 100%;
 }
-
 .btn-submit {
-	background-color: #388bf2;
-	margin-bottom: 2rem;
+    background-color: #388bf2;
+    margin-bottom: 2rem;
 }
 
 /* forms and utilities */
 ::placeholder {
-	color: #cacccf;
+    color: #cacccf;
 }
 
 /* media query */
 @media only screen and (max-width: 320px) {
-	.price-detail-list {
-		font-size: 0.8rem;
-	}
+    .price-detail-list {
+        font-size: 0.8rem;
+    }
 }
