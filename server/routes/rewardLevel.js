@@ -6,8 +6,8 @@ const authMiddleware = require("../middlewares/auth");
 
 // router.get("/rewardLevel/rewardLevel", authController.getRegister);
 router.get('/', function(req,res){
-    res.render('rewardLevel/rewardLevel',{
-        pagetitle: 'LevelManagement',
+    res.render('rewardLevel/reward',{
+        pagetitle: 'TravelAloha:Reward',
         user: req.user
     });
 });
