@@ -6,8 +6,6 @@ const passport = require('../../auth/passport');
 const adminStaffCtrl = require('../../controllers/admin/staff');
 
 
-router.get('/', adminStaffCtrl.showIndex);
-
 router.get('/login', (req, res) => {
 	if (req.isAuthenticated()) {
 		return res.redirect('/admin/staff/register');
@@ -18,6 +16,14 @@ router.post('/login', passport.authenticate("local", {
 	successRedirect: "/admin/staff/register",
 	failureRedirect: "/admin/staff/login"
 }));
+router.post('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		return res.redirect("/admin/staff/login");
+	});
+});
+
+
+router.get('/', adminStaffCtrl.showIndex);
 
 router.get('/register', (req, res) => {
 	if (req.isAuthenticated()) {
@@ -38,8 +44,8 @@ router.post('/getQuery', async (req, res) => {
 	try {
 		const data = await conn.query(req.body.sql);
 		res.json({data: data[0], status: 200});
-	} catch (error) {
-		res.json({message: error, status: 400});
+	} catch (err) {
+		res.json({message: err, status: 400});
 	}
 });
 router.post('/sendQuery', async (req, res) => {
