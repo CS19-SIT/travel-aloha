@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 
 /**
  * Import module
@@ -70,10 +70,15 @@ const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 const rewardLevelRoutes = require("./routes/rewardLevel");
 
+const rewController = require("./controllers/query_reward_con");
+// const rewQuery = require("./models/query_coupon");
+
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
+
+app.use(rewController.getCoupon);
 
 app.use(authRoutes);
 
