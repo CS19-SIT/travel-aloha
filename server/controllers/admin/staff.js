@@ -9,7 +9,7 @@ exports.showIndex = async (req, res) => {
 			pageTitle: 'TravelAloha - Admin - StaffLandingPage',
 			user: req.user,
 			deptList: deptList[0],
-			rolesFirstDept: rolesFirstDept
+			rolesFirstDept: rolesFirstDept[0]
 		});
 	} catch (err) {
 		res.status(400).send(err);

@@ -2,14 +2,62 @@
 
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	
+	<style>
+		body {
+			padding-bottom: 1.5rem;
+			background-color: rgb(248, 248, 248);
+		}
+		header {
+			display: block;
+			position: relative;
+			min-height: 500px;
+			height: 90vh;
+		}
+		header > background {
+			background-color: #000;
+			display: block;
+			position: absolute;
+			top: 0; right: 0; bottom: 0; left: 0;
+			background-image: url("https://www.larutadelsorigens.cat/wallpic/full/35-350784_beach-house-maldives-wallpaper-maldives-water-desktop-background.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			filter: brightness(0.65);
+		}
+		#applyButton {
+			cursor: pointer;
+			padding: 1rem 1.5rem;
+			border: 1px solid #33a;
+			border-radius: 100rem;
+			background-color: #33a;
+		}
+		#applyButton:hover, #applyButton:active {
+			color: #eee;
+			border: 1px solid #eee;
+			background-color: #00f;
+		}
+	</style>
+
 </head>
 
 <body> 
 
-	<p>INDEX works</p>
+	<header class="d-flex flex-column justify-content-center align-items-center">
+		<background></background>
+		<content class="d-block text-center" style="z-index: 9; color: #eee;">
+			<div id="applyButton" onclick="window.location='/admin/staff/login'">Join our company (LOGIN)</div>
+		</content>
+	</header>
 
-	<a href="/admin/staff/login">Join our company (Login)</a>
 
+
+	<p><%- JSON.stringify(deptList) %></p>
+	<p><%- JSON.stringify(rolesFirstDept) %></p>
+	
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+		AOS.init();
+	</script>
 	<script src="../../assets/js/staff_admin/index.js"></script>
 
 <%- include('../includes/footer') %>
