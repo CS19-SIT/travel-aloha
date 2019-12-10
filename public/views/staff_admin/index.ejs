@@ -4,7 +4,8 @@
 	
 	<style>
 		body {
-			padding-bottom: 1.5rem;
+			min-height: 100vh;
+			padding-bottom: 2rem;
 			background-color: rgb(248, 248, 248);
 		}
 		header {
@@ -51,8 +52,16 @@
 
 
 
-	<p><%- JSON.stringify(deptList) %></p>
-	<p><%- JSON.stringify(rolesFirstDept) %></p>
+	<select onchange="reloadRolesList(this)" class="form-control" style="width: fit-content;">
+		<% for (let i = 0; i < deptList.length; ++i) { %>
+			<% if (i == 0) { %>
+			<option value="<%= deptList[i].deptNo %>" selected><%= deptList[i].deptName %></option>
+			<% } else { %>
+			<option value="<%= deptList[i].deptNo %>"><%= deptList[i].deptName %></option>
+		<% }
+		} %>
+	</select>
+	<p id="rolesDetail"><%- JSON.stringify(rolesFirstDept) %></p>
 	
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>
