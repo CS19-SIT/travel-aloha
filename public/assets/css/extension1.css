@@ -3,23 +3,25 @@
 }
 
 body {
-  /* background: #114d96;
-    background: -webkit-linear-gradient(to right, #114d96, #5ba0f5);
-    background: linear-gradient(to right, #114d96, #5ba0f5); */
-  background: rgb(37, 40, 43);
-  background: linear-gradient(
-    180deg,
-    rgba(37, 40, 43, 1) 0%,
-    rgba(17, 77, 150, 1) 12%,
-    rgba(91, 160, 245, 1) 30%,
-    rgba(255, 255, 255, 1) 45%,
-    rgba(255, 255, 255, 1) 85%,
-    rgba(17, 77, 150, 1) 95%,
-    rgba(37, 40, 43, 1) 100%
-  );
+  background: rgb(250,250,250);
+  background: linear-gradient(180deg, #fafafa 90%, #114d96 100%);
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
-  margin: 10px;
+}
+
+header {
+  position: relative;
+  height: 200px;
+  background: rgb(37, 40, 43);
+  background: linear-gradient(
+    0deg,
+    rgba(37, 40, 43, 1) 0%,
+    rgba(17, 77, 150, 1) 35%,
+    rgba(91, 160, 245, 1) 86%
+  );
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+  text-align: center;
 }
 
 h1 {
@@ -61,7 +63,12 @@ small {
 
 .row {
   padding: 10px;
+  margin: 10px;
   display: block;
+  margin-top: 20px;
+  padding-top: 20px;
+  background-color: white;
+  background-blend-mode: overlay;
 }
 
 @media screen and (max-width: 750px) {
@@ -73,7 +80,7 @@ small {
     height: auto;
   }
   h1 {
-    font-size: 34px;
+    font-size: 44px;
     font-weight: 300;
     line-height: 68px;
     color: #25282b;
