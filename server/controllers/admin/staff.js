@@ -29,9 +29,13 @@ exports.showRegistrationForm = async (req, res) => {
 		if (!!isStaff[0].length) {
 			return res.redirect('/admin/staff/home');
 		}
+		const isSubmitting = await conn.query(`SELECT 1 FROM staff_registration WHERE userId='${req.user.user_id}'`);
+		const userInfo = await conn.query(`SELECT * FROM user WHERE user_id='${req.user.user_id}'`);
 		res.render('staff_admin/registration', {
 			pageTitle: 'TravelAloha - Admin - StaffRegistration',
-			user: req.user
+			user: req.user,
+			isSubmitting: !!isSubmitting[0].length,
+			userInfo: userInfo[0]
 		});
 	} catch (err) {
 		res.status(400).send(err);

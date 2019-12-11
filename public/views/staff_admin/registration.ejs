@@ -1,11 +1,29 @@
 <%- include('../includes/header') %>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
 </head>
 
-<body> 
+<body ng-app="registration" ng-controller="registrationController as regCtrl">
+
 	<%- include('./navbar') %>
 	
-	<p>REGISTRATION works</p>
+	<% if (isSubmitting) { %>
+		<p>You are submitting the application. Please wait until the end of process</p>
+		<p>Can't wait? <span ng-click="regCtrl.cancelForm()"><ins>Cancel the application</ins></span></p>
+	<% } else { %>
+		<span>select a department: </span>
+		<select ng-model="selectedDept" ng-change="regCtrl.loadNewRoles(selectedDept)" style="width: fit-content;"
+		ng-options="dept as dept.deptName for dept in regCtrl.deptList track by dept.deptNo" class="form-control d-inline-block"></select>
+
+		<span>then, select a role: </span>
+		<select ng-model="selectedRole" ng-click="regCtrl.loadRoleDetail(selectedDept, selectedRole)" style="width: fit-content;"
+		ng-options="role as role.roleName for role in regCtrl.roleList track by role.roleId" class="form-control d-inline-block"></select>
+		
+		<p>Selected department: {{ selectedDept.deptName }}</p>
+		<p>Selected role: {{ selectedRole.roleName }}</p>
+		<p>Job detail: {{ regCtrl.selectedDetail }}</p>
+	<% } %>
 
 	<script src="../../assets/js/staff_admin/registration.js"></script>
 
