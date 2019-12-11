@@ -25,7 +25,6 @@
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
-			filter: brightness(0.55);
 		}
 		#applyButton {
 			cursor: pointer;
@@ -62,6 +61,46 @@
 			word-break: break-all;
 			text-align: center;
 			padding: 1.2rem;
+		}
+		photoGrid .col-6, photoGrid .col-12 {
+			padding: 0;
+			margin: 0;
+		}
+		photoGrid .photo {
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			cursor: pointer;
+			transition: 0.1s;
+			position: relative;
+		}
+		header > background:after, photoGrid .photo:after {
+			content: "";
+			position: absolute;
+			top: 0; right: 0; bottom: 0; left: 0;
+			pointer-events: none;
+			background: hsla(250, 0%, 0%, 0.3);
+		}
+		photoGrid .photo:hover:after, photoGrid .photo:active:after {
+			background: hsla(250, 0%, 0%, 0);
+		}
+		photoGrid .photo:hover, photoGrid .photo:active {
+			transform: scale(0.9);
+		}
+		photoGrid .photo.col-6 {
+			height: 240px;
+		}
+		photoGrid .photo.col-12 {
+			height: 120px;
+		}
+		photoGrid .photo .picture-name {
+			position: absolute;
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #000;
+			-webkit-text-stroke: 0.5px #fff;
+			font-size: 1.5rem;
 		}
 	</style>
 
@@ -124,8 +163,46 @@
 		<h3 class="display-4 col-12 text-center mt-5 mb-3" style="font-size: 3rem;">
 			Current available departments ...
 		</h3>
-		<p class="col-auto mt-2"><span>See available roles of:&nbsp;&nbsp;</span>
-			<select onchange="reloadRolesList(this)" class="form-control d-inline-block" style="width: fit-content;">
+		<photoGrid class="col-6 row mx-0 my-4 p-0" style="min-width: 300px;">
+			<% for (let i = 0; i < deptList.length - (deptList.length % 3); i += 3) { 
+				if (i % 6 < 3) { %>
+					<div class="photo col-6" style="background-image: url('<%- deptList[i].deptPicture %>')" onclick="lookupDetails('<%- i %>')">
+						<span class="picture-name"><%- deptList[i].deptName %></span>
+					</div>
+					<div class="col-6 row">
+						<div class="photo col-12" style="background-image: url('<%- deptList[i+1].deptPicture %>')" onclick="lookupDetails('<%- i+1 %>')">
+							<span class="picture-name"><%- deptList[i+1].deptName %></span>
+						</div>
+						<div class="photo col-12" style="background-image: url('<%- deptList[i+2].deptPicture %>')" onclick="lookupDetails('<%- i+2 %>')">
+							<span class="picture-name"><%- deptList[i+2].deptName %></span>
+						</div>
+					</div>
+				<% } else { %>
+					<div class="col-6 row">
+						<div class="photo col-12" style="background-image: url('<%- deptList[i].deptPicture %>')" onclick="lookupDetails('<%- i %>')">
+							<span class="picture-name"><%- deptList[i].deptName %></span>
+						</div>
+						<div class="photo col-12" style="background-image: url('<%- deptList[i+1].deptPicture %>')" onclick="lookupDetails('<%- i+1 %>')">
+							<span class="picture-name"><%- deptList[i+1].deptName %></span>
+						</div>
+					</div>
+					<div class="photo col-6" style="background-image: url('<%- deptList[i+2].deptPicture %>')" onclick="lookupDetails('<%- i+2 %>')">
+						<span class="picture-name"><%- deptList[i+2].deptName %></span>
+					</div>
+			<% }
+			} %>
+			<% let remainder = deptList.length - deptList.length % 3; 
+				while (remainder < deptList.length) {
+				%>
+					<div class="photo col-<%- parseInt(12 / (deptList.length%3), 10) %>" style="background-image: url('<%- deptList[remainder].deptPicture %>')" onclick="lookupDetails('<%- remainder %>')">
+						<span class="picture-name"><%- deptList[remainder].deptName %></span>
+					</div>
+					<% ++remainder;
+				}
+			%>
+		</photoGrid>
+		<div class="col-auto mt-4 text-center"><span>See available roles of:&nbsp;&nbsp;</span>
+			<select id="deptListSelect" onchange="reloadRolesList(this)" class="form-control d-inline-block" style="width: fit-content;">
 				<% for (let i = 0; i < deptList.length; ++i) { %>
 					<% if (i == 0) { %>
 					<option value="<%- deptList[i].deptNo %>" selected><%- deptList[i].deptName %></option>
@@ -134,12 +211,13 @@
 				<% }
 				} %>
 			</select>
-		</p>
-		<div class="w-100"></div>
-		<div id="rolesDetail" class="col-auto pt-3 text-break text-left"><% if (!!rolesFirstDept.length) { %><%- rolesFirstDept.map((item, index) => {
-			return `<p class="font-weight-bold">${index+1}) ${item.roleName}</p><p>${item.roleDetail}</p>`
-		}).join('') %><% } else { %>No available role<% } %></div>
+			<div id="rolesDetail" class="col-auto pt-3 text-break text-left"><% if (!!rolesFirstDept.length) { %><%- rolesFirstDept.map((item, index) => {
+				return `<p class="font-weight-bold">${index+1}) ${item.roleName}</p><p class="text-break">${item.roleDetail}</p>`
+			}).join('') %><% } else { %>No available role<% } %></div>
+		</div>
 	</div>
+
+	<p class="text-center text-break display-3">Something else? google map?</p>
 	
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>
