@@ -16,9 +16,12 @@ function reloadRolesList(elem) {
     }).done((result) => {
         if (result.status == 200) {
             if (!result.data.length) {
-                result.data = 'No available role'
+                document.getElementById('rolesDetail').innerHTML = 'No available role';
+            } else {
+                document.getElementById('rolesDetail').innerHTML = result.data.map((item, index) => {
+                    return `<p class="font-weight-bold">${index+1}) ${item.roleName}</p><p>${item.roleDetail}</p>`;
+                }).join('');
             }
-            document.getElementById('rolesDetail').textContent = JSON.stringify(result.data);
         }
     });
 }

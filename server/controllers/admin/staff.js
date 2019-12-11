@@ -3,7 +3,7 @@ const conn = require('../../db/db');
 
 exports.showIndex = async (req, res) => {
 	try {
-		const deptList = await conn.query(`SELECT * FROM staff_department`);
+		const deptList = await conn.query(`SELECT * FROM staff_department ORDER BY deptName`);
 		const rolesFirstDept = await conn.query(`SELECT * FROM staff_role WHERE deptNo='${deptList[0][0].deptNo}'`);
 		res.render('staff_admin/index', {
 			pageTitle: 'TravelAloha - Admin - StaffLandingPage',
