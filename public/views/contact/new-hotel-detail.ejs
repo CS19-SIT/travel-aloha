@@ -4,7 +4,9 @@
 </head>
 
 <body>
+
     <%- include('../includes/navbar') %>
+
     <div class="responsive-wrapper">
         <div class="container">
             <div class="row">
@@ -12,6 +14,8 @@
                     <h1 class="display-4 p-3 text-center"><%= JSON.parse(hotel)[0].hotelName %></h1>
                 </div>
                 <div class="col-md-12">
+
+
                     <% if (typeof JSON.parse(hotel)[0].hotelPicture == 'undefined'){ %>
                         <div class="text-center"><div class="hotel-pic bg-dark rounded mx-auto d-block"></div>
                     <% } else{ %>
@@ -27,10 +31,10 @@
                     <h3 class="pt-4 pb-1 pl-4">Hotel Description</h3>
                 </div>
                 <div class="col-md-12">
-                    <% if (typeof JSON.parse(hotel)[0].hotelDescription == 'undefined'){ %>
+                    <% if (JSON.parse(hotel)[0].hotelDescription == 'undefined'){ %>
                         <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">Not Have Data<p>
                     <% } else{ %>
-                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel)[0].hotelDescription %></p>
+                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel)[0].hotelDescription %><p></p>
                     <% } %>
                 </div>
             </div>
