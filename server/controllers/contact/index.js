@@ -62,7 +62,7 @@ exports.postHotelInfo = async (req, res) => {
     res.sendStatus(400);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   } finally {
-    res.redirect("new-hotel-dashboard");
+    res.redirect("/contact/new-hotel-dashboard");
   }
 };
 exports.postAirlineInfo = async (req, res) => {
@@ -98,10 +98,10 @@ exports.postAirlineInfo = async (req, res) => {
       });
     });
   } catch (error) {
-    res.sendStatus(400);
+    res.sentStatus(400);
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   } finally {
-    res.redirect("new-airline-dashboard");
+    res.redirect("/contact/new-airline-dashboard");
   }
 };
 exports.getHotelDashboard = async (req, res) => {

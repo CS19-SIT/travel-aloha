@@ -4,6 +4,16 @@ html, body {
   width: 100%; 
   height: 100%;
 }
+.short{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
+}
+.blank{
+  color: black;
+  background-color: black;
+}
 .responsive-wrapper{
   width: 100%; 
   height: 100%; 
@@ -13,6 +23,7 @@ html, body {
   height: 42.85vh;
   object-fit: cover;
   padding: 0;
+  background-position: center;
 }
 .detail-pic{
   width: 100%;

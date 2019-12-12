@@ -3,7 +3,7 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    if (file.fieldname === "hotelProfile")
+    if (file.fieldname === "hotelProfile" || "airlineProfile")
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
     else
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/pictures"));
@@ -39,7 +39,9 @@ const upload = multer({
   }
 }).fields([
  { name: "hotelProfile", maxCount: 1 },
- { name: "hotelPicture", maxCount: 1 }
+ { name: "hotelPicture", maxCount: 1 },
+ { name: "airlineProfile", maxCount: 1 },
+ { name: "airlinePicture", maxCount: 1 },
 ]);
 
 module.exports = {

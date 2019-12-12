@@ -12,9 +12,14 @@
                     <h1 class="display-4 p-3 text-center"><%= JSON.parse(hotel)[0].hotelName %></h1>
                 </div>
                 <div class="col-md-12">
-                    <div class="text-center"><img class="hotel-pic rounded mx-auto d-block"
-                            src="/assets/uploads/contact/pictures/<%= JSON.parse(hotel)[0].hotelPicture %>">
-                    </div>
+                    <% if (typeof JSON.parse(hotel)[0].hotelPicture == 'undefined'){ %>
+                        <div class="text-center"><div class="hotel-pic bg-dark rounded mx-auto d-block"></div>
+                    <% } else{ %>
+                        <% let isLink = /^(?:https\:\/\/|http\:\/\/|www)/.test(JSON.parse(hotel)[0].hotelPicture); %>
+                        <div class="text-center"><div class="hotel-pic bg-dark rounded mx-auto d-block"
+                            style="background-image: url('<%- (isLink?``:`/assets/uploads/contact/pictures/`) + JSON.parse(hotel)[0].hotelPicture %>'); ">
+                        </div>
+                    <% } %>
                 </div>
             </div>
             <div class="row">

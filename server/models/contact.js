@@ -62,7 +62,7 @@ exports.insertNewAirline = async ({
   try {
     await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, 
                     airlineAddress, airlineTelNumber, airlineContactNumber, airlinePlaneDes, airlineProfile, 
-                    airlinePicture) VALUES(?,?,?,?,?,?,?,?.?.?)`, [
+                    airlinePicture) VALUES(?,?,?,?,?,?,?,?,?,?)`, [
       airlineName,
       airlineNationality,
       airlineEmail,
