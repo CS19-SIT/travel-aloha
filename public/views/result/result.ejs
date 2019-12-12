@@ -5,7 +5,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../../assets/css/result.css">
-<link href="../../assets/js/result.js">
+
+
+
 
 <!-- bootstrp -->
 <!-- Latest compiled and minified CSS -->
@@ -20,6 +22,17 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<!-- Compressed CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css"
+    integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
+    crossorigin="anonymous">
+
+<!-- Compressed JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js"
+    integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA=="
+    crossorigin="anonymous"></script>
+<title>Result</title>
+
 <style>
     html,
     body,
@@ -31,6 +44,7 @@
     h6 {
         font-family: "Roboto", sans-serif;
         font-size: 20px;
+        color: black;
     }
 
     .row {
@@ -39,122 +53,105 @@
     }
 </style>
 
-<body>
+<di>
     <div class="row">
         <div class="col-lg-12">
             <hr>
         </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-2">
+        <!-- <div class="col-lg-1"></div> -->
+        <div class="col-lg-3">
+            <div class="col-lg-12">
+                <div class=" card card-2" id="filter">
+                    <div class="map">
+
+                    </div>
+                </div>
+            </div>
             <div class=" card card-2" id="filter">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>filter bar</h1>
+                        <h1>Money</h1>
+                        <!-- <div class="row"> -->
+                        <div class="range-slider">
+                            <span class="range-slider-input">From
+                                <input type="number" value="1000" min="0" max="120000" />
+                            </span>
+                            <span class="range-slider-input"> To
+                                <input type="number" value="5000" min="0" max="120000" />
+                            </span>
 
-                        <div slider id="slider-distance">
-                            <div>
-                                <div inverse-left style="width:70%;"></div>
-                                <div inverse-right style="width:70%;"></div>
-                                <div range style="left:30%;right:40%;"></div>
-                                <span thumb style="left:30%;"></span>
-                                <span thumb style="left:60%;"></span>
-                                <div sign style="left:30%;">
-                                    <span id="value">30</span>
-                                </div>
-                                <div sign style="left:60%;">
-                                    <span id="value">60</span>
-                                </div>
+                            <div id="one">
+                                <input value="1000" min="0" max="120000" step="500" type="range" />
+                                <input value="5000" min="0" max="120000" step="500" type="range" />
+
                             </div>
-                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
-                                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                            var children = this.parentNode.childNodes[1].childNodes;
-                                            children[1].style.width=value+'%';
-                                            children[5].style.left=value+'%';
-                                            children[7].style.left=value+'%';children[11].style.left=value+'%';
-                                            children[11].childNodes[1].innerHTML=this.value;" />
-
-                            <input type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
-                                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                            var children = this.parentNode.childNodes[1].childNodes;
-                                            children[3].style.width=(100-value)+'%';
-                                            children[5].style.right=(100-value)+'%';
-                                            children[9].style.left=value+'%';children[13].style.left=value+'%';
-                                            children[13].childNodes[1].innerHTML=this.value;" />
                         </div>
-
-
-
+                        <script src="../../assets/js/result.js"></script>
+                        <br>
+                        <h1>Facilities</h1>
                         <form class="form">
-                            <!-- <div class="inputGroup">
-                                        <input id="option1" name="option1" type="checkbox" />
-                                        <label for="option1">Option One</label>
-                                    </div>
-                                    <div class="inputGroup">
-                                        <input id="option2" name="option2" type="checkbox" />
-                                        <label for="option2">Option Two</label>
-                                    </div> -->
-                            <br>
-                            <div class="checkbox">
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
+                            <div>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    WiFi
                                 </label>
-                                <label>option 1</label>
-                            </div>
-
-                            <div class="checkbox">
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>option 1</label>
-                            </div>
-                            <div class="checkbox">
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>option 1</label>
                             </div>
                             <div>
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    Swimming Pool
                                 </label>
-                                <label>Wifi</label>
                             </div>
                             <div>
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    Car Park
                                 </label>
-                                <label>Breakfast</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    Restaurant
+                                </label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    Lift
+                                </label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    Fitness
+                                </label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    Breakfast
+                                </label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="c1" name="cc" />
+                                <label for="c1"><span></span>
+                                    24Hr Reception
+                                </label>
                             </div>
 
 
                         </form>
+                        <!-- </div> -->
+                        <div class="rating-holder">
+                            <div class="c-rating c-rating--regular" data-rating-value="0">
+                                <button>1</button>
+                                <button>2</button>
+                                <button>3</button>
+                                <button>4</button>
+                                <button>5</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -162,37 +159,45 @@
 
         </div>
 
-        <div class="col-lg-8">
-         <% hotels.forEach( hotel => { %>
-            <div class=" card card-3">
-                <div class="row">
-                    <div class="col-lg-7">
+        <div class="col-lg-9">
+            <% hotels.forEach( hotel => { %>
+            <div class="card card-3">
+                <div class="d-flex justify-content-between">
+                    <div class="col-7">
                         <div class="textresult">
                             <h3><%= hotel.hotelName %></h3>
                             <h4><%= hotel.hotelAddress %></h4>
-                            <h4><%= hotel.hotelDescription %></h4>
+                            <!-- <h4><%= hotel.hotelDescription %></h4> -->
                             <h4><%= hotel.hoteltelNumber %></h4>
 
                             <% if (!user) { %>
-                                <h1><%= hotel.fullPrice %></h1>
+                            <h1><%= hotel.fullPrice %></h1>
 
-                                <a href="/login">Log in</a> to check out your price!
+                            <a href="/login">Log in</a> to check out your price!
                             <% } %>
                             <% if (user) { %>
-                                <h1>Price</h1>
-                                <u><h1>from: price</h1></u>
+                            <h1>Price</h1>
+                            <u>
+                                <h1>from: price</h1>
+                            </u>
                             <% } %>
                             <% if (hotel.wifi==1) { %>
-                               MEE WIFI
+                            MEE WIFI
                             <% } %>
-                             <% if (hotel.breakfast==1) { %>
-                                MEE Breakfast
-                             <% } %>
-                        </div>
+                            <% if (hotel.breakfast==1) { %>
+                            MEE Breakfast
+                            <% } %>
+                            <!-- <button class="mdc-icon-button material-icons">favorite</button> -->
+                            <div class="like-container">
+                                <div class="like-cnt unchecked" id="like-cnt">
+                                    <i class="like-btn material-icons">thumb_up</i>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                    <div class="col-lg-5">
-                        <img src="<%= hotel.hotelPicture %>">
+                    <div>
+                        <img src="<%= hotel.hotelPicture %>" class="hotelpic">
                     </div>
                 </div>
             </div>
@@ -203,3 +208,4 @@
 
 
     <%- include('../includes/footer') %>
+    <!--Script-->
