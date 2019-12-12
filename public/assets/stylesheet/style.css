@@ -4,18 +4,6 @@ html, body {
   width: 100%; 
   height: 100%;
 }
-.short{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 500px;
-    max-height: 200px;
-}
-.blank{
-  color: black;
-  background-color: black;
-  height: 35vh;
-}
 .responsive-wrapper{
   width: 100%; 
   height: 100%; 
@@ -23,13 +11,18 @@ html, body {
 .hotel-pic{
   width: 100%;
   height: 42.85vh;
-  object-fit: cover;
   padding: 0;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .card-pic{
   width: 100%;
-  height: 10vh;
+  height: 30vh;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .detail-pic{
   width: 100%;

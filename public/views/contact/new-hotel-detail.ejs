@@ -27,7 +27,11 @@
                     <h3 class="pt-4 pb-1 pl-4">Hotel Description</h3>
                 </div>
                 <div class="col-md-12">
-                    <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel)[0].hotelDescription %><p>
+                    <% if (typeof JSON.parse(hotel)[0].hotelDescription == 'undefined'){ %>
+                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">Not Have Data<p>
+                    <% } else{ %>
+                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel)[0].hotelDescription %><p></p>
+                    <% } %>
                 </div>
             </div>
             <div class="row">
@@ -76,19 +80,19 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card text-center">
+                    <div class="card text-center h-40">
                         <div class="card-body">
                             <h5 class="card-title">Name</h5>
                             <p class="card-text"><%= JSON.parse(hotel)[0].hotelName %></p>
                         </div>
                     </div>
-                    <div class="card text-center">
+                    <div class="card text-center h-40">
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
                             <p class="card-text"><%= JSON.parse(hotel)[0].hotelEmail %></p>
                         </div>
                     </div>
-                    <div class="card text-center">
+                    <div class="card text-center h-40">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <address>Address</address>
@@ -96,13 +100,13 @@
                             <p class="card-text"><%= JSON.parse(hotel)[0].hotelAddress %></p>
                         </div>
                     </div>
-                    <div class="card text-center">
+                    <div class="card text-center h-40">
                         <div class="card-body">
                             <h5 class="card-title">Telephone Number</h5>
                             <p class="card-text"><%= JSON.parse(hotel)[0].hotelTelNumber %></p>
                         </div>
                     </div>
-                    <div class="card text-center">
+                    <div class="card text-center h-40">
                         <div class="card-body">
                             <h5 class="card-title">Contact Number</h5>
                             <p class="card-text"><%= JSON.parse(hotel)[0].hotelContactNumber %></p>
