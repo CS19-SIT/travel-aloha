@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="display-4 p-3 text-center"><%= JSON.parse(hotel)[0].hotelName %></h1>
+                    <h1 class="display-4 p-3 text-center"><%= JSON.parse(hotel).hotelName %></h1>
                 </div>
                 <div class="col-md-12">
 
@@ -34,7 +34,7 @@
                     <% if (JSON.parse(hotel)[0].hotelDescription == 'undefined'){ %>
                         <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">Not Have Data<p>
                     <% } else{ %>
-                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel)[0].hotelDescription %><p></p>
+                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;"><%= JSON.parse(hotel).hotelDescription %><p></p>
                     <% } %>
                 </div>
             </div>
