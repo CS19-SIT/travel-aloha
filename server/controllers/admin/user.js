@@ -38,6 +38,23 @@ exports.editUsersPage = function(req, res) {
     });
 }
 
+exports.editUsers = function (req, res) {  
+  let user_id = req.params.user_id;
+  let level = req.body.Level
+  let firstname = req.body.firstname;
+  let lastname = req.body.lastname;
+  let email = req.body.Email;
+  let username = req.body.username;
+
+  let query = "UPDATE `user` SET `Level` = '" + level + "',`firstname` = '" + firstname + "', `lastname` = '" + lastname + "', `Email` = '" + email + "', `username` = '" + username + "' WHERE `user`.`user_id` = '" + user_id +"'";
+  db.query(query, (err, result) => {
+      if (err) {
+          return res.status(500).send(err);
+      }
+      res.redirect('../');
+  });
+},
+
 exports.detailUsersPage = function(req,res) {
     let user_id = req.params.user_id;
     let query = "SELECT * FROM user WHERE user_id = '" + user_id + "' ";
@@ -53,18 +70,18 @@ exports.detailUsersPage = function(req,res) {
     });
 }
 
-// exports.deleteUsers = function(req,res) {
-//     let user_id = req.params.user_id;
-//     let getImageQuery = 'SELECT profile_picture from `user` WHERE user_id = "' + user_id + '"';
-//     let deleteUserQuery = 'DELETE FROM user WHERE user_id = "' + user_id + '"';
+exports.deleteUsers = function(req,res) {
+    let user_id = req.params.user_id;
 
-//     db.query(deleteUserQuery, (err, result) => {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-//         res.redirect('userManagement/users');
-//     });
-// }
+    let deleteUserQuery = 'DELETE FROM user WHERE user_id = "' + user_id + '"';
+
+    db.query(deleteUserQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.redirect('../');
+    });
+}
 
 exports.putUser = async (req, res) => {
     try {
@@ -74,12 +91,3 @@ exports.putUser = async (req, res) => {
       res.sendStatus(404);
     }
 }
-
-exports.deleteUsers = async (req, res) => {
-    try {
-      await User.deleteUser(req.body.user_id);
-      res.sendStatus(204);
-    } catch (err) {
-      res.sendStatus(404);
-    }
-  };

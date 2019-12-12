@@ -35,17 +35,17 @@ router.get(
   adminUserController.deleteUsers
 );
 // router.post('/add', userManagementController.addUsers);
-router.put(
-  "/edit",
+router.post(
+  "/edit/:user_id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminUserController.putUser
+  adminUserController.editUsers
 );
-router.delete(
-  "/delete",
-  authMiddleware.isAuthenticated,
-  authMiddleware.isAdmin,
-  adminUserController.deleteUsers
-);
+// router.delete(
+//   "/delete/:user_id",
+//   authMiddleware.isAuthenticated,
+//   authMiddleware.isAdmin,
+//   adminUserController.deleteUsers
+// );
 
 module.exports = router;

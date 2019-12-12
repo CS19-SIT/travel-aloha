@@ -18,7 +18,12 @@
               
 
       <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+          <% if( data.profile_picture){%>     
+            <img src="<%= data.profile_picture %>" class="avatar img-circle img-thumbnail" alt=""> 
+        <%}else{%>    
+            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <%}%>      
+        
      
       </div></hr><br>
 
@@ -57,7 +62,11 @@
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Role</h4></label>
                                     <ul class="list-group">
+                                      <% if( data.role){%>    
                                       <li class="list-group-item disabled" aria-disabled="true"><%= data.role%></li>
+                                      <%}else{%>
+                                      <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                      <%}%>   
                                   </ul>
                                 </div>
                             </div>
@@ -65,7 +74,12 @@
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Username</h4></label>
                                     <ul class="list-group">
-                                      <li class="list-group-item disabled" aria-disabled="true"><%= data.username%></li>
+                                        <% if( data.username){%>    
+                                          <li class="list-group-item disabled" aria-disabled="true"><%= data.username%></li>
+                                          <%}else{%>
+                                          <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                          <%}%>   
+                                      
                                   </ul>
                                 </div>
                         </div>                      
@@ -73,7 +87,12 @@
                           <div class="col-xs-6">
                               <label for="first_name"><h4>First name</h4></label>
                               <ul class="list-group">
-                                <li class="list-group-item disabled" aria-disabled="true"><%= data.firstname%></li>
+                                  <% if( data.firstname){%>    
+                                    <li class="list-group-item disabled" aria-disabled="true"><%= data.firstname%></li>
+                                    <%}else{%>
+                                    <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                    <%}%>   
+                                
                             </ul>
                           </div>
                       </div>
@@ -82,7 +101,12 @@
                             <div class="col-xs-6">
                                 <label for="first_name"><h4>Last name</h4></label>
                                 <ul class="list-group">
-                                  <li class="list-group-item disabled" aria-disabled="true"><%= data.lastname%></li>
+                                    <% if( data.lastname){%>    
+                                      <li class="list-group-item disabled" aria-disabled="true"><%= data.lastname%></li>
+                                      <%}else{%>
+                                      <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                      <%}%>   
+                                  
                               </ul>
                             </div>
                         </div>
@@ -91,7 +115,12 @@
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Phone</h4></label>
                                     <ul class="list-group">
-                                      <li class="list-group-item disabled" aria-disabled="true"><%= data.phonenum%></li>
+                                        <% if( data.phonenum){%>    
+                                          <li class="list-group-item disabled" aria-disabled="true"><%= data.phonenum%></li>
+                                          <%}else{%>
+                                          <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                          <%}%>   
+                                      
                                   </ul>
                                 </div>
                             </div>
@@ -100,7 +129,12 @@
                                     <div class="col-xs-6">
                                         <label for="first_name"><h4>Gender</h4></label>
                                         <ul class="list-group">
-                                          <li class="list-group-item disabled" aria-disabled="true"><%= data.gender%></li>
+                                            <% if( data.gender){%>    
+                                              <li class="list-group-item disabled" aria-disabled="true"><%= data.gender%></li>
+                                              <%}else{%>
+                                              <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                              <%}%>   
+                                          
                                       </ul>
                                     </div>
                                 </div>
@@ -109,18 +143,39 @@
                                         <div class="col-xs-6">
                                             <label for="first_name"><h4>birthdate</h4></label>
                                             <ul class="list-group">
-                                              <li class="list-group-item disabled" aria-disabled="true"><%= data.birth_date%></li>
+                                                <% if( data.birth_date){%>    
+                                                  <li class="list-group-item disabled" aria-disabled="true"><%= data.birth_date%></li>
+                                                  <%}else{%>
+                                                  <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                                  <%}%>   
                                           </ul>
                                         </div>
-                                    </div
+                                </div>
                                 <div class="form-group">                       
                                         <div class="col-xs-6">
                                             <label for="first_name"><h4>Email</h4></label>
                                             <ul class="list-group">
-                                              <li class="list-group-item disabled" aria-disabled="true"><%= data.email%></li>
+                                                <% if( data.email){%>    
+                                                  <li class="list-group-item disabled" aria-disabled="true"><%= data.email%></li>
+                                                  <%}else{%>
+                                                  <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                                  <%}%>   
+
                                           </ul>
                                         </div>
+                                </div>
+                                <div class="form-group">                       
+                                    <div class="col-xs-6">
+                                        <label for="first_name"><h4>Address</h4></label>
+                                        <ul class="list-group">
+                                            <% if( data.address){%>    
+                                              <li class="list-group-item disabled" aria-disabled="true"><%= data.address%></li>
+                                              <%}else{%>
+                                              <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                                              <%}%>   
+                                      </ul>
                                     </div>
+                            </div>
                       
                      
                       <div class="form-group">
