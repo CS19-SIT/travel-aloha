@@ -9,10 +9,12 @@ html, body {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 500px;
+    max-height: 200px;
 }
 .blank{
   color: black;
   background-color: black;
+  height: 35vh;
 }
 .responsive-wrapper{
   width: 100%; 
@@ -24,6 +26,10 @@ html, body {
   object-fit: cover;
   padding: 0;
   background-position: center;
+}
+.card-pic{
+  width: 100%;
+  height: 10vh;
 }
 .detail-pic{
   width: 100%;
