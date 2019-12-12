@@ -9,5 +9,6 @@ function CartTotal() {
         total +=(parseFloat(price[i].innerText)*parseFloat(quantity[i].innerText));
     }
     document.getElementById("cart-total-price").innerText = total+(total*0.07) + "฿";
+    document.getElementById("tax").innerText = (total * 0.07) + "฿";
     
 };

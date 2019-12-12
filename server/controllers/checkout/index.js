@@ -1,5 +1,6 @@
 const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
 const hotelBooking = require('../../models/checkoutModels/chekout');
+const axios = require('axios');
 
 exports.getIndex = async (req, res) => {
   try {
@@ -22,6 +23,11 @@ exports.getIndex = async (req, res) => {
 
 exports.postIndex = async (req, res) => {
   try {
+stripe.paymentIntents.create({
+          amount: 10000,
+          currency: "thb",
+          payment_method_types: ["card"],
+    })
     stripe.customers
       .create({
         name: req.body.username,
@@ -33,7 +39,8 @@ exports.postIndex = async (req, res) => {
           amount: req.body.amount * 100,
           amount: 10000,
           currency: "thb",
-          customer: customer.id
+          customer: customer.id,
+          description: 'Customer for jenny.rosen@example.com'
         })
       )
       .then(() => res.render("payment/completedPayment", {
@@ -41,7 +48,7 @@ exports.postIndex = async (req, res) => {
         user: req.user
 
       }))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err));  
   } catch (err) {
     console.log("ERROR", err)
     res.send(err);
