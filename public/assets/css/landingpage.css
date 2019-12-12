@@ -1459,7 +1459,7 @@ span.flatpickr-weekday {
   height: 60px;
   position: relative;
   padding: 10px 15px 60px 48px;
-  width: 1000px;
+  width: 545px;
 }
 
 .s012 form .inner-form .main-form .row .input-wrap .icon-wrap {
@@ -1768,9 +1768,6 @@ span.flatpickr-weekday {
   padding-left: 95px;
   padding-bottom: 50px;
 
-}
-.card-box{
-  margin: 50px 50px 50px 50px;
 }
 
 .header-text{
