@@ -3,6 +3,38 @@ $(document).ready(function () {
     width: '100%'
   });
 
+  let searchOptionsSelectAjax = function (type) {
+    return {
+      url: document.location.protocol + "//" + document.location.host + "/admin/coupon/search/" + type,
+      data: function (params) {
+        return {
+          search: params.term || "",
+          page: (params.page || 1) - 1
+        };
+      },
+      delay: 250,
+      cache: true
+    }
+  }
+
+  $("select[multiple='multiple'].hotel-select").select2({
+    width: '100%',
+    ajax: searchOptionsSelectAjax("hotel")
+  });
+
+  $("select[multiple='multiple'].airline-select").select2({
+    width: '100%',
+    ajax: searchOptionsSelectAjax("airline")
+  });
+
+  $("input[name=for_every_airline]").change(function (e) {
+    $(e.target.form).find(".airline-select").next(".select2-container").toggle(!this.checked);
+  });
+
+  $("input[name=for_every_hotel]").change(function (e) {
+    $(e.target.form).find(".hotel-select").next(".select2-container").toggle(!this.checked);
+  });
+
   $("#view-edit-button").click(function (e) {
     const button = $(this);
     $("#viewModal").on("hidden.bs.modal", (e) => {
@@ -37,6 +69,11 @@ $(document).ready(function () {
     modal.find("form").data("coupon-code", code);
   });
 
+  $("#addModal").on("show.bs.modal", function (e) {
+    $("input[name=for_every_hotel]").change();
+    $("input[name=for_every_airline]").change();
+  });
+
   $("#addModalForm").submit(function (e) {
     e.preventDefault();
 
@@ -61,7 +98,7 @@ $(document).ready(function () {
 
     form.data("coupon-code", code);
 
-    for (const key in coupon) {
+    for (const key of ['code', 'name', 'discount_percentage']) {
       find(key).val(coupon[key]);
     }
 
@@ -70,7 +107,24 @@ $(document).ready(function () {
     find("for_every_hotel").prop("checked", coupon.for_every_hotel);
     find("for_every_airline").prop("checked", coupon.for_every_airline);
     form.find("textarea[name=description]").val(coupon["description"]);
-    form.find('select[name="levels"]').val(coupon.levels).trigger("change");
+    form.find('select[name="levels"]').val(coupon.levels).change();
+
+    const hotelsSelect = form.find('select[name="hotels"]');
+    const airlinesSelect = form.find('select[name="airlines"]');
+
+    $.map(coupon.hotels, function (e) {
+      hotelsSelect.append(new Option(e.name, e.id, false, true));
+    });
+
+    $.map(coupon.airlines, function (e) {
+      airlinesSelect.append(new Option(e.name, e.id, false, true));
+    });
+
+    hotelsSelect.change();
+    airlinesSelect.change();
+
+    $("input[name=for_every_hotel]").change();
+    $("input[name=for_every_airline]").change();
   });
 
   $("#editModalForm").submit(function (e) {
@@ -98,5 +152,5 @@ $(document).ready(function () {
       alert("Success!");
       location.reload();
     });
-  })
+  });
 });

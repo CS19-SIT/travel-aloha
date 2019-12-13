@@ -39,4 +39,18 @@ router.delete(
   adminCouponController.deleteCoupon
 );
 
+router.get(
+  "/search/hotel",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminCouponController.searchHotelFormOptions
+)
+
+router.get(
+  "/search/airline",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminCouponController.searchAirlineFormOptions
+)
+
 module.exports = router;

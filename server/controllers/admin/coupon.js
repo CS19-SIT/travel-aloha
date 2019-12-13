@@ -1,5 +1,6 @@
 const querystring = require('querystring');
 const Coupon = require("../../models/coupon");
+const CouponAdmin = require("../../models/admin-coupon");
 
 const allLevels = [
   ["silver", "Silver"],
@@ -111,5 +112,21 @@ exports.getCoupon = async (req, res) => {
     res.send(await Coupon.getCoupon(req.params.code));
   } catch (err) {
     res.sendStatus(404);
+  }
+};
+
+exports.searchHotelFormOptions = async (req, res) => {
+  try {
+    res.send(await CouponAdmin.searchHotelFormOptions(req.query.search, req.query.page))
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+exports.searchAirlineFormOptions = async (req, res) => {
+  try {
+    res.send(await CouponAdmin.searchAirlineFormOptions(req.query.search, req.query.page))
+  } catch (err) {
+    res.sendStatus(500);
   }
 };

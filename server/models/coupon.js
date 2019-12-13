@@ -33,14 +33,36 @@ const addCouponCriteriaLevel = async (code, levels) => {
   }
 };
 
-const getCouponCriteriaHotel = async code => {
-  const result = await db.query("SELECT hotel_id FROM coupon_criteria_hotel WHERE code = ?", [code]);
-  return result[0].map(e => e["hotel_id"]);
+const getCouponCriteriaHotel = async (code, additionalData = false) => {
+  if (additionalData) {
+    return await db.query(`
+      SELECT c.hotel_id AS id, e.hotelName AS name
+      FROM coupon_criteria_hotel AS c, hotel AS e
+      WHERE c.code = ? AND c.hotel_id = e.hotelId
+    `, [code]).then(r => r[0]);
+  } else {
+    return await db.query(`
+      SELECT hotel_id AS id
+      FROM coupon_criteria_hotel
+      WHERE code = ?
+    `, [code]).then(r => r[0].map(e => e['id']));
+  }
 };
 
-const getCouponCriteriaAirline = async code => {
-  const result = await db.query("SELECT airline_id FROM coupon_criteria_airline WHERE code = ?", [code]);
-  return result[0].map(e => e["airline_id"]);
+const getCouponCriteriaAirline = async (code, additionalData = false) => {
+  if (additionalData) {
+    return await db.query(`
+      SELECT c.airline_id AS id, e.airlineName AS name
+      FROM coupon_criteria_airline AS c, airline AS e
+      WHERE c.code = ? AND c.airline_id = e.airline_Id
+    `, [code]).then(r => r[0]);
+  } else {
+    return await db.query(`
+      SELECT airline_id AS id
+      FROM coupon_criteria_airline
+      WHERE code = ?
+    `, [code]).then(r => r[0].map(e => e['id']));
+  }
 };
 
 const getCouponCriteriaLevel = async code => {
@@ -48,13 +70,13 @@ const getCouponCriteriaLevel = async code => {
   return result[0].map(e => e["level"]);
 };
 
-const mergeWithCriteria = async e => {
+const mergeWithCriteria = async (e, additionalData = false) => {
   if (!e.for_every_hotel) {
-    e.hotels = await getCouponCriteriaHotel(e.code);
+    e.hotels = await getCouponCriteriaHotel(e.code, additionalData);
   }
 
   if (!e.for_every_airline) {
-    e.airlines = await getCouponCriteriaAirline(e.code);
+    e.airlines = await getCouponCriteriaAirline(e.code, additionalData);
   }
 
   e.levels = await getCouponCriteriaLevel(e.code);
@@ -122,7 +144,7 @@ exports.searchCoupons = async ({
 
     return {
       pageCount: Math.ceil(countResult[0][0]["couponCount"] / entriesPerPage),
-      coupons: await Promise.all(dataResult[0].map(convertFromDB).map(mergeWithCriteria))
+      coupons: await Promise.all(dataResult[0].map(convertFromDB).map(e => mergeWithCriteria(e, true)))
     };
   } catch (err) {
     throw new Error(`[ERR] searchCoupons: ${err}`)
@@ -243,7 +265,15 @@ exports.editCoupon = async (oldCode, {
         oldCode
       ]);
 
-      if (!for_every_hotel && Array.isArray(hotels)) {
+      if (for_every_hotel || !Array.isArray(hotels)) {
+        hotels = [];
+      }
+
+      if (for_every_airline || !Array.isArray(airlines)) {
+        airlines = [];
+      }
+
+      {
         // Maybe we can do something else here...
         const dbData = oldCoupon.hotels || [];
         const toDelete = dbData.filter(e => hotels.indexOf(e) < 0);
@@ -256,7 +286,7 @@ exports.editCoupon = async (oldCode, {
         await addCouponCriteriaHotel(code, toInsert);
       }
 
-      if (!for_every_airline && Array.isArray(airlines)) {
+      {
         const dbData = oldCoupon.airlines || [];
         const toDelete = dbData.filter(e => airlines.indexOf(e) < 0);
         const toInsert = airlines.filter(e => dbData.indexOf(e) < 0);
@@ -268,7 +298,7 @@ exports.editCoupon = async (oldCode, {
         await addCouponCriteriaAirline(code, toInsert);
       }
 
-      if (Array.isArray(levels)) {
+      {
         const dbData = oldCoupon.levels || [];
         const toDelete = dbData.filter(e => levels.indexOf(e) < 0);
         const toInsert = levels.filter(e => dbData.indexOf(e) < 0);
