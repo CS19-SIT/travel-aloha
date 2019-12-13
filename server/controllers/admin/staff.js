@@ -25,17 +25,18 @@ exports.showLoginForm = (req, res) => {
 
 exports.showRegistrationForm = async (req, res) => {
 	try {
-		const isStaff = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}'`);
+		const isStaff = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}' AND latestCheckIn IS NOT NULL`);
 		if (!!isStaff[0].length) {
 			return res.redirect('/admin/staff/home');
 		}
-		const isSubmitting = await conn.query(`SELECT 1 FROM staff_registration WHERE userId='${req.user.user_id}'`);
-		const userInfo = await conn.query(`SELECT * FROM user WHERE user_id='${req.user.user_id}'`);
+		const isSubmitting = await conn.query(`SELECT status, responseMessage FROM staff_registration WHERE userId='${req.user.user_id}'`);
+		const userInfo = await conn.query(`SELECT CONCAT(firstname, ' ', lastname) AS name, birth_date, address, profile_picture  FROM user WHERE user_id='${req.user.user_id}'`);
 		res.render('staff_admin/registration', {
 			pageTitle: 'TravelAloha - Admin - StaffRegistration',
 			user: req.user,
 			isSubmitting: !!isSubmitting[0].length,
-			userInfo: userInfo[0]
+			responseForm: (isSubmitting[0].length)?isSubmitting[0][0]:null,
+			userInfo: userInfo[0][0]
 		});
 	} catch (err) {
 		res.status(400).send(err);

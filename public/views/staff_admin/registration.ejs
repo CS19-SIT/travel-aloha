@@ -2,28 +2,130 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 
+	<style>
+		body {
+			min-width: 375px;
+		}
+		background {
+			color: #dedede;
+			min-height: calc(100vh - 56px);
+			background-image: url("https://nucleuscoshare.org/wp-content/uploads/2014/06/working-at-desk-nucleus.jpg");
+			background-attachment: fixed;
+			background-color: #dedede;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			padding: 3.5rem 0;
+		}
+		pendingCard, existedInfo, newInfo {
+			background-color: rgba(34, 43, 59, 0.7);
+		}
+		pendingCard {
+			padding: 1.2rem 1.7rem;
+			width: 60%;
+			min-width: 280px;
+			max-width: 750px;
+		}
+		existedInfo {
+			width: 290px;
+		}
+		briefInfo > p:last-child {
+			margin-bottom: 0;
+		}
+		newInfo {
+			width: calc(90% - 290px);
+			min-width: 290px;
+			max-width: 500px;
+			font-size: 0.9rem;
+		}
+		profileImage {
+			width: 60%;
+			height: 180px;
+			background-color: black;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center 15%;
+		}
+		label {
+			display: inline-block;
+		}
+		label, input {
+			font-size: 1.1rem;
+		}
+	</style>
+
 </head>
 
 <body ng-app="registration" ng-controller="registrationController as regCtrl">
 
 	<%- include('./navbar') %>
-	
-	<% if (isSubmitting) { %>
-		<p>You are submitting the application. Please wait until the end of process</p>
-		<p>Can't wait? <span ng-click="regCtrl.cancelForm()"><ins>Cancel the application</ins></span></p>
-	<% } else { %>
-		<span>select a department: </span>
-		<select ng-model="selectedDept" ng-change="regCtrl.loadNewRoles(selectedDept)" style="width: fit-content;"
-		ng-options="dept as dept.deptName for dept in regCtrl.deptList track by dept.deptNo" class="form-control d-inline-block"></select>
 
-		<span>then, select a role: </span>
-		<select ng-model="selectedRole" ng-click="regCtrl.loadRoleDetail(selectedDept, selectedRole)" style="width: fit-content;"
-		ng-options="role as role.roleName for role in regCtrl.roleList track by role.roleId" class="form-control d-inline-block"></select>
-		
-		<p>Selected department: {{ selectedDept.deptName }}</p>
-		<p>Selected role: {{ selectedRole.roleName }}</p>
-		<p>Job detail: {{ regCtrl.selectedDetail }}</p>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	
+	<background class="row w-100 justify-content-center align-content-start align-items-start mx-0">
+	<% if (isSubmitting) { %>
+		<pendingCard class="row rounded pt-5 justify-content-end">
+			<p class="col-12 text-center">
+				<% if (responseForm.status == 'pending') { %>
+					You already sent an application one.
+				<% } else if (responseForm.status == 'approved') { %>
+					<ins>Congratulation, your application has been approved</ins><br>
+					Comment: <%- responseForm.responseMessage %><br>
+					please identify yourself
+				<% } else { %>
+					<ins>Sorry, your resume didn't meet our requirement</ins><br>
+					Comment: <%- responseForm.responseMessage %><br>
+				<% } %>
+			</p>
+			<% if (responseForm.status == 'approved') { %>
+				<button id="confirm" class="btn btn-success mr-3" ng-click="regCtrl.identifyForm('<%- user.user_id %>')">Confirm</button>
+			<% } %>
+			<button id="withdraw" class="btn btn-danger" ng-click="regCtrl.withdrawForm('<%- user.user_id %>')">Withdraw</button>
+		</pendingCard>
+	<% } else { %>
+		<% 
+		userInfo['birth_date'] = userInfo['birth_date'] || '0000-01-01';
+		userInfo['birth_date'] = new Date(userInfo['birth_date']).toDateString().substring(4);
+		if (!userInfo['profile_picture']) userInfo['profile_picture'] = '';
+		%>
+		<existedInfo class="row rounded py-5 m-2 justify-content-center align-content-center">
+			<profileImage class="mb-2 rounded" style="background-image: url('<%= userInfo[`profile_picture`] %>')"></profileImage>
+			<% delete userInfo['profile_picture'] %>
+			<p class="w-100"></p>
+			<briefInfo class="col-auto pt-3 text-break">
+				<% for (const [k, v] of Object.entries(userInfo)) { 
+				if (v) { %>
+					<p style="font-size: 0.9rem;">
+						<yTitle class="text-capitalize font-weight-bolder"><ins><%= k %></ins></yTitle>:
+						&nbsp;<yDetail><%= v %></yDetail>
+					</p>
+				<% } 
+				} %>
+			</briefInfo>
+		</existedInfo>
+		<newInfo class="d-block rounded p-4 m-2">
+			<h2 class="text-center py-2" style="font-size: 1.4rem; text-decoration: underline;">STAFF Registration Form</h2>
+
+			<label for="department" class="mt-3">Department:</label><br/>
+			<select ng-model="selectedDept" ng-change="regCtrl.loadNewRoles(selectedDept)"
+			ng-options="dept as dept.deptName for dept in regCtrl.deptList track by dept.deptNo" class="form-control"></select>
+			
+			<label for="role" class="mt-3">Role:</label><br/>
+			<select ng-model="selectedRole" ng-change="regCtrl.loadRoleDetail(selectedDept, selectedRole)"
+			ng-options="role as role.roleName for role in regCtrl.roleList track by role.roleId" class="form-control"></select>
+			
+			<label for="message" class="mt-3">Resume (max length: 100)</label><br/>
+			<textarea ng-model="resume" id="message" class="form-control" rows="3" maxlength="100" style="resize: none;" placeholder="Introduce yourself"></textarea>
+			
+			<label class="mt-3 mb-1">Job detail:</label><br/>
+			<span ng-bind="regCtrl.selectedDetail"></span>
+
+			<buttonDirection class="d-block w-100 text-right mt-3">
+				<button id="submit" type="button" class="btn btn-primary" ng-click="regCtrl.sendForm('<%- user.user_id %>')">submit</button>
+			</buttonDirection>
+		</newInfo>
 	<% } %>
+	</background>
 
 	<script src="../../assets/js/staff_admin/registration.js"></script>
 
