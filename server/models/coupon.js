@@ -323,7 +323,7 @@ exports.editCoupon = async (oldCode, {
       }
 
       if (!Array.isArray(users)) {
-        user = [];
+        users = [];
       }
 
       {
