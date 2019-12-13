@@ -40,13 +40,14 @@ exports.editUsersPage = function(req, res) {
 
 exports.editUsers = function (req, res) {  
   let user_id = req.params.user_id;
-  let level = req.body.Level
+  let level = req.body.Level;
+  let role = req.body.Role;
   let firstname = req.body.firstname;
   let lastname = req.body.lastname;
-  let email = req.body.Email;
+  let email = req.body.Email || null;
   let username = req.body.username;
 
-  let query = "UPDATE `user` SET `Level` = '" + level + "',`firstname` = '" + firstname + "', `lastname` = '" + lastname + "', `Email` = '" + email + "', `username` = '" + username + "' WHERE `user`.`user_id` = '" + user_id +"'";
+  let query = "UPDATE `user` SET `Level` = '" + level + "',`Role` = '" + role + "',`firstname` = '" + firstname + "', `lastname` = '" + lastname + "', `Email` = '" + email + "', `username` = '" + username + "' WHERE `user`.`user_id` = '" + user_id +"'";
   db.query(query, (err, result) => {
       if (err) {
           return res.status(500).send(err);
