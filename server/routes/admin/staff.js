@@ -3,23 +3,25 @@ const router = express.Router();
 
 const staffAdminController = require("../../controllers/admin/staff");
 const authMiddleware = require("../../middlewares/auth");
-const connector = require("../../db/db");
 
-router.get("/", authMiddleware.isAuthenticated, staffAdminController.getIndex);
+router.get("/", staffAdminController.getIndex);
+
 router.get(
   "/recruiting",
   authMiddleware.isAuthenticated,
-  staffAdminController.showApplicationForm
+  staffAdminController.getApplicationForm
 );
+
 router.get(
   "/requisition",
   authMiddleware.isAuthenticated,
-  staffAdminController.showStaffCandidatesList
+  staffAdminController.getStaffCandidatesList
 );
+
 router.get(
   "/management",
   authMiddleware.isAuthenticated,
-  staffAdminController.showDetailAllExistedStaff
+  staffAdminController.getDetailAllExistedStaff
 );
 router.post("/sendQuery", async function(request, response) {
   try {
