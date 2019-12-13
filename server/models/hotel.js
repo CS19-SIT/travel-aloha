@@ -108,7 +108,6 @@ exports.findHotelByPlace = async place => {
         "%'"
     );
     if (result[0].length < 1) {
-      console.log("Brak wyników");
       throw new Error(`Cannot find hotel in ${place}.`);
     }
 

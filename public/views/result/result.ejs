@@ -55,149 +55,115 @@
 
 <di>
     <div class="row">
-        <div class="col-lg-12">
-            <hr>
-        </div>
-        <!-- <div class="col-lg-1"></div> -->
         <div class="col-lg-3">
-            <div class="col-lg-12">
-                <div class=" card card-2" id="filter">
-                    <div class="map">
 
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Price</h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Min</label>
+                                    <input type="number" class="form-control" id="inputEmail4" placeholder="0" min="1">
+                                </div>
+                                <div class="form-group col-md-6 text-right">
+                                    <label>Max</label>
+                                    <input type="number" class="form-control" placeholder="1000" min="1">
+                                </div>
+                            </div>
+                        </div> <!-- card-body.// -->
                     </div>
-                </div>
-            </div>
-            <div class=" card card-2" id="filter">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Money</h1>
-                        <!-- <div class="row"> -->
-                        <div class="range-slider">
-                            <span class="range-slider-input">From
-                                <input type="number" value="1000" min="0" max="120000" />
-                            </span>
-                            <span class="range-slider-input"> To
-                                <input type="number" value="5000" min="0" max="120000" />
-                            </span>
+                </article> <!-- card-group-item.// -->
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Room Features </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <form>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-label">
+				                        <i class="fa fa-wifi" aria-hidden="true"></i> WiFi
+				                    </span>
+                                </label> <!-- form-check.// -->
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-label">
+                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Breakfast
+				                    </span>
+                                </label>  <!-- form-check.// -->
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-label">
+                                        <i class="fa fa-car" aria-hidden="true"></i> Parking
+				                    </span>
+                                </label>  <!-- form-check.// -->
+                            </form>
 
-                            <div id="one">
-                                <input value="1000" min="0" max="120000" step="500" type="range" />
-                                <input value="5000" min="0" max="120000" step="500" type="range" />
-
-                            </div>
-                        </div>
-                        <script src="../../assets/js/result.js"></script>
-                        <br>
-                        <h1>Facilities</h1>
-                        <form class="form">
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    WiFi
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    Swimming Pool
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    Car Park
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    Restaurant
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    Lift
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    Fitness
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    Breakfast
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="c1" name="cc" />
-                                <label for="c1"><span></span>
-                                    24Hr Reception
-                                </label>
-                            </div>
-
-
-                        </form>
-                        <!-- </div> -->
-                        <div class="rating-holder">
-                            <div class="c-rating c-rating--regular" data-rating-value="0">
-                                <button>1</button>
-                                <button>2</button>
-                                <button>3</button>
-                                <button>4</button>
-                                <button>5</button>
-                            </div>
-                        </div>
-
+                        </div> <!-- card-body.// -->
                     </div>
-                </div>
+                </article> <!-- card-group-item.// -->
 
-            </div>
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Room type </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <label class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                <span class="form-check-label">
+                                    Single
+                                </span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                <span class="form-check-label">
+                                    Double
+                                </span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                <span class="form-check-label">
+                                    Studio
+                                </span>
+                            </label>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div> <!-- card.// -->
 
         </div>
 
         <div class="col-lg-9">
-            <% hotels.forEach( hotel => { %>
-            <div class="card card-3">
-                <div class="d-flex justify-content-between">
-                    <div class="col-7">
+         <% hotels.forEach( hotel => { %>
+            <div class=" card card-3">
+                <div class="row">
+                    <div class="col-lg-7">
                         <div class="textresult">
-                            <h3><%= hotel.hotelName %></h3>
+                            <h3><a href="hotel/<%= hotel.hotelId %>"><%= hotel.hotelName %></a>a</h3>
                             <h4><%= hotel.hotelAddress %></h4>
                             <!-- <h4><%= hotel.hotelDescription %></h4> -->
                             <h4><%= hotel.hoteltelNumber %></h4>
+                            <h1>From: <b><%= hotel.fullPrice %></b></h1>
 
-                            <% if (!user) { %>
-                            <h1><%= hotel.fullPrice %></h1>
-
-                            <a href="/login">Log in</a> to check out your price!
-                            <% } %>
-                            <% if (user) { %>
-                            <h1>Price</h1>
-                            <u>
-                                <h1>from: price</h1>
-                            </u>
-                            <% } %>
                             <% if (hotel.wifi==1) { %>
-                            MEE WIFI
+                                <i class="fa fa-wifi" aria-hidden="true"></i>
                             <% } %>
                             <% if (hotel.breakfast==1) { %>
-                            MEE Breakfast
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
                             <% } %>
-                            <!-- <button class="mdc-icon-button material-icons">favorite</button> -->
-                            <div class="like-container">
-                                <div class="like-cnt unchecked" id="like-cnt">
-                                    <i class="like-btn material-icons">thumb_up</i>
-                                </div>
-                            </div>
-
+                            <% if (hotel.carpark==1) { %>
+                                <i class="fa fa-car" aria-hidden="true"></i>
+                            <% } %>
                         </div>
                     </div>
-                    <div>
-                        <img src="<%= hotel.hotelPicture %>" class="hotelpic">
+                    <div class="col-lg-5">
+                        <img src="<%= hotel.hotelPicture %>" class="img-responsive col-xs-12">
                     </div>
                 </div>
             </div>

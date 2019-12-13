@@ -2,126 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="515a3cb0-ee8d-4752-846e-f6a59bd89500" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/css/booking_style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/review.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/styles-hotel-booking-payment.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/styles-hotel-booking.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/userDashboard/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/userDashboard/style2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/notika-icon.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/notika-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/notika-icon.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/notika-icon.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/air-asia-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/american-airline-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/mbr-1920x1280.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/nok-air-logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/qatar-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/images/thai-smile-logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bed_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/android-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/android-icon-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/android-icon-36x36.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/android-icon-48x48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/android-icon-72x72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/android-icon-96x96.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-114x114.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-120x120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-152x152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-180x180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-57x57.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-60x60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-72x72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-76x76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon-precomposed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/apple-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/favicon-96x96.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/ms-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/ms-icon-150x150.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/ms-icon-310x310.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/ms-icon-70x70.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/plane_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/admin/flight.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/admin/hotel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/review.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/views/admin/edit-flight.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/views/admin/edit-hotel.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/views/includes/review-card.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/views/user/editProfile.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/views/user/userDashboard.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/Rating_Review.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/flight/flight_info.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/hotelBookingController/hotel-booking.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/user/dashboard/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/models/airline.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/models/airport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/models/flight.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/models/hotelBookingModel/bookingHotel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/Rating_Review.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/flight/flight_info.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/hotel/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/user/dashboard/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/request.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/controllers/admin/flight.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/controllers/admin/hotel.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/controllers/auth/index.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/controllers/errors.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/controllers/index.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/admin-flight.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/hotel-booking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/admin/admin-flight.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/admin/admin-flight.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/admin/admin-hotel.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/admin/admin-hotel.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/admin/all-hotels.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/admin/all-hotels.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/errors/400.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/errors/400.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/flight_booking/contact_form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/flight_booking/contact_form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/flight_booking/flight_info.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/flight_booking/flight_info.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/flight_booking/testflight.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/flight_booking/testflight.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/hotel_booking/hotel-booking-payment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/hotel_booking/hotel-booking-payment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/includes/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/includes/navbar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/landingpage_hotel/landingpage.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/landingpage_hotel/landingpage.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/review_rating/airline.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/review_rating/airline.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/views/review_rating/hotel.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/review_rating/hotel.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/admin/flight.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/admin/flight.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/admin/hotel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/admin/hotel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/errors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/flight/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/flight/booking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/hotel/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/hotel/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/review/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/review/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/Rating_Review.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Rating_Review.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/flight_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/flight_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/hotel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/hotel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/flight.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/flight.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/hotel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/hotel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/staff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/contact/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/contact/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/flight/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/flight/booking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/hotel/landing.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/review/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/review/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/views/result/result.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/public/views/result/result.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,20 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/routes/hotel/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+              <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -152,26 +25,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/controllers/hotel/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="16" />
+            <state relative-caret-position="510">
+              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/landingpage_hotel/landingpage.ejs">
+        <entry file="file://$PROJECT_DIR$/server/models/hotel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+            <state>
+              <caret column="31" selection-start-column="31" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/result/result.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="152" column="48" selection-start-line="152" selection-start-column="48" selection-end-line="152" selection-end-column="48" />
+            <state relative-caret-position="152">
+              <caret line="133" column="96" selection-start-line="133" selection-start-column="96" selection-end-line="133" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -208,17 +81,17 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/views/index.ejs" />
         <option value="$PROJECT_DIR$/server/controllers/errors.js" />
-        <option value="$PROJECT_DIR$/server/models/hotel.js" />
         <option value="$PROJECT_DIR$/server/controllers/landing.js" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/server/routes/admin/staff.js" />
         <option value="$PROJECT_DIR$/server/routes/landing.js" />
-        <option value="$PROJECT_DIR$/public/views/landingpage_hotel/landingpage.ejs" />
         <option value="$PROJECT_DIR$/server/routes/hotel/landing.js" />
-        <option value="$PROJECT_DIR$/public/views/result/result.ejs" />
-        <option value="$PROJECT_DIR$/server/controllers/hotel/index.js" />
         <option value="$PROJECT_DIR$/server/routes/hotel/index.js" />
         <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/server/models/hotel.js" />
+        <option value="$PROJECT_DIR$/public/views/landingpage_hotel/landingpage.ejs" />
+        <option value="$PROJECT_DIR$/server/controllers/hotel/index.js" />
+        <option value="$PROJECT_DIR$/public/views/result/result.ejs" />
       </list>
     </option>
   </component>
@@ -232,6 +105,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,6 +135,12 @@
               <item name="travel-aloha" type="b2602c69:ProjectViewProjectNode" />
               <item name="travel-aloha" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="travel-aloha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="travel-aloha" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -274,7 +154,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,17 +203,22 @@
       <workItem from="1574298863544" duration="769000" />
       <workItem from="1574329849469" duration="217000" />
       <workItem from="1574478890475" duration="3570000" />
+      <workItem from="1575127395910" duration="152000" />
+      <workItem from="1576138527448" duration="338000" />
+      <workItem from="1576208248603" duration="172000" />
+      <workItem from="1576209324028" duration="5341000" />
+      <workItem from="1576225395914" duration="47000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31599000" />
+    <option name="totallyTimeSpent" value="37859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="747" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30048466" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32471728" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -433,13 +317,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/auth.js" />
-    <entry file="file://$PROJECT_DIR$/server/models/hotel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="5" column="131" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="131" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/admin/staff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -500,45 +377,53 @@
     <entry file="file://$PROJECT_DIR$/server/routes/review/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/hotel/landing.js" />
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/layer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/landingpage_hotel/landingpage.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/hotel/landing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/result/result.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="152" column="48" selection-start-line="152" selection-start-column="48" selection-end-line="152" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/hotel/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="16" />
+        <state relative-caret-position="217">
+          <caret line="192" column="11" lean-forward="true" selection-start-line="190" selection-start-column="7" selection-end-line="192" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/hotel/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
+    <entry file="file://$PROJECT_DIR$/server/controllers/hotel/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
+        <state relative-caret-position="510">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/hotel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" selection-start-column="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/result/result.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="133" column="96" selection-start-line="133" selection-start-column="96" selection-end-line="133" selection-end-column="96" />
         </state>
       </provider>
     </entry>
