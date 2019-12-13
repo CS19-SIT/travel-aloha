@@ -27,6 +27,8 @@ const formRequestDataToModelData = (req) => {
       (req.body.airlines == null ? null : [req.body.airlines]),
     users: Array.isArray(req.body.users) ? req.body.users :
       (req.body.users == null ? null : [req.body.users]),
+    max_count: req.body.max_count == null ? null :
+      (req.body.unlimited === "on" ? null : parseInt(req.body.max_count))
   };
 }
 

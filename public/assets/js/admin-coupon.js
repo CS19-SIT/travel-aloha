@@ -40,6 +40,10 @@ $(document).ready(function () {
     $(e.target.form).find(".hotel-select").next(".select2-container").toggle(!this.checked);
   });
 
+  $("input[name=unlimited]").change(function (e) {
+    $(e.target.form).find("div[id$=MaxRedeemCount]").toggle(!this.checked);
+  });
+
   $("#view-edit-button").click(function (e) {
     const button = $(this);
     $("#viewModal").on("hidden.bs.modal", (e) => {
@@ -77,6 +81,7 @@ $(document).ready(function () {
   $("#addModal").on("show.bs.modal", function (e) {
     $("input[name=for_every_hotel]").change();
     $("input[name=for_every_airline]").change();
+    $("input[name=unlimited]").change();
   });
 
   $("#addModalForm").submit(function (e) {
@@ -103,7 +108,7 @@ $(document).ready(function () {
 
     form.data("coupon-code", code);
 
-    for (const key of ['code', 'name', 'discount_percentage']) {
+    for (const key of ['code', 'name', 'discount_percentage', 'max_count']) {
       find(key).val(coupon[key]);
     }
 
@@ -111,6 +116,7 @@ $(document).ready(function () {
     find("expire_date").get(0).valueAsDate = new Date(coupon["expire_date"]);
     find("for_every_hotel").prop("checked", coupon.for_every_hotel);
     find("for_every_airline").prop("checked", coupon.for_every_airline);
+    find("unlimited").prop("checked", coupon['max_count'] == null);
     form.find("textarea[name=description]").val(coupon["description"]);
     form.find('select[name="levels"]').val(coupon.levels).change();
 
@@ -140,6 +146,7 @@ $(document).ready(function () {
 
     $("input[name=for_every_hotel]").change();
     $("input[name=for_every_airline]").change();
+    $("input[name=unlimited]").change();
   });
 
   $("#editModalForm").submit(function (e) {

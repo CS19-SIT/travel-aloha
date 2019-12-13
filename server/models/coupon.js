@@ -41,6 +41,10 @@ const addCouponUserPromotion = async (code, users) => {
   }
 }
 
+const addCouponMaxCount = async (code, count) => {
+  return db.query("INSERT INTO coupon_most_used VALUES (?, ?)", [code, count]);
+}
+
 const getCouponCriteriaHotel = async (code, additionalData = false) => {
   if (additionalData) {
     return await db.query(`
@@ -105,6 +109,10 @@ const mergeWithRelatedData = async (e, additionalData = false) => {
 
   e.levels = await getCouponCriteriaLevel(e.code);
   e.users = await getCouponUserPromotion(e.code, additionalData);
+  
+  if (!(await exports.isCouponUnlimited(e.code))) {
+    e.max_count = await exports.getCouponMaxCount(e.code);
+  }
 
   return e;
 }
@@ -204,7 +212,8 @@ exports.createCoupon = async ({
   users,
   discount_percentage,
   start_date,
-  expire_date
+  expire_date,
+  max_count
 }) => {
   try {
     if (await isCouponExists(code)) {
@@ -240,6 +249,10 @@ exports.createCoupon = async ({
       if (Array.isArray(users)) {
         await addCouponUserPromotion(code, users);
       }
+
+      if (max_count != null) {
+        await addCouponMaxCount(code, max_count);
+      }
     } catch (err) {
       // Revert
       await exports.deleteCoupon(code);
@@ -262,7 +275,8 @@ exports.editCoupon = async (oldCode, {
   users,
   discount_percentage,
   start_date,
-  expire_date
+  expire_date,
+  max_count
 }, noRevert = false) => {
   try {
     if (!(await isCouponExists(oldCode))) {
@@ -360,6 +374,18 @@ exports.editCoupon = async (oldCode, {
           
         await addCouponUserPromotion(code, toInsert);
       }
+
+      if (await exports.isCouponUnlimited(code)) {
+        if (max_count != null) {
+          addCouponMaxCount(code, max_count);
+        }
+      } else {
+        if (max_count == null) {
+          await db.query("DELETE FROM coupon_most_used WHERE code = ?", [code]);
+        } else {
+          await db.query("UPDATE coupon_most_used SET amount = ? WHERE code = ?", [max_count, code]);
+        }
+      }
     } catch (err) {
       if (!noRevert) {
         // Revert
@@ -394,7 +420,12 @@ exports.redeemCoupon = async (code, user_id) => {
       throw new Error(`Coupon with code '${code}' doesn't exists`);
     }
 
+    if (!(await exports.isCouponUnlimited(code)) && await exports.getCouponMaxCount(code) <= 0) {
+      throw new Error(`Coupon with code '${code}' already exceeded maximum redeem count`);
+    }
+
     await db.query("INSERT INTO coupon_redeemed VALUES (?, ?)", [code, user_id]);
+    await exports.decrementCouponMaxCount(code);
   } catch (err) {
     throw new Error(`[ERR] redeemCoupon: ${err}`);
   }
@@ -406,5 +437,30 @@ exports.isCouponRedeemedByUser = async (code, user_id) => {
     return result[0].length > 0;
   } catch (err) {
     throw new Error(`[ERR] isCouponRedeemedByUser: ${err}`);
+  }
+}
+
+exports.isCouponUnlimited = async code => {
+  try {
+    return db.query("SELECT 1 FROM coupon_most_used WHERE code = ?", [code]).then(r => r[0].length == 0);
+  } catch (err) {
+    throw new Error(`[ERR] isCouponUnlimited: ${err}`);
+  }
+}
+
+exports.getCouponMaxCount = async code => {
+  try {
+    return db.query("SELECT amount AS c FROM coupon_most_used WHERE code = ?", [code]).then(r => r[0][0]["c"]);
+  } catch (err) {
+    throw new Error(`[ERR] getCouponMaxCount: ${err}`);
+  }
+}
+
+exports.decrementCouponMaxCount = async code => {
+  try {
+    return db.query("UPDATE coupon_most_used SET amount = amount - 1 WHERE code = ?", [code])
+      .then(r => r[0]["c"]);
+  } catch (err) {
+    throw new Error(`[ERR] decrementCouponMaxCount: ${err}`);
   }
 }
