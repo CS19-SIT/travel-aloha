@@ -1,25 +1,28 @@
 const db = require("../db/db"); //connect to db
 
 exports.insertBooking = async booking => {
-  const {
+  const [
     checkInDate,
-    checkoutDate,
+    checkOutDate,
     firstname,
     lastname,
     userId,
     roomId,
     hotelId
-  } = booking;
+  ] = booking;
   try {
-    let result = await db.query(
-      'insert into booking_detail(firstName,lastName,userId_booking,roomId_booking,hotelId_booking) values ("?","?","?",?,?)',
+    let addResult = await db.query(
+      "insert into booking_detail(firstName,lastName,userId_booking,roomId_booking,hotelId_booking) values (?,?,?,?,?)",
       [firstname, lastname, userId, roomId, hotelId]
     );
     await db.query(
       "insert into booking_head(checkinDate,checkoutDate,bookingDetailid) values (?,?,?)",
-      [checkInDate, checkoutDate, result[0]]
+      [checkInDate, checkOutDate,addResult[0].insertId]
     );
-  } catch (error) {}
+
+  } catch (error) {
+    throw new Error(`[ERR] insertBooking: ${error}`);
+  }
 };
 exports.getBooking = async bookingId => {
   try {

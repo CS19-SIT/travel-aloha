@@ -8,7 +8,7 @@ const authMiddleware = require("../../middlewares/auth");
 
 router.get("/", hotelBookingController.getIndex);
 
-router.post("/", hotelBookingController.postIndex);
+router.post("/reviewform", hotelBookingController.postIndex);
 
 router.get("/payment", hotelBookingController.getPayment);
 

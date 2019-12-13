@@ -73,25 +73,40 @@ exports.getRoom = async room => {
     throw new Error(`[ERR] getRoomID: ${err}`);
   }
 };
-exports.testFunc = function (){
+exports.testFunc = function () {
   result = this.getAllFreeRoom(2);
-  for(let i =0;i<result[0].length;i++){
+  for (let i = 0; i < result[0].length; i++) {
     console.log(result[0][i]);
   }
 }
 
 
-exports.getAllFreeRoom = async paramHotelId =>{
+exports.getAllFreeRoom = async paramHotelId => {
   try {
     // let allRoom = await db.query("select * from hotel"); //for testing
+
+    // let allRoom = await db.query(
+    //   "select fullprice,Saleprice,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity "+
+    //   "from room_head as rh, room_detail as rd where rh.hotelIdroom = ? "+
+    //   "and rh.roomDetailId = rd.detailId and isBooked <> true order by Saleprice,fullprice;", [paramHotelId]);
+
+    // let allRoom = await db.query('SELECT * FROM hotel where hotelId < 4', [paramHotelId], function (error, results, fields) {
+    //   return results;
+    // });
     let allRoom = await db.query(
-      "select fullprice,Saleprice,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity "+
-      "from room_head as rh, room_detail as rd where rh.hotelIdroom = ? "+
-      "and rh.roomDetailId = rd.detailId and isBooked <> true order by Saleprice,fullprice;", [paramHotelId]);
+      "select fullprice,Saleprice,roompicture,typeOfRoom,wifi,breakfast,carpark,waterheater,capacity " +
+      "from room_head as rh, room_detail as rd where rh.hotelIdroom = ? " +
+      "and rh.roomDetailId = rd.detailId and isBooked <> true order by Saleprice,fullprice;", [paramHotelId],
+      function (error, results, fields) {
+        return results;
+      }
+    );
+
+    console.log(allRoom);
     if (allRoom[0].length < 1) {
       throw new Error(`Cannot find your room from hotel,${paramHotelId}.`);
     }
-    
+
     return allRoom;
   } catch (error) {
     throw new Error(`[ERR] get room from hotelId: ${paramHotelId}`);
