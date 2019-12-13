@@ -2,8 +2,9 @@
 
 <link rel="stylesheet" href="../../assets/stylesheet/style.css">
 </head>
+
 <body>
-    <%- include('../includes/navbar') %>
+  <%- include('../includes/navbar') %>
   <div class="container-fluid bg-3">
     <div class="row">
       <div class="col-md-3"></div>
@@ -28,22 +29,25 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputHotelTel">Hotel Telephone Number</label>
-              <input type="tel" class="form-control" placeholder="Hotel Telephone Number" name="hotelTelNumber" maxlength="10" required>
+              <input type="tel" class="form-control" placeholder="Hotel Telephone Number" name="hotelTelNumber"
+                maxlength="10" required>
             </div>
             <div class="form-group col-md-6">
               <label for="inputHotelContact">Hotel Contact Number</label>
-              <input type="tel" class="form-control" placeholder="Hotel Contact Number" name="hotelContactNumber" maxlength="10" required>
+              <input type="tel" class="form-control" placeholder="Hotel Contact Number" name="hotelContactNumber"
+                maxlength="10" required>
             </div>
           </div>
           <div class="form-group">
             <label for="inputHotelDes">Hotel Description</label>
-            <textarea class="form-control" placeholder="Enter description here..." name="hotelDescription" required></textarea>
+            <textarea class="form-control" placeholder="Enter description here..." name="hotelDescription"
+              required></textarea>
             <small id="descriptionInfo" class="form-text text-muted">
               short description for your hotel information
             </small>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
+          <div class="form-row field">
+            <div class="form-group col-md-4">
               <label for="">Hotel Room Type</label><br>
               <select name="hotelRoomType" class="form-control" required>
                 <option value="">---Choose an option---</option>
@@ -55,9 +59,51 @@
                 <option value="2 King size-bed">2 King size-bed</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
               <label for="">Hotel Room Price</label>
               <input type="text" class="form-control" placeholder="Hotel Room Price" name="hotelRoomPrice" required>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputHotelRoomPic">Hotel Room Picture</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="hotelRoomPicture">
+                <label class="custom-file-label" for="customFile">Choose file...</label>
+              </div>
+            </div>
+            <div class="input-group-addon col-md-1">
+              <label></label>
+              <a onclick="optional1()" class="btn btn-success addMore"><span
+                  class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
+            </div>
+          </div>
+          <div class="form-row fieldPlus" style="display: none;">
+            <div class="form-group col-md-4">
+              <label for="">Hotel Room Type</label><br>
+              <select name="hotelRoomType1" class="form-control" required>
+                <option value="">---Choose an option---</option>
+                <option value="1 Single-bed">1 Single-Bed</option>
+                <option value="2 Single-Bed">2 Single-Bed</option>
+                <option value="1 Double-Bed">1 Double-Bed</option>
+                <option value="2 Double-Bed">2 Double-Bed</option>
+                <option value="1 King size-bed">1 King size-bed</option>
+                <option value="2 King size-bed">2 King size-bed</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="">Hotel Room Price</label>
+              <input type="text" class="form-control" placeholder="Hotel Room Price" name="hotelRoomPrice" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputHotelRoomPic">Hotel Room Picture</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="hotelRoomPicture">
+                  <label class="custom-file-label" for="customFile">Choose file...</label>
+                </div>
+              </div>
+            <div class="input-group-addon col-md-1">
+              <label></label>
+              <a href="javascript:void(0)" class="btn btn-danger remove"><span
+                  class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</a>
             </div>
           </div>
           <div class="form-row">

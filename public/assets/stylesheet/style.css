@@ -24,6 +24,9 @@ html, body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.addMore, .remove{
+  margin-top: 1vh;
+}
 .detail-pic{
   width: 100%;
   height: 69vh;

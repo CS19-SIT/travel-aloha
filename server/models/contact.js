@@ -39,12 +39,23 @@ exports.insertNewHotelRoom = async ({
     throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
   }
 };
-exports.getHotelDashboard= async() =>{
-  try{
-      const result = await db.query(`SELECT * FROM hotel`);
-      return result[0];
+// exports.insertNewHotelPrice = async ({
+  
+// }) => {
+//   try {
+//     await db.query(`INSERT INTO hotel_contact_room(single_bed_1_price,single_bed_2_price) VALUES(?,?)`,[
+
+//     ]);
+//   }catch (error) {
+//   throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+// }
+// };
+exports.getHotelDashboard = async () => {
+  try {
+    const result = await db.query(`SELECT * FROM hotel`);
+    return result[0];
   } catch (err) {
-      throw new Error(`[ERR] getHotelDashboard: ${err}`);
+    throw new Error(`[ERR] getHotelDashboard: ${err}`);
   }
 };
 exports.insertNewAirline = async ({
@@ -78,10 +89,10 @@ exports.insertNewAirline = async ({
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
-exports.getAirlineDashboard = async() => {
+exports.getAirlineDashboard = async () => {
   try {
-      const result = await db.query(`SELECT * FROM airline`);
-      return result[0];
+    const result = await db.query(`SELECT * FROM airline`);
+    return result[0];
   } catch (err) {
     throw new Error(`[ERR] getAirlineDashboard: ${err}`);
   }
