@@ -1,17 +1,63 @@
 <%- include('../includes/header') %>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    
+    <style>
+        body {
+            min-width: 375px;
+            background-color: rgba(91, 91, 91, 0.4);
+        }
+        .profile-field {
+            width: 80%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            background-color: rgba(248, 248, 248, 0.7);
+            padding: 1rem;
+        }
+        .profile-picture {
+            background-color: black;
+			background-position: center;
+			background-repeat: no-repeat;
+            background-size: cover;
+            width: 200px;
+            height: 260px;
+            margin: 1rem 1.5rem;
+        }
+        .profile-field p {
+            user-select: none;
+        }
+    </style>
 	
 </head>
 
-<body ng-app="profile" ng-controller="profileController as pfCtrl"> 
+<body ng-app="profile" ng-controller="profileController as pfCtrl" ng-init="editTog=0">
 
     <%- include('./navbar') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     
-    <p>PROFILE WORKS</p>
+    <div class="profile-field row justify-content-center align-items-start rounded">
+        <div class="profile-picture col-auto rounded" style="background-image: url('<%- staffInfo.profile_picture %>');"></div>
+        <div class="col-auto text-break mt-4 font-weight-light">
+            <p class="mb-1"><ins>Department</ins><br><%- staffInfo.deptName %><% if (staffInfo.isManager == 'true') { %> (Manager)<% } %></p>
+            <p class="mb-1"><ins>Role</ins><br><%- staffInfo.roleName %></p>
+            <% if (isHR || isMyself) { %><p class="mb-1"><ins>Salary</ins><br><%- staffInfo.salary %></p><% } %>
+            <p class="mb-1" ng-hide="editTog">
+                <ins>Bio</ins><br><%- staffInfo.bio || 'No information.' %>
+                <% if (isMyself) { %>
+                    <ins style="cursor: pointer; color: rgb(200, 15, 15);" ng-click="editTog=1">(edit your bio)</ins>
+                <% } %>
+            </p>
+            <% if (isMyself) { %>
+            <textarea ng-show="editTog" id="bio" class="form-control" rows="3" maxlength="100" style="resize: none;" value="<%- staffInfo.bio %>"></textarea>
+            <button type="button" class="btn btn-success my-2" ng-click="pfCtrl.updateBio('<%- user.user_id %>')" ng-show="editTog">update</button>
+            <button type="button" class="btn btn-danger my-2" ng-click="editTog=0" ng-show="editTog">cancel</button>
+            <% } %>
+            <p class="mb-1"><ins>Birthdate</ins><br><%- new Date(staffInfo.birth_date).toDateString().substring(4) %></p>
+            <p class="mb-1"><ins>Address</ins><br><%- staffInfo.address || 'No address' %></p>
+        </div>
+    </div>
 
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
-	<script src="../../assets/js/staff_admin/profile.js"></script>
+	<script src="/../../assets/js/staff_admin/profile.js"></script>
 
 <%- include('../includes/footer') %>

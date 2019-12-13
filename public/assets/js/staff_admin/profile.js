@@ -16,5 +16,14 @@ app.controller('profileController', [
             method: 'POST',
             data: data
         }).then((res) => res.data);
+
+        self.updateBio = (id) => {
+            const newBio = bio.value || '';
+            self.sendQuery({
+                sql: `UPDATE staff_info SET bio='${newBio.trim().replace(/ {1,}/g, ' ').replace(/'/g, "\\'")}' WHERE staffId='${id}'`
+            }).then((result) => {
+                location.reload(true);
+            });
+        }
     }
 ]);

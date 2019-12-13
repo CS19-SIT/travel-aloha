@@ -82,7 +82,17 @@ exports.showProfile = async (req, res) => {
 		if (!myInfo[0].length) {
 			return res.redirect('/admin/staff/register');
 		}
-		const staffInfo = await conn.query(`SELECT CONCAT(firstname, ' ', lastname) AS name, birth_date, address, profile_picture  FROM user WHERE user_id='${req.params.id}'`);
+		const staffInfo = await conn.query(`SELECT CONCAT(firstname, ' ', lastname) AS name, birth_date, address, profile_picture, deptName, roleName, bio, salary,
+												CASE WHEN EXISTS(SELECT 1 FROM staff_manager sm WHERE sm.staffId='${req.params.id}')
+													THEN 'true'
+													ELSE 'false'
+												END AS isManager
+											FROM user, staff_info si, staff_department sd, staff_role sr
+											WHERE 	user_id='${req.params.id}'
+												AND user_id=staffId
+												AND si.deptNo=sd.deptNo
+												AND sd.deptNo=sr.deptNo
+												AND si.roleId=sr.roleId`);
 		res.render('staff_admin/profile', {
 			pageTitle: 'TravelAloha - Admin - StaffProfile',
 			user: req.user,
