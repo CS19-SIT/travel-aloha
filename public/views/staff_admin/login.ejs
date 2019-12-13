@@ -1,12 +1,27 @@
 <%- include('../includes/header') %>
-	
+    
+<style>
+    body{
+        background-image: url("../../assets/Pictures/staff_admin/purple-mountain.jpg");
+        background-size:auto;
+    }
+    .loginF{
+    width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10%;
+      background-color: rgba(255,255,255,0.75);
+      border-radius: 7px;
+      padding:3em;
+    }
+</style>
 </head>
 
 <body> 
-    
-    <p>LOGIN works</p>
+    <div class="loginF">
+    <h1 class="text-center">LOG IN</h1>
 
-    <a href="/admin/staff">Go back to the company page</a>
+    <p class="text-center"><a href="/admin/staff">>Go back to the company page<</a></p>
 
     <form action="/admin/staff/login" method="POST">
         <div class="form-group">
@@ -19,8 +34,10 @@
             <input type="password" id="password" name="password" placeholder="Password"
             class="form-control" required />
         </div>
-        <button type="submit" class="btn btn-info">Login</button>
+        <button type="submit" class="btn btn-info" style="float:right;">Login</button>
+        <p>No account? <a href="/register" target="_blank" >create one</a></p>
+        
     </form>
-    <p class="text-right">No account? <a href="/register" target="_blank">create one</a></p>
-
+    
+</div>
 <%- include('../includes/footer') %>

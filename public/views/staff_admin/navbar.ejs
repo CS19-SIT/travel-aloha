@@ -1,3 +1,18 @@
+<style>
+    .ProfilePic{
+        width: 10%;
+        height: auto;
+    }
+    .onhover{
+        font-size: 1.25em;
+        padding: 2.5px;
+    }
+    .onhover:hover{
+        text-decoration: underline;
+        
+    }
+</style>
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">TravelAloha</a>
     <button
@@ -14,21 +29,43 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="/admin/staff">Staff Admin</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Admin</a></li>
     </ul>
+    
     <ul class="navbar-nav">
-        <li class="nav-item mr-3">
-        <span class="navbar-text">久しぶりだな、 <strong><%= user.username %></strong></span>
+        <li class="nav-item mr-3" style="width: fit-content;">
+        <span class="navbar-text float-right"> <strong><%= user.username %></strong></span>
+        <img class="ProfilePic float-right" src=<%= user.profile_picture %>>
         </li>
         <li class="nav-item">
-        <form class="form-inline" action="/admin/staff/logout" method="POST">
-            <button class="btn btn-outline-danger">
-            Logout
-            </button>
-        </form>
-        </li>
+        <div class="dropdown" style="width: 25px;">
+                <button class="btn btn-outline-primary " type="button" data-toggle="dropdown">
+                    ...
+                </button>
+                 
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="onhover"><form class="form-inline" action="/admin/staff/logout" method="POST">
+                    <a onclick="parentNode.submit();" class="text-info">My Profile</a></form></li>
+
+                    <li class="onhover"><form class="form-inline" action="/admin/staff/logout" method="POST">
+                    <a onclick="parentNode.submit();" class="text-info">Info</a></form></li>
+
+                    <li class="onhover"><form class="form-inline" action="/admin/staff/logout" method="POST">
+                    <a onclick="parentNode.submit();" class="text-info">AAAAAAAAAAAAAa</a></form></li>
+                    <hr>
+                    <li class="onhover"><form class="form-inline" action="/admin/staff/logout" method="POST">
+                    <a onclick="parentNode.submit();" class="text-danger">LOG OUT</a></form></li>
+                </ul>
+              </div>
+        </hr>
     </ul>
     </div>
 </nav>
