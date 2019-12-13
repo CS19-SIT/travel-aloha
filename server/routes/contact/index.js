@@ -11,26 +11,26 @@ router.get("/add-new-airline", contactController.getAirlineInfo);
 router.post("/add-new-airline", contactController.postAirlineInfo);
 router.get(
   "/new-hotel-dashboard",
-  contactController.getHotelDashboard,
   authMiddleware.isAuthenticated,
-  authMiddleware.isStaff
+  authMiddleware.isStaff,
+  contactController.getHotelDashboard
 );
 router.get(
   "/new-airline-dashboard",
-  contactController.getAirlineDashboard,
   authMiddleware.isAuthenticated,
-  authMiddleware.isStaff
+  authMiddleware.isStaff,
+  contactController.getAirlineDashboard
 );
 router.post(
   "/new-hotel-dashboard/detail/new-hotel",
-  contactController.getHotelDetail,
   authMiddleware.isAuthenticated,
-  authMiddleware.isStaff
+  authMiddleware.isStaff,
+  contactController.getHotelDetail
 );
 router.post(
   "/new-airline-dashboard/detail/new-airline",
-  contactController.getAirlineDetail,
   authMiddleware.isAuthenticated,
-  authMiddleware.isStaff
+  authMiddleware.isStaff,
+  contactController.getAirlineDetail
 );
 module.exports = router;
