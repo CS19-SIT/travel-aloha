@@ -86,11 +86,17 @@ const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 app.use(indexRoutes);
 app.use(authRoutes);
 
+
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
+
+app.get("/", (req, res) => res.render("index", {
+  pageTitle: "TravelAloha",
+  user: req.user
+}));
 
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
@@ -98,6 +104,8 @@ app.use("/contact", contactRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
+
+app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);

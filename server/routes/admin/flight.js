@@ -1,28 +1,28 @@
 const express = require("express");
 const router = express.Router();
 
-const adminHotelController = require("../../controllers/admin/hotel");
+const adminFlightController = require("../../controllers/admin/flight");
 const authMiddleware = require("../../middlewares/auth");
 
 router.get(
   "/",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.getIndex
+  adminFlightController.getIndex
 );
 
 router.get(
   "/new",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.getNew
+  adminFlightController.getNew
 );
 
 router.get(
-  "/edit/:hotelId",
+  "/edit/:flightId",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.getEdit
+  adminFlightController.getEdit
 );
 
 
@@ -30,21 +30,21 @@ router.post(
   "/",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.postIndex
+  adminFlightController.postIndex
 );
 
 router.put(
-  "/:hotelId",
+  "/:flightId",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.putIndex
+  adminFlightController.putIndex
 );
 
 router.delete(
-  "/:hotelId",
+  "/:flightId",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.deleteIndex
+  adminFlightController.deleteIndex
 );
 
 module.exports = router;

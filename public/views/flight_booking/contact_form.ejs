@@ -11,13 +11,22 @@
     <%- include('../includes/navbar') %>
     <div class="container">
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-9 flight-head">
-                        <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
-                        <i class="fa fa-long-arrow-right"></i>
-                        &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9 flight-head">
+                                <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
+                                <i class="fa fa-long-arrow-right"></i>
+                                &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
+                            </div>
+                            <div class="align-bottom date text-right col-md-3">
+                                03-Nov-2019
+                            </div>
+                        </div>
                     </div>
                     <div class="align-bottom date text-right col-md-3">
                         03-Nov-2019
@@ -88,6 +97,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlSelect1">Gender</label>
                                         <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Choose Gender...</option>
                                             <option>Male</option>
                                             <option>Female</option>
                                             <option>Others</option>
@@ -95,7 +105,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="firstname">Date of Birth</label>
-                                        <input id="datepicker" />
+                                        <input id="datepicker"  placeholder="Enter Date of Birth" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -109,7 +119,27 @@
                                     <div class="form-group col-md-8">
                                         <label for="CID-Passport">Citizen ID / Passport number</label>
                                         <input type="name" class="form-control" id="CID-Passport"
-                                            aria-describedby="CID-Passport" placeholder="">
+                                            aria-describedby="CID-Passport" placeholder="Enter Citizen ID / Passport Number">
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h5>Additional Services</h5>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="xtra_bag" value="xtra_bag">
+                                        <label class="form-check-label" for="inlineCheckbox1">Extra Luggage</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="premiumLounge"
+                                            value="premiumLounge">
+                                        <label class="form-check-label" for="inlineCheckbox1">Premium Lounge</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="meal" value="meal">
+                                        <label class="form-check-label" for="inlineCheckbox2">In-flight Meal</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="wifi" value="wifi">
+                                        <label class="form-check-label" for="inlineCheckbox3">In-flight Wi-Fi</label>
                                     </div>
                                 </div>
                                 </form>
@@ -118,9 +148,16 @@
                     </li>
                 </ul>
 
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <button type="submit" class="btn btn-info book" data-toggle="modal"
+                            data-target="#summary_info">Submit</button>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <button type="grab" class="btn btn-success book">Book Grab Ride</button>
+                    </div>
+                </div>
 
-                <button type="submit" class="btn btn-primary" data-toggle="modal"
-                    data-target="#summary_info">Submit</button>
 
                 <div class="modal fade" id="summary_info" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
