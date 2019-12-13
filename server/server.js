@@ -82,11 +82,12 @@ const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
+const landingPageRoutes = require("./routes/landingPage/landingPage")
 
 app.use(indexRoutes);
 app.use(authRoutes);
 
-
+app.use("/landingPage", landingPageRoutes)
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
@@ -98,15 +99,8 @@ app.get("/", (req, res) => res.render("index", {
   user: req.user
 }));
 
-<<<<<<< HEAD
-app.get("/dashboardPage", (req, res) => res.render("dashboardPage", {
-  pageTitle: "Dashboard",
-  user: req.user
-}));
-=======
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
->>>>>>> 4329fa1b195b52202ec209ca8907887de4c7a020
 
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
