@@ -3,25 +3,18 @@
 }
 
 body {
-  background: rgb(250,250,250);
-  background: linear-gradient(180deg, #fafafa 90%, #114d96 100%);
+  background: rgb(250, 250, 250);
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
 }
 
 header {
   position: relative;
-  height: 200px;
-  background: rgb(37, 40, 43);
-  background: linear-gradient(
-    0deg,
-    rgba(37, 40, 43, 1) 0%,
-    rgba(17, 77, 150, 1) 35%,
-    rgba(91, 160, 245, 1) 86%
-  );
-  border-bottom-left-radius: 50% 20%;
+  height: max-content;
+  width: auto;
+  background-image: linear-gradient(#25282b, #114d96);
+  /* border-bottom-left-radius: 50% 20%; */
   border-bottom-right-radius: 50% 20%;
-  text-align: center;
 }
 
 h1 {
@@ -52,16 +45,77 @@ small {
   color: #a0a4a8;
 }
 
+/*=== POINT ===*/
+
+.pointbg {
+  width: 150px;
+  height: 100px;
+  right: 10px;
+  bottom: 0px;
+  background: #216bc4;
+  position: fixed;
+  z-index: 3;
+  border: 5px solid #fafafa;
+  border-top-right-radius: 50% 20%;
+  border-top-left-radius: 50% 20%;
+}
+
+.pointbg p{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: uppercase;
+  color: #fafafa;
+  -webkit-animation: appear 2s;
+  -moz-animation: appear 2s;
+  animation: appear 2s;
+}
+
+.point {
+  background-color: #ffc847;
+  height: 30px;
+  width: 170px;
+  position: relative;
+  left: -13px;
+  z-index: 3;
+  color: #f8f8f8;
+  text-align: center;
+  text-shadow: 0px 1px 2px #ffc847;
+  /* margin-bottom: 5%; */
+}
+
+.point p {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: uppercase;
+  color: #25282b;
+  -webkit-animation: appear 2s;
+  -moz-animation: appear 2s;
+  animation: appear 2s;
+}
+
 /*carousel style*/
 
 .carousel-inner img {
-  width: 100%;
-  height: 100%;
+  width: 1024px;
+  height: 550px;
 }
 
 /**/
+.row-carousel {
+  padding: 5px;
+  display: block;
+  margin: 50px;
+  margin-bottom: 70px;
+  background-color: #a0a4a8;
+  background-blend-mode: multiply;
+}
 
-.row {
+.row-coupon {
   padding: 10px;
   margin: 10px;
   display: block;
@@ -70,6 +124,122 @@ small {
   background-color: white;
   background-blend-mode: overlay;
 }
+
+/* === RIBBON === */
+
+.ribbonTab {
+  display: block;
+  height: 70px;
+  line-height: 50px;
+  background: #216bc4;
+  position: relative;
+  top: 100px;
+  margin-bottom: 110px;
+}
+
+.ribbonTab h1 {
+  position: relative;
+  font-family: "Ubuntu", Helvetica, sans-serif;
+  padding-left: 28%;
+  font-size: 3em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-animation: appear 2s;
+  -moz-animation: appear 2s;
+  animation: appear 2s;
+}
+
+#circle {
+  width: 180px;
+  height: 180px;
+  background-color: #216bc4;
+  border-radius: 214px;
+  position: absolute;
+  margin-top: -60px;
+  margin-left: 15%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#circle:hover {
+  background-image: radial-gradient(#5ba0f5, #2b86f7 70%);
+}
+
+.ribbon:hover {
+  background-image: radial-gradient(#5ba0f5, #2b86f7 70%);
+}
+
+#gift {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100px;
+  height: 125px;
+}
+#ribbon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  transform: rotate(45deg);
+  margin: auto;
+  margin-bottom: -38px;
+  border-radius: 0 8px 0 8px;
+}
+#ribbon:before {
+  content: "";
+  height: 24px;
+  width: 100%;
+  background-color: #ffc847;
+  display: block;
+  position: absolute;
+  top: 18px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  border-radius: inherit;
+}
+#ribbon:after {
+  content: "";
+  height: 100%;
+  width: 24px;
+  background-color: #ffc847;
+  display: block;
+  margin: auto;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  border-radius: inherit;
+}
+#giftbox {
+  position: relative;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+#giftbox:before {
+  content: "";
+  height: 24%;
+  width: 100%;
+  background-color: #ffc847;
+  display: block;
+  position: absolute;
+  top: 38%;
+  box-shadow: inherit;
+}
+#giftbox:after {
+  content: "";
+  height: 100%;
+  width: 24%;
+  background-color: #ffc847;
+  display: block;
+  margin: auto;
+  box-shadow: inherit;
+}
+
+/* === Media Screen === */
 
 @media screen and (max-width: 750px) {
   .sidnev {
@@ -90,5 +260,161 @@ small {
     font-weight: 300;
     line-height: 40px;
     color: #25282b;
+  }
+  .ribbonTab {
+    position: relative;
+    display: block;
+    height: 60px;
+    background: #216bc4;
+    top: 80px;
+    margin-bottom: 130px;
+  }
+  .ribbonTab h1 {
+    position: relative;
+    font-family: "Ubuntu", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    -webkit-animation: appear 2s;
+    -moz-animation: appear 2s;
+    animation: appear 2s;
+  }
+  #gift {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100px;
+    height: 125px;
+  }
+  #giftbox {
+    position: relative;
+    margin: auto;
+    width: 60px;
+    height: 60px;
+  }
+  #ribbon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  #circle {
+    width: 110px;
+    height: 110px;
+    background-color: #216bc4;
+    border-radius: 214px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: 6%;
+  }
+  .row-carousel {
+    visibility: hidden;
+    position: fixed;
+  }
+  .pointbg {
+    width: 100px;
+    height:90px;
+    right: 10px;
+    bottom: 0px;
+    background: #216bc4;
+    position: fixed;
+    z-index: 3;
+  }
+  .pointbg p{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    text-transform: uppercase;
+    color: #fafafa;
+    -webkit-animation: appear 2s;
+    -moz-animation: appear 2s;
+    animation: appear 2s;
+  }
+  
+  .point {
+    top: -10px;
+    background-color: #ffc847;
+    height: 25px;
+    width: 120px;
+    position: relative;
+    left: -10px;
+    z-index: 3;    
+    text-shadow: 0px 1px 2px #ffc847;
+    margin-bottom: 0%; 
+  }
+  
+  .point p {
+    text-align: center;
+    font-size: 18px;
+    color: #25282b;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .sidnev {
+    height: auto;
+    padding: 15px;
+  }
+  .row content {
+    height: auto;
+  }
+  h1 {
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 68px;
+    color: #25282b;
+  }
+  .carousel-inner img {
+    width: 512px;
+    height: 275px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 40px;
+    color: #25282b;
+  }
+  .ribbonTab h1 {
+    padding-left: 37%;
+  }
+  #circle {
+    margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1025px) {
+  .sidnev {
+    height: auto;
+    padding: 15px;
+  }
+  .row content {
+    height: auto;
+  }
+  h1 {
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 68px;
+    color: #25282b;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 40px;
+    color: #25282b;
+  }
+  .carousel-inner img {
+    width: 512px;
+    height: 425px;
+  }
+  .ribbonTab h1 {
+    padding-left: 30%;
+  }
+  #circle {
+    margin-left: 9%;
   }
 }
