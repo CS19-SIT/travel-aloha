@@ -53,4 +53,11 @@ router.get(
   adminCouponController.searchAirlineFormOptions
 )
 
+router.get(
+  "/search/user",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminCouponController.searchUser
+)
+
 module.exports = router;

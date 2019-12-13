@@ -33,6 +33,14 @@ const addCouponCriteriaLevel = async (code, levels) => {
   }
 };
 
+const addCouponUserPromotion = async (code, users) => {
+  if (users.length > 0) {
+    return db.query("INSERT INTO coupon_personal_user VALUES ?", [
+      users.map(e => [code, e])
+    ]);
+  }
+}
+
 const getCouponCriteriaHotel = async (code, additionalData = false) => {
   if (additionalData) {
     return await db.query(`
@@ -70,7 +78,23 @@ const getCouponCriteriaLevel = async code => {
   return result[0].map(e => e["level"]);
 };
 
-const mergeWithCriteria = async (e, additionalData = false) => {
+const getCouponUserPromotion = async (code, additionalData = false) => {
+  if (additionalData) {
+    return await db.query(`
+      SELECT c.user_id AS id, e.username AS name
+      FROM coupon_personal_user AS c, user AS e
+      WHERE c.code = ? AND c.user_id = e.user_id
+    `, [code]).then(r => r[0]);
+  } else {
+    return await db.query(`
+      SELECT user_id AS id
+      FROM coupon_personal_user
+      WHERE code = ?
+    `, [code]).then(r => r[0].map(e => e['id']));
+  }
+};
+
+const mergeWithRelatedData = async (e, additionalData = false) => {
   if (!e.for_every_hotel) {
     e.hotels = await getCouponCriteriaHotel(e.code, additionalData);
   }
@@ -80,6 +104,7 @@ const mergeWithCriteria = async (e, additionalData = false) => {
   }
 
   e.levels = await getCouponCriteriaLevel(e.code);
+  e.users = await getCouponUserPromotion(e.code, additionalData);
 
   return e;
 }
@@ -144,7 +169,7 @@ exports.searchCoupons = async ({
 
     return {
       pageCount: Math.ceil(countResult[0][0]["couponCount"] / entriesPerPage),
-      coupons: await Promise.all(dataResult[0].map(convertFromDB).map(e => mergeWithCriteria(e, true)))
+      coupons: await Promise.all(dataResult[0].map(convertFromDB).map(e => mergeWithRelatedData(e, true)))
     };
   } catch (err) {
     throw new Error(`[ERR] searchCoupons: ${err}`)
@@ -156,7 +181,7 @@ exports.getCoupon = async code => {
     const result = await db.query("SELECT * FROM coupon WHERE code = ?", [code]);
 
     if (result[0].length >= 1) {
-      return mergeWithCriteria(convertFromDB(result[0][0]));
+      return mergeWithRelatedData(convertFromDB(result[0][0]));
     }
 
     throw new Error(`Coupon code '${code}' not found`);
@@ -176,6 +201,7 @@ exports.createCoupon = async ({
   levels,
   hotels,
   airlines,
+  users,
   discount_percentage,
   start_date,
   expire_date
@@ -210,6 +236,10 @@ exports.createCoupon = async ({
       if (Array.isArray(levels)) {
         await addCouponCriteriaLevel(code, levels);
       }
+
+      if (Array.isArray(users)) {
+        await addCouponUserPromotion(code, users);
+      }
     } catch (err) {
       // Revert
       await exports.deleteCoupon(code);
@@ -229,6 +259,7 @@ exports.editCoupon = async (oldCode, {
   levels,
   hotels,
   airlines,
+  users,
   discount_percentage,
   start_date,
   expire_date
@@ -273,6 +304,14 @@ exports.editCoupon = async (oldCode, {
         airlines = [];
       }
 
+      if (!Array.isArray(levels)) {
+        levels = [];
+      }
+
+      if (!Array.isArray(users)) {
+        user = [];
+      }
+
       {
         // Maybe we can do something else here...
         const dbData = oldCoupon.hotels || [];
@@ -308,6 +347,18 @@ exports.editCoupon = async (oldCode, {
             [code, toDelete]);
         
         await addCouponCriteriaLevel(code, toInsert);
+      }
+      
+      {
+        const dbData = oldCoupon.users || [];
+        const toDelete = dbData.filter(e => users.indexOf(e) < 0);
+        const toInsert = users.filter(e => dbData.indexOf(e) < 0);
+
+        if (toDelete.length > 0)
+          await db.query("DELETE FROM coupon_personal_user WHERE code = ? AND user_id IN (?)",
+            [code, toDelete]);
+          
+        await addCouponUserPromotion(code, toInsert);
       }
     } catch (err) {
       if (!noRevert) {

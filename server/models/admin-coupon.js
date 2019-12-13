@@ -51,3 +51,29 @@ exports.searchAirlineFormOptions = async (query, page, entriesPerPage = 20) => {
     throw new Error(`[ERR] searchAirlineFormOptions: ${err}`)
   }
 };
+
+exports.searchUser = async (query, page, entriesPerPage = 20) => {
+  try {
+    return db.query(`
+      SELECT user_id AS id, username AS text
+      FROM user
+      WHERE UPPER(username) LIKE UPPER(?)
+      ORDER BY text ASC
+      LIMIT ?, ?
+    `,
+    [
+      `%${query}%`,
+      page * entriesPerPage,
+      entriesPerPage
+    ]).then(r => {
+      return {
+        results: r[0],
+        pagination: {
+          more: r[0].length >= entriesPerPage
+        }
+      }
+    });
+  } catch (err) {
+    throw new Error(`[ERR] searchUser: ${err}`)
+  }
+}

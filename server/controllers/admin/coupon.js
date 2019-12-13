@@ -25,6 +25,8 @@ const formRequestDataToModelData = (req) => {
       (req.body.hotels == null ? null : [req.body.hotels]),
     airlines: Array.isArray(req.body.airlines) ? req.body.airlines :
       (req.body.airlines == null ? null : [req.body.airlines]),
+    users: Array.isArray(req.body.users) ? req.body.users :
+      (req.body.users == null ? null : [req.body.users]),
   };
 }
 
@@ -126,6 +128,14 @@ exports.searchHotelFormOptions = async (req, res) => {
 exports.searchAirlineFormOptions = async (req, res) => {
   try {
     res.send(await CouponAdmin.searchAirlineFormOptions(req.query.search, req.query.page))
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+exports.searchUser = async (req, res) => {
+  try {
+    res.send(await CouponAdmin.searchUser(req.query.search, req.query.page))
   } catch (err) {
     res.sendStatus(500);
   }

@@ -27,6 +27,11 @@ $(document).ready(function () {
     ajax: searchOptionsSelectAjax("airline")
   });
 
+  $("select[multiple='multiple'].user-select").select2({
+    width: '100%',
+    ajax: searchOptionsSelectAjax("user")
+  });
+
   $("input[name=for_every_airline]").change(function (e) {
     $(e.target.form).find(".airline-select").next(".select2-container").toggle(!this.checked);
   });
@@ -111,9 +116,11 @@ $(document).ready(function () {
 
     const hotelsSelect = form.find('select[name="hotels"]');
     const airlinesSelect = form.find('select[name="airlines"]');
+    const usersSelect = form.find('select[name="users"]');
 
     hotelsSelect.val(null);
     airlinesSelect.val(null);
+    usersSelect.val(null);
 
     $.map(coupon.hotels, function (e) {
       hotelsSelect.append(new Option(e.name, e.id, false, true));
@@ -123,8 +130,13 @@ $(document).ready(function () {
       airlinesSelect.append(new Option(e.name, e.id, false, true));
     });
 
+    $.map(coupon.users, function (e) {
+      usersSelect.append(new Option(e.name, e.id, false, true));
+    });
+
     hotelsSelect.change();
     airlinesSelect.change();
+    usersSelect.change();
 
     $("input[name=for_every_hotel]").change();
     $("input[name=for_every_airline]").change();
