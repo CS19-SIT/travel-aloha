@@ -34,6 +34,10 @@ span {
 	margin-bottom: 2rem;
 }
 
+.hotel-booking-payment-form{
+  display: none;
+}
+
 /* forms and utilities */
 ::placeholder {
 	color: #cacccf;

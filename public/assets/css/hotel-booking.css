@@ -21,20 +21,20 @@ body {
 }
 
 
-/* .hotel-image {
+/* /* .hotel-image {
     width: 70%;
     height: auto;
     max-height: 500px;
     max-width: 100%;
     background-color: black;
     margin: 1rem auto 2rem auto;
-    /* placeholder dimensions */
+    placeholder dimensions
 
 width: 300px;
 height: 250px;
 
-}
-*/ .hotel-detail {
+} */
+.hotel-detail {
     padding-left: 0;
     padding-right: 0;
 }
