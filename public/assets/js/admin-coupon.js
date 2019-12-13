@@ -112,6 +112,9 @@ $(document).ready(function () {
     const hotelsSelect = form.find('select[name="hotels"]');
     const airlinesSelect = form.find('select[name="airlines"]');
 
+    hotelsSelect.val(null);
+    airlinesSelect.val(null);
+
     $.map(coupon.hotels, function (e) {
       hotelsSelect.append(new Option(e.name, e.id, false, true));
     });
