@@ -1,0 +1,96 @@
+<%- include('../includes/header') %>
+</head>
+
+<body>
+<%- include('../includes/navbar') %>
+<div class="container">
+  <br>
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+
+          <% if( data.profile_picture){%>     
+              <img src="<%= data.profile_picture %>" class="avatar img-circle img-thumbnail" alt=""> 
+          <%}else{%>    
+              <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+          <%}%>      
+          
+          <br><br>
+
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <h3>Personal Information</h3>
+        <form class="form-horizontal" role="form" method="post">
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Level:</label>
+            <div class="col-lg-8">
+                <select class="form-control form-control-sm" id="Level" name="Level" value="<%= data.Level%>" required >
+                    <option selected><%=data.Level %></option>
+                    <option>Normal</option>
+                    <option>Silver</option>
+                    <option>Gold</option>
+                    <option>Elite</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-lg-3 control-label">Role:</label>
+              <div class="col-lg-8">
+                  <select class="form-control form-control-sm" id="Role" name="Role" value="<%= data.Role%>" required >
+                      <option selected><%=data.Role %></option>
+                      <option>Admin</option>
+                      <option>User</option>
+                      <option>Staff</option>
+                  </select>
+              </div>
+          </div>
+        
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" name="firstname" placeholder="firstname" id="firstname" value="<%= data.firstname%>" readonly="true" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" name="lastname"placeholder="Lastname" id="lastname" value="<%= data.lastname%>" readonly="true" />
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input type="email" class="form-control" placeholder="Email"name="Email" id="Email" value="<%=data.Email%>" readonly="true"/>
+            </div>
+          </div>
+       
+          <div class="form-group">
+            <label class="col-md-3 control-label">Username:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" name="username" placeholder="Username"id="username" value="<%= data.username%>" readonly="true" />
+            </div>
+          </div>
+     
+
+          <button type="submit" class="btn btn-primary float-left" onclick="alert('Are you sure to update this user?')">Edit</button>
+
+
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+  </form>
+</div>
+</body>
+</html> 

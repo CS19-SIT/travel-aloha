@@ -1,0 +1,68 @@
+<%- include('../includes/header') %>
+	<style>
+	img.profile{
+            width:100px;height:100px; 
+            float:left;
+            margin: 0.3%;
+        }
+	</style>
+
+</head>
+<body style="background-color: whitesmoke;">
+    <%- include('../includes/navbar') %>
+    <div style="padding:20px">
+    <h1 style="font-size: 3em;">Staff Requisition</h1><br>
+    <h2>Staff List</h2>
+	<hr class="w-100 p-1 my-3" />
+	
+    <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
+    <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
+    <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
+    Name : Ferstnem Rastnem<br>
+    Gender : F <br>
+    Department : CS <br>
+    Desired Salary : 100 <br>
+    <hr class="w-100 p-1 my-4" />
+
+    <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
+    <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
+    <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
+    Name : Ferstnem Rastnem<br>
+    Gender : M <br>
+    Department : CS <br>
+    Desired Salary : 100 <br>
+    <hr class="w-100 p-1 my-4" />
+    
+        <!--Modal Start-->
+    <div class="modal" id="Appr">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <div class="modal-header">
+              <h3 class="modal-title">Approve this staff?</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+            <div class="modal-body">
+                <h4>Staff ID : 00</h4>
+              <p>Please Check whether you want to grant these access to the selected staff</p>
+              <input type="checkbox" id="cC">Create <br> 
+              <input type="checkbox" id="cR" checked>Read <br>
+              <input type="checkbox" id="cU">Update <br> 
+              <input type="checkbox" id="cD">Delete <br>
+            </div>
+            <div class="modal-footer">
+                <input type="text" value="0100" id="crudshow" readonly style="display:none">
+                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()" data-dismiss="modal">Confirm</button>
+                <button class="btn btn-warning" style="float:right" data-dismiss="modal">Cancel</button>
+               
+            </div>
+
+           </div>
+    </div>
+    </div><!-- Modal End-->
+
+    </div>
+	<script src="../../assets/js/staff_admin/requisition.js"></script>
+
+<%- include('../includes/footer') %>

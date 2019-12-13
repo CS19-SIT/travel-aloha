@@ -44,17 +44,13 @@ app.set("views", viewPath);
 app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
-    cookie: {
-      maxAge: 900000
-    },
+    cookie: { maxAge: 900000 },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
@@ -70,31 +66,75 @@ app.disable("x-powered-by");
 /**
  * Routes
  */
-const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin/index");
+const adminCouponRoutes = require("./routes/admin/coupon");
+const adminHotelRoutes = require("./routes/admin/hotel");
+const adminStaffRoutes = require("./routes/admin/staff");
+const adminUserRoutes = require("./routes/admin/user");
+const authRoutes = require("./routes/auth/index");
+const checkoutRoutes = require("./routes/checkout/index");
+const contactRoutes = require("./routes/contact/index");
 const errorsController = require("./controllers/errors");
+const indexRoutes = require("./routes/index");
+const hotelBookingRoutes = require("./routes/hotel/booking");
+const flightRoutes = require("./routes/flight/index");
+const flightBookingRoutes = require("./routes/flight/booking");
+const reviewRoutes = require("./routes/review/index");
+const userHistoryRoutes = require("./routes/user/dashboard/history");
+const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
+
+app.use(indexRoutes);
+app.use(authRoutes);
+
+
+app.use("/admin", adminRoutes);
+app.use("/admin/coupon", adminCouponRoutes);
+app.use("/admin/hotel", adminHotelRoutes);
+app.use("/admin/staff", adminStaffRoutes);
+app.use("/admin/user", adminUserRoutes);
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
 
+<<<<<<< HEAD
 app.get("/dashboardPage", (req, res) => res.render("dashboardPage", {
   pageTitle: "Dashboard",
   user: req.user
 }));
+=======
+app.use("/checkout", checkoutRoutes);
+app.use("/contact", contactRoutes);
+>>>>>>> 4329fa1b195b52202ec209ca8907887de4c7a020
 
-app.get("/hotel", (req, res) =>
-  res.render("landingpage_hotel/landingpage", {
-    pageTitle: "Find Hotel",
-    user: req.user
-  })
-);
+app.use("/dashboard/history", userHistoryRoutes);
+app.use("/dashboard/favorite", userFavoriteRoutes);
 
-app.use(authRoutes);
+
+app.use("/hotel", hotelRoutes);
+app.use("/hotel/booking", hotelBookingRoutes);
+
+app.use("/flight", flightRoutes);
+app.use("/flight/booking", flightBookingRoutes);
+
+app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
 
-app.listen(process.env.APP_PORT, () => {
-  if (process.env.NODE_ENV !== "production")
-    console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+app.use((err, req, res, next) => {
+  res.status(400).render("errors/400", {
+    pageTitle: "TravelAloha - Bad Request",
+    user: req.user,
+    error: err
+  });
 });
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.APP_PORT, () => {
+    if (process.env.NODE_ENV !== "production")
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+  });
+}
+
+module.exports = app;
