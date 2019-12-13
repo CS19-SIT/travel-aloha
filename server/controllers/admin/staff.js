@@ -62,12 +62,65 @@ exports.showHomepage = async (req, res) => {
 									AND si.staffId=u.user_id
 									AND si.deptNo=sd.deptNo 
 									AND sd.deptNo=sr.deptNo
-									AND si.roleId=sr.roleId`); 
+									AND si.roleId=sr.roleId
+								ORDER BY isManager DESC, latestCheckIn`); 
 		res.render('staff_admin/homepage', {
 			pageTitle: 'TravelAloha - Admin - StaffHomepage',
 			user: req.user,
+			isHR: (myInfo[0][0].deptNo == 'AA'),
 			staffs: staffs[0],
 			deptList: deptList[0]
+		});
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
+
+exports.showProfile = async (req, res) => {
+	try {
+		const myInfo = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}' AND status='active'`);
+		if (!myInfo[0].length) {
+			return res.redirect('/admin/staff/register');
+		}
+		const staffInfo = await conn.query(`SELECT CONCAT(firstname, ' ', lastname) AS name, birth_date, address, profile_picture  FROM user WHERE user_id='${req.params.id}'`);
+		res.render('staff_admin/profile', {
+			pageTitle: 'TravelAloha - Admin - StaffProfile',
+			user: req.user,
+			isHR: (myInfo[0][0].deptNo == 'AA'),
+			staffInfo: staffInfo[0][0],
+			isMyself: (req.user.user_id == req.params.id)
+		});
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
+
+exports.showProject = async (req, res) => {
+	try {
+		const myInfo = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}' AND status='active'`);
+		if (!myInfo[0].length) {
+			return res.redirect('/admin/staff/register');
+		}
+		res.render('staff_admin/project', {
+			pageTitle: 'TravelAloha - Admin - StaffProject',
+			user: req.user,
+			isHR: (myInfo[0][0].deptNo == 'AA')
+		});
+	} catch (err) {
+		res.status(400).send(err);
+	}
+};
+
+exports.showRequisition = async (req, res) => {
+	try {
+		const myInfo = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}' AND status='active'`);
+		if (!myInfo[0].length || myInfo[0][0].deptNo!='AA') {
+			return res.redirect('/admin/staff/home');
+		}
+		res.render('staff_admin/requisition', {
+			pageTitle: 'TravelAloha - Admin - StaffRequisition',
+			user: req.user,
+			isHR: true
 		});
 	} catch (err) {
 		res.status(400).send(err);

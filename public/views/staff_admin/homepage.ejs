@@ -5,7 +5,7 @@
 	<style>
 		body {
 			min-width: 375px;
-			background-color: rgba(0, 0, 0, 0.1);
+			background-color: #dedede;
 		}
 		header {
 			height: 50vh;
@@ -19,13 +19,17 @@
 		employeeList {
 			width: 85%;
 			max-width: 1000px;
-			background-color: rgb(248, 248, 248);
+			background-color: rgba(248, 248, 248, 0.75);
 		}
 		.staffCard {
+			max-width: 500px;
 			font-weight: 300;
-			background-color: rgba(0, 0, 0, 0.1);
+			background-color: rgba(119, 119, 119, 0.3);
 			border: 1px solid rgba(0, 0, 0, 0.15);
 			font-size: 95%;
+		}
+		.staffCard.manager {
+			background-color: rgba(119, 119, 119, 0.5);
 		}
 		.staff-picture {
 			background-color: black;
@@ -51,7 +55,8 @@
 	</header>
 
 	<p class="display-4" style="width: fit-content; margin: 1rem auto 0 auto;">Our staffs</p>
-	<employeeList class="row mx-auto my-4 py-4 rounded p-4"
+
+	<employeeList class="row justify-content-center align-items-start mx-auto my-4 py-4 rounded p-4"
 	ng-init='staffs = <%- JSON.stringify(staffs) %>; deptList = <%- JSON.stringify(deptList) %>'>
 		<p class="row col-12 justify-content-around">
 			<span class="col-auto ml-3 mb-2">
@@ -65,22 +70,19 @@
 			</span>
 		</p>
 		
-		<div ng-repeat="staff in filterStaffs = (staffs | filter:selectedDept | filter:{'name': selectedName})" class="staffCard row m-3 rounded text-break p-3">
-			<div title="LatestCheckin: {{ staff.latestCheckIn | date:'y MMM, d (HH.mm)' }}" class="staff-picture col-auto" style="background-image: url('{{ staff.profile_picture }}');"></div>
+		<div ng-repeat="staff in filterStaffs = (staffs | filter:selectedDept | filter:{'name': selectedName})"
+		ng-class="{'manager': staff.isManager=='true'}" class="staffCard row m-3 rounded p-3">
 			
-			<div class="col">
-				<p>Name: {{ staff.name }}</p>
-				<p>Department: {{ staff.deptName }}</p>
-				<p>Role: {{ staff.roleName }}</p>
+			<div title="LatestCheckin: {{ staff.latestCheckIn | date:'y MMM, d (HH.mm)' }}" class="staff-picture col-auto" style="background-image: url('{{ staff.profile_picture }}');"></div>
+			<div class="col text-break">
+				<p class="mb-1"><ins>Name</ins><br>{{ staff.name }}</p>
+				<p class="mb-1"><ins>Department</ins><br>{{ (staff.isManager=='true')?staff.deptName+' (Manager)':staff.deptName }}</p>
+				<p class="mb-1"><ins>Role</ins><br>{{ staff.roleName }}</p>
 			</div>
 		</div>
 		<div class="w-100"></div>
 		<div ng-hide="filterStaffs.length" class="mx-auto font-weight-light my-4">No staff meet the input requirements</div>
 	</employeeList>
-
-	<script>
-		const staffs = JSON.parse('<%- JSON.stringify(staffs) %>');
-	</script>
 
 	<script src="../../assets/js/staff_admin/homepage.js"></script>
 

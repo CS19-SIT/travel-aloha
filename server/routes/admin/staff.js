@@ -38,6 +38,30 @@ router.get('/home', (req, res) => {
 	}
 	return res.redirect('/admin/staff/login');
 });
+router.get('/profile', (req, res) => {
+	if (req.isAuthenticated()) {
+		return res.redirect('/admin/staff/profile/'+req.user.user_id);
+	}
+	return res.redirect('/admin/staff/login');
+});
+router.get('/profile/:id', (req, res) => {
+	if (req.isAuthenticated()) {
+		return adminStaffCtrl.showProfile(req, res);
+	}
+	return res.redirect('/admin/staff/login');
+});
+router.get('/project', (req, res) => {
+	if (req.isAuthenticated()) {
+		return adminStaffCtrl.showProject(req, res);
+	}
+	return res.redirect('/admin/staff/login');
+});
+router.get('/requisition', (req, res) => {
+	if (req.isAuthenticated()) {
+		return adminStaffCtrl.showRequisition(req, res);
+	}
+	return res.redirect('/admin/staff/login');
+});
 
 
 router.post('/getQuery', async (req, res) => {
