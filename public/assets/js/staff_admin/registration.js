@@ -26,7 +26,7 @@ app.controller('registrationController', [
                 sql: `DELETE FROM staff_registration WHERE userId='${userId}'`
             }).then((result) => {
                 self.sendQuery({
-                    sql: `UPDATE staff_info SET latestCheckIn=NOW() WHERE staffId='${userId}'`
+                    sql: `UPDATE staff_info SET latestCheckIn=NOW(), status='active' WHERE staffId='${userId}'`
                 }).then((result) => {
                     location.reload(true);
                 });

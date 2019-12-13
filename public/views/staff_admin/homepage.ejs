@@ -1,14 +1,86 @@
 <%- include('../includes/header') %>
 
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+	<style>
+		body {
+			min-width: 375px;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		header {
+			height: 50vh;
+			min-height: 300px;
+			background-image: url('../../assets/Pictures/staff_admin/purple-mountain.jpg');
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		employeeList {
+			width: 85%;
+			max-width: 1000px;
+			background-color: rgb(248, 248, 248);
+		}
+		.staffCard {
+			font-weight: 300;
+			background-color: rgba(0, 0, 0, 0.1);
+			border: 1px solid rgba(0, 0, 0, 0.15);
+			font-size: 95%;
+		}
+		.staff-picture {
+			background-color: black;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			width: 70px;
+			height: 70px;
+			cursor: pointer;
+		}
+	</style>
 	
 </head>
 
-<body> 
+<body ng-app="home" ng-controller="homeController as hCtrl"> 
 
 	<%- include('./navbar') %>
 
-    <p>HOMEPAGE works</p>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+	<header>
+		<!-- wait for some idea -->
+	</header>
+
+	<p class="display-4" style="width: fit-content; margin: 1rem auto 0 auto;">Our staffs</p>
+	<employeeList class="row mx-auto my-4 py-4 rounded p-4"
+	ng-init='staffs = <%- JSON.stringify(staffs) %>; deptList = <%- JSON.stringify(deptList) %>'>
+		<p class="row col-12 justify-content-around">
+			<span class="col-auto ml-3 mb-2">
+				Department:&nbsp;&nbsp;
+				<select ng-model="selectedDept" ng-init="selectedDept=deptList[0]" style="width: fit-content;"
+				ng-options="dept as dept.deptName for dept in deptList track by dept.deptNo" class="form-control d-inline-block"></select>
+			</span>
+			<span class="col-auto">
+				Name:&nbsp;&nbsp;
+				<input style="width: 260px;" ng-model="selectedName" type="text" class="form-control d-inline-block" placeholder="Input staff name">
+			</span>
+		</p>
+		
+		<div ng-repeat="staff in filterStaffs = (staffs | filter:selectedDept | filter:{'name': selectedName})" class="staffCard row m-3 rounded text-break p-3">
+			<div title="LatestCheckin: {{ staff.latestCheckIn | date:'y MMM, d (HH.mm)' }}" class="staff-picture col-auto" style="background-image: url('{{ staff.profile_picture }}');"></div>
+			
+			<div class="col">
+				<p>Name: {{ staff.name }}</p>
+				<p>Department: {{ staff.deptName }}</p>
+				<p>Role: {{ staff.roleName }}</p>
+			</div>
+		</div>
+		<div class="w-100"></div>
+		<div ng-hide="filterStaffs.length" class="mx-auto font-weight-light my-4">No staff meet the input requirements</div>
+	</employeeList>
+
+	<script>
+		const staffs = JSON.parse('<%- JSON.stringify(staffs) %>');
+	</script>
 
 	<script src="../../assets/js/staff_admin/homepage.js"></script>
 

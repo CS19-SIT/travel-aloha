@@ -25,7 +25,7 @@ exports.showLoginForm = (req, res) => {
 
 exports.showRegistrationForm = async (req, res) => {
 	try {
-		const isStaff = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}' AND latestCheckIn IS NOT NULL`);
+		const isStaff = await conn.query(`SELECT 1 FROM staff_info WHERE staffId='${req.user.user_id}' AND status='active'`);
 		if (!!isStaff[0].length) {
 			return res.redirect('/admin/staff/home');
 		}
@@ -45,13 +45,29 @@ exports.showRegistrationForm = async (req, res) => {
 
 exports.showHomepage = async (req, res) => {
 	try {
-		const isStaff = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}'`);
-		if (!isStaff[0].length) {
+		const myInfo = await conn.query(`SELECT * FROM staff_info WHERE staffId='${req.user.user_id}' AND status='active'`);
+		if (!myInfo[0].length) {
 			return res.redirect('/admin/staff/register');
 		}
+		await conn.query(`UPDATE staff_info SET latestCheckIn=NOW() WHERE staffId='${req.user.user_id}'`);
+		const deptList = await conn.query(`SELECT deptNo, deptName FROM staff_department ORDER BY deptName`);
+		const staffs = await conn.query(`
+								SELECT user_id, IF(profile_picture IS NULL, '', profile_picture) AS profile_picture, CONCAT(firstname, ' ', lastname) AS name, sr.deptNo, deptName, sr.roleId, roleName, salary, latestCheckIn,
+										CASE WHEN EXISTS(SELECT 1 FROM staff_manager sm WHERE sm.staffId=si.staffId)
+											THEN 'true'
+											ELSE 'false'
+						   				END AS isManager  
+								FROM user u, staff_info si, staff_department sd, staff_role sr 
+								WHERE	si.status='active'
+									AND si.staffId=u.user_id
+									AND si.deptNo=sd.deptNo 
+									AND sd.deptNo=sr.deptNo
+									AND si.roleId=sr.roleId`); 
 		res.render('staff_admin/homepage', {
 			pageTitle: 'TravelAloha - Admin - StaffHomepage',
-			user: req.user
+			user: req.user,
+			staffs: staffs[0],
+			deptList: deptList[0]
 		});
 	} catch (err) {
 		res.status(400).send(err);
