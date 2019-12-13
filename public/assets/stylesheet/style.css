@@ -25,7 +25,7 @@ html, body {
   background-size: cover;
 }
 .addMore, .remove{
-  margin-top: 1vh;
+   padding-top: 3.2vh;
 }
 .detail-pic{
   width: 100%;
