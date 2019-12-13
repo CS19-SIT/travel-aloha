@@ -44,32 +44,6 @@ $(document).ready(function () {
     $(e.target.form).find("div[id$=MaxRedeemCount]").toggle(!this.checked);
   });
 
-  $("#view-edit-button").click(function (e) {
-    const button = $(this);
-    $("#viewModal").on("hidden.bs.modal", (e) => {
-      $("#editModal").modal("show", button);
-      $("#viewModal").off("hidden.bs.modal");
-    });
-    $("#viewModal").modal("hide");
-  });
-
-  $("#view-delete-button").click(function (e) {
-    const button = $(this);
-    $("#viewModal").on("hidden.bs.modal", function (e) {
-      $("#deleteModal").modal("show", button);
-      $("#viewModal").off("hidden.bs.modal");
-    });
-    $("#viewModal").modal("hide");
-  });
-
-  $("#viewModal").on("show.bs.modal", function (e) {
-    const button = $(e.relatedTarget);
-    const code = button.data("coupon-code");
-    
-    $("#view-edit-button").data("coupon-code", code);
-    $("#view-delete-button").data("coupon-code", code);
-  });
-
   $("#deleteModal").on("show.bs.modal", function (e) {
     const button = $(e.relatedTarget);
     const code = button.data("coupon-code");
@@ -100,7 +74,7 @@ $(document).ready(function () {
   $("#editModal").on("show.bs.modal", function (e) {
     const button = $(e.relatedTarget);
     const code = button.data("coupon-code");
-    const node = $("a[data-coupon]").filter((i, e) => $(e).data("coupon-code") == code);
+    const node = $("p[data-coupon]").filter((i, e) => $(e).data("coupon-code") == code);
     const coupon = node.data("coupon");
     const modal = $(this);
     const form = modal.find("form");
