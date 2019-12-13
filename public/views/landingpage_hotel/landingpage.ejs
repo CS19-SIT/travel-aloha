@@ -181,11 +181,20 @@
     function validateForm() {
       var x = document.forms["myForm"]["place"].value;
       if (x == "") {
-        alert("Name must be filled out");
+        swal("Name must be filled out");
         return false;
       }
     }
-    </script>
+
+
+    $(function() {
+        $('.datepicker').datepicker({
+            endDate: new Date()
+        });
+    });
+
+
+</script>
 
 
     <%- include('../includes/footer') %>

@@ -41,128 +41,91 @@
 
 <body>
     <div class="row">
-        <div class="col-lg-12">
-            <hr>
-        </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-2">
-            <div class=" card card-2" id="filter">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>filter bar</h1>
+        <div class="col-lg-3">
 
-                        <div slider id="slider-distance">
-                            <div>
-                                <div inverse-left style="width:70%;"></div>
-                                <div inverse-right style="width:70%;"></div>
-                                <div range style="left:30%;right:40%;"></div>
-                                <span thumb style="left:30%;"></span>
-                                <span thumb style="left:60%;"></span>
-                                <div sign style="left:30%;">
-                                    <span id="value">30</span>
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Price</h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Min</label>
+                                    <input type="number" class="form-control" id="inputEmail4" placeholder="0" min="1">
                                 </div>
-                                <div sign style="left:60%;">
-                                    <span id="value">60</span>
+                                <div class="form-group col-md-6 text-right">
+                                    <label>Max</label>
+                                    <input type="number" class="form-control" placeholder="1000" min="1">
                                 </div>
                             </div>
-                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
-                                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                            var children = this.parentNode.childNodes[1].childNodes;
-                                            children[1].style.width=value+'%';
-                                            children[5].style.left=value+'%';
-                                            children[7].style.left=value+'%';children[11].style.left=value+'%';
-                                            children[11].childNodes[1].innerHTML=this.value;" />
-
-                            <input type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
-                                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                            var children = this.parentNode.childNodes[1].childNodes;
-                                            children[3].style.width=(100-value)+'%';
-                                            children[5].style.right=(100-value)+'%';
-                                            children[9].style.left=value+'%';children[13].style.left=value+'%';
-                                            children[13].childNodes[1].innerHTML=this.value;" />
-                        </div>
-
-
-
-                        <form class="form">
-                            <!-- <div class="inputGroup">
-                                        <input id="option1" name="option1" type="checkbox" />
-                                        <label for="option1">Option One</label>
-                                    </div>
-                                    <div class="inputGroup">
-                                        <input id="option2" name="option2" type="checkbox" />
-                                        <label for="option2">Option Two</label>
-                                    </div> -->
-                            <br>
-                            <div class="checkbox">
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>option 1</label>
-                            </div>
-
-                            <div class="checkbox">
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>option 1</label>
-                            </div>
-                            <div class="checkbox">
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>option 1</label>
-                            </div>
-                            <div>
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>Wifi</label>
-                            </div>
-                            <div>
-                                <label class="label">
-                                    <input class="label__checkbox" type="checkbox" />
-                                    <span class="label__text">
-                                        <span class="label__check">
-                                            <i class="fa fa-check icon"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                                <label>Breakfast</label>
-                            </div>
-
-
-                        </form>
+                        </div> <!-- card-body.// -->
                     </div>
-                </div>
+                </article> <!-- card-group-item.// -->
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Room Features </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <form>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-label">
+				                        <i class="fa fa-wifi" aria-hidden="true"></i> WiFi
+				                    </span>
+                                </label> <!-- form-check.// -->
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-label">
+                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Breakfast
+				                    </span>
+                                </label>  <!-- form-check.// -->
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-label">
+                                        <i class="fa fa-car" aria-hidden="true"></i> Parking
+				                    </span>
+                                </label>  <!-- form-check.// -->
+                            </form>
 
-            </div>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Room type </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <label class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                <span class="form-check-label">
+                                    Single
+                                </span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                <span class="form-check-label">
+                                    Double
+                                </span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                <span class="form-check-label">
+                                    Studio
+                                </span>
+                            </label>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- card-group-item.// -->
+            </div> <!-- card.// -->
 
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-lg-9">
          <% hotels.forEach( hotel => { %>
             <div class=" card card-3">
                 <div class="row">
@@ -172,27 +135,22 @@
                             <h4><%= hotel.hotelAddress %></h4>
                             <h4><%= hotel.hotelDescription %></h4>
                             <h4><%= hotel.hoteltelNumber %></h4>
+                            <h1>From: <b><%= hotel.fullPrice %></b></h1>
 
-                            <% if (!user) { %>
-                                <h1><%= hotel.fullPrice %></h1>
-
-                                <a href="/login">Log in</a> to check out your price!
-                            <% } %>
-                            <% if (user) { %>
-                                <h1>Price</h1>
-                                <u><h1>from: price</h1></u>
-                            <% } %>
                             <% if (hotel.wifi==1) { %>
-                               MEE WIFI
+                                <i class="fa fa-wifi" aria-hidden="true"></i>
                             <% } %>
-                             <% if (hotel.breakfast==1) { %>
-                                MEE Breakfast
-                             <% } %>
+                            <% if (hotel.breakfast==1) { %>
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <% } %>
+                            <% if (hotel.carpark==1) { %>
+                                <i class="fa fa-car" aria-hidden="true"></i>
+                            <% } %>
                         </div>
 
                     </div>
                     <div class="col-lg-5">
-                        <img src="<%= hotel.hotelPicture %>">
+                        <img src="<%= hotel.hotelPicture %>" class="img-responsive col-xs-12">
                     </div>
                 </div>
             </div>
