@@ -34,26 +34,47 @@ exports.postIndex = (req, res) => {
 		inputFirstName: req.body.inputFirstName,
 		inputLastName: req.body.inputLastName,
 		inputEmail: req.body.inputEmail,
-    inputPhoneNo: req.body.inputPhoneNo,
-    stayDuration : req.body.stayDuration,
-    checkInDate: new Date(req.body.checkInDate),
-    checkOutDate: new Date(req.body.checkOutDate),
-    roomType : req.body.roomType,
-    reservedRoomCount : req.body.reservedRoomCount,
-    hotelID : req.body.hotelID,
-    roomID : req.body.roomID,
-    hotelName : req.body.hotelName,
-    hotelFullPrice :  req.body.hotelFullPrice,
-    hotelSalePrice : req.body.hotelSalePrice
-  };
+		inputPhoneNo: req.body.inputPhoneNo,
+		stayDuration: req.body.stayDuration,
+		checkInDate: new Date(req.body.checkInDate),
+		checkOutDate: new Date(req.body.checkOutDate),
+		roomType: req.body.roomType,
+		reservedRoomCount: req.body.reservedRoomCount,
+		hotelID: req.body.hotelID,
+		roomID: req.body.roomID,
+		hotelName: req.body.hotelName,
+		hotelFullPrice: req.body.hotelFullPrice,
+		hotelSalePrice: req.body.hotelSalePrice
+	};
 
 	res.render('hotel_booking/hotel-booking-payment', {
 		pageTitle: 'TravelAloha - Hotel - Payment',
 		user: req.user,
 		hotelData: result
-  });
-  
+	});
+
 	// res.redirect('/hotel-booking/payment')
+};
+
+exports.postReviewForm = (req, res) => {
+	const result = {
+		inputFirstName: req.body.inputFirstName,
+		inputLastName: req.body.inputLastName,
+		inputEmail: req.body.inputEmail,
+		inputPhoneNo: req.body.inputPhoneNo,
+		checkInDate: new Date(req.body.checkInDate),
+		checkOutDate: new Date(req.body.checkOutDate),
+		hotelID: req.body.hotelID,
+		roomID: req.body.roomID,
+		hotelFullPrice: req.body.hotelFullPrice,
+		hotelSalePrice: req.body.hotelSalePrice
+  };
+  
+  res.render('/payment/checkout', {
+    pageTitle: 'TravelAloha - Hotel - Checkout',
+    user: req.user,
+    hotelData: result
+  }) 
 };
 
 //Probably needed in controller dont mind these comment
