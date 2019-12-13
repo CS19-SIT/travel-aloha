@@ -73,8 +73,8 @@
 			delete cdd[i]['user_id'];
 			for(const [key, val] of Object.entries(cdd[i])) { %>
 			<p> 
-				<span class="<%= key %> text-upper"><%= key %></span>: 
-				<span><%= val %></span> 
+				<span class="text-upper"><%= key %></span>: 
+				<span class="<%= key %>"><%= val %></span> 
 			</p>
 			<% } %>
 			<p data-descript="groupButtonToTheSameLine">

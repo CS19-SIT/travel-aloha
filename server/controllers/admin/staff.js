@@ -10,17 +10,22 @@ exports.getIndex = function(request, response) {
 
 exports.showApplicationForm = async function(request, response) {
 	try {
-		const staffStatus = await adminStaffModel.getStaffStatus(request.user.user_id)
-		if (staffStatus == 'active') {
+		const isStaff = await adminStaffModel.isStaff(request.user.user_id)
+		const formStatus = await adminStaffModel.formStatus(request.user.user_id)
+		if (isStaff || (formStatus.length && formStatus[0]['status'] == 'approved')) {
 			response.redirect('/admin/staff/management')
 			return
+		}
+		if (formStatus.length && formStatus[0]['status'] == 'rejected') {
+			await adminStaffModel.formCancel(request.user.user_id)
 		}
 		const matchedInfo = await connector.query(`SELECT username, profile_picture, CONCAT(firstname, ' ', lastname) AS name, gender, birth_date, address FROM user WHERE user_id='${request.user.user_id}'`)
 		response.render('staff_admin/recruiting', {
 			pageTitle: 'TravelAloha - Admin - StaffRecruiting',
 			user: request.user,
-			onPending: (staffStatus == 'pending')?'true':'false',
-			isDisband: (staffStatus == 'inactive')?'true':'false',
+			onPending: (formStatus.length && formStatus[0]['status'] == 'pending')?'true':'false',
+			isDisband: (formStatus.length && formStatus[0]['status'] == 'rejected')?'true':'false',
+			message: (formStatus.length)?formStatus[0]['message']:'',
 			data: JSON.stringify(matchedInfo[0][0])
 		})
 	} catch (error) {
@@ -31,15 +36,19 @@ exports.showApplicationForm = async function(request, response) {
 	}
 }
 
-exports.getStaffCandidatesList = async function(request, response) {
+exports.showStaffCandidatesList = async function(request, response) {
 	try {
-		const staffStatus = await adminStaffModel.getStaffStatus(request.user.user_id)
-		const userAuth = await adminStaffModel.getStaffCRUD(request.user.user_id)
-		if (staffStatus != 'active' || userAuth['can_create'] == 'F') {
+		const staffAuth = await adminStaffModel.getStaffCRUD(request.user.user_id)
+		if (staffAuth['can_create'] == 'F') {
 			response.redirect('/admin/staff/recruiting')
 			return
 		}
-		const candidatesList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS Name, sdi.department, sdi.role FROM user, staff_admin_info sdi WHERE user_id=staffID AND sdi.status='pending'`)
+		const formStatus = await adminStaffModel.formStatus(request.user.user_id)
+		if (formStatus.length) {
+			response.redirect('/admin/staff/management')
+			return
+		}
+		const candidatesList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS Name, sdi.department, sdi.role, sdi.message FROM user, staff_admin_pre sdi WHERE user_id=staffId AND sdi.status='pending'`)
 		response.render('staff_admin/requisition', {
             pageTitle: 'TravelAloha - Admin - StaffRequisition',
             user: request.user,
@@ -53,12 +62,16 @@ exports.getStaffCandidatesList = async function(request, response) {
 	}
 }
 
-exports.getDetailAllExistedStaff = async function(request, response) {
+exports.showDetailAllExistedStaff = async function(request, response) {
 	try {
-		const staffStatus = await adminStaffModel.getStaffStatus(request.user.user_id)
-		if (staffStatus != 'active') {
+		const isStaff = await adminStaffModel.isStaff(request.user.user_id)
+		const formStatus = await adminStaffModel.formStatus(request.user.user_id)
+		if (!isStaff) {
 			response.redirect('/admin/staff/recruiting')
 			return
+		}
+		if (formStatus.length) {
+			await adminStaffModel.formCancel(request.user.user_id)
 		}
 		const userAuth = await adminStaffModel.getStaffCRUD(request.user.user_id)
 		const staffList = await connector.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS name, birth_date, gender, address, sdi.department, sdi.role FROM user, staff_admin_info sdi WHERE user_id=staffID AND sdi.status='active' AND user_id<>'${request.user.user_id}'`)
@@ -69,6 +82,7 @@ exports.getDetailAllExistedStaff = async function(request, response) {
 			canRead: (userAuth['can_read']=='T')?'true':'false',
 			canUpdate: (userAuth['can_update']=='T')?'true':'false',
 			canDelete: (userAuth['can_delete']=='T')?'true':'false',
+			message: (formStatus.length)?formStatus[0]['message']:'',
 			data: JSON.stringify(staffList[0])
 		})
 	} catch (error) {
