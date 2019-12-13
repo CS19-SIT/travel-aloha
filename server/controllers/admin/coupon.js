@@ -13,10 +13,12 @@ const defaultLevels = allLevels.map(e => e[0].toString());
 const defaultOption = "1"; // "Code"
 
 const formRequestDataToModelData = (req) => {
+  const now = new Date(Date.now());
+
   return {
     ...req.body,
     create_by_user_id: req.user.user_id,
-    creation_date: new Date(Date.now()),
+    creation_date: now,
     for_every_hotel: req.body.for_every_hotel === "on",
     for_every_airline: req.body.for_every_airline === "on",
     levels: Array.isArray(req.body.levels) ? req.body.levels :

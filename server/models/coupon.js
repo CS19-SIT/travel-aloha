@@ -267,6 +267,8 @@ exports.editCoupon = async (oldCode, {
   code,
   name,
   description,
+  creation_date,
+  create_by_user_id,
   for_every_hotel,
   for_every_airline,
   levels,
@@ -392,6 +394,10 @@ exports.editCoupon = async (oldCode, {
         await exports.editCoupon(code, oldCoupon, true);
       }
       throw err;
+    }
+
+    if (creation_date != null) {
+      await db.query("INSERT INTO coupon_edit_log VALUES (?, ?, ?)", [code, creation_date, create_by_user_id]);
     }
   } catch (err) {
     throw new Error(`[ERR] editCoupon: ${err}`);
