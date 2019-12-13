@@ -113,7 +113,7 @@ exports.searchCoupons = async ({
       levels == null,
 
       page * entriesPerPage,
-      (page + 1) * entriesPerPage,
+      entriesPerPage,
     ];
 
     // Yikes.
