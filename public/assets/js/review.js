@@ -4,6 +4,7 @@ $('.like, .dislike').on('click', function() {
     $('.active').removeClass('active');
     $(this).addClass('active');
 });
+$('.fa-question-circle').tooltip('enable');
 $("#hotelsend").submit(function(event) {
   event.preventDefault();
   $.ajax({
