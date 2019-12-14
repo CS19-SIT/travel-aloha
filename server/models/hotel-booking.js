@@ -18,15 +18,10 @@ exports.insertBooking = async booking => {
       "insert into booking_detail(firstName,lastName,email,phoneNumber,userId_booking,roomId_booking,hotelId_booking,salePrice,fullPrice) values (?,?,?,?,?,?,?,?,?)",
       [FirstName, LastName, Email, PhoneNo, user_id, roomID, hotelID, hotelSalePrice, hotelFullPrice]
     );
-    // console.log(book_detail[0].insertId);
-    console.log("Queried insert book detail");
     let book_head = await db.query(
       "insert into booking_head(checkinDate,checkoutDate,bookingDetailid) values (?,?,?)",
       [checkInDate, checkOutDate, book_detail[0].insertId]
     );
-    // console.log(book_head);
-    console.log("Queried insert book head");
-    console.log("queried success, returning book_head_id")
     return book_head[0].insertId;
   } catch (error) {
     throw new Error(`[ERR] insertBooking: ${error}`);
@@ -63,3 +58,16 @@ exports.Deletebooking = async bookingId => {
     bookingDetailId
   ]);
 };
+
+
+exports.updatePaid = async bookingId => {
+  try {
+    let query = await db.query('update booking_head set isPaid = true where bookingId = ?', [bookingId]);
+    if(query[0] < 1){
+      throw new Error(`Undefinded bookingId ${bookingId}`);
+    }
+    return query;
+  } catch (err) {
+    throw new Error(`Error updatePaid ${err}`);
+  }
+}

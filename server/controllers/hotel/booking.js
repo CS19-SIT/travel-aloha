@@ -86,7 +86,6 @@ exports.postConfirm = async (req, res) => {
 	let resultSession = req.session;
 	resultSession.bookingID = resultInsertBooking;
 	req.bookingID = resultInsertBooking;
-	console.log("asdfdsaf "+req.bookingID);
 	res.redirect('/checkout');
 
 };
