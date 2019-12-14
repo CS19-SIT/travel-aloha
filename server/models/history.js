@@ -20,6 +20,19 @@ exports.getHotelName = async (
     //console.log(this.getHotelName);
   };
 
+  exports.getUser = async (userID) => {
+    try {
+
+      let resultUser = await db.query("select firstname, lastName, Level from user where user_id = ?;", [
+         userID
+        ]);
+      return resultUser[0][0];
+
+    } catch (err) {
+      throw new Error(`[ERR] createUser: ${err}`);
+    }
+  }
+
   exports.getHotelData = async (userID) => {
     try {
       //console.log(typeof userID);

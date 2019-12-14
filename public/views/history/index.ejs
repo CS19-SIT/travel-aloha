@@ -22,12 +22,12 @@
     <!--User Info side (left)-->
     <div class="col-sm-3 ta-user-info">
       <h4 class="user-name"><b id="userName">
-          Hello
+          <%= userFirstname %> <%= userLastname %>
         </b></h4>
       <hr class="hrColor">
       <div class="user-info">
         <div class="user-level">
-          <b class="badge badge-level">Level: <span id="userLvl">30</span></b>
+          <b class="badge badge-level">Level: <span id="userLvl"><%= userLvl %></span></b>
         </div>
         <div class="user-points">
           <span class="left badge badge-points-rank badge-points-rank">Points: <span id="userPoints">200</span></span>

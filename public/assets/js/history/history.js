@@ -1,18 +1,5 @@
-var recordFrom = 0;
-var recLimit = 12;
-var statFilter = [true, true, true];
-var typeFilter = [true, true];
-
 var showRecord = [];
 var showDetail;
-
-var user = {
-    userName: "rapgod1234",
-    name: "Prayuth Chan-O-Cha",
-    lvl: 5,
-    point: 100,
-    rank: 1
-};
 
 //Array data for use
 var rank = ["Silver", "Gold"];
@@ -40,15 +27,6 @@ var html_8 = ')" class="btn btn-info" data-toggle="modal"data-target="#detailMod
 
 //================================================================
 //Show user info / Onload
-function renderUser() {
-    document.getElementById("userName").innerHTML = user.name;
-    document.getElementById("userLvl").innerHTML = user.lvl;
-    document.getElementById("userPoints").innerHTML = user.point;
-    document.getElementById("userRank").innerHTML = rank[user.rank];
-
-    document.getElementById("userRank").className += rankClass[user.rank];
-}
-
 function extractRecords(){
     for(let i = 0; i < allRecord.length; i++){
         showRecord.push(allRecord[i]);
@@ -57,8 +35,6 @@ function extractRecords(){
 
 // Onload function
 function loadPage() {
-
-    renderUser();
     extractRecords();
 
     if (showRecord.length > 0) {
