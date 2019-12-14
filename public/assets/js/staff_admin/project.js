@@ -107,7 +107,45 @@ function closeProject(id) {
                 }
             }).done((result) => {
                 location.reload(true);
-            })     
+            });
         }
     });
+}
+
+function updateProject(id, user) {
+    let newp = '';
+    Swal.fire({
+        title: 'Update info',
+        html: `
+            <textarea id="newpost" class="form-control mt-2" rows="4" maxlength="150" style="resize: none;" placeholder="about project"></textarea>
+        `,
+        showCancelButton: true,
+        preConfirm: () => {
+            newp = newpost.value;
+            if (!newp) {
+                Swal.showValidationMessage('Please type the information');
+            }
+        }
+    }).then((act) => {
+        if (act.value) {
+            $.ajax({
+                url: '/admin/staff/sendQuery',
+                method: 'POST',
+                data: {
+                    sql: `INSERT INTO staff_project_timeline VALUES (${id}, '${user}', '${newp.trim().replace(/ {1,}/g, ' ').replace(/'/g, "\\'")}', NOW())`
+                }
+            }).done((result) => {
+                if (result.status == 200) {
+                    location.reload(true);
+                } else {
+                    Swal.fire({
+                        title: JSON.stringify(result.message),
+                        icon: 'error',
+                        showConfirmButton: false
+                    });
+                    setTimeout(() => location.reload(true), 1500);
+                }
+            });
+        }
+    })
 }

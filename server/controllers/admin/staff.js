@@ -117,7 +117,7 @@ exports.showProject = async (req, res) => {
 		if (!myInfo[0].length) {
 			return res.redirect('/admin/staff/register');
 		}
-		const myProject = await conn.query(`SELECT * FROM staff_project WHERE ownerId='${req.user.user_id}' AND finishDate IS NOT NULL ORDER BY startDate DESC`);
+		const myProject = await conn.query(`SELECT * FROM staff_project WHERE ownerId='${req.user.user_id}' AND finishDate IS NULL ORDER BY startDate DESC`);
 		const isManager = await conn.query(`SELECT 1 FROM staff_manager WHERE staffId='${req.user.user_id}'`);
 		res.render('staff_admin/project', {
 			pageTitle: 'TravelAloha - Admin - StaffProject',
