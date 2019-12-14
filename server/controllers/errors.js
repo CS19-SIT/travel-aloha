@@ -1,5 +1,5 @@
 exports.get400 = (req, res) =>
-  res.status(404).render("errors/400", {
+  res.status(400).render("errors/400", {
     pageTitle: "TravelAloha - Bad Request",
     user: req.user
   });
