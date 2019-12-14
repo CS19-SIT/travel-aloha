@@ -2,7 +2,7 @@
 
 Central platform for your dream travel.
 
-This project compose of many subsystems.
+This project compose of many systems.
 
 This branch serves as an example for you to understand better. You can check out the file ```todo``` and ```api-todo``` in each directory.
 
