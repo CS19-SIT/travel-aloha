@@ -7,6 +7,8 @@ exports.getHotelName = async (
     try {
       //console.log(typeof userID);
       let resultHotelName = await db.query("SELECT hotelName, timestamp FROM hotel as h,booking_detail as bookde WHERE h.hotelid = bookde.hotelid_booking AND bookde.userid_booking = ?", [
+        
+        , [
          userID
          
       ]);
