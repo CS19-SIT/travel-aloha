@@ -41,7 +41,9 @@ $(document).ready(function () {
   });
 
   $("input[name=unlimited]").change(function (e) {
-    $(e.target.form).find("div[id$=MaxRedeemCount]").toggle(!this.checked);
+    const div = $(e.target.form).find("div[id$=MaxRedeemCount]");
+    div.toggle(!this.checked);
+    div.find("input[name=max_count]").prop("required", !this.checked);
   });
 
   $("#deleteModal").on("show.bs.modal", function (e) {
