@@ -17,35 +17,25 @@ router.get(
   adminUserController.addUsersPage
 );
 router.get(
-  "/edit/:user_id",
+  "/edit/:id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminUserController.editUsersPage
 );
 router.get(
-  "/detail/:user_id",
+  "/detail/:id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminUserController.detailUsersPage
 );
 router.get(
-  "/delete/:user_id",
+  "/delete/:id",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminUserController.deleteUsers
 );
 // router.post('/add', userManagementController.addUsers);
-router.post(
-  "/edit/:user_id",
-  authMiddleware.isAuthenticated,
-  authMiddleware.isAdmin,
-  adminUserController.editUsers
-);
-// router.delete(
-//   "/delete/:user_id",
-//   authMiddleware.isAuthenticated,
-//   authMiddleware.isAdmin,
-//   adminUserController.deleteUsers
-// );
+// router.post('/edit/:id', userManagementController.editUsers);
+// router.post('/detail/:id', userManagementController.detailUsers);
 
 module.exports = router;

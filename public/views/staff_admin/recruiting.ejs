@@ -2,22 +2,35 @@
 
 	<style>
 		background {
-			background-image: url("../../assets/Pictures/staff_admin/recruiting-wallpaper.png");
+			color: #dedede;
+			min-height: calc(100vh - 56px);
+			background-image: url("https://nucleuscoshare.org/wp-content/uploads/2014/06/working-at-desk-nucleus.jpg");
 			background-color: #dedede;
 			background-repeat: no-repeat;
+			background-size: cover;
 			background-position: center;
 			padding: 3.5rem 0;
 		}
-		submitForm {
-			background-color: rgba(255, 255, 255, 0.7);
+		pendingCard, existedInfo, newInfo {
+			background-color: rgba(34, 43, 59, 0.7);
+		}
+		pendingCard {
 			padding: 1.2rem 1.7rem;
 			width: 60%;
 			min-width: 280px;
-			max-width: 700px;
+			max-width: 750px;
 		}
-		profilePicture {
-			width: 80%;
-			height: 200px;
+		existedInfo {
+			width: 280px;
+		}
+		newInfo {
+			width: calc(90% - 280px);
+			min-width: 280px;
+			max-width: 500px;
+		}
+		profileImage {
+			width: 60%;
+			height: 180px;
 			background-color: black;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -26,47 +39,75 @@
 		label {
 			display: inline-block;
 		}
+		label, input {
+			font-size: 0.9rem;
+		}
 	</style>
 </head>
 
 <body>
-		<%- include('../includes/navbar') %>
-	<background class="d-flex w-100 justify-content-center">
-		<submitForm class="row rounded pt-5">
+	<%- include('../includes/navbar') %>
 
-			<iconZone class="col-md-6 col-12 pb-4 d-flex justify-content-center">
-				<profilePicture></profilePicture>
-			</iconZone>
-			<informationZone class="col-md-6 col-12 d-flex justify-content-center">
-				<existedInformation>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	
+	<background class="row w-100 justify-content-center align-content-start mx-0">
+	<% if (onPending == 'true') { %>
+		<pendingCard class="row rounded pt-5 justify-content-end">
+			<p class="col-12 text-center">You already sent an application one.</p>
+			<button id="withdraw" class="btn btn-danger">Withdraw</button>
+		</pendingCard>
+	<% } else { %>
+		<% if (isDisband == 'true') { %>
+			<script>
+				const comm = '<%- message %>'
+				Swal.fire({
+					title: 'You got declined',
+					text: `[Comment]: ${'<%- message %>' || 'None'}`,
+					icon: 'error',
+					showConfirmButton: true
+				})
+			</script>
+		<% } 
+		let personalInfo = JSON.parse(data)
+		personalInfo['birth_date'] = personalInfo['birth_date'] || '0000-01-01'
+		personalInfo['birth_date'] = new Date(personalInfo['birth_date']).toDateString().substring(4)
+		if (!personalInfo['profile_picture']) {
+			personalInfo['profile_picture'] = ''
+		}
+		%>
+		<existedInfo class="row rounded pt-3 m-2 justify-content-center align-content-center">
+			<profileImage class="mb-2 rounded" style="background-image: url('<%= personalInfo[`profile_picture`] %>')"></profileImage>
+			<% delete personalInfo['profile_picture'] %>
+			<p class="w-100"></p>
+			<briefInfo class="col-auto pt-3 text-break">
+				<% for (const [key, val] of Object.entries(personalInfo)) { 
+				if (val) { %>
 					<p style="font-size: 0.9rem;">
-						<yTitle class="text-capitalize font-weight-bold"></yTitle>:
-						&nbsp;<yDetail></yDetail>
+						<yTitle class="text-capitalize font-weight-bolder"><%= key %></yTitle>:
+						&nbsp;<yDetail><%= val %></yDetail>
 					</p>
-				</existedInformation>
-			</informationZone>
-
-			<hr class="w-100 p-1 mt-4" />
-
-			<h2 class="text-center py-2" style="font-size: 1.5rem;">Staff Recruiting Form</h2>
-			<newInformation class="d-block w-100">
-				<!-- Provide text fields here -->
-				<label for="department">Department</label><br/>
-				<input type="text" id="department" class="form-control" placeholder="Type your wanted department"/><br/>
-				<label for="salary">Salary</label><br/>
-				<input type="text" id="salary" class="form-control" placeholder="Type your wanted salary" />
-				
-			</newInformation>
-
+				<% } 
+				} %>
+			</briefInfo>
+		</existedInfo>
+		<newInfo class="d-block rounded p-3 m-2">
+			<h2 class="text-center py-2" style="font-size: 1.4rem;"><u>STAFF Recruiting Form</u></h2>
+			<label for="department">Department (format: [A-Za-z])</label><br/>
+			<input id="department" class="form-control" type="text" placeholder="Your wanted department"/><br/>
+			<label for="role">Role (format: [A-Za-z])</label><br/>
+			<input id="role" class="form-control" type="text" placeholder="Your wanted role" /><br/>
+			<label for="message">Other (max length: 50)</label><br/>
+			<textarea id="message" class="form-control" rows="3" maxlength="50" style="resize: none;" placeholder="Anything you want to say"></textarea>
 			<buttonDirection class="d-block w-100 text-right mt-4">
-				<button id="submitButton" type="button" class="btn btn-primary">submit</button>
+				<button id="submit" type="button" class="btn btn-primary">submit</button>
 			</buttonDirection>
-
-		</submitForm>
+		</newInfo>
+	<% } %>
+	</myForm>
 	</background>
 
 	<script>
-		var data = JSON.parse('<%- data %>')
+		const userId = '<%- user.user_id %>'
 	</script>
 	<script src="../../assets/js/staff_admin/recruiting.js"></script>
 

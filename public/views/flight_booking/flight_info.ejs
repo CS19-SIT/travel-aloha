@@ -2,24 +2,10 @@
 
 <link href="../../assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+<%- include('../includes/navbar') %>
 </head>
 
 <body>
-<<<<<<< HEAD
-        <%- include('../includes/navbar') %>
-    <div class="container mt-3">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-9 flight-head">
-                        <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
-                        <i class="fa fa-long-arrow-right"></i>
-                        &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
-                    </div>
-                    <div class="align-bottom date text-right col-md-3">
-                        03-Nov-2019
-=======
     <div class="container my-3">
         <div class="row">
             <!-- Flight info part -->
@@ -37,14 +23,9 @@
                                 <%=depart_date%>
                             </div>
                         </div>
->>>>>>> fa5e37233a971c4d50b703bf7d7f8e882c4c1f25
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8">
+                <!-- Info card -->
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -78,11 +59,12 @@
                                 <%=destinationCity%><span class="airport-code">&nbsp;<%=des%></span>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <a href="/flight_booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a>
+                <a href="/flight/booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a>
             </div>
+
+            <!-- Billing part -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -105,11 +87,11 @@
                                 <div class="col-md-4">1964.43 &#3647; </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>

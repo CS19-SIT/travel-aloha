@@ -5,38 +5,21 @@ const contactController = require("../../controllers/contact/index");
 const authMiddleware = require("../../middlewares/auth");
 
 router.get("/", contactController.getIndex);
-
-router.get("/add-new-airline", function(req, res, next) {
-  res.render("contact/add-new-airline", {
-    pageTitle: "TravelAloha - Contact - Register New Airline",
-    user: req.user
-  });
-});
-
-router.get("/add-new-hotel", function(req, res, next) {
-  res.render("contact/add-new-hotel", {
-    pageTitle: "TravelAloha - Contact - Register New Aotel",
-    user: req.user
-  });
-});
-
+router.get("/add-new-hotel", contactController.getHotelInfo);
+router.post("/add-new-hotel", contactController.postHotelInfo);
+router.get("/add-new-airline", contactController.getAirlineInfo);
+router.post("/add-new-airline", contactController.postAirlineInfo);
 router.get(
   "/dashboard",
+  contactController.getDashboard,
   authMiddleware.isAuthenticated,
-  authMiddleware.isStaff,
-  contactController.getDashboard
+  authMiddleware.isStaff
 );
-
 router.get(
   "/dashboard/detail",
+  contactController.getHotelDetail,
   authMiddleware.isAuthenticated,
-  authMiddleware.isStaff,
-  function(req, res, next) {
-    res.render("contact/new-hotel-detail", {
-      pageTitle: "TravelAloha - Contact - New Hotel Detail",
-      user: req.user
-    });
-  }
+  authMiddleware.isStaff
 );
 
 module.exports = router;

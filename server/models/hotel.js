@@ -1,5 +1,4 @@
-const db = require("../db/db"); //connect to db
- // we also need roomid
+const db = require("../db/db");
 
 exports.findAll = async () => {
   try {
