@@ -81,18 +81,12 @@ const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
-const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
 const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
-<<<<<<< HEAD
-
 app.use(indexRoutes);
-=======
-app.use(landingPageRoutes);
->>>>>>> 9cbf7501162f571ca6f176365bb36a15c6919fb6
 app.use(authRoutes);
 app.use("/temp", indexRoutes);
 
