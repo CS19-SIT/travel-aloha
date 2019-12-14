@@ -35,7 +35,7 @@ const sessionStore = new MySQLStore({
   database: process.env.DB_DATABASE
 });
 
-const publicPath = path.join(__dirname + "/../public");
+const publicPath = path.join(__dirname, "../public");
 const viewPath = path.join(publicPath + "/views");
 
 app.set("view engine", "ejs");
@@ -87,14 +87,15 @@ const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
+const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
-const userRoutes = require("./routes/user/dashboard");
+const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
-app.use(indexRoutes);
+app.use(landingPageRoutes);
 app.use(authRoutes);
-
+app.use("/temp", indexRoutes);
 
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
@@ -103,18 +104,12 @@ app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
-app.get("/", (req, res) => res.render("index", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
-
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
 app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
-
 
 app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
