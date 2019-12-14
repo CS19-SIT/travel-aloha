@@ -1,3 +1,5 @@
+const db = require("../../db/db"); //connect to db
+
 const hotelbook = require('../../models/hotelBookingModel/bookingHotel');
 exports.getHotelBooking = (req, res) =>
 	res.render('hotel_booking/hotel-booking', {
@@ -17,16 +19,9 @@ exports.getHotelBookingPayment = (req, res) => {
 	});
 };
 
-exports.postHotelBooking = (req, res) => {
-	// const result = JSON.stringify({
-	// 	inputFirstName: req.body.inputFirstName,
-	// 	inputLastName: req.body.inputLastName,
-	// 	inputEmail: req.body.inputEmail,
-	// 	inputPhoneNo: req.body.inputPhoneNo
-	// });
 
-	// console.log(JSON.parse(result));
-	// res.send(result);
+
+exports.postHotelBooking = (req, res) => {
 
 	const result = {
 		inputFirstName: req.body.inputFirstName,
@@ -34,11 +29,14 @@ exports.postHotelBooking = (req, res) => {
 		inputEmail: req.body.inputEmail,
 		inputPhoneNo: req.body.inputPhoneNo
 	};
-  
+
 	res.render('hotel_booking/hotel-booking-payment', {
 		pageTitle: 'TravelAloha - Hotel - Payment',
 		user: req.user,
-		hotelData: result
+		hotelData: result,
+		//hotelbook.setIsbooked(roomId,hotelId)
+		//hotelbook.insertBooking()
+		//db.query(a); query ? 
 
 	});
 	// res.redirect('/hotel-booking/payment')

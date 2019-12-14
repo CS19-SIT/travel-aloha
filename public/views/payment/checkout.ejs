@@ -1,15 +1,16 @@
 <%- include('../includes/header') %>
-<%- include('../includes/navbar') %>
 <script src="https://js.stripe.com/v3/"></script>
 <link href="/assets/css/paymentElement.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="bg-light">
+        <%- include('../includes/navbar') %>
     <div class="container">
 
         <div class="py-5 text-center"></div>
 
         <div class="row">
+            <h1>This is checkout for <%= newSession  %></h1>
             <div class="col-md-4 order-md-3 mb-4">
                 <div>
                     <h6 class="my-0"></h6>

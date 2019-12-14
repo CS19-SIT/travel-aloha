@@ -2,22 +2,31 @@
 
 <link href="../../assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-<%- include('../includes/navbar') %>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
+    <%- include('../includes/navbar') %>
     <div class="container">
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-9 flight-head">
-                        <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
-                        <i class="fa fa-long-arrow-right"></i>
-                        &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9 flight-head">
+                                <i class="fa fa-plane">&nbsp;</i>Bangkok&nbsp;<span class="airport-code">BKK</span>
+                                <i class="fa fa-long-arrow-right"></i>
+                                &nbsp;Chiang Mai&nbsp;<span class="airport-code">CNX</span>
+                            </div>
+                            <div class="align-bottom date text-right col-md-3">
+                                03-Nov-2019
+                            </div>
+                        </div>
                     </div>
                     <div class="align-bottom date text-right col-md-3">
                         03-Nov-2019
@@ -61,46 +70,94 @@
                     </div>
                 </div>
                 <h3 class="card-body">Passenger Information<span>
-                        <button type="submit" class="btn btn-outline-dark btn-sm">Add Passenger</button>
+                        <button type="submit" onclick="addPasenger()" class="btn btn-outline-dark btn-sm">Add
+                            Passenger</button>
                     </span></h3>
 
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Passenger 1
-                        </h5>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="firstname">Firstname</label>
-                                <input type="name" class="form-control" id="fname" aria-describedby="firstname"
-                                    placeholder="Enter firstname">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="firstname">Lastname</label>
-                                <input type="name" class="form-control" id="lname" aria-describedby="lastname"
-                                    placeholder="Enter lastname">
+                <ul id="passenger" style="list-style-type:none; padding-left: 0;">
+                    <li>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Passenger 1
+                                </h5>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Firstname</label>
+                                        <input type="name" class="form-control" id="fname" aria-describedby="firstname"
+                                            placeholder="Enter firstname">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Lastname</label>
+                                        <input type="name" class="form-control" id="lname" aria-describedby="lastname"
+                                            placeholder="Enter lastname">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlSelect1">Gender</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Choose Gender...</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Others</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Date of Birth</label>
+                                        <input id="datepicker"  placeholder="Enter Date of Birth" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleFormControlSelect1">Identification type</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Citizen ID</option>
+                                            <option>Passport number</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="CID-Passport">Citizen ID / Passport number</label>
+                                        <input type="name" class="form-control" id="CID-Passport"
+                                            aria-describedby="CID-Passport" placeholder="Enter Citizen ID / Passport Number">
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h5>Additional Services</h5>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="xtra_bag" value="xtra_bag">
+                                        <label class="form-check-label" for="inlineCheckbox1">Extra Luggage</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="premiumLounge"
+                                            value="premiumLounge">
+                                        <label class="form-check-label" for="inlineCheckbox1">Premium Lounge</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="meal" value="meal">
+                                        <label class="form-check-label" for="inlineCheckbox2">In-flight Meal</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="wifi" value="wifi">
+                                        <label class="form-check-label" for="inlineCheckbox3">In-flight Wi-Fi</label>
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="exampleFormControlSelect1">Gender</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Others</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="firstname">Date of Birth</label>
-                                <input id="datepicker" />
-                            </div>
-                        </div>
-                        </form>
+                    </li>
+                </ul>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <button type="submit" class="btn btn-info book" data-toggle="modal"
+                            data-target="#summary_info">Submit</button>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <button type="grab" class="btn btn-success book">Book Grab Ride</button>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" data-toggle="modal"
-                    data-target="#summary_info">Submit</button>
 
                 <div class="modal fade" id="summary_info" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -169,4 +226,4 @@
         });
     </script>
 
-<%- include('../includes/footer') %>
+    <%- include('../includes/footer') %>

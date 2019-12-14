@@ -1,0 +1,78 @@
+<style>
+    .ProfilePic{
+        width: 6.5%;
+        height: 6.5%;
+        border-radius: 5px;
+    }
+    .onhover{
+        font-size: 1.25em;
+        padding: 2.5px;
+    }
+    .onhover:hover{
+        text-decoration: underline;
+        
+    }
+    .rightdd{
+        float: right;
+    }
+    .btn-outline-primary:hover{
+        background-color: transparent;
+    }
+</style>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="user-select: none;">
+    <a class="navbar-brand" href="/">TravelAloha</a>
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    >
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="/admin/staff">Staff Company</a></li>
+    </ul>
+    
+    <ul class="navbar-nav">
+        
+        <li class="nav-item">
+        <div class="dropdown">
+            
+                <button class="btn btn-outline-primary rightdd dropdown-toggle" 
+                type="button" data-toggle="dropdown" style="border: transparent;">
+                </button>
+                <img class="ProfilePic float-right" src=<%= user.profile_picture %>>                 
+                <ul class="dropdown-menu dropdown-menu-right" style="top:2em;padding-left: 7.5px;padding-right: 7.5px;">
+                    <li style="font-size: 1.25em;">
+                    Login as : <strong><%= user.username %></strong></></li>
+                    <hr>
+                    
+                    <% if (isStaff) { %>
+                    <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/profile/<%- user.user_id %>';">
+                    <a class="text-info">My Profile</a></li>
+
+                    <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/project';">
+                    <a class="text-info">My Project</a></li>
+
+                    <% if (isHR) { %>
+                        <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/requisition';">
+                            <a class="text-info">My Requisition</a>
+                        </li>
+                    <% } %>
+                    <hr>
+                    <% } %>
+                    <form class="form-inline" action="/admin/staff/logout" method="POST">
+                    <li class="onhover w-100" style="cursor: pointer;" onclick="parentNode.submit();">
+                    <a class="text-danger">SIGN OUT</a></li></form>
+                </ul>
+              </div>
+        </hr>
+    </ul>
+    </div>
+</nav>

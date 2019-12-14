@@ -1,104 +1,231 @@
 <%- include('../includes/header') %>
-<style>
-     
-         body,html{
-             margin: 0;
-             padding: 0;
-             width: 100%;
-             height: 100%;
-             background: grey;
-             overflow: hidden;
-             
-         }
-         
-         .white{
-             width: 100%;
-             height: 37%;
-             background: rgb(255, 188, 235);
-			 /* opacity: 0%; */
-             
-         }
-     
-         .image{
-             width: 100%;
-             background: url('../../assets/Pictures/staff_admin/purple-mountain.jpg');
-             background-size: cover;
-             position: relative;
-             display: flex;
-             padding: 50px;
-             box-sizing: border-box;
-             justify-content: center;
-             height: 73%;
-         }
-     
-         #container{
-             width: 100%;
-             position: absolute;
-             bottom: -6px;
-             overflow: hidden;
-          
-         }
-     
-         #container svg{
-             width: 200%;
-             position: relative;
-             animation: move-left 5s linear infinite;
-             
-         }
-         
-         @keyframes move-left{
-             0%{
-                 left: 0%;
-             }
-             100%{
-                 left: -100%;
-             }
-             
-         }
-         
-         
-         
-         
-         
-         
-     </style>
-     
-     
-     
- </head>
- <body>
-<%- include('../includes/navbar') %>
 
-<div class="image flex-row row justify-content-around">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	
+	<style>
+		body {
+			min-width: 375px;
+			min-height: 100vh;
+			padding-bottom: 2rem;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		header {
+			display: block;
+			position: relative;
+			min-height: 500px;
+			height: 100vh;
+		}
+		header > background {
+			background-color: #000;
+			display: block;
+			position: absolute;
+			top: 0; right: 0; bottom: 0; left: 0;
+			background-image: url("https://www.larutadelsorigens.cat/wallpic/full/35-350784_beach-house-maldives-wallpaper-maldives-water-desktop-background.jpg");
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		#applyButton {
+			cursor: pointer;
+			width: fit-content;
+			padding: 1rem 1.5rem;
+			border: 1px solid #059;
+			border-radius: 100rem;
+			background-color: #059;
+			transform: scale(0.9);
+		}
+		#applyButton:hover, #applyButton:active {
+			color: #eee;
+			border: 1px solid #eee;
+			background-color: #09f;
+			transform: scale(1);
+		}
+		content {
+			animation: fadeup 0.5s linear;
+		}
+		content > h1 {
+			font-size: 4.2rem;
+		}
+		@keyframes fadeup {
+			0% { transform: scale(1.5); }
+			60% { transform: scale(0.7); }
+		}
+		#companyAds {
+			max-width: 1000px;
+			margin: 3.5rem auto;
+		}
+		#companyAds > div[data-aos] {
+			background-color: rgb(239, 239, 239);
+			overflow-wrap: break-word;
+			word-break: break-all;
+			text-align: center;
+			padding: 1.2rem;
+		}
+		photoGrid .col-6, photoGrid .col-12 {
+			padding: 0;
+			margin: 0;
+		}
+		photoGrid .photo {
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			cursor: pointer;
+			transition: 0.1s;
+			position: relative;
+		}
+		header > background:after, photoGrid .photo:after {
+			content: "";
+			position: absolute;
+			top: 0; right: 0; bottom: 0; left: 0;
+			pointer-events: none;
+			background: hsla(250, 0%, 0%, 0.3);
+		}
+		photoGrid .photo:hover:after, photoGrid .photo:active:after {
+			background: hsla(250, 0%, 0%, 0);
+		}
+		photoGrid .photo:hover, photoGrid .photo:active {
+			transform: scale(0.9);
+		}
+		photoGrid .photo.col-6 {
+			height: 240px;
+		}
+		photoGrid .photo.col-12 {
+			height: 120px;
+		}
+		photoGrid .photo .picture-name {
+			position: absolute;
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #fff;
+			-webkit-text-stroke: 1px #000;
+			font-size: 1.6rem;
+			z-index: 9;
+		}
+	</style>
 
-    <h1 id="title" class="col-12 text-center" style="
-    height: 100px;
-"> Staff Admin Dashboard </h1>
-    <button class="col-3 btn btn-outline-primary">page1</button>
-    <button class="col-3 btn btn-outline-primary">page2</button>
-    <button class="col-3 btn btn-outline-primary">page4</button>
-   
-<div id="container">
- 
-<svg  
-	 x="0px"
-	 y="0px" 
-	 viewBox="0 0 3841 108.5"
-	 style="overflow:scroll;enable-background:new 0 0 3841 108.5;" 
-	 xml:space="preserve">
-<defs>
-</defs>
+</head>
 
-<path style="fill:rgb(255, 188, 235);
-             stroke-miterlimit:10;" 
-            d="M3360.5,97.739c-242,0-480-48.375-480-48.375
-                S2647.5,0.5,2400.5,0.5s-480,48.375-480,48.375s-238,48.864-480,48.864s-480-48.375-480-48.375S727.5,0.5,480.5,0.5
-                S0.5,48.875,0.5,48.875V108h1920h1920V48.875C3840.5,48.875,3602.5,97.739,3360.5,97.739z"/>
-            </svg>
+<body> 
 
-</div>
-</div>
-<div class="white">
-</div>
- </body>
- <%- include('../includes/footer') %>
+	<header class="d-flex flex-column justify-content-center align-items-center">
+		<background></background>
+		<content class="d-flex flex-column align-items-center text-center" style="max-width: 800px; z-index: 9; color: #eee;">
+			<h1 class="font-weight-light">Travelaloha Company</h1>
+			<p class="font-weight-light" style="width: 70%; min-width: 290px;">
+				We are looking for Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, 
+				repellendus nemo sequi minima id itaque perspiciatis ipsa commodi 
+				laudantium facilis quis ex libero, voluptatum iure ad aliquam. Neque, optio vero?
+			</p>
+			<div id="applyButton" onclick="window.location='/admin/staff/login'">
+				Join our company &larr; <%- (user)?'GO':'LOGIN' %>
+			</div>
+		</content>
+	</header>
+
+	<div id="companyAds" class="row justify-content-around align-items-start">
+		<h3 class="display-4 col-12 text-center py-5" style="font-size: 3rem;">
+			What if ...
+		</h3>
+		<div data-aos="fade-up"
+		class="col-10 col-md-5 my-3">
+			<h5>You don't want to travel?</h5>
+			<span class="font-weight-light">
+				<img src="https://bit.ly/2EfIgLM" style="width: 90%;height: auto;">
+				<div class="w-100 my-3"></div>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nisi.
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, impedit.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, dicta!
+			</span>
+		</div>
+		<div data-aos="fade-up"
+		class="col-10 col-md-5 my-3">
+			<h5>Don't want to book the hotel?</h5>
+			<span class="font-weight-light">
+				<img src="https://bit.ly/2PFMSjt" style="width: 80%;height: auto;">
+				<div class="w-100 my-3"></div>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nisi.
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, impedit.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, dicta!
+			</span>
+		</div>
+		<div data-aos="fade-up"
+		class="col-10 my-3">
+			<h5>but if you want to work...</h5>
+			<span class="font-weight-light">
+				<img src="https://bit.ly/2EfNx5K" style="width: 50%;height: auto;">
+				<div class="w-100 my-3"></div>
+				We can never fall short when it comes to recruiting, hiring, 
+				maintaining and growing our workforce. It is the employees who make our organization’s success a reality.
+				With us you are not just a number. but if you really want to work here, you better know how to count.
+				Able hands' are more favorable to business than 'adorable hearts'.
+			</span>
+		</div>
+
+		<h3 class="display-4 col-12 text-center mt-5 mb-3" style="font-size: 3rem;">
+			Current available departments ...
+		</h3>
+		<photoGrid class="col-6 row mx-0 my-4 p-0" style="min-width: 300px;">
+			<% for (let i = 0; i < deptList.length - (deptList.length % 3); i += 3) { 
+				if (i % 6 < 3) { %>
+					<div class="photo col-6" style="background-image: url('<%- deptList[i].deptPicture %>')" onclick="lookupDetails('<%- i %>')">
+						<span class="picture-name"><%- deptList[i].deptName %></span>
+					</div>
+					<div class="col-6 row">
+						<div class="photo col-12" style="background-image: url('<%- deptList[i+1].deptPicture %>')" onclick="lookupDetails('<%- i+1 %>')">
+							<span class="picture-name"><%- deptList[i+1].deptName %></span>
+						</div>
+						<div class="photo col-12" style="background-image: url('<%- deptList[i+2].deptPicture %>')" onclick="lookupDetails('<%- i+2 %>')">
+							<span class="picture-name"><%- deptList[i+2].deptName %></span>
+						</div>
+					</div>
+				<% } else { %>
+					<div class="col-6 row">
+						<div class="photo col-12" style="background-image: url('<%- deptList[i].deptPicture %>')" onclick="lookupDetails('<%- i %>')">
+							<span class="picture-name"><%- deptList[i].deptName %></span>
+						</div>
+						<div class="photo col-12" style="background-image: url('<%- deptList[i+1].deptPicture %>')" onclick="lookupDetails('<%- i+1 %>')">
+							<span class="picture-name"><%- deptList[i+1].deptName %></span>
+						</div>
+					</div>
+					<div class="photo col-6" style="background-image: url('<%- deptList[i+2].deptPicture %>')" onclick="lookupDetails('<%- i+2 %>')">
+						<span class="picture-name"><%- deptList[i+2].deptName %></span>
+					</div>
+			<% }
+			} %>
+			<% let remainder = deptList.length - deptList.length % 3; 
+				while (remainder < deptList.length) {
+				%>
+					<div class="photo col-<%- parseInt(12 / (deptList.length%3), 10) %>" style="background-image: url('<%- deptList[remainder].deptPicture %>')" onclick="lookupDetails('<%- remainder %>')">
+						<span class="picture-name"><%- deptList[remainder].deptName %></span>
+					</div>
+					<% ++remainder;
+				}
+			%>
+		</photoGrid>
+		<div class="col-auto mt-4 text-center"><span>See available roles of:&nbsp;&nbsp;</span>
+			<select id="deptListSelect" onchange="reloadRolesList(this)" class="form-control d-inline-block" style="width: fit-content;">
+				<% for (let i = 0; i < deptList.length; ++i) { %>
+					<% if (i == 0) { %>
+					<option value="<%- deptList[i].deptNo %>" selected><%- deptList[i].deptName %></option>
+					<% } else { %>
+					<option value="<%- deptList[i].deptNo %>"><%- deptList[i].deptName %></option>
+				<% }
+				} %>
+			</select>
+			<div id="rolesDetail" class="col-auto pt-3 text-break text-left"><% if (!!rolesFirstDept.length) { %><%- rolesFirstDept.map((item, index) => {
+				return `<p class="font-weight-bold">${index+1}) ${item.roleName}</p><p class="text-break">${item.roleDetail}</p>`
+			}).join('') %><% } else { %>No available role<% } %></div>
+		</div>
+	</div>
+
+	<p class="text-center text-break display-3">Something else? google map?</p>
+	
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+		AOS.init({duration: 1000, offset: 150});
+	</script>
+	<script src="../../assets/js/staff_admin/index.js"></script>
+
+<%- include('../includes/footer') %>

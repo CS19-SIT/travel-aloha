@@ -17,18 +17,6 @@ exports.getHotelRoomOne = async (hotelId,roomId) => {
     }
   };
   
-  exports.getAllRoomInHotel = async (hotelId)=>{
-    try {
-      const resultAll = await db.query("select * from hotel,room_head where hotelIdroom = ?",[hotelId]);
-      if (result[0].length < 1) {
-        throw new Error(`Cannot find your room ${hotelId}.`);
-      } 
-      return resultAll[0][0];
-    } catch (err) {
-      throw new Error(`[ERR] getHotelALlRoomID: ${err}`);
-    }
-  };
- 
   exports.insertHotel = async(hotelName,hotelAddress,hotelPicture,hotelDesciption) => { 
      try {
         await db.query("Insert into hotel(hotelName,hotelAddress,hotelPicture,hotelDescription) "+
@@ -44,9 +32,7 @@ exports.getHotelRoomOne = async (hotelId,roomId) => {
     //warning delete hotel will delete room 
     await db.query("delete from hotel where hotelId = ?",[hotelId]);
   }
-
   
-
 
   // exports.insertBooking_Head()
   // exports.insertroom() done
