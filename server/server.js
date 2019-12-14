@@ -85,18 +85,28 @@ app.use(authRoutes);
 //
 
 //reward level controller caller and put on ejs file
-const rewController = require("./models/query_coupon");
+const rewModel = require("./models/query_coupon");
 
 // app.use(rewQuery.getvalidCoupon);
 // app.use(rewController.getPoints);
+// <%= coupon[0]. %>
+//   // <%= string %>
+//
+// console.log(`code: ${key} -> ${queryCoupons[key].CouponCode}`);
 
-app.get('/rewardLevel', (req, res) => {
-
-  rewModel.showValidCouponAc(req.user.user_id)
+app.get('/rewardLevel', async (req, res) => {
+  const user_id = req.user.user_id;
+  const queryCoupons = await rewModel.showValidCouponAc(user_id);
+  const queryPoints = await rewModel.showPoints(user_id);
+   console.log(queryCoupons);
+  // const couponcode = result[0].CouponCode;
     res.render('rewardLevel/reward', {
-    couponcode: query,
-    string: "showvalidcouponAC"
+      coupons: queryCoupons,
+      point: queryPoints,
+      pageTitle: "Reward",
+      user: req.user
   });
+  // console.log(coupons.expdate);
 });
 
 
