@@ -88,7 +88,7 @@ exports.postConfirm = async (req, res) => {
 	req.mysess = sess.bookingdetail;
 	// console.log(result)
 	// res.send(JSON.stringify(result));
-	res.redirect('/checkoutsss');
+	res.redirect('/checkout');
 
 };
 exports.getCOtest = function (req, res) {
