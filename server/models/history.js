@@ -6,13 +6,13 @@ exports.getHotelName = async (
   ) => {
     try {
       //console.log(typeof userID);
-      let resultHotelName = await db.query("select hotelname,timestamp from user as u,booking_detail as bookde,room_head as rhead,hotel as h where bookde.roomId_booking = rhead.hotelidroom AND rhead.hotelIdroom = h.hotelId and u.user_id = ?;",
+      let resultHotelName = await db.query("select hotelname,timestamp,hoteladdress,hotelTelNumber from user as u,booking_detail as bookde,room_head as rhead,hotel as h where bookde.roomId_booking = rhead.hotelidroom AND rhead.hotelIdroom = h.hotelId and bookde.userId_booking = ?;",
          [userID]
          );
       //const resulthotel = await db.query("SELECT * FROM hotel")
       //console.log(resulthotel[0]);
       //console.log(resultHotelName[1]);
-      return resultHotelName[0][0];
+      return resultHotelName[0];
 
     } catch (err) {
       throw new Error(`[ERR] createUser: ${err}`);
@@ -52,6 +52,5 @@ exports.getHotelName = async (
     } catch (err) {
       throw new Error(`[ERR] createUser: ${err}`);
     }
-    console.log(this.getHotelName);
   };
 
