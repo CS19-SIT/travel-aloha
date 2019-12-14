@@ -2,7 +2,7 @@
 
 Central platform for your dream travel.
 
-This project compose of many subsystems.
+This project compose of many systems.
 
 ## Getting Started
 
