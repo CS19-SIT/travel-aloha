@@ -1,0 +1,43 @@
+<%- include('../includes/header') %>
+    
+<style>
+    body{
+        background-image: url("../../assets/Pictures/staff_admin/purple-mountain.jpg");
+        background-size:cover;
+    }
+    .loginF{
+    width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10%;
+      background-color: rgba(255,255,255,0.75);
+      border-radius: 10px;
+      padding:3em;
+    }
+</style>
+</head>
+
+<body> 
+    <div class="loginF">
+    <h1 class="text-center">LOG IN</h1>
+
+    <p class="text-center"><a href="/admin/staff">>Go back to the company page<</a></p>
+
+    <form action="/admin/staff/login" method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Username"
+            class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password"
+            class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-info" style="float:right;">Login</button>
+        <p>No account? <a href="/register" target="_blank" >create one</a></p>
+        
+    </form>
+    
+</div>
+<%- include('../includes/footer') %>

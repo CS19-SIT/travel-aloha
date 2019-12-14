@@ -1,68 +1,83 @@
 <%- include('../includes/header') %>
 	<style>
-	img.profile{
-            width:100px;height:100px; 
-            float:left;
-            margin: 0.3%;
-        }
+		body {
+			min-width: 375px;
+			min-height: calc(100vh);
+			background-attachment: fixed;
+			background-color: #000;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		candidateCard {
+			background-color: rgba(208, 208, 208, 0.85);
+			width: 420px;
+			padding: 0.3rem;
+			border: 1px solid black;
+		}
+		candidateCard p {
+			width: fit-content;
+		}
+		ProfilePicture {
+			width: 120px;
+			height: 150px;
+			margin: 1rem auto;
+			background-color: black;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			border: 1px solid rgba(0, 0, 0, 0.6);
+		}
+		.detail {
+			width: 17rem;
+		}
 	</style>
-
 </head>
-<body style="background-color: whitesmoke;">
-    <%- include('../includes/navbar') %>
-    <div style="padding:20px">
-    <h1 style="font-size: 3em;">Staff Requisition</h1><br>
-    <h2>Staff List</h2>
-	<hr class="w-100 p-1 my-3" />
+<body style="background-image: url('https://images4.alphacoders.com/613/61324.jpg');">
 	
-    <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
-    <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
-    <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
-    Name : Ferstnem Rastnem<br>
-    Gender : F <br>
-    Department : CS <br>
-    Desired Salary : 100 <br>
-    <hr class="w-100 p-1 my-4" />
+	<%- include('./navbar') %>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-    <img src="../../assets/Pictures/staff_admin/staff-icon.png" class="profile"> ID Here
-    <button class="btn btn-danger" style="float:right" onclick="reject()">Reject</button>
-    <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#Appr">Approve</button>
-    Name : Ferstnem Rastnem<br>
-    Gender : M <br>
-    Department : CS <br>
-    Desired Salary : 100 <br>
-    <hr class="w-100 p-1 my-4" />
-    
-        <!--Modal Start-->
-    <div class="modal" id="Appr">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h3 class="modal-title">Approve this staff?</h3>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-      
-            <div class="modal-body">
-                <h4>Staff ID : 00</h4>
-              <p>Please Check whether you want to grant these access to the selected staff</p>
-              <input type="checkbox" id="cC">Create <br> 
-              <input type="checkbox" id="cR" checked>Read <br>
-              <input type="checkbox" id="cU">Update <br> 
-              <input type="checkbox" id="cD">Delete <br>
-            </div>
-            <div class="modal-footer">
-                <input type="text" value="0100" id="crudshow" readonly style="display:none">
-                <button class="btn btn-primary" style="float:right" onclick="confirmCRUD()" data-dismiss="modal">Confirm</button>
-                <button class="btn btn-warning" style="float:right" data-dismiss="modal">Cancel</button>
-               
-            </div>
-
-           </div>
-    </div>
-    </div><!-- Modal End-->
-
-    </div>
+	<h2 class="text-center my-4"><ins class="text-white">Requested List</ins></h2>
+	<CandidateList class="d-flex justify-content-center flex-wrap">
+		<% for (let i = 0; i < candidates.length; i++) { %>
+			<CandidateCard class="rounded row align-items-start justify-content-between m-3 font-weight-light text-break">
+				<ProfilePicture class="d-block" style="background-image: url('<%= candidates[i][`profile_picture`] %>');"></ProfilePicture>
+				<div class="col-auto detail text-break">
+					<p class="userid d-none"><%= candidates[i]['user_id'] %></p>
+					<p class="deptno d-none"><%= candidates[i]['deptNo'] %></p>
+					<p class="roleid d-none"><%= candidates[i]['roleId'] %></p>
+					<p class="mb-1">
+						<ins>Name</ins><br>
+						<%- candidates[i].name %>
+					</p>
+					<p class="mb-1">
+						<ins>Requested Job</ins><br>
+						<%- candidates[i].deptName %> (<%- candidates[i].roleName %>)
+					</p>
+					<p class="mb-1">
+						<ins>Gender</ins><br>
+						<%- candidates[i].gender %>
+					</p>
+					<p class="mb-1">
+						<ins>Birthdate</ins><br>
+						<%- new Date(candidates[i].birth_date).toDateString().substring(4) %>
+					</p>
+					<p class="mb-1">
+						<ins>Address</ins><br>
+						<%- candidates[i].address %>
+					</p>
+					<p data-descript="groupButtonToTheSameLine" class="mt-2 text-center w-100">
+						<button type="button" class="reject btn btn-outline-danger">REJECT</button>
+						<button type="button" class="approve btn btn-success">APPROVE</button>
+						<button type="button" class="looking btn btn-info" title="view their resume">&#128269;</button>
+					</p>
+				</div>
+			</CandidateCard>
+		<% } %>
+	</CandidateList>
+		
 	<script src="../../assets/js/staff_admin/requisition.js"></script>
 
 <%- include('../includes/footer') %>
