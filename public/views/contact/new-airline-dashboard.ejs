@@ -3,24 +3,27 @@
 <link rel="stylesheet" href="../../assets/stylesheet/style.css">
 
 </head>
-
 <body>
     <%- include('../includes/navbar') %>
     <div class="container">
         <h2 class="text-center pt-4 pb-3">New Airline Announcement</h2>
-        <div class="card border-info mb-3">
-            <div class="card-body">
-                <% for(var i = 0; i < airline.length; i++){ %>
-                <div class="row">
-                    <div class="col-md-2">
-                        <strong><%- airline[i].airlineName %></strong>
-                        <p class="float-left"><%- airline[i].timestamp %></p>
+        <div class="row">
+            <% for(var i = 0; i < airline.length; i++){ %>
+            <div class="col-md-6 pt-4">
+                <div class="card h-100 bg-dark" style="color: white;">
+                    <% if (typeof airline[i].airlinePicture == 'undefined'){ %>
+                    <div class="card-pic bg-dark rounded mx-auto d-block"></div>
+                    <% } else{ %>
+                    <% let isLink = /^(?:https\:\/\/|http\:\/\/|www)/.test(airline[i].airlinePicture); %>
+                    <div class="card-pic bg-dark rounded mx-auto d-block"
+                        style="background-image: url('<%- (isLink?``:`/assets/uploads/contact/pictures/`) + airline[i].airlinePicture %>'); ">
                     </div>
-                    <div class="col-md-8">
-                        <div class="clearfix"></div>
-                        <p><%- airline[i].airlineDescription %></p>
-                    </div>
-                    <div class="col-md-2">
+                    <% } %>
+                    <div class="card-body text-center">
+                        <h5 class="card-title "><%- airline[i].airlineName %></h5>
+                        <p class="card-text">
+                            <%- (airline[i].airlineDescription)?airline[i].airlineDescription.substring(0, 120).concat(" ..."):"" %>
+                        </p>
                         <form method="POST" action="./new-airline-dashboard/detail/new-airline">
                             <div class="clearfix"></div>
                             <button type="submit" class="btn btn-info text-center" role="button"
@@ -29,9 +32,10 @@
                         </form>
                     </div>
                 </div>
-                <% }%>
             </div>
+            <% }%>
         </div>
     </div>
-
+    <br>
+    <br>
     <%- include('../includes/footer') %>

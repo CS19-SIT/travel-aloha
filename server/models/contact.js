@@ -57,6 +57,8 @@ exports.insertNewAirline = async ({
   airlineTelNumber,
   airlineContactNumber,
   airlineDescription,
+  airlineSeatType,
+  airlineSeatPrice,
   airlinePlaneDes,
   airlineProfile,
   airlinePicture
@@ -64,7 +66,7 @@ exports.insertNewAirline = async ({
   try {
     await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, 
                     airlineAddress, airlineTelNumber, airlineContactNumber, airlinePlaneDes, airlineProfile, 
-                    airlinePicture) VALUES(?,?,?,?,?,?,?,?,?,?)`, [
+                    airlinePicture,airlineSeatType,airlineSeatPrice) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`, [
       airlineName,
       airlineNationality,
       airlineEmail,
@@ -74,12 +76,14 @@ exports.insertNewAirline = async ({
       airlineContactNumber,
       airlinePlaneDes,
       airlineProfile,
-      airlinePicture
+      airlinePicture,
+      airlineSeatType,
+      airlineSeatPrice
     ]);
   } catch (error) {
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
-};
+}
 exports.getAirlineDashboard = async () => {
   try {
     const result = await db.query(`SELECT * FROM airline`);

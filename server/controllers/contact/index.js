@@ -79,6 +79,8 @@ exports.postAirlineInfo = async (req, res) => {
         airlineAddress,
         airlineTelNumber,
         airlineContactNumber,
+        airlineSeatType,
+        airlineSeatPrice,
         airlinePlaneDes
       } = req.body;
       if (err) {
@@ -97,7 +99,9 @@ exports.postAirlineInfo = async (req, res) => {
         airlineContactNumber,
         airlinePlaneDes,
         airlineProfile,
-        airlinePicture
+        airlinePicture,
+        airlineSeatType,
+        airlineSeatPrice
       });
     });
   } catch (error) {

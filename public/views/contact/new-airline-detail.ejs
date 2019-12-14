@@ -12,9 +12,14 @@
                     <h1 class="display-4 p-3 text-center"> <%= JSON.parse(airline)[0].airlineName %></h1>
                 </div>
                 <div class="col-md-12">
-                    <div class="text-center"><img class="hotel-pic rounded mx-auto d-block"
-                            src="../../../assets/Pictures/contact/naples-grande-palm-pool.jpg">
-                    </div>
+                    <% if (typeof JSON.parse(airline)[0].airlinePicture == 'undefined'){ %>
+                        <div class="text-center"><div class="hotel-pic bg-dark rounded mx-auto d-block"></div>
+                    <% } else{ %>
+                        <% let isLink = /^(?:https\:\/\/|http\:\/\/|www)/.test(JSON.parse(airline)[0].airlinePicture); %>
+                        <div class="text-center"><div class="hotel-pic bg-dark rounded mx-auto d-block"
+                            style="background-image: url('<%- (isLink?``:`/assets/uploads/contact/pictures/`) + JSON.parse(airline)[0].airlinePicture %>'); ">
+                        </div>
+                    <% } %>
                 </div>
             </div>
             <div class="row">
@@ -24,6 +29,13 @@
                 <div class="col-md-12">
                     <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">
                         <%= JSON.parse(airline)[0].airlineDescription %><p>
+                </div>
+                <div class="col-md-12">
+                    <h3 class="pt-4 pb-1 pl-4">Airplane Description</h3>
+                </div>
+                <div class="col-md-12">
+                    <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">
+                        <%= JSON.parse(airline)[0].airlinePlaneDes %><p>
                 </div>
             </div>
             <div class="row">
