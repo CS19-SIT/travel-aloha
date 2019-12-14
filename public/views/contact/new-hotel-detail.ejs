@@ -14,8 +14,6 @@
                     <h1 class="display-4 p-3 text-center"><%= JSON.parse(hotel)[0].hotelName %></h1>
                 </div>
                 <div class="col-md-12">
-
-
                     <% if (typeof JSON.parse(hotel)[0].hotelPicture == 'undefined'){ %>
                         <div class="text-center"><div class="hotel-pic bg-dark rounded mx-auto d-block"></div>
                     <% } else{ %>
@@ -39,7 +37,20 @@
                     <h3 class="pb-2 pl-4">Hotel Picture and Detail</h3>
                 </div>
                 <div class="col-md-9">
-                    
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block detail-pic" src="../../../assets/images/hotel.jpg"
+                                alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block detail-pic" src="../../../assets/images/mbr-1920x1280.jpg"
+                                alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block detail-pic" src="../../../assets/images/dr5cbbya3md01.jpg"
+                                alt="Third slide">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card text-center h-40">

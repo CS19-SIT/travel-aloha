@@ -42,9 +42,9 @@ const upload = multer({
 }).fields([
  { name: "hotelProfile", maxCount: 1 },
  { name: "hotelPicture", maxCount: 1 },
- { name: "hotelRoomPicture", maxCount:1 }, 
+ { name: "hotelRoomPicture", maxCount: 1},
  { name: "airlineProfile", maxCount: 1 },
- { name: "airlinePicture", maxCount: 1 },
+ { name: "airlinePicture", maxCount: 1 }
 ]);
 
 module.exports = {

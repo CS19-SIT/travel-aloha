@@ -44,7 +44,7 @@ exports.postHotelInfo = async (req, res) => {
       console.log(hotelRoomType);
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
-      // const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
+      const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
       await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
@@ -56,133 +56,10 @@ exports.postHotelInfo = async (req, res) => {
         hotelPicture
       });
       await contactModel.insertNewHotelRoom({
+        hotelRoomPrice,
         hotelRoomType,
-        hotelRoomPrice
+        hotelRoomPicture
       })
-      // if (hotelRoomType) {
-      //   if (hotelRoomType == "1 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType({hotelRoomType});
-      //     await contactModel.insertNewHotel1SingleBedRoomPrice({hotelRoomPrice});
-      //   } else if (hotelRoomType == "2 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType2({hotelRoomType});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice});
-      //   } else if (hotelRoomType == "1 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType3({hotelRoomType});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice});
-      //   } else if (hotelRoomType == "2 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType4({hotelRoomType});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice});
-      //   } else if (hotelRoomType == "1 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType5({hotelRoomType});
-      //     await contactModel.insertNewHotel1KingBedRoomPrice({hotelRoomPrice});
-      //   } else if (hotelRoomType == "2 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType6({hotelRoomType});
-      //     await contactModel.insertNewHotel2KingBedRoomPrice({hotelRoomPrice});
-      //   }
-      // } else if (hotelRoomType2) {
-      //   if (hotelRoomType2 == "1 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType({hotelRoomType2});
-      //     await contactModel.insertNewHotel1SingleBedRoomPrice({hotelRoomPrice2});
-      //   } else if (hotelRoomType2 == "2 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType2({hotelRoomType2});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice2});
-      //   } else if (hotelRoomType2 == "1 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType3({hotelRoomType2});
-      //     await contactModel.insertNewHotel1DoubleBedRoomPrice({hotelRoomPrice2});
-      //   } else if (hotelRoomType2 == "2 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType4({hotelRoomType2});
-      //     await contactModel.insertNewHotel2DoubleBedRoomPrice({hotelRoomPrice2});
-      //   } else if (hotelRoomType2 == "1 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType5({hotelRoomType2});
-      //     await contactModel.insertNewHotel1KingBedRoomPrice({hotelRoomPrice2});
-      //   } else if (hotelRoomType2 == "2 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType6({hotelRoomType2});
-      //     await contactModel.insertNewHotel2KingBedRoomPrice({hotelRoomPrice2});
-      //   }
-      // } else if (hotelRoomType3) {
-      //   if (hotelRoomType3 == "1 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType({hotelRoomType3});
-      //     await contactModel.insertNewHotel1SingleBedRoomPrice({hotelRoomPrice3});
-      //   } else if (hotelRoomType3 == "2 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType2({hotelRoomType3});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice3});
-      //   } else if (hotelRoomType3 == "1 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType3({hotelRoomType3});
-      //     await contactModel.insertNewHotel1DoubleBedRoomPrice({hotelRoomPrice3});
-      //   } else if (hotelRoomType3 == "2 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType4({hotelRoomType3});
-      //     await contactModel.insertNewHotel2DoubleBedRoomPrice({hotelRoomPrice3});
-      //   } else if (hotelRoomType3 == "1 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType5({hotelRoomType3});
-      //     await contactModel.insertNewHotel1KingBedRoomPrice({hotelRoomPrice3});
-      //   } else if (hotelRoomType3 == "2 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType6({hotelRoomType3});
-      //     await contactModel.insertNewHotel2KingBedRoomPrice({hotelRoomPrice3});
-      //   }
-      // } else if (hotelRoomType4) {
-      //   if (hotelRoomType4 == "1 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType({hotelRoomType4});
-      //     await contactModel.insertNewHotel1SingleBedRoomPrice({hotelRoomPrice4});
-      //   } else if (hotelRoomType4 == "2 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType2({hotelRoomType4});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice4});
-      //   } else if (hotelRoomType4 == "1 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType3({hotelRoomType4});
-      //     await contactModel.insertNewHotel1DoubleBedRoomPrice({hotelRoomPrice4});
-      //   } else if (hotelRoomType4 == "2 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType4({hotelRoomType4});
-      //     await contactModel.insertNewHotel2DoubleBedRoomPrice({hotelRoomPrice4});
-      //   } else if (hotelRoomType4 == "1 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType5({hotelRoomType4});
-      //     await contactModel.insertNewHotel1KingBedRoomPrice({hotelRoomPrice4});
-      //   } else if (hotelRoomType4 == "2 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType6({hotelRoomType4});
-      //     await contactModel.insertNewHotel2KingBedRoomPrice({hotelRoomPrice4});
-      //   }
-      // } else if (hotelRoomType5) {
-      //   if (hotelRoomType5 == "1 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType({hotelRoomType5});
-      //     await contactModel.insertNewHotel1SingleBedRoomPrice({hotelRoomPrice5});
-      //   } else if (hotelRoomType5 == "2 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType2({hotelRoomType5});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice5});
-      //   } else if (hotelRoomType5 == "1 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType3({hotelRoomType5});
-      //     await contactModel.insertNewHotel1DoubleBedRoomPrice({hotelRoomPrice5});
-      //   } else if (hotelRoomType5 == "2 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType4({hotelRoomType5});
-      //     await contactModel.insertNewHotel2DoubleBedRoomPrice({hotelRoomPrice5});
-      //   } else if (hotelRoomType5 == "1 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType5({hotelRoomType5});
-      //     await contactModel.insertNewHotel1KingBedRoomPrice({hotelRoomPrice5});
-      //   } else if (hotelRoomType5 == "2 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType6({hotelRoomType5});
-      //     await contactModel.insertNewHotel2KingBedRoomPrice({hotelRoomPrice5});
-      //   }
-      // } else if (hotelRoomType6) {
-      //   if (hotelRoomType6 == "1 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType({hotelRoomType6});
-      //     await contactModel.insertNewHotel1SingleBedRoomPrice({hotelRoomPrice6});
-      //   } else if (hotelRoomType6 == "2 Single-Bed") {
-      //     await contactModel.insertNewHotelRoomType2({hotelRoomType6});
-      //     await contactModel.insertNewHotel2SingleBedRoomPrice({hotelRoomPrice6});
-      //   } else if (hotelRoomType6 == "1 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType3({hotelRoomType6});
-      //     await contactModel.insertNewHotel1DoubleBedRoomPrice({hotelRoomPrice6});
-      //   } else if (hotelRoomType6 == "2 Double-Bed") {
-      //     await contactModel.insertNewHotelRoomType4({hotelRoomType6});
-      //     await contactModel.insertNewHotel2DoubleBedRoomPrice({hotelRoomPrice6});
-      //   } else if (hotelRoomType6 == "1 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType5({hotelRoomType6});
-      //     await contactModel.insertNewHotel1KingBedRoomPrice({hotelRoomPrice6});
-      //   } else if (hotelRoomType6 == "2 King size-bed") {
-      //     await contactModel.insertNewHotelRoomType6({hotelRoomType6});
-      //     await contactModel.insertNewHotel2KingBedRoomPrice({hotelRoomPrice6});
-      //   }
-      // }
-      // await contactModel.insertNewHotelRoomPicture({
-      //   hotelRoomPicture
-      // })
     });
   } catch (error) {
     res.sendStatus(400);
