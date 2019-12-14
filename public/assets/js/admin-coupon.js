@@ -17,6 +17,16 @@ $(document).ready(function () {
     }
   }
 
+  function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+  }
+
+  function randomCouponCode() {
+    return randomString(10, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+  }
+
   $("select[multiple='multiple'].hotel-select").select2({
     width: '100%',
     ajax: searchOptionsSelectAjax("hotel")
@@ -150,5 +160,9 @@ $(document).ready(function () {
       alert("Success!");
       location.reload();
     });
+  });
+
+  $("button[name=couponGenerateButton]").click(function (e) {
+    $(e.target.form).find("input[name=code]").val(randomCouponCode());
   });
 });
