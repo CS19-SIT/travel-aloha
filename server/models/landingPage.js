@@ -32,6 +32,16 @@ exports.countUsers = async () => {
     throw new Error(`[ERR] countPlace: ${err}`);
     }
   };
+  exports.countFlight = async () => {
+    try {
+      const countPlace = await db.query(`select count(Flight_number) as countID from Flight `);
+  
+      return countPlace[0];
+
+    } catch (err) {
+    throw new Error(`[ERR] countFlight: ${err}`);
+    }
+  };
 
   exports.getAllFlight = async () => {
     try {
