@@ -20,16 +20,6 @@ exports.getPayment = (req, res) => {
 };
 
 exports.postIndex = (req, res) => {
-	// const result = JSON.stringify({
-	// 	inputFirstName: req.body.inputFirstName,
-	// 	inputLastName: req.body.inputLastName,
-	// 	inputEmail: req.body.inputEmail,
-	// 	inputPhoneNo: req.body.inputPhoneNo
-	// });
-
-	// console.log(JSON.parse(result));
-	// res.send(result);
-
 	const result = {
 		inputFirstName: req.body.inputFirstName,
 		inputLastName: req.body.inputLastName,
@@ -53,9 +43,9 @@ exports.postIndex = (req, res) => {
 		hotelData: result
 	});
 
-	// res.redirect('/hotel-booking/payment')
 };
 
+// didnt use this function
 exports.postReviewForm = (req, res) => {
 	const result = {
 		inputFirstName: req.body.inputFirstName,
@@ -78,13 +68,13 @@ exports.postReviewForm = (req, res) => {
 };
 
 
-exports.postConfirm = (req, res) => {
+exports.postConfirm = async (req, res) => {
 	const reqBookingDetail = [
 		req.body.inputFirstName,
 		req.body.inputLastName,
 		req.body.inputEmail,
 		req.body.inputPhoneNo,
-		req.user.user_id,
+		(req.user ? req.user.user_id : null),
 		new Date(req.body.checkInDate),
 		new Date(req.body.checkOutDate),
 		req.body.hotelID,
@@ -92,14 +82,21 @@ exports.postConfirm = (req, res) => {
 		req.body.hotelFullPrice,
 		req.body.hotelSalePrice
 	];
-	const insertbook = async () => { 
-		return await hotelbookModel.insertBooking(reqBookingDetail) 
-	};
-	console.log(insertbook)
-	res.send(insertbook[0]());
-	//   res.redirect('/checkout')
+	let result = await hotelbookModel.insertBooking(reqBookingDetail);
+	let sess = req.session;
+	sess.bookingdetail = result;
+	req.mysess = sess.bookingdetail;
+	// console.log(result)
+	// res.send(JSON.stringify(result));
+	res.redirect('/checkoutsss');
 
 };
+exports.getCOtest = function (req, res) {
+	console.log("This is checkoutsss")
+	let sess = req.mysess;
+	res.send(JSON.stringify(sess));
+};
+
 //Probably needed in controller dont mind these comment
 // no idea...
 // no idea...

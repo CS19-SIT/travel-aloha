@@ -1,5 +1,4 @@
 const db = require("../db/db"); //connect to db
-const userModel = require("./user")
 exports.insertBooking = async booking => {
   const [
     FirstName,
@@ -19,10 +18,15 @@ exports.insertBooking = async booking => {
       "insert into booking_detail(firstName,lastName,email,phoneNumber,userId_booking,roomId_booking,hotelId_booking,salePrice,fullPrice) values (?,?,?,?,?,?,?,?,?)",
       [FirstName, LastName, Email, PhoneNo, user_id, roomID, hotelID, hotelSalePrice, hotelFullPrice]
     );
+    // console.log(book_detail[0].insertId);
+    console.log("Queried insert book detail");
     let book_head = await db.query(
       "insert into booking_head(checkinDate,checkoutDate,bookingDetailid) values (?,?,?)",
       [checkInDate, checkOutDate, book_detail[0].insertId]
     );
+    // console.log(book_head);
+    console.log("Queried insert book head");
+    console.log("queried success, returning book_head_id")
     return book_head[0].insertId;
   } catch (error) {
     throw new Error(`[ERR] insertBooking: ${error}`);
@@ -39,7 +43,7 @@ exports.getBooking = async bookingId => {
       [bookingId]
     );
     const result2 = await db.query(
-      "selec * from booking_detail where bookingId_detail = ?",
+      "select * from booking_detail where bookingId_detail = ?",
       [bookingDetailId]
     );
     if (result[0].length < 1) {
