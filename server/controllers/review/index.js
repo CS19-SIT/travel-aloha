@@ -1,11 +1,13 @@
 
 const Rating_ReviewModel = require("../../models/Rating_Review");
 
-exports.getHotel = (req, res) =>
+exports.getHotel = (req, res) => {
   res.render("review_rating/ReviewHotel", {
     pageTitle: "TravelAloha - Review - Hotel",
-    user: req.user
+    user: req.user,
+    hotelId: req.params.id
   });
+}
 
 exports.getFlight = (req, res) =>
   res.render("review_rating/ReviewAirline", {
@@ -21,6 +23,7 @@ exports.getAirline = (req, res) =>
 
 exports.postHotelReview = async (req, res) => {
   const {
+    userId,
     Title_Hotel,
     Type_Of_Hotel_Reviewer,
     Text_Hotel_Review,
@@ -29,10 +32,11 @@ exports.postHotelReview = async (req, res) => {
     Meal_Hotel_Rating,
     Location_Hotel_Rating,
     Service_Hotel_Rating,
-    hotel_hotelId
   } = req.body;
+  const hotel_hotelId = req.params.id
   try {
     await Rating_ReviewModel.insertNewHotel_Review({
+      userId,
       Title_Hotel,
       Type_Of_Hotel_Reviewer,
       Text_Hotel_Review,
