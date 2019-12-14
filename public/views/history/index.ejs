@@ -3,55 +3,25 @@
 <!-- <script>
   const hotelName = JSON.parse ('<%- hotelName %>');
 </script> -->
-<script src="../../assets/js/history/history.js"></script>
+
+<!--
+<script src="../../assets/js/history/history.js"></script>-->
 
 <!--This is custom CSS-->
 <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
 <script>
-  var x = 5;
-
-  var allRecord = [
-    { name: "<%= hotelName %>", timeStamp: 1573644567, stat: 0, type: 0 },
-    { name: "Hotel 2", timeStamp: 1573599966, stat: 0, type: 1 },
-    { name: "Airline 3", timeStamp: 1573435554, stat: 0, type: 1 },
-    { name: "Airline 4", timeStamp: 1573211444, stat: 0, type: 1 },
-    { name: "Hotel 5", timeStamp: 1572242267, stat: 0, type: 0 },
-    { name: "Hotel 6", timeStamp: 1511144567, stat: 2, type: 1 },
-    { name: "Hotel 7", timeStamp: 1500044522, stat: 2, type: 1 },
-    { name: "Hotel 8", timeStamp: 1500044511, stat: 1, type: 0 },
-    { name: "Hotel 9", timeStamp: 1500044500, stat: 1, type: 0 },
-    { name: "Hotel 10", timeStamp: 1500044111, stat: 1, type: 1 },
-    { name: "Hotel 11", timeStamp: 1500044000, stat: 2, type: 0 },
-    { name: "Hotel 12", timeStamp: 1500049999, stat: 1, type: 1 },
-    { name: "Hotel 13", timeStamp: 1500048888, stat: 1, type: 0 },
-    { name: "Hotel 14", timeStamp: 1500048888, stat: 2, type: 0 },
-    { name: "Hotel 15", timeStamp: 1500048888, stat: 2, type: 0 },
-    { name: "Hotel 16", timeStamp: 1500048888, stat: 1, type: 0 },
-    { name: "Hotel 17", timeStamp: 1500048888, stat: 1, type: 0 },
-    { name: "Hotel 18", timeStamp: 1500048888, stat: 1, type: 0 },
-  ];
-
-  var allDetail = [
-    "Detail of 1", "Detail of 2", "Detail of 3",
-    "Detail of 4", "Detail of 5", "Detail of 6",
-    "Detail of 7", "Detail of 8", "Detail of 9",
-    "Detail of 10", "Detail of 11", "Detail of 12",
-    "Detail of 13", "Detail of 14", "Detail of 15",
-    "Detail of 16", "Detail of 17", "Detail of 18",
-  ];
-
 
 </script>
 
 <body>
 
-  <body onload="loadPage()">
+  <body>
     <div class="row">
       <!--User Info side (left)-->
       <div class="col-sm-3 ta-user-info">
         <h4 class="user-name"><b id="userName">
-            <'userName'>
+            <%= hotelName %>
           </b></h4>
         <hr class="hrColor">
         <div class="user-info">
@@ -68,11 +38,6 @@
       <!--History Header side (right)-->
       <div class="col-sm-9 ta-user-history">
         <h1><b>History</b></h1>
-        <!--Filter-->
-
-        <div class="filter">
-          <!--Activate from JS-->
-        </div>
         <div class="history-list" id="histList">
 
           <!--This is header for each history-->
@@ -80,7 +45,7 @@
             <div class="headerInfo">
               <span class="brief-info">
                 <div>
-                  <h5><b>   </b></h5>
+                  <h5><b><%= hotelName %>GG HTML</b></h5>
                 </div>
                 <div>
                   <h6>   </h6>
@@ -128,10 +93,6 @@
             </div>
           </div>
           <!--End of HTML List-->
-        </div>
-        <div class="text-center pagerdiv" id="pager">
-          <button class="btn btn-primary older" onclick="oldRec()">Older</button>
-          <button class="btn btn-primary newer" onclick="newRec()">Newer</button>
         </div>
       </div>
       <div id="detailModal" class="modal fade" role="dialog">
