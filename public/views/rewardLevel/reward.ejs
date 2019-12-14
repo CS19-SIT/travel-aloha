@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
+=======
+<!-- <!DOCTYPE html>
+>>>>>>> reward_level
 <html lang="en">
 
 <head>
@@ -7,6 +11,7 @@
   <title>Reward</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+<<<<<<< HEAD
   <script src="main.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -20,6 +25,15 @@
       $('.ticket-in').toggleClass('active');
     });
   </script> -->
+=======
+  <script src="main.js"></script> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
+>>>>>>> reward_level
 
 </head>
 
@@ -101,12 +115,17 @@
         <h2>Coupon & Reward</h2>
         <ul class="nav nav-tabs nav-fill" style="padding: 10px;margin: 10px">
           <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link active" href="#">Valid</a>
+=======
+            <a class="nav-link active" id="valid" href="#eachcoupon">Valid</a>
+>>>>>>> reward_level
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Used</a>
+            <a class="nav-link" id="used" href="#usedcoupon">Used</a>
           </li>
         </ul>
+<<<<<<< HEAD
         <div class="col-sm-12" style="text-align: center;">
           <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
                         Flight Coupon
@@ -141,6 +160,48 @@
                   <p>Use Promo Code: <span class="promo"><%= coupons[key].CouponCode %></span></p>
                   <p class="expire">Expires: <%= coupons[key].exp %></p>
                 </div>
+=======
+
+
+
+        <div class="col-sm-4">
+          <div id="eachcoupon" >
+            <ul>
+              <% for(var key of Object.keys(coupons) ) { %>
+              <li><%= coupons[key].CouponCode %>
+                <%= coupons[key][expDate] %>
+                <%= coupons[key].Discount %>
+                <%= coupons[key].Limit %></li>
+              <% };%>
+            </ul>
+          </div>
+          <div id="usedcoupon" visibility="hidden">
+            <ul>
+              <% for(var key of Object.keys(usedCoupon) ) { %>
+              <li>
+                <%= usedCoupon[key].CouponCode %>
+                <%= usedCoupon[key][usedDate] %>
+              </li>
+              <% };%>
+            </ul>
+          </div>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h3 class="modal-title">Gift Coupon</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <img src="../assets/img/coupon.jpg" class="img-thumbnail" alt="Cinque Terre" width="mx-auto" height="mx-auto">
+>>>>>>> reward_level
               </div>
           <% };%>
         </div>
@@ -149,6 +210,11 @@
     </div>
   </div>
   <!--close all div-->
+
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> reward_level

@@ -98,13 +98,17 @@ app.get('/rewardLevel', async (req, res) => {
   const user_id = req.user.user_id;
   const queryCoupons = await rewModel.showValidCouponAc(user_id);
   const queryPoints = await rewModel.showPoints(user_id);
-   console.log(queryCoupons);
+  const queryUsed = await rewModel.showUsedCouponAc(user_id);
+   console.log(queryUsed);
   // const couponcode = result[0].CouponCode;
     res.render('rewardLevel/reward', {
       coupons: queryCoupons,
       point: queryPoints,
       pageTitle: "Reward",
-      user: req.user
+      user: req.user,
+      expDate: "DATE_FORMAT(`ExpDate`,'%W %M %Y')",
+      usedDate: "DATE_FORMAT(`usedDate`,'%W %M %Y')",
+      usedCoupon: queryUsed
   });
   // console.log(coupons.expdate);
 });
