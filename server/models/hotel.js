@@ -109,7 +109,6 @@ exports.findHotelByPlace = async place => {
         "%'"
     );
     if (result[0].length < 1) {
-      console.log("Brak wyników");
       throw new Error(`Cannot find hotel in ${place}.`);
     }
 
@@ -138,9 +137,7 @@ exports.getHotelRoomOne = async (hotelId, roomId) => {
 exports.getAllRoomInHotel = async hotelId => {
   try {
     const resultAll = await db.query(
-      "select * from hotel,room_head where hotelIdroom = ?",
-      [hotelId]
-    );
+      "select * from hotel,room_head where hotelIdroom = ?",[hotelId]);
     if (result[0].length < 1) {
       throw new Error(`Cannot find your room ${hotelId}.`);
     }

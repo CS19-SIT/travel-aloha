@@ -9,7 +9,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 const session = require("express-session");
@@ -35,7 +35,7 @@ const sessionStore = new MySQLStore({
   database: process.env.DB_DATABASE
 });
 
-const publicPath = path.join(__dirname + "/../public");
+const publicPath = path.join(__dirname, "../public");
 const viewPath = path.join(publicPath + "/views");
 
 app.set("view engine", "ejs");
@@ -68,6 +68,7 @@ app.disable("x-powered-by");
  */
 const adminRoutes = require("./routes/admin/index");
 const adminCouponRoutes = require("./routes/admin/coupon");
+const adminFlightRoutes = require("./routes/admin/flight");
 const adminHotelRoutes = require("./routes/admin/hotel");
 const adminStaffRoutes = require("./routes/admin/staff");
 const adminUserRoutes = require("./routes/admin/user");
@@ -76,36 +77,40 @@ const checkoutRoutes = require("./routes/checkout/index");
 const contactRoutes = require("./routes/contact/index");
 const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
+const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
+const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
+const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
-app.use(indexRoutes);
+app.use(landingPageRoutes);
 app.use(authRoutes);
-
+app.use("/temp", indexRoutes);
 
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
+app.use("/admin/flight", adminFlightRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
-app.get("/", (req, res) => res.render("index", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
-
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
+app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
+<<<<<<< HEAD
 
 
+=======
+app.use("/hotel", hotelRoutes);
+>>>>>>> d7f14a1c00fe6bc59f9464204e789a05ad9032ea
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);
@@ -114,14 +119,6 @@ app.use("/flight/booking", flightBookingRoutes);
 app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
-
-app.use((err, req, res, next) => {
-  res.status(400).render("errors/400", {
-    pageTitle: "TravelAloha - Bad Request",
-    user: req.user,
-    error: err
-  });
-});
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
