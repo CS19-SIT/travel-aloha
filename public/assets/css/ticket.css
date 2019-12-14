@@ -12,13 +12,13 @@
 }
 
 .coupon-container  h2{
-  font-size: 16px;
+  font-size: 14px;
   color: black;
   text-align: center;
 }
 
 .coupon-container  p{
-  font-size: 14px;
+  font-size: 12px;
   color: #52575c;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -86,13 +86,13 @@ p.expire {
 
 @media screen and (max-width: 750px) {
   .coupon-container  h2{
-    font-size: 12px;
+    font-size: 10px;
     color: black;
     text-align: center;
     line-height: 20px;
   }
   .coupon-container  p{
-    font-size: 10px;
+    font-size: 9px;
     color: #52575c;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -108,7 +108,7 @@ p.expire {
     max-width:270px;
   }
   .coupon-container  h2{
-    font-size: 14px;
+    font-size: 12px;
     color: black;
     text-align: center;
     line-height: 20px;
@@ -131,7 +131,7 @@ p.expire {
     max-width:300px;
   }
   .coupon-container  h2{
-    font-size: 16px;
+    font-size: 14px;
     color: black;
     text-align: center;
     line-height: 20px;

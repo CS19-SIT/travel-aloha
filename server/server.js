@@ -96,26 +96,40 @@ const rewModel = require("./models/query_coupon");
 
 app.get('/rewardLevel', async (req, res) => {
   const user_id = req.user.user_id;
-  const queryCoupons = await rewModel.showValidCouponAc(user_id);
+  const queryCouponsAc = await rewModel.showValidCouponAc(user_id);
+  const queryCouponsFl = await rewModel.showValidCouponFl(user_id);
+  const queryCouponsFo = await rewModel.showValidCouponFo(user_id);
+  const queryCouponsEn = await rewModel.showValidCouponEn(user_id);
+  console.log(queryCouponsAc);
+  console.log(queryCouponsFl);
+  console.log(queryCouponsFo);
+  console.log(queryCouponsEn);
+
+  const queryUsedAc = await rewModel.showUsedCouponAc(user_id);
+  const queryUsedFl = await rewModel.showUsedCouponFl(user_id);
+  const queryUsedFo = await rewModel.showUsedCouponFo(user_id);
+  const queryUsedEn = await rewModel.showUsedCouponEn(user_id);
+  
   const queryPoints = await rewModel.showPoints(user_id);
-  const queryUsed = await rewModel.showUsedCouponAc(user_id);
-   console.log(queryUsed);
-  // const couponcode = result[0].CouponCode;
-    res.render('rewardLevel/reward', {
-      coupons: queryCoupons,
-      point: queryPoints,
-      pageTitle: "Reward",
-      user: req.user,
-      expDate: "DATE_FORMAT(`ExpDate`,'%W %M %Y')",
-      usedDate: "DATE_FORMAT(`usedDate`,'%W %M %Y')",
-      usedCoupon: queryUsed
+
+  res.render('rewardLevel/reward', {
+    couponsAC: queryCouponsAc,
+    couponsFl: queryCouponsFl,
+    couponsFo: queryCouponsFo,
+    couponsEn: queryCouponsEn,
+    point: queryPoints,
+    pageTitle: "Reward",
+    user: req.user,
+    expDate: "DATE_FORMAT(`ExpDate`,'%W %D %M %Y')",
+    usedDate: "DATE_FORMAT(`usedDate`,'%W %D %M %Y')",
+    usedCouponAc: queryUsedAc,
+    usedCouponFl: queryUsedFl,
+    usedCouponFo: queryUsedFo,
+    usedCouponEn: queryUsedEn
+
   });
   // console.log(coupons.expdate);
 });
-
-
-
-// app.use("/rewardLevel", rewardLevelRoutes);
 
 app.use(errorsController.get404);
 
