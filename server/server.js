@@ -81,6 +81,7 @@ const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
+const searchFlightRoutes = require("./routes/flight/flight_info");
 const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
 const userRoutes = require("./routes/user/dashboard/index");
@@ -107,6 +108,8 @@ app.use("/dashboard/favorite", userFavoriteRoutes);
 
 app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
+
+app.use(searchFlightRoutes);
 
 app.use("/flight", flightRoutes);
 app.use("/flight/booking", flightBookingRoutes);

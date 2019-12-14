@@ -81,6 +81,24 @@
         </div>
     </div>
 
+
+    <div class="card-box">
+        <a href="#" class="btn btn-fix text-left">
+    <% for (var i = 0 ; i < searchFlight.length ; i++) {%>
+    <div class="card-recommended">
+        <div class="card" style="width: 18rem;">
+            <h1><%= searchFlight[i].Destination %></h1>
+            <div class="card-body">
+                <p><%= searchFlight[i].Depart_Date%></p>
+                <p><%= searchFlight[i].Arrive_Date %></p>
+                <p><%= searchFlight[i].airlineName %></p>
+                <p><%= searchFlight[i].class %></p>
+                <p><%= searchFlight[i].Airport_name %></p>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
     
 
     <script>
