@@ -379,7 +379,7 @@ exports.editCoupon = async (oldCode, {
 
       if (await exports.isCouponUnlimited(code)) {
         if (max_count != null) {
-          addCouponMaxCount(code, max_count);
+          await addCouponMaxCount(code, max_count);
         }
       } else {
         if (max_count == null) {
