@@ -52,16 +52,21 @@
                     <li style="font-size: 1.25em;">
                     Login as : <strong><%= user.username %></strong></></li>
                     <hr>
+                    
+                    <% if (isStaff) { %>
                     <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/profile/<%- user.user_id %>';">
                     <a class="text-info">My Profile</a></li>
 
                     <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/project';">
                     <a class="text-info">My Project</a></li>
 
-                    <% if (isHR) { %><li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/requisition';">
-                    <a class="text-info">My Requisition</a></li><% } %>
-
+                    <% if (isHR) { %>
+                        <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/requisition';">
+                            <a class="text-info">My Requisition</a>
+                        </li>
+                    <% } %>
                     <hr>
+                    <% } %>
                     <form class="form-inline" action="/admin/staff/logout" method="POST">
                     <li class="onhover w-100" style="cursor: pointer;" onclick="parentNode.submit();">
                     <a class="text-danger">SIGN OUT</a></li></form>

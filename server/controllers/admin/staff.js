@@ -34,6 +34,7 @@ exports.showRegistrationForm = async (req, res) => {
 		res.render('staff_admin/registration', {
 			pageTitle: 'TravelAloha - Admin - StaffRegistration',
 			user: req.user,
+			isStaff: false,
 			isHR: false,
 			isSubmitting: !!isSubmitting[0].length,
 			responseForm: (isSubmitting[0].length)?isSubmitting[0][0]:null,
@@ -68,6 +69,7 @@ exports.showHomepage = async (req, res) => {
 		res.render('staff_admin/homepage', {
 			pageTitle: 'TravelAloha - Admin - StaffHomepage',
 			user: req.user,
+			isStaff: true,
 			isHR: (myInfo[0][0].deptNo == 'AA'),
 			staffs: staffs[0],
 			deptList: deptList[0]
@@ -97,6 +99,7 @@ exports.showProfile = async (req, res) => {
 		res.render('staff_admin/profile', {
 			pageTitle: 'TravelAloha - Admin - StaffProfile',
 			user: req.user,
+			isStaff: true,
 			isHR: (myInfo[0][0].deptNo == 'AA'),
 			staffInfo: staffInfo[0][0],
 			isMyself: (req.user.user_id == req.params.id)
@@ -115,6 +118,7 @@ exports.showProject = async (req, res) => {
 		res.render('staff_admin/project', {
 			pageTitle: 'TravelAloha - Admin - StaffProject',
 			user: req.user,
+			isStaff: true,
 			isHR: (myInfo[0][0].deptNo == 'AA')
 		});
 	} catch (err) {
@@ -128,10 +132,20 @@ exports.showRequisition = async (req, res) => {
 		if (!myInfo[0].length || myInfo[0][0].deptNo!='AA') {
 			return res.redirect('/admin/staff/home');
 		}
+		const candidates = await conn.query(`SELECT user_id, profile_picture, CONCAT(firstname, ' ', lastname) AS name, birth_date, dep.deptName, rol.roleName, resume, address, IF(gender='M', 'Male', 'Female') AS gender, reg.deptNo, reg.roleId
+											FROM user u, staff_registration reg, staff_department dep, staff_role rol
+											WHERE 	u.user_id=reg.userId
+												AND	reg.deptNo=dep.deptNo
+												AND	dep.deptNo=rol.deptNo
+												AND	reg.roleId=rol.roleId
+												AND	reg.status='pending'
+											ORDER BY deptName`);
 		res.render('staff_admin/requisition', {
 			pageTitle: 'TravelAloha - Admin - StaffRequisition',
 			user: req.user,
-			isHR: true
+			isStaff: true,
+			isHR: true,
+			candidates: candidates[0]
 		});
 	} catch (err) {
 		res.status(400).send(err);

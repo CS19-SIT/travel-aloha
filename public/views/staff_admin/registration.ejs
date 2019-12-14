@@ -65,16 +65,16 @@
 	<background class="row w-100 justify-content-center align-content-start align-items-start mx-0">
 	<% if (isSubmitting) { %>
 		<pendingCard class="row rounded pt-5 justify-content-end">
-			<p class="col-12 text-center">
+			<p class="col-12 text-center font-weight-light">
 				<% if (responseForm.status == 'pending') { %>
 					You already sent an application one.
 				<% } else if (responseForm.status == 'approved') { %>
-					<ins>Congratulation, your application has been approved</ins><br>
-					Comment: <%- responseForm.responseMessage %><br>
+					<ins>Congratulation</ins>, your application has been approved<br>
+					<ins>Comment</ins>: <%- responseForm.responseMessage %><br>
 					please identify yourself
 				<% } else { %>
-					<ins>Sorry, your resume didn't meet our requirement</ins><br>
-					Comment: <%- responseForm.responseMessage %><br>
+					<ins>Sorry</ins>, your resume didn't meet our requirement<br>
+					</ins>Comment</ins>: <%- responseForm.responseMessage %><br>
 				<% } %>
 			</p>
 			<% if (responseForm.status == 'approved') { %>
