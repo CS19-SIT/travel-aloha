@@ -85,7 +85,7 @@ app.use(authRoutes);
 //
 
 //reward level controller caller and put on ejs file
-const rewController = require("./models/query_coupon");
+const rewModel = require("./models/query_coupon");
 
 // app.use(rewQuery.getvalidCoupon);
 // app.use(rewController.getPoints);
