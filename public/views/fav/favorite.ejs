@@ -35,42 +35,42 @@
     <div class="container align-center">
       <div class="row justify-content-md-center">
         <div class="mbr-white col-md-10">
-          <h1 class="headFavTitleHome align-center">Travel Aloha</h1>
-
+          <h1 class="headFavTitleHome align-center" style="text-shadow: 1px 1px 3px #313131;">Travel Aloha</h1>
         </div>
       </div>
     </div>
   </section>
   
   <section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
-    <div class=" " style="background-color: #efefef;">
-      <h1 class="headFavTitle align-center"> Favorite Hotel</h1>
-      <h4 class="grayHead align-center">Your Favorite Hotel List</h4>
+    <div class="" style="background-color: #efefef;">
+      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Hotel</h1>
  
-      <div class="row">
-      <% fav.forEach(function(item) { %>
-        <div class="column">
-        <div class="card cardTop" style="width:400px">
-          <img src="<%= item.hotelPicture %>" alt="" title="" style="width:100%">
+      <div class="row" style="padding-bottom: 5%;" >
+        <% for(var i = 0;i <dataH.length;i++) { %>
+        <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+        <div class="card cardTop" style="width:400px;">
+          <img src="<%= dataH[i].hotelPicture %>" alt="" title="" style="width:100%; height: 70%;">
           <div class="card-body">
             <div class="card-box">
-              <h4 class="card-title mbr-fonts-style display-6"><%=item.hotelName %></h4>
+              <h4 class="card-title mbr-fonts-style display-6" style="text-shadow: 1px 1px 2px #313131;"><%= dataH[i].hotelName %></h4>
+
               <div class="col-lg-10">
-                <% if(item.hotelAddress != null) {%>
+                <% if(dataH[i].hotelAddress != null) {%>
                 <h6 class="align-left display-6"><img
-                    src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= item.hotelAddress %>
+                    src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= dataH[i].hotelAddress %>
                 </h6>
                 <% }else{%>
-                <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;-null-
+                <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;nowhere
                 </h6>
                 <% }%>
               </div>
+              
             </div>
 
           </div>
         </div>
        </div>
-      <% }) %>
+      <% }%>
      </div>
   
     </div>
@@ -78,23 +78,29 @@
 
   <section class="testimonials4 cid-rGM2ZCUxVW" id="testimonials4-9">
     <div class=" container">
-      <h1 class="headFavTitle align-center"> Favorite Flight</h1>
-      <h4 class="grayHead align-center">Your Favorite Flight</h4>
+      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Flight</h1>
+      <div class="row" style="padding-bottom: 5%;" >
+        <% for(var i = 0;i <dataF.length;i++) { %>
 
-
-  
+          <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
       <div class="card cardTop" style="width:400px">
-        <img src="../../assets/images/frog-300x187.jpg" alt="" title="" style="width:100%">
+        <img src="../../assets/images/flig.jpg" alt="" title="" style="width:100%">
         <div class="card-body" style="background-color: #efefef;text-align: center;">
+          
           <div class="card-box">
-            <h4 class="card-title mbr-fonts-style display-6">KKK Flight</h4>
-            <div class="col-lg-10">
 
-              <h6 class="align-left display-6"><img src="../../assets/images/airline.png">&nbsp;จาก ไทย ไป
-                อเมริกา
+            <h4 class="card-title mbr-fonts-style display-6"><%= dataF[i].airlineName %></h4>
+
+            <div class="col-lg-10">
+              <% if(dataF[i].airlineNationality != null) {%>
+              <h6 class="align-left display-6"><img src="../../assets/images/airline.png">&nbsp;<%= dataF[i].airlineNationality  %>
 
               </h6>
-              <h6 style="text-align: left;margin-left: 2.8rem;">เวลานี้ ถึง เวลานี้</h6>
+              <% }else{%>
+
+              <h6 style="text-align: left;margin-left: 2.8rem;"></h6>
+
+              <% }%>
 
 
             </div>
@@ -103,6 +109,8 @@
         </div>
       </div>
       
-
+      </div>
+      <% } %>
+    </div>
     </div>
   </section>

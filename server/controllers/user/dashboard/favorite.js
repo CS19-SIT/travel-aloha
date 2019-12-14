@@ -1,4 +1,4 @@
-const connector = require("../../../db/db")
+const Fav = require("../../../models/favorite")
 // exports.getIndex = (req, res) =>
 //   res.render("fav/favorite", {
 //     pageTitle: "TravelAloha - Dashboard - Favorite",
@@ -6,13 +6,23 @@ const connector = require("../../../db/db")
 //   });
 
 
-  exports.getIndex = function(req,res){
-      let query = "SELECT * FROM fav_hotel as f,hotel as h WHERE f.favHotelID = h.hotelID";
-      connector.query(query,function(err,result){
-          res.render('fav/favorite',{
-              fav:result,
-              user:req.user,
-              pageTitle: 'TravelAloha'
-          });
+  
+  exports.getIndex = async (req, res) => {
+    try {
+      let dataH = await Fav.getAllHotel();
+      let dataF = await Fav.getAllFlight();
+    
+  
+      res.render("fav/favorite", {
+        pageTitle: "TravelAloha",
+        user: req.user,
+        dataH: dataH,
+        dataF: dataF
+    
       });
-  }
+    } catch (err) {
+      res.sendStatus(404);
+    }
+  };
+ 
+  

@@ -105,12 +105,7 @@ app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
-<<<<<<< HEAD
-
-
-=======
 app.use("/hotel", hotelRoutes);
->>>>>>> d7f14a1c00fe6bc59f9464204e789a05ad9032ea
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);
