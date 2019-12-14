@@ -1,4 +1,4 @@
-
+<%- include('../includes/header') %>
 <html>
 
 <head>
@@ -24,7 +24,7 @@
 
 
 </head>
-
+<%- include('../includes/navbar') %>
 <body>
 
 
@@ -51,7 +51,7 @@
       <% fav.forEach(function(item) { %>
         <div class="column">
         <div class="card cardTop" style="width:400px">
-          <img src="../../assets/images/mbr-2-676x451.jpg" alt="" title="" style="width:100%">
+          <img src="<%= item.hotelPicture %>" alt="" title="" style="width:100%">
           <div class="card-body">
             <div class="card-box">
               <h4 class="card-title mbr-fonts-style display-6"><%=item.hotelName %></h4>
