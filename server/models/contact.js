@@ -37,38 +37,125 @@ exports.insertNewHotelRoomType = async ({
     throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
   }
 };
-exports.insertNewHotelRoomPrice = async ({
-  hotelRoomPrice,
-  hotelRoomType
+exports.insertNewHotelRoomType2 = async ({
+  hotelRoomType2
 }) => {
   try {
-    if(hotelRoomType == "1 Single-bed"){
+    await db.query(`INSERT INTO room_detail(typeOfRoom) VALUES(?)`, [
+      hotelRoomType2
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
+exports.insertNewHotelRoomType3 = async ({
+  hotelRoomType3
+}) => {
+  try {
+    await db.query(`INSERT INTO room_detail(typeOfRoom) VALUES(?)`, [
+      hotelRoomType3
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
+exports.insertNewHotelRoomType4 = async ({
+  hotelRoomType4
+}) => {
+  try {
+    await db.query(`INSERT INTO room_detail(typeOfRoom) VALUES(?)`, [
+      hotelRoomType4
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
+exports.insertNewHotelRoomType5 = async ({
+  hotelRoomType5
+}) => {
+  try {
+    await db.query(`INSERT INTO room_detail(typeOfRoom) VALUES(?)`, [
+      hotelRoomType5
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
+exports.insertNewHotelRoomType6 = async ({
+  hotelRoomType6
+}) => {
+  try {
+    await db.query(`INSERT INTO room_detail(typeOfRoom) VALUES(?)`, [
+      hotelRoomType6
+    ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
+exports.insertNewHotel1SingleBedRoomPrice = async ({
+  hotelRoomPrice
+}) => {
+  try {
       await db.query(`INSERT INTO hotel_contact_room(single_bed_1_price) VALUES(?)`, [
         hotelRoomPrice
       ]);
-    }else if( hotelRoomType == "2 Single-bed" ){
-      await db.query(`INSERT INTO hotel_contact_room(single_bed_2_price) VALUES(?)`, [
-        hotelRoomPrice
-      ]);
-    }else if( hotelRoomType == "1 Double-Bed" ){
-      await db.query(`INSERT INTO hotel_contact_room(double_bed_1_price) VALUES(?)`, [
-        hotelRoomPrice
-      ]);
-    }else if( hotelRoomType == "2 Double-Bed" ){
-      await db.query(`INSERT INTO hotel_contact_room(double_bed_2_price) VALUES(?)`, [
-        hotelRoomPrice
-      ]);
-    }else if( hotelRoomType == "1 King size-bed" ){
-      await db.query(`INSERT INTO hotel_contact_room(king_bed_1_price) VALUES(?)`, [
-        hotelRoomPrice
-      ]);
-    }else if( hotelRoomType == "2 King size-bed" ){
-      await db.query(`INSERT INTO hotel_contact_room(king_bed_2_price) VALUES(?)`, [
-        hotelRoomPrice
-      ]);
-    }
   } catch (error) {
-    throw new Error(`[ERR] insertNewHotelRoomPrice: ${error}`);
+    throw new Error(`[ERR] insertNewHotel1SingleBedRoomPrice: ${error}`);
+  }
+};
+exports.insertNewHotel2SingleBedRoomPrice = async ({
+  hotelRoomPrice2
+}) => {
+  try {
+      await db.query(`INSERT INTO hotel_contact_room(single_bed_2_price) VALUES(?)`, [
+        hotelRoomPrice2
+      ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotel2SingleBedRoomPrice: ${error}`);
+  }
+};
+exports.insertNewHotel1DoubleBedRoomPrice = async ({
+  hotelRoomPrice3
+}) => {
+  try {
+      await db.query(`INSERT INTO hotel_contact_room(double_bed_1_price) VALUES(?)`, [
+        hotelRoomPrice3
+      ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotel1DoubleBedRoomPrice: ${error}`);
+  }
+};
+exports.insertNewHotel2DoubleBedRoomPrice = async ({
+  hotelRoomPrice4
+}) => {
+  try {
+      await db.query(`INSERT INTO hotel_contact_room(double_bed_2_price) VALUES(?)`, [
+        hotelRoomPrice4
+      ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotel2DoubleBedRoomPrice: ${error}`);
+  }
+};
+exports.insertNewHotel1KingBedRoomPrice = async ({
+  hotelRoomPrice5
+}) => {
+  try {
+      await db.query(`INSERT INTO hotel_contact_room(king_bed_2_price) VALUES(?)`, [
+        hotelRoomPrice5
+      ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotel1KingBedRoomPrice: ${error}`);
+  }
+};
+exports.insertNewHotel2KingBedRoomPrice = async ({
+  hotelRoomPrice6
+}) => {
+  try {
+      await db.query(`INSERT INTO hotel_contact_room(king_bed_2_price) VALUES(?)`, [
+        hotelRoomPrice6
+      ]);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotel2KingBedRoomPrice: ${error}`);
   }
 };
 exports.insertNewHotelRoomPicture = async ({

@@ -5,6 +5,8 @@ const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     if (file.fieldname === "hotelProfile")
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
+    else if (file.fieldname === "airlineProfile")
+      callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
     else
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/pictures"));
   },

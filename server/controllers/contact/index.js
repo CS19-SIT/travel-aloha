@@ -35,15 +35,26 @@ exports.postHotelInfo = async (req, res) => {
         hotelContactNumber,
         hotelDescription,
         hotelRoomType,
-        hotelRoomPrice
+        hotelRoomType2,
+        hotelRoomType3,
+        hotelRoomType4,
+        hotelRoomType5,
+        hotelRoomType6,
+        hotelRoomPrice,
+        hotelRoomPrice2,
+        hotelRoomPrice3,
+        hotelRoomPrice4,
+        hotelRoomPrice5,
+        hotelRoomPrice6
       } = req.body;
       if (err) {
         res.sendStatus(400)
         return;
       }
+      console.log(hotelRoomType)
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
-      const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
+      // const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
       await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
@@ -54,15 +65,52 @@ exports.postHotelInfo = async (req, res) => {
         hotelProfile,
         hotelPicture
       });
-      await contactModel.insertNewHotelRoomType({
-        hotelRoomType
-      });
-      await contactModel.insertNewHotelRoomPrice({
-        hotelRoomPrice
-      })
-      await contactModel.insertNewHotelRoomPicture({
-        hotelRoomPicture
-      })
+      if(hotelRoomType == "1 Single-Bed"){
+        await contactModel.insertNewHotelRoomType({
+          hotelRoomType
+        });
+        await contactModel.insertNewHotel1SingleBedRoomPrice({
+          hotelRoomPrice
+        });
+      }else if(hotelRoomType2){
+        await contactModel.insertNewHotelRoomType2({
+          hotelRoomType2
+        });
+        await contactModel.insertNewHotel2SingleBedRoomPrice({
+          hotelRoomPrice2
+        });
+      }else if(hotelRoomType3){
+        await contactModel.insertNewHotelRoomType3({
+          hotelRoomType3
+        });
+        await contactModel.insertNewHotel2SingleBedRoomPrice({
+          hotelRoomPrice3
+        });
+      }else if(hotelRoomType4){
+        await contactModel.insertNewHotelRoomType4({
+          hotelRoomType4
+        });
+        await contactModel.insertNewHotel2SingleBedRoomPrice({
+          hotelRoomPrice4
+        });
+      }else if(hotelRoomType5){
+        await contactModel.insertNewHotelRoomType5({
+          hotelRoomType5
+        });
+        await contactModel.insertNewHotel1KingBedRoomPrice({
+          hotelRoomPrice5
+        });
+      }else if(hotelRoomType6){
+        await contactModel.insertNewHotelRoomType6({
+          hotelRoomType6
+        });
+        await contactModel.insertNewHotel2KingBedRoomPrice({
+          hotelRoomPrice6
+        });
+      }
+      // await contactModel.insertNewHotelRoomPicture({
+      //   hotelRoomPicture
+      // })
     });
   } catch (error) {
     res.sendStatus(400);
