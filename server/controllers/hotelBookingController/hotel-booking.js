@@ -29,6 +29,7 @@ exports.postHotelBooking = (req, res) => {
 		inputEmail: req.body.inputEmail,
 		inputPhoneNo: req.body.inputPhoneNo
 	};
+
 	res.render('hotel_booking/hotel-booking-payment', {
 		pageTitle: 'TravelAloha - Hotel - Payment',
 		user: req.user,
