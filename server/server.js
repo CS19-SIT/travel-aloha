@@ -76,7 +76,7 @@ const adminRoutes = require("./routes/admin/index");
 const adminCouponRoutes = require("./routes/admin/coupon");
 const adminFlightRoutes = require("./routes/admin/flight");
 const adminHotelRoutes = require("./routes/admin/hotel");
-// const adminStaffRoutes = require("./routes/admin/staff");
+const adminStaffRoutes = require("./routes/admin/staff");
 const adminUserRoutes = require("./routes/admin/user");
 const authRoutes = require("./routes/auth/index");
 const checkoutRoutes = require("./routes/checkout/index");
@@ -86,7 +86,7 @@ const indexRoutes = require("./routes/index");
 const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
-//const flightBookingRoutes = require("./routes/flight/booking");
+const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userRoutes = require("./routes/user/dashboard");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
@@ -101,7 +101,7 @@ app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/flight", adminFlightRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
-//app.use("/admin/staff", adminStaffRoutes);
+app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
 app.get("/", (req, res) => res.render("index", {
@@ -120,7 +120,7 @@ app.use(hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);
-//app.use("/flight/booking", flightBookingRoutes);
+app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
 
