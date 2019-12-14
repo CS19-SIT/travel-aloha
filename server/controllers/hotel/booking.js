@@ -1,4 +1,4 @@
-const hotelbook = require('../../models/hotel-booking');
+const hotelbookModel = require('../../models/hotel-booking');
 
 exports.getIndex = (req, res) =>
 	res.render('hotel_booking/hotel-booking', {
@@ -68,15 +68,38 @@ exports.postReviewForm = (req, res) => {
 		roomID: req.body.roomID,
 		hotelFullPrice: req.body.hotelFullPrice,
 		hotelSalePrice: req.body.hotelSalePrice
-  };
-  
-  res.render('/payment/checkout', {
-    pageTitle: 'TravelAloha - Hotel - Checkout',
-    user: req.user,
-    hotelData: result
-  }) 
+	};
+
+	res.render('/payment/checkout', {
+		pageTitle: 'TravelAloha - Hotel - Checkout',
+		user: req.user,
+		hotelData: result
+	})
 };
 
+
+exports.postConfirm = (req, res) => {
+	const reqBookingDetail = [
+		req.body.inputFirstName,
+		req.body.inputLastName,
+		req.body.inputEmail,
+		req.body.inputPhoneNo,
+		req.user.user_id,
+		new Date(req.body.checkInDate),
+		new Date(req.body.checkOutDate),
+		req.body.hotelID,
+		req.body.roomID,
+		req.body.hotelFullPrice,
+		req.body.hotelSalePrice
+	];
+	const insertbook = async () => { 
+		return await hotelbookModel.insertBooking(reqBookingDetail) 
+	};
+	console.log(insertbook)
+	res.send(insertbook[0]());
+	//   res.redirect('/checkout')
+
+};
 //Probably needed in controller dont mind these comment
 // no idea...
 // no idea...

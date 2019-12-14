@@ -20,15 +20,6 @@ exports.getHotelBookingPayment = (req, res) => {
 };
 
 exports.postHotelBooking = (req, res) => {
-	// const result = JSON.stringify({
-	// 	inputFirstName: req.body.inputFirstName,
-	// 	inputLastName: req.body.inputLastName,
-	// 	inputEmail: req.body.inputEmail,
-	// 	inputPhoneNo: req.body.inputPhoneNo
-	// });
-
-	// console.log(JSON.parse(result));
-	// res.send(result);
 
 	const result = {
 		inputFirstName: req.body.inputFirstName,

@@ -101,12 +101,9 @@ exports.getAllFreeRoom = async paramHotelId => {
         return results;
       }
     );
-
-    console.log(allRoom);
     if (allRoom[0].length < 1) {
       throw new Error(`Cannot find your room from hotel,${paramHotelId}.`);
     }
-
     return allRoom;
   } catch (error) {
     throw new Error(`[ERR] get room from hotelId: ${paramHotelId}`);
