@@ -86,12 +86,14 @@ router.post('/beManager', async (req, res) => {
 		const dept = await conn.query(`SELECT deptNo FROM staff_info WHERE staffId='${req.body.newid}'`);
 		const mgr = await conn.query(`SELECT staffId FROM staff_manager WHERE deptNo='${dept[0][0].deptNo}'`);
 		if (mgr[0].length) {
-			const projIds = conn.query(`SELECT projectId FROM staff_project WHERE ownerId='${mgr[0][0].staffId}' AND finishDate IS NULL`);
-			const projIdGroup = projIds[0].map((item) => `'${item.projectId}'`).join(',');
-			await conn.query(`DELETE FROM staff_project_request_join WHERE projectId IN (${projIdGroup}) AND staffId='${req.body.newid}'`);
-			await conn.query(`DELETE FROM staff_project_participant WHERE projectId IN (${projIdGroup}) AND staffId=${req.body.newid}`);
+			const projIds = await conn.query(`SELECT projectId FROM staff_project WHERE ownerId='${mgr[0][0].staffId}' AND finishDate IS NULL`);
+			if (projIds[0].length) {
+				const projIdGroup = projIds[0].map((item) => `'${item.projectId}'`).join(',');
+				await conn.query(`DELETE FROM staff_project_request_join WHERE projectId IN (${projIdGroup}) AND staffId='${req.body.newid}'`);
+				await conn.query(`DELETE FROM staff_project_participant WHERE projectId IN (${projIdGroup}) AND staffId='${req.body.newid}'`);
+			}
+			await conn.query(`UPDATE staff_project SET ownerId='${req.body.newid}' WHERE ownerId='${mgr[0][0].staffId}'`);
 		}
-		await conn.query(`UPDATE staff_project SET ownerId='${req.body.newid}' WHERE ownerId='${mgr[0][0].staffId}'`);
 		await conn.query(`INSERT INTO staff_manager VALUES('${dept[0][0].deptNo}','${req.body.newid}') ON DUPLICATE KEY UPDATE staffId=VALUES(staffId)`);
 		res.json({
 			status: 200
