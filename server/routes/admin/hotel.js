@@ -11,11 +11,40 @@ router.get(
   adminHotelController.getIndex
 );
 
-router.put(
-  "/edit",
+router.get(
+  "/new",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminHotelController.putHotel
+  adminHotelController.getNew
+);
+
+router.get(
+  "/edit/:hotelId",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminHotelController.getEdit
+);
+
+
+router.post(
+  "/",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminHotelController.postIndex
+);
+
+router.put(
+  "/:hotelId",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminHotelController.putIndex
+);
+
+router.delete(
+  "/:hotelId",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminHotelController.deleteIndex
 );
 
 module.exports = router;
