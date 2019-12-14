@@ -12,36 +12,41 @@
     <div class="page-wrapper bg-img-1 p-t-100 p-b-120">
         <div class="wrapper wrapper--w900">
             <div class="card card-4">
-                    <ul class="tab-list">
-                            <a style="font-size: 35px;" class="tab-list__link" href="#tab3" data-toggle="tab">Flight</a>
-                        </li>
-                    </ul>
+                <ul class="tab-list">
+                    <a style="font-size: 35px;" class="tab-list__link" href="#tab3" data-toggle="tab">Flight</a>
+                    </li>
+                </ul>
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane-active" id="tab3">
-                            <form method="GET" action="#">
+                            <form method="POST" action="/findFlight">
                                 <div class="input-group input-group-big">
                                     <label class="label">Origin:</label>
-                                    <input class="input--style-1" type="text" name="origin" placeholder="City or airport" required="required">
+                                    <input class="input--style-1" type="text" name="origin"
+                                        placeholder="City or airport" required="required">
                                     <i class="zmdi zmdi-search input-group-symbol"></i>
                                 </div>
                                 <div class="input-group input-group-big">
                                     <label class="label">Destination:</label>
-                                    <input class="input--style-1" type="text" name="destination" placeholder="City or airport" required="required">
+                                    <input class="input--style-1" type="text" name="destination"
+                                        placeholder="City or airport" required="required">
                                     <i class="zmdi zmdi-search input-group-symbol"></i>
                                 </div>
                                 <div class="row row-space">
                                     <div class="col-6">
                                         <div class="input-group">
                                             <label class="label">Departing:</label>
-                                            <input class="input--style-1" type="text" name="check-in" placeholder="mm/dd/yyyy" id="input-start-2">
+                                            <input class="input--style-1" type="text" name="check-in"
+                                                placeholder="mm/dd/yyyy" id="input-start-2">
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-dark btn-lg" id="return_button">Return Date</button>
+                                        <button type="button" class="btn btn-dark btn-lg" id="return_button">Return
+                                            Date</button>
                                         <div class="input-group" id="return_date" style="display: none;">
                                             <label class="label">Returning:</label>
-                                            <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end-2">
+                                            <input class="input--style-1" type="text" name="check-out"
+                                                placeholder="mm/dd/yyyy" id="input-end-2">
                                         </div>
                                     </div>
                                 </div>
@@ -68,12 +73,14 @@
         </div>
     </div>
 
+    
+
     <script>
-        $(document).ready(function(){
-            $('#return_button').click(function(){
+        $(document).ready(function () {
+            $('#return_button').click(function () {
                 $('#return_date').show();
                 $('#return_button').hide();
             });
         });
     </script>
-            </div <%- include('includes/footerFlight') %> <%- include('includes/footerFlight') %>
+    </div <%- include('includes/footerFlight') %> <%- include('includes/footerFlight') %>
