@@ -56,8 +56,10 @@
                     <% if (isStaff) { %>
                     <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/profile/<%- user.user_id %>';">
                     <a class="text-info">My Profile</a></li>
+
                     <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/project';">
                     <a class="text-info">My Project</a></li>
+
                     <% if (isHR) { %>
                         <li class="onhover" style="cursor: pointer;" onclick="window.location='/admin/staff/requisition';">
                             <a class="text-info">My Requisition</a>
