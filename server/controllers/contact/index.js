@@ -43,6 +43,7 @@ exports.postHotelInfo = async (req, res) => {
       }
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
+      const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
       await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
@@ -53,10 +54,15 @@ exports.postHotelInfo = async (req, res) => {
         hotelProfile,
         hotelPicture
       });
-      await contactModel.insertNewHotelRoom({
-        hotelRoomType,
-        hotelRoomPrice
+      await contactModel.insertNewHotelRoomType({
+        hotelRoomType
       });
+      await contactModel.insertNewHotelRoomPrice({
+        hotelRoomPrice
+      })
+      await contactModel.insertNewHotelRoomPicture({
+        hotelRoomPicture
+      })
     });
   } catch (error) {
     res.sendStatus(400);
