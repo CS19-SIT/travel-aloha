@@ -82,19 +82,26 @@ exports.postConfirm = async (req, res) => {
 		req.body.hotelFullPrice,
 		req.body.hotelSalePrice
 	];
-	let result = await hotelbookModel.insertBooking(reqBookingDetail);
+	let resultFromQuery = await hotelbookModel.insertBooking(reqBookingDetail);
 	let sess = req.session;
-	sess.bookingdetail = result;
+	sess.bookingdetail = resultFromQuery;
 	req.mysess = sess.bookingdetail;
 	// console.log(result)
 	// res.send(JSON.stringify(result));
 	res.redirect('/checkout');
 
 };
-exports.getCOtest = function (req, res) {
+
+exports.getCOtest =  (req, res) =>{
+
+	
 	console.log("This is checkoutsss")
-	let sess = req.mysess;
-	res.send(JSON.stringify(sess));
+
+	res.render('hotel_booking/asdf', {
+		pageTitle: 'TravelAloha - Hotel - Payment',
+		user: req.user,
+		sess: req.session.mysess
+	});
 };
 
 //Probably needed in controller dont mind these comment
