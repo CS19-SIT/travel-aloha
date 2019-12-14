@@ -82,11 +82,12 @@ const flightBookingRoutes = require("./routes/flight/booking");
 const reviewRoutes = require("./routes/review/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
+const landingPageRoutes = require("./routes/landingPage/landingPage")
 
 app.use(indexRoutes);
 app.use(authRoutes);
 
-
+app.use("/landingPage", landingPageRoutes)
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
