@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
-=======
-<!-- <!DOCTYPE html>
->>>>>>> reward_level
 <html lang="en">
 
 <head>
@@ -11,29 +7,14 @@
   <title>Reward</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-<<<<<<< HEAD
   <script src="main.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
-  <link rel="stylesheet" href="../assets/css/ticket.css" type="text/css" />
-  <!-- <script type="text/javascript">
-    $('.ticket').click(function () {
-      $('.ticket-in').toggleClass('active');
-    });
-  </script> -->
-=======
-  <script src="main.js"></script> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
->>>>>>> reward_level
+<link rel="stylesheet" href="../assets/css/ticket.css" type="text/css" />
 
 </head>
 
@@ -67,30 +48,38 @@
             <li data-target="#carouselAdvertisement" data-slide-to="0" class="active"></li>
             <li data-target="#carouselAdvertisement" data-slide-to="1"></li>
             <li data-target="#carouselAdvertisement" data-slide-to="2"></li>
+            <li data-target="#carouselAdvertisement" data-slide-to="3"></li>
           </ol>
 
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" src="../assets/img/flight1.jpg" alt="First slide">
+              <img class="d-block w-100" src="../assets/img/flight2.jpg" alt="First slide">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Every Flight has a Price!</h5>
                 <p>Get points when you purchase every flight.</p>
               </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="https://placeimg.com/1080/500/arch" alt="Second slide">
+              <img class="d-block w-100" src="../assets/img/hotel1.jpg" alt="Second slide">
               <div class="carousel-caption d-none d-md-block">
                 <h5>What we've got here is failure to communicate.</h5>
                 <p>Cool Hand Luke, 1967</p>
               </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="https://placeimg.com/1080/500/nature" alt="Third slide">
+              <img class="d-block w-100" src="../assets/img/ent1.jpg" alt="Third slide">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Go ahead, make my day.</h5>
                 <p>Sudden Impact, 1983</p>
               </div>
             </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/img/food2.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Not only Flight and Hotel Vouchers!</h5>
+                  <p>You can also get Food and Entertainment coupons fulfil your days.</p>
+                </div>
+              </div>
           </div>
 
           <a class="carousel-control-prev" href="#carouselAdvertisement" role="button" data-slide="prev">
@@ -113,20 +102,21 @@
     <div class="row-coupon shadow" style="border-radius: 10px;border-top: 5px solid #114d96;">
       <div class="col-sm-12 sidenav">
         <h2>Coupon & Reward</h2>
-        <ul class="nav nav-tabs nav-fill" style="padding: 10px;margin: 10px">
+        <!-- <ul class="nav nav-tabs nav-fill" style="padding: 10px;margin: 10px">
           <li class="nav-item">
-<<<<<<< HEAD
-            <a class="nav-link active" href="#">Valid</a>
-=======
-            <a class="nav-link active" id="valid" href="#eachcoupon">Valid</a>
->>>>>>> reward_level
+            <a class="nav-link active" id="valid" href="#validcoupon">Valid</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="used" href="#usedcoupon">Used</a>
+            <a class="nav-link" id="used" onclick="openCoupon(event, 'usedcoupon')" href="#usedcoupon">Used</a>
           </li>
-        </ul>
-<<<<<<< HEAD
-        <div class="col-sm-12" style="text-align: center;">
+        </ul> -->
+
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'validcoupon')" id="defaultOpen">Valid</button>
+            <button class="tablinks" onclick="openCity(event, 'usedcoupon')">Used</button>
+          </div>
+
+        <div class="col-sm-12" style="text-align: center;padding: 0px">
           <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
                         Flight Coupon
                     </button>
@@ -148,6 +138,7 @@
                       <%= coupons[key].Limit %></li>
                     <% };%>
                 </ul> -->
+        <div id="validcoupon" class="tabcontent" >
           <% for(var key of Object.keys(coupons) ) { %>
             <div class="coupon">
                 <img src="../assets/img/travel1.png" alt="Avatar" style="width:100%;">
@@ -160,61 +151,62 @@
                   <p>Use Promo Code: <span class="promo"><%= coupons[key].CouponCode %></span></p>
                   <p class="expire">Expires: <%= coupons[key].exp %></p>
                 </div>
-=======
+            </div>
+          <% };%>
+        </div>
 
-
-
-        <div class="col-sm-4">
-          <div id="eachcoupon" >
-            <ul>
-              <% for(var key of Object.keys(coupons) ) { %>
-              <li><%= coupons[key].CouponCode %>
-                <%= coupons[key][expDate] %>
-                <%= coupons[key].Discount %>
-                <%= coupons[key].Limit %></li>
-              <% };%>
-            </ul>
+          <div id="usedcoupon" class="tabcontent">
+            <% for(var key of Object.keys(usedCoupon) ) { %>
+            <div class="coupon">
+              <img src="../assets/img/travel1.png" alt="Avatar"
+                style="width:100%;">
+              <div class="coupon-container" style="background-color:white">
+                <h2 style="color:#cf212a">
+                  Used Date: <%= usedCoupon[key][usedDate] %>
+                </h2>
+              </div>
+              <div class="coupon-container">
+                <p>Use Promo Code: <span class="promo"><%= coupons[key].CouponCode %></span></p>
+                <p class="expire">Expires: <%= coupons[key].exp %></p>
+              </div>
+              
+            </div>
+            <% };%>
           </div>
-          <div id="usedcoupon" visibility="hidden">
-            <ul>
+
+            <!-- <ul>
               <% for(var key of Object.keys(usedCoupon) ) { %>
               <li>
                 <%= usedCoupon[key].CouponCode %>
                 <%= usedCoupon[key][usedDate] %>
               </li>
               <% };%>
-            </ul>
-          </div>
-        </div>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h3 class="modal-title">Gift Coupon</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body">
-                <img src="../assets/img/coupon.jpg" class="img-thumbnail" alt="Cinque Terre" width="mx-auto" height="mx-auto">
->>>>>>> reward_level
-              </div>
-          <% };%>
-        </div>
+            </ul> -->
         <p style="color:#cf212a; font-size: 15px;text-align: center;margin-top: 10px">No more valid voucher!!!</p>
       </div>
     </div>
   </div>
   <!--close all div-->
 
+
+  <script>
+      function openCity(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+      </script>
+
 </body>
 
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> reward_level
