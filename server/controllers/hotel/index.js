@@ -76,5 +76,6 @@ exports.findFilters = async (req, res) => {
         console.log(place+" "+checkIn+" "+checkOut+" "+persons);
         res.redirect("/hotel");
     }
+
 };
 
