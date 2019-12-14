@@ -59,6 +59,20 @@ exports.Deletebooking = async bookingId => {
   ]);
 };
 
+exports.getPriceByBookingId = async bookingId =>{
+  try {
+    let searchPrice = await db.query(
+      "select fullprice from booking_detail join booking_head on bookingId_detail = bookingDetailid where bookingId = ?",[bookingId]
+    );
+    console.log(searchPrice[0][0].fullprice);
+    if(searchPrice[0]<1){
+      throw new Error(`Undefinded get fullprice by booking id ${bookingId}`)
+    }
+    return searchPrice[0][0].fullprice;
+  } catch (err){
+    throw new Error(`Error get price by bookingId ${err}`);
+  }
+}
 
 exports.updatePaid = async bookingId => {
   try {
