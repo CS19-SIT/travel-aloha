@@ -1,28 +1,60 @@
 <%- include('../includes/header') %>
-<link href="../../assets/css/userDashboard/style2.css" rel="stylesheet"> 
+<link href="../../assets/css/userDashboard/style2.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
-<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 </head>
 
 <body>
-    <%- include('../includes/navbar') %>
+  <%- include('../includes/navbar') %>
   <div class="container" style="padding: 75px; ">
     <div class="col-md-8 order-md-1">
       <h1 class="mb-3">Edit Profile</h1><br>
-      <form class="needs-validation" novalidate>
+      <form action="/editProfile/upload" method="POST" enctype="multipart/form-data">
+
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <img class="rounded-circle" src="../assets/img/profile.png" alt="profile" style="width:200px;height:200px">
+           <!--- <img class="rounded-circle" src="<%= typeof file != 'undefined' ? file : '' %>" alt="profile" -->
+              style="width:200px;height:200px">
+
+
+
+          </div>
+          <div class="col-md-6 mb-3">
+
+
+
+            <div class="file-field input-field">
+              <div class="btn">
+                <label for="profilepic">Profile Picture</label>
+                <input name="profilepicture" type="file">
+              </div>
+
+            </div>
+            <button class="btn" type="submit">submit</button>
+
+
+          </div>
+        </div>
+
+
+
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Firstname</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Firstname" value="" required>
+            <input type="text" class="form-control" id="firstName" placeholder="Firstname" value="<%= user.firstname %>"
+              required>
             <div class="invalid-feedback">
               Valid firstname is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Lastname</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Lastname" value="" required>
+            <input type="text" class="form-control" id="lastName" placeholder="Lastname" value="<%= user.lastname %>"
+              required>
             <div class="invalid-feedback">
               Valid lastname is required.
             </div>
@@ -35,16 +67,48 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="text" class="form-control" id="username" placeholder="Username" required>
+            <input type="text" class="form-control" id="username" placeholder="Username" value="<%= user.username %>"
+              required>
             <div class="invalid-feedback" style="width: 100%;">
               Your username is required.
             </div>
           </div>
         </div>
 
+
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Birth Date</label>
+            <input type="date" class="form-control" id="birth_date" placeholder="birthdate"
+              value="<%= user.birth_date %>" required>
+            <div class="invalid-feedback">
+              Valid firstname is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" id="gender">
+              <option value="<%= user.gender %>" selected>select gender</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+            <div class="invalid-feedback">
+              Valid gender is required.
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
         <div class="mb-3">
           <label for="email">Email <span class="text-muted">(Optional)</span></label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<%= user.Email %>">
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
@@ -52,16 +116,13 @@
 
         <div class="mb-3">
           <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+          <input type="text" class="form-control" id="address" placeholder="1234 Main St" value="<%= user.address %>" required>
           <div class="invalid-feedback">
             Please enter your shipping address.
           </div>
         </div>
 
-        <div class="mb-3">
-          <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-        </div>
+
 
         <div class="row">
           <div class="col-md-5 mb-3">
@@ -69,9 +130,9 @@
             <select id="country" name="country">
               <option value="" disabled selected hidden>Choose country</option>
               <% country.forEach(element => { %>
-                  <option value="<%=element.NAMEINENGLISH%>"><%=element.NAMEINENGLISH%></option>
-                  <%});%>
-            </select> 
+              <option value="<%=element.NAMEINENGLISH%>"><%=element.NAMEINENGLISH%></option>
+              <%});%>
+            </select>
             <div class="invalid-feedback">
               Please select a valid country.
             </div>
@@ -95,15 +156,15 @@
           </div>
         </div>
         <hr class="mb-4">
-        
-        
-       
 
-       
 
-       
-       
-       
+
+
+
+
+
+
+
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
       </form>
@@ -114,10 +175,13 @@
 
 </body>
 <script>
-  $(document).ready(function() {
-  $('#country').select2();
-});
+  $(document).ready(function () {
+    $('#country').select2();
+  });
 </script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 
 <%- include('../includes/footer') %>
