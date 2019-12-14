@@ -10,4 +10,5 @@ router.get(
   userFavoriteController.getIndex
 );
 
+
 module.exports = router;
