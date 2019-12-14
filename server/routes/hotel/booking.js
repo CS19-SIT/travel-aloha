@@ -11,7 +11,5 @@ router.post("/reviewform", hotelBookingController.postIndex);
 
 router.post("/confirmbooking", hotelBookingController.postConfirm);
 
-router.get("/checkoutsss", hotelBookingController.getCOtest);
-
 router.get("/payment", hotelBookingController.getPayment);
 module.exports = router;

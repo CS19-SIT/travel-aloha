@@ -63,8 +63,3 @@ exports.Deletebooking = async bookingId => {
     bookingDetailId
   ]);
 };
-
-// Probably needed in model
-// still no idea again ...
-// room is reserved or free
-// lock room after reserve

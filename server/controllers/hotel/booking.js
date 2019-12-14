@@ -82,31 +82,10 @@ exports.postConfirm = async (req, res) => {
 		req.body.hotelFullPrice,
 		req.body.hotelSalePrice
 	];
-	let resultFromQuery = await hotelbookModel.insertBooking(reqBookingDetail);
-	let sess = req.session;
-	sess.bookingdetail = resultFromQuery;
-	req.mysess = sess.bookingdetail;
-	// console.log(result)
-	// res.send(JSON.stringify(result));
+	let resultInsertBooking = await hotelbookModel.insertBooking(reqBookingDetail);
+	let resultSession = req.session;
+	resultSession.bookingID = resultInsertBooking;
+	req.bookindID = resultSession.bookingID;
 	res.redirect('/checkout');
 
 };
-
-exports.getCOtest =  (req, res) =>{
-
-	
-	console.log("This is checkoutsss")
-
-	res.render('hotel_booking/asdf', {
-		pageTitle: 'TravelAloha - Hotel - Payment',
-		user: req.user,
-		sess: req.session.mysess
-	});
-};
-
-//Probably needed in controller dont mind these comment
-// no idea...
-// no idea...
-// no idea...
-// received form from booking form
-// if no register, popup some register promote
