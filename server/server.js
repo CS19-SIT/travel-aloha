@@ -35,7 +35,7 @@ const sessionStore = new MySQLStore({
   database: process.env.DB_DATABASE
 });
 
-const publicPath = path.join(__dirname + "/../public");
+const publicPath = path.join(__dirname, "../public");
 const viewPath = path.join(publicPath + "/views");
 
 app.set("view engine", "ejs");
@@ -68,6 +68,7 @@ app.disable("x-powered-by");
  */
 const adminRoutes = require("./routes/admin/index");
 const adminCouponRoutes = require("./routes/admin/coupon");
+const adminFlightRoutes = require("./routes/admin/flight");
 const adminHotelRoutes = require("./routes/admin/hotel");
 const adminStaffRoutes = require("./routes/admin/staff");
 const adminUserRoutes = require("./routes/admin/user");
@@ -80,31 +81,27 @@ const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
+const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
+const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
-const landingPageRoutes = require("./routes/landingPage/landingPage");
 
 app.use(landingPageRoutes);
-app.use("/temp", indexRoutes);
 app.use(authRoutes);
+app.use("/temp", indexRoutes);
 
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
+app.use("/admin/flight", adminFlightRoutes);
 app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
-app.get("/", (req, res) =>
-  res.render("index", {
-    pageTitle: "TravelAloha",
-    user: req.user
-  })
-);
-
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
+app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
