@@ -87,12 +87,13 @@ const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
+const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
 const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
-app.use(indexRoutes);
+app.use(landingPageRoutes);
 app.use(authRoutes);
 app.use("/temp", indexRoutes);
 
@@ -111,7 +112,6 @@ app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
 
 app.use("/hotel", hotelRoutes);
-
 app.use("/hotel/booking", hotelBookingRoutes);
 
 app.use("/flight", flightRoutes);
@@ -120,14 +120,6 @@ app.use("/flight/booking", flightBookingRoutes);
 app.use("/review", reviewRoutes);
 
 app.use(errorsController.get404);
-
-app.use((err, req, res, next) => {
-  res.status(400).render("errors/400", {
-    pageTitle: "TravelAloha - Bad Request",
-    user: req.user,
-    error: err
-  });
-});
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
