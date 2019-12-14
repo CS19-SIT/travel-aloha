@@ -1,4 +1,3 @@
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
   <script src="main.js"></script> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
 
 </head>
 
@@ -96,37 +95,39 @@
         <h2>Coupon & Reward</h2>
         <ul class="nav nav-tabs nav-fill" style="padding: 10px;margin: 10px">
           <li class="nav-item">
-            <a class="nav-link active" href=".eachcoupon">Valid</a>
+            <a class="nav-link active" id="valid" href="#eachcoupon">Valid</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Used</a>
+            <a class="nav-link" id="used" href="#usedcoupon">Used</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Redeemable</a>
           </li>
         </ul>
-        <div class="col-sm-4">
-          <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
-                        Flight Coupon
-                    </button>
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
-                        Accomadation Coupon
-                    </button>
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
-                        Food Coupon
-                    </button>
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
-                        Entertainment Coupon
-                    </button> -->
 
-                <ul>
-                    <% for(var key of Object.keys(coupons) ) { %>
-                        <li><%= coupons[key].CouponCode %>
-                          <%= coupons[key].exp %>
-                        <%= coupons[key].Discount %>
-                      <%= coupons[key].Limit %></li>
-                    <% };%>
-                </ul>
+
+
+        <div class="col-sm-4">
+          <div id="eachcoupon" >
+            <ul>
+              <% for(var key of Object.keys(coupons) ) { %>
+              <li><%= coupons[key].CouponCode %>
+                <%= coupons[key][expDate] %>
+                <%= coupons[key].Discount %>
+                <%= coupons[key].Limit %></li>
+              <% };%>
+            </ul>
+          </div>
+          <div id="usedcoupon" visibility="hidden">
+            <ul>
+              <% for(var key of Object.keys(usedCoupon) ) { %>
+              <li>
+                <%= usedCoupon[key].CouponCode %>
+                <%= usedCoupon[key][usedDate] %>
+              </li>
+              <% };%>
+            </ul>
+          </div>
         </div>
 
         <!-- The Modal -->
@@ -164,5 +165,7 @@
     </div>
   </div>
   <!--close all div-->
+
 </body>
+
 </html>
