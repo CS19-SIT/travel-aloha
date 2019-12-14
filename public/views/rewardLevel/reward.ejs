@@ -1,41 +1,26 @@
-<<<<<<< HEAD
-<%- include('../includes/header') %>
-<%- include('../includes/navbar') %>
-=======
->>>>>>> reward_level
-
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Reward</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
-=======
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Reward</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-  <script src="main.js"></script> -->
+  <script src="main.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../assets/css/extension1.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/css/ticket.css" type="text/css" />
+  <!-- <script type="text/javascript">
+    $('.ticket').click(function () {
+      $('.ticket-in').toggleClass('active');
+    });
+  </script> -->
 
->>>>>>> reward_level
 </head>
 
 <body>
@@ -51,7 +36,7 @@
     <div class="ribbonTab">
       <div id="circle">
         <div id="gift">
-          <div id="ribbon"></div>
+          <div id="ribbonGift"></div>
           <div id="giftbox"></div>
         </div>
       </div>
@@ -116,16 +101,13 @@
         <h2>Coupon & Reward</h2>
         <ul class="nav nav-tabs nav-fill" style="padding: 10px;margin: 10px">
           <li class="nav-item">
-            <a class="nav-link active" href=".eachcoupon">Valid</a>
+            <a class="nav-link active" href="#">Valid</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Used</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Redeemable</a>
-          </li>
         </ul>
-        <div class="col-sm-4">
+        <div class="col-sm-12" style="text-align: center;">
           <!-- <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
                         Flight Coupon
                     </button>
@@ -139,56 +121,34 @@
                         Entertainment Coupon
                     </button> -->
 
-                <ul>
+          <!-- <ul>
                     <% for(var key of Object.keys(coupons) ) { %>
                         <li><%= coupons[key].CouponCode %>
                           <%= coupons[key].exp %>
                         <%= coupons[key].Discount %>
                       <%= coupons[key].Limit %></li>
                     <% };%>
-                </ul>
+                </ul> -->
+          <% for(var key of Object.keys(coupons) ) { %>
+            <div class="coupon">
+                <img src="../assets/img/travel1.png" alt="Avatar" style="width:100%;">
+                <div class="coupon-container" style="background-color:white">
+                  <h2><b><%= coupons[key].Discount %></b> BAHT OFF YOUR PURCHASE<br>
+                    Limit Purchase: <%= coupons[key].Limit %>
+                  </h2>
+                </div>
+                <div class="coupon-container">
+                  <p>Use Promo Code: <span class="promo"><%= coupons[key].CouponCode %></span></p>
+                  <p class="expire">Expires: <%= coupons[key].exp %></p>
+                </div>
+              </div>
+          <% };%>
         </div>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h3 class="modal-title">Gift Coupon</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body">
-                <img src="../assets/img/coupon.jpg" class="img-thumbnail" alt="Cinque Terre" width="mx-auto" height="mx-auto">
-              </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <p>This is gift coupon for 500 THB. That can be used in next trip</p>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Purchase</button>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-        <p style="color:#cf212a; font-size: 15px;text-align: center;margin-top: 10px">No more valid voucher!!!
-        </p>
+        <p style="color:#cf212a; font-size: 15px;text-align: center;margin-top: 10px">No more valid voucher!!!</p>
       </div>
-
-
     </div>
-<<<<<<< HEAD
-        <!--close all div-->
-        
-<%- include('../includes/footer') %>
-=======
   </div>
   <!--close all div-->
 </body>
+
 </html>
->>>>>>> reward_level

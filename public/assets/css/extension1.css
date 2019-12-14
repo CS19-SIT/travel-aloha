@@ -165,7 +165,7 @@ small {
   background-image: radial-gradient(#5ba0f5, #2b86f7 70%);
 }
 
-.ribbon:hover {
+.ribbonGift:hover {
   background-image: radial-gradient(#5ba0f5, #2b86f7 70%);
 }
 
@@ -179,7 +179,7 @@ small {
   width: 100px;
   height: 125px;
 }
-#ribbon {
+#ribbonGift {
   position: relative;
   width: 60px;
   height: 60px;
@@ -188,7 +188,7 @@ small {
   margin-bottom: -38px;
   border-radius: 0 8px 0 8px;
 }
-#ribbon:before {
+#ribbonGift:before {
   content: "";
   height: 24px;
   width: 100%;
@@ -199,7 +199,7 @@ small {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
   border-radius: inherit;
 }
-#ribbon:after {
+#ribbonGift:after {
   content: "";
   height: 100%;
   width: 24px;
@@ -297,7 +297,7 @@ small {
     width: 60px;
     height: 60px;
   }
-  #ribbon {
+  #ribbonGift {
     position: relative;
     width: 60px;
     height: 60px;
