@@ -20,6 +20,7 @@ exports.retrieveBookingHead = async() => {
         throw new Error(`[ERR] retrieveBookingHead ${err}`);
     }
 };
+
 exports.retrieveNameHotel = async () => {
     try {
         const result = await db.query(`SELECT * FROM development.hotel`);
@@ -39,3 +40,13 @@ exports.retrievePriceHotel = async () => {
         throw new Error(`[ERR] retrievePriceHotel ${err} `);
     }
 };
+
+exports.retrieveCouponCode = async () =>{
+    try {
+        const result = await db.query(`SELECT * FROM development.coupon`);
+
+        return result[0];
+    }catch (err){
+        throw new Error(`[ERR] retrieveCouponCode ${err}`);
+    }
+}
