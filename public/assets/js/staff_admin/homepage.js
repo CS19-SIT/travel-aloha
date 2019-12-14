@@ -141,22 +141,17 @@ app.controller('homeController', [
         self.removeStaff = (staff) => {
             confirmMessage = prompt(`Please type "Grandma eats longan and she is dribbing"`);
             if (confirmMessage == 'Grandma eats longan and she is dribbing') {
-                self.getQuery({
-                    sql: `SELECT 1 FROM staff_manager WHERE staffId='${staff.user_id}'`
-                }).then((result) => {
-                    if (result.status == 200 && !result.data.length) {
-                        self.sendQuery({
-                            sql: `DELETE FROM staff_info WHERE staffId='${staff.user_id}'`
-                        }).then((result) => {
-                            if (result.status == 200) {
-                                self.setNewStaffList();
-                            } else {
-                                alert('Something went wrong');
-                                setTimeout(() => location.reload(true), 1200);
-                            }
-                        });
+                $http({
+                    url: '/admin/staff/deleteStaff',
+                    method: 'POST',
+                    data: {
+                        deletedid: staff.user_id
+                    }
+                }).then((res) => res.data).then((result) => {
+                    if (result.status == 200) {
+                        self.setNewStaffList();
                     } else {
-                        alert('Can\'t delete managers');
+                        alert(`${JSON.stringify(result.message)}`);
                     }
                 });
             } else {
