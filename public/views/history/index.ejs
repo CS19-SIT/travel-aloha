@@ -6,9 +6,11 @@
 
 <script>
 
-  var fromEJS = '<%- JSON.stringify(headArr) %>'
-  var allRecord = JSON.parse(fromEJS);
+  var fromEJS_hotel = '<%- JSON.stringify(hotelArr) %>';
+  var allRecord_hotel = JSON.parse(fromEJS_hotel);
 
+  var fromEJS_flight = '<%- JSON.stringify(flightArr) %>';
+  var allRecord_flight = JSON.parse(fromEJS_flight);
 
 </script>
 
@@ -28,10 +30,6 @@
       <div class="user-info">
         <div class="user-level">
           <b class="badge badge-level">Level: <span id="userLvl"><%= userLvl %></span></b>
-        </div>
-        <div class="user-points">
-          <span class="left badge badge-points-rank badge-points-rank">Points: <span id="userPoints">200</span></span>
-          <span class="right badge-points-rank badge " id="userRank">Silver</span>
         </div>
       </div>
     </div>
@@ -53,7 +51,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Booking details</h4>
           </div>
           <!--Content-->
           <div class="modal-body" id="detailContent">

@@ -1,13 +1,17 @@
 const Hotel = require("../../../models/history");
 
 exports.getIndex = async (req, res) => {
-  let info = await Hotel.getHotelName(req.user.user_id);
+  let hotel = await Hotel.getHotelName(req.user.user_id);
   let user = await Hotel.getUser(req.user.user_id);
+  let flight = await Hotel.getFlightData(req.user.user_id);
 
   res.render("history/index",{
     pageTitle: "TravelAloha - Dashboard - History",
     user: req.user,
-    headArr: info,
+
+    hotelArr: hotel,
+    flightArr: flight,
+    
     userFirstname: user['firstname'],
     userLastname: user['lastName'],
     userLvl: user['Level']
