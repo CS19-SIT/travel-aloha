@@ -15,7 +15,7 @@ router.get("/add-new-airline", function(req, res, next) {
 
 router.get("/add-new-hotel", function(req, res, next) {
   res.render("contact/add-new-hotel", {
-    pageTitle: "TravelAloha - Contact - Register New Aotel",
+    pageTitle: "TravelAloha - Contact - Register New Hotel",
     user: req.user
   });
 });
