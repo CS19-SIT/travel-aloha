@@ -1,13 +1,33 @@
-
+const moment = require("moment");
+const User = require("../../models/user");
 const Rating_ReviewModel = require("../../models/Rating_Review");
 
-exports.getHotel = (req, res) => {
-  res.render("review_rating/ReviewHotel", {
-    pageTitle: "TravelAloha - Review - Hotel",
-    user: req.user,
-    hotelId: req.params.id
-  });
-}
+exports.getHotel = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const hotelReview = await Rating_ReviewModel.getHotelReviewInfo(id);
+    if (hotelReview[0].length == 0) {
+      return res.status(404).render("errors/404", {
+        pageTitle: "TravelAloha - Page Not Found",
+        user: req.user
+      });
+    }
+    res.render("review_rating/ReviewHotel", {
+      pageTitle: "TravelAloha - Review - Hotel",
+      user: req.user,
+      hotelId: id,
+      hotelReview: hotelReview[0],
+      findProfileById: User.findProfileById,
+      moment
+    });
+  } catch (getHotelError) {
+    res.status(500).render("errors/500", {
+      pageTitle: "TravelAloha - Bad Request",
+      user: req.user,
+      error: getHotelError
+    });
+  }
+};
 
 exports.getFlight = (req, res) =>
   res.render("review_rating/ReviewAirline", {
@@ -31,9 +51,9 @@ exports.postHotelReview = async (req, res) => {
     Comfort_Hotel_Rating,
     Meal_Hotel_Rating,
     Location_Hotel_Rating,
-    Service_Hotel_Rating,
+    Service_Hotel_Rating
   } = req.body;
-  const hotel_hotelId = req.params.id
+  const hotel_hotelId = req.params.id;
   try {
     await Rating_ReviewModel.insertNewHotel_Review({
       userId,
@@ -87,4 +107,3 @@ exports.postFlightReview = async (req, res) => {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-

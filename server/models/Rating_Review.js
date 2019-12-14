@@ -1,47 +1,31 @@
 const db = require("../db/db");
 
-exports.getHotelReviewInfo = async ({
-  Title_Hotel,
-  Type_Of_Hotel_Reviewer,
-  Text_Hotel_Review,
-  timestamp,
-  Cleanliness_Hotel_Rating,
-  Comfort_Hotel_Rating,
-  Meal_Hotel_Rating,
-  Location_Hotel_Rating,
-  Service_Hotel_Rating,
-  hotel_hotelId
-}) => {
+exports.getHotelReviewInfo = async hotelId => {
   try {
-    await db.query("SELECT * FROM Hotel_Review where hotel_hotelId = ?", [
-      Title_Hotel,
-      Text_Hotel_Review,
-      timestamp,
-      Cleanliness_Hotel_Rating,
-      Comfort_Hotel_Rating,
-      Meal_Hotel_Rating,
-      Location_Hotel_Rating,
-      Service_Hotel_Rating,
-      Type_Of_Hotel_Reviewer,
-      hotel_hotelId
-    ]);
+    const hotelReview = await db.query(
+      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?",
+      [hotelId]
+    );
+    return hotelReview;
   } catch (error) {
     throw new Error(`[ERR] getHotelReviewInfo: ${err}`);
   }
 };
 
 exports.getFlightReviewInfo = async ({
-    Title_Flight,
-    Text_Flight_Review,
-    timestamp,
-    CabinCrewRating_Flight_Rating,
-    Comfort_Flight_Rating,
-    Meal_Flight_Rating,
-    Entertainment_Flight_Rating,
-    Flight_Flight_number
-  }) => {
-    try {
-      await db.query("SELECT * FROM Flight_Review where Flight_Flight_number = ?", [
+  Title_Flight,
+  Text_Flight_Review,
+  timestamp,
+  CabinCrewRating_Flight_Rating,
+  Comfort_Flight_Rating,
+  Meal_Flight_Rating,
+  Entertainment_Flight_Rating,
+  Flight_Flight_number
+}) => {
+  try {
+    await db.query(
+      "SELECT * FROM Flight_Review where Flight_Flight_number = ?",
+      [
         Title_Flight,
         Text_Flight_Review,
         timestamp,
@@ -50,6 +34,7 @@ exports.getFlightReviewInfo = async ({
         Meal_Flight_Rating,
         Entertainment_Flight_Rating,
         Flight_Flight_number
+
       ]);
     } catch (error) {
       throw new Error(`[ERR] getFlightReviewInfo: ${err}`);
@@ -103,7 +88,7 @@ exports.getAirline = async({
 //   } catch (err) {
 //     throw new Error(`[ERR] modelUpdateHotel: ${err}`);
 //   }
-// };         
+// };
 
 exports.insertNewHotel_Review = async ({
   userId,
@@ -138,17 +123,16 @@ exports.insertNewHotel_Review = async ({
   }
 };
 
-exports.insertNewHotelReviewPicture = async({
-    Hotel_Review_Picture_URL
-  }) => {
-    try{
-      await db.query(`INSERT INTO Hotel_Review_Picture_URL(Hotel_Review_Picture_URL, Hotel_Review_idHotel_Review) VALUES(?,?)`, [
-        Hotel_Review_Picture_URL
-      ]);
-    } catch(error){
-      throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`)
-    }
-  };
+exports.insertNewHotelReviewPicture = async ({ Hotel_Review_Picture_URL }) => {
+  try {
+    await db.query(
+      `INSERT INTO Hotel_Review_Picture_URL(Hotel_Review_Picture_URL, Hotel_Review_idHotel_Review) VALUES(?,?)`,
+      [Hotel_Review_Picture_URL]
+    );
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`);
+  }
+};
 
 exports.insertNewFlight_Review = async ({
   Title_Flight,
@@ -177,17 +161,18 @@ exports.insertNewFlight_Review = async ({
   }
 };
 
-exports.insertNewFlightReviewPicture = async({
-    Flight_Review_Picture_URL
-  }) => {
-    try{
-      await db.query(`INSERT INTO Flight_Review_Picture_URL(Flight_Review_Picture_URL, Flight_Review_idFlight_Review) VALUES(?,?)`, [
-        Flight_Review_Picture_URL
-      ]);
-    } catch(error){
-      throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`)
-    }
-  };
+exports.insertNewFlightReviewPicture = async ({
+  Flight_Review_Picture_URL
+}) => {
+  try {
+    await db.query(
+      `INSERT INTO Flight_Review_Picture_URL(Flight_Review_Picture_URL, Flight_Review_idFlight_Review) VALUES(?,?)`,
+      [Flight_Review_Picture_URL]
+    );
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`);
+  }
+};
 
 exports.deleteHotelReviewInfo = async idHotel_Review => {
   try {
