@@ -1,12 +1,15 @@
 <%- include('includes/headerFlight') %>
 <%- include('includes/navbar') %>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 
 
 <body>
-    <div class="page-wrapper bg-img-1 p-t-200 p-b-120">
+    <div class="intro">
+        <h1 style="text-align: center; margin-top: 50px;">Welcome, please feel free to search the flight. :)</h1>
+    </div>
+    <div class="page-wrapper bg-img-1 p-t-100 p-b-120">
         <div class="wrapper wrapper--w900">
             <div class="card card-4">
                     <ul class="tab-list">
@@ -35,7 +38,8 @@
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="input-group">
+                                        <button type="button" class="btn btn-dark btn-lg" id="return_button">Return Date</button>
+                                        <div class="input-group" id="return_date" style="display: none;">
                                             <label class="label">Returning:</label>
                                             <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end-2">
                                         </div>
@@ -55,7 +59,7 @@
                                         <span class="radio-checkmark"></span>
                                     </label>
                                 </div>
-                                <button class="btn-submit m-t-35" type="submit">search</button>
+                                <button class="btn-submit m-t-35" type="submit">Search</button>
                             </form>
                         </div>
                     </div>
@@ -63,4 +67,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#return_button').click(function(){
+                $('#return_date').show();
+                $('#return_button').hide();
+            });
+        });
+    </script>
             </div <%- include('includes/footerFlight') %> <%- include('includes/footerFlight') %>
