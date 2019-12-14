@@ -16,6 +16,11 @@
 			background-repeat: no-repeat;
 			background-size: cover;
 		}
+		viewedStaff {
+			width: 260px;
+			border: 1px dotted black;
+			min-height: 200px;
+		}
 		employeeList {
 			width: 85%;
 			max-width: 1000px;
@@ -41,7 +46,7 @@
 	
 </head>
 
-<body ng-app="home" ng-controller="homeController as hCtrl"> 
+<body ng-app="home" ng-controller="homeController as hCtrl" ng-init='staffs = <%- JSON.stringify(staffs) %>; deptList = <%- JSON.stringify(deptList) %>'> 
 
 	<%- include('./navbar') %>
 
@@ -51,14 +56,43 @@
 		<!-- wait for some idea -->
 	</header>
 
-	<p class="display-4" style="width: fit-content; margin: 1rem auto 0 auto;">Our staffs</p>
+	<p class="display-4 text-center" style="width: fit-content; margin: 1rem auto 0 auto;">
+		Our staffs <% if (isHR) { %>
+			<button class="btn btn-secondary" type="button" ng-if="!devModeOn" ng-click="hCtrl.openDevMode()">Click to start devMode</button>
+			<button class="btn btn-danger" type="button" ng-if="devModeOn" ng-click="hCtrl.closeDevMode()">Click to close devMode</button>
+		<% } %>
+	</p>
+	
+	<viewedStaff ng-if="devModeOn" class="d-flex mx-auto justify-content-center align-items-center" ng-model="viewedStaff">
+		<p class="text-center" ng-if="viewedStaff==null">Select a staff to investigate</p>
+		<div class="text-break text-center pb-4" ng-if="viewedStaff!=null">
+			<div class="staff-picture" style="width: 110px; height: 150px; margin: 1rem auto; background-image: url('{{ viewedStaff.profile_picture }}');"></div>
+			<p><ins>Current department</ins>: {{ viewedStaff.deptName }}</p>
+			<p><ins>Current role</ins>: {{ viewedStaff.roleName }}</p>
+			<p><ins>Current salary</ins>: {{ viewedStaff.salary }}</p>
+			
+			<hr>
+			
+			<span ng-if="viewedStaff.isManager=='false'">New department:</span><br ng-if="viewedStaff.isManager=='false'">
+			<select ng-model="newDept" ng-if="viewedStaff.isManager=='false'" ng-init="newDept=selectedDept" style="width: fit-content;" 
+			class="form-control mx-auto" ng-change="hCtrl.updateDept(newDept)" ng-options="dept as dept.deptName for dept in deptList track by dept.deptNo"></select>
+			<span ng-if="viewedStaff.isManager=='false'">New role:</span><br ng-if="viewedStaff.isManager=='false'">
+			<select ng-model="newRole" ng-if="viewedStaff.isManager=='false'" style="width: fit-content;"
+			class="form-control mx-auto" ng-change="hCtrl.updateRole(newRole)" ng-options="role as role.roleName for role in hCtrl.roleList track by role.roleId"></select>
+			<span>New salary:</span><br>
+			<input ng-model="newSalary" ng-init="newSalary=viewedStaff.salary" type="number" class="form-control mx-auto" style="width: 200px;">
+			<p class="text-right justify-self-right mr-3 mb-1 mt-3">
+				<button type="button" class="btn btn-success mr-1" ng-click="hCtrl.updateInfo(viewedStaff, newDept, newRole, newSalary)">update</button>
+				<button type="button" class="btn btn-danger" ng-click="hCtrl.cancelView()">cancel</button>
+			</p>
+		</div>
+	</viewedStaff>
 
-	<employeeList class="row justify-content-center align-items-start mx-auto my-4 py-4 rounded p-4"
-	ng-init='staffs = <%- JSON.stringify(staffs) %>; deptList = <%- JSON.stringify(deptList) %>'>
+	<employeeList class="row justify-content-center align-items-start mx-auto my-4 py-4 rounded p-4">
 		<p class="row col-12 justify-content-around">
 			<span class="col-auto ml-3 mb-2">
 				Department:&nbsp;&nbsp;
-				<select ng-model="selectedDept" ng-init="selectedDept=deptList[0]" style="width: fit-content;"
+				<select ng-model="selectedDept" ng-init="selectedDept=deptList[0]" style="width: fit-content;" ng-change="viewedStaff=null"
 				ng-options="dept as dept.deptName for dept in deptList track by dept.deptNo" class="form-control d-inline-block"></select>
 			</span>
 			<span class="col-auto">
@@ -75,6 +109,7 @@
 				<p class="mb-1"><ins>Name</ins><br>{{ staff.name }}</p>
 				<p class="mb-1"><ins>Department</ins><br><span ng-if="staff.isManager=='true'">(Manager&#9818;)<br></span>{{ staff.deptName }}</p>
 				<p class="mb-1"><ins>Role</ins><br>{{ staff.roleName }}</p>
+				<p class="mb-1 text-right" ng-if="devModeOn"><button type="button" class="btn btn-info" ng-click="hCtrl.updateViewedStaff(staff)">investigate</button></p>
 			</div>
 		</div>
 		<div class="w-100"></div>
