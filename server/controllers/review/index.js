@@ -14,11 +14,11 @@ exports.getFlight = (req, res) =>
     pageTitle: "TravelAloha - Review - Airline",
     user: req.user
   });
-
 exports.getAirline = (req, res) =>
   res.render("review_rating/SearchAirline", {
-    pageTitle: "TravelAloha - Find Airline",
-    user: req.user
+    pageTitle: "TravelAloha - Find - Airline",
+    user: req.user,
+    airlines: airline
   });
 
 exports.postHotelReview = async (req, res) => {

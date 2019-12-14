@@ -55,7 +55,44 @@ exports.getFlightReviewInfo = async ({
       throw new Error(`[ERR] getFlightReviewInfo: ${err}`);
     }
   };
-
+exports.getAirline = async({
+    airline_Id,
+    airlineName,
+    airlineNationality,
+    airlineEmail,
+    airlineDescription,
+    airlineAddress,
+    airlineTelNumber,
+    airlineContactNumber,
+    airlinePlaneDes,
+    airlineProfile,
+    airlinePicture,
+    airlineLogo,
+    airlineVerity,
+    timestamp,
+  }) => {
+    try {
+      await db.query("SELECT * FROM Airline", [
+        airline_Id,
+        airlineName,
+        airlineNationality,
+        airlineEmail,
+        airlineDescription,
+        airlineAddress,
+        airlineTelNumber,
+        airlineContactNumber,
+        airlinePlaneDes,
+        airlineProfile,
+        airlinePicture,
+        airlineLogo,
+        airlineVerity,
+        timestamp,
+      ]);
+    } catch (error) {
+      throw new Error(`[ERR] getAirline: ${err}`);
+    }
+  };
+//*//
 // exports.modelUpdateHotel = async data => {
 //   try {
 //     console.log("From mode", data);
