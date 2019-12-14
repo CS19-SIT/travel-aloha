@@ -28,9 +28,6 @@
 			border: 1px solid rgba(0, 0, 0, 0.15);
 			font-size: 95%;
 		}
-		.staffCard.manager {
-			background-color: rgba(119, 119, 119, 0.5);
-		}
 		.staff-picture {
 			background-color: black;
 			background-position: center;
@@ -71,12 +68,12 @@
 		</p>
 		
 		<div ng-repeat="staff in filterStaffs = (staffs | filter:selectedDept | filter:{'name': selectedName})"
-		ng-class="{'manager': staff.isManager=='true'}" class="staffCard row m-3 rounded p-3">
+		class="staffCard row m-3 rounded p-3">
 			
 			<div title="LatestCheckin: {{ staff.latestCheckIn | date:'y MMM, d (HH.mm)' }}" class="staff-picture col-auto" style="background-image: url('{{ staff.profile_picture }}');"></div>
 			<div class="col text-break">
 				<p class="mb-1"><ins>Name</ins><br>{{ staff.name }}</p>
-				<p class="mb-1"><ins>Department</ins><br>{{ (staff.isManager=='true')?staff.deptName+' (Manager)':staff.deptName }}</p>
+				<p class="mb-1"><ins>Department</ins><br><span ng-if="staff.isManager=='true'">(Manager&#9818;)<br></span>{{ staff.deptName }}</p>
 				<p class="mb-1"><ins>Role</ins><br>{{ staff.roleName }}</p>
 			</div>
 		</div>

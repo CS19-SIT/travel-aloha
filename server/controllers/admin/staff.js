@@ -34,6 +34,7 @@ exports.showRegistrationForm = async (req, res) => {
 		res.render('staff_admin/registration', {
 			pageTitle: 'TravelAloha - Admin - StaffRegistration',
 			user: req.user,
+			isHR: false,
 			isSubmitting: !!isSubmitting[0].length,
 			responseForm: (isSubmitting[0].length)?isSubmitting[0][0]:null,
 			userInfo: userInfo[0][0]
