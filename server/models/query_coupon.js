@@ -1,36 +1,22 @@
 const db = require("../db/db");
 
 const selectStm = "a.CouponCode, v.exp, a.Discount, a.Limit";
-const fromStm = " `AccommodationCoupon` as a, `validGold` as v";
+const fromStm = " `AccommodationCoupon` as a, `valicouponGollevel` as v";
 const whereStm = "a.AccCouID = v.couponid";
 
 
 exports.showValidCouponAc = async (user_id) => {
-  const coupon = await db.execute(
-    `SELECT ${selectStm} FROM ${fromStm} WHERE v.userID = ? AND ${whereStm} `, [
+  const coupon = await db.query(`SELECT ${selectStm} FROM ${fromStm} WHERE v.userID = ? AND ${whereStm} `, [
       user_id
     ]);
-  return coupon;
+  return coupon[0];
 };
 
 exports.showPoints = async (user_id) => {
-  const points = await db.execute(
-    `SELECT Points FROM GoldLevel WHERE userID = ?`, [user_id]);
+  const points = await db.execute(`SELECT point FROM user WHERE user_id = ?`, [user_id]);
   return points;
 };
 
-// let AuthUser = function(data) {
-//   return google.login(data.username, data.password).then(token => { return token } )
-// }
-// with placeholder
-// connection.query(
-//   'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?',
-//   ['Page', 45],
-//   function(err, results) {
-//     console.log(results);
-//   }
-// );
-//return stm
 
 
 // exports.showValidCouponFl = async LevelID => {

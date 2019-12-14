@@ -44,13 +44,17 @@ app.set("views", viewPath);
 app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
-    cookie: { maxAge: 900000 },
+    cookie: {
+      maxAge: 900000
+    },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
@@ -70,19 +74,34 @@ const authRoutes = require("./routes/auth");
 const errorsController = require("./controllers/errors");
 const rewardLevelRoutes = require("./routes/rewardLevel");
 
-const rewController = require("./controllers/query_reward_con");
-// const rewQuery = require("./models/query_coupon");
+// const rewQuery = require("./controllers/query_reward_con");
 
 app.get("/", (req, res) => res.render("index", {
   pageTitle: "TravelAloha",
   user: req.user
 }));
 
-app.use(rewController.getCoupon);
-
 app.use(authRoutes);
+//
 
-app.use("/rewardLevel", rewardLevelRoutes);
+//reward level controller caller and put on ejs file
+const rewController = require("./models/query_coupon");
+
+// app.use(rewQuery.getvalidCoupon);
+// app.use(rewController.getPoints);
+
+app.get('/rewardLevel', (req, res) => {
+
+  rewModel.showValidCouponAc(req.user.user_id)
+    res.render('rewardLevel/reward', {
+    couponcode: query,
+    string: "showvalidcouponAC"
+  });
+});
+
+
+
+// app.use("/rewardLevel", rewardLevelRoutes);
 
 app.use(errorsController.get404);
 
