@@ -85,7 +85,8 @@ exports.postConfirm = async (req, res) => {
 	let resultInsertBooking = await hotelbookModel.insertBooking(reqBookingDetail);
 	let resultSession = req.session;
 	resultSession.bookingID = resultInsertBooking;
-	req.bookindID = resultSession.bookingID;
+	req.bookingID = resultInsertBooking;
+	console.log("asdfdsaf "+req.bookingID);
 	res.redirect('/checkout');
 
 };
