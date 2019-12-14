@@ -2,17 +2,22 @@
 const Rating_ReviewModel = require("../../models/Rating_Review");
 
 exports.getHotel = (req, res) =>
-  res.render("review_rating/hotel", {
+  res.render("review_rating/ReviewHotel", {
     pageTitle: "TravelAloha - Review - Hotel",
     user: req.user
   });
 
 exports.getFlight = (req, res) =>
-  res.render("review_rating/airline", {
+  res.render("review_rating/ReviewAirline", {
     pageTitle: "TravelAloha - Review - Airline",
     user: req.user
   });
 
+exports.getAirline = (req, res) =>
+  res.render("review_rating/SearchAirline", {
+    pageTitle: "TravelAloha - Find Airline",
+    user: req.user
+  });
 
 exports.postHotelReview = async (req, res) => {
   const {
