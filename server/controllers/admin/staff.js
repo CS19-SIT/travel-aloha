@@ -65,14 +65,16 @@ exports.showHomepage = async (req, res) => {
 									AND si.deptNo=sd.deptNo 
 									AND sd.deptNo=sr.deptNo
 									AND si.roleId=sr.roleId
-								ORDER BY isManager DESC, latestCheckIn`); 
+								ORDER BY isManager DESC, latestCheckIn`);
+		const isManager = await conn.query(`SELECT 1 FROM staff_manager WHERE staffId='${req.user.user_id}'`);
 		res.render('staff_admin/homepage', {
 			pageTitle: 'TravelAloha - Admin - StaffHomepage',
 			user: req.user,
 			isStaff: true,
 			isHR: (myInfo[0][0].deptNo == 'AA'),
 			staffs: staffs[0],
-			deptList: deptList[0]
+			deptList: deptList[0],
+			isManager: !!isManager[0].length
 		});
 	} catch (err) {
 		res.status(400).send(err);

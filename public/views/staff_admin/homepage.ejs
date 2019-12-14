@@ -81,10 +81,14 @@
 			class="form-control mx-auto" ng-change="hCtrl.updateRole(newRole)" ng-options="role as role.roleName for role in hCtrl.roleList track by role.roleId"></select>
 			<span>New salary:</span><br>
 			<input ng-model="newSalary" ng-init="newSalary=viewedStaff.salary" type="number" class="form-control mx-auto" style="width: 200px;">
-			<p class="text-right justify-self-right mr-3 mb-1 mt-3">
+			<p class="text-center mr-3 mb-1 mt-3 mx-auto">
+				<button type="button" class="btn btn-outline-danger" ng-click="hCtrl.cancelView()">cancel</button>
 				<button type="button" class="btn btn-success mr-1" ng-click="hCtrl.updateInfo(viewedStaff, newDept, newRole, newSalary)">update</button>
-				<button type="button" class="btn btn-danger" ng-click="hCtrl.cancelView()">cancel</button>
 			</p>
+			<% if (isHR && isManager) { %>
+				<button type="button" class="btn btn-outline-dark mt-2" ng-if="viewedStaff.isManager=='false'" ng-click="hCtrl.upgradeManager(viewedStaff)">choose to be a manager &#9818;</button>	
+				<button type="button" class="btn btn-danger mt-2" ng-if="viewedStaff.isManager=='false'" ng-click="hCtrl.removeStaff(viewedStaff)">remove from the company</button>	
+			<% } %>
 		</div>
 	</viewedStaff>
 

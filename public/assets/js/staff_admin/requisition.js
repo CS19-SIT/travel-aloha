@@ -36,7 +36,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('approve'), (item) 
                         sql: `SELECT 1 FROM staff_registration WHERE userId='${userId}' AND status='pending'`
                     }
                 }).done((result) => {
-                    if (result.status == 200 && result.data) {
+                    if (result.status == 200 && !!result.data.length) {
                         $.ajax({
                             url: '/admin/staff/sendQuery',
                             method: 'POST',
@@ -151,7 +151,7 @@ Array.prototype.forEach.call(document.getElementsByClassName('looking'), (item) 
                 sql: `SELECT resume FROM staff_registration WHERE userId='${userId}'`
             }
         }).done((result) => {
-            if (result.status == 200 && result.data) {
+            if (result.status == 200 && !!result.data.length) {
                 Swal.fire({
                     title: 'Resume',
                     html: `

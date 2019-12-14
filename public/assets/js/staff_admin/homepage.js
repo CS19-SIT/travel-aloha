@@ -110,7 +110,58 @@ app.controller('homeController', [
             }).then((result) => {
                 $scope.staffs = result.data;
                 self.cancelView();
-            })
+            });
+        };
+
+        self.upgradeManager = (staff) => {
+            try {
+                self.getQuery({
+                    sql: `SELECT 1 FROM staff_info WHERE staffId='${staff.user_id}' AND deptNo='${staff.deptNo}'`
+                }).then((result) => {
+                    if (result.status == 200 && !!result.data.length) {
+                        self.sendQuery({
+                            sql: `INSERT INTO staff_manager VALUES ('${staff.deptNo}', '${staff.user_id}') ON DUPLICATE KEY UPDATE staffId=VALUES(staffId)`
+                        }).then((result) => {
+                            if (result.status == 200) {
+                                self.setNewStaffList();
+                            } else {
+                                throw new Error(result.message);
+                            }
+                        });
+                    } else {
+                        throw 'this staff does not exist in the department';
+                    }
+                });
+            } catch (err) {
+                alert(err);
+                setTimeout(() => location.reload(true), 1200);
+            }
+        };
+
+        self.removeStaff = (staff) => {
+            confirmMessage = prompt(`Please type "Grandma eats longan and she is dribbing"`);
+            if (confirmMessage == 'Grandma eats longan and she is dribbing') {
+                self.getQuery({
+                    sql: `SELECT 1 FROM staff_manager WHERE staffId='${staff.user_id}'`
+                }).then((result) => {
+                    if (result.status == 200 && !result.data.length) {
+                        self.sendQuery({
+                            sql: `DELETE FROM staff_info WHERE staffId='${staff.user_id}'`
+                        }).then((result) => {
+                            if (result.status == 200) {
+                                self.setNewStaffList();
+                            } else {
+                                alert('Something went wrong');
+                                setTimeout(() => location.reload(true), 1200);
+                            }
+                        });
+                    } else {
+                        alert('Can\'t delete managers');
+                    }
+                });
+            } else {
+                alert('You typed wrong');
+            }
         };
     }
 ]);
