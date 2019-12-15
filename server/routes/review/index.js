@@ -6,9 +6,9 @@ const authMiddleware = require("../../middlewares/auth");
 
 router.get("/hotel/:id", reviewController.getHotel);
 
-router.get("/flight", reviewController.getFlight);
+// router.get("/flight", reviewController.getFlight);
 
-router.get("/airline/:id",reviewController.getAirline);
+router.get("/airline",reviewController.getAirline);
 
 
 // router.get("/hotel/:hotel_hotelId", reviewController.getHotel);
@@ -17,7 +17,7 @@ router.get("/airline/:id",reviewController.getAirline);
 
 router.post("/hotel", reviewController.postHotelReview);
 
-router.post("/flight", reviewController.postFlightReview);
+router.post("/airline", reviewController.postAirlineReview);
 
 
 module.exports = router;

@@ -29,13 +29,13 @@ exports.getHotel = async (req, res) => {
   }
 };
 
-exports.getFlight = (req, res) =>
-  res.render("review_rating/ReviewAirline", {
-    pageTitle: "TravelAloha - Review - Airline",
-    user: req.user
-  });
+// exports.getFlight = (req, res) =>
+//   res.render("review_rating/ReviewAirline", {
+//     pageTitle: "TravelAloha - Review - Airline",
+//     user: req.user
+//   });
 exports.getAirline = (req, res) =>
-  res.render("review_rating/SearchAirline", {
+  res.render("review_rating/ReviewAirline", {
     pageTitle: "TravelAloha - Find - Airline",
     user: req.user,
     airlines: airline
@@ -67,39 +67,40 @@ exports.postHotelReview = async (req, res) => {
       Service_Hotel_Rating,
       hotel_hotelId
     });
-    res.redirect(204, "/review/hotel");
+    res.redirect(204, "/review/hotel/:id");
   } catch (error) {
     res.sendStatus(500);
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
 
-exports.postFlightReview = async (req, res) => {
+exports.postAirlineReview = async (req, res) => {
   const {
-    Title_Flight,
-    Type_Of_Flight_Reviewer,
-    Text_Flight_Review,
-    CabinCrewRating_Flight_Rating,
-    Comfort_Flight_Rating,
-    Meal_Flight_Rating,
-    Entertainment_Flight_Rating,
-    Flight_Flight_number
+    userId,
+    Title_Airline,
+    Text_Airline_Review,
+    CabinCrewRating_Airline_Rating,
+    Comfort_Airline_Rating,
+    Meal_Airline_Rating,
+    Entertainment_Airline_Rating,
+    Type_Of_Airline_Reviewer,
   } = req.body;
-
+  const airlineId_fk = req.params.id;
   try {
-    await contactModel.insertNewFlight({
-      Title_Flight,
-      Type_Of_Flight_Reviewer,
-      Text_Flight_Review,
-      CabinCrewRating_Flight_Rating,
-      Comfort_Flight_Rating,
-      Meal_Flight_Rating,
-      Entertainment_Flight_Rating,
-      Flight_Flight_number
+    await Rating_ReviewModel.insertNewAirline({
+      userId,
+      Title_Airline,
+      Text_Airline_Review,
+      CabinCrewRating_Airline_Rating,
+      Comfort_Airline_Rating,
+      Meal_Airline_Rating,
+      Entertainment_Airline_Rating,
+      Type_Of_Airline_Reviewer,
+      airlineId_fk
     });
-    res.redirect(204, "/review/airline");
+    res.redirect(204, "/review/airline/:id");
   } catch (error) {
     res.sendStatus(404);
-    throw new Error(`[ERR] insertNewHotel: ${error}`);
+    throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
