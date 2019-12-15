@@ -3,7 +3,7 @@ const db = require("../db/db");
 exports.getHotelReviewInfo = async hotelId => {
   try {
     const hotelReview = await db.query(
-      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?",
+      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?",
       [hotelId]
     );
     return hotelReview;

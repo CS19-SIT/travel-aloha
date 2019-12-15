@@ -67,10 +67,6 @@ exports.postHotelReview = async (req, res) => {
       Service_Hotel_Rating,
       hotel_hotelId
     });
-    // ** Wait for learning upload file
-    // await contactModel.insertNewHotelFile({
-    //   hotelPicture
-    // })
     res.redirect(204, "/review/hotel");
   } catch (error) {
     res.sendStatus(500);
