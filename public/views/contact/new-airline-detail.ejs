@@ -1,0 +1,104 @@
+<%- include('../includes/header') %>
+
+<link rel="stylesheet" href="../../../assets/stylesheet/style.css">
+</head>
+
+<body>
+    <%- include('../includes/navbar') %>
+    <div class="responsive-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="display-4 p-3 text-center"> <%= JSON.parse(airline)[0].airlineName %></h1>
+                </div>
+                <div class="col-md-12">
+                    <% if (typeof JSON.parse(airline)[0].airlinePicture == 'undefined'){ %>
+                    <div class="text-center">
+                        <div class="hotel-pic bg-dark rounded mx-auto d-block"></div>
+                        <% } else{ %>
+                        <% let isLink = /^(?:https\:\/\/|http\:\/\/|www)/.test(JSON.parse(airline)[0].airlinePicture); %>
+                        <div class="text-center">
+                            <div class="hotel-pic bg-dark rounded mx-auto d-block"
+                                style="background-image: url('<%- (isLink?``:`/assets/uploads/contact/pictures/`) + JSON.parse(airline)[0].airlinePicture %>'); ">
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="pt-4 pb-1 pl-4">Airline Description</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">
+                            <%= JSON.parse(airline)[0].airlineDescription %><p>
+                    </div>
+                    <div class="col-md-12">
+                        <h3 class="pt-4 pb-1 pl-4">Airplane Description</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="pl-3 pr-3 text-justify" style="text-indent: 3vw;">
+                            <%= JSON.parse(airline)[0].airlinePlaneDes %><p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="pb-2 pl-4">Airline Picture and Detail</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <% if (typeof JSON.parse(airline)[0].airlinePicture == 'undefined'){ %>
+                        <div class="detail-pic bg-dark rounded mx-auto d-block"></div>
+                        <% } else{ %>
+                        <% let isLink = /^(?:https\:\/\/|http\:\/\/|www)/.test(JSON.parse(airline)[0].airlinePicture); %>
+                        <div class="detail-pic bg-dark rounded mx-auto d-block"
+                            style="background-image: url('<%- (isLink?``:`/assets/uploads/contact/pictures/`) + JSON.parse(airline)[0].airlinePicture %>'); ">
+                        </div>
+                        <% } %>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Name</h5>
+                                <p class="card-text"> <%= JSON.parse(airline)[0].airlineName %> </p>
+                            </div>
+                        </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Nationality</h5>
+                                <p class="card-text"><%= JSON.parse(airline)[0].airlineNationality %></p>
+                            </div>
+                        </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Email</h5>
+                                <p class="card-text"><%= JSON.parse(airline)[0].airlineEmail %></p>
+                            </div>
+                        </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <address>Address</address>
+                                </h5>
+                                <p class="card-text"><%= JSON.parse(airline)[0].airlineAddress %></p>
+                            </div>
+                        </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Telephone Number</h5>
+                                <p class="card-text"><%= JSON.parse(airline)[0].airlineTelNumber %></p>
+                            </div>
+                        </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Contact Number</h5>
+                                <p class="card-text"><%= JSON.parse(airline)[0].airlineContactNumber %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+            <%- include('../includes/footer') %>

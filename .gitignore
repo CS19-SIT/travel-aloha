@@ -85,8 +85,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
-# PHP storm
-.idea/
-.idea
-yarn.lock
+*.jpg
+*.png

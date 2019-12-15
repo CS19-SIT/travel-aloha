@@ -1,3 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.responsive-wrapper{
+  width: 100%;
+  height: 100%;
+}
+.hotel-pic{
+  width: 100%;
+  height: 42.85vh;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.card-pic{
+  width: 100%;
+  height: 30vh;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.addMore, .remove{
+   padding-top: 3.2vh;
+}
+.detail-pic{
+  width: 100%;
+  height: 69vh;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .success-color{
   background-color: #388BF2;
   color: white;
@@ -14,12 +51,6 @@
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-}
-.hotel-pic{
-  width: 100%;
-  height: auto;
-  background: no-repeat center;
-  background-size: contain;
 }
 h1{
   color: #25282B;

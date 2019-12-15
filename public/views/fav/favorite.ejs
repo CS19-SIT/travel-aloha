@@ -1,222 +1,116 @@
 <%- include('../includes/header') %>
+<html>
 
-<link rel="stylesheet" href="../../assets/stylesheet/style.css">
-<link rel="stylesheet" href="../../assets/web/assets/mobirise-icons/mobirise-icons.css">
-<link rel="stylesheet" href="../../assets/web/assets/mobirise-icons2/mobirise2.css">
-<link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-grid.min.css">
-<link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-reboot.min.css">
-<link rel="stylesheet" href="../../assets/dropdown/css/style.css">
-<link rel="stylesheet" href="../../assets/tether/tether.min.css">
-<link rel="stylesheet" href="../../assets/animatecss/animate.min.css">
-<link rel="stylesheet" href="../../assets/socicon/css/styles.css">
-<link rel="stylesheet" href="../../assets/theme/css/style.css">
-<link rel="preload" as="style" href="../../assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="../../assets/mobirise/css/mbr-additional.css" type="text/css">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v4.11.4, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+ 
+  <meta name="description" content="">
+
+  <title>Home</title>
+
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="../../assets/theme/css/style.css">
+  <link rel="preload" as="style" href="../../assets/mobirise/css/mbr-additional.css">
+  <link rel="stylesheet" href="../../assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/stylefav.css">
+
+  <!--font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 
 </head>
-
+<%- include('../includes/navbar') %>
 <body>
-    <%- include('../includes/navbar') %>
 
-<section class="engine"><a href="https://mobirise.info/s">free bootstrap theme</a></section><section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1">
 
-    
 
-    
+  <section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1">
+
 
     <div class="container align-center">
-        <div class="row justify-content-md-center">
-            <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Travel Aloha</h1>
-                
-                <p class="mbr-text pb-3 mbr-fonts-style display-5">Favorite List</p>
-                
-            </div>
+      <div class="row justify-content-md-center">
+        <div class="mbr-white col-md-10">
+          <h1 class="headFavTitleHome align-center" style="text-shadow: 1px 1px 3px #313131;">Travel Aloha</h1>
         </div>
+      </div>
     </div>
-    <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-        <a href="#next">
-            <i class="mbri-down mbr-iconfont"></i>
-        </a>
-    </div>
-</section>
+  </section>
+  
+  <section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
+    <div class="" style="background-color: #efefef;">
+      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Hotel</h1>
+ 
+      <div class="row" style="padding-bottom: 5%;" >
+        <% for(var i = 0;i <dataH.length;i++) { %>
+        <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+        <div class="card cardTop" style="width:400px;">
+          <img src="<%= dataH[i].hotelPicture %>" alt="" title="" style="width:100%; height: 70%;">
+          <div class="card-body">
+            <div class="card-box">
+              <h4 class="card-title mbr-fonts-style display-6" style="text-shadow: 1px 1px 2px #313131;"><%= dataH[i].hotelName %></h4>
 
-<section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
-
-    
-
-    
-    <div class="container">
-        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">
-            Favorite Hotel</h2>
-        <h3 class="mbr-section-subtitle display-5 align-center mbr-fonts-style mbr-light">Your Favorite Hotel List</h3>
-        <div class="media-container-row pt-5 ">
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper ">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="https://mobirise.co" class="btn btn-primary display-4">ดูที่พัก</a></div>
-                        <img src="../../assets/images/mbr-2-676x451.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-7">iRecklez Hotel</h4>
-                        <p class="mbr-text mbr-fonts-style align-left display-7">
-                            เบอร์ลิง, เยมัน
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="https://mobirise.co" class="btn btn-primary display-4">ดูที่พัก</a></div>
-                        <img src="../../assets/images/mbr-3-676x451.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-7">GusTurbo Hotel</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                           ลอนดอน, อังกิก
-                        </p>
-                    </div>
-                </div>
+              <div class="col-lg-10">
+                <% if(dataH[i].hotelAddress != null) {%>
+                <h6 class="align-left display-6"><img
+                    src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= dataH[i].hotelAddress %>
+                </h6>
+                <% }else{%>
+                <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;nowhere
+                </h6>
+                <% }%>
+              </div>
+              
             </div>
 
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="https://mobirise.co" class="btn btn-primary display-4">ดูที่พัก<br></a></div>
-                        <img src="assets/images/mbr-2-676x483.jpeg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-7">Somsri Hotel</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            พัทยา, ไทย
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            
+          </div>
         </div>
+       </div>
+      <% }%>
+     </div>
+  
     </div>
-</section>
+  </section>
 
-<section class="testimonials4 cid-rGM2ZCUxVW" id="testimonials4-9">
+  <section class="testimonials4 cid-rGM2ZCUxVW" id="testimonials4-9">
+    <div class=" container">
+      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Flight</h1>
+      <div class="row" style="padding-bottom: 5%;" >
+        <% for(var i = 0;i <dataF.length;i++) { %>
 
-  
+          <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+      <div class="card cardTop" style="width:400px">
+        <img src="../../assets/images/flig.jpg" alt="" title="" style="width:100%">
+        <div class="card-body" style="background-color: #efefef;text-align: center;">
+          
+          <div class="card-box">
 
-  
-  <div class="container">
-    <h2 class="pb-3 mbr-fonts-style mbr-white align-center display-2">Favorite Flight</h2>
-    <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style mbr-white align-center display-5">Your Favorite Flight</h3>
-    <div class="col-md-10 testimonials-container"> 
+            <h4 class="card-title mbr-fonts-style display-6"><%= dataF[i].airlineName %></h4>
+
+            <div class="col-lg-10">
+              <% if(dataF[i].airlineNationality != null) {%>
+              <h6 class="align-left display-6"><img src="../../assets/images/airline.png">&nbsp;<%= dataF[i].airlineNationality  %>
+
+              </h6>
+              <% }else{%>
+
+              <h6 style="text-align: left;margin-left: 2.8rem;"></h6>
+
+              <% }%>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
       
-
-      
-    <div class="testimonials-item">
-        <div class="user row">
-          <div class="col-lg-3 col-md-4">
-            <div class="user_image">
-              <a href="data:image/png;base64,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"><img src="assets/images/brand-air.gif" alt="" title=""></a>
-            </div>
-          </div>
-          <div class="testimonials-caption col-lg-9 col-md-8">
-            <div class="user_text ">
-              <p class="mbr-fonts-style  display-7"><em>เวลาเที่ยวบิน</em></p>
-            </div>
-            <div class="user_name mbr-bold mbr-fonts-style align-left pt-3 display-7">
-                 Air Asia</div>
-            <div class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7">ราคา</div>
-          </div>
-        </div>
-      </div><div class="testimonials-item">
-        <div class="user row">
-          <div class="col-lg-3 col-md-4">
-            <div class="user_image">
-              <img src="../../assets/images/lion-air-210x210.png" alt="" title="">
-            </div>
-          </div>
-          <div class="testimonials-caption col-lg-9 col-md-8">
-            <div class="user_text ">
-              <p class="mbr-fonts-style  display-7">
-                 <em>เวลาเที่ยวบิน</em></p>
-            </div>
-            <div class="user_name mbr-bold mbr-fonts-style align-left pt-3 display-7">Lion Air<br></div>
-            <div class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7">ราคา<br></div>
-          </div>
-        </div>
-      </div><div class="testimonials-item">
-        <div class="user row">
-          <div class="col-lg-3 col-md-4">
-            <div class="user_image">
-              <img src="../../assets/images/frog-300x187.jpg" alt="" title="">
-            </div>
-          </div>
-          <div class="testimonials-caption col-lg-9 col-md-8">
-            <div class="user_text ">
-              <p class="mbr-fonts-style  display-7">
-                 <em>เวลาเที่ยวบิน</em></p>
-            </div>
-            <div class="user_name mbr-bold mbr-fonts-style align-left pt-3 display-7">Frog Air</div>
-            <div class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7">ราคา</div>
-          </div>
-        </div>
-      </div><div class="testimonials-item">
-        <div class="user row">
-          <div class="col-lg-3 col-md-4">
-            <div class="user_image">
-              <img src="../../assets/images/qatar-300x168.png" alt="" title="">
-            </div>
-          </div>
-          <div class="testimonials-caption col-lg-9 col-md-8">
-            <div class="user_text ">
-              <p class="mbr-fonts-style  display-7"><em>เวลที่เที่ยวบิน</em></p>
-            </div>
-            <div class="user_name mbr-bold mbr-fonts-style align-left pt-3 display-7">Qatar Airway</div>
-            <div class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7">
-                 ราคา</div>
-          </div>
-        </div>
-      </div><div class="testimonials-item">
-        <div class="user row">
-          <div class="col-lg-3 col-md-4">
-            <div class="user_image">
-              <img src="../../assets/images/logo-300x153.png" alt="" title="">
-            </div>
-          </div>
-          <div class="testimonials-caption col-lg-9 col-md-8">
-            <div class="user_text ">
-              <p class="mbr-fonts-style  display-7"></p><p>
-                 <em>เวลาเที่ยวบิน</em>&nbsp;&nbsp;&nbsp;&nbsp;</p><p></p>
-            </div>
-            <div class="user_name mbr-bold mbr-fonts-style align-left pt-3 display-7">Thai Smile</div>
-            <div class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7">ราคา</div>
-          </div>
-        </div>
-      </div></div>
-  </div>
-</section>
-
-
-
-
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/popper/popper.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/dropdown/js/nav-dropdown.js"></script>
-  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-  <script src="assets/tether/tether.min.js"></script>
-  <script src="assets/viewportchecker/jquery.viewportchecker.js"></script>
-  <script src="assets/parallax/jarallax.min.js"></script>
-  <script src="assets/mbr-popup-btns/mbr-popup-btns.js"></script>
-  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/theme/js/script.js"></script>
-  
-  
-  <input name="animation" type="hidden">
-
-<%- include('../includes/footer') %>
+      </div>
+      <% } %>
+    </div>
+    </div>
+  </section>

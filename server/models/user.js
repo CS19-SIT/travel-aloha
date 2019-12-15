@@ -16,12 +16,21 @@ exports.findUserById = async user_id => {
   }
 };
 
+exports.getAllCountry = async () => {
+    try {
+        let allCountry = await db.query("SELECT NAMEINENGLISH FROM country;");
+        // console.log(allCountry[0][0].NAMEINENGLISH);
+        return allCountry[0];        
+    } catch (err) {
+        throw new Error(`[ERR] getAllHotel: ${err}`);
+    }
+} ;
+
 exports.findUserByUsername = async username => {
   try {
     const result = await db.query("SELECT * FROM user WHERE username = ?", [
       username
     ]);
-
     if (result[0].length < 1) {
       throw new Error(`Cannot find user with username ${username}.`);
     }
