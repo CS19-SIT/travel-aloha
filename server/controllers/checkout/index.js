@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-exports.getIndex = (req, res) => {
-  
-  res.render("payment/checkout", {
-    pageTitle: "TravelAloha - Checkout",
-    user: req.user,
-    newSession: req.session.bookingID
-  });
-=======
 const stripe = require("stripe")("sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO");
 const hotelBooking = require("../../models/checkoutModels/chekout");
 const db = require("../../db/db");
@@ -34,7 +25,6 @@ exports.getIndex = async (req, res) => {
   } catch (err) {
     res.sendStatus(404);
   }
->>>>>>> checkoutSystem
 };
 
 exports.postIndex = async (req, res) => {
