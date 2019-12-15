@@ -5,7 +5,7 @@ exports.getFlight = async (req,res) => {
     try{
         let searchFlight = await Flight.getData();
         res.render("flights", {
-            pageTitle : "TravelAloha -Search",
+            pageTitle : "TravelAloha - Search",
             user : req.user,
             searchFlight : searchFlight
         });

@@ -3,4 +3,3 @@ exports.getIndex = (req, res) =>
     pageTitle: "TravelAloha - Flight",
     user: req.user
   });
-
