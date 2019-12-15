@@ -1,0 +1,168 @@
+<%- include('../includes/header') %>
+</head>
+
+<body>
+<%- include('../includes/navbar') %>
+
+<style> 
+    #myInput {
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 80%;
+        font-size: 16px;
+        padding: 12px 20px 12px 20px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+    #myTable th, #myTable td {
+        text-align: left;
+        padding: 12px;
+    }
+
+    #myTable tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+        background-color: #f1f1f1;
+    }
+    .profilepicture1{
+        width:50px;
+        height:50px;
+    }   
+    .punvp{
+        color:#25282B;
+        font-size: 18px; 
+            }
+    .userinfo{
+        color:#52575C;
+    }
+</style>
+    <div class="container-fluid">
+        <h1 align="center"  id="title">User Management</h1>
+        
+            <div class="text-center">
+                <input type="text" id="myInput" placeholder="Search" title="Type in a name"/>
+                <a href="/register"><button class="btn btn-primary">Create user</button></a>
+            </div>
+            
+            <br>
+            <div class="table-responsive">
+            <table  id="myTable" class="table ">
+                <thead class="thead-dark">
+                    <tr class="punvp" class="header">
+                        <th scope="col">Profile Picture</th>
+                        <th scope="col">Role</th> 
+                        <th scope="col">Level</th> 
+                        <th scope="col">Username</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
+
+                    </tr> 
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i <data.length;i++) { %>
+                    <tr class="userinfo">
+                        <td class="profilepicture1">
+                            <% if( data[i].profile_picture){%>     
+                                <img src="<%= data[i].profile_picture %>" width="50px" height="50px" class="rounded-circle user-img"  alt=""> 
+                            <%}else{%>    
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" width="50px" height="50px" class="rounded-circle"  alt="image">
+                            <%}%>                                  
+                        </td>
+                        <td>
+                            <% if( data[i].Role){%>     
+                                <%= data[i].Role %>
+                            <%}else{%>    
+                                -
+                            <%}%>    
+                        </td>
+                        <td>
+                            <% if( data[i].Level){%>     
+                                <%= data[i].Level %>
+                            <%}else{%>    
+                                -
+                            <%}%>    
+                        </td> 
+                        <td>
+                            <% if( data[i].username){%>     
+                                <%= data[i].username %>
+                            <%}else{%>    
+                                -
+                            <%}%>    
+                        </td> 
+                        <td>
+                            <% if( data[i].firstname){%>     
+                                <%= data[i].firstname %>
+                            <%}else{%>    
+                                -
+                            <%}%>    
+                        </td>
+                        <td>
+                            <% if( data[i].lastname){%>     
+                                <%= data[i].lastname %>
+                            <%}else{%>    
+                                -
+                            <%}%>   
+                        </td> 
+                        <td>
+                            <% if( data[i].gender){%>     
+                                <%= data[i].gender %>
+                            <%}else{%>    
+                                -
+                            <%}%>   
+                        </td> 
+                        <td>
+                            <% if( data[i].Email){%>     
+                                <%= data[i].Email %>
+                            <%}else{%>    
+                                -
+                            <%}%>   
+                        </td>
+                        <td style="min-width: 150px;">
+                            <a href="/admin/user/edit/<%= data[i].user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/admin/user/detail/<%= data[i].user_id %>" class="btn btn-sm btn-primary" >More Info</a> 
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    
+<script>
+function filterTable(event) {
+    var filter = event.target.value.toUpperCase();
+    var rows = document.querySelector("#myTable tbody").rows;
+    
+    for (var i = 0; i < rows.length; i++) {
+        var firstCol = rows[i].cells[1].textContent.toUpperCase();
+        var secondCol = rows[i].cells[2].textContent.toUpperCase();
+        var thirdCol = rows[i].cells[3].textContent.toUpperCase();
+        var forthCol = rows[i].cells[4].textContent.toUpperCase();
+        var fifthCol = rows[i].cells[5].textContent.toUpperCase();
+        var sixthCol = rows[i].cells[6].textContent.toUpperCase();
+        var seventhCol = rows[i].cells[7].textContent.toUpperCase();
+        if (firstCol.indexOf(filter) > -1 || secondCol.indexOf(filter) > -1 || thirdCol.indexOf(filter) > -1
+        || forthCol.indexOf(filter) > -1 || fifthCol.indexOf(filter) > -1  || seventhCol.indexOf(filter) > -1) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }      
+    }
+}
+
+document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
+</script>
+<%- include('../includes/footer') %>

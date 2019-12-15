@@ -1,11 +1,66 @@
 <%- include('includes/header') %>
-<%- include('includes/navbar') %>
 
 </head>
 
+<body>
+
+        <%- include('includes/navbar') %>
+
 <div class="container mt-3">
-    <h1>TravelAloha</h1>
-    <p>Start your dream trip here!</p>
+
+    <h1 class="display-3">TravelAloha</h1>
+    <hr>
+    <h2>Landing Page</h2>
+    <ul>
+        <li><a href="/" target="_blank">/ - Index</a></li>
+
+    </ul>
+    <h2>Admin Routes</h2>
+    <ul>
+        <li><a href="/admin" target="_blank">/admin - Admin Dashboard</a></li>
+        <li><a href="/admin/coupon" target="_blank">/admin/coupon - Coupon Management</a></li>
+        <li><a href="/admin/flight" target="_blank">/admin/flight - Flight Management</a></li>
+        <li><a href="/admin/hotel" target="_blank">/admin/hotel - Hotel Management</a></li>
+        <li><a href="/admin/staff" target="_blank">/admin/staff - Staff Management</a></li>
+        <li><a href="/admin/user" target="_blank">/admin/user - User Management</a></li>
+
+    </ul>
+
+    <h2>Checkout Routes</h2>
+    <ul>
+        <li><a href="/checkout" target="_blank">/checkout - Checkout</a></li>
+    </ul>
+
+    <h2>Contact Routes</h2>
+    <ul>
+        <li><a href="/contact" target="_blank">/contact - Contact</a></li>
+    </ul>
+
+    <h2>Hotel Routes</h2>
+    <ul>
+        <li><a href="/hotel" target="_blank">/hotel - Hotel</a></li>
+        <li><a href="/hotel/booking" target="_blank">/hotel/booking - Hotel Booking</a></li>
+    </ul>
+
+    <h2>Flight Routes</h2>
+    <ul>
+        <li><a href="/flight" target="_blank">/flight - Flight</a></li>
+        <li><a href="/flight/booking" target="_blank">/flight/booking - Flight Booking</a></li>
+    </ul>
+
+    <h2>Review Routes</h2>
+    <ul>
+        <li><a href="/review/hotel" target="_blank">/review/hotel - Review - Hotel</a></li>
+        <li><a href="/review/flight" target="_blank">/review/flight - Review - Flight</a></li>
+    </ul>
+
+    <h2>User Dashboard Routes</h2>
+    <ul>
+        <li><a href="/dashboard" target="_blank">/dashboard - User Dashboard</a></li>
+        <li><a href="/dashboard/favorite" target="_blank">/dashboard/favorite - User Dashboard Favorite</a></li>
+        <li><a href="/dashboard/history" target="_blank">/dashboard/history - User Dashboard History</a></li>
+    </ul>
+
 </div>
 
 <%- include('includes/footer') %>

@@ -1,0 +1,116 @@
+<%- include('../includes/header') %>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v4.11.4, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+ 
+  <meta name="description" content="">
+
+  <title>Home</title>
+
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="../../assets/theme/css/style.css">
+  <link rel="preload" as="style" href="../../assets/mobirise/css/mbr-additional.css">
+  <link rel="stylesheet" href="../../assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/stylefav.css">
+
+  <!--font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+
+</head>
+<%- include('../includes/navbar') %>
+<body>
+
+
+
+  <section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1">
+
+
+    <div class="container align-center">
+      <div class="row justify-content-md-center">
+        <div class="mbr-white col-md-10">
+          <h1 class="headFavTitleHome align-center" style="text-shadow: 1px 1px 3px #313131;">Travel Aloha</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
+    <div class="" style="background-color: #efefef;">
+      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Hotel</h1>
+ 
+      <div class="row" style="padding-bottom: 5%;" >
+        <% for(var i = 0;i <dataH.length;i++) { %>
+        <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+        <div class="card cardTop" style="width:400px;">
+          <img src="<%= dataH[i].hotelPicture %>" alt="" title="" style="width:100%; height: 70%;">
+          <div class="card-body">
+            <div class="card-box">
+              <h4 class="card-title mbr-fonts-style display-6" style="text-shadow: 1px 1px 2px #313131;"><%= dataH[i].hotelName %></h4>
+
+              <div class="col-lg-10">
+                <% if(dataH[i].hotelAddress != null) {%>
+                <h6 class="align-left display-6"><img
+                    src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= dataH[i].hotelAddress %>
+                </h6>
+                <% }else{%>
+                <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;nowhere
+                </h6>
+                <% }%>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+       </div>
+      <% }%>
+     </div>
+  
+    </div>
+  </section>
+
+  <section class="testimonials4 cid-rGM2ZCUxVW" id="testimonials4-9">
+    <div class=" container">
+      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Flight</h1>
+      <div class="row" style="padding-bottom: 5%;" >
+        <% for(var i = 0;i <dataF.length;i++) { %>
+
+          <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+      <div class="card cardTop" style="width:400px">
+        <img src="../../assets/images/flig.jpg" alt="" title="" style="width:100%">
+        <div class="card-body" style="background-color: #efefef;text-align: center;">
+          
+          <div class="card-box">
+
+            <h4 class="card-title mbr-fonts-style display-6"><%= dataF[i].airlineName %></h4>
+
+            <div class="col-lg-10">
+              <% if(dataF[i].airlineNationality != null) {%>
+              <h6 class="align-left display-6"><img src="../../assets/images/airline.png">&nbsp;<%= dataF[i].airlineNationality  %>
+
+              </h6>
+              <% }else{%>
+
+              <h6 style="text-align: left;margin-left: 2.8rem;"></h6>
+
+              <% }%>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      </div>
+      <% } %>
+    </div>
+    </div>
+  </section>
