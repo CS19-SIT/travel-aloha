@@ -8,7 +8,7 @@ router.get("/hotel/:id", reviewController.getHotel);
 
 // router.get("/flight", reviewController.getFlight);
 
-router.get("/airline",reviewController.getAirline);
+router.get("/airline/:id",reviewController.getAirline);
 
 
 // router.get("/hotel/:hotel_hotelId", reviewController.getHotel);

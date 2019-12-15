@@ -34,12 +34,33 @@ exports.getHotel = async (req, res) => {
 //     pageTitle: "TravelAloha - Review - Airline",
 //     user: req.user
 //   });
-exports.getAirline = (req, res) =>
-  res.render("review_rating/ReviewAirline", {
-    pageTitle: "TravelAloha - Find - Airline",
-    user: req.user,
-    airlines: airline
-  });
+
+exports.getAirline = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const airlineReview = await Rating_ReviewModel.getAirlineReviewInfo(id);
+      if (airlineReview[0].length == 0) {
+        return res.status(404).render("errors/404", {
+          pageTitle: "TravelAloha - Page Not Found",
+          user: req.user
+        });
+      }
+      res.render("review_rating/ReviewAirline", {
+        pageTitle: "TravelAloha - Review - Airline",
+        user: req.user,
+        airlineId: id,
+        airlineReview: airlineReview[0],
+        findProfileById: User.findProfileById,
+        moment
+      });
+    } catch (getAirlineError) {
+      res.status(500).render("errors/500", {
+        pageTitle: "TravelAloha - Bad Request",
+        user: req.user,
+        error: getAirlineError
+      });
+    }
+  };
 
 exports.postHotelReview = async (req, res) => {
   const {

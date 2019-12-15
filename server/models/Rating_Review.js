@@ -2,10 +2,28 @@ const db = require("../db/db");
 
 exports.getHotelReviewInfo = async hotelId => {
   try {
-    const hotelReview = await db.query(
-      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?",
-      [hotelId]
-    );
+    // const query =
+    //   "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?";
+    // switch (Type_Of_Hotel_Reviewer) {
+    //   case "Business trip":
+    //     query += "AND Type_Of_Hotel_Reviewer = 'Business Trip' ";
+    //   case "Family vacation":
+    //     query += "AND Type_Of_Hotel_Reviewer = 'Family vacation' ";
+    //   case "Romantic vacation":
+    //     query += "AND Type_Of_Hotel_Reviewer = 'Romantic vacation' ";
+    //   case "Shopping and Culinary":
+    //     query += "AND Type_Of_Hotel_Reviewer = 'Shopping and Culinary' ";
+    //   case "Backpacking":
+    //     query += "AND Type_Of_Hotel_Reviewer = 'Backpacking' ";
+    //   case "Medical Travel":
+    //     query += "AND Type_Of_Hotel_Reviewer = 'Medical Travel' ";
+    // }
+
+    // if (dateNewtoOld == 1) {
+    //   query += "ORDER BY timestamp ASC";
+    // }
+    const hotelReview = await db.query('SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?', [hotelId]);
+    console.log(hotelReview);
     return hotelReview;
   } catch (error) {
     throw new Error(`[ERR] getHotelReviewInfo: ${err}`);
