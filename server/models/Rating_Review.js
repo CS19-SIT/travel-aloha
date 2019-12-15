@@ -14,6 +14,7 @@ exports.getHotelReviewInfo = async hotelId => {
 
 exports.getAirlineReviewInfo = async airline_Id => {
   try {
+<<<<<<< HEAD
     const airlineReview = await db.query(
       "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, CabinCrewRating_Airline_Rating, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ?",
       [airline_Id]
