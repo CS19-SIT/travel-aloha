@@ -5,38 +5,32 @@ const contactController = require("../../controllers/contact/index");
 const authMiddleware = require("../../middlewares/auth");
 
 router.get("/", contactController.getIndex);
-
-router.get("/add-new-airline", function(req, res, next) {
-  res.render("contact/add-new-airline", {
-    pageTitle: "TravelAloha - Contact - Register New Airline",
-    user: req.user
-  });
-});
-
-router.get("/add-new-hotel", function(req, res, next) {
-  res.render("contact/add-new-hotel", {
-    pageTitle: "TravelAloha - Contact - Register New Aotel",
-    user: req.user
-  });
-});
-
+router.get("/add-new-hotel", contactController.getHotelInfo);
+router.post("/add-new-hotel", contactController.postHotelInfo);
+router.get("/add-new-airline", contactController.getAirlineInfo);
+router.post("/add-new-airline", contactController.postAirlineInfo);
 router.get(
-  "/dashboard",
+  "/new-hotel-dashboard",
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff,
-  contactController.getDashboard
+  contactController.getHotelDashboard
 );
-
 router.get(
-  "/dashboard/detail",
+  "/new-airline-dashboard",
   authMiddleware.isAuthenticated,
   authMiddleware.isStaff,
-  function(req, res, next) {
-    res.render("contact/new-hotel-detail", {
-      pageTitle: "TravelAloha - Contact - New Hotel Detail",
-      user: req.user
-    });
-  }
+  contactController.getAirlineDashboard
 );
-
+router.post(
+  "/new-hotel-dashboard/detail/new-hotel",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isStaff,
+  contactController.getHotelDetail
+);
+router.post(
+  "/new-airline-dashboard/detail/new-airline",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isStaff,
+  contactController.getAirlineDetail
+);
 module.exports = router;

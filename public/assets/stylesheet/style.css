@@ -1,0 +1,55 @@
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  width: 100%; 
+  height: 100%;
+}
+.responsive-wrapper{
+  width: 100%; 
+  height: 100%; 
+}
+.hotel-pic{
+  width: 100%;
+  height: 42.85vh;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.card-pic{
+  width: 100%;
+  height: 30vh;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.addMore, .remove{
+   padding-top: 3.2vh;
+}
+.detail-pic{
+  width: 100%;
+  height: 69vh;
+  object-fit: cover;
+  padding: 0;
+}
+.success-color{
+  background-color: #388BF2;
+  color: white;
+}
+.form-check{
+  margin-bottom: 20px !important;
+}
+#hiddenLogo{
+  display: none;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+h1{
+  color: #25282B;
+}
