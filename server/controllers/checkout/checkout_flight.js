@@ -101,14 +101,14 @@ exports.postIndex = async (req, res) => {
 
                         await db.query("INSERT INTO FlightTransaction_StatusAccept VALUES(?, ? , ?" ,
                         [
-                            result2.paid,
+                            result2.webhooks_delivered_at,
                             result2.customer,
                             statusDate
                         ]),
 
                         await db.query("INSERT INTO FlightTransaction_StatusReject VALUES(?, ? , ?, ?)" ,
                         [
-                            result2.paid,
+                           result.webhooks_delivered_at,
                             result2.customer,
                             "ggg",
                             statusDate2
@@ -124,7 +124,7 @@ exports.postIndex = async (req, res) => {
 
                     console.log(result);
                     res.render("payment/completedPayment_flight", {
-                        pageTitle: "TravelAloha-completed",
+                        pageTitle: "TravelAloha-completed-flight",
                         user: req.user,
                         booking_detail: data,
                         booking_head: data2,
