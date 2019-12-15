@@ -1,6 +1,10 @@
 const db = require("../db/db");
 
+<<<<<<< Updated upstream
 exports.getHotelReviewInfo = async hotelId => {
+=======
+exports.getHotelReviewInfo = async (hotelId, Type_Of_Hotel_Reviewer ,Sort,Score) => {
+>>>>>>> Stashed changes
   try {
     // const query =
     //   "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?";
