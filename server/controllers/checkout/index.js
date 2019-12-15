@@ -109,14 +109,14 @@ exports.postIndex = async (req, res) => {
 
             await db.query("INSERT INTO HotelTransaction_StatusAccept VALUES(?, ? , ?)", 
             [
-              result.paid,
+             result.webhooks_delivered_at,
               result.customer,
               statusDate
             ]),
 
             await db.query("INSERT INTO HotelTransaction_StatusReject VALUES(?, ? , ?, ?)", 
             [
-              result.paid,
+              result.webhooks_delivered_at,
               result.customer,
               "ggg",
               statusDate2
