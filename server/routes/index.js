@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 
-const flightController = require("../../controllers/flight/index");
+const flightController = require("../controllers/flight/index");
 
 router.post("/findFlight", flightController.findAll);
 

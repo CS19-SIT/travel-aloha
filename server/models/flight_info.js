@@ -39,7 +39,7 @@ exports.getAllTransit = async flight_number =>{
     }
 };
 
-xports.search = async (req,res) => {
+exports.search = async (req,res) => {
     const { origin ,destination, check_in, check_out} = req.body;
     try{
         if (!origin | !destination | !check_in){
