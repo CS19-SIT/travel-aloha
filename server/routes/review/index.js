@@ -8,8 +8,7 @@ router.get("/hotel/:id", reviewController.getHotel);
 
 // router.get("/flight", reviewController.getFlight);
 
-router.get("/airline",reviewController.getAirline);
-
+router.get("/airline", reviewController.getAirline);
 
 // router.get("/hotel/:hotel_hotelId", reviewController.getHotel);
 
@@ -18,6 +17,5 @@ router.get("/airline",reviewController.getAirline);
 router.post("/hotel", reviewController.postHotelReview);
 
 router.post("/airline", reviewController.postAirlineReview);
-
 
 module.exports = router;

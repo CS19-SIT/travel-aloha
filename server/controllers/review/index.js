@@ -34,6 +34,7 @@ exports.getHotel = async (req, res) => {
 //     pageTitle: "TravelAloha - Review - Airline",
 //     user: req.user
 //   });
+
 exports.getAirline = (req, res) =>
   res.render("review_rating/ReviewAirline", {
     pageTitle: "TravelAloha - Find - Airline",
