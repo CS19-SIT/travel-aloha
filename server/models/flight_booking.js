@@ -1,26 +1,30 @@
 const db = require("../db/db");
 
-exports.getFlightInfoByNumber = async flight_number =>{  
+exports.getFlightInfoByNumber = async (flight_number,seatClass) =>{  
+    console.log(flight_number[0][1]);
     try {
-        statment = "SELECT Flight_number, DATE_FORMAT(Depart_Date, '%d-%b-%Y') AS Dep_Date, TIME_FORMAT(Depart_Time, '%H:%i') AS Dep_time, DATE_FORMAT(Arrive_Date, '%d-%b-%Y') AS Arr_Date, TIME_FORMAT(Arrive_Time, '%H:%i') AS Arr_time, "+
-        "Departure, Destination, dep.city AS dep_city, des.city AS des_city, DATE_FORMAT(Depart_Date, '%W') AS Dep_Day, airlineLogo as airline_logo, airlineName, TIME_FORMAT(TIMEDIFF(Arrive_Time, Depart_Time), '%H h %i min') AS timespan "
+        statment = "SELECT df.Flight_number, DATE_FORMAT(Depart_Date, '%d-%b-%Y') AS Dep_Date, TIME_FORMAT(Depart_Time, '%H:%i') AS Dep_time, DATE_FORMAT(Arrive_Date, '%d-%b-%Y') AS Arr_Date, TIME_FORMAT(Arrive_Time, '%H:%i') AS Arr_time, "+
+        "Departure, Destination, dep.city AS dep_city, des.city AS des_city, DATE_FORMAT(Depart_Date, '%W') AS Dep_Day, airlineLogo as airline_logo, airlineName, TIME_FORMAT(TIMEDIFF(Arrive_Time, Depart_Time), '%H h %i min') AS timespan, price, DATE_FORMAT(Depart_Date, '%Y-%m-%d') AS nor_Depart_Date "
         +
-        "FROM Flight, Airport AS dep, Airport AS des, airline "+
-        "WHERE (flight_number = '"+flight_number[0]+"' AND Departure=dep.Airport_ID AND Destination=des.Airport_ID AND Flight.Airline_ID = airline.airline_Id)";
+        "FROM Daily_Flight AS df, Flight, Airport AS dep, Airport AS des, airline, Seat_Price AS sp "+
+        "WHERE (Flight.flight_number = '"+flight_number[0][0]+"' AND df.flight_number = Flight.flight_number AND Departure=dep.Airport_ID AND Destination=des.Airport_ID AND Flight.Airline_ID = airline.airline_Id AND Flight.flight_number = sp.flight_number AND "+
+        "Depart_Date = '"+flight_number[0][1]+"' AND sp.class = '"+seatClass+"')";
         for(i=1 ; i<flight_number.length ; i++)
         {
-            statment+=" OR (flight_number = '" +flight_number[i]+"' AND Departure=dep.Airport_ID AND Destination=des.Airport_ID AND Flight.Airline_ID = airline.airline_Id)";
+            statment+=" OR (Flight.flight_number = '"+flight_number[i][0]+"' AND df.flight_number = Flight.flight_number AND Departure=dep.Airport_ID AND Destination=des.Airport_ID AND Flight.Airline_ID = airline.airline_Id AND Flight.flight_number = sp.flight_number AND "+
+            "Depart_Date = '"+flight_number[i][1]+"' AND sp.class = '"+seatClass+"')";
         }
         statment += " ORDER BY Dep_Date";
         const result = await db.query(statment);
-        // const result = await db.query("SELECT Flight_number, DATE_FORMAT(Depart_Date, '%d-%b-%Y') AS Dep_Date, TIME_FORMAT(Depart_Time, '%H:%i') AS Dep_time, DATE_FORMAT(Arrive_Date, '%d-%b-%Y') AS Arr_Date, TIME_FORMAT(Arrive_Time, '%H:%i') AS Arr_time, "+
-        //                                 "Departure, Destination, dep.city AS dep_city, des.city AS des_city, DATE_FORMAT(Depart_Date, '%W') AS Dep_Day, airlineLogo as airline_logo, airlineName "
-        //                                 +
-        //                                 "FROM Flight, Airport AS dep, Airport AS des, airline "+
-        //                                 "WHERE flight_number = ? AND Departure=dep.Airport_ID AND Destination=des.Airport_ID AND Flight.Airline_ID = airline.airline_Id", [
+        // const result = await db.query("SELECT df.Flight_number, DATE_FORMAT(Depart_Date, '%d-%b-%Y') AS Dep_Date, TIME_FORMAT(Depart_Time, '%H:%i') AS Dep_time, DATE_FORMAT(Arrive_Date, '%d-%b-%Y') AS Arr_Date, TIME_FORMAT(Arrive_Time, '%H:%i') AS Arr_time, "+
+        //                                 "Departure, Destination, dep.city AS dep_city, des.city AS des_city, DATE_FORMAT(Depart_Date, '%W') AS Dep_Day, airlineLogo as airline_logo, airlineName, TIME_FORMAT(TIMEDIFF(Arrive_Time, Depart_Time), '%H h %i min') AS timespan "+
+        //                                 "FROM Daily_Flight AS df, Flight, Airport AS dep, Airport AS des, airline, Seat_Price "+
+        //                                 "WHERE Flight.flight_number = ? AND df.flight_number=Flight.flight_number AND Departure=dep.Airport_ID AND Destination=des.Airport_ID AND Flight.Airline_ID = airline.airline_Id", [
         //     flight_number[0]
         // ]);
-        // const result1 = await db.query("SELECT * FROM Flight");
+        // const result1 = await db.query("SELECT * FROM Flight WHERE flight_number = ?",[
+        //     flight_number[0]
+        // ]);
 
         // console.log(result1[0]);
 
@@ -66,7 +70,8 @@ exports.getStringPrice = async (seatPrice) =>{
     let strPrice = [];
     for(i=0 ; i<seatPrice.length ; i++)
     {
-        let j=seatPrice[i]; let output = "";
+        var j= Math.floor(seatPrice[i]);
+        let output = "";
         while(j>999){
             if(j%1000==0){
                 output = ","+ "000" + output;
@@ -88,24 +93,24 @@ exports.getStringPrice = async (seatPrice) =>{
 
 exports.getSum = async (seatPrice) =>{
     let sum=0;
-    for(i=0 ; i<seatPrice.length ; i++)
+    for(var i=0 ; i<seatPrice.length ; i++)
     {
-        sum+=seatPrice[i];
+        sum+=parseFloat(seatPrice[i]);
     }
-    return sum;   
+    return sum;
 };
 
 exports.recordPassager = async (passager) => {
     try{
-        for(i=0 ; i<passager.length ; i++)
+        for(var i=0 ; i<passager.length ; i++)
         {
-            const result = await db.query("SELECT * FROM Passager WHERE firstname = ? AND lastname = ?",[
+            const result = await db.query("SELECT * FROM flight_booking_passenger WHERE firstname = ? AND lastname = ?",[
                 passager[i]['fname'],
                 passager[i]['lname']
             ]);
             if(result[0].length<1)
             {
-                db.query("INSERT INTO Passager (firstname, lastname, name_title, birth_date, cid, passpost) VALUES (?, ?, ?, ?, ?, ?)",[
+                await db.query("INSERT INTO flight_booking_passenger (firstname, lastname, name_title, birth_date, cid, passport_ID) VALUES (?, ?, ?, ?, ?, ?)",[
                     passager[i]['fname'],
                     passager[i]['lname'],
                     passager[i]['nameTitle'],
@@ -115,10 +120,10 @@ exports.recordPassager = async (passager) => {
                 ]);
             }
             else
-            {
+            {   
                 if(result[0][0]['cid']==null && passager[i]['cid']!=null)
                 {
-                    db.query("UPDATE Passage SET cid = ? WHERE firstname = ? AND lastname = ?",[
+                    await db.query("UPDATE flight_booking_passenger SET cid = ? WHERE firstname = ? AND lastname = ?",[
                         passager[i]['cid'],
                         passager[i]['fname'],
                         passager[i]['lname']
@@ -126,7 +131,7 @@ exports.recordPassager = async (passager) => {
                 }
                 if(result[0][0]['passport']==null && passager[i]['passport']!=null)
                 {
-                    db.query("UPDATE Passage SET passport = ? WHERE firstname = ? AND lastname = ?",[
+                    await db.query("UPDATE flight_booking_passenger SET passport_id = ? WHERE firstname = ? AND lastname = ?",[
                         passager[i]['passport'],
                         passager[i]['fname'],
                         passager[i]['lname']
@@ -136,19 +141,113 @@ exports.recordPassager = async (passager) => {
         }
     }
     catch(err){
-        throw new Error(`[ERR] findTransit: ${err}`);
+        throw new Error(`[ERR] In Record passager: ${err}`);
     }
 }
 
+exports.createSeat = async (flight_number,seatClass) => {
+    for(var i=10 ; i<=60 ; i++)
+    {
+        await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
+            i+"A",
+            flight_number[1][0],
+            flight_number[1][1],
+            seatClass
+        ]);
+    }
+}
 
+exports.getUpsell = async (flight_number) => {
+    const result = await db.query(
+        "SELECT product, price, product_detail "+
+        "FROM Upsell "+
+        "WHERE flight_number = ? ", 
+        [
+            flight_number
+        ]
+    );
+    return result[0];
+}
 
-// const passagerInfo = {
-//     fname: "firstname",
-//     lname: "lastname",
-//     nameTitle: "title",
-//     birthDate: "Birth",
-//     cid: "cid",
-//     passport: "passport"
-// }
+exports.getSeat = async (flight_number,date) => {
+    
+    const result = await db.query(
+        "SELECT Seat_Number, CASE Availability WHEN '0' THEN false WHEN '1' THEN true END AS Ava "+
+        "FROM Seat "+
+        "WHERE Flight_number = ? AND Depart_date = ? ", 
+        [
+            flight_number,
+            date
+        ]
+    );
+    seat = [];
+    // console.log(result[0]);
+    return result[0];
+}
 
+exports.recordBookingHead = async (contact,user_id,booking_ref) => {
+    try{
+        var today = new Date();
+        await db.query("INSERT INTO flight_booking_head (Booking_ref, Customer_ID, Book_Date, cont_fname, cont_lname, cont_email,cont_phone ) VALUES (?, ?, ?, ?, ?, ?, ?)",[
+            booking_ref,
+            user_id,
+            today,
+            contact['fname'],
+            contact['lname'],
+            contact['email'],
+            contact['phone']
+        ]);
+    }catch(err){
+        throw new Error(`[ERR] In Record Booking Head: ${err}`);
+    }
+}
 
+exports.recordBookingdetail = async (reserveSeat,booking_ref) => {
+    try{
+        for(var i=0 ; i<reserveSeat.length ; i++)
+        {
+            for(var j=0 ; j<reserveSeat[i].length ; j++)
+            {
+                await db.query("INSERT INTO Flight_booking_detail (Firstname, Lastname, Booking_ref, Flight_Number, Depart_date, Seat_Number) VALUES (?, ?, ?, ?, ?, ?)",[
+                    reserveSeat[i][j]['fname'],
+                    reserveSeat[i][j]['lname'],
+                    booking_ref,
+                    reserveSeat[i][j]['flight'],
+                    reserveSeat[i][j]['dep_date'],
+                    reserveSeat[i][j]['seat']
+                ]);
+                await db.query("UPDATE Seat SET Availability = ? WHERE Seat_Number = ? AND Flight_Number = ? AND Depart_date = ? ",[
+                    false,
+                    reserveSeat[i][j]['seat'],
+                    reserveSeat[i][j]['flight'],
+                    reserveSeat[i][j]['dep_date']
+                ]);
+            }
+        }
+        
+    }catch(err){
+        throw new Error(`[ERR] In Record Booking Detail: ${err}`);
+    }
+}
+
+exports.recordBookingUpsell = async (upsell,upsellData,booking_ref,passagerinfo,flight_info) => {
+    try{
+        for(var i=0 ; i<upsellData.length ; i++)
+        {
+            var tmp = upsellData[i].split("_");
+            var path = tmp[1].split("-");
+            console.log(path);
+            await db.query("INSERT INTO Booking_Upsell (Firstname, Lastname, Booking_ref, Flight_Number, Depart_date, Product) VALUES (?, ?, ?, ?, ?, ?)",[
+                passagerinfo[path[1]]['fname'],
+                passagerinfo[path[1]]['lname'],
+                booking_ref,
+                flight_info[path[0]]['Flight_number'],
+                flight_info[path[0]]['nor_Depart_Date'],
+                upsell[path[0]][path[2]]['product']
+            ]);
+        }
+        
+    }catch(err){
+        throw new Error(`[ERR] In Record Booking Up Sell: ${err}`);
+    }
+}

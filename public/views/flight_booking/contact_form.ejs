@@ -34,22 +34,22 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="firstname">Firstname</label>
-                                        <input required type="name" class="form-control" id="c_fname" aria-describedby="firstname" placeholder="Enter firstname">
+                                        <input required type="name" class="form-control" id="c_fname" aria-describedby="firstname" placeholder="Enter firstname" value="<%=user.firstname%>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="firstname">Lastname</label>
-                                        <input required type="name" class="form-control" id="c_lname" aria-describedby="lastname" placeholder="Enter lastname">
+                                        <input required type="name" class="form-control" id="c_lname" aria-describedby="lastname" placeholder="Enter lastname" value="<%=user.lastname%>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email address</label>
                                     <input required type="email" class="form-control" id="c_email"
-                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                        aria-describedby="emailHelp" placeholder="Enter email" value="<%=user.Email%>">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone number</label>
                                     <input required type="phone" class="form-control" id="c_phone" aria-describedby="phone"
-                                        placeholder="Enter phone number">
+                                        placeholder="Enter phone number" value="<%=user.PhoneNum%>">
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                         <div class="input-group-prepend">
                                                 <label for="birthDate<%=i%>"class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-plus-o"></i></lebel>
                                             </div>
-                                        <input required class="form-control datepicker" id="birthDate<%=i%>" placeholder="DD/MM/YYYY">
+                                        <input required class="form-control datepicker" id="birthDate<%=i%>" placeholder="YYYY-MM-DD">
                                     </div>
                                 </div>
                             </div>
@@ -116,6 +116,7 @@
                         </div>
                         <%}%>
                     </div>
+                    <input type="hidden" id="contact" name="contact">
                     <input type="hidden" id="PassagerInfo" name="PassagerInfo">
                     <input type="hidden" id="feeValue" name="feeValue">
                     <input type="hidden" id="sendInfo" name="sendInfo" value="<%=JSON.stringify(info)%>">
@@ -184,38 +185,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-md-4" id="summary">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Summary</h4>
-                        <% let sum=0;
-                        for (let i = 0; i < info.length; i++) { sum+=p[i]%>
-                        <div class="font-weight-bold"><%=info[i]['Departure']%>&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;<%=info[i]['Destination']%></div>
-                        <div><%=info[0]['Dep_Day']%>, <%=info[i]['Dep_Date']%></div>
-                        <div><%=info[i]['Dep_time']%> - <%=info[i]['Arr_time']%> <span class="airport-code">(<%=info[i]['timespan']%>)</span></div>
-                        <div class="row">
-                            <div class="col-md-8"><%=info[i]['airlineName']%> : <%=seatClass%> (<%=passager%>)</div>
-                            <div class="text-right col-md-4" id="fee<%=i%>" value="<%=p[i]%>"><%=strP[i]%> &#3647;</div>
-                        </div>
-                        <%}%>
-                        <div class="text-right mt-5">
-                            <div class="row">
-                                <div class="col-md-8">Pay</div>
-                                <div class="col-md-4"><%=strSum[0]%> &#3647;</div>
-                                <input type="hidden" id="selectedFlight" name="selectedFlight">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">VAT 7%</div>
-                                <div class="col-md-4"><%=strSum[1]%> &#3647;</div>
-                            </div>
-                            <div class="row font-weight-bold">
-                                <div class="col-md-8">Total</div>
-                                <div class="col-md-4"><%=strSum[2]%> &#3647;</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%- include('./summary') %>
         </div>
     </div>
 
@@ -224,22 +194,6 @@
             var lis = [];
             for(i=0 ; i<passager ; i++)
             {
-                // lis[i] = passagerInfo;
-                // lis[i].fname = document.getElementById('fname'+i).value;
-                // lis[i].lname = document.getElementById('lname'+i).value;
-                // lis[i].nameTitle = document.getElementById('nameTitle'+i).value;
-                // lis[i].birthDate = document.getElementById('birthDate'+i).value;
-                // lis[i].birthDate.replace('/','-');
-                // lis[i].cid = lis[i].passport = null;
-                // var check = document.getElementById('IDType'+i).value;
-                // if(check = 'cid')
-                // {
-                //     lis[i].cid = document.getElementById('CID-Passport'+i).value;
-                // }
-                // else
-                // {   
-                //     lis[i].passport = document.getElementById('CID-Passport'+i).value;
-                // }
                 lis[i] = {
                     fname: document.getElementById('fname'+i).value,
                     lname: document.getElementById('lname'+i).value,
@@ -248,7 +202,8 @@
                     cid: null,
                     passport: null
                 };
-                if(check = 'cid')
+                IDtype = document.getElementById('IDType'+i).value;
+                if(IDtype == 'cid')
                 {
                     lis[i]['cid'] = document.getElementById('CID-Passport'+i).value;
                 }
@@ -269,7 +224,15 @@
             }
             const strFee = JSON.stringify(fee);
             document.getElementById("feeValue").value = strFee;
-            
+
+            var contact = {
+                fname: document.getElementById("c_fname").value,
+                lname: document.getElementById("c_lname").value,
+                email: document.getElementById("c_email").value,
+                phone: document.getElementById("c_phone").value
+            }
+            const strContract = JSON.stringify(contact);
+            document.getElementById("contact").value = strContract;
         };
 
         const passagerInfo = {
@@ -283,7 +246,7 @@
 
         $(document).ready(function(){
             $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy',
+                format: 'yyyy-mm-dd',
                 uiLibrary: 'bootstrap4',
                 inline: false,
                 maxDate: "+1m",
