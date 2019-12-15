@@ -109,10 +109,10 @@ app.use("/dashboard/favorite", userFavoriteRoutes);
 app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
 
-app.use(searchFlightRoutes);
+app.use("/flights",searchFlightRoutes);
 
-app.use("/flight", flightRoutes);
-app.use("/flight/booking", flightBookingRoutes);
+app.use("/flights", flightRoutes);
+app.use("/flights/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
 

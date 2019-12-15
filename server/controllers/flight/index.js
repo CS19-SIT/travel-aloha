@@ -3,7 +3,7 @@ exports.getIndex = (req, res) =>
     pageTitle: "TravelAloha - Flight",
     user: req.user
   });
-<<<<<<< HEAD
+
 
   exports.findAll = async () => {
     try {
@@ -14,5 +14,4 @@ exports.getIndex = (req, res) =>
       throw new Error(`[ERR] Flight.findAll: ${err}`);
     }
   };
-=======
->>>>>>> 0c980ab50c21cd9f02469b1f7aad9bd0ab98b603
+
