@@ -4,7 +4,7 @@ const db = require("../../db/db");
 
 exports.getIndex = async (req, res) => {
     try {
-        //just example that retrieveHotelData// 
+        //just example that retrieveHotelData/ 
         let data = await hotelBooking.retrieveBookingDetail();
         let data2 = await hotelBooking.retrieveBookingHead();
         let data3 = await hotelBooking.retrieveNameHotel();
@@ -34,8 +34,7 @@ exports.postIndex = async (req, res) => {
         let data3 = await hotelBooking.retrieveNameHotel();
         let data4 = await hotelBooking.retrievePriceHotel();
         let data5 = await hotelBooking.retrieveCouponCode();
-        let code = null;
-        let earnPoint = null;
+
 
         stripe.customers
             .create({
@@ -63,34 +62,67 @@ exports.postIndex = async (req, res) => {
                 )
                 .then(invoice => stripe.invoices.pay(invoice.id))
 
-                .then(async (result) => {
+                .then(async (result2) => {
+                    var ts = new Date(result2.status_transitions.finalized_at).toISOString().slice(0, 19).replace('T', ' ');
+                    var statusDate = new Date(result2.period_start).toISOString().slice(0, 19).replace('T', ' ');
+                    var statusDate2 = new Date(result2.period_end).toISOString().slice(0, 19).replace('T', ' ');
+
+                        await db.query("INSERT INTO TransactionType VALUES(?,?) ",
+                            [
+                                result2.charge,
+                                "flight"
+                            ]),
+
+                        await db.query("INSERT INTO PaymentType VALUES(?, ?)",
+                            [
+                                result2.payment_intent,
+                                "card"
+                            ]),
+
+                        await db.query("INSERT INTO FlightTransaction VALUES(? , ? , ? , ? , ? ,? ,? ,? ,? ,? )",
+                            [
+                                result2.customer,
+                                result2.payment_intent,
+                                result2.charge,
+                                result2.number,
+                                null,
+                                result2.tax,
+                                result2.total,
+                                result2.currency,
+                                null,
+                                ts
+                            ]),
+
+                        await db.query("INSERT INTO TransactionStatus_Code VALUES(?, ?)",
+                            [
+                                result2.webhooks_delivered_at,
+                                result2.status
+                            ]),
+
+                        await db.query("INSERT INTO FlightTransaction_StatusAccept VALUES(?, ? , ?" ,
+                        [
+                            result2.paid,
+                            result2.customer,
+                            statusDate
+                        ]),
+
+                        await db.query("INSERT INTO FlightTransaction_StatusReject VALUES(?, ? , ?, ?)" ,
+                        [
+                            result2.paid,
+                            result2.customer,
+                            "ggg",
+                            statusDate2
+                        ]),
 
 
-                    await db.query(`INSERT INTO TransactionType 
-                          VALUES('${result.charge}', '${"hotel"}')`);
+                        await db.query("INSERT INTO Invoice VALUES(?, ? , ?)" ,
+                        [
+                            result2.id,
+                            result2.charge,
+                            result2.customer_email
+                        ])
 
-                    console.log(JSON.stringify(a));
-                    await db.query(`INSERT INTO PaymentType 
-                          VALUES('${result.payment_intent}', '${"card"}')`);
-
-                     await db.query(`INSERT INTO FlightTransaction 
-                          VALUES('${result.customer}', '${result.payment_intent}',
-                          '${result.charge}','${result.number}',${code},${result.tax},${result.total}
-                          ,'${result.currency}',${earnPoint},${result.status_transitions.finalized_at})`);
-
-                    await db.query(`INSERT INTO TransactionStatus_Code 
-                          VALUES('${result.paid}', ${result.status})`);
-
-                    await db.query(`INSERT INTO FlightTransaction_StatusAccept 
-                          VALUES('${result.paid}', '${result.customer}' , ${result.period_start},)`);
-
-                    await db.query(`INSERT INTO FlightTransaction_StatusReject 
-                          VALUES('${result.paid}', '${result.customer}' , ${result.period_end},'${"ggg"}')`);
-
-                    await db.query(`INSERT INTO Invoice 
-                          VALUES('${result.id}', '${result.charge}' , '${result.customer_email}')`);
-
-                   console.log(result);
+                    console.log(result);
                     res.render("payment/completedPayment_flight", {
                         pageTitle: "TravelAloha-completed",
                         user: req.user,

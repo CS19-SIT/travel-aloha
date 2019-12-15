@@ -34,8 +34,7 @@ exports.postIndex = async (req, res) => {
     let data3 = await hotelBooking.retrieveNameHotel();
     let data4 = await hotelBooking.retrievePriceHotel();
     let data5 = await hotelBooking.retrieveCouponCode();
-    let code = null;
-    let earnPoint = null;
+
 
 
     stripe.customers
@@ -65,30 +64,71 @@ exports.postIndex = async (req, res) => {
         .then(invoice => stripe.invoices.pay(invoice.id))
 
         .then(async (result) => {
+          var ts = new Date(result.status_transitions.finalized_at).toISOString().slice(0,19).replace('T',' ');
+          var statusDate = new Date(result.period_start).toISOString().slice(0, 19).replace('T', ' ');
+          var statusDate2 = new Date(result.period_end).toISOString().slice(0, 19).replace('T', ' ');
+          
 
-          await db.query(`INSERT INTO TransactionType 
-                          VALUES('${result.charge}', '${"hotel"}')`);
+          await db.query("INSERT INTO TransactionType VALUES(?,?) ",
+              [
+                result.charge,
+                "hotel"
+              ]),
 
-          await db.query(`INSERT INTO PaymentType 
-                          VALUES('${result.payment_intent}', '${"card"}')`);
+            await db.query("INSERT INTO PaymentType VALUES(?, ?)",
+              [
+                result.payment_intent,
+                "card"
+              ]),
 
-          console.log(result.status_transitions.finalized_at);
-          await db.query(`INSERT INTO HotelTransaction 
-                          VALUES('${result.customer}', '${result.payment_intent}',
-                          '${result.charge}','${result.number}',${code},${result.tax},${result.total}
-                          ,'${result.currency}',${earnPoint},${result.status_transitions.finalized_at})`);
 
-          await db.query(`INSERT INTO TransactionStatus_Code 
-                          VALUES('${result.paid}', ${result.status})`);
 
-          await db.query(`INSERT INTO HotelTransaction_StatusAccept 
-                          VALUES('${result.paid}', '${result.customer}' , ${result.period_start},)`);
+            await db.query("INSERT INTO HotelTransaction VALUES(? , ? , ? , ? , ? ,? ,? ,? ,? ,? )",
+              [
+                result.customer,
+                result.payment_intent,
+                result.charge,
+                result.number,
+                null,
+                result.tax,
+                result.total,
+                result.currency,
+                null,
+                ts
+              ]),
 
-          await db.query(`INSERT INTO HotelTransaction_StatusReject 
-                          VALUES('${result.paid}', '${result.customer}' , ${result.period_end},'${"ggg"}')`);
 
-          await db.query(`INSERT INTO Invoice 
-                          VALUES('${result.id}', '${result.charge}' , '${result.customer_email}')`);
+
+            await db.query("INSERT INTO TransactionStatus_Code VALUES(?, ?)",
+              [
+                result.webhooks_delivered_at,
+                result.status
+              ]),
+
+
+
+            await db.query("INSERT INTO HotelTransaction_StatusAccept VALUES(?, ? , ?)", 
+            [
+              result.paid,
+              result.customer,
+              statusDate
+            ]),
+
+            await db.query("INSERT INTO HotelTransaction_StatusReject VALUES(?, ? , ?, ?)", 
+            [
+              result.paid,
+              result.customer,
+              "ggg",
+              statusDate2
+            ]),
+
+            await db.query("INSERT INTO Invoice VALUES(?, ? , ?)", 
+            [
+              result.id,
+              result.customer_email,
+              result.charge
+              
+            ])
 
           console.log(result);
           res.render("payment/completedPayment", {
