@@ -1,25 +1,31 @@
 const db = require("../db/db"); //connect to db
-
 exports.insertBooking = async booking => {
-  const {
+  const [
+    FirstName,
+    LastName,
+    Email,
+    PhoneNo,
+    user_id,
     checkInDate,
-    checkoutDate,
-    firstname,
-    lastname,
-    userId,
-    roomId,
-    hotelId
-  } = booking;
+    checkOutDate,
+    hotelID,
+    roomID,
+    hotelFullPrice,
+    hotelSalePrice
+  ] = booking;
   try {
-    let result = await db.query(
-      'insert into booking_detail(firstName,lastName,userId_booking,roomId_booking,hotelId_booking) values ("?","?","?",?,?)',
-      [firstname, lastname, userId, roomId, hotelId]
+    let book_detail = await db.query(
+      "insert into booking_detail(firstName,lastName,email,phoneNumber,userId_booking,roomId_booking,hotelId_booking,salePrice,fullPrice) values (?,?,?,?,?,?,?,?,?)",
+      [FirstName, LastName, Email, PhoneNo, user_id, roomID, hotelID, hotelSalePrice, hotelFullPrice]
     );
-    await db.query(
+    let book_head = await db.query(
       "insert into booking_head(checkinDate,checkoutDate,bookingDetailid) values (?,?,?)",
-      [checkInDate, checkoutDate, result[0]]
+      [checkInDate, checkOutDate, book_detail[0].insertId]
     );
-  } catch (error) {}
+    return book_head[0].insertId;
+  } catch (error) {
+    throw new Error(`[ERR] insertBooking: ${error}`);
+  }
 };
 exports.getBooking = async bookingId => {
   try {
@@ -32,7 +38,7 @@ exports.getBooking = async bookingId => {
       [bookingId]
     );
     const result2 = await db.query(
-      "selec * from booking_detail where bookingId_detail = ?",
+      "select * from booking_detail where bookingId_detail = ?",
       [bookingDetailId]
     );
     if (result[0].length < 1) {
@@ -53,7 +59,29 @@ exports.Deletebooking = async bookingId => {
   ]);
 };
 
-// Probably needed in model
-// still no idea again ...
-// room is reserved or free
-// lock room after reserve
+exports.getPriceByBookingId = async bookingId =>{
+  try {
+    let searchPrice = await db.query(
+      "select fullprice from booking_detail join booking_head on bookingId_detail = bookingDetailid where bookingId = ?",[bookingId]
+    );
+    console.log(searchPrice[0][0].fullprice);
+    if(searchPrice[0]<1){
+      throw new Error(`Undefinded get fullprice by booking id ${bookingId}`)
+    }
+    return searchPrice[0][0].fullprice;
+  } catch (err){
+    throw new Error(`Error get price by bookingId ${err}`);
+  }
+}
+
+exports.updatePaid = async bookingId => {
+  try {
+    let query = await db.query('update booking_head set isPaid = true where bookingId = ?', [bookingId]);
+    if(query[0] < 1){
+      throw new Error(`Undefinded bookingId ${bookingId}`);
+    }
+    return query;
+  } catch (err) {
+    throw new Error(`Error updatePaid ${err}`);
+  }
+}

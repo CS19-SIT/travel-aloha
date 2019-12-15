@@ -42,6 +42,7 @@ exports.postIndex = async (req, res) => {
     hotelPicture,
     hotelLogo
   } = req.body;
+  
 
   try {
     await Hotel.create(

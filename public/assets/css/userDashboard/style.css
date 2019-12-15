@@ -130,5 +130,18 @@ h5{
     font-weight: 400 / Regular;
     line-height: 20px;
 }
+.role{
+    background-color: #0062cc;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+}
 
+.con{
+    background-color: #e6eeff;
+    border-radius: 8px;
+    margin: 45px;
+}
 
