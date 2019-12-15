@@ -1,108 +1,69 @@
 <%- include("../includes/header") %>
-  <script src="../../assets/js/history/history.js"></script>
+<%- include("../includes/navbar") %>
 
-  <!--This is custom CSS-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
+
+<script src="../../assets/js/history/history.js"></script>
+
+<script>
+
+  var fromEJS_hotel = '<%- JSON.stringify(hotelArr) %>';
+  var allRecord_hotel = JSON.parse(fromEJS_hotel);
+
+  var fromEJS_flight = '<%- JSON.stringify(flightArr) %>';
+  var allRecord_flight = JSON.parse(fromEJS_flight);
+
+</script>
+
+
+<!--This is custom CSS-->
+<link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
 
-<body onload="showDetail()">
-
-    <%- include("../includes/navbar") %>
-
-  <!--Navbar
-  <nav class="navbar ta-navbar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Travel Aloha</a>
-      </div>
-    </div>
-  </nav>
--->
+<body onload="loadPage()">
   <div class="row">
     <!--User Info side (left)-->
     <div class="col-sm-3 ta-user-info">
-      <h4 class="user-name"><b>Carl 'CJ' Johnson</b></h4>
+      <h4 class="user-name"><b id="userName">
+          <%= userFirstname %> <%= userLastname %>
+        </b></h4>
       <hr class="hrColor">
       <div class="user-info">
         <div class="user-level">
-          <b class="badge badge-level">Level: 30</b>
-        </div>
-        <div class="user-points">
-          <span class="left badge badge-points-rank badge-points-rank">Points: 200</span>
-          <span class="right badge badge-silver badge-points-rank">Silver</span>
+          <b class="badge badge-level">Level: <span id="userLvl"><%= userLvl %></span></b>
         </div>
       </div>
     </div>
 
     <!--History Header side (right)-->
     <div class="col-sm-9 ta-user-history">
+
       <h1><b>History</b></h1>
-      <!--Filter-->
-      <div class="filter">
-          <input type="checkbox"> Paid<br>
-          <input type="checkbox"> Done<br>
-          <input type="checkbox"> Canceled
-      </div>
+
       <div class="history-list" id="histList">
 
         <!--This is header for each history-->
-        <div class="history-item">
-          <div class="headerInfo">
-            <span class="brief-info">
-              <div>
-                <h5><b>Dusit Thani Hotel (Show from HTML)</b></h5>
-              </div>
-              <div>
-                <h6>31-10-2019 | 10:00</h6>
-              </div>
-            </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <span class="icon">
-              <div class="book-icon">
-                <img src="bed_icon.png" class="hotel">
-              </div>
-            </span>
-            <span class="toDetail">
-              <a href="#" style="vertical-align: middle;">
-                <button type="button" class="btn-link">View details</button>
-              </a>
-            </span>
-          </div>
-        </div>
-
-        <div class="history-item">
-          <div class="headerInfo">
-            <span class="brief-info">
-              <div>
-                <h5><b>Air Asia - Economy Class (Show from HTML)</b></h5>
-              </div>
-              <div>
-                <h6>30-10-2019 | 2:00</h6>
-              </div>
-            </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <span class="icon">
-              <div class="book-icon">
-                <img src="plane_icon.jpg" class="flight">
-              </div>
-            </span>
-            <span class="toDetail">
-              <a href="#">
-                <button type="button" class="btn-link">View details</button>
-              </a>
-            </span>
-          </div>
-        </div>
+        
         <!--End of HTML List-->
       </div>
-      <div>
-        
+    </div>
+    <div id="detailModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!--Content-->
+          <div class="modal-body" id="detailContent">
+            <p>Your booking is canceled</p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
+     
+
   <%- include("../includes/footer") %>
