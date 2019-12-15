@@ -12,32 +12,15 @@ exports.getHotelReviewInfo = async hotelId => {
   }
 };
 
-exports.getFlightReviewInfo = async ({
-  Title_Flight,
-  Text_Flight_Review,
-  timestamp,
-  CabinCrewRating_Flight_Rating,
-  Comfort_Flight_Rating,
-  Meal_Flight_Rating,
-  Entertainment_Flight_Rating,
-  Flight_Flight_number
-}) => {
+exports.getAirlineReviewInfo = async airline_Id => {
   try {
-    await db.query(
-      "SELECT * FROM Flight_Review where Flight_Flight_number = ?",
-      [
-        Title_Flight,
-        Text_Flight_Review,
-        timestamp,
-        CabinCrewRating_Flight_Rating,
-        Comfort_Flight_Rating,
-        Meal_Flight_Rating,
-        Entertainment_Flight_Rating,
-        Flight_Flight_number
-      ]
+    const airlineReview = await db.query(
+      "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, CabinCrewRating_Airline_Rating, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ?",
+      [airline_Id]
     );
+    return airlineReview;
   } catch (error) {
-    throw new Error(`[ERR] getFlightReviewInfo: ${err}`);
+    throw new Error(`[ERR] getAirlineReviewInfo: ${err}`);
   }
 };
 
@@ -97,43 +80,45 @@ exports.insertNewHotelReviewPicture = async ({ Hotel_Review_Picture_URL }) => {
   }
 };
 
-exports.insertNewFlight_Review = async ({
-  Title_Flight,
-  Text_Flight_Review,
-  CabinCrewRating_Flight_Rating,
-  Comfort_Flight_Rating,
-  Meal_Flight_Rating,
-  Entertainment_Flight_Rating,
-  Flight_Flight_number
+exports.insertNewAirline_Review = async ({
+  userId,
+  Title_Airline,
+  Text_Airline_Review,
+  CabinCrewRating_Airline_Rating,
+  Comfort_Airline_Rating,
+  Meal_Airline_Rating,
+  Entertainment_Airline_Rating,
+  airlineId_fk
 }) => {
   try {
     await db.query(
-      `INSERT INTO Flight_Review(Title_Flight, Text_Flight_Review, CabinCrewRating_Flight_Rating, Comfort_Flight_Rating, Meal_Flight_Rating, Entertainment_Flight_Rating, Flight_Flight_number) VALUES(?,?,?,?,?,?,?)`,
+      `INSERT INTO Airline_Review(userId,Title_Airline, Text_Airline_Review, CabinCrewRating_Airline_Rating, Comfort_Airline_Rating, Meal_Airline_Rating, Entertainment_Airline_Rating, airlineId_fk) VALUES(?,?,?,?,?,?,?)`,
       [
-        Title_Flight,
-        Text_Flight_Review,
-        CabinCrewRating_Flight_Rating,
-        Comfort_Flight_Rating,
-        Meal_Flight_Rating,
-        Entertainment_Flight_Rating,
-        Flight_Flight_number
+        userId,
+        Title_Airline,
+        Text_Airline_Review,
+        CabinCrewRating_Airline_Rating,
+        Comfort_Airline_Rating,
+        Meal_Airline_Rating,
+        Entertainment_Airline_Rating,
+        airlineId_fk
       ]
     );
   } catch (error) {
-    throw new Error(`[ERR] insertNewFlight_Review: ${error}`);
+    throw new Error(`[ERR] insertNewAirline_Review: ${error}`);
   }
 };
 
-exports.insertNewFlightReviewPicture = async ({
-  Flight_Review_Picture_URL
+exports.insertNewAirlineReviewPicture = async ({
+  Airline_Review_Picture_URL
 }) => {
   try {
     await db.query(
-      `INSERT INTO Flight_Review_Picture_URL(Flight_Review_Picture_URL, Flight_Review_idFlight_Review) VALUES(?,?)`,
-      [Flight_Review_Picture_URL]
+      `INSERT INTO Airline_Review_Picture_URL(Airline_Review_Picture_URL, Airline_Review_idFlight_Review) VALUES(?,?)`,
+      [Airline_Review_Picture_URL]
     );
   } catch (error) {
-    throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`);
+    throw new Error(`[ERR] insertNeAirlineReviewPicture: ${error}`);
   }
 };
 
@@ -147,13 +132,13 @@ exports.deleteHotelReviewInfo = async idHotel_Review => {
   }
 };
 
-exports.deleteFlightReviewInfo = async idFlight_Review => {
+exports.deleteAirlineReviewInfo = async idAirline_Review => {
   try {
-    await db.query("DELETE FROM Flight_Review WHERE idFlight_Review = ?", [
-      idFlight_Review
+    await db.query("DELETE FROM Airline_Review WHERE idAirline_Review = ?", [
+      idAirline_Review
     ]);
   } catch (err) {
-    throw new Error(`[ERR] deleteFlightReviewInfo: ${err}`);
+    throw new Error(`[ERR] deleteAirlineReviewInfo: ${err}`);
   }
 };
 
