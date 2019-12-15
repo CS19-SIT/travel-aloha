@@ -38,3 +38,39 @@ exports.getAllTransit = async flight_number =>{
         throw new Error(`[ERR] findTransit: ${err}`);
     }
 };
+
+exports.search = async (req,res) => {
+    const { origin ,destination, check_in, check_out} = req.body;
+    try{
+        if (!origin | !destination | !check_in){
+            throw new Error();
+        }
+        const result = await db.query("select f.Destination, f.Depart_Date, a.airlineName, s.class, air.Airport_name " + 
+        " from Flight as f, airline as a, Seat as s, Airport as air where Departure = '"
+        + origin +"' and Destination = '" + destination + "' and Depart_Date = '" + check_in + "';");
+
+        if(result[0].length < 1){
+            throw new Error(`[ERR] Flight.search: ${err}`);
+        }
+
+        return result[0];
+        
+    } catch(err){
+        console.log(err);
+        console.log(origin + " " + destination + " " + check_in);
+        res.redirect("/flights");
+    }
+};
+
+exports.getData = async (req,res) => {
+    try{
+        result = await db.query("select Destination, Depart_Date, Arrive_Date from Flight;");
+        return result[0];
+    }
+    catch(err){
+        console.log(err);
+        res.redirect("/flights");
+    }
+    
+};
+
