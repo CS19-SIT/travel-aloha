@@ -95,7 +95,6 @@ const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 app.use(indexRoutes);
 app.use(authRoutes);
 
-
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
 app.use("/admin/flight", adminFlightRoutes);
@@ -103,10 +102,12 @@ app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
-app.get("/", (req, res) => res.render("index", {
-  pageTitle: "TravelAloha",
-  user: req.user
-}));
+app.get("/", (req, res) =>
+  res.render("index", {
+    pageTitle: "TravelAloha",
+    user: req.user
+  })
+);
 
 app.use("/checkout", checkoutRoutes);
 app.use("/contact", contactRoutes);
@@ -114,7 +115,6 @@ app.use("/contact", contactRoutes);
 app.use("/dashboard", userRoutes);
 app.use("/dashboard/history", userHistoryRoutes);
 app.use("/dashboard/favorite", userFavoriteRoutes);
-
 
 app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
@@ -133,6 +133,10 @@ app.use((err, req, res, next) => {
     error: err
   });
 });
+
+const listEndpoints = require("express-list-endpoints");
+console.log(listEndpoints(app).length)
+console.log(listEndpoints(app));
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
