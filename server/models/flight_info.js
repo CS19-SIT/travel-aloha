@@ -64,12 +64,12 @@ exports.search = async (req,res) => {
 
 exports.getData = async (req,res) => {
     try{
-        result = await db.query("select Destination, Depart_Date, Arrive_Date from Flight;");
-        return result[0];
+        const getData = await db.query("select * from Flight, airline, Airport, Seat;");
+        return getData[0];
     }
     catch(err){
-        console.log(err);
-        res.redirect("/flights");
+        throw new Error(`[ERR] getData: ${err}`);
+        
     }
     
 };

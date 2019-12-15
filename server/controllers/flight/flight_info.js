@@ -3,8 +3,8 @@ const db = require("../../db/db");
 
 exports.getFlight = async (req,res) => {
     try{
-        let searchFlight = await Flight.search();
-        res.render("Flights", {
+        let searchFlight = await Flight.getData();
+        res.render("flights", {
             pageTitle : "TravelAloha -Search",
             user : req.user,
             searchFlight : searchFlight

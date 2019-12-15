@@ -4,11 +4,11 @@ const router = express.Router();
 
 const flightController = require("../controllers/flight/index");
 
-router.post("/findFlight", flightController.findAll);
+const searchFlightController = require("../controllers/flight/flight_info");
+
+router.post("/findFlight", searchFlightController.getFlight);
 
 // router.get('/findFilter',hotelController.findFilters);
-
-router.get("/flights", flightController.getIndex);
 
 const indexController = require("../controllers/index");
 
