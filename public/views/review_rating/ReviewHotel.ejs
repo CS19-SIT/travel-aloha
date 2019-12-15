@@ -231,6 +231,7 @@
                         </div><% } %>
                     </div>
                     <div class="pt-4"></div>
+                    <form action="/review/hotel/<%= hotelId %>" method="get">
                     <div class="d-flex">
                         <div class="col-xs-3 col-md-3 ">
                             <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
@@ -269,9 +270,10 @@
                             </select>
                         </div>
                         <div class="col-xs-3 col-md-3 ">
-                            <button class="btn btn-primary show">Display</button>
+                            <button class="btn btn-primary show" type="submit">Display</button>
                         </div>
                     </div>
+                </form>
                     <!-- Review by user -->
                     <% for(var i = 0; i < hotelReview.length; i++) { %>
                         <section class="review p-5 border-1">
