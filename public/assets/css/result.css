@@ -795,3 +795,7 @@ body {
 	  color:red;
   }
 /*end fav button*/
+
+#map {
+	height: 100%;
+  }
