@@ -2,7 +2,7 @@ const Flight = require("../../models/flight_info");
 
 exports.getIndex = async (req, res) => {
 
-  info = await Flight.getFlightInfoByNumber('cs00002');
+  info = await Flight.getFlightInfoByNumber('CS00002');
   console.log(info);
   // console.log(req);
   res.render("flight_booking/flight_info", {
