@@ -13,7 +13,7 @@
                     <div class="card border-0 px-3">
                         <!-- display review-->
                         <div class="d-flex shadow-sm row py-5 px-5 ">
-                            <h5>Based on 2,097 reviews <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></h5>
+                            <h5>Based on <%= airlineReview.length %> reviews <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></h5>
                             <div class="well well-sm">
                                 <div class="row">
                                     <div class="white-tab col-xs-2 col-md-2 divcircle">
@@ -154,7 +154,7 @@
                                                     <div class="form-group">
                                                         <label for="message-text" class="col-form-label">Title:</label>
                                                         <input type="text" class="form-control" name="Title_Flight" id="title">
-                                                    </div>
+                                                    </div> 
                                                     <div class="form-group">
                                                         <label for="Category">Category:</label>
                                                         <select class="form-control" id="Category" name="Type_Of_Flight_Reviewer">
@@ -250,113 +250,42 @@
                             </div>
                         </div>
                         <!-- Review by user -->
-                        <section class="review p-5 border-1">
-                            <div class="row d-flex">
-                                <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px"
-                                        height="60px"></div>
-                                <div class="d-flex flex-column pl-3">
-                                    <a class="black-text" href="#">
-                                        <h4>Emily</h4>
-                                    </a>
-                                    <p class="grey-text">Thailand</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-0 mb-0">
-                                <p class="font-weight-bold">31/10/11 &nbsp•&nbsp Business trip</p>
-                                <p class="text-right font-weight-bold">Score <span class="text-info">8.5</span>/10</p>
-                            </div>
-                            <div class="row pb-3">
-                                <p>This dive center is incredibly well organized and is at the top of its game.</p>
-                            </div>
-                            <div class="row ml-1">
-                                <img class="reviewpic"
-                                    src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
-                                    alt="" />
-                                <img class="reviewpic"
-                                    src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
-                                    alt="">
-                            </div>
-                            <div class="row mt-2">
-                                <div class="rating">
-                                    <div class="like grow">
-                                        <i class="fa fa-thumbs-up like" aria-hidden="true"></i>
-                                        <span>Helpful</span>
+                        <% for(var i = 0; i < airlineReview.length; i++) { %>
+                            <section class="review p-5 border-1">
+                                <div class="row d-flex">
+                                    <div class="profile-pic">
+                                        <% if(airlineReview[i].profile_picture) { %>
+                                        <img src="<%= airlineReview[i].profile_picture %>" width="60px"
+                                            height="60px">
+                                        <% } else { %>
+                                            <img src="/assets/img/profile.png" width="60px"
+                                            height="60px">
+                                        <% } %>  
                                     </div>
-                                    <div class="dislike grow">
-                                        <i class="fa fa-thumbs-down like" aria-hidden="true"></i>
-                                        <span>Not helpful</span>
+                                    <div class="d-flex flex-column pl-3">
+                                        <a class="black-text" href="#">
+                                            <h4><%= airlineReview[i].firstname %></h4>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                        <section class="review p-5 border-1">
-                            <div class="row d-flex">
-                                <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px"
-                                        height="60px"></div>
-                                <div class="d-flex flex-column pl-3">
-                                    <a class="black-text" href="#">
-                                        <h4>Emily</h4>
-                                    </a>
-                                    <p class="grey-text">Thailand</p>
+                                <div class="d-flex justify-content-between mt-0 mb-0">
+                                    <p class="font-weight-bold"><%= moment(airlineReview[i].timestamp).format('DD MMM YYYY hh:ss') %> &nbsp•&nbsp <%= airlineReview[i].Type_Of_Airline_Reviewer %></p>
+                                    <p class="text-right font-weight-bold">Score <span class="text-info"><%= airlineReview[i].Cleanliness_Hotel_Rating %></span>/10</p>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-0 mb-0">
-                                <p class="font-weight-bold">31/10/11 &nbsp•&nbsp Business trip</p>
-                                <p class="text-right font-weight-bold">Score <span class="text-info">8.5</span>/10</p>
-                            </div>
-                            <div class="row pb-3">
-                                <p>This dive center is incredibly well organized and is at the top of its game.</p>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="rating">
-                                    <div class="like grow">
-                                        <i class="fa fa-thumbs-up like" aria-hidden="true"></i>
-                                        <span>Helpful</span>
-                                    </div>
-                                    <div class="dislike grow">
-                                        <i class="fa fa-thumbs-down like" aria-hidden="true"></i>
-                                        <span>Not helpful</span>
-                                    </div>
+                                <div class="row pb-3">
+                                    <p><%= airlineReview[i].Text_Airline_Review %></p>
                                 </div>
-                            </div>
-                        </section>
-                        <section class="review p-5 border-1">
-                            <div class="row d-flex">
-                                <div class="profile-pic"><img src="https://i.imgur.com/Mcd6HIg.jpg" width="60px"
-                                        height="60px"></div>
-                                <div class="d-flex flex-column pl-3">
-                                    <a class="black-text" href="#">
-                                        <h4>Emily</h4>
-                                    </a>
-                                    <p class="grey-text">Thailand</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-0 mb-0">
-                                <p class="font-weight-bold">31/10/11 &nbsp•&nbsp Business trip</p>
-                                <p class="text-right font-weight-bold">Score <span class="text-info">8.5</span>/10</p>
-                            </div>
-                            <div class="row ml-1">
-                                <img class="reviewpic"
-                                    src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
-                                    alt="" />
-                                <img class="reviewpic"
-                                    src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
-                                    alt="">
-                            </div>
-                            <div class="row mt-2">
-                                <div class="rating">
-                                    <div class="like grow">
-                                        <i class="fa fa-thumbs-up like" aria-hidden="true"></i>
-                                        <span>Helpful</span>
-                                    </div>
-                                    <div class="dislike grow">
-                                        <i class="fa fa-thumbs-down like" aria-hidden="true"></i>
-                                        <span>Not helpful</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                                <!-- <div class="row ml-1">
+                                    <img class="reviewpic"
+                                        src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
+                                        alt="" />
+                                    <img class="reviewpic"
+                                        src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
+                                        alt="">
+                                </div> -->
+                            </section>
+                        <% } %>
+                        </div>
 
                 </div>
             </div>
