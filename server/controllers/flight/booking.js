@@ -184,8 +184,8 @@ exports.postThankyou = async (req, res) => {
   totalpay = req.body.totalpay;
   const user = req.user;
   console.log(upsell);
-  // Booking.recordBookingHead(contact,req.user.user_id,book_ref);
-  // Booking.recordBookingdetail(reserveSeat,book_ref);
+  Booking.recordBookingHead(contact,req.user.user_id,book_ref);
+  Booking.recordBookingdetail(reserveSeat,book_ref);
   Booking.recordBookingUpsell(upsell,upsellData,book_ref,Passagerinfo,info);
   res.render("flight_booking/thankyou", {
     pageTitle: "thank you",
