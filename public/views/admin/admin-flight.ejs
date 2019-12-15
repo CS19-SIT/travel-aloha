@@ -27,11 +27,7 @@
                         <th scope="col">Flight</th>
                         <th scope="col">Airline</th>
                         <th scope="col">Departure</th>
-                        <th scope="col">Departure date</th>
-                        <th scope="col">Departure time</th>
                         <th scope="col">Arrival</th>
-                        <th scope="col">Arrival date</th>
-                        <th scope="col">Arrival time</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -42,11 +38,7 @@
                             <td><%= flight.Flight_number %></td>
                             <td><%= flight.airlineName %></td>
                             <td><%= flight.DepartureAirport %> (<%= flight.Departure %>)</td>
-                            <td><%= flight.Arrive_Date %></td>
-                            <td><%= flight.Arrive_Time %></td>
                             <td><%= flight.DestinationAirport %> (<%= flight.Destination %>)</td>
-                            <td><%= flight.Depart_Date %></td>
-                            <td><%= flight.Depart_Time %></td>
                             <td>
                                 <div class="form-inline justify-content-center">
                                     <a href=<%= `/admin/flight/edit/${flight.Flight_number}` %>><button type="button" class="btn btn-secondary mr-1">EDIT</button></a>

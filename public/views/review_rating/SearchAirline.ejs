@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="../../assets/css/landingpage.css">
+<div class="card-box">
+    <% airlines.forEach( airline => { %>
+        <div class="card-recommended">
+            <div class="card" style="width: 18rem;">
+                <img src="<%= airline.airlinePicture %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1><%= airline.airlineName %></h1>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
