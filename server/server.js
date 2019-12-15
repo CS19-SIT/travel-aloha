@@ -87,6 +87,10 @@ const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
+const rewardLevelRoutes = require("./routes/rewardLevel/rewardLevel");
+
+
+
 app.use(landingPageRoutes);
 app.use(authRoutes);
 app.use("/temp", indexRoutes);
@@ -112,6 +116,8 @@ app.use("/flight", flightRoutes);
 app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
+
+app.use("/rewardlevel",rewardLevelRoutes );
 
 app.use(errorsController.get404);
 
