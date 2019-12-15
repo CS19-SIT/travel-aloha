@@ -25,7 +25,7 @@ exports.search = async () => {
 
 exports.getData = async () => {
     try{
-        const getData = await db.query("select * from Flight, airline, Airport, Seat;");
+        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Seat LIMIT 10;");
         return getData[0];
     }
     catch(err){
