@@ -1,15 +1,15 @@
 <%- include('../includes/header') %>
 
 <!--css-->
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="vendors/linericon/style.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-<link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
 
-<link rel="stylesheet" href="../../assets/css/landingpage.css">
+<link rel="stylesheet" type="text/css" href="../../assets/css/landingpage.css">
 
 </head>
 
@@ -134,9 +134,9 @@
     </div>
 
     <!-- recommended card -->
-    <div class="card-box">
-            <a href="#" class="btn btn-fix text-left">
+    <div class="card-box">  
         <% hotels.forEach( hotel => { %>
+        <a href="/hotel/booking"> 
         <div class="card-recommended">
             <div class="card" style="width: 18rem;">
                 <img src="<%= hotel.hotelPicture %>" class="card-img-top" alt="<%= hotel.hotelName %>">
@@ -144,7 +144,7 @@
                     <p><%= hotel.hotelName %></p>
                 </div>
             </div>
-        </div>
+        </div></a> 
         <% }) %>
     </div>
 
@@ -161,7 +161,7 @@
             itemSelectText: '',
         });
     </script>
-    <script src="../assets/js/flatpickr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr(".datepicker", {
             dateFormat: "m/d/y"
