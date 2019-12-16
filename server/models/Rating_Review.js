@@ -75,17 +75,16 @@ exports.getAirlineReviewInfo = async airline_Id => {
   }
 };
 
-// exports.modelUpdateHotel = async data => {
-//   try {
-//     console.log("From mode", data);
-//     await db.query(
-//       "UPDATE Hotel_Review set Title_Flight = ? , Text_Flight_Review = ?, CabinCrewRating_Flight_Rating = ?,  WHERE hotelId = ?",
-//       [data.hotelAddress, data.hotelTelNumber, data.hotelEmail, data.hotelId]
-//     );
-//   } catch (err) {
-//     throw new Error(`[ERR] modelUpdateHotel: ${err}`);
-//   }
-// };
+exports.Update_Hotel_Review = async (Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating) => {
+  try {
+    await db.query(
+      "UPDATE Hotel_Review set userId = ?, Title_Hotel = ?, Text_Hotel_Review = ?, Cleanliness_Hotel_Rating = ?, Comfort_Hotel_Rating = ?, Meal_Hotel_Rating = ?, Location_Hotel_Rating = ?, Service_Hotel_Rating = ?,Type_Of_Hotel_Reviewer = ?, hotel_hotelId = ? WHERE idHotel_Review = ?)",
+      [Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating]
+    );
+  } catch (err) {
+    throw new Error(`[ERR] modelUpdateHotel: ${err}`);
+  }
+};
 
 exports.insertNewHotel_Review = async ({
   userId,
