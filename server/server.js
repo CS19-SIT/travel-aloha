@@ -91,8 +91,6 @@ const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
 const rewardLevelRoutes = require("./routes/rewardLevel/rewardLevel");
 
-
-
 app.use(landingPageRoutes);
 app.use(authRoutes);
 app.use("/temp", indexRoutes);
@@ -129,7 +127,7 @@ app.use(errorsController.get404);
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
     if (process.env.NODE_ENV !== "production")
-      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT} - ${new Date()}`);
   });
 }
 
