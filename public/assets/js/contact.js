@@ -14,20 +14,44 @@ $(".custom-file-input").on("change", function () {
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 
-$(document).ready(function() {
-  $("#addButton1").click(function() {
-    $("#field2").toggle();
-  });
-  $("#addButton2").click(function() {
-    $("#field3").toggle();
-  });
-  $("#addButton3").click(function() {
-    $("#field4").toggle();
-  });
-  $("#addButton4").click(function() {
-    $("#field5").toggle();
-  });
-  $("#addButton5").click(function() {
-    $("#field6").toggle();
-  });
-});
+var numberHotelType = 1; 
+
+function add(){
+  if(numberHotelType < 6){
+    document.getElementById('field' + (numberHotelType+1)).style.display = "flex"
+    numberHotelType++;
+  }
+}
+function remove(){
+  if(numberHotelType > 1){
+    document.getElementById('field' + numberHotelType).style.display = "none"
+    --numberHotelType;
+  }
+}
+
+function checky(validType) {
+  for (let i = 1; i <= numberHotelType; ++i) {
+    if (!document.getElementById('field' + i).getElementsByClassName('form-control')[1].value) {
+      alert('Insert Your Hotel Prices');
+      return false;
+    }
+    if (validType[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] != 0) {
+      alert('Change Your Room Type');
+      return false;
+    }
+    validType[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[1].value, 10);
+  }
+  return true;
+}
+
+function submitForm() {
+  let validType = [0, 0, 0, 0, 0, 0]
+  if (checky(validType)) {
+    for (let i = 1; i <= 6; ++i) {
+      document.getElementById('field' + i).style.display = "flex";
+      document.getElementById('field' + i).getElementsByClassName('form-control')[0].selectedIndex = i;
+      document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType[i - 1];
+    }
+    document.getElementById("addNewHotel").submit();
+  }
+}

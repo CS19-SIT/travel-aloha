@@ -35,7 +35,17 @@ exports.postHotelInfo = async (req, res) => {
         hotelContactNumber,
         hotelDescription,
         hotelRoomType,
-        hotelRoomPrice
+        hotelRoomType2,
+        hotelRoomType3,
+        hotelRoomType4,
+        hotelRoomType5,
+        hotelRoomType6,
+        hotelRoomPrice,
+        hotelRoomPrice2,
+        hotelRoomPrice3,
+        hotelRoomPrice4,
+        hotelRoomPrice5,
+        hotelRoomPrice6
       } = req.body;
       if (err) {
         res.sendStatus(400);
@@ -44,8 +54,13 @@ exports.postHotelInfo = async (req, res) => {
       console.log(hotelRoomType);
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
-      const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
-      await contactModel.insertNewHotel({
+      // const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
+      // const hotelRoomPicture2 = req.files["hotelRoomPicture2"][0].filename;
+      // const hotelRoomPicture3 = req.files["hotelRoomPicture3"][0].filename;
+      // const hotelRoomPicture4 = req.files["hotelRoomPicture4"][0].filename;
+      // const hotelRoomPicture5 = req.files["hotelRoomPicture5"][0].filename;
+      // const hotelRoomPicture6 = req.files["hotelRoomPicture6"][0].filename;
+      const hotelId = await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
         hotelAddress,
@@ -55,11 +70,32 @@ exports.postHotelInfo = async (req, res) => {
         hotelProfile,
         hotelPicture
       });
-      await contactModel.insertNewHotelRoom({
-        hotelRoomPrice,
+      await contactModel.insertNewHotelRoomType({
+        hotelId,
         hotelRoomType,
-        hotelRoomPicture
-      })
+        hotelRoomType2,
+        hotelRoomType3,
+        hotelRoomType4,
+        hotelRoomType5,
+        hotelRoomType6
+      });
+      await contactModel.insertNewHotelRoomPrice({
+        hotelId,
+        hotelRoomPrice,
+        hotelRoomPrice2,
+        hotelRoomPrice3,
+        hotelRoomPrice4,
+        hotelRoomPrice5,
+        hotelRoomPrice6
+      });
+      // await contactModel.insertNewHotelRoomPicture({
+      //   hotelRoomPicture,
+      //   hotelRoomPicture2,
+      //   hotelRoomPicture3,
+      //   hotelRoomPicture4,
+      //   hotelRoomPicture5,
+      //   hotelRoomPicture6
+      // });
     });
   } catch (error) {
     res.sendStatus(400);

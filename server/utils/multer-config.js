@@ -43,6 +43,11 @@ const upload = multer({
  { name: "hotelProfile", maxCount: 1 },
  { name: "hotelPicture", maxCount: 1 },
  { name: "hotelRoomPicture", maxCount: 1},
+ { name: "hotelRoomPicture2", maxCount: 1},
+ { name: "hotelRoomPicture3", maxCount: 1},
+ { name: "hotelRoomPicture4", maxCount: 1},
+ { name: "hotelRoomPicture5", maxCount: 1},
+ { name: "hotelRoomPicture6", maxCount: 1},
  { name: "airlineProfile", maxCount: 1 },
  { name: "airlinePicture", maxCount: 1 }
 ]);
