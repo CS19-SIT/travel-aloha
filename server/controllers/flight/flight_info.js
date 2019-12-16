@@ -9,8 +9,23 @@ exports.getFlight = async (req, res) => {
       user: req.user,
       searchFlight: searchFlight
     });
+    
   } catch (err) {
       console.log(err)
-    res.sendStatus(404);
+      res.sendStatus(404);
   }
 };
+
+exports.getSearchFlight =  async (req,res) => {
+  try {
+    let flight_data = await Flight.search();
+    res.render("flights", {
+      pageTitle : "TravelAloha - Search Flight",
+      user : req.user,
+      flight_data : flight_data
+    });
+  } catch (err) {
+    console.log(err)
+    res.sendStatus(404);
+  }
+}

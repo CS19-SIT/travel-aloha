@@ -1,31 +1,26 @@
 const db = require("../db/db");
 
 exports.search = async () => {
-    const { origin ,destination, check_in, check_out} = req.body;
+
+    const { origin ,destination, check_in} = req.body;
     try{
-        if (!origin | !destination | !check_in){
+        if (!origin | !destination | !check_in ){
             throw new Error();
         }
-        const result = await db.query("select f.Destination, f.Depart_Date, a.airlineName, s.class, air.Airport_name " + 
-        " from Flight as f, airline as a, Seat as s, Airport as air where Departure = '"
-        + origin +"' and Destination = '" + destination + "' and Depart_Date = '" + check_in + "';");
-
-        if(result[0].length < 1){
-            throw new Error(`[ERR] Flight.search: ${err}`);
-        }
+        const result = await db.query("select f.Destination, df.Depart_Time, a.airlineName, se.class, air.Airport_name, df.Arrive_Time, se.Price " + 
+        "from development.Flight as f, development.airline as a, development.Airport as air, development.Daily_Flight as df, development.Seat_Price as se "
+        + "where f.Destination = '" + origin +"' and f.Departure = air.Airport_ID and air.Country ='" + destination + "' and se.Class like 'E%' and df.Depart_Date = '" + check_in + "';");
 
         return result[0];
         
     } catch(err){
-        console.log(err);
-        console.log(origin + " " + destination + " " + check_in);
-        res.redirect("/flights");
+        throw new Error(`[ERR] search: ${err}`);
     }
 };
 
 exports.getData = async () => {
     try{
-        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Seat LIMIT 10;");
+        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Seat, Daily_Flight LIMIT 10;");
         return getData[0];
     }
     catch(err){

@@ -7,4 +7,6 @@ const searchFlightController = require("../../controllers/flight/flight_info");
 
 router.get("/", searchFlightController.getFlight);
 
+router.post("/flights", searchFlightController.getSearchFlight);
+
 module.exports = router;
