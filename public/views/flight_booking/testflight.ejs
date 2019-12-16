@@ -11,94 +11,140 @@
 
 <body>
     <div class="container">
-        <div class="my-3">
-            <h1>Go flight</h1>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-                    checked>
-                <label class="form-check-label" for="exampleRadios1">
-                    1 radio
-                </label>
+        <form method="POST" action="info">
+            <div class="my-3">
+                <h1>Select Flight</h1>
+                <div class="row my-4">
+                    <div class="col-md-6">
+                        <label>Number of Passagers</label>
+                        <select class="form-control" id="passager" name="passager">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Type of seat</label>
+                        <select class="form-control" id="seatClass" name="seatClass">
+                            <option>Economy</option>
+                            <option>Business</option>
+                            <option>Value</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
-                    2 radio
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                <label class="form-check-label" for="exampleRadios3">
-                    3 radio
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                <label class="form-check-label" for="exampleRadios4">
-                    4 radio
-                </label>
-            </div>
-        </div>
-        <div class="my-3">
-            <h1>Back flight</h1>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios5" value="option5"
-                    checked>
-                <label class="form-check-label" for="exampleRadios5">
-                    1 radio
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios6" value="option6">
-                <label class="form-check-label" for="exampleRadios6">
-                    2 radio
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios7" value="option7">
-                <label class="form-check-label" for="exampleRadios7">
-                    3 radio
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios8" value="option8">
-                <label class="form-check-label" for="exampleRadios8">
-                    4 radio
-                </label>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-info" onclick="hahayes()">Book now</button>
-    </div>
 
+            <div class="row my-4">
+                <div class="col-12">
+                    <h3>Ticket to...</h3>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                            value="CS00001/2018-08-25" checked>
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios1">
+                            CS00001/2018-08-25
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                            value="CS00002">
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios2">
+                            CS00002
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
+                            value="CS00003">
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios3">
+                            CS00003
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
+                            value="CS00008">
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios4">
+                            CS00008
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row my-4">
+                <div class="col-12">
+                    <h3>Back flight</h3>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios5"
+                            value="CS00001/2018-08-26" checked>
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios5">
+                            CS00001/2018-08-26
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios6"
+                            value="CS00002">
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios6">
+                            CS00002
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios7"
+                            value="CS00003">
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios7">
+                            CS00003
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios8"
+                            value="CS00420">
+                        <label class="form-check-label card py-2 pl-2 mx-2" for="exampleRadios8">
+                            CS00420
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <button method="POST" type="submit" class="btn btn-info" onclick="javascript:window.location.href='/flight/booking/verynice'">Book now</button> -->
+            <button type="submit" class="btn btn-info" onclick="hahayes()">Book now</button>
+    </div>
+    <input type="hidden" id="selectedFlight" name="selectedFlight">
+    <input type="hidden" id="seatClass" name="seatClass">
+    </form>
+
+    <br>
     <script>
         function hahayes() {
-            // const radio = document.getElementsByName('exampleRadio');
-            // const radio2 = document.getElementsByName('exampleRadio2')
-            $.ajax({
-                url: "/flight/booking/donut",
-                method: "POST",
-                data: {
-                    option1: document.getElementById('exampleRadios1').value,
-                    option2: document.getElementById('exampleRadios2').value,
-                    option3: document.getElementById('exampleRadios3').value,
-                    option4: document.getElementById('exampleRadios4').value,
-                    option5: document.getElementById('exampleRadios5').value,
-                    option6: document.getElementById('exampleRadios6').value,
-                    option7: document.getElementById('exampleRadios7').value,
-                    option8: document.getElementById('exampleRadios8').value,
-                }
-            }).done(function(data) { // check what I sent in comtroller :'(
-                if (data.status == 200){
-                    const ha = data.data;
 
-                    console.log(ha);
+            var lis = []
+            Array.prototype.forEach.call(document.getElementsByClassName('form-check-input'), function (item) {
+                if (item.checked) {
+                    var arr = (item.value).split("/");
+                    lis.push(arr)
                 }
-    
-                
-                    //Here aft
-                else
-                    console.log('Oh no')
+
             })
+            const selectFlight = JSON.stringify(lis);
+            document.getElementById("selectedFlight").value = selectFlight;
+            // $.ajax({
+            //     url: "/flight/booking/donut",
+            //     method: "POST",
+            //     data: {
+            //         olaola: JSON.stringify(lis)
+            //     }
+            // }).done(function(urMom) { // check what I sent in comtroller :'(
+            //     if (urMom.status == 200){
+            //         const ha = urMom.data;
+
+            //         console.log("we return");
+
+            //         gay.textContent = ha;
+            //     }
+            //         //Here af
+            //     else
+            //         console.log('Oh no')
+            // })
         }
     </script>
 

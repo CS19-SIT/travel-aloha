@@ -17,6 +17,8 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 
+const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
+
 /**
  * Application Initiation
  */
@@ -103,6 +105,9 @@ app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
 app.use("/checkout", checkoutRoutes);
+app.use("/checkout_flight",checkoutRoutes);
+app.use("/checkout/Intern", checkoutRoutes);
+app.use("/charge", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
 app.use("/dashboard", userRoutes);
