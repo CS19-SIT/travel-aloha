@@ -15,9 +15,9 @@ router.get("/airline/:id",reviewController.getAirline);
 
 // router.get("/flight/:Flight_Flight_number", reviewController.getFlight);
 
-router.post("/hotel", reviewController.postHotelReview);
+router.post("/hotel/:id", reviewController.postHotelReview);
 
-router.post("/airline", reviewController.postAirlineReview);
+router.post("/airline/:id", reviewController.postAirlineReview);
 
 
 module.exports = router;

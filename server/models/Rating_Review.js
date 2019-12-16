@@ -7,8 +7,9 @@ exports.getHotelReviewInfo = async (
   Score
 ) => {
   try {
-    const query =
-      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating+Comfort_Hotel_Rating+Meal_Hotel_Rating+Location_Hotel_Rating+Service_Hotel_Rating)/5 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ?";
+    let query =
+      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, (Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/5 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? ";
+    
     switch (Type_Of_Hotel_Reviewer) {
       case "Business trip":
         query += "AND Type_Of_Hotel_Reviewer = 'Business Trip' ";
@@ -28,31 +29,37 @@ exports.getHotelReviewInfo = async (
 
     switch (Score) {
       case "Wonderful":
-        query += "AND Score > 4";
+        query += "AND Score > 4 ";
       case "Good":
-        query += "AND Score > 3";
+        query += "AND Score > 3 ";
       case "Okey":
-        query += "AND Score > 2";
+        query += "AND Score > 2 ";
       case "Poor":
-        query += "AND Score > 1";
+        query += "AND Score > 1 ";
+      default:
+        break;
+    }
+    query += "GROUP BY idHotel_Review "
+
+    switch (Sort) {
+      case "Newest":
+        query += " ORDER BY timestamp ASC";
+        break;
+      case "Oldest":
+        query += " ORDER BY timestamp DESC";
+        break;
       default:
         break;
     }
 
-    switch (Sort) {
-      case "Newest":
-        query += "ORDER BY timestamp ASC";
-      case "Oldest":
-        query += "ORDER BY timestamp DESC";
-      default:
-        break;
-    }
+    console.log(query);
 
     const hotelReview = await db.query(query, [hotelId]);
     console.log(hotelReview);
     return hotelReview;
   } catch (error) {
-    throw new Error(`[ERR] getHotelReviewInfo: ${err}`);
+    console.log(error);
+    throw new Error(`[ERR] getHotelReviewInfo: ${error}`);
   }
 };
 
@@ -68,17 +75,17 @@ exports.getAirlineReviewInfo = async airline_Id => {
   }
 };
 
-exports.modelUpdateHotel = async data => {
-  try {
-    console.log("From mode", data);
-    await db.query(
-      "UPDATE Hotel_Review set Title_Flight = ? , Text_Flight_Review = ?, CabinCrewRating_Flight_Rating = ?,  WHERE hotelId = ?",
-      [data.hotelAddress, data.hotelTelNumber, data.hotelEmail, data.hotelId]
-    );
-  } catch (err) {
-    throw new Error(`[ERR] modelUpdateHotel: ${err}`);
-  }
-};
+// exports.modelUpdateHotel = async data => {
+//   try {
+//     console.log("From mode", data);
+//     await db.query(
+//       "UPDATE Hotel_Review set Title_Flight = ? , Text_Flight_Review = ?, CabinCrewRating_Flight_Rating = ?,  WHERE hotelId = ?",
+//       [data.hotelAddress, data.hotelTelNumber, data.hotelEmail, data.hotelId]
+//     );
+//   } catch (err) {
+//     throw new Error(`[ERR] modelUpdateHotel: ${err}`);
+//   }
+// };
 
 exports.insertNewHotel_Review = async ({
   userId,
