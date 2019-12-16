@@ -1,0 +1,53 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">TravelAloha</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/flight">Flight</a>
+      </li>
+    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/hotel">Hotel</a>
+        </li>
+      </ul>
+    <ul class="navbar-nav">
+      <% if (!user) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/register"
+          ><button class="btn btn-outline-info">Register</button></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login"
+          ><button class="btn btn-info">Login</button></a
+        >
+      </li>
+      <% } else { %>
+      <li class="nav-item mr-3">
+        <span class="navbar-text">Welcome, <strong><%= user.username %></strong></span>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline" action="/logout" method="POST">
+          <button class="btn btn-outline-danger">
+            Logout
+          </button>
+        </form>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</nav>

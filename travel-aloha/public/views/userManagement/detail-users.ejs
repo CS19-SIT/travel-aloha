@@ -1,0 +1,159 @@
+<%- include('../includes/header') %>
+</head>
+
+<body>
+<%- include('../includes/navbar') %>
+<style></style>
+
+
+
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <div class="col-sm-10"><h1>Profile</h1></div>
+    	
+    </div>
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+        <div class="text-center">
+          <% if( data.profile_picture){%>     
+            <img src="<%= data.profile_picture %>" class="avatar img-circle img-thumbnail" alt=""> 
+          <%}else{%>    
+            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+          <%}%>      
+        </div></hr><br>
+      </div>
+    	<div class="col-sm-9">  
+        <div class="tab-content">
+          <div class="tab-pane active" id="home">
+            <hr>
+              <form class="form" action="##" method="post" id="registrationForm">
+                
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Role</h4></label>
+                    <ul class="list-group">
+                      <% if( data.role){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.role%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Username</h4></label>
+                    <ul class="list-group">
+                      <% if( data.username){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.username%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>   
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>First name</h4></label>
+                    <ul class="list-group">
+                      <% if( data.firstname){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.firstname%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Last name</h4></label>
+                    <ul class="list-group">
+                      <% if( data.lastname){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.lastname%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Phone</h4></label>
+                    <ul class="list-group">
+                      <% if( data.phonenum){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.phonenum%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>
+          
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Gender</h4></label>
+                      <ul class="list-group">
+                        <% if( data.gender){%>    
+                          <li class="list-group-item disabled" aria-disabled="true"><%= data.gender%></li>
+                        <%}else{%>
+                          <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                        <%}%>   
+                      </ul>
+                  </div>
+                </div>
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>birthdate</h4></label>
+                    <ul class="list-group">
+                      <% if( data.birth_date){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.birth_date%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Email</h4></label>
+                    <ul class="list-group">
+                    <% if( data.email){%>    
+                      <li class="list-group-item disabled" aria-disabled="true"><%= data.email%></li>
+                    <%}else{%>
+                      <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                    <%}%>   
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="form-group">                       
+                  <div class="col-xs-6">
+                    <label for="first_name"><h4>Address</h4></label>
+                    <ul class="list-group">
+                      <% if( data.address){%>    
+                        <li class="list-group-item disabled" aria-disabled="true"><%= data.address%></li>
+                      <%}else{%>
+                        <li class="list-group-item disabled" aria-disabled="true">-</li> 
+                      <%}%>   
+                    </ul>
+                  </div>
+                </div>
+                        
+                <div class="form-group">
+                    <div class="col-xs-12">
+                       <a href="/admin/user/edit/<%= data.user_id %>" rel="noopener" class="btn btn-mid btn-primary">Edit</a>
+                     </div>
+               </div>
+              </form>
+             </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+        </div><!--/col-9-->
+    </div><!--/row-->                                                      
+<%- include('../includes/footer') %>

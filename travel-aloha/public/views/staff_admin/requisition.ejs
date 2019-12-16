@@ -1,0 +1,83 @@
+<%- include('../includes/header') %>
+	<style>
+		body {
+			min-width: 375px;
+			min-height: calc(100vh);
+			background-attachment: fixed;
+			background-color: #000;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		candidateCard {
+			background-color: rgba(208, 208, 208, 0.85);
+			width: 420px;
+			padding: 0.3rem;
+			border: 1px solid black;
+		}
+		candidateCard p {
+			width: fit-content;
+		}
+		ProfilePicture {
+			width: 120px;
+			height: 150px;
+			margin: 1rem auto;
+			background-color: black;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			border: 1px solid rgba(0, 0, 0, 0.6);
+		}
+		.detail {
+			width: 17rem;
+		}
+	</style>
+</head>
+<body style="background-image: url('https://images4.alphacoders.com/613/61324.jpg');">
+	
+	<%- include('./navbar') %>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+	<h2 class="text-center my-4"><ins class="text-white">Requested List</ins></h2>
+	<CandidateList class="d-flex justify-content-center flex-wrap">
+		<% for (let i = 0; i < candidates.length; i++) { %>
+			<CandidateCard class="rounded row align-items-start justify-content-between m-3 font-weight-light text-break">
+				<ProfilePicture class="d-block" style="background-image: url('<%= candidates[i][`profile_picture`] %>');"></ProfilePicture>
+				<div class="col-auto detail text-break">
+					<p class="userid d-none"><%= candidates[i]['user_id'] %></p>
+					<p class="deptno d-none"><%= candidates[i]['deptNo'] %></p>
+					<p class="roleid d-none"><%= candidates[i]['roleId'] %></p>
+					<p class="mb-1">
+						<ins>Name</ins><br>
+						<%- candidates[i].name %>
+					</p>
+					<p class="mb-1">
+						<ins>Requested Job</ins><br>
+						<%- candidates[i].deptName %> (<%- candidates[i].roleName %>)
+					</p>
+					<p class="mb-1">
+						<ins>Gender</ins><br>
+						<%- candidates[i].gender %>
+					</p>
+					<p class="mb-1">
+						<ins>Birthdate</ins><br>
+						<%- new Date(candidates[i].birth_date).toDateString().substring(4) %>
+					</p>
+					<p class="mb-1">
+						<ins>Address</ins><br>
+						<%- candidates[i].address %>
+					</p>
+					<p data-descript="groupButtonToTheSameLine" class="mt-2 text-center w-100">
+						<button type="button" class="reject btn btn-outline-danger">REJECT</button>
+						<button type="button" class="approve btn btn-success">APPROVE</button>
+						<button type="button" class="looking btn btn-info" title="view their resume">&#128269;</button>
+					</p>
+				</div>
+			</CandidateCard>
+		<% } %>
+	</CandidateList>
+		
+	<script src="../../assets/js/staff_admin/requisition.js"></script>
+
+<%- include('../includes/footer') %>

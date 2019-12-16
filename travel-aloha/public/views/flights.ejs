@@ -1,0 +1,107 @@
+<%- include('includes/headerFlight') %>
+
+<%- include('includes/navbar') %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="intro">
+        <h1 style="text-align: center; margin-top: 50px;">Welcome, please feel free to search the flight. :)</h1>
+    </div>
+    <div class="page-wrapper bg-img-1 p-t-200 p-b-120">
+
+        <div class="wrapper wrapper--w900">
+            <div class="card card-4">
+                <ul class="tab-list">
+                    <a style="font-size: 35px;" class="tab-list__link" href="#tab3" data-toggle="tab">Flight</a>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane-active" id="tab3">
+                            <form method="POST" action="/findFlight">
+                                <div class="input-group input-group-big">
+                                    <label class="label">Origin:</label>
+                                    <input class="input--style-1" type="text" name="origin"
+                                        placeholder="City or airport" required="required">
+                                    <i class="zmdi zmdi-search input-group-symbol"></i>
+                                </div>
+                                <div class="input-group input-group-big">
+                                    <label class="label">Destination:</label>
+                                    <input class="input--style-1" type="text" name="destination"
+                                        placeholder="City or airport" required="required">
+                                    <i class="zmdi zmdi-search input-group-symbol"></i>
+                                </div>
+                                <div class="row row-space">
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <label class="label">Departing:</label>
+                                            <input class="input--style-1" type="text" name="check-in"
+                                                placeholder="mm/dd/yyyy" id="input-start-2">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-dark btn-lg" id="return_button">Return
+                                            Date</button>
+                                        <div class="input-group" id="return_date" style="display: none;">
+                                            <label class="label">Returning:</label>
+                                            <input class="input--style-1" type="text" name="check-out"
+                                                placeholder="mm/dd/yyyy" id="input-end-2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="radio-row">
+                                    <label class="radio-container m-r-45">First Class
+                                        <input type="radio" name="class">
+                                        <span class="radio-checkmark"></span>
+                                    </label>
+                                    <label class="radio-container m-r-45">Business
+                                        <input type="radio" name="class">
+                                        <span class="radio-checkmark"></span>
+                                    </label>
+                                    <label class="radio-container">Economy
+                                        <input type="radio" checked="checked" name="class">
+                                        <span class="radio-checkmark"></span>
+                                    </label>
+                                </div>
+                                <button class="btn-submit m-t-35" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-box">
+        <a href="#" class="btn btn-fix text-left">
+    <% for (var i = 0 ; i < 10 ; i++) {%>
+    <div class="card-recommended">
+        <div class="card" style="width: 18rem;">
+            <h1><%= searchFlight[i].Destination %></h1>
+            <div class="card-body">
+                <p><%= searchFlight[i].Depart_Date%></p>
+                <span><%= searchFlight[i].Arrive_Date %></span>
+                <span><%= searchFlight[i].airlineName %></span>
+                <span><%= searchFlight[i].class %></span>
+                <span><%= searchFlight[i].Airport_name %></span>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    </div>
+    
+
+    <script>
+        $(document).ready(function () {
+            $('#return_button').click(function () {
+                $('#return_date').show();
+                $('#return_button').hide();
+            });
+        });
+    </script>
+    </div>
+    <%- include('includes/footerFlight') %>
