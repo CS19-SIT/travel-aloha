@@ -3,10 +3,8 @@ const router = express.Router();
 
 const flightController = require("../../controllers/flight/index");
 
-const searchFlightController = require("../controllers/flight/flight_info");
+const searchFlightController = require("../../controllers/flight/flight_info");
 
-router.post("/findFlight", searchFlightController.getFlight);
-
-router.get("/", flightController.getIndex);
+router.get("/", searchFlightController.getFlight);
 
 module.exports = router;

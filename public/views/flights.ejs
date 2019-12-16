@@ -10,10 +10,6 @@
     <div class="intro">
         <h1 style="text-align: center; margin-top: 50px;">Welcome, please feel free to search the flight. :)</h1>
     </div>
-    <div class="page-wrapper bg-img-1 p-t-100 p-b-120">
-
-
-        <%- include('includes/navbar') %>
     <div class="page-wrapper bg-img-1 p-t-200 p-b-120">
 
         <div class="wrapper wrapper--w900">
@@ -82,7 +78,7 @@
 
     <div class="card-box">
         <a href="#" class="btn btn-fix text-left">
-    <% for (var i = 0 ; i < searchFlight.length ; i++) {%>
+    <% for (var i = 0 ; i < 10 ; i++) {%>
     <div class="card-recommended">
         <div class="card" style="width: 18rem;">
             <h1><%= searchFlight[i].Destination %></h1>
@@ -90,7 +86,7 @@
                 <p><%= searchFlight[i].Depart_Date%></p>
                 <span><%= searchFlight[i].Arrive_Date %></span>
                 <span><%= searchFlight[i].airlineName %></span>
-                <p><%= searchFlight[i].class %></p>
+                <span><%= searchFlight[i].class %></span>
                 <span><%= searchFlight[i].Airport_name %></span>
             </div>
         </div>
@@ -107,4 +103,5 @@
             });
         });
     </script>
-    </div <%- include('includes/footerFlight') %> <%- include('includes/footerFlight') %>
+    </div>
+    <%- include('includes/footerFlight') %>
