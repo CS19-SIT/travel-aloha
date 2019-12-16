@@ -125,9 +125,10 @@ app.use("/rewardlevel",rewardLevelRoutes );
 app.use(errorsController.get404);
 
 const listEndpoints = require("express-list-endpoints");
-console.log(listEndpoints(app).length)
 const allRoutes = listEndpoints(app);
-allRoutes.map()
+allRoutes.map(route => {
+  route.methods.map(method => console.log(`${method} ${route.path}`))
+})
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
