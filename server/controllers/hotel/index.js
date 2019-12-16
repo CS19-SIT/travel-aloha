@@ -28,7 +28,7 @@ exports.getHotel = async (req, res) => {
         }
 
 
-
+        console.log(result[0]);
         res.render("result/result", {
             pageTitle: "All result hotel for " + req.body.place,
             user: req.user,

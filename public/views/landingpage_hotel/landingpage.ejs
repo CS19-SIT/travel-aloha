@@ -20,7 +20,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-lg-6">
                     <div class="header-text">
-                        <center>
+                        <center class="align-middle">
                             <h1 class="mt-5">Find your hotel</h1>
                             <!-- <p>Find your best hotel.</p> -->
                             <a href="#down"> <button type="button" class="btn btn-info">Click !</button> </a>
@@ -64,9 +64,9 @@
                                     </svg>
                                 </div>
                                 <div class="input-field">
-                                    <label>TRAVELERS</label>
+                                    <label style="margin-block-end: 0;border: none;">TRAVELERS</label>
                                     <div class="input-select">
-                                        <select data-trigger="" name="adult">
+                                        <select class="custom-select border-0" data-trigger="" name="adult">
                                             <option value="1">1 adult</option>
                                             <option value="2">2 adults</option>
                                             <option value="3">3 adults</option>
@@ -112,9 +112,10 @@
                                     </svg>
                                 </div>
                                 <div class="input-field">
-                                    <label>TRAVELERS</label>
+                                    <label style="margin-block-end: 0;;">TRAVELERS</label>
                                     <div class="input-select">
-                                        <select data-trigger="" name="child">
+                                        <select class="custom-select border-0"data-trigger="" name="child">
+                                            <option value="0">No child</option>
                                             <option value="1">1 child</option>
                                             <option value="2">2 children</option>
                                             <option value="3">3 children</option>
@@ -125,7 +126,7 @@
                             </div>
                         </div>
                         <div class="row last">
-                            <input type="submit" class="btn-search" value="search" \>
+                            <input type="submit" class="btn-search" value="search" />
                         </div>
                     </div>
                 </div>
@@ -147,13 +148,6 @@
         </div></a> 
         <% }) %>
     </div>
-
-
-
-
-
-
-
     <script src="../assets/js/choices.js"></script>
     <script>
         const choices = new Choices('[data-trigger]', {
@@ -175,26 +169,17 @@
                 btnTypes[i].classList.add('active')
             })
         }
-    </script>
-
-<script>
-    function validateForm() {
-      var x = document.forms["myForm"]["place"].value;
-      if (x == "") {
-        swal("Name must be filled out");
-        return false;
-      }
-    }
-
-
-    $(function() {
-        $('.datepicker').datepicker({
-            endDate: new Date()
+        function validateForm() {
+        var x = document.forms["myForm"]["place"].value;
+        if (x == "") {
+            swal("Name must be filled out");
+            return false;
+        }
+        }
+        $(function() {
+            $('.datepicker').datepicker({
+                endDate: new Date()
+            });
         });
-    });
-
-
-</script>
-
-
+    </script>
     <%- include('../includes/footer') %>
