@@ -14,18 +14,23 @@ exports.postIndex = async (req, res) => {
   // console.log(passager);
   console.log(seatClass);
   console.log(flightNumber);
+<<<<<<< HEAD
   info = await Booking.getFlightInfoByNumber(flightNumber,seatClass);
   Booking.createSeat(flightNumber,seatClass);
+=======
+  info = await Booking.getFlightInfoByNumber(flightNumber, seatClass);
+  // Booking.createSeat(flightNumber,seatClass);
+>>>>>>> flight_booking
   // console.log(info);
   let p = []
-  for(i=0 ; i<info.length ; i++){
-    p[i]=info[i]['price']*passager;
+  for (i = 0; i < info.length; i++) {
+    p[i] = info[i]['price'] * passager;
   }
   let sum = await Booking.getSum(p);
-  let total = [ sum,
-              (sum*0.07).toFixed(0),
-              (sum*1.07).toFixed(0)
-            ]
+  let total = [sum,
+    (sum * 0.07).toFixed(0),
+    (sum * 1.07).toFixed(0)
+  ]
   strP = await Booking.getStringPrice(p);
   strTotal = await Booking.getStringPrice(total);
   console.log(strP);
@@ -49,14 +54,14 @@ exports.getContact = async (req, res) => {
   const seatClass = req.body.seatClass;
   const passager = req.body.passager;
   let p = []
-  for(i=0 ; i<info.length ; i++){
-    p[i]=info[i]['price']*passager;
+  for (i = 0; i < info.length; i++) {
+    p[i] = info[i]['price'] * passager;
   }
   let sum = await Booking.getSum(p);
-  let total = [ sum,
-              (sum*0.07).toFixed(0),
-              (sum*1.07).toFixed(0)
-            ]
+  let total = [sum,
+    (sum * 0.07).toFixed(0),
+    (sum * 1.07).toFixed(0)
+  ]
   strP = await Booking.getStringPrice(p);
   strTotal = await Booking.getStringPrice(total);
   // console.log("in contract now");
@@ -73,7 +78,7 @@ exports.getContact = async (req, res) => {
     strSum: strTotal,
   });
 }
- 
+
 exports.postUpsell = async (req, res) => {
   passager = req.body.passager
   seatClass = req.body.seatClass;
@@ -82,37 +87,37 @@ exports.postUpsell = async (req, res) => {
   const info = JSON.parse(req.body.sendInfo);
 
   // console.log(Passagerinfo[0]);
-  Booking.recordPassager(Passagerinfo,seatClass);
+  Booking.recordPassager(Passagerinfo, seatClass);
   let p = [];
-  for(i=0 ; i<info.length ; i++){
-    p[i]=info[i]['price']*passager;
+  for (i = 0; i < info.length; i++) {
+    p[i] = info[i]['price'] * passager;
   }
   let sum = await Booking.getSum(p);
-  let total = [ sum,
-              (sum*0.07).toFixed(0),
-              (sum*1.07).toFixed(0)
-            ]
+  let total = [sum,
+    (sum * 0.07).toFixed(0),
+    (sum * 1.07).toFixed(0)
+  ]
   strP = await Booking.getStringPrice(p);
   strTotal = await Booking.getStringPrice(total);
   let upsell = [];
   let seat = [];
   // console.log(info);
-  for(var i=0 ; i<info.length ; i++){
+  for (var i = 0; i < info.length; i++) {
     upsell[i] = await Booking.getUpsell(info[i]['Flight_number']);
 
+<<<<<<< HEAD
     seat[i] = await Booking.getSeat(info[i]['Flight_number'],info[i]['nor_Depart_Date'],seatClass);
+=======
+    seat[i] = await Booking.getSeat(info[i]['Flight_number'], info[i]['nor_Depart_Date']);
+>>>>>>> flight_booking
   }
   var reserveSeat = [];
-  for(var i=0 ; i<info.length ; i++)
-  {
+  for (var i = 0; i < info.length; i++) {
     reserveSeat[i] = new Array(Passagerinfo.length);
-    for(var j=0 ; j<Passagerinfo.length ; j++)
-    {
-      for(var k=0 ; k<seat[i].length ; k++)
-      {
-        if(seat[i][k]['Ava']==1)
-        {
-          reserveSeat[i][j]={
+    for (var j = 0; j < Passagerinfo.length; j++) {
+      for (var k = 0; k < seat[i].length; k++) {
+        if (seat[i][k]['Ava'] == 1) {
+          reserveSeat[i][j] = {
             fname: Passagerinfo[j]['fname'],
             lname: Passagerinfo[j]['lname'],
             flight: info[i]['Flight_number'],
@@ -153,7 +158,10 @@ exports.postPayment = async (req, res) => {
   totalpay = req.body.totalpay;
   upsellData = req.body.upsellData;
   upsell = req.body.upsell;
-  const book_ref = rg.id({length: 8, str: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'});
+  const book_ref = rg.id({
+    length: 8,
+    str: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  });
   console.log(req.user);
   res.render("flight_booking/payment", {
     pageTitle: "booking",
@@ -184,9 +192,9 @@ exports.postThankyou = async (req, res) => {
   totalpay = req.body.totalpay;
   const user = req.user;
   console.log(upsell);
-  Booking.recordBookingHead(contact,req.user.user_id,book_ref);
-  Booking.recordBookingdetail(reserveSeat,book_ref);
-  Booking.recordBookingUpsell(upsell,upsellData,book_ref,Passagerinfo,info);
+  Booking.recordBookingHead(contact, req.user.user_id, book_ref);
+  Booking.recordBookingdetail(reserveSeat, book_ref);
+  Booking.recordBookingUpsell(upsell, upsellData, book_ref, Passagerinfo, info);
   res.render("flight_booking/thankyou", {
     pageTitle: "thank you",
     user: user,
@@ -205,8 +213,8 @@ exports.postThankyou = async (req, res) => {
 exports.getDonut = (req, res) => {
   try {
     const ha = JSON.parse(req.body.selectedFlight);
-    console.log(ha[0]+" eiei")
-    res.render("flight_booking/renderTest",{
+    console.log(ha[0] + " eiei")
+    res.render("flight_booking/renderTest", {
       pageTitle: "render Test",
       user: req.user,
       NIGGER: ha
