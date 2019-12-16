@@ -1,8 +1,8 @@
 <%- include('../includes/header') %>
 
-<link href="../../assets/css/booking_style.css" rel="stylesheet">
+<link href="/assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+<%- include('../includes/navbar') %>
 </head>
 <style>
     .card.mb-3, #summary{
@@ -31,8 +31,8 @@
                         </div>
                     </div>
                 <!-- </div> -->
-                <!-- <div class="card"> -->
                 <!-- Info card -->
+                <!-- <div class="card"> -->
                     <div class="card-body">
                         <div class="row">
                             <p class="col-md-10">
@@ -44,8 +44,8 @@
                         </div>
 
                         <div class="row mb-2">
-                            <div class="col-md-1">
-                                <img src="../../assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo">
+                            <div class="col-md-1 pr-0">
+                                <img src="/assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo" style="width: 100%; height: 100%;">
                             </div>
                             <div id = "flightNumber"class="col-md-11 pl-2">
                                 <span><%= info[i]['Flight_number'] %>
@@ -64,39 +64,21 @@
                                 <%=info[i]['des_city']%><span class="airport-code">&nbsp;<%=info[i]['Destination']%></span>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <a href="/flight/booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a>
+                <%}%>
+                <input type="hidden" id="sendInfo" name="sendInfo" value="<%=JSON.stringify(info)%>">
+                <input type="hidden" id="passager" name="passager" value="<%=passager%>">
+                <input type="hidden" id="seatClass" name="seatClass" value="<%=seatClass%>">
+                <!-- <a href="/flight/booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a> -->
+                <button type="submit" class="btn btn-info mt-2 book align-bottom" onclick="send()">Book now</button>
             </div>
 
             <!-- Billing part -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Summary</h4>
-                        <div class="font-weight-bold"><%=dep%>&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;<%=des%></div>
-                        <div>1 Person Economy Class</div>
-                        <div><%=depart_day%>, <%=depart_date%></div>
-                        <div><%=depTime%> - <%=arrTime%> <span class="airport-code">(1.20 Hours)</span></div>
-                        <div class="text-right mt-5">
-                            <div class="row">
-                                <div class="col-md-8"><%=airline_name%> Economy (1)</div>
-                                <div class="col-md-4">1,649 &#3647; </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">VAT 7%</div>
-                                <div class="col-md-4">115.43 &#3647; </div>
-                            </div>
-                            <div class="row font-weight-bold">
-                                <div class="col-md-8">Total</div>
-                                <div class="col-md-4">1964.43 &#3647; </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%- include('./summary') %>
+        </form>
         </div>
+
     </div>
 
     <script>
