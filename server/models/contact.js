@@ -77,7 +77,7 @@ exports.insertNewHotelRoomPrice = async({
 };
 exports.insertNewHotelRoomPicture = async({
   hotelId,
-  hotelRoomPicture,
+  hotelRoomPicture1,
   hotelRoomPicture2,
   hotelRoomPicture3,
   hotelRoomPicture4,
@@ -88,7 +88,7 @@ exports.insertNewHotelRoomPicture = async({
     await db.query(`INSERT INTO hotel_contact_picture(hotelId, single_bed_1, single_bed_2, double_bed_1, double_bed_2, 
                   king_bed_1, king_bed_2) VALUES(?,?,?,?,?,?,?)`, [
         hotelId,           
-        hotelRoomPicture,
+        hotelRoomPicture1,
         hotelRoomPicture2,
         hotelRoomPicture3,
         hotelRoomPicture4,

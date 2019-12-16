@@ -54,12 +54,12 @@ exports.postHotelInfo = async (req, res) => {
       console.log(hotelRoomType);
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
-      // const hotelRoomPicture = req.files["hotelRoomPicture"][0].filename;
-      // const hotelRoomPicture2 = req.files["hotelRoomPicture2"][0].filename;
-      // const hotelRoomPicture3 = req.files["hotelRoomPicture3"][0].filename;
-      // const hotelRoomPicture4 = req.files["hotelRoomPicture4"][0].filename;
-      // const hotelRoomPicture5 = req.files["hotelRoomPicture5"][0].filename;
-      // const hotelRoomPicture6 = req.files["hotelRoomPicture6"][0].filename;
+      const hotelRoomPicture1 = req.files["hotelRoomPicture1"][0].filename;
+      const hotelRoomPicture2 = req.files["hotelRoomPicture2"][0].filename;
+      const hotelRoomPicture3 = req.files["hotelRoomPicture3"][0].filename;
+      const hotelRoomPicture4 = req.files["hotelRoomPicture4"][0].filename;
+      const hotelRoomPicture5 = req.files["hotelRoomPicture5"][0].filename;
+      const hotelRoomPicture6 = req.files["hotelRoomPicture6"][0].filename;
       const hotelId = await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
@@ -88,14 +88,15 @@ exports.postHotelInfo = async (req, res) => {
         hotelRoomPrice5,
         hotelRoomPrice6
       });
-      // await contactModel.insertNewHotelRoomPicture({
-      //   hotelRoomPicture,
-      //   hotelRoomPicture2,
-      //   hotelRoomPicture3,
-      //   hotelRoomPicture4,
-      //   hotelRoomPicture5,
-      //   hotelRoomPicture6
-      // });
+      await contactModel.insertNewHotelRoomPicture({
+        hotelId,
+        hotelRoomPicture1,
+        hotelRoomPicture2,
+        hotelRoomPicture3,
+        hotelRoomPicture4,
+        hotelRoomPicture5,
+        hotelRoomPicture6
+      });
     });
   } catch (error) {
     res.sendStatus(400);
@@ -176,13 +177,22 @@ exports.getAirlineDashboard = async (req, res) => {
 exports.getHotelDetail = async (req, res) => {
   const hotelId = req.body.hotelId;
   try {
-    const result = await db.query(`SELECT * FROM hotel WHERE hotelId = '${hotelId}' `);
-    const data = JSON.stringify(result[0]);
+    const result1 = await db.query(`SELECT * FROM hotel WHERE hotelId = '${hotelId}' `);
+    const result2 = await db.query(`SELECT * FROM hotel_contact_type WHERE hotelId = '${hotelId}' `);
+    const result3 = await db.query(`SELECT * FROM hotel_contact_room WHERE hotelId = '${hotelId}' `);
+    const result4 = await db.query(`SELECT * FROM hotel_contact_picture WHERE hotelId = '${hotelId}' `);
+    const data1 = JSON.stringify(result1[0]);
+    const data2 = JSON.stringify(result2[0]);
+    const data3 = JSON.stringify(result3[0]);
+    const data4 = JSON.stringify(result4[0]);
     res.status(200);
     res.render("contact/new-hotel-detail", {
       pageTitle: "TravelAloha - Contact - New Hotel Detail",
       user: req.user,
-      hotel: data
+      hotel: data1,
+      hotelRoomType: data2,
+      hotelRoomPrice: data3,
+      hotelRoomPicture: data4
     });
   } catch (err) {
     res.sendStatus(400);

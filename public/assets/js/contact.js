@@ -29,28 +29,39 @@ function remove(){
   }
 }
 
-function checky(validType) {
+function checkingHotel(validType1,validType2) {
   for (let i = 1; i <= numberHotelType; ++i) {
     if (!document.getElementById('field' + i).getElementsByClassName('form-control')[1].value) {
       alert('Insert Your Hotel Prices');
       return false;
     }
-    if (validType[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] != 0) {
+    if (validType1[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] != 0) {
       alert('Change Your Room Type');
       return false;
     }
-    validType[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[1].value, 10);
+    validType1[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = 
+      parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[1].value, 10);
+    validType2[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].value;
   }
   return true;
 }
 
 function submitForm() {
-  let validType = [0, 0, 0, 0, 0, 0]
-  if (checky(validType)) {
+  let validType1 = [0, 0, 0, 0, 0, 0]
+  let validType2 = ["","","","","",""]
+  let checking = [6, 5, 4, 3, 2, 1]
+  if (checkingHotel(validType1,validType2)) {
     for (let i = 1; i <= 6; ++i) {
       document.getElementById('field' + i).style.display = "flex";
+      if (i <= numberHotelType) {
+        document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].name = "hotelRoomPicture" + document.getElementById('field' + i).getElementsByClassName('form-control')[0].value;
+        checking.splice(checking.indexOf(parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[0].value, 10)), 1);
+      } else {
+        document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].name = "hotelRoomPicture" + checking.pop()
+      }
+      console.log(checking)
       document.getElementById('field' + i).getElementsByClassName('form-control')[0].selectedIndex = i;
-      document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType[i - 1];
+      document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType1[i - 1];
     }
     document.getElementById("addNewHotel").submit();
   }
