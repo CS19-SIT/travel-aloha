@@ -75,38 +75,6 @@
                     </select>
                 <% } %>
               </div>
-              <div class="form-group">
-                    <label for="departDate">Departure Date</label>
-                    <% if (flightData) { %>
-                      <input type="date" class="form-control" id="departDate" name="departDate" value=<%= flightData.Depart_Date.getFullYear() + "-" + String(flightData.Depart_Date.getMonth() + 101).slice(-2) + "-" + String(flightData.Depart_Date.getDate() + 100).slice(-2); %> required>
-                    <% } else { %>
-                      <input type="date" class="form-control" id="departDate" name="departDate" value=<%= new Date().getFullYear() + "-" + String(new Date().getMonth() + 101).slice(-2) + "-" + String(new Date().getDate() + 100).slice(-2); %> required>
-                    <% } %>
-                  </div>
-                  <div class="form-group">
-                        <label for="departTime">Departure Time</label>
-                        <% if (flightData) { %>
-                          <input type="time" class="form-control" id="departTime" name="departTime" value=<%= flightData.Depart_Time %> required>
-                        <% } else { %>
-                          <input type="time" class="form-control" id="departTime" name="departTime" value=<%= String(new Date().getHours() + 100).slice(-2) + ":" + String(new Date().getMinutes() + 100).slice(-2) %> required>
-                        <% } %>
-                      </div>
-                  <div class="form-group">
-                        <label for="arriveDate">Arrival Date</label>
-                        <% if (flightData) { %>
-                          <input type="date" class="form-control" id="arriveDate" name="arriveDate" value=<%= flightData.Arrive_Date.getFullYear() + "-" + String(flightData.Arrive_Date.getMonth() + 101).slice(-2) + "-" + String(flightData.Arrive_Date.getDate() + 100).slice(-2); %> required>
-                        <% } else { %>
-                          <input type="date" class="form-control" id="arriveDate" name="arriveDate" value=<%= new Date().getFullYear() + "-" + String(new Date().getMonth() + 101).slice(-2) + "-" + String(new Date().getDate() + 100).slice(-2); %> required>
-                        <% } %>
-                      </div>
-                      <div class="form-group">
-                            <label for="arriveTime">Arrival Time</label>
-                            <% if (flightData) { %>
-                              <input type="time" class="form-control" id="arriveTime" name="arriveTime" value=<%= flightData.Arrive_Time %> required>
-                            <% } else { %>
-                              <input type="time" class="form-control" id="arriveTime" name="arriveTime" value=<%= String(new Date().getHours() + 100).slice(-2) + ":" + String(new Date().getMinutes() + 100).slice(-2) %> required>
-                            <% } %>
-                          </div>
         <button type="submit" class="btn btn-info"><%= flightData ? "Save" : "Add New Flight" %></button>
       </form>
 </div>

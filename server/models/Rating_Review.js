@@ -1,73 +1,95 @@
 const db = require("../db/db");
 
-exports.getHotelReviewInfo = async ({
-  Title_Hotel,
-  Text_Hotel_Review,
-  timestamp,
-  Cleanliness_Hotel_Rating,
-  Comfort_Hotel_Rating,
-  Meal_Hotel_Rating,
-  Location_Hotel_Rating,
-  Service_Hotel_Rating,
-  hotel_hotelId
-}) => {
+exports.getHotelReviewInfo = async (
+  hotelId,
+  Type_Of_Hotel_Reviewer,
+  Sort,
+  Score
+) => {
   try {
-    await db.query("SELECT * FROM Hotel_Review where hotel_hotelId = ?", [
-      Title_Hotel,
-      Text_Hotel_Review,
-      timestamp,
-      Cleanliness_Hotel_Rating,
-      Comfort_Hotel_Rating,
-      Meal_Hotel_Rating,
-      Location_Hotel_Rating,
-      Service_Hotel_Rating,
-      hotel_hotelId
-    ]);
+    let query =
+      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, (Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/5 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? ";
+    
+    switch (Type_Of_Hotel_Reviewer) {
+      case "Business trip":
+        query += "AND Type_Of_Hotel_Reviewer = 'Business Trip' ";
+      case "Family vacation":
+        query += "AND Type_Of_Hotel_Reviewer = 'Family vacation' ";
+      case "Romantic vacation":
+        query += "AND Type_Of_Hotel_Reviewer = 'Romantic vacation' ";
+      case "Shopping and Culinary":
+        query += "AND Type_Of_Hotel_Reviewer = 'Shopping and Culinary' ";
+      case "Backpacking":
+        query += "AND Type_Of_Hotel_Reviewer = 'Backpacking' ";
+      case "Medical Travel":
+        query += "AND Type_Of_Hotel_Reviewer = 'Medical Travel' ";
+      default:
+        break;
+    }
+
+    switch (Score) {
+      case "Wonderful":
+        query += "AND Score > 4 ";
+      case "Good":
+        query += "AND Score > 3 ";
+      case "Okey":
+        query += "AND Score > 2 ";
+      case "Poor":
+        query += "AND Score > 1 ";
+      default:
+        break;
+    }
+    query += "GROUP BY idHotel_Review "
+
+    switch (Sort) {
+      case "Newest":
+        query += " ORDER BY timestamp ASC";
+        break;
+      case "Oldest":
+        query += " ORDER BY timestamp DESC";
+        break;
+      default:
+        break;
+    }
+
+    console.log(query);
+
+    const hotelReview = await db.query(query, [hotelId]);
+    console.log(hotelReview);
+    return hotelReview;
   } catch (error) {
-    throw new Error(`[ERR] getHotelReviewInfo: ${err}`);
+    console.log(error);
+    throw new Error(`[ERR] getHotelReviewInfo: ${error}`);
   }
 };
 
-exports.getFlightReviewInfo = async ({
-    Title_Flight,
-    Text_Flight_Review,
-    timestamp,
-    CabinCrewRating_Flight_Rating,
-    Comfort_Flight_Rating,
-    Meal_Flight_Rating,
-    Entertainment_Flight_Rating,
-    Flight_Flight_number
-  }) => {
-    try {
-      await db.query("SELECT * FROM Flight_Review where Flight_Flight_number = ?", [
-        Title_Flight,
-        Text_Flight_Review,
-        timestamp,
-        CabinCrewRating_Flight_Rating,
-        Comfort_Flight_Rating,
-        Meal_Flight_Rating,
-        Entertainment_Flight_Rating,
-        Flight_Flight_number
-      ]);
-    } catch (error) {
-      throw new Error(`[ERR] getFlightReviewInfo: ${err}`);
-    }
-  };
+exports.getAirlineReviewInfo = async airline_Id => {
+  try {
+    const airlineReview = await db.query(
+      "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, CabinCrewRating_Airline_Rating, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ?",
+      [airline_Id]
+    );
+    return airlineReview;
+  } catch (error) {
+    throw new Error(`[ERR] getAirlineReviewInfo: ${err}`);
+  }
+};
 
-// exports.modelUpdateHotel = async data => {
-//   try {
-//     console.log("From mode", data);
-//     await db.query(
-//       "UPDATE Hotel_Review set Title_Flight = ? , Text_Flight_Review = ?, CabinCrewRating_Flight_Rating = ?,  WHERE hotelId = ?",
-//       [data.hotelAddress, data.hotelTelNumber, data.hotelEmail, data.hotelId]
-//     );
-//   } catch (err) {
-//     throw new Error(`[ERR] modelUpdateHotel: ${err}`);
-//   }
-// };         
+exports.Update_Hotel_Review = async (Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating) => {
+  try {
+    await db.query(
+      "UPDATE Hotel_Review set userId = ?, Title_Hotel = ?, Text_Hotel_Review = ?, Cleanliness_Hotel_Rating = ?, Comfort_Hotel_Rating = ?, Meal_Hotel_Rating = ?, Location_Hotel_Rating = ?, Service_Hotel_Rating = ?,Type_Of_Hotel_Reviewer = ?, hotel_hotelId = ? WHERE idHotel_Review = ?)",
+      [Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating]
+    );
+  } catch (err) {
+    throw new Error(`[ERR] modelUpdateHotel: ${err}`);
+  }
+};
 
 exports.insertNewHotel_Review = async ({
+  userId,
   Title_Hotel,
+  Type_Of_Hotel_Reviewer,
   Text_Hotel_Review,
   Cleanliness_Hotel_Rating,
   Comfort_Hotel_Rating,
@@ -78,8 +100,9 @@ exports.insertNewHotel_Review = async ({
 }) => {
   try {
     await db.query(
-      `INSERT INTO Hotel_Review(Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating, hotel_hotelId) VALUES(?,?,?,?,?,?,?,?)`,
+      `INSERT INTO Hotel_Review(userId, Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating,Type_Of_Hotel_Reviewer, hotel_hotelId) VALUES(?,?,?,?,?,?,?,?,?,?)`,
       [
+        userId,
         Title_Hotel,
         Text_Hotel_Review,
         Cleanliness_Hotel_Rating,
@@ -87,6 +110,7 @@ exports.insertNewHotel_Review = async ({
         Meal_Hotel_Rating,
         Location_Hotel_Rating,
         Service_Hotel_Rating,
+        Type_Of_Hotel_Reviewer,
         hotel_hotelId
       ]
     );
@@ -95,56 +119,60 @@ exports.insertNewHotel_Review = async ({
   }
 };
 
-exports.insertNewHotelReviewPicture = async({
-    Hotel_Review_Picture_URL
-  }) => {
-    try{
-      await db.query(`INSERT INTO Hotel_Review_Picture_URL(Hotel_Review_Picture_URL, Hotel_Review_idHotel_Review) VALUES(?,?)`, [
-        Hotel_Review_Picture_URL
-      ]);
-    } catch(error){
-      throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`)
-    }
-  };
-
-exports.insertNewFlight_Review = async ({
-  Title_Flight,
-  Text_Flight_Review,
-  CabinCrewRating_Flight_Rating,
-  Comfort_Flight_Rating,
-  Meal_Flight_Rating,
-  Entertainment_Flight_Rating,
-  Flight_Flight_number
-}) => {
+exports.insertNewHotelReviewPicture = async ({ Hotel_Review_Picture_URL }) => {
   try {
     await db.query(
-      `INSERT INTO Flight_Review(Title_Flight, Text_Flight_Review, CabinCrewRating_Flight_Rating, Comfort_Flight_Rating, Meal_Flight_Rating, Entertainment_Flight_Rating, Flight_Flight_number) VALUES(?,?,?,?,?,?,?)`,
-      [
-        Title_Flight,
-        Text_Flight_Review,
-        CabinCrewRating_Flight_Rating,
-        Comfort_Flight_Rating,
-        Meal_Flight_Rating,
-        Entertainment_Flight_Rating,
-        Flight_Flight_number
-      ]
+      `INSERT INTO Hotel_Review_Picture_URL(Hotel_Review_Picture_URL, Hotel_Review_idHotel_Review) VALUES(?,?)`,
+      [Hotel_Review_Picture_URL]
     );
   } catch (error) {
-    throw new Error(`[ERR] insertNewFlight_Review: ${error}`);
+    throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`);
   }
 };
 
-exports.insertNewFlightReviewPicture = async({
-    Flight_Review_Picture_URL
-  }) => {
-    try{
-      await db.query(`INSERT INTO Flight_Review_Picture_URL(Flight_Review_Picture_URL, Flight_Review_idFlight_Review) VALUES(?,?)`, [
-        Flight_Review_Picture_URL
-      ]);
-    } catch(error){
-      throw new Error(`[ERR] insertNewHotelReviewPicture: ${error}`)
-    }
-  };
+exports.insertNewAirline_Review = async ({
+  userId,
+  Title_Airline,
+  Text_Airline_Review,
+  CabinCrewRating_Airline_Rating,
+  Comfort_Airline_Rating,
+  Meal_Airline_Rating,
+  Entertainment_Airline_Rating,
+  Type_Of_Airline_Reviewer,
+  airlineId_fk
+}) => {
+  try {
+    await db.query(
+      `INSERT INTO Airline_Review(userId,Title_Airline, Text_Airline_Review, CabinCrewRating_Airline_Rating, Comfort_Airline_Rating, Meal_Airline_Rating, Entertainment_Airline_Rating, Type_Of_Airline_Reviewer, airlineId_fk) VALUES(?,?,?,?,?,?,?,?,?)`,
+      [
+        userId,
+        Title_Airline,
+        Text_Airline_Review,
+        CabinCrewRating_Airline_Rating,
+        Comfort_Airline_Rating,
+        Meal_Airline_Rating,
+        Entertainment_Airline_Rating,
+        Type_Of_Airline_Reviewer,
+        airlineId_fk
+      ]
+    );
+  } catch (error) {
+    throw new Error(`[ERR] insertNewAirline_Review: ${error}`);
+  }
+};
+
+exports.insertNewAirlineReviewPicture = async ({
+  Airline_Review_Picture_URL
+}) => {
+  try {
+    await db.query(
+      `INSERT INTO Airline_Review_Picture_URL(Airline_Review_Picture_URL, Airline_Review_idFlight_Review) VALUES(?,?)`,
+      [Airline_Review_Picture_URL]
+    );
+  } catch (error) {
+    throw new Error(`[ERR] insertNeAirlineReviewPicture: ${error}`);
+  }
+};
 
 exports.deleteHotelReviewInfo = async idHotel_Review => {
   try {
@@ -156,13 +184,13 @@ exports.deleteHotelReviewInfo = async idHotel_Review => {
   }
 };
 
-exports.deleteFlightReviewInfo = async idFlight_Review => {
+exports.deleteAirlineReviewInfo = async idAirline_Review => {
   try {
-    await db.query("DELETE FROM Flight_Review WHERE idFlight_Review = ?", [
-      idFlight_Review
+    await db.query("DELETE FROM Airline_Review WHERE idAirline_Review = ?", [
+      idAirline_Review
     ]);
   } catch (err) {
-    throw new Error(`[ERR] deleteFlightReviewInfo: ${err}`);
+    throw new Error(`[ERR] deleteAirlineReviewInfo: ${err}`);
   }
 };
 

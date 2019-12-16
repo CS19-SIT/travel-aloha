@@ -13,7 +13,7 @@ exports.findAll = async () => {
 exports.findAllFlightData = async () => {
   try {
     const flightsData = await db.query(
-      "SELECT Flight.Flight_number, Depart_Date, Depart_Time, Arrive_Date, Arrive_Time, Departure, DepartureAirport.Airport_name AS DepartureAirport, Destination, DestinationAirport.Airport_name AS DestinationAirport, airlineName" +
+      "SELECT Flight.Flight_number, Departure, DepartureAirport.Airport_name AS DepartureAirport, Destination, DestinationAirport.Airport_name AS DestinationAirport, airlineName" +
         " FROM Flight JOIN airline ON airline.airline_Id = Flight.Airline_ID, (SELECT Flight_number, Airport_name FROM Airport JOIN Flight ON Destination = Airport_ID) AS DestinationAirport," +
         " (SELECT Flight_number, Airport_name FROM Airport JOIN Flight ON Departure = Airport_ID) AS DepartureAirport" +
         " WHERE DestinationAirport.Flight_number = Flight.Flight_number AND DepartureAirport.Flight_number = Flight.Flight_number"
@@ -43,23 +43,14 @@ exports.create = async (
   departure,
   destination,
   airline,
-  departDate,
-  departTime,
-  arriveDate,
-  arriveTime
 ) => {
   try {
     const newFlight = await db.query(
-      "INSERT INTO Flight VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO Flight VALUES(?, ?, ?, ?)",
       [
         flightNumber,
-        departDate,
-        departTime,
-        arriveDate,
-        arriveTime,
         departure,
         destination,
-        null,
         airline
       ]
     );
@@ -74,19 +65,11 @@ exports.updateById = async (
   departure,
   destination,
   airline,
-  departDate,
-  departTime,
-  arriveDate,
-  arriveTime
 ) => {
   try {
     const updatedFlight = await db.query(
-      "UPDATE Flight SET Depart_Date = ?, Depart_Time = ?, Arrive_Date = ?, Arrive_Time = ?, Departure = ?, Destination = ?, Airline_ID = ? WHERE Flight_number = ?",
+      "UPDATE Flight SET Departure = ?, Destination = ?, Airline_ID = ? WHERE Flight_number = ?",
       [
-        departDate,
-        departTime,
-        arriveDate,
-        arriveTime,
         departure,
         destination,
         airline,
