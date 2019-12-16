@@ -1,0 +1,52 @@
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.headFavTitleHome {
+    text-align: center;
+    font-size: 5rem;
+
+}
+
+.headFavTitle {
+    text-align: center;
+    font-size: 3rem;
+
+}
+
+.grayHead {
+    color: gray;
+}
+
+.cardTop {
+    margin-top: 5rem;
+}
+
+.card-body {
+    background-color: white;
+}
+
+.column {
+   
+ 
+  }
+
+  /* Float four columns side by side */
+.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px; 
+    width: 33.33%;
+    padding-left: 10rem;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  

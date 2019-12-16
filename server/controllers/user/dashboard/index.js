@@ -1,3 +1,4 @@
+const example = require("../../../models/example");
 exports.getDashboard = (req, res) => {
   // const userId = req.params.id;
   res.render("user/userDashboard", {
@@ -6,9 +7,16 @@ exports.getDashboard = (req, res) => {
   });
 };
 
-exports.getEditProfile = (req, res) => {
-  res.render("user/editProfile", {
-    user: req.user,
-    pageTitle: "TravelAloha - Dashboard - Edit Profile"
-  });
+exports.getEditProfile = async(req, res) => {
+  try{
+    let data = await example.getAllCountry();
+    res.render("user/editProfile", {
+      user: req.user,
+      pageTitle: "TravelAloha - Dashboard - Edit Profile",
+      country: data
+    });
+  }catch(err){
+    res.sendStatus(400);
+  }
+ 
 };

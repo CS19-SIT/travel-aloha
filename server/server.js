@@ -17,6 +17,8 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 
+const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
+
 /**
  * Application Initiation
  */
@@ -35,7 +37,7 @@ const sessionStore = new MySQLStore({
   database: process.env.DB_DATABASE
 });
 
-const publicPath = path.join(__dirname + "/../public");
+const publicPath = path.join(__dirname, "../public");
 const viewPath = path.join(publicPath + "/views");
 
 app.set("view engine", "ejs");
@@ -44,19 +46,13 @@ app.set("views", viewPath);
 app.use(cors());
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_PASSWORD,
-    cookie: {
-      maxAge: 900000
-    },
+    cookie: { maxAge: 900000 },
     store: sessionStore,
     resave: false,
     saveUninitialized: false
@@ -87,13 +83,17 @@ const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
 const flightRoutes = require("./routes/flight/index");
 const flightBookingRoutes = require("./routes/flight/booking");
+const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
-const userRoutes = require("./routes/user/dashboard");
+const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
 
-app.use(indexRoutes);
+const rewardLevelRoutes = require("./routes/rewardLevel/rewardLevel");
+
+app.use(landingPageRoutes);
 app.use(authRoutes);
+app.use("/temp", indexRoutes);
 
 app.use("/admin", adminRoutes);
 app.use("/admin/coupon", adminCouponRoutes);
@@ -102,14 +102,10 @@ app.use("/admin/hotel", adminHotelRoutes);
 app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
-app.get("/", (req, res) =>
-  res.render("index", {
-    pageTitle: "TravelAloha",
-    user: req.user
-  })
-);
-
 app.use("/checkout", checkoutRoutes);
+app.use("/checkout_flight",checkoutRoutes);
+app.use("/checkout/Intern", checkoutRoutes);
+app.use("/charge", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
 app.use("/dashboard", userRoutes);
@@ -124,24 +120,19 @@ app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
 
-app.use(errorsController.get404);
+app.use("/rewardlevel",rewardLevelRoutes );
 
-app.use((err, req, res, next) => {
-  res.status(400).render("errors/400", {
-    pageTitle: "TravelAloha - Bad Request",
-    user: req.user,
-    error: err
-  });
-});
+app.use(errorsController.get404);
 
 const listEndpoints = require("express-list-endpoints");
 console.log(listEndpoints(app).length)
-console.log(listEndpoints(app));
+const allRoutes = listEndpoints(app);
+allRoutes.map()
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
     if (process.env.NODE_ENV !== "production")
-      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT} - ${new Date()}`);
   });
 }
 
