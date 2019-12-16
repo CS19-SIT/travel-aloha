@@ -15,7 +15,7 @@ exports.postIndex = async (req, res) => {
   console.log(seatClass);
   console.log(flightNumber);
   info = await Booking.getFlightInfoByNumber(flightNumber,seatClass);
-  // Booking.createSeat(flightNumber,seatClass);
+  Booking.createSeat(flightNumber,seatClass);
   // console.log(info);
   let p = []
   for(i=0 ; i<info.length ; i++){
@@ -94,15 +94,13 @@ exports.postUpsell = async (req, res) => {
             ]
   strP = await Booking.getStringPrice(p);
   strTotal = await Booking.getStringPrice(total);
-  // console.log(allFee);
-  // console.log(req.body.seatClass);
   let upsell = [];
   let seat = [];
   // console.log(info);
   for(var i=0 ; i<info.length ; i++){
     upsell[i] = await Booking.getUpsell(info[i]['Flight_number']);
 
-    seat[i] = await Booking.getSeat(info[i]['Flight_number'],info[i]['nor_Depart_Date']);
+    seat[i] = await Booking.getSeat(info[i]['Flight_number'],info[i]['nor_Depart_Date'],seatClass);
   }
   var reserveSeat = [];
   for(var i=0 ; i<info.length ; i++)
@@ -122,12 +120,13 @@ exports.postUpsell = async (req, res) => {
             seat: seat[i][k]['Seat_Number']
           }
           seat[i][k]['Ava'] = 0;
+          console.log(seat[i][k]['Seat_Number']);
           break;
         }
       }
     }
   }
-  console.log(reserveSeat);
+  console.log(upsell);
 
   res.render("flight_booking/upsell", {
     pageTitle: "booking",

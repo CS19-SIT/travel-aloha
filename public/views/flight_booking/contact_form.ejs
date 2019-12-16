@@ -45,13 +45,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email address</label>
+                                    <%if(user.Email!=null){%>
                                     <input required type="email" class="form-control" id="c_email"
                                         aria-describedby="emailHelp" placeholder="Enter email" value="<%=user.Email%>">
+                                    <%}else{%>
+                                    <input required type="email" class="form-control" id="c_email"
+                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                    <%}%>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone number</label>
+                                    <%if(user.PhoneNum!=null){%>
                                     <input required type="phone" class="form-control" id="c_phone" aria-describedby="phone"
                                         placeholder="Enter phone number" value="<%=user.PhoneNum%>">
+                                    <%}else{%>
+                                    <input required type="phone" class="form-control" id="c_phone" aria-describedby="phone"
+                                        placeholder="Enter phone number" value="<%=user.PhoneNum%>">
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
@@ -131,62 +141,6 @@
                     </div>        
                 </form>
             </div>
-
-            <!-- <div class="modal fade" id="summary_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Summary</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card-text">
-                                <div class="mb-3">
-                                    <h5>Flight</h5>
-                                    <div class="font-weight-bold">BKK&nbsp;<i
-                                            class="fa fa-arrow-right"></i>&nbsp;CNX
-                                    </div>
-                                    <div>1 Person Economy Class</div>
-                                    <div>Sunday, 03-Nov-2019</div>
-                                    <div>20:25 - 21:45 <span class="airport-code">(1.20 Hours)</span></div>
-                                </div>
-                                <div class="mb-3">
-                                    <h5>Contact</h5>
-                                    <div>John Doe</div>
-                                    <div>johndoe@mail.com</div>
-                                    <div>0123456789</div>
-                                </div>
-                                <div class="mb-3">
-                                    <h5>Passenger 1 Info</h5>
-                                    <div>John Doe</div>
-                                    <div>Male</div>
-                                    <div>09-Nov-2019</div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="row">
-                                        <div class="col-md-8">Nok Air Economy (1)</div>
-                                        <div class="col-md-4">1,649 &#3647; </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-8">VAT 7%</div>
-                                        <div class="col-md-4">115.43 &#3647; </div>
-                                    </div>
-                                    <div class="row font-weight-bold">
-                                        <div class="col-md-8">Total</div>
-                                        <div class="col-md-4">1964.43 &#3647; </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Checkout</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <%- include('./summary') %>
         </div>
     </div>

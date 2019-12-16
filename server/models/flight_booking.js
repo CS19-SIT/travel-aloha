@@ -146,34 +146,34 @@ exports.recordPassager = async (passager) => {
 }
 
 exports.createSeat = async (flight_number,seatClass) => {
-    for(var i=1 ; i<10 ; i++)
+    for(var i=10 ; i<=60 ; i++)
     {
         await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
-            "0"+i+"B",
+            i+"B",
             flight_number[0][0],
             flight_number[0][1],
             seatClass
         ]);
         await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
-            "0"+i+"C",
+            i+"C",
             flight_number[0][0],
             flight_number[0][1],
             seatClass
         ]);
         await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
-            "0"+i+"H",
+            i+"H",
             flight_number[0][0],
             flight_number[0][1],
             seatClass
         ]);
         await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
-            "0"+i+"I",
+            i+"I",
             flight_number[0][0],
             flight_number[0][1],
             seatClass
         ]);
         await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
-            "0"+i+"J",
+            i+"J",
             flight_number[0][0],
             flight_number[0][1],
             seatClass
@@ -206,7 +206,7 @@ exports.getSeat = async (flight_number,date,seatClass) => {
         ]
     );
     seat = [];
-    // console.log(result[0]);
+    console.log(result[0]);
     return result[0];
 }
 
