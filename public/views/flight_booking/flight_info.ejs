@@ -2,7 +2,7 @@
 
 <link href="../../assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+<%- include('../includes/navbar') %>
 </head>
 <style>
     .card.mb-3, #summary{
@@ -31,8 +31,8 @@
                         </div>
                     </div>
                 <!-- </div> -->
-                <!-- <div class="card"> -->
                 <!-- Info card -->
+                <!-- <div class="card"> -->
                     <div class="card-body">
                         <div class="row">
                             <p class="col-md-10">
@@ -42,9 +42,10 @@
                                 <i class="fa fa-bookmark-o" data-toggle="tooltip" data-placement="top" title="Bookmark this flight"></i>
                             </div>
                         </div>
+
                         <div class="row mb-2">
                             <div class="col-md-1">
-                                <img src="assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo">
+                                <img src="../../assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo">
                             </div>
                             <div id = "flightNumber"class="col-md-11 pl-2">
                                 <span><%= info[i]['Flight_number'] %>
@@ -56,6 +57,7 @@
                             <div class="time-block col-md-3">
                                 Departure - <%=info[i]['Dep_time']%><br>
                                 <%=info[i]['dep_city']%><span class="airport-code">&nbsp;<%=info[i]['Departure']%></span>
+
                             </div>
                             <div class="time-block col-md-3">
                                 Arrival - <%=info[i]['Arr_time']%><br>
@@ -71,10 +73,14 @@
                 <!-- <a href="/flight/booking/contact" class="btn btn-info mt-2 book align-bottom">Book Now</a> -->
                 <button type="submit" class="btn btn-info mt-2 book align-bottom" onclick="send()">Book now</button>
             </div>
+
             <!-- Billing part -->
             <%- include('./summary') %>
-         </form>
+        </form>
+        </div>
+
     </div>
+
     <script>
         function send() {
         }
@@ -83,4 +89,5 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+
     <%- include('../includes/footer') %>
