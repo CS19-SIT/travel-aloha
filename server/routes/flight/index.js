@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const flightController = require("../../controllers/flight/index");
-const authMiddleware = require("../../middlewares/auth");
 
-router.get("/", flightController.getIndex);
+const searchFlightController = require("../../controllers/flight/flight_info");
+
+router.get("/", searchFlightController.getFlight);
 
 module.exports = router;

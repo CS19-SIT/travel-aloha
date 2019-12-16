@@ -1,0 +1,12 @@
+.coupon-card {
+    width: 100%;
+}
+
+.coupon-card:hover {
+    cursor: pointer;
+}
+
+.coupon-table .row,
+.coupon-table .coupon-table-col {
+    margin-bottom: 0.5rem;
+}
