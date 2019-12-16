@@ -234,17 +234,6 @@
                     <form action="/review/hotel/<%= hotelId %>" method="get">
                     <div class="d-flex">
                         <div class="col-xs-3 col-md-3 ">
-                            <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
-                                    data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="Sort" id="">
-                                <option>Recommended</option>
-                                <option>Newest</option>
-                                <option>Oldest</option>
-                                <!-- <option>Score(higher to lower)</option>
-                                <option>Score(lower to higher)</option> -->
-                            </select>
-                        </div>
-                        <div class="col-xs-3 col-md-3 ">
                             <label for="Category">Show reviews from: <i class="fas fa-question-circle"
                                     data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
                             <select class="form-control" name="Type_Of_Hotel_Reviewer" id="">
@@ -270,7 +259,18 @@
                             </select>
                         </div>
                         <div class="col-xs-3 col-md-3 ">
-                            <button class="btn btn-primary show" type="submit">Display</button>
+                            <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
+                                    data-placement="right" title="Tooltip on right"></i></label>
+                            <select class="form-control" name="Sort" id="">
+                                <option>Recommended</option>
+                                <option>Newest</option>
+                                <option>Oldest</option>
+                                <!-- <option>Score(higher to lower)</option>
+                                <option>Score(lower to higher)</option> -->
+                            </select>
+                        </div>
+                        <div class="col-xs-3 col-md-3 ">
+                            <button class="btn btn-primary show" type="submit">Search</button>
                         </div>
                     </div>
                 </form>
