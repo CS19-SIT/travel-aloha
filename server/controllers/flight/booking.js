@@ -15,6 +15,7 @@ exports.postIndex = async (req, res) => {
   console.log(seatClass);
   console.log(flightNumber);
   info = await Booking.getFlightInfoByNumber(flightNumber,seatClass);
+  // Booking.createSeat(flightNumber,seatClass);
   // console.log(info);
   let p = []
   for(i=0 ; i<info.length ; i++){
