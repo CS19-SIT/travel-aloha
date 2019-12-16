@@ -14,13 +14,8 @@ exports.postIndex = async (req, res) => {
   // console.log(passager);
   console.log(seatClass);
   console.log(flightNumber);
-<<<<<<< HEAD
-  info = await Booking.getFlightInfoByNumber(flightNumber,seatClass);
-  Booking.createSeat(flightNumber,seatClass);
-=======
   info = await Booking.getFlightInfoByNumber(flightNumber, seatClass);
   // Booking.createSeat(flightNumber,seatClass);
->>>>>>> flight_booking
   // console.log(info);
   let p = []
   for (i = 0; i < info.length; i++) {
@@ -105,11 +100,7 @@ exports.postUpsell = async (req, res) => {
   for (var i = 0; i < info.length; i++) {
     upsell[i] = await Booking.getUpsell(info[i]['Flight_number']);
 
-<<<<<<< HEAD
     seat[i] = await Booking.getSeat(info[i]['Flight_number'],info[i]['nor_Depart_Date'],seatClass);
-=======
-    seat[i] = await Booking.getSeat(info[i]['Flight_number'], info[i]['nor_Depart_Date']);
->>>>>>> flight_booking
   }
   var reserveSeat = [];
   for (var i = 0; i < info.length; i++) {
