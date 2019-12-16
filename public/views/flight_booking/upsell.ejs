@@ -103,10 +103,11 @@
                                             <div class="col-md-6">
                                                 <h5>Additional Services</h5>
                                                 <%for(let k = 0; k < upsell[i].length; k++) { %>
-                                                    <div class="row" data-toggle="tooltip" data-placement="top"
-                                                        title="<%=upsell[i][k]['product_detail']%>">
+                                                    <div class="row">
                                                         <div class="col-md-8">
-                                                            <div class="form-check">
+                                                            <div class="form-check" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="<%=upsell[i][k]['product_detail']%>">
                                                                 <input class="form-check-input upsellCheckbox"
                                                                     type="checkbox" id="upsell_<%=i%>-<%=j%>-<%=k%>"
                                                                     value="<%=upsell[i][k]['price']%>"
@@ -161,11 +162,8 @@
         </div>
     </div>
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        });
-
-        var price = [ < %= p % > ];
+        
+        var price = [ <%=p%> ];
 
         function clickUpsell(item) {
             console.log(item);
@@ -243,5 +241,10 @@
 
             // document.getElementById("totalpay").value = total[2];
         }
+        
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
     </script>
     <%- include('../includes/footer') %>
