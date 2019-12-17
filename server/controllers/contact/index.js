@@ -246,12 +246,18 @@ exports.getAirlineDetail = async (req, res) => {
   const airline_Id = req.body.airline_Id;
   try {
     const result = await db.query(`SELECT * FROM airline WHERE airline_Id = '${airline_Id}' `);
+    const result2 = await db.query(`SELECT * FROM airline_contact_price WHERE airline_Id = '${airline_Id}' `);
+    const result3 = await db.query(`SELECT * FROM airline_contact_picture WHERE airline_Id = '${hotelId}' `);
     const data = JSON.stringify(result[0]);
+    const data2 = JSON.stringify(result2[0]);
+    const data3 = JSON.stringify(result3[0]);
     res.status(200);
     res.render("contact/new-airline-detail", {
       pageTitle: "TravelAloha - Contact - New Airline Detail",
       user: req.user,
-      airline: data
+      airline: data,
+      airlineSeatPrice: data2,
+      airlineSeatPicture: data3
     });
   } catch (err) {
     res.sendStatus(400);
