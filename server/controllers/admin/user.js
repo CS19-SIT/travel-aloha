@@ -5,11 +5,12 @@ const User = require("../../models/admin-user");
 exports.getUsersPage = async (req, res) => {
     try {
       let data = await User.getAllUser();
-  
+      let myRole = await db.query('SELECT role FROM user WHERE user_id=\''+ req.user.user_id+'\'');
       res.render("userManagement/users", {
         pageTitle: "User Management",
         user: req.user,
-        data: data
+        data: data,
+        isAdmin: (myRole[0][0].role == 'Admin')
       });
     } catch (err) {
       res.sendStatus(404);
@@ -23,7 +24,11 @@ exports.addUsersPage = function(req,res) {
     });
 }
 
-exports.editUsersPage = function(req, res) {
+exports.editUsersPage = async function(req, res) {
+    const myRole = await db.query('SELECT role FROM user WHERE user_id=\''+ req.user.user_id+'\'');
+    if (myRole[0][0].role != 'Admin') {
+        return res.redirect('/');
+    }
     let user_id = req.params.user_id;
     let query = "SELECT * FROM user WHERE user_id = '" + user_id + "' ";
     db.query(query, (err, result) => {
