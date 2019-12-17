@@ -29,15 +29,15 @@ exports.getHotelReviewInfo = async (
 
     switch (Score) {
       case "Wonderful":
-        query += "AND Score > 4 ";
+        query += "AND Score > 8 ";//9-10
       case "Good":
-        query += "AND Score > 3 ";
+        query += "AND Score > 6 ";//7-8
       case "Okey":
-        query += "AND Score > 2 ";
+        query += "AND Score > 4 ";//5-6
       case "Poor":
-        query += "AND Score > 1 ";
+        query += "AND Score > 2 ";//3-4
       default:
-        break;
+        break;//All
     }
     query += "GROUP BY idHotel_Review "
 
@@ -52,13 +52,13 @@ exports.getHotelReviewInfo = async (
         break;
     }
 
-    console.log(query);
+    // console.log(query);
 
     const hotelReview = await db.query(query, [hotelId]);
-    console.log(hotelReview);
+    // console.log(hotelReview);
     return hotelReview;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error(`[ERR] getHotelReviewInfo: ${error}`);
   }
 };
