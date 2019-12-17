@@ -63,6 +63,6 @@ function submitForm() {
       document.getElementById('field' + i).getElementsByClassName('form-control')[0].selectedIndex = i;
       document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType1[i - 1];
     }
-      document.getElementById("addNewHotel").submit();
+      // document.getElementById("addNewHotel").submit();
   }
 }

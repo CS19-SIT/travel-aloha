@@ -47,6 +47,7 @@ exports.postHotelInfo = async (req, res) => {
         hotelRoomPrice5,
         hotelRoomPrice6
       } = req.body;
+      console.log(hotelRoomType2);
       if (err) {
         res.sendStatus(400);
         return;
@@ -82,6 +83,12 @@ exports.postHotelInfo = async (req, res) => {
         hotelProfile,
         hotelPicture
       });
+      // hotelRoomType = (!!hotelRoomPrice).toString(),
+      // hotelRoomType2 = (!!hotelRoomPrice2).toString()
+      // hotelRoomType3 = (!!hotelRoomPrice3).toString()
+      // hotelRoomType4 = (!!hotelRoomPrice4).toString()
+      // hotelRoomType5 = (!!hotelRoomPrice5).toString()
+      // hotelRoomType6 = (!!hotelRoomPrice6).toString()
       await contactModel.insertNewHotelRoomType({
         hotelId,
         hotelRoomType,
@@ -128,9 +135,13 @@ exports.postAirlineInfo = async (req, res) => {
         airlineAddress,
         airlineTelNumber,
         airlineContactNumber,
-        airlineSeatType,
-        airlineSeatPrice,
-        airlinePlaneDes
+        airlinePlaneDes,
+        airlineSeatMinPrice1,
+        airlineSeatMaxPrice1,
+        airlineSeatMinPrice2,
+        airlineSeatMaxPrice2,
+        airlineSeatMinPrice3,
+        airlineSeatMaxPrice3
       } = req.body;
       if (err) {
         res.sendStatus(400);
@@ -138,6 +149,16 @@ exports.postAirlineInfo = async (req, res) => {
       }
       const airlineProfile = req.files["airlineProfile"][0].filename;
       const airlinePicture = req.files["airlinePicture"][0].filename;
+      let [airlineSeatTypePicture1, airlineSeatTypePicture2, airlineSeatTypePicture3] = [null, null, null];
+      if ("airlineSeatTypePicture1" in req.files) {
+        airlineSeatTypePicture1 = req.files["airlineSeatTypePicture1"][0].filename;
+      }
+      if ("airlineSeatTypePicture2" in req.files) {
+        airlineSeatTypePicture2 = req.files["airlineSeatTypePicture2"][0].filename;
+      }
+      if ("airlineSeatTypePicture3" in req.files) {
+        airlineSeatTypePicture3 = req.files["airlineSeatTypePicture3"][0].filename;
+      }
       await contactModel.insertNewAirline({
         airlineName,
         airlineNationality,
@@ -148,10 +169,21 @@ exports.postAirlineInfo = async (req, res) => {
         airlineContactNumber,
         airlinePlaneDes,
         airlineProfile,
-        airlinePicture,
-        airlineSeatType,
-        airlineSeatPrice
+        airlinePicture
       });
+      await contactModel.insertNewAirlineSeatPrice({
+        airlineSeatMinPrice1,
+        airlineSeatMaxPrice1,
+        airlineSeatMinPrice2,
+        airlineSeatMaxPrice2,
+        airlineSeatMinPrice3,
+        airlineSeatMaxPrice3
+      })
+      await contactModel.insertNewAirlineSeatPicture({
+        airlineSeatTypePicture1,
+        airlineSeatTypePicture2,
+        airlineSeatTypePicture3
+      })
     });
   } catch (error) {
     res.sentStatus(400);
