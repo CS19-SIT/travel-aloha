@@ -41,7 +41,8 @@ function checkingHotel(validType1,validType2) {
     }
     validType1[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = 
       parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[1].value, 10);
-    validType2[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].value;
+    validType2[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = 
+      document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].value;
   }
   return true;
 }
