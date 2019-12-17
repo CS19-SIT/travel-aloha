@@ -48,11 +48,15 @@ exports.editUsers = function (req, res) {
   let username = req.body.username;
 
   let query = "UPDATE `user` SET `Level` = '" + level + "',`Role` = '" + role + "',`firstname` = '" + firstname + "', `lastname` = '" + lastname + "', `Email` = '" + email + "', `username` = '" + username + "' WHERE `user`.`user_id` = '" + user_id +"'";
-  db.query(query, (err, result) => {
+  db.query(query, async (err, result) => {
       if (err) {
           return res.status(500).send(err);
       }
-      res.redirect('../');
+      if (result.changedRows != 0) {
+          let userEmail = await db.query("SELECT `email` FROM `user` WHERE `user`.`user_id`='" + user_id +"'");
+          userEmail = userEmail[0][0].email;
+        }
+        res.redirect('../');
   });
 },
 

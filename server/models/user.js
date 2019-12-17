@@ -64,7 +64,7 @@ exports.createUser = async ({
       firstname,
       lastname,
       address,
-      0,
+      "Normal",
       email
     ]);
   } catch (err) {
