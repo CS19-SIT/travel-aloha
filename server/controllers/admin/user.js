@@ -1,6 +1,8 @@
 const db = require("../../db/db");
 const adminUser = require("../../models/user");
 const User = require("../../models/admin-user");
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 exports.getUsersPage = async (req, res) => {
     try {
@@ -60,6 +62,28 @@ exports.editUsers = function (req, res) {
       if (result.changedRows != 0) {
           let userEmail = await db.query("SELECT `email` FROM `user` WHERE `user`.`user_id`='" + user_id +"'");
           userEmail = userEmail[0][0].email;
+          var transporter = nodemailer.createTransport(smtpTransport({
+            service: 'gmail',
+            host: 'smtp.gmail.com',
+            auth: {
+              user: 'travelaloha55@gmail.com',
+              pass: 'fk9hkg[l'
+            }
+          }));
+          const mailOptions = {
+            from: 'travelaloha55@gmail.com', // sender address
+            to: userEmail, // list of receivers
+            subject: 'OOOOOOOps', // Subject line
+            text: 'Your info has been changed'// plain text body
+          };
+
+          transporter.sendMail(mailOptions, function (err, info) {
+            if (err) {
+                //console.log(err);
+            } else {
+               // console.log('Email sent: ' + info.response);
+            }
+          });
         }
         res.redirect('../');
   });
