@@ -43,10 +43,10 @@ exports.getHotelReviewInfo = async (
 
     switch (Sort) {
       case "Newest":
-        query += " ORDER BY timestamp ASC";
+        query += " ORDER BY timestamp DESC";
         break;
       case "Oldest":
-        query += " ORDER BY timestamp DESC";
+        query += " ORDER BY timestamp ASC";
         break;
       default:
         break;
