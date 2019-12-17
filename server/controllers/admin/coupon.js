@@ -50,8 +50,8 @@ exports.getIndex = async (req, res, next) => {
 
       searchParam = {
         code: query.opt === "1" ? query.q : null,
-        name: query.opt === "2" ? query.q : null,
-        description: query.opt === "3" ? query.q : null,
+        description: query.opt === "2" ? query.q : null,
+        name: query.opt === "3" ? query.q : null,
         levels: query.levels,
         page
       };

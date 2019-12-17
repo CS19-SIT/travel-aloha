@@ -130,17 +130,41 @@ exports.searchCoupons = async ({
   entriesPerPage = 10
 } = {}) => {
   try {
+    const tokenize = str => {
+      if (str == null) {
+        return [];
+      }
+
+      let buf = "";
+      let result = [];
+      for (c of str) {
+        if (/\s/.test(c)) {
+          if (buf != "") {
+            result.push(buf);
+            buf = "";
+          }
+        } else {
+          buf += c;
+        }
+      }
+
+      if (buf != "") {
+        result.push(buf);
+      }
+
+      return result;
+    }
+
+    const codeTokens = tokenize(code);
+    const nameTokens = tokenize(name);
+    const descriptionTokens = tokenize(description);
+
     const params = [
-      code == null && name == null && description == null,
+      codeTokens.length == 0 && nameTokens.length == 0 && descriptionTokens.length == 0,
 
-      code != null,
-      `%${code}%`,
-
-      name != null,
-      `%${name}%`,
-
-      description != null,
-      `%${description}%`,
+      ...codeTokens,
+      ...nameTokens,
+      ...descriptionTokens,
 
       levels,
       levels == null,
@@ -149,28 +173,32 @@ exports.searchCoupons = async ({
       entriesPerPage,
     ];
 
-    // Yikes.
-    const countResult = await db.query(`
-      SELECT COUNT(*) AS couponCount
-      FROM (
-        SELECT DISTINCT coupon.*
-        FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
-        WHERE ? OR (
-          (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
-          (? AND UPPER(name) LIKE UPPER(?)) OR
-          (? AND UPPER(description) LIKE UPPER(?))
-        ) AND (lvl.level IN (?) OR ?)
-      ) AS t
-    `, params);
+    const genLikeQuery = (field, n) => {
+      if (n <= 0) {
+        return "FALSE";
+      }
 
-    const dataResult = await db.query(`
+      let concat = "?" + ", '|', ?".repeat(n - 1);
+      return `UPPER(${field}) REGEXP UPPER(CONCAT(${concat}))`;
+    };
+
+    const baseQuery = `
       SELECT DISTINCT coupon.*
       FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
       WHERE ? OR (
-        (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
-        (? AND UPPER(name) LIKE UPPER(?)) OR
-        (? AND UPPER(description) LIKE UPPER(?))
+        ${genLikeQuery("coupon.code", codeTokens.length)} OR
+        ${genLikeQuery("name", nameTokens.length)} OR
+        ${genLikeQuery("description", descriptionTokens.length)}
       ) AND (lvl.level IN (?) OR ?)
+    `;
+
+    const countResult = await db.query(`
+      SELECT COUNT(*) AS couponCount
+      FROM (${baseQuery}) AS t
+    `, params);
+
+    const dataResult = await db.query(`
+      ${baseQuery}
       ORDER BY coupon.creation_date DESC
       LIMIT ?, ?
     `, params);
