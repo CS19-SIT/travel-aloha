@@ -8,7 +8,7 @@ exports.getHotelReviewInfo = async (
 ) => {
   try {
     let query =
-      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, (Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/5 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? ";
+      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, (Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/10 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? ";
     
     switch (Type_Of_Hotel_Reviewer) {
       case "Business trip":
@@ -63,10 +63,49 @@ exports.getHotelReviewInfo = async (
   }
 };
 
-exports.getAirlineReviewInfo = async airline_Id => {
+exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Hotel_Reviewer,
+  Sort,
+  Score) => {
   try {
-    const airlineReview = await db.query(
-      "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, CabinCrewRating_Airline_Rating, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ?",
+    let query = "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/10 as Score, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ? "
+    switch (Type_Of_Hotel_Reviewer) {
+      case "Economic":
+        query += "AND Type_Of_Hotel_Reviewer = 'Economic' ";
+      case "Premium Economic":
+        query += "AND Type_Of_Hotel_Reviewer = 'Premium Economic' ";
+      case "Business":
+        query += "AND Type_Of_Hotel_Reviewer = 'Business' ";
+      case "First Class":
+        query += "AND Type_Of_Hotel_Reviewer = 'First Class' ";
+      default:
+        break;
+    }
+
+    switch (Score) {
+      case "Wonderful":
+        query += "AND Score > 8 ";//9-10
+      case "Good":
+        query += "AND Score > 6 ";//7-8
+      case "Okey":
+        query += "AND Score > 4 ";//5-6
+      case "Poor":
+        query += "AND Score > 2 ";//3-4
+      default:
+        break;//All
+    }
+    query += "GROUP BY idAirline_Review "
+
+    switch (Sort) {
+      case "Newest":
+        query += " ORDER BY timestamp DESC";
+        break;
+      case "Oldest":
+        query += " ORDER BY timestamp ASC";
+        break;
+      default:
+        break;
+    }
+    const airlineReview = await db.query(query,
       [airline_Id]
     );
     return airlineReview;
