@@ -35,7 +35,7 @@
         <div class="s012">
 
             <!-- form -->
-            <form action="/hotel/find" method="POST" onsubmit="return validateForm()">
+            <form action="/hotel/find" method="POST">
                 <fieldset>
                     <legend>Search Hotels</legend>
                 </fieldset>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="input-field">
                                     <label>GOING TO</label>
-                                    <input type="text" name="place" placeholder="Destination, hotel name" />
+                                    <input type="text" name="place" placeholder="Destination, hotel name" class="check"/>
                                 </div>
                             </div>
                             <div class="input-wrap">
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="row last">
-                            <input type="submit" class="btn-search" value="search" />
+                            <input type="submit" class="btn-search" id="submit" value="search" disabled="disabled" />
                         </div>
                     </div>
                 </div>
@@ -148,17 +148,11 @@
         </div></a> 
         <% }) %>
     </div>
-    <script src="../assets/js/choices.js"></script>
-    <script>
-        const choices = new Choices('[data-trigger]', {
-            searchEnabled: false,
-            itemSelectText: '',
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr(".datepicker", {
-            dateFormat: "m/d/y"
+            dateFormat: "m/d/y",
+            minDate: "today"
         });
         var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
         for (let i = 0; i < btnTypes.length; i++) {
@@ -169,17 +163,24 @@
                 btnTypes[i].classList.add('active')
             })
         }
-        function validateForm() {
-        var x = document.forms["myForm"]["place"].value;
-        if (x == "") {
-            swal("Name must be filled out");
-            return false;
-        }
-        }
-        $(function() {
-            $('.datepicker').datepicker({
-                endDate: new Date()
+
+        $(document).ready(function() {
+            $('.check').keyup(function() {
+
+                var empty = false;
+                $('.check').each(function() {
+                    if ($(this).val().length == 0) {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    $('#submit').attr('disabled', 'disabled');
+                } else {
+                    $('#submit').attr('disabled', false);
+                }
             });
         });
+
     </script>
     <%- include('../includes/footer') %>
