@@ -23,9 +23,28 @@ describe("Admin Coupon controller", () => {
       return result;
     }
 
+    const controllerValid = obj => ({
+      name: obj.code,
+      discount_percentage: "1",
+      start_date: "2019-11-29",
+      expire_date: "2019-12-18",
+      ...obj
+    });
+
+    const modelValid = obj => ({
+      name: obj.code,
+      discount_percentage: "1",
+      start_date: "2019-11-29",
+      expire_date: "2019-12-18",
+      for_every_hotel: true,
+      for_every_airline: true,
+      ...obj
+    });
+
     beforeAll(async () => {
       return agent
         .post("/login")
+        .type('form')
         .send("username=coupontest")
         .send("password=coupontest")
         .expect(302);
@@ -49,6 +68,7 @@ describe("Admin Coupon controller", () => {
 
       return agent
         .put("/admin/coupon/new")
+        .type('form')
         .send({
           code,
           name: code,
@@ -76,20 +96,13 @@ describe("Admin Coupon controller", () => {
     })
 
     describe("coupon validation", () => {
-      const valid = obj => ({
-        name: obj.code,
-        discount_percentage: "1",
-        start_date: "2019-11-29",
-        expire_date: "2019-12-18",
-        ...obj
-      });
-
       it("start_date < expire date", async done => {
         const code = gen();
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .send(valid({
+          .type('form')
+          .send(controllerValid({
             code,
             start_date: "2019-12-18",
             expire_date: "2019-11-29",
@@ -104,7 +117,8 @@ describe("Admin Coupon controller", () => {
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .send(valid({
+          .type('form')
+          .send(controllerValid({
             code,
             discount_percentage: "-1",
           })).expect(404);
@@ -118,7 +132,8 @@ describe("Admin Coupon controller", () => {
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .send(valid({
+          .type('form')
+          .send(controllerValid({
             code,
             max_count: "-1"
           })).expect(404);
@@ -132,9 +147,10 @@ describe("Admin Coupon controller", () => {
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .send(valid({
+          .type('form')
+          .send(controllerValid({
             code,
-            user: code
+            users: ["coupontest", code]
           })).expect(404);
 
         tracking.pop();
@@ -146,11 +162,75 @@ describe("Admin Coupon controller", () => {
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .send(valid({
+          .type('form')
+          .send(controllerValid({
             code
           })).expect(404);
 
         tracking.pop();
+        done();
+      });
+
+      it("hotels must exist", async done => {
+        const code = gen();
+        tracking.push(code);
+
+        await agent.put("/admin/coupon/new")
+          .type('form')
+          .send(controllerValid({
+            code,
+            hotels: gen()
+          })).expect(404);
+
+        tracking.pop();
+        done();
+      });
+
+      it("airlines must exist", async done => {
+        const code = gen();
+        tracking.push(code);
+
+        await agent.put("/admin/coupon/new")
+          .type('form')
+          .send(controllerValid({
+            code,
+            airlines: gen()
+          })).expect(404);
+
+        tracking.pop();
+        done();
+      });
+    });
+
+    describe("pagination and search function", () => {
+      beforeAll(async () => {
+        for (let i = 0; i < 30; i++) {
+          const code = gen();
+          await Coupon.createCoupon(modelValid({code}));
+          tracking.push(code);
+        }
+      });
+
+      it("should show all coupons we inserted", async done => {
+        let left = [...tracking];
+        let page = 0;
+
+        while (left.length > 0) {
+          let res = await agent
+            .get("/admin/coupon/" + page)
+            .expect(200);
+
+          for (let i = 0; i < left.length;) {
+            if (res.text.indexOf(left[i]) > 0) {
+              left.splice(i, 1);
+            } else {
+              i++;
+            }
+          }
+
+          page++;
+        }
+        
         done();
       });
     });
