@@ -26,11 +26,18 @@ html, body {
 }
 .detail-pic{
   width: 100%;
-  height: 69vh;
+  height: 75vh;
   padding: 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.stroke{
+  text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 .success-color{
   background-color: #388BF2;

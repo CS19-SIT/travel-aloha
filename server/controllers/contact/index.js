@@ -51,15 +51,27 @@ exports.postHotelInfo = async (req, res) => {
         res.sendStatus(400);
         return;
       }
-      console.log(hotelRoomType);
       const hotelProfile = req.files["hotelProfile"][0].filename;
       const hotelPicture = req.files["hotelPicture"][0].filename;
-      const hotelRoomPicture1 = req.files["hotelRoomPicture1"][0].filename;
-      const hotelRoomPicture2 = req.files["hotelRoomPicture2"][0].filename;
-      const hotelRoomPicture3 = req.files["hotelRoomPicture3"][0].filename;
-      const hotelRoomPicture4 = req.files["hotelRoomPicture4"][0].filename;
-      const hotelRoomPicture5 = req.files["hotelRoomPicture5"][0].filename;
-      const hotelRoomPicture6 = req.files["hotelRoomPicture6"][0].filename;
+      let [hotelRoomPicture1, hotelRoomPicture2, hotelRoomPicture3, hotelRoomPicture4, hotelRoomPicture5, hotelRoomPicture6] = [null, null, null, null, null, null];
+      if ("hotelRoomPicture1" in req.files) {
+        hotelRoomPicture1 = req.files["hotelRoomPicture1"][0].filename;
+      }
+      if ("hotelRoomPicture2" in req.files) {
+        hotelRoomPicture2 = req.files["hotelRoomPicture2"][0].filename;
+      }
+      if ("hotelRoomPicture3" in req.files) {
+        hotelRoomPicture3 = req.files["hotelRoomPicture3"][0].filename;
+      }
+      if ("hotelRoomPicture4" in req.files) {
+        hotelRoomPicture4 = req.files["hotelRoomPicture4"][0].filename;
+      }
+      if ("hotelRoomPicture5" in req.files) {
+        hotelRoomPicture5 = req.files["hotelRoomPicture5"][0].filename;
+      }
+      if ("hotelRoomPicture6" in req.files) {
+        hotelRoomPicture6 = req.files["hotelRoomPicture6"][0].filename;
+      }
       const hotelId = await contactModel.insertNewHotel({
         hotelName,
         hotelDescription,
