@@ -27,3 +27,41 @@ function add(){
       --numberSeatType;
     }
   }
+
+  function checkingAirline(validType1,validType2) {
+    for (let i = 1; i <= numberSeatType; ++i) {
+      if (!document.getElementById('field' + i).getElementsByClassName('form-control')[1].value) {
+        alert('Insert Your Airline Prices');
+        return false;
+      }
+      if (validType1[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] != 0) {
+        alert('Change Your Seat Type');
+        return false;
+      }
+      validType1[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = 
+        parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[1].value, 10);
+      validType2[document.getElementById('field' + i).getElementsByClassName('form-control')[0].value - 1] = document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].value;
+    }
+    return true;
+  }
+  
+  function submitForm() {
+    let validType1 = [0, 0, 0,]
+    let validType2 = ["","",""]
+    let checking = [3, 2, 1]
+    if (checkingAirline(validType1,validType2)) {
+      for (let i = 1; i <= 3; ++i) {
+        document.getElementById('field' + i).style.display = "flex";
+        if (i <= numberSeatType) {
+          document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].name = "airlineSeatTypePicture" + document.getElementById('field' + i).getElementsByClassName('form-control')[0].value;
+          checking.splice(checking.indexOf(parseInt(document.getElementById('field' + i).getElementsByClassName('form-control')[0].value, 10)), 1);
+        } else {
+          document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].name = "airlineSeatTypePicture" + checking.pop()
+        }
+        console.log(checking)
+        document.getElementById('field' + i).getElementsByClassName('form-control')[0].selectedIndex = i;
+        document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType1[i - 1];
+      }
+        // document.getElementById("addNewHotel").submit();
+    }
+  }

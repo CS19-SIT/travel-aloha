@@ -5,6 +5,8 @@
 
 <body>
     <%- include('../includes/navbar') %>
+    <% const columnPicture = ["single_bed_1", "single_bed_2", "double_bed_1", "double_bed_2", "king_bed_1", "king_bed_2"]; %>
+
     <div class="responsive-wrapper">
         <div class="container">
             <div class="row">
@@ -46,9 +48,14 @@
                         <h3 class="pb-2 pl-4">Airline Picture and Detail</h3>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row d-flex">
                     <div class="col-md-9">
-                        <% if (typeof JSON.parse(airline)[0].airlinePicture == 'undefined'){ %>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <% let count = 0;
+                            for (i = 0; i < columnPicture.length; ++i) { 
+                                    if (JSON.parse(airlineSeatTypePicture)[0][columnPicture[i]] != null) {
+                                        if (count == 0) { %>
                         <div class="detail-pic bg-dark rounded mx-auto d-block"></div>
                         <% } else{ %>
                         <% let isLink = /^(?:https\:\/\/|http\:\/\/|www)/.test(JSON.parse(airline)[0].airlinePicture); %>
