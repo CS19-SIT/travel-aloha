@@ -149,9 +149,33 @@ exports.createSeat = async (flight_number,seatClass) => {
     for(var i=10 ; i<=60 ; i++)
     {
         await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
-            i+"A",
-            flight_number[1][0],
-            flight_number[1][1],
+            i+"B",
+            flight_number[0][0],
+            flight_number[0][1],
+            seatClass
+        ]);
+        await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
+            i+"C",
+            flight_number[0][0],
+            flight_number[0][1],
+            seatClass
+        ]);
+        await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
+            i+"H",
+            flight_number[0][0],
+            flight_number[0][1],
+            seatClass
+        ]);
+        await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
+            i+"I",
+            flight_number[0][0],
+            flight_number[0][1],
+            seatClass
+        ]);
+        await db.query("INSERT INTO Seat (seat_number, flight_number, depart_date, class) VALUES (?, ?, ?, ?)",[
+            i+"J",
+            flight_number[0][0],
+            flight_number[0][1],
             seatClass
         ]);
     }
@@ -169,19 +193,20 @@ exports.getUpsell = async (flight_number) => {
     return result[0];
 }
 
-exports.getSeat = async (flight_number,date) => {
+exports.getSeat = async (flight_number,date,seatClass) => {
     
     const result = await db.query(
         "SELECT Seat_Number, CASE Availability WHEN '0' THEN false WHEN '1' THEN true END AS Ava "+
         "FROM Seat "+
-        "WHERE Flight_number = ? AND Depart_date = ? ", 
+        "WHERE Flight_number = ? AND Depart_date = ? AND Class = ? ", 
         [
             flight_number,
-            date
+            date,
+            seatClass
         ]
     );
     seat = [];
-    // console.log(result[0]);
+    console.log(result[0]);
     return result[0];
 }
 
