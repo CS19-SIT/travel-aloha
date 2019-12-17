@@ -15,11 +15,11 @@ router.get(
   "/detail/:code",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
-  adminCouponController.findCoupon
+  adminCouponController.getCoupon
 );
 
 router.post(
-  "/edit",
+  "/edit/:code",
   authMiddleware.isAuthenticated,
   authMiddleware.isAdmin,
   adminCouponController.editCoupon
@@ -38,5 +38,26 @@ router.delete(
   authMiddleware.isAdmin,
   adminCouponController.deleteCoupon
 );
+
+router.get(
+  "/search/hotel",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminCouponController.searchHotelFormOptions
+)
+
+router.get(
+  "/search/airline",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminCouponController.searchAirlineFormOptions
+)
+
+router.get(
+  "/search/user",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminCouponController.searchUser
+)
 
 module.exports = router;

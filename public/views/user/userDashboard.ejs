@@ -1,14 +1,14 @@
 <%- include('../includes/header') %>
 
 <link href="../../assets/css/userDashboard/style.css" rel="stylesheet">
-<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 
 <body>
-        <%- include('../includes/navbar') %>
-    <div style="padding: 5%;">
+    <%- include('../includes/navbar') %>
+    <div class="con" style="padding: 5%;">
         <header class="header">
             <div class="container">
                 <div class="teacher-name" style="padding-top:20px;">
@@ -24,82 +24,33 @@
                 <div class="row" style="margin-top:20px;">
                     <div class="col-md-3">
                         <!-- img -->
-                        <img class="rounded-circle" src="../assets/img/profile.png" alt="profile"
-                                style="width:200px;height:200px">
+                        <img class="rounded-circle" src="../assets/img/profile.jpg" alt="profile"
+                            style="width:200px;height:200px">
                     </div>
 
                     <div class="col-md-6">
                         <!-- ---------------------- -->
-                        <h3 style="color:#388BF2"><%= user.username %></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Terram, mihi crede, ea lanx et maria deprimet. 
-                            Res enim se praeclare habebat, et quidem in utraque parte. Num igitur utiliorem tibi hunc </p>
-                        
+                        <h1 style="color:#0062cc"><%= user.username %></h1>
+                        <h2><b><%= user.firstname %> <%= user.lastname %> </b><label class="role">customer</label> </h2>
+
+                        <h4>Birthday <%= user.birth_date %> &nbsp; &nbsp;&nbsp;&nbsp; Gender&nbsp; <%= user.gender %>
+                        </h4>
+                        <h4>Address &nbsp; <%= user.address %> </h4>
+
                     </div>
 
                     <div class="col-md-3 text-center">
-                        <!-- Phone & Social -->
-                        <span class="number" style="font-size:18px">Phone:<strong>+8801732226402</strong></span>
-                        <div class="button" style="padding-top:18px">
-                            <a href="#" class="btn btn-outline-primary btn-block">Edit Profile</a>
-                        </div>
-                        <div class="social-icons" style="padding-top:18px">
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x" style="color:#388BF2"></i>
-                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                </span></a>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x" style="color:#388BF2"></i>
-                                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-                                </span></a>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x" style="color:#388BF2"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span></a>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x" style="color:#388BF2"></i>
-                                    <i class="fa fa-slideshare fa-stack-1x fa-inverse"></i>
-                                </span></a>
 
+                        <div class="button" style="padding-top:18px">
+                            <a href="/dashboard/editProfile" class="btn btn-outline-primary btn-block">Edit Profile</a>
                         </div>
+
                     </div>
                 </div>
             </div>
         </header>
 
-        <div class="container">
 
-            <!-- address--->
-            <div class="row" style="margin: 20px;">
-                <div class="col-md-12">
-                    <div class="card card-block text-xs-left">
-                        <h2 class="card-title" style="color:#388BF2"><i class="fa fa-user fa-fw"></i>Address</h2>
-                        <div style="height: 15px"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- ------ -->
-
-            <!--rewiew ------------->
-            <div class="row" style="margin: 20px;">
-                <div class="col-md-12">
-                    <div class="card card-block">
-                        <h2 class="card-title" style="color:#388BF2"><i class="fa fa-rocket fa-fw"></i>My Rewiews</h2>
-                        <ul class="list-group" style="margin-top:15px;margin-bottom:15px;">
-                            <a href="#"><li class="list-group-item btn btn-outline-primary unlink">Lorem ipsum dolor</li></a>
-                            <li class="list-group-item">Lorem ipsum dolor</li>
-                            <li class="list-group-item">Lorem ipsum dolor</li>
-                            <li class="list-group-item">Lorem ipsum dolor</li>
-                            <li class="list-group-item">Lorem ipsum dolor</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 

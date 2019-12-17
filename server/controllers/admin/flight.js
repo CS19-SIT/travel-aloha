@@ -52,10 +52,6 @@ exports.postIndex = async (req, res) => {
     departure,
     destination,
     airline,
-    departDate,
-    departTime,
-    arriveDate,
-    arriveTime
   } = req.body;
 
   for (key in req.body) if (!req.body[key]) return res.sendStatus(400);
@@ -66,10 +62,6 @@ exports.postIndex = async (req, res) => {
       departure,
       destination,
       airline,
-      departDate,
-      departTime,
-      arriveDate,
-      arriveTime
     );
     res.sendStatus(200);
   } catch (err) {
@@ -83,10 +75,6 @@ exports.putIndex = async (req, res) => {
     departure,
     destination,
     airline,
-    departDate,
-    departTime,
-    arriveDate,
-    arriveTime
   } = req.body;
 
   if (!flightId) return res.sendStatus(400);
@@ -98,10 +86,6 @@ exports.putIndex = async (req, res) => {
       departure,
       destination,
       airline,
-      departDate,
-      departTime,
-      arriveDate,
-      arriveTime
     );
     res.sendStatus(200);
   } catch (err) {

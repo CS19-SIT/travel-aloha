@@ -10,7 +10,7 @@ exports.getIndex = async (req, res) => {
     let data3 = await hotelBooking.retrieveNameHotel();
     let data4 = await hotelBooking.retrievePriceHotel();
     let data5 = await hotelBooking.retrieveCouponCode();
-
+    
     res.render("payment/checkout", {
       pageTitle: "TravelAloha - Checkout",
       user: req.user,
@@ -19,7 +19,7 @@ exports.getIndex = async (req, res) => {
       hotel: data3,
       room_detail: data4,
       coupon: data5,
-
+      newSession: req.session.bookingID
 
     });
   } catch (err) {
@@ -41,7 +41,7 @@ exports.postIndex = async (req, res) => {
       .create({
         name: req.user.username,
         email: "sakdipat3536@gmail.com",
-        address: req.user.address,
+        address: req.body.address,
         source: req.body.stripeToken
       })
       .then(customer =>
@@ -50,9 +50,9 @@ exports.postIndex = async (req, res) => {
           customer: customer.id,
           amount: req.body.amount,
           currency: "thb",
-          description: "One-time setup fee",
-          unit_amount: 300000,
-          quantity: 2
+          description: "Akara Hotel Bangkok",
+          unit_amount: 41900,
+          quantity: 1
         })
 
         .then(() =>
@@ -83,10 +83,10 @@ exports.postIndex = async (req, res) => {
 
 
 
-            await db.query("INSERT INTO HotelTransaction VALUES(? , ? , ? , ? , ? ,? ,? ,? ,? ,? )",
+            await db.query("INSERT INTO HotelTransaction VALUES(? , ? , ? , ? , ? , ? ,? ,? ,? ,? ,? )",
               [
                 result.customer,
-                result.payment_intent,
+                result.customer_name,
                 result.charge,
                 result.number,
                 null,
@@ -94,7 +94,8 @@ exports.postIndex = async (req, res) => {
                 result.total,
                 result.currency,
                 null,
-                ts
+                ts,
+                result.payment_intent,
               ]),
 
 

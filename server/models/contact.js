@@ -5,30 +5,48 @@ exports.insertNewHotel = async ({
   hotelDescription,
   hotelAddress,
   hotelTelNumber,
-  hotelContactNumber
+  hotelContactNumber,
+  hotelProfile,
+  hotelPicture
 }) => {
   try {
-    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress, hotelTelNumber, hotelContactNumber, hotelEmail) VALUES(?,?,?,?,?,?)`, [
+    await db.query(`INSERT INTO hotel(hotelName, hotelDescription, hotelAddress,
+                    hotelTelNumber, hotelContactNumber, hotelEmail, 
+                    hotelProfile, hotelPicture) VALUES(?,?,?,?,?,?,?,?)`, [
       hotelName,
       hotelDescription,
       hotelAddress,
       hotelTelNumber,
       hotelContactNumber,
-      hotelEmail
+      hotelEmail,
+      hotelProfile,
+      hotelPicture
     ]);
   } catch (error) {
     throw new Error(`[ERR] insertNewHotel: ${error}`);
   }
 };
-exports.insertNewHotelFile = async({
-  hotelPicture
+exports.insertNewHotelRoom = async({
+  hotelRoomType,
+  hotelRoomPrice,
+  hotelRoomPicture
 }) => {
-  try{
-    await db.query(`INSERT INTO hotel(hotelPicture) VALUES(?)`, [
-      hotelPicture
+  try {
+    await db.query(`INSERT INTO room_detail(fullPrice, typeOfRoom, roompicture) VALUES(?,?,?)`, [
+      hotelRoomPrice,
+      hotelRoomType,
+      hotelRoomPicture
     ]);
-  } catch(error){
-    throw new Error(`[ERR] insertNewHotelFile: ${error}`)
+  } catch (error) {
+    throw new Error(`[ERR] insertNewHotelRoom: ${error}`);
+  }
+};
+exports.getHotelDashboard = async () => {
+  try {
+    const result = await db.query(`SELECT * FROM hotel`);
+    return result[0];
+  } catch (err) {
+    throw new Error(`[ERR] getHotelDashboard: ${err}`);
   }
 };
 exports.insertNewAirline = async ({
@@ -38,65 +56,17 @@ exports.insertNewAirline = async ({
   airlineNationality,
   airlineTelNumber,
   airlineContactNumber,
-  airlineDescription
+  airlineDescription,
+  airlineSeatType,
+  airlineSeatPrice,
+  airlinePlaneDes,
+  airlineProfile,
+  airlinePicture
 }) => {
   try {
-    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, airlineAddress, airlineTelNumber, airlineContactNumber) VALUES(?,?,?,?,?,?,?)`, [
-      airlineName,
-      airlineNationality,
-      airlineEmail,
-      airlineDescription,
-      airlineAddress,
-      airlineTelNumber,
-      airlineContactNumber
-    ]);
-  } catch (error) {
-    throw new Error(`[ERR] insertNewAirline: ${error}`);
-  }
-};
-exports.getHotelInfo = async ({
-  hotelId,
-  hotelName,
-  hotelDescription,
-  hotelAddress,
-  hotelTelNumber,
-  hotelContactNumber,
-  hotelEmail,
-  hotelPicture,
-  hotelLogo
-}) => {
-  try {
-    await db.query("SELECT * FROM hotel", [
-      hotelId,
-      hotelName,
-      hotelDescription,
-      hotelAddress,
-      hotelTelNumber,
-      hotelContactNumber,
-      hotelEmail,
-      hotelPicture,
-      hotelLogo
-    ]);
-  } catch (error) {
-    throw new Error(`[ERR] getHotelInfo: ${err}`);
-  }
-};
-exports.getAirlineInfo = async airlineInfo => {
-  const {
-    airline_Id,
-    airlineName,
-    airlineNationality,
-    airlineEmail,
-    airlineDescription,
-    airlineAddress,
-    airlineTelNumber,
-    airlineContactNumber,
-    airlinePicture,
-    airlineLogo
-  } = airlineInfo;
-  try {
-    await db.query("SELECT * FROM new_airline", [
-      airline_Id,
+    await db.query(`INSERT INTO airline(airlineName, airlineNationality, airlineEmail, airlineDescription, 
+                    airlineAddress, airlineTelNumber, airlineContactNumber, airlinePlaneDes, airlineProfile, 
+                    airlinePicture,airlineSeatType,airlineSeatPrice) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`, [
       airlineName,
       airlineNationality,
       airlineEmail,
@@ -104,38 +74,21 @@ exports.getAirlineInfo = async airlineInfo => {
       airlineAddress,
       airlineTelNumber,
       airlineContactNumber,
+      airlinePlaneDes,
+      airlineProfile,
       airlinePicture,
-      airlineLogo
+      airlineSeatType,
+      airlineSeatPrice
     ]);
-  } catch (err) {
-    throw new Error(`[ERR] getAirlineInfo: ${err}`);
+  } catch (error) {
+    throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
-};
-exports.deleteHotelInfo = async hotelId => {
+}
+exports.getAirlineDashboard = async () => {
   try {
-    await db.query("DELETE FROM hotel WHERE hotelId = ?", [hotelId]);
+    const result = await db.query(`SELECT * FROM airline`);
+    return result[0];
   } catch (err) {
-    throw new Error(`[ERR] deleteHotelInfo: ${err}`);
-  }
-};
-exports.deleteAirlineInfo = async airline_Id => {
-  try {
-    await db.query("DELETE FROM new_airline WHERE airline_Id = ?", [airline_Id]);
-  } catch (err) {
-    throw new Error(`[ERR] deleteAirlineInfo: ${err}`);
-  }
-};
-exports.getSubHotelInfo = async (hotelName, hotelDescription, timestamp) => {
-  try {
-    await db.query(`SELECT hotelName,hotelDescription,timestamp FROM hotel`, [hotelName, hotelDescription, timestamp]);
-  } catch (err) {
-    throw new Error(`[ERR] getSubHotelInfo: ${err}`);
-  }
-};
-exports.getSubAirlineInfo = async (airlineName, airlineDescription, timestamp) => {
-  try {
-    await db.query("SELECT airlineName,airlineDescription,timestamp FROM new_airline", [airlineName, airlineDescription, timestamp]);
-  } catch (err) {
-    throw new Error(`[ERR] getSubHotelInfo: ${err}`);
+    throw new Error(`[ERR] getAirlineDashboard: ${err}`);
   }
 };

@@ -6,7 +6,7 @@ const checkoutFlightController = require("../../controllers/checkout/checkout_fl
 const authMiddleware = require("../../middlewares/auth");
 
 router.get("/", checkoutController.getIndex);
-router.get("/",checkoutFlightController.getIndex);
+router.get("/", checkoutFlightController.getIndex);
 router.post("/charge", checkoutController.postIndex);
 
 module.exports = router;
