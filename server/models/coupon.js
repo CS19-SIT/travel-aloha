@@ -283,7 +283,7 @@ exports.createCoupon = async ({
       }
     } catch (err) {
       // Revert
-      await exports.deleteCoupon(code);
+      await exports.deleteCoupon(code, false);
       throw err;
     }
   } catch (err) {
@@ -432,9 +432,9 @@ exports.editCoupon = async (oldCode, {
   }
 };
 
-exports.deleteCoupon = async code => {
+exports.deleteCoupon = async (code, checkExistence = true) => {
   try {
-    if (!(await isCouponExists(code))) {
+    if (checkExistence && !(await isCouponExists(code))) {
       throw new Error(`Coupon with code '${code}' doesn't exists`);
     }
 
