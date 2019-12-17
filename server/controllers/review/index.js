@@ -25,7 +25,7 @@ exports.getHotel = async (req, res) => {
       moment
     });
   } catch (getHotelError) {
-    console.log(getHotelError);
+    // console.log(getHotelError);
     res.status(500).render("errors/500", {
       pageTitle: "TravelAloha - Bad Request",
       user: req.user,

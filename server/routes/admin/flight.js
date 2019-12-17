@@ -11,4 +11,40 @@ router.get(
   adminFlightController.getIndex
 );
 
+router.get(
+  "/new",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminFlightController.getNew
+);
+
+router.get(
+  "/edit/:flightId",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminFlightController.getEdit
+);
+
+
+router.post(
+  "/",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminFlightController.postIndex
+);
+
+router.put(
+  "/:flightId",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminFlightController.putIndex
+);
+
+router.delete(
+  "/:flightId",
+  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
+  adminFlightController.deleteIndex
+);
+
 module.exports = router;

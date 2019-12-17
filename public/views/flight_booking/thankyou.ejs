@@ -1,0 +1,129 @@
+<!-- 
+    OPTIONAL
+    [] Send Email
+ -->
+
+<%- include('../includes/header') %>
+
+<link href="/assets/css/booking_style.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<%- include('../includes/navbar') %>
+</head>
+<style>
+    .card.mb-3,
+    #summary {
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div class="container my-3">
+        <div class="row">
+            <!-- Flight info part -->
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-9 flight-head">
+                                Thank you
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                Your booking reference : <%=book_ref%>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <label for="email">Send E-Ticket to email</label>
+                                    <div class="col-md-9 px-0">
+                                        <input required type="email" class="form-control" id="email"
+                                            aria-describedby="email" placeholder="contact email"
+                                            value="<%=contact['email']%>">
+                                    </div>
+                                    <div class="col-md-2 ">
+                                        <div class="btn btn-success">Send</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Flight header -->
+                <%for (let i = 0; i < info.length; i++) { %>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-9 flight-head">
+                                <i class="fa fa-plane">&nbsp;</i><%=info[i]['dep_city']%>&nbsp;<span
+                                    class="airport-code"><%=info[i]['Departure']%></span>
+                                <i class="fa fa-long-arrow-right"></i>
+                                <%=info[i]['des_city']%>&nbsp;<span
+                                    class="airport-code"><%=info[i]['Destination']%></span>
+                            </div>
+                            <div class="align-bottom date text-right col-md-3">
+                                <%=info[i]['Dep_Date']%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <p class="col-md-10">
+                                <%=info[i]['Dep_Day']%>, <%=info[i]['Dep_Date']%>
+                            </p>
+                            <div class="col-md-2 text-right save-flight">
+                                <i class="fa fa-bookmark-o" data-toggle="tooltip" data-placement="top"
+                                    title="Bookmark this flight"></i>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-1 text-center">
+                                <img src="../../assets/images/<%=info[i]['airline_logo']%>" alt="logo"
+                                    class="airline-logo">
+                            </div>
+                            <div id="flightNumber" class="col-md-11 pl-2">
+                                <span><%= info[i]['Flight_number'] %>
+                                    <br><%=seatClass%> (<%=info[i]['price']%> &#3647;/seat)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="time-block col-md-3">
+                                Departure - <%=info[i]['Dep_time']%><br>
+                                <%=info[i]['dep_city']%><span
+                                    class="airport-code">&nbsp;<%=info[i]['Departure']%></span>
+
+                            </div>
+                            <div class="time-block col-md-3">
+                                Arrival - <%=info[i]['Arr_time']%><br>
+                                <%=info[i]['des_city']%><span
+                                    class="airport-code">&nbsp;<%=info[i]['Destination']%></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="font-weight-bold">Seat</div>
+                                <%for (let j = 0; j < reserveSeat[i].length; j++) { %>
+                                <div class="row">
+                                    <div class="col-md-8"><%=reserveSeat[i][j]['fname']%>
+                                        <%=reserveSeat[i][j]['lname']%></div>
+                                    <div class="text-right col-md-4"><%=reserveSeat[i][j]['seat']%></div>
+                                </div>
+                                <%}%>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                                <input type="hidden" id="sendInfo" name="sendInfo" value="<%=JSON.stringify(info)%>">
+                                <input type="hidden" id="passager" name="passager" value="<%=passager%>">
+                                <input type="hidden" id="seatClass" name="seatClass" value="<%=seatClass%>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                    </script>
+
+                    <%- include('../includes/footer') %>
