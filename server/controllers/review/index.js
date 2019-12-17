@@ -5,7 +5,11 @@ const Rating_ReviewModel = require("../../models/Rating_Review");
 exports.getHotel = async (req, res) => {
   try {
     const { id } = req.params;
-    const hotelReview = await Rating_ReviewModel.getHotelReviewInfo(id);
+    const { Type_Of_Hotel_Reviewer, Sort, Score} = req.query;
+    const hotelReview = await Rating_ReviewModel.getHotelReviewInfo(id, Type_Of_Hotel_Reviewer, Sort, Score);
+
+    // console.log(Type_Of_Hotel_Reviewer, Sort, Score);
+    // console.log(req.query);
     if (hotelReview[0].length == 0) {
       return res.status(404).render("errors/404", {
         pageTitle: "TravelAloha - Page Not Found",
@@ -21,6 +25,7 @@ exports.getHotel = async (req, res) => {
       moment
     });
   } catch (getHotelError) {
+    // console.log(getHotelError);
     res.status(500).render("errors/500", {
       pageTitle: "TravelAloha - Bad Request",
       user: req.user,
@@ -38,7 +43,8 @@ exports.getHotel = async (req, res) => {
 exports.getAirline = async (req, res) => {
     try {
       const { id } = req.params;
-      const airlineReview = await Rating_ReviewModel.getAirlineReviewInfo(id);
+      const { Type_Of_Airline_Reviewer, Sort, Score} = req.query;
+      const airlineReview = await Rating_ReviewModel.getAirlineReviewInfo(id, Type_Of_Airline_Reviewer, Sort, Score);
       if (airlineReview[0].length == 0) {
         return res.status(404).render("errors/404", {
           pageTitle: "TravelAloha - Page Not Found",
@@ -54,6 +60,7 @@ exports.getAirline = async (req, res) => {
         moment
       });
     } catch (getAirlineError) {
+          // console.log(getHotelError);
       res.status(500).render("errors/500", {
         pageTitle: "TravelAloha - Bad Request",
         user: req.user,

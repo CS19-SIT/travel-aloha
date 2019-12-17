@@ -19,7 +19,7 @@ exports.getIndex = async (req, res) => {
       hotel: data3,
       room_detail: data4,
       coupon: data5,
-
+      newSession: req.session.bookingID
 
     });
   } catch (err) {
@@ -50,9 +50,9 @@ exports.postIndex = async (req, res) => {
           customer: customer.id,
           amount: req.body.amount,
           currency: "thb",
-          description: "One-time setup fee",
-          unit_amount: 300000,
-          quantity: 2
+          description: "Akara Hotel Bangkok",
+          unit_amount: 41900,
+          quantity: 1
         })
 
         .then(() =>
