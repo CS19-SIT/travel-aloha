@@ -71,6 +71,6 @@ function add(){
         document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType1[i - 1];
         document.getElementById('field' + i).getElementsByClassName('form-control')[2].value = validType2[i - 1];
       }
-        // document.getElementById("addNewHotel").submit();
+        document.getElementById("addNewAirline").submit();
     }
   }
