@@ -8,10 +8,6 @@ event.on("NO", (args) => {
 
 event.emit("NO", {data: 'hello', id: 123});
 
-
-
-// console.log("HI");
-
 exports.no = async function no(){
   try {
     const result = await db.query("SELECT * FROM user");

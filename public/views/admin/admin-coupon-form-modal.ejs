@@ -7,14 +7,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="<%= id %>Form">
+            <form id="<%= id %>Form" action="<%= url %>">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">
                             Code
                         </label>
                         <div class="col">
-                            <input type="text" class="form-control" name="code">
+                            <input type="text" class="form-control" name="code" required>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-primary" name="couponGenerateButton">Generate</button>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -22,7 +25,7 @@
                             Name
                         </label>
                         <div class="col">
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="name" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -38,84 +41,89 @@
                             Start date
                         </label>
                         <div class="col">
-                            <input type="date" class="form-control" name="startDate">
+                            <input type="date" class="form-control" name="start_date">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">
-                            End date
+                            Expire date
                         </label>
                         <div class="col">
-                            <input type="date" class="form-control" name="endDate">
+                            <input type="date" class="form-control" name="expire_date">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">Level</label>
                         <div class="col">
-                            <select name="coupon-new-level" class="form-control coupon-level-select"
-                                multiple="multiple">
-                                <option value="lv4" selected>Diamond</option>
-                                <option value="lv3" selected>Platinum</option>
-                                <option value="lv2" selected>Gold</option>
-                                <option value="lv1" selected>Silver</option>
+                            <select name="levels" class="form-control coupon-level-select" multiple="multiple">
+                                <% for (level of allLevels) { %>
+                                <option value="<%= level[0] %>"><%= level[1] %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
-                    <hr>
-                    <div>
-                        <input class="d-inline" type="checkbox" name="hotel">
-                        <div class="ml-1 d-inline"></div>
-                        <h4 class="d-inline">Hotel</h4>
-
-                        <div class="form-group row">
-                            <div class="col-md-3">Allow</div>
-                            <div class="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="hotelForAll" name="hotelFor"
-                                        value="all" checked>
-                                    <label class="form-check-label" for="hotelForAll">For every hotel</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="hotelForSome" name="hotelFor"
-                                        value="some" checked>
-                                    <label class="form-check-label" for="hotelForSome">For some hotel</label>
-                                </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">User promotion</label>
+                        <div class="col">
+                            <select name="users" class="form-control user-select" multiple="multiple"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">Unlimited</div>
+                        <div class="col">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="<%= id %>Unlimited"
+                                    name="unlimited" checked>
+                                <label class="form-check-label" for="<%= id %>Unlimited">Yes</label>
                             </div>
-                            <div class="border w-100 my-2" style="height: 250px;">
-                                TODO
-                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="<%= id %>MaxRedeemCount">
+                        <label class="col-form-label col-md-3">Maximum redeem count</label>
+                        <div class="col">
+                            <input class="form-control" type="number" name="max_count" min="0">
                         </div>
                     </div>
                     <hr>
                     <div>
-                        <input class="d-inline" type="checkbox" name="hotel">
-                        <div class="ml-1 d-inline"></div>
-                        <h4 class="d-inline">Airline</h4>
+                        <h4>Hotel</h4>
 
                         <div class="form-group row">
                             <div class="col-md-3">Allow</div>
                             <div class="col">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="flightForAll" name="flightFor"
-                                        value="all" checked>
-                                    <label class="form-check-label" for="flightForAll">For every airline</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="flightForAll" name="flightFor"
-                                        value="some" checked>
-                                    <label class="form-check-label" for="flightForAll">For some airline</label>
+                                    <input class="form-check-input" type="checkbox" id="<%= id %>HotelForAll"
+                                        name="for_every_hotel" checked>
+                                    <label class="form-check-label" for="<%= id %>HotelForAll">For every hotel</label>
                                 </div>
                             </div>
-                            <div class="border w-100 my-2" style="height: 250px;">
-                                TODO
-                            </div>
+                            <div class="m-3"></div>
+                            <select name="hotels" class="form-control hotel-select" multiple="multiple"></select>
                         </div>
-                        <div class="mb-3"></div>
+                    </div>
+                    <hr>
+                    <div>
+                        <h4>Airline</h4>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">Allow</div>
+                            <div class="col">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="<%= id %>AirlineForAll"
+                                        name="for_every_airline" checked>
+                                    <label class="form-check-label" for="<%= id %>AirlineForAll">For every airline</label>
+                                </div>
+                            </div>
+                            <div class="m-3"></div>
+                            <select name="airlines" class="form-control airline-select" multiple="multiple"></select>
+                        </div>
+                        <hr>
                         <div class="form-group row">
                             <label class="col-form-label col-md-3">Discount</label>
                             <div class="col">
                                 <div class="input-group">
-                                    <input class="form-control" type="number">
+                                    <input class="form-control" type="number" name="discount_percentage" min="1"
+                                        max="100" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">%</div>
                                     </div>
@@ -126,7 +134,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"><%= buttonActionValue %></button>
+                    <button type="submit" class="btn btn-primary"><%= buttonActionValue %></button>
                 </div>
             </form>
         </div>

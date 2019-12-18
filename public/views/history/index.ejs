@@ -1,108 +1,162 @@
 <%- include("../includes/header") %>
-  <script src="../../assets/js/history/history.js"></script>
+<%- include("../includes/navbar") %>
 
-  <!--This is custom CSS-->
-  <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
+
+<script src="../../assets/js/history/history.js"></script>
+
+
+<!--This is custom CSS-->
+<link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
 
-<body onload="showDetail()">
-
-    <%- include("../includes/navbar") %>
-
-  <!--Navbar
-  <nav class="navbar ta-navbar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Travel Aloha</a>
-      </div>
-    </div>
-  </nav>
--->
+<body>
   <div class="row">
     <!--User Info side (left)-->
     <div class="col-sm-3 ta-user-info">
-      <h4 class="user-name"><b>Carl 'CJ' Johnson</b></h4>
+      <h4 class="user-name"><b id="userName">
+          <%= userFirstname %> <%= userLastname %>
+          <br>
+
+        </b></h4>
       <hr class="hrColor">
       <div class="user-info">
         <div class="user-level">
-          <b class="badge badge-level">Level: 30</b>
-        </div>
-        <div class="user-points">
-          <span class="left badge badge-points-rank badge-points-rank">Points: 200</span>
-          <span class="right badge badge-silver badge-points-rank">Silver</span>
+          <b class="badge badge-level">Level: <span id="userLvl"><%= userLvl %></span></b>
         </div>
       </div>
     </div>
 
     <!--History Header side (right)-->
     <div class="col-sm-9 ta-user-history">
+
       <h1><b>History</b></h1>
-      <!--Filter-->
-      <div class="filter">
-          <input type="checkbox"> Paid<br>
-          <input type="checkbox"> Done<br>
-          <input type="checkbox"> Canceled
-      </div>
-      <div class="history-list" id="histList">
 
-        <!--This is header for each history-->
-        <div class="history-item">
-          <div class="headerInfo">
-            <span class="brief-info">
+      <div class="history-list">
+
+        <div class="itemSide">
+          <h3 style="text-align: center">Your hotels</h3>
+          <!--Start of content-->
+          <% if(hotelArr.length > 0){ %>
+          <% for(let i = 0; i < hotelArr.length; i++){ %>
+          <div>
+            <button type="button" style="background-image: url(../../assets/img/history/hotel-img.jpg)" class="btn btn-info toDetail <% if(i != 0){ %><%= 'space' %> <% } %>" data-toggle="collapse" data-target="#h<%= i %>">
               <div>
-                <h5><b>Dusit Thani Hotel (Show from HTML)</b></h5>
+                <h5><b><%= hotelArr[i].hotelName %></b></h5>
               </div>
               <div>
-                <h6>31-10-2019 | 10:00</h6>
+                <h6>
+                  <%= hotelArr[i].timestamp %>
+                </h6>
               </div>
-            </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <span class="icon">
-              <div class="book-icon">
-                <img src="bed_icon.png" class="hotel">
-              </div>
-            </span>
-            <span class="toDetail">
-              <a href="#" style="vertical-align: middle;">
-                <button type="button" class="btn-link">View details</button>
-              </a>
-            </span>
+            </button>
+
+            <div id="h<%= i %>" class="collapse">
+              <table style="width: 100%;">
+                <tr class="tableRow-dark">
+                  <th>Name-Lastname</th>
+                  <td><%= hotelArr[i].firstName %> <%= hotelArr[i].lastName %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Hotel Name</th>
+                  <td><%= hotelArr[i].hotelName %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Time Reserved</th>
+                  <td><%= hotelArr[i].timestamp %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Check-In</th>
+                  <td><%= hotelArr[i].checkinDate %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Check-Out</th>
+                  <td><%= hotelArr[i].checkoutDate %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Hotel Address</th>
+                  <td><%= hotelArr[i].hotelAddress %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Hotel Phone</th>
+                  <td><%= hotelArr[i].hotelTelNumber %></td>
+                </tr>
+              </table>
+            </div>
           </div>
+          <% } %>
+          <% } else { %>
+          <h5 style="text-align: center;">You don't have any hotel history.</h5>
+          <% } %>
+          <!--End of content-->
         </div>
 
-        <div class="history-item">
-          <div class="headerInfo">
-            <span class="brief-info">
+        <div class="itemSide">
+          <h3 style="text-align: center">Your flights</h3>
+          <!--Start of content-->
+          <% if(hotelArr.length > 0){ %>
+          <% for(let i = 0; i < flightArr.length; i++){ %>
+          <div>
+            <button type="button" style="background-image: url(../../assets/img/history/flight-img.jpg)" class="btn btn-info toDetail <% if(i != 0){ %><%= 'space' %> <% } %>" data-toggle="collapse" data-target="#f<%= i %>">
               <div>
-                <h5><b>Air Asia - Economy Class (Show from HTML)</b></h5>
+                <h5><b><%= flightArr[i].Departure %> to <%= flightArr[i].Destination %></b></h5>
               </div>
               <div>
-                <h6>30-10-2019 | 2:00</h6>
+                <h6>
+                  <%= flightArr[i].Book_Date %>
+                </h6>
               </div>
-            </span>
-            <span class="status paid">
-              Paid - Trip Upcoming
-            </span>
-            <span class="icon">
-              <div class="book-icon">
-                <img src="plane_icon.jpg" class="flight">
-              </div>
-            </span>
-            <span class="toDetail">
-              <a href="#">
-                <button type="button" class="btn-link">View details</button>
-              </a>
-            </span>
+            </button>
+
+            <div id="f<%= i %>" class="collapse">
+              <table style="width: 100%;">
+                <tr class="tableRow-dark">
+                  <th>Airline Name</th>
+                  <td><%= flightArr[i].airlineName %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Flight Number</th>
+                  <td><%= flightArr[i].Flight_Number %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Time Reserved</th>
+                  <td><%= flightArr[i].Book_Date %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Departure</th>
+                  <td><%= flightArr[i].Departure %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Destination</th>
+                  <td><%= flightArr[i].Destination %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Depart Date</th>
+                  <td><%= flightArr[i].Depart_Date %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Ref ID</th>
+                  <td><%= flightArr[i].Booking_ref %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Seat Number</th>
+                  <td><%= flightArr[i].Seat_Number %></td>
+                </tr>
+              </table>
+            </div>
           </div>
+          <% } %>
+          <% } else { %>
+          <h5 style="text-align: center;">You don't have any flight history.</h5>
+          <% } %>
+          <!--End of content-->
         </div>
-        <!--End of HTML List-->
+
       </div>
-      <div>
-        
-      </div>
+
     </div>
 
   </div>
+
+
+
   <%- include("../includes/footer") %>

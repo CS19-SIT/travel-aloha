@@ -35,6 +35,7 @@
 <title>Result</title>
 
 <style>
+    
     html,
     body,
     h1,
@@ -52,6 +53,19 @@
         height: 900px;
         width: 100%;
     }
+    .hiddenLine{
+        display:none;
+    }
+    .buttonFav{
+        width: 180px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        margin:5% 20px;
+        background : gray;
+        border-radius: 30px;
+    
+        padding:10px 0px;
+    }
 </style>
 
 <div class=container-fulid>
@@ -62,7 +76,18 @@
                     Google Map
                 </div>
                 <div class="card-body">
-
+                    <div id="map"></div>
+                    <script>
+                      var map;
+                      function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                          center: {lat: 13.6525855, lng: 100.4936103},
+                          zoom: 8
+                        });
+                      }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8NwKF69Hg_FkGR4WbWBHTCbaExa7Ymag&callback=initMap"
+                    async defer></script>
                 </div>
             </div>
             <article class="card-group-item">
@@ -209,10 +234,40 @@
                     <div class="col-lg-7">
                         <div class="ml-3 mt-2 mb-0">
                             <span class="fa fa-star" style="color: orange;"></span>
+                            <div style="float: right;">
+                               
+                           
+                                <% if(!user) {%>
+                               <button>Register & login first</button>
+                                <% } else { %>
+                                    <% let count = 0 %>
+                                <% for (var i = 0; i < dataF.length;i++) { %>
+                                    <% if(dataF[i].favHotelID == hotel.hotelId && dataF[i].favUserID == user.user_id) { count++%>
+                                    
+                                   <% }%>
+                              <% }%>
+                                   <% if(count > 0) {%>
+                                    <form action ="/dashboard/favorite/delete" method="POST">
+                                    <div class ="hiddenLine"><input type="text" name ="favHotelID" placeholder="<%=hotel.hotelId%>" value ="<%=hotel.hotelId%>"></div> 
+                                    <div class ="hiddenLine"><input type="text" name ="favUserID" placeholder="<%=user.user_id%>" value ="<%=user.user_id%>"></div>   
+                                    <button class ="buttonFav">favorited</button>
+                                </form>
+                                    <% }else{ %>
+                           
+                                <form action ="/dashboard/favorite/saved" method="POST">
+                         <div class ="hiddenLine"><input type="text" name ="favHotelID" placeholder="<%=hotel.hotelId%>" value ="<%=hotel.hotelId%>"></div>  
+                               <button class ="buttonFav">favorite</button>
+                                </form>
+                                <% } %>
+                                <% count = 0%>
+                               <% } %>
+                            </div>
                         </div>
+
+                       
                         <div class="textresult mt-0">
                             <h3><a href="hotel/<%= hotel.hotelId %>"><%= hotel.hotelName %></a></h3>
-                            <h4><%= hotel.hotelAddress %></h4>
+                            <h4><%= hotel.hotelAddress %> </h4>
                             <!-- <h4><%= hotel.hotelDescription %></h4> -->
                             <h4><%= hotel.hoteltelNumber %></h4>
 
