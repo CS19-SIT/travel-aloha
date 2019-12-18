@@ -63,7 +63,15 @@ h3 {
   line-height: 32px;
   color: #25282b;
   padding: 10px 0 0 10px;
-  text-align: left;
+  text-align: center;
+}
+#redeemcoupon h3{
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #25282b;
+  padding: 10px 0 0 10px;
+  text-align: center;
 }
 
 /*=== POINT ===*/
@@ -301,7 +309,15 @@ span#nameLevel {
     line-height: 24px;
     color: #25282b;
     padding: 10px 0 0 10px;
-    text-align: left;
+    text-align: center;
+  }
+  #redeemcoupon h3{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #25282b;
+    padding: 10px 0 0 10px;
+    text-align: center;
   }
   .ribbonTab {
     position: relative;

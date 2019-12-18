@@ -111,7 +111,6 @@
         <div class="tab" style="margin-top:30px;margin-bottom:10px">
           <button class="tablinks" onclick="openCoupon(event, 'validcoupon')" id="defaultOpen">Valid</button>
           <button class="tablinks" onclick="openCoupon(event, 'usedcoupon')">Used</button>
-          <button class="tablinks" onclick="openCoupon(event, 'redeemcoupon')">Redeem</button>
         </div>
 
         <!---Below Tab--->
@@ -121,177 +120,104 @@
                     <span style="font-size:16px;color: white">Hotel</span></i></button>
                 <button class="btn" id="icon" onClick='window.location="#flightCoupon"' title='Flight'><i class="fa fa-plane"></i>
                   <span style="font-size:16px;color: white">Flight</span></button>
-                <button class="btn" id="icon" onClick='window.location="#entertainmentCoupon"' title='Entertainment'><i
-                    class="fa fa-film"></i> <span style="font-size:14px;color: white">Entertainment</span></button>
-                <button class="btn" id="icon" onClick='window.location="#foodCoupon"' title='Food'><i class="fa fa-cutlery">
-                    </i><span style="font-size:14px;color: white"> Food/Dessert</span></button>
             <!---------Valid----------->
-            <h3 id="accCoupon" style="padding-top:30px;">Accommadation Coupon</h3>
+            <h3 id="accCoupon" style="padding-top:30px;">Hotel Coupon</h3>
             <!--Acc Coupon-->
             <div class="col-sm-12" style="padding:0px">
 
-              <% for(var key of Object.keys(couponsAC) ) { %>
-              <div class="coupon" id="A">
-                <img src="assets/img/rewardLevel/travel1.png" alt="Avatar" style="width:100%;">
+              <% for(var key of Object.keys(couponsH) ) { %>
+              <div class="coupon" id="<%= couponsH[key].code %>" style="border: 5px dashed green;
+                            border-radius: 15px;
+                            margin: 10px 10px;
+                            max-width: 300px;
+                            display:inline-block;">
+                <img src="assets/img/rewardLevel/hotelCoupon1.jpg" alt="Avatar">
                 <div class="coupon-container" style="background-color:white">
-                  <h2><b><%= couponsAC[key].Discount %></b> BAHT OFF YOUR PURCHASE<br>
-                    Limit Purchase: <%= couponsAC[key].Limit %>
+                  <h2>
+                    Hotel: <%= couponsH[key].hotelName %><br>
+                    <b><%= couponsH[key].discount_percentage %></b> % OFF YOUR PURCHASE<br>
+                    Minimum Purchase: <%= couponsH[key].min_purchase %> <!--waiting for new query-->
                   </h2>
                 </div>
                 <div class="coupon-container">
-                  <p>Use Promo Code: <span class="promo"><%= couponsAC[key].CouponCode %></span></p>
-                  <p class="expire">Expires: <%= couponsAC[key][expDate] %></p>
-                  <button type="button" class="btn btn-success" style="margin:3px" href="#">Use Now!</button>
+                  <p>Use Promo Code: <span class="promo"><%= couponsH[key].code %></span></p>
+                  <p class="expire">Expires: <%= couponsH[key].expire_date %></p>
+                  <form>
+                      <input type="button" class="btn btn-primary" onclick="window.location.href = '/hotel';" value="Use Now!"/>
+                   </form>
+                  <!-- <button type="submit" class="btn btn-primary" style="margin:3px" href="/hotel">Use Now!</button> -->
                 </div>
               </div>
               <% };%>
-            </div>
             <!--End Acc Coupon-->
 
             
             <h3 id="flightCoupon" style="padding-top:30px;">Flight Coupon</h3>
 
             <!--Flight Coupon-->
-            <% for(var key of Object.keys(couponsFl) ) { %>
-            <div class="coupon" id="Fl">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar" style="width:100%;">
+            <% for(var key of Object.keys(couponsA) ){ %>
+            <div class="coupon" id="<%= couponsA[key].code %>" style="border: 5px dashed #5ba0f5;
+                        border-radius: 15px;
+                        margin: 10px 10px;
+                        max-width: 300px;
+                        display:inline-block;">
+              <img src="assets/img/rewardLevel/flightCoupon1.jpg" alt="Avatar">
               <div class="coupon-container" style="background-color:white">
-                <h2><b><%= couponsFl[key].Discount %></b> BAHT OFF YOUR PURCHASE<br>
-                  Limit Purchase: <%= couponsFl[key].Limit %>
+                  <h2>
+                    Airline: <%= couponsA[key].airlineName %><br>
+                    <b><%= couponsA[key].discount_percentage %></b> % OFF YOUR PURCHASE<br>
+                    Minimum Purchase: <%= couponsA[key].minPurchase %>
                 </h2>
               </div>
               <div class="coupon-container">
-                <p>Use Promo Code: <span class="promo"><%= couponsFl[key].CouponCode %></span></p>
-                <p class="expire">Expires: <%= couponsFl[key][expDate] %></p>
-                <button type="button" class="btn btn-success" style="margin:3px" href="#">Use Now!</button>
+                <p>Use Promo Code: <span class="promo"><%= couponsA[key].code %></span></p>
+                <p class="expire">Expires: <%= couponsA[key].expire_date %></p>
+                <form>
+                    <input type="button" class="btn btn-primary" onclick="window.location.href = '/flight';" value="Use Now!"/>
+                 </form>
               </div>
             </div>
             <% };%>
             <!--End Flight Coupon-->
-
-            
-            <h3 id="entertainmentCoupon" style="padding-top:30px;">Entertainment Coupon</h3>
-
-            <!--Ent Coupon-->
-            <% for(var key of Object.keys(couponsEn) ) { %>
-            <div class="coupon" id="E">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar" style="width:100%;">
-              <div class="coupon-container" style="background-color:white">
-                <h2><b><%= couponsEn[key].Discount %></b> BAHT OFF YOUR PURCHASE<br>
-                  Limit Purchase: <%= couponsEn[key].Limit %>
-                </h2>
-              </div>
-              <div class="coupon-container">
-                <p>Use Promo Code: <span class="promo"><%= couponsEn[key].CouponCode %></span></p>
-                <p class="expire">Expires: <%= couponsEn[key][expDate] %></p>
-                <button type="button" class="btn btn-success" style="margin:3px" href="#">Use Now!</button>
-              </div>
-            </div>
-            <% };%>
-            <!--End Ent Coupon-->
-
-            <h3 id="foodCoupon" style="padding-top:30px;">Food/Dessert Coupon</h3>
-
-            <!--Food Coupon-->
-            <% for(var key of Object.keys(couponsFo) ) { %>
-            <div class="coupon" id="F">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar" style="width:100%;">
-              <div class="coupon-container" style="background-color:white">
-                <h2><b><%= couponsFo[key].Discount %></b> BAHT OFF YOUR PURCHASE<br>
-                  Limit Purchase: <%= couponsFo[key].Limit %>
-                </h2>
-              </div>
-              <div class="coupon-container">
-                <p>Use Promo Code: <span class="promo"><%= couponsFo[key].CouponCode %></span></p>
-                <p class="expire">Expires: <%= couponsFo[key][expDate] %></p>
-                <button type="button" class="btn btn-success" style="margin:3px" href="#">Use Now!</button>
-              </div>
-            </div>
-            <% };%>
-            <!--End Food Coupon-->
+          </div>
           </div>
 
           <!----------------------------------------Used------------------------------------->
           <!--Acc Used Cou-->
           <div id="usedcoupon" class="tabcontent" style="text-align: center;padding: 0px">
-            <% for(var key of Object.keys(usedCouponAc) ) { %>
+            <% for(var key of Object.keys(usedCouponH) )  { %>
             <div class="coupon" id="u">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar"
-                style="width:100%;-webkit-filter: grayscale(100%);filter: grayscale(100%) ">
+              <img src="assets/img/rewardLevel/hotelCoupon1.jpg" alt="Avatar"
+                style="-webkit-filter: grayscale(100%);filter: grayscale(100%) ">
               <div class="coupon-container" style="background-color:white">
                 <h2 style="color:#cf212a;font-weight: bold">
-                  Used Date<br><%= usedCouponAc[key][usedDate] %>
+                  <p>Used Promo Code:<br> <span class="promo"><%= usedCouponH[key].code %></span></p>
+                  <p style="font-style: italic">Type: hotel Coupon</p>
+                  <p style="font-style: italic">Hotel: <%= usedCouponH[key].hotelName %></p>
                 </h2>
               </div>
-              <div class="coupon-container">
-                <p>Used Promo Code: <span class="promo"><%= usedCouponAc[key].CouponCode %></span></p>
-                <p style="font-style: italic">Type: Accommodation Coupon</p>
-              </div>
             </div>
-            <% };%>
+            <%}; %>
             <!--End Acc Used Cou-->
 
-            <!--Ent Used Cou-->
-            <% for(var key of Object.keys(usedCouponEn) ) { %>
-            <div class="coupon" id="u">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar"
-                style="width:100%;-webkit-filter: grayscale(100%);filter: grayscale(100%)">
-              <div class="coupon-container" style="background-color:white">
-                <h2 style="color:#cf212a;font-weight: bold">
-                  Used Date<br><%= usedCouponEn[key][usedDate] %>
-                </h2>
+            <!--Fli Used Cou-->
+            <% for(var key of Object.keys(usedCouponA) )  { %>
+              <div class="coupon" id="u">
+                <img src="assets/img/rewardLevel/flightCoupon1.jpg" alt="Avatar"
+                  style="-webkit-filter: grayscale(100%);filter: grayscale(100%) ">
+                <div class="coupon-container" style="background-color:white">
+                  <h2 style="color:#cf212a;font-weight: bold">
+                    <p>Used Promo Code:<br> <span class="promo"><%= usedCouponA[key].code %></span></p>
+                    <p style="font-style: italic">Type: Airline Coupon</p>
+                    <p style="font-style: italic">Airline: <%= usedCouponA[key].airlineName %></p>
+                  </h2>
+                </div>
               </div>
-              <div class="coupon-container">
-                <p>Used Promo Code: <span class="promo"><%= usedCouponEn[key].CouponCode %></span></p>
-                <p style="font-style: italic">Type: Entertainment Coupon</p>
-              </div>
+              <%}; %>
+              <!--End Fli Used Cou-->
             </div>
-            <% };%>
-            <!--End Ent Used Cou-->
-
-            <!--Flight Used Cou-->
-            <% for(var key of Object.keys(usedCouponFl) ) { %>
-            <div class="coupon" id="u">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar"
-                style="width:100%;-webkit-filter: grayscale(100%);filter: grayscale(100%)">
-              <div class="coupon-container" style="background-color:white">
-                <h2 style="color:#cf212a;font-weight: bold">
-                  Used Date<br><%= usedCouponFl[key][usedDate] %>
-                </h2>
-              </div>
-              <div class="coupon-container">
-                <p>Used Promo Code: <span class="promo"><%= usedCouponFl[key].CouponCode %></span></p>
-                <p style="font-style: italic">Type: Flight Coupon</p>
-              </div>
-            </div>
-            <% };%>
-            <!--End Flight Used Cou-->
-
-            <!--Food Used Cou-->
-            <% for(var key of Object.keys(usedCouponFo) ) { %>
-            <div class="coupon" id="u">
-              <img src="assets/img/rewardLevel/travel1.png" alt="Avatar"
-                style="width:100%;-webkit-filter: grayscale(100%);filter: grayscale(100%)">
-              <div class="coupon-container" style="background-color:white">
-                <h2 style="color:#cf212a;font-weight: bold">
-                  Used Date<br><%= usedCouponFo[key][usedDate] %>
-                </h2>
-              </div>
-              <div class="coupon-container">
-                <p>Used Promo Code: <span class="promo"><%= usedCouponFo[key].CouponCode %></span></p>
-                <p style="font-style: italic">Type: Food Coupon</p>
-              </div>
-            </div>
-            <% };%>
-            <!--End Food Used Cou-->
-
-            <!----------------------------------------Redeem------------------------------------->
-            <div id="redeemcoupon" class="tabcontent">
-              <h1>Waiting for Implementation.</h1>
-            </div>
-
-          </div>
-          <p style="color:#cf212a; font-size: 15px;text-align: center;margin-top: 10px">No more valid voucher!!!</p>
+          
+          <p style="color:#cf212a; font-size: 15px;text-align: center;margin-top: 10px">No more voucher!!!</p>
         </div>
       </div>
     </div>
@@ -319,12 +245,12 @@
 
     <!--16122019 before present
         Must have (on web)
-        - searching coupon code on the valid page
+        - searching coupon code on the valid page (button to the coupon section)
         - redeem coupon
         - move valid coupon to used coupon
 
         Must have (in DB)
         - link to column 'level'
         - link to avalaible coupon 'coupon group'
-        - link to 'totalSpen' to change the 'level'
+        - link to 'totalSpent' to change the 'level'
     -->
