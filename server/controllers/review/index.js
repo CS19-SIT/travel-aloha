@@ -10,12 +10,12 @@ exports.getHotel = async (req, res) => {
 
     // console.log(Type_Of_Hotel_Reviewer, Sort, Score);
     // console.log(req.query);
-    if (hotelReview[0].length == 0) {
-      return res.status(404).render("errors/404", {
-        pageTitle: "TravelAloha - Page Not Found",
-        user: req.user
-      });
-    }
+    // if (hotelReview[0].length == 0) {
+    //   return res.status(404).render("errors/404", {
+    //     pageTitle: "TravelAloha - Page Not Found",
+    //     user: req.user
+    //   });
+    // }
     res.render("review_rating/ReviewHotel", {
       pageTitle: "TravelAloha - Review - Hotel",
       user: req.user,
@@ -45,12 +45,12 @@ exports.getAirline = async (req, res) => {
       const { id } = req.params;
       const { Type_Of_Airline_Reviewer, Sort, Score} = req.query;
       const airlineReview = await Rating_ReviewModel.getAirlineReviewInfo(id, Type_Of_Airline_Reviewer, Sort, Score);
-      if (airlineReview[0].length == 0) {
-        return res.status(404).render("errors/404", {
-          pageTitle: "TravelAloha - Page Not Found",
-          user: req.user
-        });
-      }
+      // if (airlineReview[0].length == 0) {
+      //   return res.status(404).render("errors/404", {
+      //     pageTitle: "TravelAloha - Page Not Found",
+      //     user: req.user
+      //   });
+      // }
       res.render("review_rating/ReviewAirline", {
         pageTitle: "TravelAloha - Review - Airline",
         user: req.user,
