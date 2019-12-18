@@ -31,13 +31,13 @@ router.delete(
   );
 
   router.put(
-    "/hotelreview/new",
+    "/hotelreview/new/:id",
     authMiddleware.isAuthenticated,
     reviewController.editHotelReview
   );
 
   router.put(
-    "/airlinereview/new",
+    "/airlinereview/new/:id",
     authMiddleware.isAuthenticated,
     reviewController.editAirlineReview
   );

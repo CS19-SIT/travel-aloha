@@ -306,6 +306,9 @@
 
                             <p><%= hotelReview[i].Text_Hotel_Review %></p>
                         </div>
+                        <form action="/hotelreview/new/<%= hotelReview[i].idHotel_Review %>" method="get"><button type="submit">Edit</button></form>
+                        <form action="/hotelreview/delete/<%= hotelReview[i].idHotel_Review %>" method="get"><button type="submit">Delete</button></form>
+                        
                         <!-- <div class="row ml-1">
                                 <img class="reviewpic"
                                     src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"

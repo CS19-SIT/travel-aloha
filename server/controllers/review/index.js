@@ -161,7 +161,7 @@ exports.editHotelReview  = async (req, res) => {
       Location_Hotel_Rating,
       Service_Hotel_Rating
     });
-    res.sendStatus(204);
+    res.sendStatus(204, "/review/hotel/:id");
   } catch (err) {
     res.sendStatus(404);
   }
@@ -189,7 +189,7 @@ exports.editAirlineReview  = async (req, res) => {
       Meal_Airline_Rating,
       Entertainment_Airline_Rating,
     });
-    res.sendStatus(204);
+    res.sendStatus(204, "/review/airline/:id");
   } catch (err) {
     res.sendStatus(404);
   }
@@ -198,6 +198,7 @@ exports.editAirlineReview  = async (req, res) => {
 exports.deleteHotelReview = async (req, res) => {
   try {
     res.send(await Rating_ReviewModel.deleteHotelReviewInfo(req.body.idHotel_Review));
+    res.sendStatus(204, "/review/hotel/:id");
   } catch (err) {
     res.sendStatus(404);
   }
@@ -206,6 +207,7 @@ exports.deleteHotelReview = async (req, res) => {
 exports.deleteAirlineReview = async (req, res) => {
   try {
     res.send(await Rating_ReviewModel.deleteAirlineReviewInfo(req.body.idAirline_Review));
+    res.sendStatus(204, "/review/airline/:id");
   } catch (err) {
     res.sendStatus(404);
   }
