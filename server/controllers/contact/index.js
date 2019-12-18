@@ -159,7 +159,7 @@ exports.postAirlineInfo = async (req, res) => {
       if ("airlineSeatTypePicture3" in req.files) {
         airlineSeatTypePicture3 = req.files["airlineSeatTypePicture3"][0].filename;
       }
-      await contactModel.insertNewAirline({
+     const airline_Id = await contactModel.insertNewAirline({
         airlineName,
         airlineNationality,
         airlineEmail,
@@ -172,6 +172,7 @@ exports.postAirlineInfo = async (req, res) => {
         airlinePicture
       });
       await contactModel.insertNewAirlineSeatPrice({
+        airline_Id,
         airlineSeatMinPrice1,
         airlineSeatMaxPrice1,
         airlineSeatMinPrice2,
@@ -180,6 +181,7 @@ exports.postAirlineInfo = async (req, res) => {
         airlineSeatMaxPrice3
       })
       await contactModel.insertNewAirlineSeatPicture({
+        airline_Id,
         airlineSeatTypePicture1,
         airlineSeatTypePicture2,
         airlineSeatTypePicture3
@@ -260,6 +262,7 @@ exports.getAirlineDetail = async (req, res) => {
       airlineSeatPicture: data3
     });
   } catch (err) {
-    res.sendStatus(400);
+    throw new Error(`[ERR] getAirlineDetail: ${err}`);
+    // res.sendStatus(400);
   }
 };

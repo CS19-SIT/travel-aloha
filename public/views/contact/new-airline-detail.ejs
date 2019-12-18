@@ -7,6 +7,7 @@
     <%- include('../includes/navbar') %>
     <% const airlineType = ["First Class", "Business Class", "Economy Class"]  %>
     <% const columnPicture = ["Fclass_picture", "Bclass_picture", "Eclass_picture"]; %>
+    <% const temp = ["Fclass_min_price","Fclass_max_price","Bclass_min_price","Bclass_max_price","Eclass_min_price","Eclass_max_price"] %>
 
     <div class="responsive-wrapper">
         <div class="container">
@@ -51,7 +52,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-9">
-                        <<div class="col-md-9">
+                        <div class="col-md-9">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <% let count = 0;
@@ -75,7 +76,11 @@
                                     <div class="carousel-item active">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5 class="stroke"><%- airlineType[i] %></h5>
-                                            <p class="stroke"><%- JSON.parse(airlineSeatPrice)[0][columnPicture[i]] %> Bahts</p>
+                                            <% for (j = 1; j <  temp.length + 1; ++j) {
+                                                if (j % 2 == 0){
+                                                    <p class="stroke"><%- JSON.parse(airlineSeatPrice)[0][temp[j-1]] %> - <%- JSON.parse(airlineSeatPrice)[0][temp[j]] %> Bahts</p>
+                                                }
+                                            <% } >
                                         </div>
                                         <img class="detail-pic d-block w-100"
                                             src="/assets/uploads/contact/pictures/<%- JSON.parse(airlineSeatPicture)[0][columnPicture[i]] %>"
@@ -85,7 +90,11 @@
                                     <div class="carousel-item">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5 class="stroke"><%- airlineType[i] %></h5>
-                                            <p class="stroke"><%- JSON.parse(airlineSeatPrice)[0][columnPicture[i]] %> Bahts</p>
+                                            <% for (j = 1; j <  temp.length + 1; ++j) {
+                                                if (j % 2 == 0){
+                                                    <p class="stroke"><%- JSON.parse(airlineSeatPrice)[0][temp[j-1]] %> - <%- JSON.parse(airlineSeatPrice)[0][temp[j]] %> Bahts</p>
+                                                }
+                                            <% } >
                                         </div>
                                         <img class="detail-pic d-block w-100"
                                             src="/assets/uploads/contact/pictures/<%- JSON.parse(airlineSeatPicture)[0][columnPicture[i]] %>"
