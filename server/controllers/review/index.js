@@ -95,6 +95,7 @@ exports.postHotelReview = async (req, res) => {
       Service_Hotel_Rating,
       hotel_hotelId
     });
+    console.log(req.body);
     res.redirect(204, "/review/hotel/:id");
   } catch (error) {
     res.sendStatus(500);
@@ -113,6 +114,7 @@ exports.postAirlineReview = async (req, res) => {
     Entertainment_Airline_Rating,
     Type_Of_Airline_Reviewer,
   } = req.body;
+  console.log(req.body);
   const airlineId_fk = req.params.id;
   try {
     await Rating_ReviewModel.insertNewAirline({
