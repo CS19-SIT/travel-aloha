@@ -209,11 +209,11 @@ exports.searchCoupons = async ({
     const baseQuery = `
       SELECT DISTINCT coupon.*
       FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
-      WHERE ? OR (
+      WHERE (? OR (
         ${genLikeQuery("coupon.code", codeTokens.length)} OR
         ${genLikeQuery("name", nameTokens.length)} OR
         ${genLikeQuery("description", descriptionTokens.length)}
-      ) AND (lvl.level IN (?) OR ?)
+      )) AND (lvl.level IN (?) OR ?)
     `;
 
     const countResult = await db.query(`
