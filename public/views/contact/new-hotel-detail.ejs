@@ -66,8 +66,9 @@
                                         if (count == 0) { %>
                                 <div class="carousel-item active">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5 class="stroke"><%- hotelType[i] %></h5>
-                                        <p class="stroke"><%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts</p>
+                                        <h3 class="stroke"><%- hotelType[i] %></h3>
+                                        <p class="stroke">
+                                            <%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts</p>
                                     </div>
                                     <img class="detail-pic d-block w-100"
                                         src="/assets/uploads/contact/pictures/<%- JSON.parse(hotelRoomPicture)[0][columnPicture[i]] %>"
@@ -76,8 +77,9 @@
                                 <% } else { %>
                                 <div class="carousel-item">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5 class="stroke"><%- hotelType[i] %></h5>
-                                        <p class="stroke"><%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts</p>
+                                        <h3 class="stroke"><%- hotelType[i] %></h3>
+                                        <p class="stroke">
+                                            <%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts</p>
                                     </div>
                                     <img class="detail-pic d-block w-100"
                                         src="/assets/uploads/contact/pictures/<%- JSON.parse(hotelRoomPicture)[0][columnPicture[i]] %>"
