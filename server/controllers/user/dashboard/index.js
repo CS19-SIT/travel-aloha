@@ -1,4 +1,6 @@
 const example = require("../../../models/example");
+const userdashboard = require("../../../models/userdashboard");
+
 exports.getDashboard = (req, res) => {
   // const userId = req.params.id;
   res.render("user/userDashboard", {
@@ -20,3 +22,18 @@ exports.getEditProfile = async(req, res) => {
   }
  
 };
+
+exports.postEditProfile = async(req, res) => {
+  try {
+    console.log(req.body, req.user);
+    await userdashboard.updateProfile({
+      ...req.body,
+      user_id: req.user.user_id
+    });
+    res.sendStatus(204);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(404);
+  }
+};
+
