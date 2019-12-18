@@ -162,12 +162,8 @@
         </div>
     </div>
     <script>
-        
-        < !-- 
-        DO NOT AUTO FORMAT THIS LINE!!!
-        VERY DANGEROUS!! EVERYRHING WILL BE BROKE!!
-        --!>
-        var price = [ <%=p%> ];
+        // DO NOT AUTO FORMAT THE FOLLOWING LINE. VERY DANGEROUS
+            var price = [ <%=p%> ];
 
         function clickUpsell(item) {
             console.log(item);
@@ -245,10 +241,9 @@
 
             // document.getElementById("totalpay").value = total[2];
         }
-        
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-
     </script>
     <%- include('../includes/footer') %>
