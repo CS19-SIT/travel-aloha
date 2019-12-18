@@ -3,3 +3,6 @@ function summit(){
     window.location.reload(true);
     document.getElementById("inputset").reset(); 
 }
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
