@@ -11,14 +11,14 @@
                 <div class="card border-0 px-3">
                     <!-- display review-->
                     <div class="d-flex shadow-sm row py-5 px-5 ">
-                        <h5>Based on <%= hotelReview.length %> reviews <i class="fas fa-question-circle " data-toggle="tooltip"
-                                data-placement="right" title="Tooltip on right"></i></h5>
+                        <h5>Based on <%= hotelReview.length %> reviews <i class="fas fa-question-circle "
+                                data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></h5>
                         <div class="well well-sm">
                             <div class="row">
                                 <div class="white-tab col-xs-2 col-md-2 divcircle">
                                     <div class="circlescore">
                                         <div class="circlescorein">
-                                            1
+
                                         </div>
                                     </div>
                                     <div class="textscore">
@@ -156,7 +156,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="POST" action="/review/hotel/<%= hotelId %>" id="inputset">
+                                        <form method="POST" action="/review/hotel/<%= hotelId %>">
                                             <div class="modal-body">
                                                 <input name="userId" value="<%= user.user_id %>" hidden>
                                                 <div class="form-group">
@@ -202,14 +202,14 @@
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Meal</label>
-                                                    <input type="number" class="form-control"id="meal input" name="Meal_Hotel_Rating"
-                                                        id="meal" min="1" max="10" value="1">
+                                                    <input type="number" class="form-control" id="meal input"
+                                                        name="Meal_Hotel_Rating" id="meal" min="1" max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Location</label>
                                                     <input type="number" class="form-control"
-                                                        name="Location_Hotel_Rating" id="location input" min="1" max="10"
-                                                        value="1">
+                                                        name="Location_Hotel_Rating" id="location input" min="1"
+                                                        max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Service</label>
@@ -221,7 +221,8 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary" value="Submit" onclick="summit();">Send
+                                                <button type="submit" class="btn btn-primary" value="Submit"
+                                                    onclick="summit();">Send
                                                     Review</button>
                                             </div>
                                         </form>
@@ -232,75 +233,80 @@
                     </div>
                     <div class="pt-4"></div>
                     <form action="/review/hotel/<%= hotelId %>" method="get">
-                    <div class="d-flex">
-                        <div class="col-xs-3 col-md-3 ">
-                            <label for="Category">Show reviews from: <i class="fas fa-question-circle"
-                                    data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="Type_Of_Hotel_Reviewer" id="">
-                                <option>All reviewers</option>
-                                <option>Business trip</option>
-                                <option>Family vacation</option>
-                                <option>Romantic vacation</option>
-                                <option>Shopping and Culinary</option>
-                                <option>Backpacking</option>
-                                <option>Medical Travel</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-3 col-md-3 ">
-                            <label for="Score">Show reviews by score: <i class="fas fa-question-circle"
-                                    data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="" id="">
-                                <option>All review scores</option>
-                                <option>Wonderful</option>
-                                <option>Good</option>
-                                <option>Okey</option>
-                                <option>Poor</option>
-                                <option>Very poor</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-3 col-md-3 ">
-                            <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
-                                    data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="Sort" id="">
-                                <option>Recommended</option>
-                                <option>Newest</option>
-                                <option>Oldest</option>
-                                <!-- <option>Score(higher to lower)</option>
+                        <div class="d-flex">
+                            <div class="col-xs-3 col-md-3 ">
+                                <label for="Category">Show reviews from: <i class="fas fa-question-circle"
+                                        data-toggle="tooltip" data-placement="right"
+                                        title="Tooltip on right"></i></label>
+                                <select class="form-control" name="Type_Of_Hotel_Reviewer" id="">
+                                    <option>All reviewers</option>
+                                    <option>Business trip</option>
+                                    <option>Family vacation</option>
+                                    <option>Romantic vacation</option>
+                                    <option>Shopping and Culinary</option>
+                                    <option>Backpacking</option>
+                                    <option>Medical Travel</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 ">
+                                <label for="Score">Show reviews by score: <i class="fas fa-question-circle"
+                                        data-toggle="tooltip" data-placement="right"
+                                        title="Tooltip on right"></i></label>
+                                <select class="form-control" name="" id="">
+                                    <option>All review scores</option>
+                                    <option>Wonderful</option>
+                                    <option>Good</option>
+                                    <option>Okey</option>
+                                    <option>Poor</option>
+                                    <option>Very poor</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 ">
+                                <label for="Sort">Sort reviews by: <i class="fas fa-question-circle"
+                                        data-toggle="tooltip" data-placement="right"
+                                        title="Tooltip on right"></i></label>
+                                <select class="form-control" name="Sort" id="">
+                                    <option>Recommended</option>
+                                    <option>Newest</option>
+                                    <option>Oldest</option>
+                                    <!-- <option>Score(higher to lower)</option>
                                 <option>Score(lower to higher)</option> -->
-                            </select>
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 ">
+                                <button class="btn btn-primary show" type="submit">Search</button>
+                            </div>
                         </div>
-                        <div class="col-xs-3 col-md-3 ">
-                            <button class="btn btn-primary show" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                     <!-- Review by user -->
                     <% for(var i = 0; i < hotelReview.length; i++) { %>
-                        <section class="review p-5 border-1">
-                            <div class="row d-flex">
-                                <div class="profile-pic">
-                                    <% if(hotelReview[i].profile_picture) { %>
-                                    <img src="<%= hotelReview[i].profile_picture %>" width="60px"
-                                        height="60px">
-                                    <% } else { %>
-                                        <img src="/assets/img/profile.png" width="60px"
-                                        height="60px">
-                                    <% } %>  
-                                </div>
-                                <div class="d-flex flex-column pl-3">
-                                    <a class="black-text" href="#">
-                                        <h4><%= hotelReview[i].firstname %></h4>
-                                    </a>
-                                </div>
+                    <section class="review p-5 border-1">
+                        <div class="row d-flex">
+                            <div class="profile-pic">
+                                <% if(hotelReview[i].profile_picture) { %>
+                                <img src="<%= hotelReview[i].profile_picture %>" width="60px" height="60px">
+                                <% } else { %>
+                                <img src="/assets/img/profile.png" width="60px" height="60px">
+                                <% } %>
                             </div>
-                            <div class="d-flex justify-content-between mt-0 mb-0">
-                                <p class="font-weight-bold"><%= moment(hotelReview[i].timestamp).format('DD MMM YYYY hh:ss') %> &nbsp•&nbsp <%= hotelReview[i].Type_Of_Hotel_Reviewer %></p>
-                                <p class="text-right font-weight-bold">Score <span class="text-info"><%= parseInt(hotelReview[i].Score) %></span>/10</p>
+                            <div class="d-flex flex-column pl-3">
+                                <a class="black-text" href="#">
+                                    <h4><%= hotelReview[i].firstname %></h4>
+                                </a>
                             </div>
-                            <div class="row pb-3">
-                                <p><%= hotelReview[i].Text_Hotel_Review %></p>
-                            </div>
-                            <!-- <div class="row ml-1">
+                        </div>
+                        <div class="d-flex justify-content-between mt-0 mb-0">
+                            <p class="font-weight-bold">
+                                <%= moment(hotelReview[i].timestamp).format('DD MMM YYYY hh:ss') %> &nbsp•&nbsp
+                                <%= hotelReview[i].Type_Of_Hotel_Reviewer %></p>
+                            <p class="text-right font-weight-bold">Score <span
+                                    class="text-info"><%= parseInt(hotelReview[i].Score) %></span>/10</p>
+                        </div>
+                        <div class="row pb-3">
+
+                            <p><%= hotelReview[i].Text_Hotel_Review %></p>
+                        </div>
+                        <!-- <div class="row ml-1">
                                 <img class="reviewpic"
                                     src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
                                     alt="" />
@@ -308,7 +314,7 @@
                                     src="https://timedotcom.files.wordpress.com/2018/03/digital-nomad-remote-work-travel.jpg?w=800&quality=85"
                                     alt="">
                             </div> -->
-                        </section>
+                    </section>
                     <% } %>
                 </div>
 
