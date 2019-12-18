@@ -84,7 +84,7 @@ $(document).ready(function () {
     }).done(() => {
       alert("Success!");
       location.reload();
-    });
+    }).fail(() => alert("Failed!"));
   });
 
   $("#editModal").on("show.bs.modal", function (e) {
@@ -156,7 +156,7 @@ $(document).ready(function () {
     }).done(() => {
       alert("Success!");
       location.reload();
-    });
+    }).fail(() => alert("Failed!"));
   });
 
   $("#deleteModalForm").submit(function (e) {
