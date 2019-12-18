@@ -42,6 +42,52 @@ describe("Admin Coupon controller", () => {
       ...obj
     });
 
+    const clean = async arr => {
+      return Promise.all(arr.map(code => Coupon.deleteCoupon(code, false)));
+    }
+
+    const find = async (codes, excludes = [], getPage) => {
+      if (getPage == null) {
+        getPage = async page => {
+          return agent
+            .get("/admin/coupon/" + page);
+        };
+      }
+
+      let left = [...codes];
+      let page = 0;
+
+      while (left.length > 0 || excludes.length > 0) {
+        let res = await getPage(page);
+
+        if (!res.ok) {
+          break;
+        }
+
+        for (let i = 0; i < left.length;) {
+          if (res.text.indexOf(left[i]) > 0) {
+            left.splice(i, 1);
+          } else {
+            i++;
+          }
+        }
+
+        for (let i = 0; i < excludes.length; i++) {
+          if (res.text.indexOf(excludes[i]) > 0) {
+            throw new Error("an exclude coupon presented");
+          }
+        }
+
+        page++;
+      }
+
+      // shouldn't happen, as it finds though the last page, the next page will
+      // 404 and error early in the request operation.
+      if (left.length > 0) {
+        throw new Error("missing coupon");
+      }
+    }
+
     beforeAll(async () => {
       return agent
         .post("/login")
@@ -52,8 +98,7 @@ describe("Admin Coupon controller", () => {
     });
 
     afterAll(async () => {
-      // cleanup coupons
-      await Promise.all(tracking.map(Coupon.deleteCoupon));
+      await clean(tracking);
       return agent.get("/logout");
     });
 
@@ -87,6 +132,44 @@ describe("Admin Coupon controller", () => {
           done();
         });
     });
+
+    it("coupon should be edited", async done => {
+      const oldCode = tracking[tracking.length - 1];
+      const newCode = oldCode + "a";
+      
+      await agent
+        .post(`/admin/coupon/edit/${oldCode}`)
+        .type('form')
+        .send({
+          code: newCode,
+          name: oldCode,
+          description: "Goodbye 2",
+          for_every_hotel: "on",
+          for_every_airline: "off",
+          discount_percentage: "12",
+          start_date: "2018-11-29",
+          expire_date: "2018-12-18",
+        })
+        .expect(204);
+      
+      const coupon = await Coupon.getCoupon(newCode);
+
+      expect(coupon.code).toBe(newCode);
+      tracking[tracking.length - 1] = newCode;
+
+      expect(coupon).toMatchObject({
+        name: oldCode,
+        description: "Goodbye 2",
+        for_every_hotel: true,
+        for_every_airline: false,
+        start_date: new Date("2018-11-29T00:00:00+07:00"),
+        expire_date: new Date("2018-12-18T00:00:00+07:00")
+      });
+
+      expect(parseInt(coupon.discount_percentage)).toBe(12);
+
+      done();
+    })
 
     it("coupon should be removed", async done => {
       const code = tracking.pop();
@@ -203,7 +286,9 @@ describe("Admin Coupon controller", () => {
       });
     });
 
-    describe("pagination and search function", () => {
+    describe("pagination", () => {
+      let tracking = [];
+
       beforeAll(async () => {
         for (let i = 0; i < 30; i++) {
           const code = gen();
@@ -213,27 +298,97 @@ describe("Admin Coupon controller", () => {
       });
 
       it("should show all coupons we inserted", async done => {
-        let left = [...tracking];
-        let page = 0;
-
-        while (left.length > 0) {
-          let res = await agent
-            .get("/admin/coupon/" + page)
-            .expect(200);
-
-          for (let i = 0; i < left.length;) {
-            if (res.text.indexOf(left[i]) > 0) {
-              left.splice(i, 1);
-            } else {
-              i++;
-            }
-          }
-
-          page++;
-        }
-        
+        await find(tracking);
         done();
       });
+
+      afterAll(async () => clean(tracking));
+    });
+
+    describe("search", () => {
+      it("search with code should work", async done => {
+        let t = [gen() + "atlas", gen() + "centaur", gen() + "1dar"];
+        
+        for (code of t) {
+          await Coupon.createCoupon(modelValid({
+            code,
+            levels: ["testing"]
+          }));
+          tracking.push(code);
+        }
+
+        const findCode = async (q, coupons, excludes = []) => {
+          return find(coupons, excludes, async page => {
+            return agent
+              .get("/admin/coupon/" + page)
+              .query({
+                search: true,
+                q,
+                opt: 1,
+                levels: "testing"
+              });
+          });
+        }
+        
+        await findCode("a", t);
+        await findCode("da", [t[2]]);
+        await findCode("centaur", [t[1]]);
+        await findCode("at", [t[0]]);
+        await findCode("ta", [t[1]]);
+        await findCode("1", [t[2]]);
+        await findCode("", t);
+        await findCode("!#", [], t);
+        await findCode("atla enta ar", t);
+
+        done();
+      }, 15000);
+
+      it("search with name should work", async done => {
+        let names = ["thor agena", "delta iv", "thorad"];
+        let t = [];
+        
+        for (let i = 0; i < names.length; i++) {
+          const code = gen();
+          const newName = gen() + names[i];
+
+          await Coupon.createCoupon(modelValid({
+            code,
+            name: newName,
+            levels: ["testing"]
+          }));
+
+          t.push(code);
+          tracking.push(code);
+        }
+
+        const findName = async (q, coupons, excludes = []) => {
+          console.log(q);
+          return find(coupons, excludes, async page => {
+            return agent
+              .get("/admin/coupon/" + page)
+              .query({
+                search: true,
+                q,
+                opt: 3,
+                levels: "testing"
+              });
+          });
+        }
+        
+        await findName("a", t);
+        await findName("da", []);
+        await findName("centaur", []);
+        await findName("at", []);
+        await findName("ta", [t[1]]);
+        await findName("1", []);
+        await findName("", t);
+        await findName("!#", [], t);
+        await findName("thor delta", t);
+        await findName("thor", [t[0], t[2]]);
+        await findName("thor agena delta", t);
+
+        done();
+      }, 15000);
     });
   });
 });
