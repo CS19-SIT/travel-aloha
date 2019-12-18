@@ -153,6 +153,7 @@ exports.postAirlineInfo = async (req, res) => {
       if ("airlineSeatTypePicture3" in req.files) {
         airlineSeatTypePicture3 = req.files["airlineSeatTypePicture3"][0].filename;
       }
+      console.log(req.files);
      const airline_Id = await contactModel.insertNewAirline({
         airlineName,
         airlineNationality,

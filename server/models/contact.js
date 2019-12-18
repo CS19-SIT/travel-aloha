@@ -171,7 +171,7 @@ exports.insertNewAirlineSeatPicture = async ({
   airlineSeatTypePicture3
 }) => {
   try{
-    await db.query(`INSERT INTO airline_contact_picture(airline_Id, Fclass_picture, Bclass_picture, Eclass_picture) VALUES(?,?,?)`, [
+    await db.query(`INSERT INTO airline_contact_picture(airline_Id, Fclass_picture, Bclass_picture, Eclass_picture) VALUES(?,?,?,?)`, [
        airline_Id,
        airlineSeatTypePicture1,
        airlineSeatTypePicture2,
