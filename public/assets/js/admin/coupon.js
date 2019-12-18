@@ -98,7 +98,7 @@ $(document).ready(function () {
 
     form.data("coupon-code", code);
 
-    for (const key of ['code', 'name', 'discount_percentage', 'max_count']) {
+    for (const key of ['code', 'name', 'discount_percentage', 'max_count', "min_purchase"]) {
       find(key).val(coupon[key]);
     }
 

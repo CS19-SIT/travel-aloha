@@ -241,7 +241,8 @@ exports.createCoupon = async ({
   discount_percentage,
   start_date,
   expire_date,
-  max_count
+  max_count,
+  min_purchase = 0
 }) => {
   try {
     if (await isCouponExists(code)) {
@@ -249,7 +250,7 @@ exports.createCoupon = async ({
     }
 
     try {
-      await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+      await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
         code,
         discount_percentage,
         creation_date,
@@ -259,7 +260,8 @@ exports.createCoupon = async ({
         for_every_hotel,
         for_every_airline,
         name,
-        description
+        description,
+        min_purchase
       ]);
 
       if (!for_every_hotel && Array.isArray(hotels)) {
@@ -306,7 +308,8 @@ exports.editCoupon = async (oldCode, {
   discount_percentage,
   start_date,
   expire_date,
-  max_count
+  max_count,
+  min_purchase = 0
 }, noRevert = false) => {
   try {
     if (!(await isCouponExists(oldCode))) {
@@ -326,7 +329,8 @@ exports.editCoupon = async (oldCode, {
             for_every_airline = ?,
             discount_percentage = ?,
             start_date = ?,
-            expire_date = ?
+            expire_date = ?,
+            min_purchase = ?
           WHERE code = ?
         `, [
         code,
@@ -337,6 +341,7 @@ exports.editCoupon = async (oldCode, {
         discount_percentage,
         start_date,
         expire_date,
+        min_purchase,
         oldCode
       ]);
 
