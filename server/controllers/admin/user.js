@@ -73,15 +73,15 @@ exports.editUsers = function (req, res) {
           const mailOptions = {
             from: 'travelaloha55@gmail.com', // sender address
             to: userEmail, // list of receivers
-            subject: 'OOOOOOOps', // Subject line
+            subject: 'Travelaloha Official', // Subject line
             text: 'Your info has been changed'// plain text body
           };
 
           transporter.sendMail(mailOptions, function (err, info) {
             if (err) {
-                //console.log(err);
+              console.log(err);
             } else {
-               // console.log('Email sent: ' + info.response);
+              console.log('Email sent: ' + info.response);
             }
           });
         }
