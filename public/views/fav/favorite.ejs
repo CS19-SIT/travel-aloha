@@ -91,6 +91,7 @@
 
       <div class="row" style="padding-bottom: 5%;">
         <% for(var i = 0;i <dataH.length;i++) { %>
+          <% if( dataH[i].favUserID == user.user_id) {%>
         <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
           <div class="card cardTop" style="width:400px;">
             <img class="imgopa" src="/assets/uploads/contact/pictures/<%= dataH[i].hotelPicture %>" alt="" title=""
@@ -114,6 +115,7 @@
             </div>
           </div>
         </div>
+        <% }%>
         <% }%>
 
       </div>
