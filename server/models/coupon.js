@@ -251,7 +251,7 @@ exports.getCoupon = async code => {
 };
 
 exports.createCoupon = async obj => {
-  const {
+  let {
     code,
     name,
     description,
@@ -322,7 +322,7 @@ exports.createCoupon = async obj => {
 };
 
 exports.editCoupon = async (oldCode, obj, noRevert = false) => {
-  const {
+  let {
     code,
     name,
     description,
