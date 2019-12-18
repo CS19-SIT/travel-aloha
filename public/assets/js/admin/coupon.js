@@ -3,6 +3,10 @@ $(document).ready(function () {
     width: '100%'
   });
 
+  $(".coupon-daterange").datepicker({
+    format: "yyyy-mm-dd"
+  });
+
   let searchOptionsSelectAjax = function (type) {
     return {
       url: document.location.protocol + "//" + document.location.host + "/admin/coupon/search/" + type,
@@ -98,8 +102,13 @@ $(document).ready(function () {
       find(key).val(coupon[key]);
     }
 
-    find("start_date").get(0).valueAsDate = new Date(coupon["start_date"]);
-    find("expire_date").get(0).valueAsDate = new Date(coupon["expire_date"]);
+    const setDate = function (name, r) {
+      const date = new Date(coupon[name]);
+      find(name).datepicker("update", date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+    }
+
+    setDate("start_date");
+    setDate("expire_date");
     find("for_every_hotel").prop("checked", coupon.for_every_hotel);
     find("for_every_airline").prop("checked", coupon.for_every_airline);
     find("unlimited").prop("checked", coupon['max_count'] == null);

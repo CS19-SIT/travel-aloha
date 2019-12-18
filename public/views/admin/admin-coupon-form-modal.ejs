@@ -38,18 +38,16 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-md-3">
-                            Start date
+                            Date range
                         </label>
                         <div class="col">
-                            <input type="date" class="form-control" name="start_date">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-md-3">
-                            Expire date
-                        </label>
-                        <div class="col">
-                            <input type="date" class="form-control" name="expire_date">
+                            <div class="input-group input-daterange coupon-daterange">
+                                <input type="text" class="form-control" name="start_date">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">to</span>
+                                </div>
+                                <input type="text" class="form-control" name="expire_date">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
