@@ -156,17 +156,17 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="POST" action="/review/hotel/<%= hotelId %>">
+                                        <form method="POST" action="/review/hotel/<%= hotelId %>" id="inputset">
                                             <div class="modal-body">
                                                 <input name="userId" value="<%= user.user_id %>" hidden>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Title:</label>
                                                     <input type="text" class="form-control" name="Title_Hotel"
-                                                        id="title">
+                                                        id="title input">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Category">Category:</label>
-                                                    <select class="form-control" id="Category"
+                                                    <select class="form-control" id="Category input"
                                                         name="Type_Of_Hotel_Reviewer">
                                                         <option value="Business Trip">Business Trip</option>
                                                         <option value="Family Vacation">Family Vacation</option>
@@ -179,7 +179,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Comment:</label>
-                                                    <textarea class="form-control" id="message-text"
+                                                    <textarea class="form-control" id="message-text input"
                                                         name="Text_Hotel_Review"></textarea>
                                                 </div>
                                                 <!--<div class="form-group">
@@ -191,38 +191,38 @@
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Cleanliness</label>
                                                     <input type="number" class="form-control"
-                                                        name="Cleanliness_Hotel_Rating" id="Cleanliness" min="1"
+                                                        name="Cleanliness_Hotel_Rating" id="Cleanliness input" min="1"
                                                         max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Comfort</label>
                                                     <input type="number" class="form-control"
-                                                        name="Comfort_Hotel_Rating" id="comfort" min="1" max="10"
+                                                        name="Comfort_Hotel_Rating" id="comfort input" min="1" max="10"
                                                         value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Meal</label>
-                                                    <input type="number" class="form-control" name="Meal_Hotel_Rating"
+                                                    <input type="number" class="form-control"id="meal input" name="Meal_Hotel_Rating"
                                                         id="meal" min="1" max="10" value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Location</label>
                                                     <input type="number" class="form-control"
-                                                        name="Location_Hotel_Rating" id="location" min="1" max="10"
+                                                        name="Location_Hotel_Rating" id="location input" min="1" max="10"
                                                         value="1">
                                                 </div>
                                                 <div>
                                                     <label for="message-text" class="col-form-label">Service</label>
                                                     <input type="number" class="form-control"
-                                                        name="Service_Hotel_Rating" id="service" min="1" max="10"
+                                                        name="Service_Hotel_Rating" id="service input" min="1" max="10"
                                                         value="1">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary" value="Submit">Send
-                                                    message</button>
+                                                <button type="submit" class="btn btn-primary" value="Submit" onclick="summit();">Send
+                                                    Review</button>
                                             </div>
                                         </form>
                                     </div>
