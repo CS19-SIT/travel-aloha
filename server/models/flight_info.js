@@ -8,7 +8,6 @@ exports.search = async (origin, destination, check_in) => {
         + "where f.Destination = '" + "CNX" +"' and f.Departure = '" + "BKK" + 
         "' and se.Class like 'E%' and df.Depart_Date = '" + "2019-11-14'" + 
         " and df.Flight_Number = f.Flight_Number and se.Flight_Number = f.Flight_Number and air.Airport_ID = 'BKK' " +
-        "and air.City = 'Chiang Mai'" +
         " order by se.Price ASC;",
         [origin,destination,check_in]);
 

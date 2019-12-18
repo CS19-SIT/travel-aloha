@@ -9,34 +9,34 @@
 
     <div class="recent_flight">
         
-        <table class="table table-striped">
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Departure</th>
-                    <th>Destination</th>
-                    <th>Airline</th>
-                    <th>Airport</th>
-                    <th>Departure Date</th>
-                    <th>Departure Time</th>
-                    <th>Arrive Date</th>
-                    <th>Arrive Time</th>
-                    <th>Seat Class</th>
-                    <th>Price</th>
+                    <th class="bg-primary">Departure</th>
+                    <th class="bg-primary">Destination</th>
+                    <th class="bg-primary">Airline</th>
+                    <th class="bg-primary">Airport</th>
+                    <th class="bg-primary">Departure Date</th>
+                    <th class="bg-primary">Departure Time</th>
+                    <th class="bg-primary">Arrive Date</th>
+                    <th class="bg-primary">Arrive Time</th>
+                    <th class="bg-primary">Seat Class</th>
+                    <th class="bg-primary">Price</th>
                 </tr>
             </thead>
             <% for (var i = 0 ; i < flight_data.length ; i++) {%>
             <tbody>
                 <tr>
-                    <td><%= flight_data[i].Departure %></td>
-                    <td><%= flight_data[i].Destination %></td>
-                    <td><%= flight_data[i].airlineName %></td>
-                    <td><%= flight_data[i].Airport_name %></td>
-                    <td><%= flight_data[i].Depart_Date %></td>
-                    <td><%= flight_data[i].Depart_Time %></td>
-                    <td><%= flight_data[i].Arrive_Date %></td>
-                    <td><%= flight_data[i].Arrive_Time %></td>
-                    <td><%= flight_data[i].Class %></td>
-                    <td><%= flight_data[i].Price %></td>
+                    <td class="bg-success"><%= flight_data[i].Departure %></td>
+                    <td class="bg-success"><%= flight_data[i].Destination %></td>
+                    <td class="bg-success"><%= flight_data[i].airlineName %></td>
+                    <td class="bg-success"><%= flight_data[i].Airport_name %></td>
+                    <td class="bg-success"><%= flight_data[i].Depart_Date %></td>
+                    <td class="bg-success"><%= flight_data[i].Depart_Time %></td>
+                    <td class="bg-success"><%= flight_data[i].Arrive_Date %></td>
+                    <td class="bg-success"><%= flight_data[i].Arrive_Time %></td>
+                    <td class="bg-success"><%= flight_data[i].Class %></td>
+                    <td class="bg-success"><%= flight_data[i].Price %></td>
                 </tr>
                 <% } %>
             </tbody>
