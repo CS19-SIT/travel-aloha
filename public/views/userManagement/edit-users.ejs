@@ -31,24 +31,23 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Level:</label>
             <div class="col-lg-8">
-                <select class="form-control form-control-sm" id="Level" name="Level" value="<%= data.Level%>" required >
+              <input class="form-control" type="text" id="Level" name="Level" value="<%- data.Level %>" readonly>
+                <!-- <select class="form-control form-control-sm" id="Level" name="Level" value="<%= data.Level%>" required >
                     <option selected><%=data.Level %></option>
                     <option>Normal</option>
                     <option>Silver</option>
                     <option>Gold</option>
                     <option>Elite</option>
-                </select>
+                </select> -->
             </div>
           </div>
 
           <div class="form-group">
               <label class="col-lg-3 control-label">Role:</label>
               <div class="col-lg-8">
-                  <select class="form-control form-control-sm" id="Role" name="Role" value="<%= data.Role%>" required >
-                      <option selected><%=data.Role %></option>
-                      <option>Admin</option>
-                      <option>User</option>
-                      <option>Staff</option>
+                  <select class="form-control form-control-sm" id="Role" name="Role" required >
+                    <option <% if (data.Role == 'User') { %>selected<% } %>>User</option>
+                    <option <% if (data.Role == 'Admin') { %>selected<% } %>>Admin</option>
                   </select>
               </div>
           </div>
@@ -56,21 +55,21 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input type="text" class="form-control" name="firstname" placeholder="firstname" id="firstname" value="<%= data.firstname%>" readonly="true" />
+              <input type="text" class="form-control" name="firstname" placeholder="firstname" id="firstname" value="<%= data.firstname%>"  />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input type="text" class="form-control" name="lastname"placeholder="Lastname" id="lastname" value="<%= data.lastname%>" readonly="true" />
+              <input type="text" class="form-control" name="lastname"placeholder="Lastname" id="lastname" value="<%= data.lastname%>"  />
             </div>
           </div>
         
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input type="email" class="form-control" placeholder="Email"name="Email" id="Email" value="<%=data.Email%>" readonly="true"/>
+              <input type="email" class="form-control" placeholder="Email"name="Email" id="Email" value="<%=data.Email%>"/>
             </div>
           </div>
        

@@ -21,4 +21,52 @@ exports.getAllHotel = async () => {
     throw new Error(`[ERR] getAllFlight: ${err}`);
     }
   };
+  exports.getHotelFavID = async () => {
+    try {
+      const count = await db.query(`SELECT * from fav_hotel`);
+  
+      return count[0];
+
+    } catch (err) {
+    throw new Error(`[ERR] getHotelFavID: ${err}`);
+    }
+  };
+ 
+ 
+exports.savedFavorites = async ({
+  favHotelID,
+  favUserID
+})=> {
+  try{
+ 
+    console.log(favHotelID);
+    await db.query(`INSERT INTO fav_hotel(favHotelID,favUserID) VALUES(?,?)`,[
+      favHotelID,
+      favUserID
+    ]);
+
+  }catch(err){
+    throw new Error(`[ERR] savedFavorites: ${err}`)
+  }
+  
+};
+ 
+exports.deleteFavorites = async ({
+  favHotelID,
+  favUserID
+})=> {
+  try{
+ 
+    console.log(favHotelID);
+    await db.query(`DELETE FROM fav_hotel WHERE favHotelID = ? and favUserID = ?`,[
+      favHotelID,
+      favUserID
+    ]);
+
+  }catch(err){
+    throw new Error(`[ERR] savedFavorites: ${err}`)
+  }
+  
+};
+
 
