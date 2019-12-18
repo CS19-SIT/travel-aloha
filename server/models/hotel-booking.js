@@ -27,6 +27,33 @@ exports.insertBooking = async booking => {
     throw new Error(`[ERR] insertBooking: ${error}`);
   }
 };
+exports.checkValid = async booking =>{
+  const [
+    FirstName,
+    LastName,
+    Email,
+    PhoneNo,
+    user_id,
+    checkInDate,
+    checkOutDate,
+    hotelID,
+    roomID,
+    hotelFullPrice,
+    hotelSalePrice
+  ] = booking;
+  try {
+    let dbCheck = await db.query(
+      "select * from (select * from booking_head where checkinDate = ? and checkoutDate = ?) as bookhead,(select * from booking_detail) as bookdetail where bookhead.bookingDetailid =bookdetail.bookingId_detail "
+    )
+    if(dbCheck[0].length < 1){
+     return true;}
+     else { return false};
+
+
+  } catch (error) {
+    
+  }
+}
 exports.getBooking = async bookingId => {
   try {
     let bookingDetailId = await db.query(

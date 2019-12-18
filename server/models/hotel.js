@@ -11,7 +11,7 @@ exports.findAll = async () => {
   }
 };
 
-exports.findById = async hotelId => {
+exports.findById = async (hotelId) => {
   try {
     const hotelsData = await db.query("SELECT * FROM hotel WHERE hotelId = ?", [
       hotelId

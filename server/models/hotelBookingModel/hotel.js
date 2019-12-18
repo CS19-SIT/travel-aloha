@@ -32,7 +32,7 @@ exports.getHotelRoomOne = async (hotelId,roomId) => {
     //warning delete hotel will delete room 
     await db.query("delete from hotel where hotelId = ?",[hotelId]);
   }
-  
+  //exports.checkValid = async()
 
   // exports.insertBooking_Head()
   // exports.insertroom() done

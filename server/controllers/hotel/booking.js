@@ -1,5 +1,5 @@
 const hotelbookModel = require('../../models/hotel-booking');
-
+const hotelModel = require('../../models/hotel');
 exports.getIndex = (req, res) =>
 	res.render('hotel_booking/hotel-booking', {
 		pageTitle: 'TravelAloha - Hotel Booking',
@@ -36,7 +36,7 @@ exports.postIndex = (req, res) => {
 		hotelFullPrice: req.body.hotelFullPrice,
 		hotelSalePrice: req.body.hotelSalePrice
 	};
-
+	
 	res.render('hotel_booking/hotel-booking-payment', {
 		pageTitle: 'TravelAloha - Hotel - Payment',
 		user: req.user,
@@ -82,6 +82,10 @@ exports.postConfirm = async (req, res) => {
 		req.body.hotelFullPrice,
 		req.body.hotelSalePrice
 	];
+	let invalidBooking = await hotelbookModel.checkValid(reqBookingDetail);
+	if(invalidBooking == false){
+		res.redirect('/404');
+	}
 	let resultInsertBooking = await hotelbookModel.insertBooking(reqBookingDetail);
 	let resultSession = req.session;
 	resultSession.bookingID = resultInsertBooking;
@@ -89,3 +93,9 @@ exports.postConfirm = async (req, res) => {
 	res.redirect('/checkout');
 
 };
+exports.getHotelInfo = async (req,res) => {
+	console.log(1121515);
+	let result = await hotelModel.findById(req.params.id);
+	console.log(1);
+	res.json(result);
+}
