@@ -121,6 +121,30 @@ const isCouponExists = async code => {
   return db.query("SELECT 1 FROM coupon WHERE code = ?", [code]).then(r => r[0].length > 0);
 }
 
+const validateModel = ({
+  discount_percentage,
+  start_date,
+  expire_date,
+  max_count
+}) => {
+  if (start_date != null && expire_date != null) {
+    start_date = start_date instanceof Date ? start_date : new Date(start_date);
+    expire_date = expire_date instanceof Date ? expire_date : new Date(expire_date);
+
+    if (start_date >= expire_date) {
+      throw new Error("start_date >= expire_date");
+    }
+  }
+
+  if (discount_percentage < 0) {
+    throw new Error("negative discount_percentage");
+  }
+
+  if (max_count < 0) {
+    throw new Error("negative max_count");
+  }
+}
+
 exports.searchCoupons = async ({
   code,
   name,
@@ -226,28 +250,32 @@ exports.getCoupon = async code => {
   }
 };
 
-exports.createCoupon = async ({
-  code,
-  name,
-  description,
-  creation_date,
-  create_by_user_id,
-  for_every_hotel,
-  for_every_airline,
-  levels,
-  hotels,
-  airlines,
-  users,
-  discount_percentage,
-  start_date,
-  expire_date,
-  max_count,
-  min_purchase = 0
-}) => {
+exports.createCoupon = async obj => {
+  const {
+    code,
+    name,
+    description,
+    creation_date,
+    create_by_user_id,
+    for_every_hotel,
+    for_every_airline,
+    levels,
+    hotels,
+    airlines,
+    users,
+    discount_percentage,
+    start_date,
+    expire_date,
+    max_count,
+    min_purchase = 0
+  } = obj;
+
   try {
     if (await isCouponExists(code)) {
       throw new Error(`Coupon with code '${code}' already existed`);
     }
+
+    validateModel(obj);
 
     try {
       await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
@@ -293,28 +321,32 @@ exports.createCoupon = async ({
   }
 };
 
-exports.editCoupon = async (oldCode, {
-  code,
-  name,
-  description,
-  creation_date,
-  create_by_user_id,
-  for_every_hotel,
-  for_every_airline,
-  levels,
-  hotels,
-  airlines,
-  users,
-  discount_percentage,
-  start_date,
-  expire_date,
-  max_count,
-  min_purchase = 0
-}, noRevert = false) => {
+exports.editCoupon = async (oldCode, obj, noRevert = false) => {
+  const {
+    code,
+    name,
+    description,
+    creation_date,
+    create_by_user_id,
+    for_every_hotel,
+    for_every_airline,
+    levels,
+    hotels,
+    airlines,
+    users,
+    discount_percentage,
+    start_date,
+    expire_date,
+    max_count,
+    min_purchase = 0
+  } = obj;
+
   try {
     if (!(await isCouponExists(oldCode))) {
       throw new Error(`Coupon with code '${oldCode}' doesn't exists`);
     }
+
+    validateModel(obj);
 
     const oldCoupon = await exports.getCoupon(oldCode);
 
