@@ -84,7 +84,7 @@ describe("Admin Coupon controller", () => {
       // shouldn't happen, as it finds though the last page, the next page will
       // 404 and error early in the request operation.
       if (left.length > 0) {
-        throw new Error("missing coupon");
+        throw new Error("missing coupons: " + left);
       }
     }
 
@@ -437,59 +437,59 @@ describe("Admin Coupon controller", () => {
         done();
       }, 15000);
 
-      // it("search by levels should work", async done => {
-      //   const prefix = gen(9);
+      it("search by levels should work", async done => {
+        const prefix = gen(9);
 
-      //   let levelEach = [
-      //     ["a"],
-      //     ["a"],
-      //     [..."ab"],
-      //     ["b"],
-      //     ["c"],
-      //     [..."abc"],
-      //     [..."abc"],
-      //     ["b"],
-      //     ["d"]
-      //   ];
-      //   let t = [];
+        let levelEach = [
+          ["a"],
+          ["a"],
+          [..."ab"],
+          ["b"],
+          ["c"],
+          [..."abc"],
+          [..."abc"],
+          ["b"],
+          ["d"]
+        ];
+        let t = [];
         
-      //   for (let i = 0; i < levelEach.length; i++) {
-      //     const code = gen();
+        for (let i = 0; i < levelEach.length; i++) {
+          const code = gen();
 
-      //     await Coupon.createCoupon(modelValid({
-      //       code,
-      //       name: code,
-      //       levels: levelEach[i].map(e => prefix + e)
-      //     }));
+          await Coupon.createCoupon(modelValid({
+            code,
+            name: code,
+            levels: levelEach[i].map(e => prefix + e)
+          }));
 
-      //     t.push(code);
-      //     tracking.push(code);
-      //   };
+          t.push(code);
+          tracking.push(code);
+        };
         
-      //   const findLvl = async (levels, coupons, excludes = []) => {
-      //     return find(coupons.map(i => t[i]), excludes.map(i => t[i]), async page => {
-      //       return agent
-      //         .get("/admin/coupon/" + page)
-      //         .query({
-      //           search: true,
-      //           q: "",
-      //           opt: 2,
-      //           levels: [...levels].map(e => prefix + e)
-      //         });
-      //     });
-      //   };
+        const findLvl = async (levels, coupons, excludes = []) => {
+          return find(coupons.map(i => t[i]), excludes.map(i => t[i]), async page => {
+            return agent
+              .get("/admin/coupon/" + page)
+              .query({
+                search: true,
+                q: "",
+                opt: 2,
+                levels: [...levels].map(e => prefix + e)
+              });
+          });
+        };
 
-      //   findLvl("a", [0, 1, 2, 5, 6]);
-      //   findLvl("b", [2, 3, 5, 6, 7]);
-      //   findLvl("c", [4, 5, 6]);
-      //   findLvl("ab", [0, 1, 2, 3, 5, 6, 7]);
-      //   findLvl("ac", [0, 1, 2, 4, 5, 6, 7]);
-      //   findLvl("bc", [2, 3, 4, 5, 6, 7]);
-      //   findLvl("abc", [0, 1, 2, 3, 4, 5, 6, 7]);
-      //   findLvl("d", [8]);
+        await findLvl("a", [0, 1, 2, 5, 6]);
+        await findLvl("b", [2, 3, 5, 6, 7]);
+        await findLvl("c", [4, 5, 6]);
+        await findLvl("ab", [0, 1, 2, 3, 5, 6, 7]);
+        await findLvl("ac", [0, 1, 2, 4, 5, 6]);
+        await findLvl("bc", [2, 3, 4, 5, 6, 7]);
+        await findLvl("abc", [0, 1, 2, 3, 4, 5, 6, 7]);
+        await findLvl("d", [8]);
 
-      //   done();
-      // }, 15000);
+        done();
+      }, 15000);
     });
   });
 });
