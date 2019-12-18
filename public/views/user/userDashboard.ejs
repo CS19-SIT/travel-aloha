@@ -1,0 +1,57 @@
+<%- include('../includes/header') %>
+
+<link href="../../assets/css/userDashboard/style.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <%- include('../includes/navbar') %>
+    <div class="con" style="padding: 5%;">
+        <header class="header">
+            <div class="container">
+                <div class="teacher-name" style="padding-top:20px;">
+
+                    <div class="row" style="margin-top:0px;">
+
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-3">
+                        <!-- img -->
+                        <img class="rounded-circle" src="../assets/img/profile.jpg" alt="profile"
+                            style="width:200px;height:200px">
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- ---------------------- -->
+                        <h1 style="color:#0062cc"><%= user.username %></h1>
+                        <h2><b><%= user.firstname %> <%= user.lastname %> </b><label class="role">customer</label> </h2>
+
+                        <h4>Birthday <%= user.birth_date %> &nbsp; &nbsp;&nbsp;&nbsp; Gender&nbsp; <%= user.gender %>
+                        </h4>
+                        <h4>Address &nbsp; <%= user.address %> </h4>
+
+                    </div>
+
+                    <div class="col-md-3 text-center">
+
+                        <div class="button" style="padding-top:18px">
+                            <a href="/dashboard/editProfile" class="btn btn-outline-primary btn-block">Edit Profile</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+    </div>
+</body>
+
+<%- include('../includes/footer') %>

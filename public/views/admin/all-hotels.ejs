@@ -1,19 +1,22 @@
 <%- include('../includes/header') %>
-<%- include('../includes/navbar') %>
-    <style>
-    .card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-    }
-</style>
+
+<style>
+        .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+        }
+    </style>
+
 
 </head>
 
 <body>
 
+<%- include('../includes/navbar') %>
+
 <div class="container mt-3" id="allHotel">
     <h1>Manage a Hotels</h1>
-    <% for(var i = 0; i<hotel.length ; i++){%>
+    <% for(var i = 0; i< hotel.length ; i++){%>
     <div class="row" id="hotel1">
         <div class="col-12 mt-3">
             <div class="card">
@@ -55,9 +58,8 @@
     function putRequest(){
         let data = $('#'+this.event.target.form.id).serialize();
         let JsonData = JSON.stringify(data);
-
         $.ajax({
-            url: '/edit',
+            url: '/admin/hotel/edit',
             type: 'PUT',
             data: data,
         });

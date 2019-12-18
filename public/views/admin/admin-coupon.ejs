@@ -7,71 +7,56 @@
 <body>
 <%- include('../includes/navbar') %>
 
-    <!-- Description -->
     <div class="container">
         <div class="py-4 row">
             <div class="col-sm-10">
                 <h1>Coupon Management</h1>
             </div>
+
             <div class="col-sm-2">
                 <button class="btn btn-primary w-100" data-toggle="modal" data-target="#addModal">Add</button>
             </div>
         </div>
-        <form>
+
+        <form method="GET" action="/admin/coupon">
+            <input type="hidden" name="search" value="true">
+
             <div class="form-row">
                 <div class="form-group col-sm-3">
-                    <select class="form-control" id="inlineFormCustomSelectPref">
-                        <option value="1" selected>Code</option>
-                        <option value="2">Description</option>
-                        <option value="3">Name</option>
+                    <select class="form-control" name="opt">
+                        <option value="1" <%= query.opt === "1" ? "selected" : "" %>>Code</option>
+                        <option value="2" <%= query.opt === "2" ? "selected" : "" %>>Description</option>
+                        <option value="3" <%= query.opt === "3" ? "selected" : "" %>>Name</option>
                     </select>
                 </div>
+
                 <div class="form-group col-sm-8">
-                    <!-- Search-->
-                    <input class="form-control" type="text" placeholder="Search" id="search">
+                    <input class="form-control" type="text" placeholder="Search" name="q" value="<%= query.q %>">
                 </div>
+
                 <div class="form-group col-sm-1">
-                    <!-- Search button-->
-                    <button type="button" class="btn btn-primary" id="searchBut">Search</button>
+                    <button type="submit" class="btn btn-primary" id="searchButton">Search</button>
                 </div>
             </div>
-            <!-- Level-->
+
             <div class="form-group row">
                 <label class="col-form-label col-md-1">Level</label>
                 <div class="col-md-11">
-                    <select name="coupon-search-level" class="form-control coupon-level-select" multiple="multiple">
-                        <option value="lv4" selected>Diamond</option>
-                        <option value="lv3" selected>Platinum</option>
-                        <option value="lv2" selected>Gold</option>
-                        <option value="lv1" selected>Silver</option>
+                    <select name="levels" class="form-control coupon-level-select" multiple="multiple">
+                        <% for (level of allLevels) { %>
+                            <option value="<%= level[0] %>" <%=
+                                query.levels.indexOf(level[0].toString()) < 0 ? "" : "selected"%>><%= level[1] %></option>
+                        <% } %>
                     </select>
-                </div>
-            </div>
-            <!--Type-->
-            <div class="form-group row">
-                <div class="col-md-1">Type</div>
-                <div class="col-md-11">
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1"
-                            class="form-check-input" checked>
-                        <label class="form-check-label" for="customCheckboxInline1">Flight</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="customCheckboxInline2" name="customCheckboxInline1"
-                            class="form-check-input" checked>
-                        <label class="form-check-label" for="customCheckboxInline2">Hotel</label>
-                    </div>
                 </div>
             </div>
         </form>
         <div>
-            <br>
-            <!-- Table-->
+            <div class="mb-4"></div>
             <div class="table-responsive-xl">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">No.</th>
                             <th scope="col">CODE</th>
                             <th scope="col">START DATE</th>
                             <th scope="col">EXPIRE DATE</th>
@@ -80,181 +65,40 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% for(const coupon of coupons) { %>
                         <tr>
-                            <th scope="row">1</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">FTUFTGIK90</a></td>
-                            <td>2019-11-5</td>
-                            <td>2021-04-23</td>
+                            <td><p data-coupon-code="<%= coupon.code %>" data-coupon="<%= JSON.stringify(coupon) %>"><%= coupon.code %></p></td>
+                            <td><%= coupon.start_date == null ? "-" : coupon.start_date.toLocaleDateString() %></td>
+                            <td><%= coupon.expire_date == null ? "-" : coupon.expire_date.toLocaleDateString() %></td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="FTUFTGIK90">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="<%= coupon.code %>">
                                     Edit
                                 </button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="FTUFTGIK90">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="<%= coupon.code %>">
                                     Delete
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">EERTDTRY20</a></td>
-                            <td>2019-11-5</td>
-                            <td>2023-06-16</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="EERTDTRY20">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="EERTDTRY20">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">TDRSTKKU60</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="TDRSTKKU60">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="TDRSTKKU60">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">HTEUKHY30</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HTEUKHY30">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HTEUKHY30">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">DRTNAQWX40</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="DRTNAQWX40">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="DRTNAQWX40">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">HYWQLPOI80</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HYWQLPOI80">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HYWQLPOI80">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">ZXQRTHLO40</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="ZXQRTHLO40">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="ZXQRTHLO40">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">HCNRELQW30</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="HCNRELQW30">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="HCNRELQW30">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">GVMIUTGF75</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="GVMIUTGF75">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="GVMIUTGF75">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td><a href="#" data-toggle="modal" data-target="#viewModal">EDFULZAW40</a></td>
-                            <td>2019-11-5</td>
-                            <td>2024-02-24</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-coupon-code="EDFULZAW40">
-                                    Edit
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-coupon-code="EDFULZAW40">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
         </div>
-        <!-- Pagination-->
+        
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                <li class="page-item <% if (page === 0) { %>disabled<% } %>">
+                    <a class="page-link" href="/admin/coupon/0<%= queryString %>" <% if (page === 0) { %>tabindex="-1" aria-disabled="true"<% } %>>&laquo;</a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
+                <% for(let i = 0; i < pageCount; i++) { %>
+                    <li class="page-item <% if (page === i) { %>disabled<% } %>">
+                        <a class="page-link" href="/admin/coupon/<%= i + queryString %>" <% if (page === i) { %>tabindex="-1" aria-disabled="true"<% } %>><%= i + 1 %></a>
+                    </li>
+                <% } %>
+                <li class="page-item <% if (page === pageCount - 1) { %>disabled<% } %>">
+                    <a class="page-link" href="/admin/coupon/<%= (pageCount - 1) + queryString %>" <% if (page === pageCount - 1) { %>tabindex="-1" aria-disabled="true"<% } %>>&raquo;</a>
                 </li>
             </ul>
         </nav>
@@ -263,12 +107,16 @@
     <%- include('admin-coupon-form-modal', {
         id: "addModal",
         title: "Add new coupon",
+        allLevels,
+        url: "/admin/coupon/new",
         buttonActionValue: "Add"
     }) %>
     
     <%- include('admin-coupon-form-modal', {
         id: "editModal",
         title: "Edit coupon",
+        allLevels,
+        url: "/admin/coupon/edit",
         buttonActionValue: "Edit"
     }) %>
 
@@ -283,42 +131,18 @@
                 </div>
                 <form id="deleteModalForm">
                     <div class="modal-body">
-                        <p>Delete ???</p>
+                        <p></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>    
 
-    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">View coupon</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>View ???</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="view-edit-button" class="btn btn-primary" data-coupon-code="">
-                        Edit
-                    </button>
-                    <button type="button" id="view-delete-button" class="btn btn-danger" data-coupon-code="">
-                        Delete
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js" integrity="sha256-wfVTTtJ2oeqlexBsfa3MmUoB77wDNRPqT1Q1WA2MMn4=" crossorigin="anonymous"></script>
     <script src="/assets/js/admin-coupon.js"></script>
+    
 <%- include('../includes/footer') %>

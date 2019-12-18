@@ -1,79 +1,121 @@
 <%- include('../includes/header') %>
-<link rel="stylesheet" href="../../assets/css/styles-hotel-booking.css">
-<%- include('../includes/navbar') %>
+<link rel="stylesheet" href="../../assets/css/hotel-booking.css">
 </head>
 
 <body>
-  <div class="container mt-3">
-    <div class="row no-gutters">
-      <h1>Room Booking</h1>
-    </div>
+  <%- include('../includes/navbar') %>
 
-    <div class="row no-gutters">
-      <h3 class="hotel-name">Lorem Ipsum Hotel</h3>
-    </div>
-
-    <div class="row no-gutters">
-      <div class="col">
-        <div class="hotel-image"></div>
-      </div>
-      <div class="col">
-        <div class="container container-bordered hotel-detail-list">
-          <p>Duration : <span>1 Night</span></p>
-          <p>Check-in : <span>5 Nov 2019, From 15:00</span></p>
-          <p>Check-out : <span>6 Nov 2019, Before 12:00</span></p>
-          <p>Room type: <span>Suite</span></p>
-          <p class="hotel-detail-accomodations">Accommodations</p>
-          <p>WIFI : <span>✅</span></p>
-          <p>Breakfast : <span>✅</span></p>
-          <p>Car park : <span>❌</span></p>
-          <p>Water heater: <span>✅</span></p>
+  <% if(!user){%>
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">You are not registered</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you want to register for a promotion?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary mr-auto" id="toRegisterButton">Register</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No, thanks</button>
         </div>
       </div>
-
-
     </div>
-
-    <div class="row no-gutters">
-      <h4 class="form-title">Your Information</h4>
-    </div>
-    <form method="POST" class="container-bordered" id="hotel-booking-form">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputFirstName">First Name</label>
-          <input type="text" class="form-control" name="inputFirstName" placeholder="First Name" required>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputLastName">Last Name</label>
-          <input type="text" class="form-control" name="inputLastName" placeholder="Last Name" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" name="inputEmail" placeholder="Email" required>
-      </div>
-      <div class="form-group">
-        <label for="inputPhoneNo">Phone Number</label>
-        <input type="text" class="form-control" name="inputPhoneNo" placeholder="Phone Number" required>
-      </div>
-    </form>
-
-    <div class="row no-gutters">
-      <h4>Price Detail</h4>
-    </div>
-
-    <div class="row no-gutters">
-      <div class="container-bordered price-detail-list">
-        <h6>Lorem Ipsum Hotel</h6>
-        <p class="price-detail">(1x) Suite Room (1 Night) <span>THB 4200.00</span></p>
-        <p>Additional Fees <span>FREE</span></p>
-        <h5 class="price-total">Total <span>THB 4200.00</span></h5>
-      </div>
-    </div>
-
-    <button type="submit" form="hotel-booking-form" class="btn btn-primary btn-submit">Review and Payment</button>
   </div>
-  <script src="../../assets/js/hotel-booking.js"></script>
-  <%- include('../includes/footer') %>
+  <%}%>
 
-  <!-- note: logic parts will come later -->
+                    <div class="container pt-3">
+                        <div class="row no-gutters">
+                            <h1>Room Booking</h1>
+                        </div>
+
+                        <div class="row no-gutters">
+                            <h3 class="hotel-name">Lalahotel</h3>
+                        </div>
+
+                        <div class="row no-gutters">
+                            <!-- <div class="col-3"></div> -->
+                            <div class="col-6">
+                                <img src="../assets/images/hotel1.jpg" id="largepic" width="500px">
+                            </div>
+                            <div class="col-6">
+                                <img src="../assets/images/hotel1.jpg" class="smallpic" width="155px">
+                                <img src="../assets/images/hotel1.jpg" class="smallpic" width="155px">
+                                <img src="../assets/images/hotel1.jpg" class="smallpic" width="155px">
+                            </div>
+                            <!-- <div class="col-3"></div> -->
+                        </div>
+
+
+                    </div>
+
+                    <div class="container container-bordered hotel-detail-list">
+                        <p>Duration : <span>1 Night</span></p>
+                        <p>Check-in : <span>Nov 5 2019, From 15:00</span></p>
+                        <p>Check-out : <span>Nov 6 2019, Before 12:00</span></p>
+                        <p>Room type: <span>Suite</span></p>
+                        <p class="hotel-detail-accomodations">Accommodations</p>
+                        <p>WIFI : <span>✅</span></p>
+                        <p>Breakfast : <span>✅</span></p>
+                        <p>Car park : <span>❌</span></p>
+                        <p>Water heater: <span>✅</span></p>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <h4 class="container form-title">Your Information</h4>
+                    </div>
+                    <form method="POST" class="container container-bordered" id="hotel-booking-form" action="/hotel/booking/reviewform">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputFirstName">First Name</label>
+                                <input type="text" class="form-control" name="inputFirstName" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputLastName">Last Name</label>
+                                <input type="text" class="form-control" name="inputLastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" name="inputEmail" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPhoneNo">Phone Number</label>
+                            <input type="text" class="form-control" name="inputPhoneNo" placeholder="Phone Number" required>
+                        </div>
+                        <div class="other-form-detail">
+                          <input type="hidden" name="stayDuration" value="1" required>
+                          <input type="hidden" name="checkInDate" value="2019-11-5" required>
+                          <input type="hidden" name="checkOutDate" value="2019-11-6" required>
+                          <input type="hidden" name="roomType" value="Suite" required>
+                          <input type="hidden" name="reservedRoomCount" value="1" required>
+                          <input type="hidden" name="hotelID" value="2" required>
+                          <input type="hidden" name="roomID" value="2" required>
+                          <input type="hidden" name="hotelName" value="Lalahotel" required>
+                          <input type="hidden" name="hotelFullPrice" value="4200" required>
+                          <input type="hidden" name="hotelSalePrice" value="3800" required>
+                        </div>
+                    </form>
+
+                    <div class="row no-gutters">
+                        <h4 class="container">Price Detail</h4>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="container container-bordered price-detail-list">
+                            <h6>Lalahotel</h6>
+                            <p class="price-detail">(1x) Suite Room (1 Night) <span>THB 4200.00</span></p>
+                            <p>Additional Fees <span>FREE</span></p>
+                            <h5 class="price-total">Total <span>THB 4200.00</span></h5>
+                        </div>
+                    </div>
+                    <div class="container">
+                      <button type="submit" form="hotel-booking-form" class="btn btn-primary btn-submit">Review and Payment</button>
+                    </div>
+                    </div>
+                    <script src="../../assets/js/hotel-booking.js"></script>
+                    <%- include('../includes/footer') %>

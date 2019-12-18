@@ -1,64 +1,101 @@
 <%- include('../includes/header') %>
-<%- include('../includes/navbar') %>
+
 <link rel="stylesheet" href="../../assets/stylesheet/style.css">
+
 </head>
 
 <body>
+    <%- include('../includes/navbar') %>
+
     <div class="container-fluid bg-3">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form>
+                <form method="POST" action="/contact/add-new-airline" enctype="multipart/form-data">
                     <h1 class="display-4">Airline Information</h1>
                     <br>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputAirline_ID">Airline ID</label>
-                            <input type="text" class="form-control" placeholder="Your Airline ID">
-                        </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="inputAirlineName">Airline Name</label>
-                            <input type="text" class="form-control" placeholder="Your Airline Name">
+                            <input type="text" class="form-control" placeholder="Airline Name" name="airlineName" required>
                         </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputAirlineNation">Airline Nationality</label>
+                            <input type="text" class="form-control" placeholder="Airline Nationality" name="airlineNationality" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputAirlineEmail">Airline Email</label>
+                          <input type="text" class="form-control" placeholder="Airline Email" name="airlineEmail" required>
+                      </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAirlineAddress">Airline Address</label>
-                        <input type="text" class="form-control" placeholder="Your Airline Addressing">
+                        <input type="text" class="form-control" placeholder="Airline Address" name="airlineAddress" required>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputAirlineNation">Airline Nationality</label>
-                            <input type="text" class="form-control" placeholder="Your Airline Nationality">
+                        <div class="form-group col-md-6">
+                            <label for="inputAirlineTel">Airline Telephone Number</label>
+                            <input type="tel" class="form-control" placeholder="Airline Telephone Number" name="airlineTelNumber" maxlength="10" required>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputAirlineTel">Airline Tel. Number</label>
-                            <input type="tel" class="form-control" placeholder="Your Airline Tel.">
-                        </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="inputAirlineContact">Airline Contact Number</label>
-                            <input type="tel" class="form-control" placeholder="Your Airline Contact">
+                            <input type="tel" class="form-control" placeholder="Airline Contact Number" name="airlineContactNumber" maxlength="10" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAirlineDes">Airline Description</label>
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control" placeholder="Enter description here..." name="airlineDescription" required></textarea>
                         <small id="descriptionInfo" class="form-text text-muted">
                             Description for tell your information, in bussiness term
                         </small>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label for="">Airline Seat Type</label>
+                            <select class="form-control" name="airlineSeatType">
+                                <option value="">---Choose an option---</option>
+                                <optgroup label="F Class">
+                                <option value="First Class">First Class</option>
+                                <option value="First Class Premium">First Class Premium</option>
+                                <option value="First Class Discounted">First Class Discounted</option>
+                                </optgroup>
+                                <optgroup label="C Class">
+                                <option value="Business Class">Business Class</option>
+                                <option value="Business Class Premium">Business Class Premium</option>
+                                <option value="Business Class Discounted">Business Class Discounted</option>
+                                </optgroup>
+                                <optgroup label="E Class">
+                                <option value="Economy Class">Economy Class</option>
+                                <option value="Economy Class Premium">Economy Class Premium</option>
+                                <option value="Economy Class Discounted">Economy Class Discounted</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="">Airline Seat Price</label>
+                          <input type="text" class="form-control" placeholder="Airline Seat Price" name="airlineSeatPrice">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputAirlineDes">Airplane Description</label>
+                        <textarea class="form-control" placeholder="Enter airplane information here..." name="airlinePlaneDes" required></textarea>
+                        <small id="descriptionInfo" class="form-text text-muted">
+                            short description for your airplane information
+                        </small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
                             <label for="inputAirlineProfile">Airline Profile</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="customFile" name="airlineProfile">
+                                <label class="custom-file-label" for="customFile">Choose file...</label>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAirlinePic">Airline Picture</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="customFile" name="airlinePicture">
+                                <label class="custom-file-label" for="customFile">Choose file...</label>
                             </div>
                         </div>
                     </div>
@@ -73,8 +110,8 @@
                         <div class="form-group col-md-6">
                             <label for="inputAirlineLogo">Airline Logo</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="customFile" name="airlineLogo">
+                                <label class="custom-file-label" for="customFile">Choose file...</label>
                             </div>
                         </div>
                     </div>
@@ -84,4 +121,5 @@
             <div class="col-md-3"></div>
         </div>
     </div>
+    <script src="../../assets/js/contact.js"></script>
     <%- include('../includes/footer') %>
