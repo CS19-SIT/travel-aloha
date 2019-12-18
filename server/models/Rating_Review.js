@@ -172,19 +172,18 @@ exports.insertNewHotelReviewPicture = async ({ Hotel_Review_Picture_URL }) => {
 exports.insertNewAirline_Review = async ({
   userId,
   Title_Airline,
+  Type_Of_Airline_Reviewer,
   Text_Airline_Review,
   CabinCrewRating_Airline_Rating,
   Comfort_Airline_Rating,
   Meal_Airline_Rating,
   Entertainment_Airline_Rating,
-  Type_Of_Airline_Reviewer,
   airlineId_fk
 }) => {
   try {
     await db.query(
-      `INSERT INTO Airline_Review(userId,Title_Airline, Text_Airline_Review, CabinCrewRating_Airline_Rating, Comfort_Airline_Rating, Meal_Airline_Rating, Entertainment_Airline_Rating, Type_Of_Airline_Reviewer, airlineId_fk) VALUES(?,?,?,?,?,?,?,?,?)`,
+      `INSERT INTO Airline_Review(Title_Airline, Text_Airline_Review, CabinCrewRating_Airline_Rating, Comfort_Airline_Rating, Meal_Airline_Rating, Entertainment_Airline_Rating, Type_Of_Airline_Reviewer, airlineId_fk, userId) VALUES(?,?,?,?,?,?,?,?,?)`,
       [
-        userId,
         Title_Airline,
         Text_Airline_Review,
         CabinCrewRating_Airline_Rating,
@@ -192,7 +191,8 @@ exports.insertNewAirline_Review = async ({
         Meal_Airline_Rating,
         Entertainment_Airline_Rating,
         Type_Of_Airline_Reviewer,
-        airlineId_fk
+        airlineId_fk,
+        userId
       ]
     );
   } catch (error) {

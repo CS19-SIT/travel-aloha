@@ -51,6 +51,7 @@ exports.getAirline = async (req, res) => {
       //     user: req.user
       //   });
       // }
+      console.log(req.query);
       res.render("review_rating/ReviewAirline", {
         pageTitle: "TravelAloha - Review - Airline",
         user: req.user,
@@ -60,7 +61,7 @@ exports.getAirline = async (req, res) => {
         moment
       });
     } catch (getAirlineError) {
-          // console.log(getHotelError);
+          // console.log(getAirlineError);
       res.status(500).render("errors/500", {
         pageTitle: "TravelAloha - Bad Request",
         user: req.user,
@@ -107,30 +108,31 @@ exports.postAirlineReview = async (req, res) => {
   const {
     userId,
     Title_Airline,
+    Type_Of_Airline_Reviewer,
     Text_Airline_Review,
     CabinCrewRating_Airline_Rating,
     Comfort_Airline_Rating,
     Meal_Airline_Rating,
     Entertainment_Airline_Rating,
-    Type_Of_Airline_Reviewer,
   } = req.body;
   console.log(req.body);
   const airlineId_fk = req.params.id;
   try {
-    await Rating_ReviewModel.insertNewAirline({
+    await Rating_ReviewModel.insertNewAirline_Review({
       userId,
       Title_Airline,
+      Type_Of_Airline_Reviewer,
       Text_Airline_Review,
       CabinCrewRating_Airline_Rating,
       Comfort_Airline_Rating,
       Meal_Airline_Rating,
       Entertainment_Airline_Rating,
-      Type_Of_Airline_Reviewer,
       airlineId_fk
     });
+    console.log(req.body);
     res.redirect(204, "/review/airline/:id");
   } catch (error) {
-    res.sendStatus(404);
+    res.sendStatus(500);
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
