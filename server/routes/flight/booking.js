@@ -8,7 +8,8 @@ router.get("/test", flightBookingController.getTest);
 
 router.post("/info", flightBookingController.postIndex);
 
-router.post("/contact", flightBookingController.getContact);
+router.post("/contact", authMiddleware.isAuthenticated, flightBookingController.getContact);
+// router.post("/contact", flightBookingController.getContact);
 
 router.post("/contact1",flightBookingController.postUpsell);
 
