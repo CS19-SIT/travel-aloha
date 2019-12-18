@@ -38,7 +38,7 @@
       </li>
       <% } else { %>
       <li class="nav-item mr-3">
-        <span class="navbar-text">Welcome, <strong><%= user.username %></strong></span>
+        <span class="navbar-text">Welcome, <a href="/dashboard"><strong><%= user.username %></strong></a></span>  
       </li>
       <li class="nav-item">
         <form class="form-inline" action="/logout" method="POST">
