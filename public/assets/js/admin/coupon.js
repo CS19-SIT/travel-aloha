@@ -168,7 +168,7 @@ $(document).ready(function () {
     }).done(() => {
       alert("Success!");
       location.reload();
-    });
+    }).fail(() => alert("Failed!"));
   });
 
   $("button[name=couponGenerateButton]").click(function (e) {
