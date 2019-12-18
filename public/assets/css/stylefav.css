@@ -2,16 +2,128 @@ body {
     font-family: 'Roboto', sans-serif !important;
 }
 
+.bodyimg {
+    background-image: url('../../assets/images/favhead.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 1920px 1080px;
+    height: 1080px;
+
+}
+
 .headFavTitleHome {
     text-align: center;
     font-size: 5rem;
+    margin-top: 23.5rem;
 
+}
+
+.animehome {
+    -webkit-animation: tracking-in-contract 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    animation: tracking-in-contract 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+@-webkit-keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
 }
 
 .headFavTitle {
     text-align: center;
     font-size: 3rem;
+    margin-top: 2rem;
 
+}
+
+.butdis {
+    border: 1px solid #313131;
+    background: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.9s;
+    position: relative;
+    overflow: hidden;
+}
+
+.butdis1,
+.butdis2,
+.butdis3 {
+    color: #313131;
+}
+
+.butdis1:hover,
+.butdis2:hover,
+.butdis3:hover {
+    color: #ffffff
+}
+
+.butdis::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #313131;
+    z-index: -1;
+    transition: 0.9s;
+}
+
+.butdis1::before,
+.butdis3::before {
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+
+.butdis2::before {
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+}
+
+.butdis1:hover::before,
+.butdis2:hover::before,
+.butdis3:hover::before {
+    height: 180%;
+}
+
+.active {
+    color: #ffffff;
+    background-color: #313131;
+}
+
+.line {
+    border-top: 1px solid #313131;
+    width: 20rem;
+    text-align: center;
 }
 
 .grayHead {
@@ -24,29 +136,32 @@ body {
 
 .card-body {
     background-color: white;
+    min-height: 200px !important;
+
 }
 
-.column {
-   
- 
-  }
+.imgopa:hover {
+    opacity: 0.6;
+}
 
-  /* Float four columns side by side */
+
+
+/* Float four columns side by side */
 .column {
     float: left;
     width: 25%;
-    padding: 0 10px; 
-    width: 33.33%;
+    padding: 0 10px;
     padding-left: 10rem;
-  }
-  
-  /* Remove extra left and right margins, due to padding */
-  .row {margin: 0 -5px;}
-  
-  /* Clear floats after the columns */
-  .row:after {
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+    margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
-  
+}

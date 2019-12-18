@@ -24,7 +24,7 @@ exports.countUsers = async () => {
 
   exports.countPlace = async () => {
     try {
-      const countPlace = await db.query(`select count(departure) as countID from Flight `);
+      const countPlace = await db.query(`select count(departure) as countID from Flight`);
   
       return countPlace[0];
 
