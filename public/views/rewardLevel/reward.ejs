@@ -71,7 +71,9 @@
             </div>
 
             <div class="carousel-item">
+
               <img class="d-block w-100" src="assets/img/rewardLevel/food3.jpg" alt="Third slide">
+
               <div class="carousel-caption d-none d-md-block">
                 <h5>Not only Flight and Hotel Vouchers!</h5>
                 <p>You can also get Food and Entertainment coupons fulfil your days!</p>
@@ -123,6 +125,7 @@
             <!---------Valid----------->
             <h3 id="accCoupon" style="padding-top:30px;">Hotel Coupon</h3>
             <!--Acc Coupon-->
+
             <div class="col-sm-12" style="padding:0px">
 
               <% for(var key of Object.keys(couponsH) ) { %>
@@ -150,7 +153,6 @@
               </div>
               <% };%>
             <!--End Acc Coupon-->
-
             
             <h3 id="flightCoupon" style="padding-top:30px;">Flight Coupon</h3>
 
@@ -179,6 +181,7 @@
             </div>
             <% };%>
             <!--End Flight Coupon-->
+
           </div>
           </div>
 
@@ -189,6 +192,7 @@
             <div class="coupon" id="u">
               <img src="assets/img/rewardLevel/hotelCoupon1.jpg" alt="Avatar"
                 style="-webkit-filter: grayscale(100%);filter: grayscale(100%) ">
+
               <div class="coupon-container" style="background-color:white">
                 <h2 style="color:#cf212a;font-weight: bold">
                   <p>Used Promo Code:<br> <span class="promo"><%= usedCouponH[key].code %></span></p>
@@ -242,15 +246,3 @@
     </script>
 
     <%- include('../includes/footer') %>
-
-    <!--16122019 before present
-        Must have (on web)
-        - searching coupon code on the valid page (button to the coupon section)
-        - redeem coupon
-        - move valid coupon to used coupon
-
-        Must have (in DB)
-        - link to column 'level'
-        - link to avalaible coupon 'coupon group'
-        - link to 'totalSpent' to change the 'level'
-    -->

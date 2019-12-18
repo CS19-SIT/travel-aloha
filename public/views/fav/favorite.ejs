@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.11.4, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
- 
+
   <meta name="description" content="">
 
   <title>Home</title>
@@ -25,92 +25,80 @@
 
 </head>
 <%- include('../includes/navbar') %>
+
 <body>
+  <br><br>
+  <div class="container-fluid" id="myDIV">
+    <button class="butdis butdis1" onclick="FavHol()">Favorite Hotel</button>
 
+  <!-----------------------------active class------------------------------->
+  <script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("butdis");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
 
-
-  <section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1">
-
-
-    <div class="container align-center">
-      <div class="row justify-content-md-center">
-        <div class="mbr-white col-md-10">
-          <h1 class="headFavTitleHome align-center" style="text-shadow: 1px 1px 3px #313131;">Travel Aloha</h1>
-        </div>
-      </div>
-    </div>
-  </section>
+  </script>
+  <!---------------------------------Fav butyon--------------------------------------->
+  <script>
+    function FavHol() {
+      document.getElementById("FavHol").style.display = "block";
+      document.getElementById("Flight").style.display = "none";
+    }
   
-  <section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
-    <div class="" style="background-color: #efefef;">
-      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Hotel</h1>
- 
-      <div class="row" style="padding-bottom: 5%;" >
-        <% for(var i = 0;i <dataH.length;i++) { %>
-        <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
-        <div class="card cardTop" style="width:400px;">
-          <img src="<%= dataH[i].hotelPicture %>" alt="" title="" style="width:100%; height: 70%;">
-          <div class="card-body">
-            <div class="card-box">
-              <h4 class="card-title mbr-fonts-style display-6" style="text-shadow: 1px 1px 2px #313131;"><%= dataH[i].hotelName %></h4>
 
-              <div class="col-lg-10">
-                <% if(dataH[i].hotelAddress != null) {%>
-                <h6 class="align-left display-6"><img
-                    src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= dataH[i].hotelAddress %>
-                </h6>
-                <% }else{%>
-                <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;nowhere
-                </h6>
-                <% }%>
+
+  </script>
+  <!---------------------------------------------------------------------------------->
+
+
+  
+      <hr class="line">
+      <section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
+        <div class="" id="FavHol">
+          <h1 class="headFavTitle align-center animehome" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;">
+            Favorite Hotel
+          </h1>
+          <hr class="line">
+    
+          <div class="row" style="padding-bottom: 5%;">
+            <% for(var i = 0;i <dataH.length;i++) { %>
+              <% if( dataH[i].favUserID == user.user_id) {%>
+            <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+              <div class="card cardTop" style="width:400px;">
+                <img class="imgopa" src="/assets/uploads/contact/pictures/<%= dataH[i].hotelPicture %>" alt="" title=""
+                  style="width:100%; height: 350px;">
+                <div class="card-body">
+                  <div class="card-box">
+                    <h5 class="card-title mbr-fonts-style display-6" style="text-shadow: 1px 1px 2px #313131;">
+                      <%= dataH[i].hotelName %></h5>
+                    <hr style="border-top: 1px solid #313131;">
+                    <div class="col-lg-12">
+                      <% if(dataH[i].hotelAddress != null) {%>
+                      <h6 class="align-left display-6"><img
+                          src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= dataH[i].hotelAddress %>
+                      </h6>
+                      <% }else{%>
+                      <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;nowhere
+                      </h6>
+                      <% }%>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
             </div>
-
+            <% }%>
+            <% }%>
+    
           </div>
+    
         </div>
-       </div>
-      <% }%>
-     </div>
-  
-    </div>
-  </section>
-
-  <section class="testimonials4 cid-rGM2ZCUxVW" id="testimonials4-9">
-    <div class=" container">
-      <h1 class="headFavTitle align-center" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;"> Favorite Flight</h1>
-      <div class="row" style="padding-bottom: 5%;" >
-        <% for(var i = 0;i <dataF.length;i++) { %>
-
-          <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
-      <div class="card cardTop" style="width:400px">
-        <img src="../../assets/images/flig.jpg" alt="" title="" style="width:100%">
-        <div class="card-body" style="background-color: #efefef;text-align: center;">
-          
-          <div class="card-box">
-
-            <h4 class="card-title mbr-fonts-style display-6"><%= dataF[i].airlineName %></h4>
-
-            <div class="col-lg-10">
-              <% if(dataF[i].airlineNationality != null) {%>
-              <h6 class="align-left display-6"><img src="../../assets/images/airline.png">&nbsp;<%= dataF[i].airlineNationality  %>
-
-              </h6>
-              <% }else{%>
-
-              <h6 style="text-align: left;margin-left: 2.8rem;"></h6>
-
-              <% }%>
-
-
-            </div>
-          </div>
-
-        </div>
-      </div>
+      </section>
+    
       
-      </div>
-      <% } %>
-    </div>
-    </div>
-  </section>

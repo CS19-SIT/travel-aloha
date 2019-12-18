@@ -1,6 +1,11 @@
+<!-- 
+    OPTIONAL
+    [] Send Email
+ -->
+
 <%- include('../includes/header') %>
 
-<link href="../../assets/css/booking_style.css" rel="stylesheet">
+<link href="/assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <%- include('../includes/navbar') %>
 </head>
@@ -9,6 +14,8 @@
         margin-top: 20px;
     }
 </style>
+
+
 <body>
     <div class="container my-3">
         <div class="row">
@@ -28,9 +35,18 @@
                                 Your booking reference : <%=book_ref%>
                             </div>
                             <div class="col-md-5">
-                                <label for="email">send E-Ticket to email</label>
-                                <input required type="email" class="form-control" id="email" aria-describedby="email"
-                                    placeholder="contact email" value ="<%=contact['email']%>">
+                                <div class="row">
+                                    <label for="email">Send E-Ticket to email</label>
+                                    <div class="col-md-9 px-0">
+                                        <input required type="email" class="form-control" id="email"
+                                            aria-describedby="email" placeholder="contact email"
+                                            value="<%=contact['email']%>">
+                                    </div>
+                                    <div class="col-md-2 ">
+                                        <div class="btn btn-success">Send</div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -61,8 +77,11 @@
                         </div>
 
                         <div class="row mb-2">
-                            <div class="col-md-1">
-                                <img src="../../assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo">
+
+                            <div class="col-md-1 text-center">
+                                <img src="../../assets/images/<%=info[i]['airline_logo']%>" alt="logo"
+                                    class="airline-logo">
+
                             </div>
                             <div id = "flightNumber"class="col-md-11 pl-2">
                                 <span><%= info[i]['Flight_number'] %>
