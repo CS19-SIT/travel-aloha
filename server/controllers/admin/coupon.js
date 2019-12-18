@@ -70,6 +70,11 @@ exports.getIndex = async (req, res, next) => {
 
     let coupons = await Coupon.searchCoupons(searchParam);
 
+    if (coupons.coupons.length === 0) {
+      next();
+      return;
+    }
+
     res.render("admin/admin-coupon", {
       pageTitle: "TravelAloha - Admin - Coupon Management",
       user: req.user,
