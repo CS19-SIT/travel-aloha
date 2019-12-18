@@ -66,4 +66,19 @@ const db = require("../../../db/db")
      } 
   };
 
+  exports.deleteAFavorite = async (req, res) => {
+    const favHotelID = req.body.favHotelID.toString();
+    const favUserID = req.body.favUserID.toString();
  
+    try{
+     
+      await Fav.deleteFavorites({
+        favHotelID: favHotelID,
+        favUserID:favUserID
+      });
+      res.redirect("/dashboard/favorite")
+    }
+    catch (error) {
+      console.error(error);
+     } 
+  };
