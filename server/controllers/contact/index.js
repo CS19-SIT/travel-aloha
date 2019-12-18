@@ -249,7 +249,7 @@ exports.getAirlineDetail = async (req, res) => {
   try {
     const result = await db.query(`SELECT * FROM airline WHERE airline_Id = '${airline_Id}' `);
     const result2 = await db.query(`SELECT * FROM airline_contact_price WHERE airline_Id = '${airline_Id}' `);
-    const result3 = await db.query(`SELECT * FROM airline_contact_picture WHERE airline_Id = '${hotelId}' `);
+    const result3 = await db.query(`SELECT * FROM airline_contact_picture WHERE airline_Id = '${airline_Id}' `);
     const data = JSON.stringify(result[0]);
     const data2 = JSON.stringify(result2[0]);
     const data3 = JSON.stringify(result3[0]);
