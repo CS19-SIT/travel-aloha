@@ -11,74 +11,140 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form method="POST" action="/contact/add-new-airline" enctype="multipart/form-data">
+                <form id="addNewAirline" method="POST" action="/contact/add-new-airline" enctype="multipart/form-data">
                     <h1 class="display-4">Airline Information</h1>
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputAirlineName">Airline Name</label>
-                            <input type="text" class="form-control" placeholder="Airline Name" name="airlineName" required>
+                            <input type="text" class="form-control" placeholder="Airline Name" name="airlineName"
+                                required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputAirlineNation">Airline Nationality</label>
-                            <input type="text" class="form-control" placeholder="Airline Nationality" name="airlineNationality" required>
+                            <input type="text" class="form-control" placeholder="Airline Nationality"
+                                name="airlineNationality" required>
                         </div>
                         <div class="form-group col-md-4">
-                          <label for="inputAirlineEmail">Airline Email</label>
-                          <input type="text" class="form-control" placeholder="Airline Email" name="airlineEmail" required>
-                      </div>
+                            <label for="inputAirlineEmail">Airline Email</label>
+                            <input type="text" class="form-control" placeholder="Airline Email" name="airlineEmail"
+                                required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAirlineAddress">Airline Address</label>
-                        <input type="text" class="form-control" placeholder="Airline Address" name="airlineAddress" required>
+                        <input type="text" class="form-control" placeholder="Airline Address" name="airlineAddress"
+                            required>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputAirlineTel">Airline Telephone Number</label>
-                            <input type="tel" class="form-control" placeholder="Airline Telephone Number" name="airlineTelNumber" maxlength="10" required>
+                            <input type="tel" class="form-control" placeholder="Airline Telephone Number"
+                                name="airlineTelNumber" maxlength="10" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAirlineContact">Airline Contact Number</label>
-                            <input type="tel" class="form-control" placeholder="Airline Contact Number" name="airlineContactNumber" maxlength="10" required>
+                            <input type="tel" class="form-control" placeholder="Airline Contact Number"
+                                name="airlineContactNumber" maxlength="10" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAirlineDes">Airline Description</label>
-                        <textarea class="form-control" placeholder="Enter description here..." name="airlineDescription" required></textarea>
+                        <textarea class="form-control" placeholder="Enter description here..." name="airlineDescription"
+                            required></textarea>
                         <small id="descriptionInfo" class="form-text text-muted">
                             Description for tell your information, in bussiness term
                         </small>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                    <div class="form-row d-flex align-items-end" id="field1" style="display: none;">
+                        <div class="form-group col-md-3">
                             <label for="">Airline Seat Type</label>
-                            <select class="form-control" name="airlineSeatType">
-                                <option value="">---Choose an option---</option>
-                                <optgroup label="F Class">
-                                <option value="First Class">First Class</option>
-                                <option value="First Class Premium">First Class Premium</option>
-                                <option value="First Class Discounted">First Class Discounted</option>
-                                </optgroup>
-                                <optgroup label="C Class">
-                                <option value="Business Class">Business Class</option>
-                                <option value="Business Class Premium">Business Class Premium</option>
-                                <option value="Business Class Discounted">Business Class Discounted</option>
-                                </optgroup>
-                                <optgroup label="E Class">
-                                <option value="Economy Class">Economy Class</option>
-                                <option value="Economy Class Premium">Economy Class Premium</option>
-                                <option value="Economy Class Discounted">Economy Class Discounted</option>
-                                </optgroup>
+                            <select class="form-control" name="airlineSeatType1">
+                                <option value="0">---Choose an option---</option>
+                                <option value="1">First Class</option>
+                                <option value="2">Business Class</option>
+                                <option value="3">Economy Class</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
-                          <label for="">Airline Seat Price</label>
-                          <input type="text" class="form-control" placeholder="Airline Seat Price" name="airlineSeatPrice">
+                        <div class="form-group col-md-3">
+                            <label for="">Airline Seat Min Price</label>
+                            <input type="text" class="form-control" placeholder="Airline Seat Min Price"
+                                name="airlineSeatMinPrice1">
                         </div>
-                      </div>
-                      <div class="form-group">
+                        <div class="form-group col-md-3">
+                            <label for="">Airline Seat Max Price</label>
+                            <input type="text" class="form-control" placeholder="Airline Seat Max Price"
+                                name="airlineSeatMaxPrice1">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="">Airline Seat Picture</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile1"
+                                    name="airlineSeatTypePicture1">
+                                <label class="custom-file-label" for="customFile">Choose file...</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" id="field2" style="display: none;">
+                        <div class="form-group col-md-3">
+                            <select class="form-control" name="airlineSeatType2">
+                                <option value="0">---Choose an option---</option>
+                                <option value="1">First Class</option>
+                                <option value="2">Business Class</option>
+                                <option value="3">Economy Class</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Airline Seat Min Price"
+                                name="airlineSeatMinPrice2">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Airline Seat Max Price"
+                                name="airlineSeatMaxPrice2">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile2"
+                                    name="airlineSeatTypePicture2">
+                                <label class="custom-file-label" for="customFile">Choose file...</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" id="field3" style="display: none;">
+                        <div class="form-group col-md-3">
+                            <select class="form-control" name="airlineSeatType3">
+                                <option value="0">---Choose an option---</option>
+                                <option value="1">First Class</option>
+                                <option value="2">Business Class</option>
+                                <option value="3">Economy Class</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Airline Seat Min Price"
+                                name="airlineSeatMinPrice3">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" placeholder="Airline Seat Max Price"
+                                name="airlineSeatMaxPrice3">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile1"
+                                    name="airlineSeatTypePicture1">
+                                <label class="custom-file-label" for="customFile">Choose file...</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <label onclick="add()" class="btn btn-info">ADD &plus;</label>
+                        <label onclick="remove()" class="btn btn-danger">REMOVE&minus;</label>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
                         <label for="inputAirlineDes">Airplane Description</label>
-                        <textarea class="form-control" placeholder="Enter airplane information here..." name="airlinePlaneDes" required></textarea>
+                        <textarea class="form-control" placeholder="Enter airplane information here..."
+                            name="airlinePlaneDes" required></textarea>
                         <small id="descriptionInfo" class="form-text text-muted">
                             short description for your airplane information
                         </small>
@@ -99,27 +165,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
-                            onclick="optional()">
-                        <label class="form-check-label" for="defaultCheck1">
-                            If your hotel have logo click here
-                        </label>
-                    </div>
-                    <div class="form-row" id="hiddenLogo">
-                        <div class="form-group col-md-6">
-                            <label for="inputAirlineLogo">Airline Logo</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile" name="airlineLogo">
-                                <label class="custom-file-label" for="customFile">Choose file...</label>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sent Your Information</button>
+                    <label class="btn btn-primary d-flex justify-content-center" onclick="submitForm()">Sent Your
+                        Information</label>
                 </form>
             </div>
             <div class="col-md-3"></div>
         </div>
     </div>
-    <script src="../../assets/js/contact.js"></script>
+    <script src="../../assets/js/contact1Airline.js"></script>
     <%- include('../includes/footer') %>
