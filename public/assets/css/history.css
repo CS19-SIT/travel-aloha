@@ -64,14 +64,6 @@ hr.hrColor{
 
 
 /*Right side*/
-div.filter{
-    margin-top: 10px;
-    border-style: solid;
-    border-width: 1px;
-    padding: 20px;
-    height: 110px;
-    border-radius: 10px;
-}
 
 .ta-user-info{
     background-color: #DBEBFF;
@@ -98,23 +90,6 @@ div.filter{
 .history-list{
     margin-top: 30px;
 }
-.history-item{
-    background: #DBEBFF;
-    padding: 10px;
-    padding-left: 0px;
-
-    padding-right: 0px;
-    border-style: solid;
-    border-width: 0px;
-    border-left-width: 7px ;
-    border-color: #216bc4;
-    margin: 15px;
-    margin-left: 0px;
-    margin-right: 0px;
-
-    height: 85px;
-}
-
 .headerInfo{
     height: 65px;
 }
@@ -129,13 +104,17 @@ div.filter{
     height: inherit;
 }
 
-.headerInfo .toDetail{
-    width: 15%;
+.toDetail{
+    width: 100%;
     float: right;
     text-align: center;
-    padding: 0px;
-    padding-top: 15px;
-    height: inherit;
+    padding: 5px;
+    border-radius: 0px;
+    background-color: #388BF2;
+}
+
+.toDetail.space{
+    margin-top: 20px;
 }
 
 .headerInfo .icon{
@@ -163,7 +142,7 @@ div.filter{
 
 /*History status text*/
 .status.paid{
-    color: #109602 ;
+    color: #109602;
 }
 .status.done{
     color: #216bc4;
@@ -172,43 +151,42 @@ div.filter{
     color: #db000f;
 }
 
-/*Image*/
-img.hotel{
-    width: 30px;
-    height: 30px;
-}
-
-img.flight{
-    width: 35px;
-    height: 35px;
-}
-
 /*Filter*/
-.filter .filter-check{
+
+div.itemSide {
+    width: 50%;
     float: left;
-    width: 35%;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
-.filter .filter-type{
-    border-left: #25282B, 1px, solid ;
-    float: left;
-    width: 20%;
-}
-.filter .filter-button{
+div.flightSide{
+    width: 50%;
     float: right;
-    width: 15%;
-    text-align: center;
-    padding-top: 20px;
+    border-style: 1px, solid;
 }
 
-.pagerdiv{
-    margin-top: 30px;
+tr.tableItem{
+    padding: 10px;
+    border: 1px;
+    border-color: #25282B;
+    border-style: solid;
+    font-size: 90%;
 }
 
-.pagerdiv .older{
-    margin-right: 5px;
+.tableItem td{
+    padding-left: 5px;
+    font-weight: lighter;
 }
 
-.pagerdiv .newer{
-    margin-left: 5px;
+.table.morePadding{
+    padding: 10px;
+}
+
+.tableRow-dark{
+    background-color: #DBEBFF;
+}
+
+.tableRow-light{
+    background-color: #BEC2CB;
 }
