@@ -1,26 +1,34 @@
+<!-- 
+    TODO
+    [] Show Upsell items' prices
+ -->
+
 <%- include('../includes/header') %>
 
-<link href="../../assets/css/booking_style.css" rel="stylesheet">
+<link href="/assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"/>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" />
 
 <%- include('../includes/navbar') %>
 </head>
 <style>
-    .accordion, #summary, .sub-bt{
+    .accordion,
+    #summary,
+    .sub-bt {
         margin-top: 20px;
     }
 </style>
+
 <body>
 
     <div class="container my-3">
         <div class="row">
             <div class="col-md-8">
-                <form method = "POST" action = "payment">
+                <form method="POST" action="payment">
 
                     <div class="accordion" id="accordionExample">
                         <%for (let i = 0; i < info.length; i++) { %>
@@ -28,100 +36,139 @@
                             <div class="card-header" id="heading<%=i%>">
                                 <h2 class="mb-0">
                                     <%if(i==0){%>
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>">
-                                    <%}else{%>
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>">
-                                    <%}%>
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapse<%=i%>" aria-expanded="true"
+                                        aria-controls="collapse<%=i%>">
+                                        <%}else{%>
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapse<%=i%>" aria-expanded="false"
+                                            aria-controls="collapse<%=i%>">
+                                            <%}%>
                                         <div>
-                                            <i class="fa fa-plane">&nbsp;</i><%=info[i]['dep_city']%>&nbsp;<span class="airport-code"><%=info[i]['Departure']%></span>
+                                            <i class="fa fa-plane">&nbsp;</i><%=info[i]['dep_city']%>&nbsp;<span
+                                                class="airport-code"><%=info[i]['Departure']%></span>
                                             <i class="fa fa-long-arrow-right"></i>
-                                            <%=info[i]['des_city']%>&nbsp;<span class="airport-code"><%=info[i]['Destination']%></span>
-                                        </div>                        
-                                    </button>
-                                </h2>
+                                            <%=info[i]['des_city']%>&nbsp;<span
+                                                class="airport-code"><%=info[i]['Destination']%></span>
                             </div>
-                            <%if(i==0){%>
-                            <div id="collapse<%=i%>" class="collapse show" aria-labelledby="heading<%=i%>" data-parent="#accordionExample">
+                            </button>
+                            </h2>
+                        </div>
+                        <%if(i==0){%>
+                        <div id="collapse<%=i%>" class="collapse show" aria-labelledby="heading<%=i%>"
+                            data-parent="#accordionExample">
                             <%}else{%>
-                            <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#accordionExample">
-                            <%}%>
+                            <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>"
+                                data-parent="#accordionExample">
+                                <%}%>
                                 <div class="card-body">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <%for (let j = 0; j < passagerInfo.length; j++) { %>
-                                        <%if(j==0){%>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="passagerUpsell_tab<%=i%>_<%=j%>" data-toggle="tab" href="#passagerUpsell<%=i%>_<%=j%>" role="tab" aria-controls="passagerUpsell<%=i%>_<%=j%>" aria-selected="true">
-                                                <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%>
-                                            </a>
-                                        </li>
-                                        <%}else{%>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="passagerUpsell_tab<%=i%>_<%=j%>" data-toggle="tab" href="#passagerUpsell<%=i%>_<%=j%>" role="tab" aria-controls="passagerUpsell<%=i%>_<%=j%>" aria-selected="false">
-                                                <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%>
-                                            </a>
-                                        </li>
-                                        <%}%>
+                                <%if(j==0){%>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="passagerUpsell_tab<%=i%>_<%=j%>" data-toggle="tab"
+                                        href="#passagerUpsell<%=i%>_<%=j%>" role="tab"
+                                        aria-controls="passagerUpsell<%=i%>_<%=j%>" aria-selected="true">
+                                        <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%>
+                                    </a>
+                                </li>
+                                <%}else{%>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="passagerUpsell_tab<%=i%>_<%=j%>" data-toggle="tab"
+                                        href="#passagerUpsell<%=i%>_<%=j%>" role="tab"
+                                        aria-controls="passagerUpsell<%=i%>_<%=j%>" aria-selected="false">
+                                        <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%>
+                                    </a>
+                                </li>
+                                <%}%>
                                     <%}%>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
                                     <%for(let j = 0; j < passagerInfo.length; j++) { %>
-                                        <%if(j==0){%>
-                                        <div class="tab-pane fade show active" id="passagerUpsell<%=i%>_<%=j%>" role="tabpanel" aria-labelledby="passagerUpsell_tab<%=i%>_<%=j%>">
-                                            <div class="md-3" onclick="recordUpsell()">
-                                                <h5 class="card-title">Passenger <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%></h5>
-                                        <%}else{%>
-                                        <div class="tab-pane fade" id="passagerUpsell<%=i%>_<%=j%>" role="tabpanel" aria-labelledby="passagerUpsell_tab<%=i%>_<%=j%>">
-                                            <div class="md-3">
-                                                <h5 class="card-title">Passenger <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%></h5>
-                                        <%}%>
+                                    <%if(j==0){%>
+                                    <div class="tab-pane fade show active" id="passagerUpsell<%=i%>_<%=j%>"
+                                        role="tabpanel" aria-labelledby="passagerUpsell_tab<%=i%>_<%=j%>">
+                                        <div class="my-2" onclick="recordUpsell()">
+                                            <h5 class="card-title font-weight-bolder">Passenger
+                                                <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%></h5>
+                                            <%}else{%>
+                                            <div class="tab-pane fade" id="passagerUpsell<%=i%>_<%=j%>" role="tabpanel"
+                                                aria-labelledby="passagerUpsell_tab<%=i%>_<%=j%>">
+                                                <div class="my-2">
+                                                    <h5 class="card-title font-weight-bolder">Passenger
+                                                        <%=passagerInfo[j]['fname']%> <%=passagerInfo[j]['lname']%></h5>
+                                                    <%}%>
                                             </div>
                                             <div class="row">
-                                            <div class="mt-4 col-md-6">
+                                            <div class="col-md-6">
                                                 <h5>Additional Services</h5>
-                                                <%for(let k = 0; k < upsell[j].length; k++) { %>
-                                                <div class="form-check">
-                                                    <input class="form-check-input upsellCheckbox" type="checkbox" id="upsell_<%=i%>-<%=j%>-<%=k%>" value="<%=upsell[j][k]['price']%>" onclick="clickUpsell('upsell_<%=i%>-<%=j%>-<%=k%>')">
-                                                    <label class="form-check-label" for="upsell_<%=i%>-<%=j%>-<%=k%>"><%=upsell[j][k]['product']%></label>
-                                                </div>
-                                                <%}%>
+                                                <%for(let k = 0; k < upsell[i].length; k++) { %>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="form-check" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="<%=upsell[i][k]['product_detail']%>">
+                                                                <input class="form-check-input upsellCheckbox"
+                                                                    type="checkbox" id="upsell_<%=i%>-<%=j%>-<%=k%>"
+                                                                    value="<%=upsell[i][k]['price']%>"
+                                                                    onclick="clickUpsell('upsell_<%=i%>-<%=j%>-<%=k%>')">
+                                                                <label class="form-check-label"
+                                                                    for="upsell_<%=i%>-<%=j%>-<%=k%>"><%=upsell[i][k]['product']%></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 text-right airport-code">
+                                                            <%=upsell[i][k]['price']%>&#3647</div>
+                                                    </div>
+
+                                                    <%}%>
                                             </div>
                                             <div class="mt-4 col-md-6">
                                                 seat: <%=reserveSeat[i][j]['seat']%>
-                                            </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    <%}%>
+                                        <%}%>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <%}%>
-                    </div>
-                    <input type="hidden" id="PassagerInfo" name="PassagerInfo" value = "<%=JSON.stringify(passagerInfo)%>">
-                    <input type="hidden" id="reserveSeat" name="reserveSeat" value = "<%=JSON.stringify(reserveSeat)%>">
-                    <input type="hidden" id="upsellData" name="upsellData">
-                    <input type="hidden" id="upsell" name="upsell"value = "<%=JSON.stringify(upsell)%>">
-                    <input type="hidden" id="totalpay" name="totalpay" value ="<%=total[2]%>">
-                    <input type="hidden" id="contact" name="contact" value="<%=contact%>">
-                    <input type="hidden" id="sendInfo" name="sendInfo" value="<%=JSON.stringify(info)%>">
-                    <input type="hidden" id="passager" name="passager" value="<%=passager%>">
-                    <input type="hidden" id="seatClass" name="seatClass" value="<%=seatClass%>">
+                                    </div>
+                                    <input type="hidden" id="PassagerInfo" name="PassagerInfo"
+                                        value="<%=JSON.stringify(passagerInfo)%>">
+                                    <input type="hidden" id="reserveSeat" name="reserveSeat"
+                                        value="<%=JSON.stringify(reserveSeat)%>">
+                                    <input type="hidden" id="upsellData" name="upsellData">
+                                    <input type="hidden" id="upsell" name="upsell" value="<%=JSON.stringify(upsell)%>">
+                                    <input type="hidden" id="totalpay" name="totalpay" value="<%=total[2]%>">
+                                    <input type="hidden" id="contact" name="contact" value="<%=contact%>">
+                                    <input type="hidden" id="sendInfo" name="sendInfo"
+                                        value="<%=JSON.stringify(info)%>">
+                                    <input type="hidden" id="passager" name="passager" value="<%=passager%>">
+                                    <input type="hidden" id="seatClass" name="seatClass" value="<%=seatClass%>">
 
-                    <div class="row sub-bt">
-                        <div class="col-md-6 col-sm-12">
-                            <button type="submit" class="btn btn-info book" onclick="recordUpsell()">Submit</button>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <button type="" class="btn btn-success book" >Book Grab Ride</button>
-                        </div>
-                    </div>        
+                                    <div class="row sub-bt">
+                                        <div class="col-md-6 col-sm-12">
+                                            <button type="submit" class="btn btn-info book"
+                                                onclick="recordUpsell()">Submit</button>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <button type="" class="btn btn-success book">Book Grab Ride</button>
+                                        </div>
+                                    </div>
                 </form>
             </div>
             <%- include('./summary') %>
         </div>
     </div>
     <script>
-        var price = [<%=p%>];
+        
+        // DO NOT AUTO FORMAT THE FOLLOWING LINE. VERY DANGEROUS. EVERYTHING WILL BE BROKEN IF ITS CHANGED
+        //IT SHOULD LOOK LIKE THIS : var price = [ <%=p%> ];
+        var price = [ <%=p%> ];
+        //DO NOT AUTO FORMAT THE LINE ABOVE. VERY DANGEROUS
+        //PLEASE PROCEED
+
         function clickUpsell(item) {
             console.log(item);
             var product = document.getElementById(item);
@@ -129,77 +176,78 @@
             var path = tmp[1].split("-");
             console.log(path);
             // price = document.getElementById("fee"+path[0]);
-            if(product.checked){
-                price[path[0]] = parseFloat(price[path[0]])+parseFloat(product.value);
+            if (product.checked) {
+                price[path[0]] = parseFloat(price[path[0]]) + parseFloat(product.value);
+            } else {
+                price[path[0]] = parseFloat(price[path[0]]) - parseFloat(product.value);
             }
-            else{
-                price[path[0]] = parseFloat(price[path[0]])-parseFloat(product.value);
-            }
-            document.getElementById("fee"+path[0]).value = price[path[0]];
-            document.getElementById("fee"+path[0]).innerHTML = getStringPrice(price[path[0]])+" &#3647;";
+            document.getElementById("fee" + path[0]).value = price[path[0]];
+            document.getElementById("fee" + path[0]).innerHTML = getStringPrice(price[path[0]]) + " &#3647;";
 
             sum = getSum(price);
-            let total = [ sum,
-              (sum*0.07).toFixed(0),
-              (sum*1.07).toFixed(0)
+            let total = [sum,
+                (sum * 0.07).toFixed(0),
+                (sum * 1.07).toFixed(0)
             ]
 
             document.getElementById("sum0").value = total[0];
-            document.getElementById("sum0").innerHTML = getStringPrice(total[0])+" &#3647;";
+            document.getElementById("sum0").innerHTML = getStringPrice(total[0]) + " &#3647;";
 
             document.getElementById("sum1").value = total[1];
-            document.getElementById("sum1").innerHTML = getStringPrice(total[1])+" &#3647;";
+            document.getElementById("sum1").innerHTML = getStringPrice(total[1]) + " &#3647;";
 
             document.getElementById("sum2").value = total[2];
-            document.getElementById("sum2").innerHTML = getStringPrice(total[2])+" &#3647;";
+            document.getElementById("sum2").innerHTML = getStringPrice(total[2]) + " &#3647;";
 
             document.getElementById("totalpay").value = total[2];
             console.log(total[2]);
         };
 
-        function getSum (seatPrice){
-            let sum=0;
-            for(var i=0 ; i<seatPrice.length ; i++)
-            {
-                sum+=parseFloat(seatPrice[i]);
+        function getSum(seatPrice) {
+            let sum = 0;
+            for (var i = 0; i < seatPrice.length; i++) {
+                sum += parseFloat(seatPrice[i]);
             }
-            return sum;   
+            return sum;
         };
 
 
-        function getStringPrice (seatPrice){
-            var j= Math.floor(seatPrice);
+        function getStringPrice(seatPrice) {
+            var j = Math.floor(seatPrice);
             let output = "";
-            while(j>999){
-                if(j%1000==0){
-                    output = ","+ "000" + output;
-                }else if(j%1000<=99){
-                    output = ",0"+ j%1000 + output;
-                }else if(j%1000<=9){
-                    output = ",00"+ j%1000 + output;
+            while (j > 999) {
+                if (j % 1000 == 0) {
+                    output = "," + "000" + output;
+                } else if (j % 1000 <= 99) {
+                    output = ",0" + j % 1000 + output;
+                } else if (j % 1000 <= 9) {
+                    output = ",00" + j % 1000 + output;
+                } else {
+                    output = "," + j % 1000 + output;
                 }
-                else{
-                    output = ","+ j%1000 + output;
-                }
-                j = Math.floor(j/1000);
+                j = Math.floor(j / 1000);
             }
-            output = j+output;
+            output = j + output;
             return output;
         };
-        function recordUpsell(){
+
+        function recordUpsell() {
             var lis = []
-            Array.prototype.forEach.call(document.getElementsByClassName('upsellCheckbox'), function(item) {
-                if (item.checked)
-                {
+            Array.prototype.forEach.call(document.getElementsByClassName('upsellCheckbox'), function (item) {
+                if (item.checked) {
                     lis.push(item.id)
                     console.log(item.id);
-                }       
+                }
             })
             console.log(lis);
             const upsellData = JSON.stringify(lis);
             document.getElementById("upsellData").value = upsellData;
-            
+
             // document.getElementById("totalpay").value = total[2];
         }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
     </script>
     <%- include('../includes/footer') %>

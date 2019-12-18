@@ -1,4 +1,6 @@
 const Fav = require("../../../models/favorite")
+const multer = require("../../../utils/multer-config");
+const db = require("../../../db/db")
 // exports.getIndex = (req, res) =>
 //   res.render("fav/favorite", {
 //     pageTitle: "TravelAloha - Dashboard - Favorite",
@@ -11,7 +13,7 @@ const Fav = require("../../../models/favorite")
     try {
       let dataH = await Fav.getAllHotel();
       let dataF = await Fav.getAllFlight();
-    
+      
   
       res.render("fav/favorite", {
         pageTitle: "TravelAloha",
@@ -24,5 +26,41 @@ const Fav = require("../../../models/favorite")
       res.sendStatus(404);
     }
   };
- 
+
+
   
+  
+  exports.savedFavorite = async (req, res) => {
+    const favHotelID = req.body.favHotelID.toString();
+    const favUserID =  (req.user ? req.user.user_id : null);
+  
+    try {
+        
+        await Fav.savedFavorites({
+         favHotelID : favHotelID,
+         favUserID : favUserID
+        });
+  res.redirect("/hotel");
+       
+      }
+    
+     catch (error) {
+     console.error(error);
+    } 
+  };
+  exports.deleteFavorite = async (req, res) => {
+    const favHotelID = req.body.favHotelID.toString();
+    const favUserID = req.body.favUserID.toString();
+ 
+    try{
+     
+      await Fav.deleteFavorites({
+        favHotelID: favHotelID,
+        favUserID:favUserID
+      });
+      res.redirect("/hotel")
+    }
+    catch (error) {
+      console.error(error);
+     } 
+  };

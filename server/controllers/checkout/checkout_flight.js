@@ -40,7 +40,7 @@ exports.postIndex = async (req, res) => {
             .create({
                 name: req.user.username,
                 email: "sakdipat3536@gmail.com",
-                address: req.user.address,
+                address: req.body.address,
                 source: req.body.stripeToken
             })
             .then(customer =>
@@ -79,10 +79,10 @@ exports.postIndex = async (req, res) => {
                                 "card"
                             ]),
 
-                        await db.query("INSERT INTO FlightTransaction VALUES(? , ? , ? , ? , ? ,? ,? ,? ,? ,? )",
+                        await db.query("INSERT INTO FlightTransaction VALUES(? , ? , ? , ? , ? , ? ,? ,? ,? ,? ,? )",
                             [
+                                result2.customer_name,
                                 result2.customer,
-                                result2.payment_intent,
                                 result2.charge,
                                 result2.number,
                                 null,
@@ -90,7 +90,8 @@ exports.postIndex = async (req, res) => {
                                 result2.total,
                                 result2.currency,
                                 null,
-                                ts
+                                ts,
+                                result2.payment_intent,
                             ]),
 
                         await db.query("INSERT INTO TransactionStatus_Code VALUES(?, ?)",

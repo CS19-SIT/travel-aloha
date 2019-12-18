@@ -130,7 +130,9 @@
                             <%}%>   
                         </td>
                         <td style="min-width: 150px;">
-                            <a href="/admin/user/edit/<%= data[i].user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <% if (isAdmin) { %>
+                                <a href="/admin/user/edit/<%= data[i].user_id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <% } %>
                             <a href="/admin/user/detail/<%= data[i].user_id %>" class="btn btn-sm btn-primary" >More Info</a> 
                         </td>
                     </tr>

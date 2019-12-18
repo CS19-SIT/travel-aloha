@@ -1,6 +1,10 @@
+<!-- 
+    TODO
+    [] Integrate with favorite page
+ -->
 <%- include('../includes/header') %>
 
-<link href="../../assets/css/booking_style.css" rel="stylesheet">
+<link href="/assets/css/booking_style.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <%- include('../includes/navbar') %>
 </head>
@@ -44,8 +48,8 @@
                         </div>
 
                         <div class="row mb-2">
-                            <div class="col-md-1">
-                                <img src="../../assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo">
+                            <div class="col-md-1 text-center pr-0">
+                                <img src="/assets/images/<%=info[i]['airline_logo']%>" alt="logo" class="airline-logo" style="width: 100%; height: 100%;">
                             </div>
                             <div id = "flightNumber"class="col-md-11 pl-2">
                                 <span><%= info[i]['Flight_number'] %>
@@ -89,5 +93,4 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-
     <%- include('../includes/footer') %>
