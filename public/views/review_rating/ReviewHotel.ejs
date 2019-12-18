@@ -1,9 +1,11 @@
 <%- include('../includes/header') %>
 <link rel="stylesheet" href="../../assets/css/review.css">
 <script src="https://kit.fontawesome.com/400150cc58.js" crossorigin="anonymous"></script>
-</head>
 
 <body>
+    <script>
+    
+        </script>
     <%- include('../includes/navbar') %>
     <div class="container-fluid px-0 py-5 mx-auto">
         <div class="row justify-content-center mx-0 mx-md-auto">
@@ -18,9 +20,11 @@
                                 <div class="white-tab col-xs-2 col-md-2 divcircle">
                                     <div class="circlescore">
                                         <div class="circlescorein">
-
+                                             <spen class="AVGsum"></spen>
                                         </div>
                                     </div>
+                                    <p>
+                                    </p>
                                     <div class="textscore">
                                         Fantastic
                                     </div>
@@ -300,7 +304,7 @@
                                 <%= moment(hotelReview[i].timestamp).format('DD MMM YYYY hh:ss') %> &nbsp•&nbsp
                                 <%= hotelReview[i].Type_Of_Hotel_Reviewer %></p>
                             <p class="text-right font-weight-bold">Score <span
-                                    class="text-info"><%= parseInt(hotelReview[i].Score) %></span>/10</p>
+                                    class="text-info score"><%= parseInt(hotelReview[i].Score) %></span>/10</p>
                         </div>
                         <div class="row pb-3">
 
