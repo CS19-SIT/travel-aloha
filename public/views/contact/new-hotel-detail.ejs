@@ -42,7 +42,7 @@
                         <h3 class="pb-2 pl-4">Hotel Picture and Detail</h3>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row testFlex">
                     <div class="col-md-9">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -68,7 +68,7 @@
                                     <div class="carousel-caption d-none d-md-block">
                                         <h3 class="stroke"><%- hotelType[i] %></h3>
                                         <p class="stroke">
-                                            <%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts</p>
+                                            <%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts per Night</p>
                                     </div>
                                     <img class="detail-pic d-block w-100"
                                         src="/assets/uploads/contact/pictures/<%- JSON.parse(hotelRoomPicture)[0][columnPicture[i]] %>"
@@ -79,7 +79,7 @@
                                     <div class="carousel-caption d-none d-md-block">
                                         <h3 class="stroke"><%- hotelType[i] %></h3>
                                         <p class="stroke">
-                                            <%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts</p>
+                                            <%- JSON.parse(hotelRoomPrice)[0][columnPicture[i]+"_price"] %> Bahts per Night</p>
                                     </div>
                                     <img class="detail-pic d-block w-100"
                                         src="/assets/uploads/contact/pictures/<%- JSON.parse(hotelRoomPicture)[0][columnPicture[i]] %>"
