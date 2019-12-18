@@ -32,52 +32,129 @@
       <h1><b>History</b></h1>
 
       <div class="history-list">
-        <button type="button" class="btn btn-info toDetail" data-toggle="collapse" data-target="#demo">
+
+        <div class="itemSide">
+          <h3 style="text-align: center">Your hotels</h3>
+          <!--Start of content-->
+          <% if(hotelArr.length > 0){ %>
+          <% for(let i = 0; i < hotelArr.length; i++){ %>
           <div>
-            <h5><b><%= hotelArr[0].hotelName %></b></h5>
+            <button type="button" style="background-image: url(../../assets/img/history/hotel-img.jpg)" class="btn btn-info toDetail <% if(i != 0){ %><%= 'space' %> <% } %>" data-toggle="collapse" data-target="#h<%= i %>">
+              <div>
+                <h5><b><%= hotelArr[i].hotelName %></b></h5>
+              </div>
+              <div>
+                <h6>
+                  <%= hotelArr[i].timestamp %>
+                </h6>
+              </div>
+            </button>
+
+            <div id="h<%= i %>" class="collapse">
+              <table style="width: 100%;">
+                <tr class="tableRow-dark">
+                  <th>Name-Lastname</th>
+                  <td><%= hotelArr[i].firstName %> <%= hotelArr[i].lastName %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Hotel Name</th>
+                  <td><%= hotelArr[i].hotelName %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Time Reserved</th>
+                  <td><%= hotelArr[i].timestamp %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Check-In</th>
+                  <td><%= hotelArr[i].checkinDate %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Check-Out</th>
+                  <td><%= hotelArr[i].checkoutDate %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Hotel Address</th>
+                  <td><%= hotelArr[i].hotelAddress %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Hotel Phone</th>
+                  <td><%= hotelArr[i].hotelTelNumber %></td>
+                </tr>
+              </table>
+            </div>
           </div>
+          <% } %>
+          <% } else { %>
+          <h5 style="text-align: center;">You don't have any hotel history.</h5>
+          <% } %>
+          <!--End of content-->
+        </div>
+
+        <div class="itemSide">
+          <h3 style="text-align: center">Your flights</h3>
+          <!--Start of content-->
+          <% if(hotelArr.length > 0){ %>
+          <% for(let i = 0; i < flightArr.length; i++){ %>
           <div>
-            <h6>
-              <%= hotelArr[0].timestamp %>
-            </h6>
+            <button type="button" style="background-image: url(../../assets/img/history/flight-img.jpg)" class="btn btn-info toDetail <% if(i != 0){ %><%= 'space' %> <% } %>" data-toggle="collapse" data-target="#f<%= i %>">
+              <div>
+                <h5><b><%= flightArr[i].Departure %> to <%= flightArr[i].Destination %></b></h5>
+              </div>
+              <div>
+                <h6>
+                  <%= flightArr[i].Book_Date %>
+                </h6>
+              </div>
+            </button>
+
+            <div id="f<%= i %>" class="collapse">
+              <table style="width: 100%;">
+                <tr class="tableRow-dark">
+                  <th>Airline Name</th>
+                  <td><%= flightArr[i].airlineName %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Flight Number</th>
+                  <td><%= flightArr[i].Flight_Number %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Time Reserved</th>
+                  <td><%= flightArr[i].Book_Date %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Departure</th>
+                  <td><%= flightArr[i].Departure %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Destination</th>
+                  <td><%= flightArr[i].Destination %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Depart Date</th>
+                  <td><%= flightArr[i].Depart_Date %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Ref ID</th>
+                  <td><%= flightArr[i].Booking_ref %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Seat Number</th>
+                  <td><%= flightArr[i].Seat_Number %></td>
+                </tr>
+              </table>
+            </div>
           </div>
-        </button>
-      </div>
-      <div id="demo" class="collapse">
-        <table style="width: 50%">
-          <tr>
-            <th>Name-Lastname</th>
-            <td><%= hotelArr[0].firstName %> <%= hotelArr[0].lastName %></td>
-          </tr>
-          <tr>
-            <th>Hotel Name</th>
-            <td><%= hotelArr[0].hotelName %></td>
-          </tr>
-          <tr>
-            <th>Time Reserved</th>
-            <td><%= hotelArr[0].timestamp %></td>
-          </tr>
-          <tr>
-            <th>Check-In</th>
-            <td><%= hotelArr[0].checkinDate %></td>
-          </tr>
-          <tr>
-            <th>Check-Out</th>
-            <td><%= hotelArr[0].checkoutDate %></td>
-          </tr>
-          <tr>
-            <th>Hotel Address</th>
-            <td><%= hotelArr[0].hotelAddress %></td>
-          </tr>
-          <tr>
-            <th>Hotel Phone</th>
-            <td><%= hotelArr[0].hotelTelNumber %></td>
-          </tr>
-        </table>
+          <% } %>
+          <% } else { %>
+          <h5 style="text-align: center;">You don't have any flight history.</h5>
+          <% } %>
+          <!--End of content-->
+        </div>
+
       </div>
 
     </div>
-  </div>
+
   </div>
 
 
