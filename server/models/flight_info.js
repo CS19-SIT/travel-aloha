@@ -1,15 +1,16 @@
 const db = require("../db/db");
 
-exports.search = async () => {
+exports.search = async (origin, destination, check_in) => {
 
-    const { origin ,destination, check_in} = req.body;
     try{
-        if (!origin | !destination | !check_in ){
-            throw new Error();
-        }
-        const result = await db.query("select f.Destination, df.Depart_Time, a.airlineName, se.class, air.Airport_name, df.Arrive_Time, se.Price " + 
+        const result = await db.query("select * " + 
         "from development.Flight as f, development.airline as a, development.Airport as air, development.Daily_Flight as df, development.Seat_Price as se "
-        + "where f.Destination = '" + origin +"' and f.Departure = air.Airport_ID and air.Country ='" + destination + "' and se.Class like 'E%' and df.Depart_Date = '" + check_in + "';");
+        + "where f.Destination = '" + "CNX" +"' and f.Departure = '" + "BKK" + 
+        "' and se.Class like 'E%' and df.Depart_Date = '" + "2019-11-14'" + 
+        " and df.Flight_Number = f.Flight_Number and se.Flight_Number = f.Flight_Number and air.Airport_ID = 'BKK' " +
+        "and air.City = 'Chiang Mai'" +
+        " order by se.Price ASC;",
+        [origin,destination,check_in]);
 
         return result[0];
         
@@ -20,7 +21,7 @@ exports.search = async () => {
 
 exports.getData = async () => {
     try{
-        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Seat, Daily_Flight LIMIT 10;");
+        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Daily_Flight, Seat_Price LIMIT 10;");
         return getData[0];
     }
     catch(err){

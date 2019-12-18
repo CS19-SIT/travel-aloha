@@ -1,6 +1,6 @@
-<%- include('includes/header') %>
+<%- include('../includes/header') %>
 
-<%- include('includes/navbar') %>
+<%- include('../includes/navbar') %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
@@ -16,12 +16,12 @@
                     <th>Destination</th>
                     <th>Airline</th>
                     <th>Airport</th>
-                    <th>Country</th>
                     <th>Departure Date</th>
                     <th>Departure Time</th>
                     <th>Arrive Date</th>
                     <th>Arrive Time</th>
                     <th>Seat Class</th>
+                    <th>Price</th>
                 </tr>
             </thead>
             <% for (var i = 0 ; i < flight_data.length ; i++) {%>
@@ -31,16 +31,16 @@
                     <td><%= flight_data[i].Destination %></td>
                     <td><%= flight_data[i].airlineName %></td>
                     <td><%= flight_data[i].Airport_name %></td>
-                    <td><%= flight_datat[i].Country %></td>
                     <td><%= flight_data[i].Depart_Date %></td>
                     <td><%= flight_data[i].Depart_Time %></td>
                     <td><%= flight_data[i].Arrive_Date %></td>
                     <td><%= flight_data[i].Arrive_Time %></td>
                     <td><%= flight_data[i].Class %></td>
+                    <td><%= flight_data[i].Price %></td>
                 </tr>
                 <% } %>
             </tbody>
         </table>
         
     </div>
-    <%- include('includes/footer') %>
+    <%- include('../includes/footer') %>
