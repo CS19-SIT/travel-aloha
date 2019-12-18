@@ -13,7 +13,7 @@ exports.getAllHotel = async () => {
 
   exports.getAllFlight = async () => {
     try {
-      const count = await db.query(`SELECT * FROM fav_airline as f, airline as a WHERE f.airlineID = a.airline_id`);
+      const count = await db.query(`SELECT * FROM fav_flight as f, airline as a WHERE f.flightID = a.airline_id`);
   
       return count[0];
 
@@ -68,5 +68,4 @@ exports.deleteFavorites = async ({
   }
   
 };
-
 

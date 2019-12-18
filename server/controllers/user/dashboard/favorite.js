@@ -48,6 +48,7 @@ const db = require("../../../db/db")
      console.error(error);
     } 
   };
+  
   exports.deleteFavorite = async (req, res) => {
     const favHotelID = req.body.favHotelID.toString();
     const favUserID = req.body.favUserID.toString();
@@ -64,3 +65,5 @@ const db = require("../../../db/db")
       console.error(error);
      } 
   };
+
+ 
