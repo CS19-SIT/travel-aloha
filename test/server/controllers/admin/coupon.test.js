@@ -1,6 +1,7 @@
 const request = require('supertest');
 const app = require("../../../../server/server");
 const Coupon = require("../../../../server/models/coupon");
+const querystring = require('querystring');
 
 describe("Admin Coupon controller", () => {
   it("should disallow unauthorized access", async done => {
@@ -23,7 +24,7 @@ describe("Admin Coupon controller", () => {
       return result;
     }
 
-    const controllerValid = obj => ({
+    const controllerValid = obj => querystring.stringify({
       name: obj.code,
       discount_percentage: "1",
       start_date: "2019-11-29",
