@@ -4,27 +4,19 @@
 
 <script src="../../assets/js/history/history.js"></script>
 
-<script>
-
-  var fromEJS_hotel = '<%- JSON.stringify(hotelArr) %>';
-  var allRecord_hotel = JSON.parse(fromEJS_hotel);
-
-  var fromEJS_flight = '<%- JSON.stringify(flightArr) %>';
-  var allRecord_flight = JSON.parse(fromEJS_flight);
-
-</script>
-
 
 <!--This is custom CSS-->
 <link rel="stylesheet" type="text/css" href="../../assets/css/history.css">
 </head>
 
-<body onload="loadPage()">
+<body>
   <div class="row">
     <!--User Info side (left)-->
     <div class="col-sm-3 ta-user-info">
       <h4 class="user-name"><b id="userName">
           <%= userFirstname %> <%= userLastname %>
+          <br>
+
         </b></h4>
       <hr class="hrColor">
       <div class="user-info">
@@ -39,31 +31,132 @@
 
       <h1><b>History</b></h1>
 
-      <div class="history-list" id="histList">
+      <div class="history-list">
 
-        <!--This is header for each history-->
-        
-        <!--End of HTML List-->
-      </div>
-    </div>
-    <div id="detailModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <!--Content-->
-          <div class="modal-body" id="detailContent">
-            <p>Your booking is canceled</p>
-          </div>
+        <div class="itemSide">
+          <h3 style="text-align: center">Your hotels</h3>
+          <!--Start of content-->
+          <% if(hotelArr.length > 0){ %>
+          <% for(let i = 0; i < hotelArr.length; i++){ %>
+          <div>
+            <button type="button" style="background-image: url(../../assets/img/history/hotel-img.jpg)" class="btn btn-info toDetail <% if(i != 0){ %><%= 'space' %> <% } %>" data-toggle="collapse" data-target="#h<%= i %>">
+              <div>
+                <h5><b><%= hotelArr[i].hotelName %></b></h5>
+              </div>
+              <div>
+                <h6>
+                  <%= hotelArr[i].timestamp %>
+                </h6>
+              </div>
+            </button>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div id="h<%= i %>" class="collapse">
+              <table style="width: 100%;">
+                <tr class="tableRow-dark">
+                  <th>Name-Lastname</th>
+                  <td><%= hotelArr[i].firstName %> <%= hotelArr[i].lastName %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Hotel Name</th>
+                  <td><%= hotelArr[i].hotelName %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Time Reserved</th>
+                  <td><%= hotelArr[i].timestamp %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Check-In</th>
+                  <td><%= hotelArr[i].checkinDate %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Check-Out</th>
+                  <td><%= hotelArr[i].checkoutDate %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Hotel Address</th>
+                  <td><%= hotelArr[i].hotelAddress %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Hotel Phone</th>
+                  <td><%= hotelArr[i].hotelTelNumber %></td>
+                </tr>
+              </table>
+            </div>
           </div>
+          <% } %>
+          <% } else { %>
+          <h5 style="text-align: center;">You don't have any hotel history.</h5>
+          <% } %>
+          <!--End of content-->
         </div>
+
+        <div class="itemSide">
+          <h3 style="text-align: center">Your flights</h3>
+          <!--Start of content-->
+          <% if(hotelArr.length > 0){ %>
+          <% for(let i = 0; i < flightArr.length; i++){ %>
+          <div>
+            <button type="button" style="background-image: url(../../assets/img/history/flight-img.jpg)" class="btn btn-info toDetail <% if(i != 0){ %><%= 'space' %> <% } %>" data-toggle="collapse" data-target="#f<%= i %>">
+              <div>
+                <h5><b><%= flightArr[i].Departure %> to <%= flightArr[i].Destination %></b></h5>
+              </div>
+              <div>
+                <h6>
+                  <%= flightArr[i].Book_Date %>
+                </h6>
+              </div>
+            </button>
+
+            <div id="f<%= i %>" class="collapse">
+              <table style="width: 100%;">
+                <tr class="tableRow-dark">
+                  <th>Airline Name</th>
+                  <td><%= flightArr[i].airlineName %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Flight Number</th>
+                  <td><%= flightArr[i].Flight_Number %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Time Reserved</th>
+                  <td><%= flightArr[i].Book_Date %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Departure</th>
+                  <td><%= flightArr[i].Departure %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Destination</th>
+                  <td><%= flightArr[i].Destination %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Depart Date</th>
+                  <td><%= flightArr[i].Depart_Date %></td>
+                </tr>
+                <tr class="tableRow-dark">
+                  <th>Ref ID</th>
+                  <td><%= flightArr[i].Booking_ref %></td>
+                </tr>
+                <tr class="tableRow-light">
+                  <th>Seat Number</th>
+                  <td><%= flightArr[i].Seat_Number %></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <% } %>
+          <% } else { %>
+          <h5 style="text-align: center;">You don't have any flight history.</h5>
+          <% } %>
+          <!--End of content-->
+        </div>
+
       </div>
+
     </div>
+
   </div>
-     
+
+
 
   <%- include("../includes/footer") %>
