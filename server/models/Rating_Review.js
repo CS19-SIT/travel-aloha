@@ -8,7 +8,7 @@ exports.getHotelReviewInfo = async (
 ) => {
   try {
     let query =
-      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, (Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/10 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? ";
+      "SELECT Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, (Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/5 as Score, firstname, profile_picture FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? ";
     
     switch (Type_Of_Hotel_Reviewer) {
       case "Business trip":
@@ -67,7 +67,7 @@ exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Hotel_Reviewer,
   Sort,
   Score) => {
   try {
-    let query = "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/10 as Score, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ? "
+    let query = "SELECT Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 as Score, firstname, profile_picture FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ? "
     switch (Type_Of_Hotel_Reviewer) {
       case "Economic":
         query += "AND Type_Of_Hotel_Reviewer = 'Economic' ";
