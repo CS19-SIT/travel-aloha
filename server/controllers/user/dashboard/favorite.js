@@ -13,7 +13,7 @@ const db = require("../../../db/db")
     try {
       let dataH = await Fav.getAllHotel();
       let dataF = await Fav.getAllFlight();
-    
+      
   
       res.render("fav/favorite", {
         pageTitle: "TravelAloha",
