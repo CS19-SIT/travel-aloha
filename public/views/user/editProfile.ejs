@@ -30,7 +30,7 @@
             <div class="file-field input-field">
               <div class="btn">
                 <label for="profilepic">Profile Picture</label>
-                <input name="profilepicture" type="file">
+                <input class="form-control" name="profilepicture" type="file">
               </div>
 
             </div>
@@ -114,6 +114,15 @@
           </div>
         </div>
 
+
+        <div class="mb-3">
+          <label for="address">Phone number</label>
+          <input type="text" class="form-control" name="PhoneNum" id="PhoneNum" placeholder="" value="<%= user.PhoneNum %>" required>
+          <div class="invalid-feedback">
+            Please enter your phone number.
+          </div>
+        </div>
+
         <div class="mb-3">
           <label for="address">Address</label>
           <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" value="<%= user.address %>" required>
@@ -127,7 +136,7 @@
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="country">Country</label>
-            <select id="country" name="country">
+            <select class="form-control" id="country" name="country">
               <option value="" disabled selected hidden>Choose country</option>
               <% country.forEach(element => { %>
               <option value="<%=element.NAMEINENGLISH%>"><%=element.NAMEINENGLISH%></option>
