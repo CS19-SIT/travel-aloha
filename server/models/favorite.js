@@ -13,7 +13,7 @@ exports.getAllHotel = async () => {
 
   exports.getAllFlight = async () => {
     try {
-      const count = await db.query(`SELECT * FROM fav_airline as f, airline as a WHERE f.airlineID = a.airline_id`);
+      const count = await db.query(`SELECT * FROM fav_flight as f, airline as a WHERE f.flightID = a.airline_id`);
   
       return count[0];
 
@@ -69,37 +69,3 @@ exports.deleteFavorites = async ({
   
 };
 
-exports.savedFlight = async ({
-  flightID,
-  favUserID
-})=> {
-  try{
- 
-    await db.query(`INSERT INTO fav_flight(flightID,favUserID) VALUES(?,?)`,[
-      flightID,
-      favUserID
-    ]);
-
-  }catch(err){
-    throw new Error(`[ERR] savedFlight: ${err}`)
-  }
-  
-};
-
-
-exports.deleteFlight = async ({
-  flightID,
-  favUserID
-})=> {
-  try{
- 
-    await db.query(`DELETE FROM fav_flight WHERE flightID = ? and favUserID = ?`,[
-      flightID,
-      favUserID
-    ]);
-
-  }catch(err){
-    throw new Error(`[ERR] deleteFlight: ${err}`)
-  }
-  
-};

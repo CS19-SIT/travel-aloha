@@ -48,6 +48,7 @@ const db = require("../../../db/db")
      console.error(error);
     } 
   };
+  
   exports.deleteFavorite = async (req, res) => {
     const favHotelID = req.body.favHotelID.toString();
     const favUserID = req.body.favUserID.toString();
@@ -65,37 +66,4 @@ const db = require("../../../db/db")
      } 
   };
 
-  exports.savedFlight = async (req, res) => {
-    const flightID = req.body.FlightID.toString();
-    const favUserID =  (req.user ? req.user.user_id : null);
-  
-    try {
-        
-        await Fav.savedFlights({
-         flightID : flightID,
-         favUserID : favUserID
-        });
-  res.redirect("/flight");
-       
-      }
-    
-     catch (error) {
-     console.error(error);
-    } 
-  };
-  exports.deleteFlight = async (req, res) => {
-    const favHotelID = req.body.FlightID.toString();
-    const favUserID = req.body.favUserID.toString();
  
-    try{
-     
-      await Fav.deleteFavorites({
-        favHotelID: favHotelID,
-        favUserID:favUserID
-      });
-      res.redirect("/hotel")
-    }
-    catch (error) {
-      console.error(error);
-     } 
-  };
