@@ -96,49 +96,6 @@
     </div>
 
 
-    <div class="recent_flight">
-        <p class="h2" style="text-align: center; margin-bottom: 50px;">Current Flights</p>
-        <a href="findFlight">click</a>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="bg-primary">Departure</th>
-                    <th class="bg-primary">Destination</th>
-                    <th class="bg-primary">Airline</th>
-                    <th class="bg-primary">Airport</th>
-                    <th class="bg-primary">Country</th>
-                    <th class="bg-primary">Departure Date</th>
-                    <th class="bg-primary">Departure Time</th>
-                    <th class="bg-primary">Arrive Date</th>
-                    <th class="bg-primary">Arrive Time</th>
-                    <th class="bg-primary">Seat Class</th>
-                    <th class="bg-primary">Price</th>
-                    <th class="bg-primary">Booking</th>
-                </tr>
-            </thead>
-            <% for (var i = 0 ; i < searchFlight.length ; i++) {%>
-            <tbody>
-                <tr>
-                    <td class="bg-success"><%= searchFlight[i].Departure %></td>
-                    <td class="bg-success"><%= searchFlight[i].Destination %></td>
-                    <td class="bg-success"><%= searchFlight[i].airlineName %></td>
-                    <td class="bg-success"><%= searchFlight[i].Airport_name %></td>
-                    <td class="bg-success"><%= searchFlight[i].Country %></td>
-                    <td class="bg-success"><%= searchFlight[i].Depart_Date %></td>
-                    <td class="bg-success"><%= searchFlight[i].Depart_Time %></td>
-                    <td class="bg-success"><%= searchFlight[i].Arrive_Date %></td>
-                    <td class="bg-success"><%= searchFlight[i].Arrive_Time %></td>
-                    <td class="bg-success"><%= searchFlight[i].Class %></td>
-                    <td class="bg-success"><%= searchFlight[i].Price %></td>
-                    <td class="bg-danger"><button>Book</button></td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-        
-    </div>
-
-
     <script>
         $(document).ready(function () {
             $('#return_button').click(function () {

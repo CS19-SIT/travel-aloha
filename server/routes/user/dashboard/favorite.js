@@ -21,5 +21,15 @@ router.post(
   userFavoriteController.deleteFavorite
 )
 
+router.post(
+  "/savedFlight",
+  authMiddleware.isAuthenticated,
+  userFavoriteController.savedFlight
+)
+router.post(
+  "/deleteFlight",
+  authMiddleware.isAuthenticated,
+  userFavoriteController.deleteFlight
+)
 
 module.exports = router;

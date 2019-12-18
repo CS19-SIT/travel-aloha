@@ -9,7 +9,7 @@ exports.search = async ({origin, destination, check_in, seat_class}) => {
         if (!origin | !destination | !check_in ){
             throw new Error();
         }
-        const result = await db.query("select f.Destination, df.Depart_Time, a.airlineName, se.class, air.Airport_name, df.Arrive_Time, se.Price " + 
+        const result = await db.query("select f.Flight_Number,f.Destination, df.Depart_Time, a.airlineName, se.class, air.Airport_name, df.Arrive_Time, se.Price " + 
         "from development.Flight as f, development.airline as a, development.Airport as air, development.Daily_Flight as df, development.Seat_Price as se "
         + "where f.Destination = " + "?" +" and f.Departure = " + "?" + " and se.Class like '%?' and df.Depart_Date = " + "'?'" + " order by se.Price asc;",[origin,destination,seat_class,check_in]);
 
