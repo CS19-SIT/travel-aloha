@@ -33,32 +33,4 @@ router.post(
   authMiddleware.isStaff,
   contactController.getAirlineDetail
 );
-
-// router.get(
-//   "/test",
-//   async (req, res) => {
-//     res.render('contact/test', {
-//       pageTitle: "Test bros",
-//       user: req.user,
-//     })
-//   }
-// )
-// router.post(
-//   "/ajax",
-//   async (req, res) => {
-//     try {
-//       console.log(JSON.parse(req.body.prices));
-//       console.log(JSON.parse(req.body.www))
-      
-//       res.json({
-//         data: 'OK',
-//         status: 200
-//       });
-//     } catch (err) {
-//       res.json({
-//         status: 200
-//       });
-//     }
-//   }
-// )
 module.exports = router;

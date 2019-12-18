@@ -148,7 +148,6 @@ exports.insertNewAirlineSeatPrice = async ({
   airlineSeatMinPrice3,
   airlineSeatMaxPrice3
 }) => {
-  console.log(airline_Id);
   try{
     await db.query(`INSERT INTO airline_contact_price(airline_Id, Fclass_min_price, Fclass_max_price, 
                     Bclass_min_price, Bclass_max_price, Eclass_min_price, Eclass_max_price) VALUES(?,?,?,?,?,?,?)`, [
@@ -172,7 +171,7 @@ exports.insertNewAirlineSeatPicture = async ({
   airlineSeatTypePicture3
 }) => {
   try{
-    await db.query(`INSERT INTO airline_contact_picture(airline_Id, Fclass_picture, Bclass_picture, Eclass_picture) VALUES(?,?,?,?)`, [
+    await db.query(`INSERT INTO airline_contact_picture(airline_Id, Fclass_picture, Bclass_picture, Eclass_picture) VALUES(?,?,?)`, [
        airline_Id,
        airlineSeatTypePicture1,
        airlineSeatTypePicture2,

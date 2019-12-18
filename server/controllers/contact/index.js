@@ -83,12 +83,6 @@ exports.postHotelInfo = async (req, res) => {
         hotelProfile,
         hotelPicture
       });
-      // hotelRoomType = (!!hotelRoomPrice).toString(),
-      // hotelRoomType2 = (!!hotelRoomPrice2).toString()
-      // hotelRoomType3 = (!!hotelRoomPrice3).toString()
-      // hotelRoomType4 = (!!hotelRoomPrice4).toString()
-      // hotelRoomType5 = (!!hotelRoomPrice5).toString()
-      // hotelRoomType6 = (!!hotelRoomPrice6).toString()
       await contactModel.insertNewHotelRoomType({
         hotelId,
         hotelRoomType,
@@ -262,7 +256,6 @@ exports.getAirlineDetail = async (req, res) => {
       airlineSeatPicture: data3
     });
   } catch (err) {
-    throw new Error(`[ERR] getAirlineDetail: ${err}`);
-    // res.sendStatus(400);
+    res.sendStatus(400);
   }
 };
