@@ -30,8 +30,14 @@
   <br><br>
   <div class="container-fluid" id="myDIV">
     <button class="butdis butdis1" onclick="FavHol()">Favorite Hotel</button>
-
+    <button class="butdis butdis2" onclick="Flight()">Favorite Flight</button>
+    <button class="butdis butdis3 active" onclick="showAll()">Favorite All</button></div>
   <!-----------------------------active class------------------------------->
+  <style>
+    .hiddenLine{
+      display: none;
+    }
+  </style>
   <script>
     // Add active class to the current button (highlight it)
     var header = document.getElementById("myDIV");
@@ -51,7 +57,13 @@
       document.getElementById("FavHol").style.display = "block";
       document.getElementById("Flight").style.display = "none";
     }
-  
+    function Flight() {
+      document.getElementById("FavHol").style.display = "none";
+      document.getElementById("Flight").style.display = "block";
+    } function showAll() {
+      document.getElementById("FavHol").style.display = "block";
+      document.getElementById("Flight").style.display = "block";
+    }
 
 
   </script>
@@ -84,16 +96,58 @@
                       <h6 class="align-left display-6"><img
                           src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;<%= dataH[i].hotelAddress %>
                       </h6>
+                      
                       <% }else{%>
                       <h6 class="align-left display-6"><img src="../../assets/images/pinLoca.png">&nbsp;&nbsp;&nbsp;nowhere
                       </h6>
                       <% }%>
+                       <form action ="/dashboard/favorite/delete2" method="POST">
+                        <div class ="hiddenLine"><input type="text" name ="favHotelID" placeholder="<%=dataH[i].favHotelID%>" value ="<%=dataH[i].favHotelID%>"></div> 
+                        <div class ="hiddenLine"><input type="text" name ="favUserID" placeholder="<%=user.user_id%>" value ="<%=user.user_id%>"></div>   
+                        <button class ="buttonFav">unfavorite</button>
+                    </form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <% }%>
+            <% }%>
+    
+          </div>
+    
+        </div>
+      </section>
+    
+      <section class="features18 popup-btn-cards cid-rGM1xfTV6l" id="features18-7">
+        <div class="" id="Flight">
+          <h1 class="headFavTitle align-center animehome" style="padding-top:10px; text-shadow: 1px 1px 3px #313131;">
+            Favorite Flight
+          </h1>
+          <hr class="line">
+    
+          <div class="row" style="padding-bottom: 5%;">
+            <% for(var i = 0;i <dataF.length;i++) { %>
+           
+            <div class="column" style="display: flex; justify-content: center; padding-left: 0%;">
+              <div class="card cardTop" style="width:400px;">
+                <img class="imgopa" src="/assets/uploads/contact/pictures/<%= dataH[i].hotelPicture %>" alt="" title=""
+                  style="width:100%; height: 350px;">
+                <div class="card-body">
+                  <div class="card-box">
+                    <h5 class="card-title mbr-fonts-style display-6" style="text-shadow: 1px 1px 2px #313131;">
+                      <%= dataF[i].airlineName%></h5>
+                    <hr style="border-top: 1px solid #313131;">
+                    <div class="col-lg-12">
+                     
+                
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+       
             <% }%>
     
           </div>

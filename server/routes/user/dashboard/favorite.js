@@ -20,6 +20,11 @@ router.post(
   authMiddleware.isAuthenticated,
   userFavoriteController.deleteFavorite
 )
+router.post(
+  "/delete2",
+  authMiddleware.isAuthenticated,
+  userFavoriteController.deleteAFavorite
+)
 
 
 module.exports = router;
