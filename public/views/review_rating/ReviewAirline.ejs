@@ -214,43 +214,46 @@
                         </div><% } %>
                     </div>
                     <div class="pt-4"></div>
-                    <div class="d-flex">
-                        <div class="col-xs-3 col-md-3 ">
-                            <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
-                                    data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="" id="">
-                                <option>Recommended</option>
-                                <option>Date(newer to older)</option>
-                                <option>Date(older to newer)</option>
-                            </select>
+                    <form action="/review/airline/<%= airlineId %>" method="get">
+                        <div class="d-flex">
+                            <div class="col-xs-3 col-md-3 ">
+                                <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
+                                        data-placement="right" title="Tooltip on right"></i></label>
+                                <select class="form-control" name="Sort"" id="">
+                                    <option>Recommended</option>
+                                    <option>Newest</option>
+                                    <option>Oldest</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 ">
+                                <label for="Category">Show reviews from: <i class="fas fa-question-circle"
+                                        data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
+                                <select class="form-control" name="Type_Of_Airline_Reviewer" id="">
+                                    <option>All reviewers</option>
+                                    <option>Economic</option>
+                                    <option>Premium Economic</option>
+                                    <option>Business</option>
+                                    <option>First Class</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 ">
+                                <label for="Score">Show reviews by score: <i class="fas fa-question-circle"
+                                        data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
+                                <select class="form-control" name="Score" id="">
+                                    <option>All review scores</option>
+                                    <option>Wonderful</option>
+                                    <option>Good</option>
+                                    <option>Okey</option>
+                                    <option>Poor</option>
+                                    <option>Very poor</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-md-3 ">
+                                <button class="btn btn-primary show">Display</button>
+                            </div>
                         </div>
-                        <div class="col-xs-3 col-md-3 ">
-                            <label for="Category">Show reviews from: <i class="fas fa-question-circle"
-                                    data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="" id="">
-                                <option>All reviewers</option>
-                                <option>Economic</option>
-                                <option>Premium Economic</option>
-                                <option>Business</option>
-                                <option>First Class</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-3 col-md-3 ">
-                            <label for="Score">Show reviews by score: <i class="fas fa-question-circle"
-                                    data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
-                            <select class="form-control" name="" id="">
-                                <option>All review scores</option>
-                                <option>Wonderful</option>
-                                <option>Good</option>
-                                <option>Okey</option>
-                                <option>Poor</option>
-                                <option>Very poor</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-3 col-md-3 ">
-                            <button class="btn btn-primary show">Display</button>
-                        </div>
-                    </div>
+                    </form>
+                    
                     <!-- Review by user -->
                     <% for(var i = 0; i < airlineReview.length; i++) { %>
                     <section class="review p-5 border-1">

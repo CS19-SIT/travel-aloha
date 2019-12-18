@@ -136,3 +136,77 @@ exports.postAirlineReview = async (req, res) => {
     throw new Error(`[ERR] insertNewAirline: ${error}`);
   }
 };
+
+exports.editHotelReview  = async (req, res) => {
+  const {
+    idHotel_Review,
+    Title_Hotel,
+    Type_Of_Hotel_Reviewer,
+    Text_Hotel_Review,
+    Cleanliness_Hotel_Rating,
+    Comfort_Hotel_Rating,
+    Meal_Hotel_Rating,
+    Location_Hotel_Rating,
+    Service_Hotel_Rating
+  } = req.body;
+  try {
+    await Rating_ReviewModel.Update_Hotel_Review( {
+      idHotel_Review,
+      Title_Hotel,
+      Type_Of_Hotel_Reviewer,
+      Text_Hotel_Review,
+      Cleanliness_Hotel_Rating,
+      Comfort_Hotel_Rating,
+      Meal_Hotel_Rating,
+      Location_Hotel_Rating,
+      Service_Hotel_Rating
+    });
+    res.sendStatus(204);
+  } catch (err) {
+    res.sendStatus(404);
+  }
+};
+
+exports.editAirlineReview  = async (req, res) => {
+  const {
+    idAirline_Review,
+    Title_Airline,
+    Type_Of_Airline_Reviewer,
+    Text_Airline_Review,
+    CabinCrewRating_Airline_Rating,
+    Comfort_Airline_Rating,
+    Meal_Airline_Rating,
+    Entertainment_Airline_Rating,
+  } = req.body;
+  try {
+    await Rating_ReviewModel.Update_Hotel_Review( {
+      idAirline_Review,
+      Title_Airline,
+      Type_Of_Airline_Reviewer,
+      Text_Airline_Review,
+      CabinCrewRating_Airline_Rating,
+      Comfort_Airline_Rating,
+      Meal_Airline_Rating,
+      Entertainment_Airline_Rating,
+    });
+    res.sendStatus(204);
+  } catch (err) {
+    res.sendStatus(404);
+  }
+};
+
+exports.deleteHotelReview = async (req, res) => {
+  try {
+    res.send(await Rating_ReviewModel.deleteHotelReviewInfo(req.body.idHotel_Review));
+  } catch (err) {
+    res.sendStatus(404);
+  }
+};
+
+exports.deleteAirlineReview = async (req, res) => {
+  try {
+    res.send(await Rating_ReviewModel.deleteAirlineReviewInfo(req.body.idAirline_Review));
+  } catch (err) {
+    res.sendStatus(404);
+  }
+};
