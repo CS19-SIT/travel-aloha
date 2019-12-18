@@ -1,15 +1,17 @@
 const db = require("../db/db");
 
-exports.search = async (origin, destination, check_in) => {
-
+exports.search = async ({origin, destination, check_in, seat_class}) => {
+    console.log(origin);
+    console.log(destination);
+    console.log(check_in);
+    console.log(seat_class);
     try{
-        const result = await db.query("select * " + 
+        if (!origin | !destination | !check_in ){
+            throw new Error();
+        }
+        const result = await db.query("select f.Destination, df.Depart_Time, a.airlineName, se.class, air.Airport_name, df.Arrive_Time, se.Price " + 
         "from development.Flight as f, development.airline as a, development.Airport as air, development.Daily_Flight as df, development.Seat_Price as se "
-        + "where f.Destination = '" + "CNX" +"' and f.Departure = '" + "BKK" + 
-        "' and se.Class like 'E%' and df.Depart_Date = '" + "2019-11-14'" + 
-        " and df.Flight_Number = f.Flight_Number and se.Flight_Number = f.Flight_Number and air.Airport_ID = 'BKK' " +
-        " order by se.Price ASC;",
-        [origin,destination,check_in]);
+        + "where f.Destination = " + "?" +" and f.Departure = " + "?" + " and se.Class like '%?' and df.Depart_Date = " + "'?'" + " order by se.Price asc;",[origin,destination,seat_class,check_in]);
 
         return result[0];
         

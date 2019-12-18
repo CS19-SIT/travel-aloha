@@ -22,6 +22,10 @@
                     <th class="bg-primary">Arrive Time</th>
                     <th class="bg-primary">Seat Class</th>
                     <th class="bg-primary">Price</th>
+                    <% if(user) {%>
+                    <th class="bg-primary">Favorite</th>
+                    <th class="bg-primary">Book</th>
+                    <% } %>
                 </tr>
             </thead>
             <% for (var i = 0 ; i < flight_data.length ; i++) {%>
@@ -31,12 +35,16 @@
                     <td class="bg-success"><%= flight_data[i].Destination %></td>
                     <td class="bg-success"><%= flight_data[i].airlineName %></td>
                     <td class="bg-success"><%= flight_data[i].Airport_name %></td>
-                    <td class="bg-success"><%= flight_data[i].Depart_Date %></td>
+                    <td class="bg-success"><%= flight_data[i].Depart_date %></td>
                     <td class="bg-success"><%= flight_data[i].Depart_Time %></td>
                     <td class="bg-success"><%= flight_data[i].Arrive_Date %></td>
                     <td class="bg-success"><%= flight_data[i].Arrive_Time %></td>
                     <td class="bg-success"><%= flight_data[i].Class %></td>
                     <td class="bg-success"><%= flight_data[i].Price %></td>
+                    <% if(user) {%>
+                    <td class="bg-primary"><button type="button">Favorite</button></td>
+                    <td class="bg-danger"><button type="button">Book</button></td>
+                    <% }%>
                 </tr>
                 <% } %>
             </tbody>
