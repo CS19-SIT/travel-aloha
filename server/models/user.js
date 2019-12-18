@@ -31,7 +31,6 @@ exports.findUserByUsername = async username => {
     const result = await db.query("SELECT * FROM user WHERE username = ?", [
       username
     ]);
-
     if (result[0].length < 1) {
       throw new Error(`Cannot find user with username ${username}.`);
     }
