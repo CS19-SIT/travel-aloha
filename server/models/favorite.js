@@ -13,7 +13,7 @@ exports.getAllHotel = async () => {
 
   exports.getAllFlight = async () => {
     try {
-      const count = await db.query(`SELECT * FROM fav_airline as f, airline as a WHERE f.airlineID = a.airline_id`);
+      const count = await db.query(`SELECT * FROM fav_flight as f, airline as a WHERE f.flightID = a.airline_id`);
   
       return count[0];
 
@@ -39,7 +39,7 @@ exports.savedFavorites = async ({
 })=> {
   try{
  
-    console.log(favHotelID);
+    // console.log(favHotelID);
     await db.query(`INSERT INTO fav_hotel(favHotelID,favUserID) VALUES(?,?)`,[
       favHotelID,
       favUserID
@@ -57,7 +57,7 @@ exports.deleteFavorites = async ({
 })=> {
   try{
  
-    console.log(favHotelID);
+    // console.log(favHotelID);
     await db.query(`DELETE FROM fav_hotel WHERE favHotelID = ? and favUserID = ?`,[
       favHotelID,
       favUserID
@@ -68,5 +68,4 @@ exports.deleteFavorites = async ({
   }
   
 };
-
 

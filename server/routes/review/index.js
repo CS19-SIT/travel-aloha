@@ -14,8 +14,29 @@ router.get("/airline/:id",reviewController.getAirline);
 
 // router.get("/flight/:Flight_Flight_number", reviewController.getFlight);
 
-router.post("/hotel/:id", reviewController.postHotelReview);
+router.post("/hotel/:id", reviewController.postHotelReview, authMiddleware.isAuthenticated);
 
-router.post("/airline/:id", reviewController.postAirlineReview);
+router.post("/airline/:id", reviewController.postAirlineReview, authMiddleware.isAuthenticated);
+
+router.get("/hotel/:id/:review_id/delete", authMiddleware.isAuthenticated, reviewController.deleteHotelReview);
+
+  router.get(
+    "/airline/:id/:review_id/delete",
+    authMiddleware.isAuthenticated,
+    reviewController.deleteHotelReview
+  );
+
+  router.put(
+    "/hotelreview/new/:id",
+    authMiddleware.isAuthenticated,
+    reviewController.editHotelReview
+  );
+
+  router.put(
+    "/airlinereview/new/:id",
+    authMiddleware.isAuthenticated,
+    reviewController.editAirlineReview
+  );
+
 
 module.exports = router;

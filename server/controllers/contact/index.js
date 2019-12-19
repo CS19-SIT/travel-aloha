@@ -47,7 +47,7 @@ exports.postHotelInfo = async (req, res) => {
         hotelRoomPrice5,
         hotelRoomPrice6
       } = req.body;
-      console.log(hotelRoomType2);
+      // console.log(hotelRoomType2);
       if (err) {
         res.sendStatus(400);
         return;
@@ -153,7 +153,7 @@ exports.postAirlineInfo = async (req, res) => {
       if ("airlineSeatTypePicture3" in req.files) {
         airlineSeatTypePicture3 = req.files["airlineSeatTypePicture3"][0].filename;
       }
-      console.log(req.files);
+      // console.log(req.files);
      const airline_Id = await contactModel.insertNewAirline({
         airlineName,
         airlineNationality,

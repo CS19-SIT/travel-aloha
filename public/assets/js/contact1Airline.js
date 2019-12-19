@@ -66,7 +66,7 @@ function add(){
         } else {
           document.getElementById('field' + i).getElementsByClassName('custom-file-input')[0].name = "airlineSeatTypePicture" + checking.pop()
         }
-        console.log(checking)
+        // console.log(checking)
         document.getElementById('field' + i).getElementsByClassName('form-control')[0].selectedIndex = i;
         document.getElementById('field' + i).getElementsByClassName('form-control')[1].value = validType1[i - 1];
         document.getElementById('field' + i).getElementsByClassName('form-control')[2].value = validType2[i - 1];
