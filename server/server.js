@@ -17,6 +17,8 @@ const session = require("express-session");
 const passport = require("./auth/passport");
 const MySQLStore = require("express-mysql-session")(session);
 
+const stripe = require('stripe')('sk_test_c8Sj0KgrzEbhjUJFj7vDC84w00OVqNpUbO');
+
 /**
  * Application Initiation
  */
@@ -79,13 +81,15 @@ const errorsController = require("./controllers/errors");
 const indexRoutes = require("./routes/index");
 const hotelRoutes = require("./routes/hotel/index");
 const hotelBookingRoutes = require("./routes/hotel/booking");
-const flightRoutes = require("./routes/flight/index");
-const flightBookingRoutes = require("./routes/flight/booking");
+//const flightRoutes = require("./routes/flight/index");
+//const flightBookingRoutes = require("./routes/flight/booking");
 const landingPageRoutes = require("./routes/landingPage/landingPage");
 const reviewRoutes = require("./routes/review/index");
 const userRoutes = require("./routes/user/dashboard/index");
 const userHistoryRoutes = require("./routes/user/dashboard/history");
 const userFavoriteRoutes = require("./routes/user/dashboard/favorite");
+
+const rewardLevelRoutes = require("./routes/rewardLevel/rewardLevel");
 
 app.use(landingPageRoutes);
 app.use(authRoutes);
@@ -99,6 +103,9 @@ app.use("/admin/staff", adminStaffRoutes);
 app.use("/admin/user", adminUserRoutes);
 
 app.use("/checkout", checkoutRoutes);
+app.use("/checkout_flight",checkoutRoutes);
+app.use("/checkout/Intern", checkoutRoutes);
+app.use("/charge", checkoutRoutes);
 app.use("/contact", contactRoutes);
 
 app.use("/dashboard", userRoutes);
@@ -108,17 +115,19 @@ app.use("/dashboard/favorite", userFavoriteRoutes);
 app.use("/hotel", hotelRoutes);
 app.use("/hotel/booking", hotelBookingRoutes);
 
-app.use("/flight", flightRoutes);
-app.use("/flight/booking", flightBookingRoutes);
+//app.use("/flight", flightRoutes);
+//app.use("/flight/booking", flightBookingRoutes);
 
 app.use("/review", reviewRoutes);
+
+app.use("/rewardlevel",rewardLevelRoutes );
 
 app.use(errorsController.get404);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.APP_PORT, () => {
     if (process.env.NODE_ENV !== "production")
-      console.log(`Server is up on http://localhost:${process.env.APP_PORT}`);
+      console.log(`Server is up on http://localhost:${process.env.APP_PORT} - ${new Date()}`);
   });
 }
 

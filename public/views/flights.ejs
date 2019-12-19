@@ -1,60 +1,92 @@
-<%- include('includes/headerFlight') %>
+<%- include('includes/header') %>
+
+<%- include('includes/navbar') %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Icons font CSS-->
+<link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+<!-- Vendor CSS-->
+<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="css/main.css" rel="stylesheet" media="all">
 
 </head>
 
 <body>
 
-        <%- include('includes/navbar') %>
-    <div class="page-wrapper bg-img-1 p-t-200 p-b-120">
+    <div class="intro">
+        <h1 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">Welcome, please feel free to search the flight. :)</h1>
+    </div>
+    <div class="page-wrapper bg-img-1 p-t-100 p-b-120">
         <div class="wrapper wrapper--w900">
             <div class="card card-4">
-                    <ul class="tab-list">
-                            <a style="font-size: 35px;" class="tab-list__link" href="#tab3" data-toggle="tab">Flight</a>
-                        </li>
-                    </ul>
+                <ul class="tab-list">
+                    <li>
+                    <a style="font-size: 35px;" class="tab-list__link" href="#tab3" data-toggle="tab">Flight</a>
+                    </li>
+                </ul>
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane-active" id="tab3">
-                            <form method="GET" action="#">
+                            <form method="POST" action="/flight/find">
                                 <div class="input-group input-group-big">
                                     <label class="label">Origin:</label>
-                                    <input class="input--style-1" type="text" name="origin" placeholder="City or airport" required="required">
+                                    <input class="input--style-1" type="text" name="origin"
+                                        placeholder="City or airport" required="required">
                                     <i class="zmdi zmdi-search input-group-symbol"></i>
                                 </div>
                                 <div class="input-group input-group-big">
                                     <label class="label">Destination:</label>
-                                    <input class="input--style-1" type="text" name="destination" placeholder="City or airport" required="required">
+                                    <input class="input--style-1" type="text" name="destination"
+                                        placeholder="City or airport" required="required">
                                     <i class="zmdi zmdi-search input-group-symbol"></i>
                                 </div>
                                 <div class="row row-space">
                                     <div class="col-6">
                                         <div class="input-group">
                                             <label class="label">Departing:</label>
-                                            <input class="input--style-1" type="text" name="check-in" placeholder="mm/dd/yyyy" id="input-start-2">
+                                            <input class="input--style-1" type="text" name="check_in"
+                                                placeholder="mm/dd/yyyy" id="input-start-2">
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="input-group">
+                                        <button type="button" class="btn btn-dark btn-lg" id="return_button">Return
+                                            Date</button>
+                                        <div class="input-group" id="return_date" style="display: none;">
                                             <label class="label">Returning:</label>
-                                            <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end-2">
+                                            <input class="input--style-1" type="text" name="check-out"
+                                                placeholder="mm/dd/yyyy" id="input-end-2">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="radio-row">
                                     <label class="radio-container m-r-45">First Class
-                                        <input type="radio" name="class">
+                                        <input type="radio" name="seat_class" value="FirstClass">
                                         <span class="radio-checkmark"></span>
                                     </label>
                                     <label class="radio-container m-r-45">Business
-                                        <input type="radio" name="class">
+                                        <input type="radio" name="seat_class" value="Business">
                                         <span class="radio-checkmark"></span>
                                     </label>
                                     <label class="radio-container">Economy
-                                        <input type="radio" checked="checked" name="class">
+                                        <input type="radio" checked="checked" name="seat_class" value="Economy">
                                         <span class="radio-checkmark"></span>
                                     </label>
                                 </div>
-                                <button class="btn-submit m-t-35" type="submit">search</button>
+                                <button class="btn-submit m-t-35" type="submit">Search</button>
                             </form>
                         </div>
                     </div>
@@ -62,4 +94,29 @@
             </div>
         </div>
     </div>
-            </div <%- include('includes/footerFlight') %> <%- include('includes/footerFlight') %>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#return_button').click(function () {
+                $('#return_date').show();
+                $('#return_button').hide();
+            });
+        });
+    </script>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/jquery-validate/jquery.validate.min.js"></script>
+    <script src="vendor/bootstrap-wizard/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+    <%- include('includes/footer') %>

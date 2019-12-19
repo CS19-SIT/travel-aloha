@@ -3,13 +3,12 @@
 </head>
 
 <body>
-    
+
         <%- include('includes/navbar') %>
-        
+
 <div class="container mt-3">
 
     <h1 class="display-3">TravelAloha</h1>
-    <p>Version: 14/12/2019 22:15:00</p>
     <hr>
     <h2>Landing Page</h2>
     <ul>
@@ -30,24 +29,28 @@
     <h2>Checkout Routes</h2>
     <ul>
         <li><a href="/checkout" target="_blank">/checkout - Checkout</a></li>
+        <li><a href="/checkout_flight" target="_blank">/checkout_flight - Checkout</a></li>
     </ul>
 
     <h2>Contact Routes</h2>
     <ul>
         <li><a href="/contact" target="_blank">/contact - Contact</a></li>
+        <li><a href="/contact/add-new-airline" target="_blank">/contact/add-new-airline - Register New Airline</a></li>
+        <li><a href="/contact/add-new-hotel" target="_blank">/contact/add-new-hotel - Register New Hotel</a></li>
+        <li><a href="/contact/new-hotel-dashboard" target="_blank">/contact/new-hotel-dashboard - New Hotel Dashboard</a></li>
+        <li><a href="/contact/new-airline-dashboard" target="_blank">/contact/new-airline-dashboard - New Airline Dashboard</a></li>
     </ul>
 
     <h2>Hotel Routes</h2>
     <ul>
+        <li><a href="/hotel" target="_blank">/hotel - Hotel</a></li>
         <li><a href="/hotel/booking" target="_blank">/hotel/booking - Hotel Booking</a></li>
-        <li><a href="/hotel/booking/payment" target="_blank">/hotel/booking/payment - Hotel Booking - Payment</a></li>
     </ul>
 
     <h2>Flight Routes</h2>
     <ul>
         <li><a href="/flight" target="_blank">/flight - Flight</a></li>
         <li><a href="/flight/booking" target="_blank">/flight/booking - Flight Booking</a></li>
-        <li><a href="/flight/booking/contact" target="_blank">/flight/booking/contact - Flight Booking - Contact</a></li>
     </ul>
 
     <h2>Review Routes</h2>
@@ -59,13 +62,10 @@
     <h2>User Dashboard Routes</h2>
     <ul>
         <li><a href="/dashboard" target="_blank">/dashboard - User Dashboard</a></li>
-        <li><a href="/dashboard" target="_blank">/dashboard/editProfile - User Dashboard - Edit Profile</a></li>
         <li><a href="/dashboard/favorite" target="_blank">/dashboard/favorite - User Dashboard Favorite</a></li>
         <li><a href="/dashboard/history" target="_blank">/dashboard/history - User Dashboard History</a></li>
-        <li><a href="/dashboard/history/hotel" target="_blank">/dashboard/history/hotel - User Dashboard History for Hotel</a></li>
-        <li><a href="/dashboard/history/flight" target="_blank">/dashboard/history/flight - User Dashboard History for Flight</a></li>
     </ul>
-    
+
 </div>
 
 <%- include('includes/footer') %>

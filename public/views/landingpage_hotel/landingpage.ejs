@@ -1,15 +1,15 @@
 <%- include('../includes/header') %>
 
 <!--css-->
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="vendors/linericon/style.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-<link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
 
-<link rel="stylesheet" href="../../assets/css/landingpage.css">
+<link rel="stylesheet" href="assets/css/landingpage.css">
 
 </head>
 
@@ -20,7 +20,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-lg-6">
                     <div class="header-text">
-                        <center>
+                        <center class="align-middle">
                             <h1 class="mt-5">Find your hotel</h1>
                             <!-- <p>Find your best hotel.</p> -->
                             <a href="#down"> <button type="button" class="btn btn-info">Click !</button> </a>
@@ -35,7 +35,7 @@
         <div class="s012">
 
             <!-- form -->
-            <form action="/find" method="POST" onsubmit="return validateForm()">
+            <form action="/hotel/find" method="POST">
                 <fieldset>
                     <legend>Search Hotels</legend>
                 </fieldset>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="input-field">
                                     <label>GOING TO</label>
-                                    <input type="text" name="place" placeholder="Destination, hotel name" />
+                                    <input type="text" name="place" placeholder="Destination, hotel name" class="check"/>
                                 </div>
                             </div>
                             <div class="input-wrap">
@@ -64,9 +64,9 @@
                                     </svg>
                                 </div>
                                 <div class="input-field">
-                                    <label>TRAVELERS</label>
+                                    <label style="margin-block-end: 0;border: none;">TRAVELERS</label>
                                     <div class="input-select">
-                                        <select data-trigger="" name="adult">
+                                        <select class="custom-select border-0" data-trigger="" name="adult">
                                             <option value="1">1 adult</option>
                                             <option value="2">2 adults</option>
                                             <option value="3">3 adults</option>
@@ -112,9 +112,10 @@
                                     </svg>
                                 </div>
                                 <div class="input-field">
-                                    <label>TRAVELERS</label>
+                                    <label style="margin-block-end: 0;;">TRAVELERS</label>
                                     <div class="input-select">
-                                        <select data-trigger="" name="child">
+                                        <select class="custom-select border-0"data-trigger="" name="child">
+                                            <option value="0">No child</option>
                                             <option value="1">1 child</option>
                                             <option value="2">2 children</option>
                                             <option value="3">3 children</option>
@@ -125,7 +126,7 @@
                             </div>
                         </div>
                         <div class="row last">
-                            <input type="submit" class="btn-search" value="search" \>
+                            <input type="submit" class="btn-search" id="submit" value="search" disabled="disabled" />
                         </div>
                     </div>
                 </div>
@@ -134,9 +135,9 @@
     </div>
 
     <!-- recommended card -->
-    <div class="card-box">
-            <a href="#" class="btn btn-fix text-left">
+    <div class="card-box">  
         <% hotels.forEach( hotel => { %>
+        <a href="/hotel/booking"> 
         <div class="card-recommended">
             <div class="card" style="width: 18rem;">
                 <img src="<%= hotel.hotelPicture %>" class="card-img-top" alt="<%= hotel.hotelName %>">
@@ -144,27 +145,14 @@
                     <p><%= hotel.hotelName %></p>
                 </div>
             </div>
-        </div>
+        </div></a> 
         <% }) %>
     </div>
-
-
-
-
-
-
-
-    <script src="../assets/js/choices.js"></script>
-    <script>
-        const choices = new Choices('[data-trigger]', {
-            searchEnabled: false,
-            itemSelectText: '',
-        });
-    </script>
-    <script src="../assets/js/flatpickr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr(".datepicker", {
-            dateFormat: "m/d/y"
+            dateFormat: "d/m/y",
+            minDate: "today"
         });
         var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
         for (let i = 0; i < btnTypes.length; i++) {
@@ -175,26 +163,24 @@
                 btnTypes[i].classList.add('active')
             })
         }
-    </script>
 
-<script>
-    function validateForm() {
-      var x = document.forms["myForm"]["place"].value;
-      if (x == "") {
-        swal("Name must be filled out");
-        return false;
-      }
-    }
+        $(document).ready(function() {
+            $('.check').keyup(function() {
 
+                var empty = false;
+                $('.check').each(function() {
+                    if ($(this).val().length == 0) {
+                        empty = true;
+                    }
+                });
 
-    $(function() {
-        $('.datepicker').datepicker({
-            endDate: new Date()
+                if (empty) {
+                    $('#submit').attr('disabled', 'disabled');
+                } else {
+                    $('#submit').attr('disabled', false);
+                }
+            });
         });
-    });
 
-
-</script>
-
-
+    </script>
     <%- include('../includes/footer') %>

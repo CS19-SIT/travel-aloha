@@ -27,7 +27,7 @@ function newProject(id) {
                         sql: `SELECT 1 FROM staff_manager WHERE staffId='${id}'`
                     }
                 }).done((result) => {
-                    console.log(JSON.stringify(result));
+                    // console.log(JSON.stringify(result));
                     if (result.status == 200 && !!result.data.length) {
                         $.ajax({
                             url: '/admin/staff/sendQuery',

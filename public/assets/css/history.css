@@ -1,0 +1,192 @@
+/*HTML and <body>*/
+
+/*Navbar classes*/
+.ta-navbar a{
+    color: #FFFFFF;
+}
+.ta-navbar{
+    background-color: #388BF2;
+    border-radius: 0;
+    margin-bottom: 0%;
+}
+
+/*Left side*/
+hr.hrColor{
+    border-top: 1px #25282B solid;
+}
+
+.badge-level{
+    background-color: #216bc4;
+    padding: 10px;
+    color: #FFFFFF;
+}
+
+.badge-points{
+    background-color: #25282B;
+    color: #FFFFFF;
+    padding: 7px;
+}
+
+.badge-points-rank{
+    padding: 7px;
+}
+
+.badge-gold{
+    background-color: #D4AF37 ;
+}
+
+.badge-silver{
+    background-color: #BEC2CB;
+    color: #52575C;
+
+}
+.user-points{
+    margin: 10px;
+}
+
+.user-level{
+    margin: 10px;
+}
+
+.user-points .left{
+    float: left;
+}
+
+.user-points .right{
+    float: right;
+}
+
+.user-info{
+    
+    margin-top: 20px;
+    
+}
+
+
+/*Right side*/
+
+.ta-user-info{
+    background-color: #DBEBFF;
+    padding-bottom: 101.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+}
+
+.ta-user-history{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+}
+
+.ta-user-info .user-name{
+    text-align: center;
+    margin: 10px;
+}
+
+.ta-user-history h1{
+    margin: 0px;
+}
+.history-list{
+    margin-top: 30px;
+}
+.headerInfo{
+    height: 65px;
+}
+
+
+.headerInfo .brief-info{
+    width: 50%;
+    float: left;
+    padding: 2%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: inherit;
+}
+
+.toDetail{
+    width: 100%;
+    float: right;
+    text-align: center;
+    padding: 5px;
+    border-radius: 0px;
+    background-color: #388BF2;
+}
+
+.toDetail.space{
+    margin-top: 20px;
+}
+
+.headerInfo .icon{
+    width: 10%;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0px;
+    padding-top: 20px;
+    height: inherit;
+}
+.headerInfo .status{
+    width: 20%;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0px;
+    padding-top: 20px;
+}
+
+.icon .book-icon{
+    padding: 2%;
+}
+
+
+/*History status text*/
+.status.paid{
+    color: #109602;
+}
+.status.done{
+    color: #216bc4;
+}
+.status.canceled{
+    color: #db000f;
+}
+
+/*Filter*/
+
+div.itemSide {
+    width: 50%;
+    float: left;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+div.flightSide{
+    width: 50%;
+    float: right;
+    border-style: 1px, solid;
+}
+
+tr.tableItem{
+    padding: 10px;
+    border: 1px;
+    border-color: #25282B;
+    border-style: solid;
+    font-size: 90%;
+}
+
+.tableItem td{
+    padding-left: 5px;
+    font-weight: lighter;
+}
+
+.table.morePadding{
+    padding: 10px;
+}
+
+.tableRow-dark{
+    background-color: #DBEBFF;
+}
+
+.tableRow-light{
+    background-color: #BEC2CB;
+}

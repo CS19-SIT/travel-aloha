@@ -1,17 +1,17 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navbar') %>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../../assets/css/result.css">
+<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../../assets/css/result.css">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
 <!-- bootstrp -->
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -33,28 +33,11 @@
     crossorigin="anonymous"></script>
 
 <title>Result</title>
-
-<style>
-    html,
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: "Roboto", sans-serif;
-        font-size: 20px;
-        color: black;
-    }
-
-    .row {
-        height: 900px;
-        width: 100%;
-    }
-</style>
-
 <div class=container-fulid>
+    <div class="col-md-12 text-center">
+        <h3>Resutls:</h3>
+        <h4><%= main_query.place %> <%= main_query.checkIn %> -  <%= main_query.checkOut %> for <%= main_query.adult %> adult(s)</h4>
+    </div>
     <div class="row">
         <div class="col-lg-3 ml-lg-5">
             <div class="card ml-lg-0">
@@ -62,7 +45,18 @@
                     Google Map
                 </div>
                 <div class="card-body">
-
+                    <div id="map"></div>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8NwKF69Hg_FkGR4WbWBHTCbaExa7Ymag&callback=initMap"
+                    async defer></script>
+                    <script>
+                      var map;
+                      function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                          center: {lat: 13.6525855, lng: 100.4936103},
+                          zoom: 8
+                        });
+                      }
+                    </script>
                 </div>
             </div>
             <article class="card-group-item">
@@ -74,11 +68,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Min</label>
-                                <input type="number" class="form-control" id="inputEmail4" placeholder="0" min="1">
+                                <input type="number" class="form-control" id="price_min" placeholder="0" min="1">
                             </div>
                             <div class="form-group col-md-6 text-right">
                                 <label>Max</label>
-                                <input type="number" class="form-control" placeholder="1000" min="1">
+                                <input type="number" class="form-control" id="price_max" placeholder="1000" min="1">
                             </div>
                         </div>
                     </div> <!-- card-body.// -->
@@ -97,7 +91,7 @@
 
                                 <div class="form-item">
 
-                                    <input id="rating-5" name="rating" type="radio" value="5" />
+                                    <input id="rating-5" name="rating" type="radio" value="5" onclick="updateResult()" />
                                     <label for="rating-5" data-value="5">
                                         <span class="rating-star">
                                             <i class="fa fa-star-o"></i>
@@ -105,14 +99,14 @@
                                         </span>
                                         <!-- <span class="ir">5</span> -->
                                     </label>
-                                    <input id="rating-4" name="rating" type="radio" value="4" />
+                                    <input id="rating-4" name="rating" type="radio" value="4" onclick="updateResult()" />
                                     <label for="rating-4" data-value="4">
                                         <span class="rating-star">
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star"></i>
                                         </span>
                                     </label>
-                                    <input id="rating-3" name="rating" type="radio" value="3" />
+                                    <input id="rating-3" name="rating" type="radio" value="3" onclick="updateResult()" />
                                     <label for="rating-3" data-value="3">
                                         <span class="rating-star">
                                             <i class="fa fa-star-o"></i>
@@ -120,7 +114,7 @@
                                         </span>
                                         <!-- <span class="ir">3</span> -->
                                     </label>
-                                    <input id="rating-2" name="rating" type="radio" value="2" />
+                                    <input id="rating-2" name="rating" type="radio" value="2" onclick="updateResult()" />
                                     <label for="rating-2" data-value="2">
                                         <span class="rating-star">
                                             <i class="fa fa-star-o"></i>
@@ -128,7 +122,7 @@
                                         </span>
                                         <!-- <span class="ir">2</span> -->
                                     </label>
-                                    <input id="rating-1" name="rating" type="radio" value="1" />
+                                    <input id="rating-1" name="rating" type="radio" value="1" onclick="updateResult()" />
                                     <label for="rating-1" data-value="1">
                                         <span class="rating-star">
                                             <i class="fa fa-star-o"></i>
@@ -150,19 +144,19 @@
                     <div class="card-body">
                         <form>
                             <label class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
+                                <input class="form-check-input" type="checkbox" value="" id="wifi" onclick="updateResult()">
                                 <span class="form-check-label">
                                     <i class="fa fa-wifi" aria-hidden="true"></i> WiFi
                                 </span>
                             </label> <!-- form-check.// -->
                             <label class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
+                                <input class="form-check-input" type="checkbox" value="" id="food" onclick="updateResult()">
                                 <span class="form-check-label">
                                     <i class="fa fa-cutlery" aria-hidden="true"></i> Breakfast
                                 </span>
                             </label> <!-- form-check.// -->
                             <label class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
+                                <input class="form-check-input" type="checkbox" value="" id="parking" onclick="updateResult()">
                                 <span class="form-check-label">
                                     <i class="fa fa-car" aria-hidden="true"></i> Parking
                                 </span>
@@ -180,19 +174,19 @@
                 <div class="filter-content">
                     <div class="card-body">
                         <label class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                            <input class="form-check-input" type="radio" name="exampleRadio" value="" id="type_single" onclick="updateResult()">
                             <span class="form-check-label">
                                 Single
                             </span>
                         </label>
                         <label class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                            <input class="form-check-input" type="radio" name="exampleRadio" value="" id="type_double" onclick="updateResult()">
                             <span class="form-check-label">
                                 Double
                             </span>
                         </label>
                         <label class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                            <input class="form-check-input" type="radio" name="exampleRadio" value="" id="type_studio" onclick="updateResult()">
                             <span class="form-check-label">
                                 Studio
                             </span>
@@ -203,32 +197,41 @@
         </div> <!-- card.// -->
 
         <div class="col-lg-8">
-            <% hotels.forEach( hotel => { %>
-            <div class=" card card-3">
+            <% for(var i=0; i < hotels.length; i++){ %>
+            <div class=" card card-3 hotel<%if(hotels[i].wifi.toJSON()['data'][0] === 1){ %> wifi_<% } %> <%if(hotels[i].breakfast.toJSON()['data'][0] === 1){ %> breakfast_<% } %> <%if(hotels[i].carpark.toJSON()['data'][0] === 1){ %> parking_<% } %>"">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="ml-3 mt-2 mb-0">
                             <span class="fa fa-star" style="color: orange;"></span>
+                            <div style="float: right;">
+                                <i class="heart fa fa-heart-o"></i>
+                            </div>
                         </div>
-                        <div class="textresult mt-0">
-                            <h3><a href="hotel/<%= hotel.hotelId %>"><%= hotel.hotelName %></a></h3>
-                            <h4><%= hotel.hotelAddress %></h4>
-                            <!-- <h4><%= hotel.hotelDescription %></h4> -->
-                            <h4><%= hotel.hoteltelNumber %></h4>
 
-                            <% if (hotel.wifi==1) { %>
+                        <script>
+                            $(".heart.fa").click(function () {
+                                $(this).toggleClass("fa-heart fa-heart-o");
+                            });
+                        </script>
+                        <div class="textresult mt-0">
+                            <h3><a href="hotel/<%= hotels[i].hotelId %>"><%= hotels[i].hotelName %></a></h3>
+                            <h4><%= hotels[i].hotelAddress %></h4>
+                            <h4><%= hotels[i].hotelDescription %></h4>
+                            <h4><%= hotels[i].hoteltelNumber %></h4>
+
+                            <% if (hotels[i].wifi.toJSON()['data'][0] == 1) { %>
                             <i class="fa fa-wifi" aria-hidden="true"></i>
                             <% } %>
-                            <% if (hotel.breakfast==1) { %>
+                            <% if (hotels[i].breakfast.toJSON()['data'][0] == 1) { %>
                             <i class="fa fa-cutlery" aria-hidden="true"></i>
                             <% } %>
-                            <% if (hotel.carpark==1) { %>
+                            <% if (hotels[i].carpark.toJSON()['data'][0] == 1) { %>
                             <i class="fa fa-car" aria-hidden="true"></i>
                             <% } %>
                         </div>
                         <div class="d-flex justify-content-between ml-3 mr-2" style="margin-top:4em;">
                             <div>
-                                Full Price <span id="fullPrice"><%= hotel.fullPrice %></span>
+                                Full Price <span id="fullPrice"><%= hotels[i].fullPrice %></span>
                             </div>
                             <div>
                                 Discount 500
@@ -236,15 +239,54 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <img src="<%= hotel.hotelPicture %>" class="img-responsive col-xs-12">
+                        <img src="<%= hotels[i].hotelPicture %>" class="img-responsive col-xs-12">
                     </div>
                 </div>
             </div>
-            <% }) %>
+            <% } %>
         </div>
     </div>
 </div>
+<script>
+    function updateResult(){
+        var price_min = document.getElementById("price_min").value;
+        var price_max = document.getElementById("price_max").value;
+        var rating;
+        if(document.getElementById("rating-5").checked){
+            rating = 5;
+        }else if(document.getElementById("rating-4").checked){
+            rating = 4;
+        }else if(document.getElementById("rating-3").checked){
+            rating = 3;
+        }else if(document.getElementById("rating-2").checked){
+            rating = 2;
+        }else if(document.getElementById("rating-1").checked){
+            rating = 1;
+        }
+        var wifi = document.getElementById("wifi").checked;
+        var food = document.getElementById("food").checked;
+        var parking = document.getElementById("parking").checked;
+        var type;
+        if(document.getElementById("type_single").checked) {
+            type = "single";
+        }else if(document.getElementById("type_double").checked){
+            type = "double";
+        }else if(document.getElementById("type_studio").checked){
+            type = "studio";
+        }
+        var allHotel = document.getElementsByClassName("hotel");
+        Array.from(allHotel).forEach(hotel => {
+            hotel.style = "display:none;";
+        });
+        if(wifi == true){
+            var haveWifi = document.getElementsByClassName("wifi_");
+            Array.from(haveWifi).forEach(hotel => {
+                hotel.style = "display:flex;";
+            })
+        }
 
+        console.log(""+price_min+"    "+price_max+"    "+rating+"    "+wifi+"    "+food+"    "+parking+"    "+type);
+    }
+</script>
 
 <%- include('../includes/footer') %>
-<!--Script-->
