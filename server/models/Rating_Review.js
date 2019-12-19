@@ -9,7 +9,7 @@ SELECT count(*)            AS total,
                    Comfort_Hotel_Rating +
                    Meal_Hotel_Rating +
                    Location_Hotel_Rating + Service_Hotel_Rating) / 5 > 8 then 1
-             else 0 end) AS Wonderful,
+             else 0 end) AS Fantastic,
      sum(case
              when (Cleanliness_Hotel_Rating +
                    Comfort_Hotel_Rating +
@@ -19,7 +19,7 @@ SELECT count(*)            AS total,
                                                                               Meal_Hotel_Rating +
                                                                               Location_Hotel_Rating +
                                                                               Service_Hotel_Rating) / 5 > 6 then 1
-             else 0 end) AS Good,
+             else 0 end) AS Excellent,
      sum(case
              when (Cleanliness_Hotel_Rating +
                    Comfort_Hotel_Rating +
@@ -29,7 +29,7 @@ SELECT count(*)            AS total,
                                                                               Meal_Hotel_Rating +
                                                                               Location_Hotel_Rating +
                                                                               Service_Hotel_Rating) / 5 > 4 then 1
-             else 0 end) AS Okey,
+             else 0 end) AS Satisfying,
      sum(case
              when (Cleanliness_Hotel_Rating +
                    Comfort_Hotel_Rating +
@@ -38,7 +38,17 @@ SELECT count(*)            AS total,
                                                                               Comfort_Hotel_Rating +
                                                                               Meal_Hotel_Rating +
                                                                               Location_Hotel_Rating +
-                                                                              Service_Hotel_Rating) / 5 > -1 then 1
+                                                                              Service_Hotel_Rating) / 5 > 2 then 1                                                   
+             else 0 end) AS Average,
+     sum(case
+             when (Cleanliness_Hotel_Rating +
+                   Comfort_Hotel_Rating +
+                   Meal_Hotel_Rating +
+                   Location_Hotel_Rating + Service_Hotel_Rating) / 5 < 3 AND (Cleanliness_Hotel_Rating +
+                                                                              Comfort_Hotel_Rating +
+                                                                              Meal_Hotel_Rating +
+                                                                              Location_Hotel_Rating +
+                                                                              Service_Hotel_Rating) / 5 > -1 then 1                                                   
              else 0 end) AS Poor
 FROM Hotel_Review
 WHERE hotel_hotelId = ?
@@ -125,16 +135,20 @@ exports.getAirlineRating = async (airlineId) => {
 SELECT count(*)            AS total,
      sum(case
              when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 / 5 > 8 then 1
-             else 0 end) AS Wonderful,
+             else 0 end) AS Fantastic,
      sum(case
              when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 < 9 AND (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 > 6 then 1
-             else 0 end) AS Good,
+             else 0 end) AS Excellent,
      sum(case
              when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 < 7 AND (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 > 4 then 1
-             else 0 end) AS Okey,
+             else 0 end) AS Satisfying,
      sum(case
-             when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4< 5 AND (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 > -1 then 1
+             when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4< 5 AND (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 > 2 then 1
+             else 0 end) AS Average,
+         sum(case
+             when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4< 3 AND (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 > -1 then 1
              else 0 end) AS Poor
+
 FROM Airline_Review
 WHERE airlineId_fk = ?
 `;
