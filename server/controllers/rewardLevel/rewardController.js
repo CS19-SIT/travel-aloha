@@ -15,12 +15,12 @@ exports.getCoupon = async (req, res) => {
   const couponHo = await rewModel.showValidCouponHotel(req.user.user_id);
 
   const queryPoints = await rewModel.showTotalPoints(req.user.username);
-  console.log("im points of " +user_id+"="+queryPoints);
-  console.log("im airline coupon of " +user_id+"="+couponAi);
-  console.log("im points ohotel coupon of  " +user_id+"="+couponHo);
+  // console.log("im points of " +user_id+"="+queryPoints);
+  // console.log("im airline coupon of " +user_id+"="+couponAi);
+  // console.log("im points ohotel coupon of  " +user_id+"="+couponHo);
 
   const queryLevel = await rewModel.showLevel(user_id);
-  console.log("im level of " +user_id+"="+queryLevel);
+  // console.log("im level of " +user_id+"="+queryLevel);
 
 //insert pictiure ofe level
   if (queryLevel == "Gold") {
@@ -33,7 +33,7 @@ exports.getCoupon = async (req, res) => {
     levelImg = '<img src="../assets/img/rewardLevel/Nember.png" alt="normal_level_picture" class="memberImg">';
   }
 
-  console.log(levelImg);
+  // console.log(levelImg);
 
   res.render('rewardLevel/reward', {
     couponsA: couponAi,
@@ -62,7 +62,7 @@ exports.getCoupon = async (req, res) => {
 exports.verifyLevel = async (req, res) => {
   const user_id = req.user.user_id;
   const queryTotalSpend = await rewModel.showtotalSpend(user_id);
-  console.log(queryTotalSpend);
+  // console.log(queryTotalSpend);
 
   if (queryTotalSpend >= 10000 && queryTotalSpend < 100000) {
     rewModel.updateLevel("Siver", user_id);

@@ -34,7 +34,7 @@ exports.getSearchFlight = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    console.log(origin + " " + destination + " " + check_in + " " + seat_class);
+    // console.log(origin + " " + destination + " " + check_in + " " + seat_class);
     res.redirect("/flight");
   }
 

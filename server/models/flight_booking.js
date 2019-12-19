@@ -1,7 +1,7 @@
 const db = require("../db/db");
 
 exports.getFlightInfoByNumber = async (flight_number,seatClass) =>{  
-    console.log(flight_number[0][1]);
+    // console.log(flight_number[0][1]);
     try {
         statment = "SELECT df.Flight_number, DATE_FORMAT(Depart_Date, '%d-%b-%Y') AS Dep_Date, TIME_FORMAT(Depart_Time, '%H:%i') AS Dep_time, DATE_FORMAT(Arrive_Date, '%d-%b-%Y') AS Arr_Date, TIME_FORMAT(Arrive_Time, '%H:%i') AS Arr_time, "+
         "Departure, Destination, dep.city AS dep_city, des.city AS des_city, DATE_FORMAT(Depart_Date, '%W') AS Dep_Day, airlineLogo as airline_logo, airlineName, TIME_FORMAT(TIMEDIFF(Arrive_Time, Depart_Time), '%H h %i min') AS timespan, price, DATE_FORMAT(Depart_Date, '%Y-%m-%d') AS nor_Depart_Date "
@@ -206,7 +206,7 @@ exports.getSeat = async (flight_number,date,seatClass) => {
         ]
     );
     seat = [];
-    console.log(result[0]);
+    // console.log(result[0]);
     return result[0];
 }
 
@@ -261,7 +261,7 @@ exports.recordBookingUpsell = async (upsell,upsellData,booking_ref,passagerinfo,
         {
             var tmp = upsellData[i].split("_");
             var path = tmp[1].split("-");
-            console.log(path);
+            // console.log(path);
             await db.query("INSERT INTO Booking_Upsell (Firstname, Lastname, Booking_ref, Flight_Number, Depart_date, Product) VALUES (?, ?, ?, ?, ?, ?)",[
                 passagerinfo[path[1]]['fname'],
                 passagerinfo[path[1]]['lname'],

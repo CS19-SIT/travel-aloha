@@ -12,8 +12,8 @@ exports.postIndex = async (req, res) => {
   const seatClass = req.body.seatClass[0];
   const passager = req.body.passager;
   // console.log(passager);
-  console.log(seatClass);
-  console.log(flightNumber);
+  // console.log(seatClass);
+  // console.log(flightNumber);
   info = await Booking.getFlightInfoByNumber(flightNumber, seatClass);
   // Booking.createSeat(flightNumber,seatClass);
   // console.log(info);
@@ -28,8 +28,8 @@ exports.postIndex = async (req, res) => {
   ]
   strP = await Booking.getStringPrice(p);
   strTotal = await Booking.getStringPrice(total);
-  console.log(strP);
-  console.log(strTotal);
+  // console.log(strP);
+  // console.log(strTotal);
   p = JSON.stringify(p);
   res.render("flight_booking/flight_info", {
     pageTitle: "TravelAloha - Flight - Booking",
@@ -116,13 +116,13 @@ exports.postUpsell = async (req, res) => {
             seat: seat[i][k]['Seat_Number']
           }
           seat[i][k]['Ava'] = 0;
-          console.log(seat[i][k]['Seat_Number']);
+          // console.log(seat[i][k]['Seat_Number']);
           break;
         }
       }
     }
   }
-  console.log(upsell);
+  // console.log(upsell);
 
   res.render("flight_booking/upsell", {
     pageTitle: "booking",
@@ -153,7 +153,7 @@ exports.postPayment = async (req, res) => {
     length: 8,
     str: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
   });
-  console.log(req.user);
+  // console.log(req.user);
   res.render("flight_booking/payment", {
     pageTitle: "booking",
     user: req.user,
@@ -182,7 +182,7 @@ exports.postThankyou = async (req, res) => {
   const contact = JSON.parse(req.body.contact);
   totalpay = req.body.totalpay;
   const user = req.user;
-  console.log(upsell);
+  // console.log(upsell);
   Booking.recordBookingHead(contact, req.user.user_id, book_ref);
   Booking.recordBookingdetail(reserveSeat, book_ref);
   Booking.recordBookingUpsell(upsell, upsellData, book_ref, Passagerinfo, info);
@@ -204,7 +204,7 @@ exports.postThankyou = async (req, res) => {
 exports.getDonut = (req, res) => {
   try {
     const ha = JSON.parse(req.body.selectedFlight);
-    console.log(ha[0] + " eiei")
+    // console.log(ha[0] + " eiei")
     res.render("flight_booking/renderTest", {
       pageTitle: "render Test",
       user: req.user,

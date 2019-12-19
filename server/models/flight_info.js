@@ -1,10 +1,10 @@
 const db = require("../db/db");
 
 exports.search = async ({origin, destination, check_in, seat_class}) => {
-    console.log(origin);
-    console.log(destination);
-    console.log(check_in);
-    console.log(seat_class);
+    // console.log(origin);
+    // console.log(destination);
+    // console.log(check_in);
+    // console.log(seat_class);
     try{
         if (!origin | !destination | !check_in ){
             throw new Error();
@@ -43,7 +43,7 @@ exports.getFlightInfoByNumber = async flight_number =>{
 
         const result1 = await db.query("SELECT * FROM Flight");
 
-        console.log(result1[0]);
+        // console.log(result1[0]);
 
         if (result[0].length < 1) {
             throw new Error(`Cannot find flight with id ${flight_number}.`);

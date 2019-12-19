@@ -39,7 +39,7 @@ exports.savedFavorites = async ({
 })=> {
   try{
  
-    console.log(favHotelID);
+    // console.log(favHotelID);
     await db.query(`INSERT INTO fav_hotel(favHotelID,favUserID) VALUES(?,?)`,[
       favHotelID,
       favUserID
@@ -57,7 +57,7 @@ exports.deleteFavorites = async ({
 })=> {
   try{
  
-    console.log(favHotelID);
+    // console.log(favHotelID);
     await db.query(`DELETE FROM fav_hotel WHERE favHotelID = ? and favUserID = ?`,[
       favHotelID,
       favUserID

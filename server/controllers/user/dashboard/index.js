@@ -30,7 +30,7 @@ exports.postEditProfile = async (req, res) => {
     } = req.body
     const profilepicture = req.files["profile_picture"][0].filename;
     try {
-      console.log(req.body, req.user);
+      // console.log(req.body, req.user);
       await userdashboard.updateProfile({
         ...req.body,
         user_id: req.user.user_id
