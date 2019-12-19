@@ -4,7 +4,7 @@ exports.getHotelRating = async (hotelId) => {
   try {
     let query = `
 SELECT count(*) AS total,
-       avg((Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating + Service_Hotel_Rating) / 5)AS all, 
+       avg((Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating + Service_Hotel_Rating) / 5) AS all, 
      sum(case
              when (Cleanliness_Hotel_Rating +
                    Comfort_Hotel_Rating +
