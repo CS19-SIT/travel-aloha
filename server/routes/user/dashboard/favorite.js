@@ -10,5 +10,16 @@ router.get(
   userFavoriteController.getIndex
 );
 
+router.post(
+  "/saved",
+  authMiddleware.isAuthenticated,
+  userFavoriteController.savedFavorite
+)
+router.post(
+  "/delete",
+  authMiddleware.isAuthenticated,
+  userFavoriteController.deleteFavorite
+)
+
 
 module.exports = router;
