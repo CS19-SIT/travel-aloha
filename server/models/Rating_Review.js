@@ -138,9 +138,8 @@ exports.getHotelReviewInfo = async (
 
 exports.getAirlineRating = async (airlineId) => {
   try {
-    let query = `
-SELECT count(*)            AS total,
-     avg((CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4) As all,        
+      let query = `
+SELECT count(*) AS total,
      sum(case
              when (CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4 / 5 > 8 then 1
              else 0 end) AS Fantastic,
