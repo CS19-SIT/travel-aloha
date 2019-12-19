@@ -6,6 +6,7 @@ html {
   /* 2 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  scroll-behavior: smooth;
 }
 
 /* Sections
@@ -1761,6 +1762,8 @@ span.flatpickr-weekday {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 700px; 
+  height: 100vh;
+  width: 99.2vw;
 
 }
 .card-recommended{
