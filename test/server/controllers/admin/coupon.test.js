@@ -191,7 +191,7 @@ describe("Admin Coupon controller", () => {
         tracking.push(editCode);
       });
 
-      it("start_date < expire date", async done => {
+      it("start_date <= expire date", async done => {
         const code = gen();
         const data = controllerValid({
           code,
@@ -203,8 +203,13 @@ describe("Admin Coupon controller", () => {
 
         await agent.put("/admin/coupon/new")
           .send(data).expect(404);
-
-        tracking.pop();
+        
+        await agent.put("/admin/coupon/new")
+          .send(controllerValid({
+            code,
+            start_date: "2020-01-01",
+            expire_date: "2020-01-01",
+          })).expect(204);
 
         testEdit(data);
 
