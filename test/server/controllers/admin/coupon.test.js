@@ -500,7 +500,10 @@ describe("Admin Coupon controller", () => {
           "abc",
           "bca",
           "b",
-          "d"
+          "d",
+          "A",
+          "AB",
+          "C"
         ];
         let t = [];
         
@@ -533,13 +536,14 @@ describe("Admin Coupon controller", () => {
           });
         };
 
-        await findLvl("a", [0, 1, 2, 5, 6]);
-        await findLvl("b", [2, 3, 5, 6, 7]);
-        await findLvl("c", [4, 5, 6]);
-        await findLvl("ab", [0, 1, 2, 3, 5, 6, 7]);
-        await findLvl("ac", [0, 1, 2, 4, 5, 6]);
-        await findLvl("bc", [2, 3, 4, 5, 6, 7]);
-        await findLvl("abc", [0, 1, 2, 3, 4, 5, 6, 7]);
+        await findLvl("a", [0, 1, 2, 5, 6, 9, 10]);
+        await findLvl("A", [0, 1, 2, 5, 6, 9, 10]);
+        await findLvl("b", [2, 3, 5, 6, 7, 10]);
+        await findLvl("c", [4, 5, 6, 11]);
+        await findLvl("ab", [0, 1, 2, 3, 5, 6, 7, 9, 10]);
+        await findLvl("ac", [0, 1, 2, 4, 5, 6, 9, 10, 11]);
+        await findLvl("bc", [2, 3, 4, 5, 6, 7, 10, 11]);
+        await findLvl("abc", [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11]);
         await findLvl("d", [8]);
         await findLvl("e", []);
         await findLvl("", []);
