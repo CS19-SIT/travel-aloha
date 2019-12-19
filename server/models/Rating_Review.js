@@ -69,6 +69,7 @@ exports.getHotelReviewInfo = async (
   Score
 ) => {
   try {
+    console.log(Type_Of_Hotel_Reviewer);
     const ScoreQuery = "(Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/5"
     let query =
       `SELECT idHotel_Review, Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, ${ScoreQuery} as Score, firstname, profile_picture, userId FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? `;
@@ -76,14 +77,19 @@ exports.getHotelReviewInfo = async (
     switch (Type_Of_Hotel_Reviewer) {
       case "Business trip":
         query += "AND Type_Of_Hotel_Reviewer = 'Business Trip' ";
+        break;
       case "Family vacation":
         query += "AND Type_Of_Hotel_Reviewer = 'Family vacation' ";
+        break;
       case "Romantic vacation":
         query += "AND Type_Of_Hotel_Reviewer = 'Romantic vacation' ";
+        break;
       case "Shopping and Culinary":
         query += "AND Type_Of_Hotel_Reviewer = 'Shopping and Culinary' ";
+        break;
       case "Backpacking":
         query += "AND Type_Of_Hotel_Reviewer = 'Backpacking' ";
+        break;
       case "Medical Travel":
         query += "AND Type_Of_Hotel_Reviewer = 'Medical Travel' ";
       default:
@@ -119,7 +125,7 @@ exports.getHotelReviewInfo = async (
         break;
     }
 
-    // console.log(query);
+    console.log(query);
 
     const hotelReview = await db.query(query, [hotelId]);
     // console.log(hotelReview);
@@ -173,12 +179,16 @@ exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Airline_Reviewer,
     switch (Type_Of_Airline_Reviewer) {
       case "Economic":
         query += "AND Type_Of_Airline_Reviewer = 'Economic' ";
+        break;
       case "Premium Economic":
         query += "AND Type_Of_Airline_Reviewer = 'Premium Economic' ";
+        break;
       case "Business":
         query += "AND Type_Of_Airline_Reviewer = 'Business' ";
+        break;
       case "First Class":
         query += "AND Type_Of_Airline_Reviewer = 'First Class' ";
+        break;
       default:
         break;
     }
