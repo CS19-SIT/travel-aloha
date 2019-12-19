@@ -3,7 +3,7 @@ const db = require("../db/db");
 exports.getHotelRating = async (hotelId) => {
   try {
       let query = `
-SELECT count(*)            AS total,
+SELECT count(*) AS total,
      sum(case
              when (Cleanliness_Hotel_Rating +
                    Comfort_Hotel_Rating +
