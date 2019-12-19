@@ -34,8 +34,10 @@
                                         </div>
                                         <div class="col-xs-5 col-md-6 progressbar ">
                                             <div class="progress" style="height: 10px;">
-                                                <div class="progress-bar" role="progressbar" style="width: <%= (airlineRating[item]/airlineRating.total)*100 %>%;"
-                                                    aria-valuenow="<%= airlineRating[item] %>" aria-valuemin="0" aria-valuemax="<%= airlineRating.total %>"></div>
+                                                <div class="progress-bar" role="progressbar"
+                                                    style="width: <%= (airlineRating[item]/airlineRating.total)*100 %>%;"
+                                                    aria-valuenow="<%= airlineRating[item] %>" aria-valuemin="0"
+                                                    aria-valuemax="<%= airlineRating.total %>"></div>
                                             </div>
                                         </div>
                                         <div class="col-xs-3 col-md-3">
@@ -44,11 +46,11 @@
                                         <% } %>
                                         <% } %>
                                     </div>
-                                        
+
                                 </div>
 
                                 <div class="col-xs-4 col-md-4">
-                                    <div class="row rating-desc">
+                                    <!--<div class="row rating-desc">
                                         <div class="col-xs-5 col-md-5 text-right">
                                             Cabin Crew
                                         </div>
@@ -84,7 +86,7 @@
                                                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -173,17 +175,8 @@
                     <form action="/review/airline/<%= airlineId %>" method="get">
                         <div class="d-flex">
                             <div class="col-xs-3 col-md-3 ">
-                                <label for="Sort">Sort reviews by: <i class="fas fa-question-circle" data-toggle="tooltip"
-                                        data-placement="right" title="Tooltip on right"></i></label>
-                                <select class="form-control" name="Sort"" id="">
-                                    <option>Recommended</option>
-                                    <option>Newest</option>
-                                    <option>Oldest</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-3 col-md-3 ">
                                 <label for="Category">Show reviews from: <i class="fas fa-question-circle"
-                                        data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
+                                        data-toggle="tooltip" data-placement="right" title="filtle by"></i></label>
                                 <select class="form-control" name="Type_Of_Airline_Reviewer" id="">
                                     <option>All reviewers</option>
                                     <option>Economic</option>
@@ -194,7 +187,8 @@
                             </div>
                             <div class="col-xs-3 col-md-3 ">
                                 <label for="Score">Show reviews by score: <i class="fas fa-question-circle"
-                                        data-toggle="tooltip" data-placement="right" title="Tooltip on right"></i></label>
+                                        data-toggle="tooltip" data-placement="right"
+                                        title="reviews by score"></i></label>
                                 <select class="form-control" name="Score" id="">
                                     <option>All review scores</option>
                                     <option>Wonderful</option>
@@ -205,11 +199,20 @@
                                 </select>
                             </div>
                             <div class="col-xs-3 col-md-3 ">
-                                <button class="btn btn-primary show">Display</button>
+                                <label for="Sort">Sort reviews by: <i class="fas fa-question-circle"
+                                        data-toggle="tooltip" data-placement="right" title="sort by"></i></label>
+                                <select class="form-control" name="Sort"" id="">
+                                    <option>Recommended</option>
+                                    <option>Newest</option>
+                                    <option>Oldest</option>
+                                </select>
+                            </div>
+                            <div class=" col-xs-3 col-md-3 ">
+                                <button class=" btn btn-primary show" type="submit">Search</button>
                             </div>
                         </div>
                     </form>
-                    
+
                     <!-- Review by user -->
                     <% for(var i = 0; i < airlineReview.length; i++) { %>
                     <section class="review p-5 border-1">
@@ -226,10 +229,11 @@
                                     <h4><%= airlineReview[i].firstname %></h4>
                                 </a>
                                 <% if(user && airlineReview[i].userId == user.user_id) {%>
-                                    <form method="DELETE" action="/review/airline/<%= airlineId %>/<%= airlineReview[i].idAirline_Review %>/delete">
-                                        <button type="submit">Delete</button>
-                                    </form>
-                               <% } %>
+                                <form method="DELETE"
+                                    action="/review/airline/<%= airlineId %>/<%= airlineReview[i].idAirline_Review %>/delete">
+                                    <button type="submit">Delete</button>
+                                </form>
+                                <% } %>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-0 mb-0">

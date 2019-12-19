@@ -171,10 +171,13 @@ exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Airline_Reviewer,
     switch (Type_Of_Airline_Reviewer) {
       case "Economic":
         query += "AND Type_Of_Airline_Reviewer = 'Economic' ";
+        break;
       case "Premium Economic":
         query += "AND Type_Of_Airline_Reviewer = 'Premium Economic' ";
+        break;
       case "Business":
         query += "AND Type_Of_Airline_Reviewer = 'Business' ";
+        break;
       case "First Class":
         query += "AND Type_Of_Airline_Reviewer = 'First Class' ";
       default:
