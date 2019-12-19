@@ -2,9 +2,9 @@ const db = require("../db/db");
 const EventEmitter = require('events');
 const event = new EventEmitter();
 
-event.on("NO", (args) => {
-    console.log(args);
-})
+// event.on("NO", (args) => {
+//     console.log(args);
+// })
 
 event.emit("NO", {data: 'hello', id: 123});
 
