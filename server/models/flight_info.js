@@ -1,31 +1,28 @@
 const db = require("../db/db");
 
-exports.search = async () => {
-    const { origin ,destination, check_in, check_out} = req.body;
+exports.search = async ({origin, destination, check_in, seat_class}) => {
+    // console.log(origin);
+    // console.log(destination);
+    // console.log(check_in);
+    // console.log(seat_class);
     try{
-        if (!origin | !destination | !check_in){
+        if (!origin | !destination | !check_in ){
             throw new Error();
         }
-        const result = await db.query("select f.Destination, f.Depart_Date, a.airlineName, s.class, air.Airport_name " + 
-        " from Flight as f, airline as a, Seat as s, Airport as air where Departure = '"
-        + origin +"' and Destination = '" + destination + "' and Depart_Date = '" + check_in + "';");
-
-        if(result[0].length < 1){
-            throw new Error(`[ERR] Flight.search: ${err}`);
-        }
+        const result = await db.query("select f.Flight_Number,f.Destination, df.Depart_Time, a.airlineName, se.class, air.Airport_name, df.Arrive_Time, se.Price " + 
+        "from development.Flight as f, development.airline as a, development.Airport as air, development.Daily_Flight as df, development.Seat_Price as se "
+        + "where f.Destination = " + "?" +" and f.Departure = " + "?" + " and se.Class like '%?' and df.Depart_Date = " + "'?'" + " order by se.Price asc;",[origin,destination,seat_class,check_in]);
 
         return result[0];
         
     } catch(err){
-        console.log(err);
-        console.log(origin + " " + destination + " " + check_in);
-        res.redirect("/flights");
+        throw new Error(`[ERR] search: ${err}`);
     }
 };
 
 exports.getData = async () => {
     try{
-        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Seat LIMIT 10;");
+        const getData = await db.query("SELECT * FROM Flight, airline, Airport, Daily_Flight, Seat_Price LIMIT 10;");
         return getData[0];
     }
     catch(err){
@@ -46,7 +43,7 @@ exports.getFlightInfoByNumber = async flight_number =>{
 
         const result1 = await db.query("SELECT * FROM Flight");
 
-        console.log(result1[0]);
+        // console.log(result1[0]);
 
         if (result[0].length < 1) {
             throw new Error(`Cannot find flight with id ${flight_number}.`);

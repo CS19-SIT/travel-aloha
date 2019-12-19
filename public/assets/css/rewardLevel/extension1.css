@@ -1,5 +1,6 @@
 * {
   font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -17,6 +18,22 @@ header {
   border-bottom-right-radius: 50% 20%;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(45deg, rgba(91,160,245,1) 0%, rgba(17,77,150,1) 50%, rgba(91,160,245,1) 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #25282b; 
+}
+
 h1 {
   font-size: 56px;
   font-weight: 300;
@@ -24,11 +41,13 @@ h1 {
   color: #25282b;
 }
 
-h2,span {
+h2,
+span {
   font-size: 34px;
   font-weight: 300;
   line-height: 40px;
   color: #25282b;
+  font-weight: bold;
 }
 
 h3 {
@@ -38,44 +57,50 @@ h3 {
   color: #25282b;
 }
 
-small {
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 12px;
-  color: #a0a4a8;
+#validcoupon h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #25282b;
+  padding: 10px 0 0 10px;
+  text-align: center;
+}
+#redeemcoupon h3{
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #25282b;
+  padding: 10px 0 0 10px;
+  text-align: center;
 }
 
 /*=== POINT ===*/
 
 .pointbg {
-  width: 150px;
+  width: 130px;
   height: 100px;
   right: 10px;
   bottom: 0px;
   background: #216bc4;
   position: fixed;
   z-index: 3;
-  border: 5px solid #fafafa;
+  border: 2px solid #fafafa;
   border-top-right-radius: 50% 20%;
   border-top-left-radius: 50% 20%;
 }
 
-.pointbg p{
+.pointbg p {
   text-align: center;
   font-size: 24px;
   font-weight: 700;
-  line-height: 32px;
   text-transform: uppercase;
   color: #fafafa;
-  -webkit-animation: appear 2s;
-  -moz-animation: appear 2s;
-  animation: appear 2s;
 }
 
 .point {
   background-color: #ffc847;
   height: 30px;
-  width: 170px;
+  width: 150px;
   position: relative;
   left: -13px;
   z-index: 3;
@@ -93,9 +118,6 @@ small {
   line-height: 32px;
   text-transform: uppercase;
   color: #25282b;
-  -webkit-animation: appear 2s;
-  -moz-animation: appear 2s;
-  animation: appear 2s;
 }
 
 /*carousel style*/
@@ -107,12 +129,11 @@ small {
 
 /**/
 .row-carousel {
-  padding: 5px;
+  border: 5px #25282b solid;
+  border-radius: 5px;
   display: block;
   margin: 50px;
   margin-bottom: 70px;
-  background-color: #a0a4a8;
-  background-blend-mode: multiply;
 }
 
 .row-coupon {
@@ -145,9 +166,6 @@ small {
   font-weight: 700;
   text-transform: uppercase;
   color: #ffffff;
-  -webkit-animation: appear 2s;
-  -moz-animation: appear 2s;
-  animation: appear 2s;
 }
 
 #circle {
@@ -161,8 +179,27 @@ small {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 #circle:hover {
   background-image: radial-gradient(#5ba0f5, #2b86f7 70%);
+}
+
+#circle:after {
+  content: "";
+  display: block;
+  border: 5px dashed white;
+  width: 180px;
+  height: 180px;
+  border-radius: 214px;
+  animation: spin 30s linear infinite;
 }
 
 .ribbonGift:hover {
@@ -238,8 +275,11 @@ small {
   margin: auto;
   box-shadow: inherit;
 }
+span#nameLevel {
+  font-weight: normal;
+}
 
-/* === Media Screen === */
+/* === Mobile Screen === */
 
 @media screen and (max-width: 750px) {
   .sidnev {
@@ -255,11 +295,29 @@ small {
     line-height: 68px;
     color: #25282b;
   }
-  h2,span {
+  h2,
+  span {
     font-size: 24px;
     font-weight: 300;
     line-height: 40px;
     color: #25282b;
+    font-weight: bold;
+  }
+  #validcoupon h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #25282b;
+    padding: 10px 0 0 10px;
+    text-align: center;
+  }
+  #redeemcoupon h3{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #25282b;
+    padding: 10px 0 0 10px;
+    text-align: center;
   }
   .ribbonTab {
     position: relative;
@@ -277,9 +335,6 @@ small {
     font-weight: 700;
     text-transform: uppercase;
     color: #ffffff;
-    -webkit-animation: appear 2s;
-    -moz-animation: appear 2s;
-    animation: appear 2s;
   }
   #gift {
     position: absolute;
@@ -311,60 +366,67 @@ small {
     margin-top: -30px;
     margin-left: 6%;
   }
+  #circle:after {
+    content: "";
+    display: block;
+    border: 5px dashed white;
+    width: 110px;
+    height: 110px;
+    border-radius: 214px;
+    animation: spin 30s linear infinite;
+  }
   .row-carousel {
     visibility: hidden;
     position: fixed;
   }
+
+  /*=== Points ===*/
   .pointbg {
-    width: 100px;
-    height:90px;
+    width: 90px;
+    height: 70px;
     right: 10px;
     bottom: 0px;
     background: #216bc4;
     position: fixed;
     z-index: 3;
   }
-  .pointbg p{
+  .pointbg p {
     text-align: center;
+    padding-top: 3px;
     font-size: 20px;
     font-weight: 700;
-    line-height: 32px;
+    line-height: 0px;
     text-transform: uppercase;
     color: #fafafa;
-    -webkit-animation: appear 2s;
-    -moz-animation: appear 2s;
-    animation: appear 2s;
   }
-  
+
   .point {
     top: -10px;
     background-color: #ffc847;
     height: 25px;
-    width: 120px;
+    width: 110px;
     position: relative;
     left: -10px;
-    z-index: 3;    
+    z-index: 3;
     text-shadow: 0px 1px 2px #ffc847;
-    margin-bottom: 0%; 
+    margin-bottom: 0%;
   }
-  
+
   .point p {
     text-align: center;
     font-size: 18px;
     color: #25282b;
+    margin-bottom: 0px;
+    padding-top: 14%;
   }
-  span#nameLevel{
+  span#nameLevel {
     visibility: hidden;
     position: fixed;
+    font-weight: normal;
   }
 }
 
-
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .sidnev {
-    height: auto;
-    padding: 15px;
-  }
   .row content {
     height: auto;
   }
@@ -378,11 +440,13 @@ small {
     width: 512px;
     height: 275px;
   }
-  h2,span {
-    font-size: 24px;
+  h2,
+  span {
+    font-size: 32px;
     font-weight: 300;
     line-height: 40px;
     color: #25282b;
+    font-weight: bold;
   }
   .ribbonTab h1 {
     padding-left: 37%;
@@ -390,13 +454,16 @@ small {
   #circle {
     margin-left: 10%;
   }
+  span#nameLevel {
+    font-weight: normal;
+  }
+  .col-sm-12, .row-coupon{
+    padding: 5px;
+    padding-top: 10px;
+  }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1025px) {
-  .sidnev {
-    height: auto;
-    padding: 15px;
-  }
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
   .row content {
     height: auto;
   }
@@ -406,11 +473,13 @@ small {
     line-height: 68px;
     color: #25282b;
   }
-  h2,span {
+  h2,
+  span {
     font-size: 24px;
     font-weight: 300;
     line-height: 40px;
     color: #25282b;
+    font-weight: bold;
   }
   .carousel-inner img {
     width: 512px;
@@ -421,5 +490,8 @@ small {
   }
   #circle {
     margin-left: 9%;
+  }
+  span#nameLevel {
+    font-weight: normal;
   }
 }
