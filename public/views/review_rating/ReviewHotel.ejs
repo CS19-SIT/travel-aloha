@@ -3,9 +3,7 @@
 <script src="https://kit.fontawesome.com/400150cc58.js" crossorigin="anonymous"></script>
 
 <body>
-<script>
-   
-</script>
+
 
     <%- include('../includes/navbar') %>
     <div class="container-fluid px-0 py-5 mx-auto">
@@ -21,9 +19,11 @@
                                 <div class="white-tab col-xs-2 col-md-2 divcircle">
                                     <div class="circlescore">
                                         <div class="circlescorein">
-                                             <spen><%= hotelRating.all %></spen>
+                                             <spen>4.5</spen>
                                         </div>
                                     </div>
+                                    <p>
+                                    </p>
                                     <div class="textscore">
                                         Fantastic
                                     </div>
@@ -47,7 +47,118 @@
                                         <% } %>
                                         <% } %>
                                     </div>
-        
+                                    <!-- <div class="row rating-desc">
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            Fantastic
+                                        </div>
+                                        <div class="col-xs-5 col-md-6 progressbar ">
+                                            <div class="progress" style="height: 10px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <span class="text-muted">10</span>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            Very Good
+                                        </div>
+                                        <div class="col-xs-5 col-md-6 progressbar">
+                                            <div class="progress" style="height: 10px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <span class="text-muted">10</span>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            Satisfying
+                                        </div>
+                                        <div class="col-xs-5 col-md-6 progressbar">
+                                            <div class="progress" style="height: 10px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <span class="text-muted">10</span>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            Average
+                                        </div>
+                                        <div class="col-xs-5 col-md-6 progressbar">
+                                            <div class="progress" style="height: 10px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <span class="text-muted">10</span>
+                                        </div>
+
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            Poor
+                                        </div>
+                                        <div class="col-xs-5 col-md-6 progressbar">
+                                            <div class="progress" style="height: 10px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <span class="text-muted">10</span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!-- <div class="col-xs-4 col-md-4">
+                                    <div class="row rating-desc">
+                                        <div class="col-xs-4 col-md-4 text-right">
+                                            Cleanliness
+                                        </div>
+                                        <div class="col-xs-8 col-md-8">
+                                            <div class="rating">
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-4 col-md-4 text-right">
+                                            Comfort
+                                        </div>
+                                        <div class="col-xs-8 col-md-8">
+                                            <div class="rating">
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-4 col-md-4 text-right">
+                                            Meal
+                                        </div>
+                                        <div class="col-xs-8 col-md-8">
+                                            <div class="rating">
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-4 col-md-4 text-right">
+                                            Location
+                                        </div>
+                                        <div class="col-xs-8 col-md-8">
+                                            <div class="rating">
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-4 col-md-4 text-right">
+                                            Service
+                                        </div>
+                                        <div class="col-xs-8 col-md-8">
+                                            <div class="rating">
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
                         <!-- Wirie review-->
@@ -215,7 +326,7 @@
                                 <%= moment(hotelReview[i].timestamp).format('DD MMM YYYY hh:ss') %> &nbsp•&nbsp
                                 <%= hotelReview[i].Type_Of_Hotel_Reviewer %></p>
                             <p class="text-right font-weight-bold">Score <span
-                                    class="text-info" id="sco"><%= parseInt(hotelReview[i].Score) %></span>/10</p>
+                                    class="text-info score"><%= parseInt(hotelReview[i].Score) %></span>/10</p>
                         </div>
                         <div class="row pb-3">
 
@@ -241,7 +352,6 @@
 
 
 <script src="../../assets/js/review.js"></script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <%- include('../includes/footer') %>
