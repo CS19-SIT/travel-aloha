@@ -1,6 +1,10 @@
 $(document).ready(function () {
   $("select[multiple='multiple'].coupon-level-select").select2({
-    width: '100%'
+    width: "100%"
+  });
+
+  $(".coupon-daterange").datepicker({
+    format: "yyyy-mm-dd"
   });
 
   let searchOptionsSelectAjax = function (type) {
@@ -18,27 +22,27 @@ $(document).ready(function () {
   }
   
   function randomString(length, chars) {
-    var result = '';
+    var result = "";
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
   }
 
   function randomCouponCode() {
-    return randomString(10, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    return randomString(10, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
   }
 
   $("select[multiple='multiple'].hotel-select").select2({
-    width: '100%',
+    width: "100%",
     ajax: searchOptionsSelectAjax("hotel")
   });
 
   $("select[multiple='multiple'].airline-select").select2({
-    width: '100%',
+    width: "100%",
     ajax: searchOptionsSelectAjax("airline")
   });
 
   $("select[multiple='multiple'].user-select").select2({
-    width: '100%',
+    width: "100%",
     ajax: searchOptionsSelectAjax("user")
   });
 
@@ -80,7 +84,7 @@ $(document).ready(function () {
     }).done(() => {
       alert("Success!");
       location.reload();
-    });
+    }).fail(() => alert("Failed!"));
   });
 
   $("#editModal").on("show.bs.modal", function (e) {
@@ -94,15 +98,20 @@ $(document).ready(function () {
 
     form.data("coupon-code", code);
 
-    for (const key of ['code', 'name', 'discount_percentage', 'max_count']) {
+    for (const key of ["code", "name", "discount_percentage", "max_count", "min_purchase"]) {
       find(key).val(coupon[key]);
     }
 
-    find("start_date").get(0).valueAsDate = new Date(coupon["start_date"]);
-    find("expire_date").get(0).valueAsDate = new Date(coupon["expire_date"]);
+    const setDate = function (name, r) {
+      const date = new Date(coupon[name]);
+      find(name).datepicker("update", date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+    }
+
+    setDate("start_date");
+    setDate("expire_date");
     find("for_every_hotel").prop("checked", coupon.for_every_hotel);
     find("for_every_airline").prop("checked", coupon.for_every_airline);
-    find("unlimited").prop("checked", coupon['max_count'] == null);
+    find("unlimited").prop("checked", coupon["max_count"] == null);
     form.find("textarea[name=description]").val(coupon["description"]);
     form.find('select[name="levels"]').val(coupon.levels).change();
 
@@ -147,7 +156,7 @@ $(document).ready(function () {
     }).done(() => {
       alert("Success!");
       location.reload();
-    });
+    }).fail(() => alert("Failed!"));
   });
 
   $("#deleteModalForm").submit(function (e) {
@@ -159,7 +168,7 @@ $(document).ready(function () {
     }).done(() => {
       alert("Success!");
       location.reload();
-    });
+    }).fail(() => alert("Failed!"));
   });
 
   $("button[name=couponGenerateButton]").click(function (e) {

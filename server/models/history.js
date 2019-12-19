@@ -6,7 +6,7 @@ exports.getHotelName = async (
   ) => {
     try {
       //console.log(typeof userID);
-      let resultHotelName = await db.query("select hotelname,timestamp,hoteladdress,hotelTelNumber, bookde.bookingId_detail from user as u,booking_detail as bookde,room_head as rhead,hotel as h where bookde.roomId_booking = rhead.hotelidroom AND rhead.hotelIdroom = h.hotelId and bookde.userId_booking = ?;",
+      let resultHotelName = await db.query("select bd.firstName, bd.lastName, bh.timestamp,bh.checkinDate, bh.checkoutDate, h.hotelAddress, h.hotelName, h.hotelTelNumber, bd.bookingId_detail from booking_head as bh join (booking_detail as bd join hotel as h on h.hotelId = bd.hotelId_booking) on bookingId_detail = bh.bookingDetailid where userId_booking = ?;",
          [userID]
          );
 
@@ -34,9 +34,12 @@ exports.getHotelName = async (
   exports.getHotelData = async (userID) => {
     try {
       //console.log(typeof userID);
-      let resultHotelName = await db.query("SELECT * FROM hotel as h,booking_detail as bookde WHERE h.hotelid = bookde.hotelid_booking AND bookde.userid_booking = ?", [
+      let resultHotelName = await db.query
+      ("SELECT checkinDate, checkoutDate, bh.timestamp, isPaid, h.hotelName,h.hotelAddress,h.hotelTelNumber,bookde.firstName,bookde.lastName FROM booking_head as bh ,hotel as h,booking_detail as bookde WHERE h.hotelid = bookde.hotelid_booking AND bh.bookingDetailid = bookde.bookingid_detail AND bookde.userid_booking = ? order by bh.timestampe"
+      ,
+      [
          userID
-         
+
       ]);
       const resulthotel = await db.query("SELECT * FROM hotel")
       console.log(resulthotel[0]);
@@ -51,10 +54,8 @@ exports.getHotelName = async (
   exports.getFlightData = async (userID) => {
     try {
       //console.log(typeof userID);
-      let resultFlight = await db.query("select airlineName, fde.flight_number, book_date, Departure, Destination, fde.booking_ref from Flight as f,user as u , flight_booking_head as fbook ,Flight_booking_detail as fde , airline as al where ? = fbook.customer_id and fbook.booking_ref = fde.booking_ref and f.Flight_number = fde.flight_number and f.Airline_ID = al.airline_Id ;"
-      , [userID
-         
-      ]);
+      let resultFlight = await db.query("select Flight_booking_detail.Seat_Number,airlineName,Daily_Flight.Depart_Date,Flight.Flight_Number,Book_Date,Departure,Destination,flight_booking_head.Booking_ref from airline, Flight, Daily_Flight, Flight_booking_detail, flight_booking_head,customer where airline.airline_Id=Flight.Airline_ID AND Flight.Flight_Number=Daily_Flight.Flight_Number AND Flight_booking_detail.Flight_Number=Daily_Flight.Flight_Number AND Flight_booking_detail.Depart_Date=Daily_Flight.Depart_Date AND Flight_booking_detail.Booking_ref=flight_booking_head.Booking_ref AND customer.customer_id = ? order by Book_Date asc ;"
+      , [userID]);
       //const resulthotel = await db.query("SELECT * FROM hotel")
       //console.log(resulthotel[0]);
       console.log(resultFlight[0]);
@@ -64,4 +65,3 @@ exports.getHotelName = async (
       throw new Error(`[ERR] createUser: ${err}`);
     }
   };
-

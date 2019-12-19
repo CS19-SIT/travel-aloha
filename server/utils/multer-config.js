@@ -7,6 +7,9 @@ const storage = multer.diskStorage({
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
     else if (file.fieldname === "airlineProfile")
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/documents"));
+    else if (file.fieldname === "profilepicture"){
+      callback(null, path.join(__dirname, "../../public/assets/uploads/userDashboard"));
+    }
     else
       callback(null, path.join(__dirname, "../../public/assets/uploads/contact/pictures"));
   },
@@ -42,11 +45,19 @@ const upload = multer({
 }).fields([
  { name: "hotelProfile", maxCount: 1 },
  { name: "hotelPicture", maxCount: 1 },
- { name: "hotelRoomPicture", maxCount: 1},
+ { name: "hotelRoomPicture1", maxCount: 1},
+ { name: "hotelRoomPicture2", maxCount: 1},
+ { name: "hotelRoomPicture3", maxCount: 1},
+ { name: "hotelRoomPicture4", maxCount: 1},
+ { name: "hotelRoomPicture5", maxCount: 1},
+ { name: "hotelRoomPicture6", maxCount: 1},
  { name: "airlineProfile", maxCount: 1 },
- { name: "airlinePicture", maxCount: 1 }
+ { name: "airlinePicture", maxCount: 1 },
+ { name: "airlineSeatTypePicture1", maxCount: 1 },
+ { name: "airlineSeatTypePicture2", maxCount: 1 },
+ { name: "airlineSeatTypePicture3", maxCount: 1 },
+ { name: "profilepicture", maxCount: 1 }
 ]);
-
 module.exports = {
   upload
 };

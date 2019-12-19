@@ -5,27 +5,35 @@ const Rating_ReviewModel = require("../../models/Rating_Review");
 exports.getHotel = async (req, res) => {
   try {
     const { id } = req.params;
+    if (!id) return res.status(404).render("errors/404", {
+      pageTitle: "TravelAloha - Page Not Found",
+      user: req.user
+    });
     const { Type_Of_Hotel_Reviewer, Sort, Score} = req.query;
     const hotelReview = await Rating_ReviewModel.getHotelReviewInfo(id, Type_Of_Hotel_Reviewer, Sort, Score);
-
+    const hotelRating = await Rating_ReviewModel.getHotelRating(id);
     // console.log(Type_Of_Hotel_Reviewer, Sort, Score);
     // console.log(req.query);
-    // if (hotelReview[0].length == 0) {
-    //   return res.status(404).render("errors/404", {
-    //     pageTitle: "TravelAloha - Page Not Found",
-    //     user: req.user
-    //   });
-    // }
+    if (
+        (!Type_Of_Hotel_Reviewer || !Sort || !Score) &&
+        hotelReview[0].length == 0
+    ) {
+      return res.status(404).render("errors/404", {
+        pageTitle: "TravelAloha - Page Not Found",
+        user: req.user
+      });
+    }
     res.render("review_rating/ReviewHotel", {
       pageTitle: "TravelAloha - Review - Hotel",
       user: req.user,
       hotelId: id,
       hotelReview: hotelReview[0],
+      hotelRating: hotelRating[0][0],
       findProfileById: User.findProfileById,
       moment
     });
   } catch (getHotelError) {
-    // console.log(getHotelError);
+    console.log(getHotelError);
     res.status(500).render("errors/500", {
       pageTitle: "TravelAloha - Bad Request",
       user: req.user,
@@ -34,34 +42,37 @@ exports.getHotel = async (req, res) => {
   }
 };
 
-// exports.getFlight = (req, res) =>
-//   res.render("review_rating/ReviewAirline", {
-//     pageTitle: "TravelAloha - Review - Airline",
-//     user: req.user
-//   });
-
 exports.getAirline = async (req, res) => {
     try {
       const { id } = req.params;
+      if (!id) return res.status(404).render("errors/404", {
+        pageTitle: "TravelAloha - Page Not Found",
+        user: req.user
+      });
       const { Type_Of_Airline_Reviewer, Sort, Score} = req.query;
       const airlineReview = await Rating_ReviewModel.getAirlineReviewInfo(id, Type_Of_Airline_Reviewer, Sort, Score);
-      // if (airlineReview[0].length == 0) {
-      //   return res.status(404).render("errors/404", {
-      //     pageTitle: "TravelAloha - Page Not Found",
-      //     user: req.user
-      //   });
-      // }
+      const airlineRating = await Rating_ReviewModel.getAirlineRating(id);
+      if ((
+        (!Type_Of_Airline_Reviewer || !Sort || !Score) &&
+        airlineReview[0].length == 0
+    )) {
+        return res.status(404).render("errors/404", {
+          pageTitle: "TravelAloha - Page Not Found",
+          user: req.user
+        });
+      }
       console.log(req.query);
       res.render("review_rating/ReviewAirline", {
         pageTitle: "TravelAloha - Review - Airline",
         user: req.user,
         airlineId: id,
         airlineReview: airlineReview[0],
+        airlineRating: airlineRating[0][0],
         findProfileById: User.findProfileById,
         moment
       });
     } catch (getAirlineError) {
-          // console.log(getAirlineError);
+          console.log(getAirlineError);
       res.status(500).render("errors/500", {
         pageTitle: "TravelAloha - Bad Request",
         user: req.user,
@@ -197,18 +208,30 @@ exports.editAirlineReview  = async (req, res) => {
 
 exports.deleteHotelReview = async (req, res) => {
   try {
-    res.send(await Rating_ReviewModel.deleteHotelReviewInfo(req.body.idHotel_Review));
-    res.sendStatus(204, "/review/hotel/:id");
-  } catch (err) {
-    res.sendStatus(404);
+    const { id, review_id } = req.params;
+    const userId = req.user.user_id;
+    await Rating_ReviewModel.deleteHotelReviewInfo(userId, review_id);
+    res.redirect(301, `/review/hotel/${id}`);
+  } catch (deleteHotelReviewError) {
+    res.status(500).render("errors/500", {
+      pageTitle: "TravelAloha - Bad Request",
+      user: req.user,
+      error: deleteHotelReviewError
+    });
   }
 };
 
 exports.deleteAirlineReview = async (req, res) => {
   try {
-    res.send(await Rating_ReviewModel.deleteAirlineReviewInfo(req.body.idAirline_Review));
-    res.sendStatus(204, "/review/airline/:id");
-  } catch (err) {
-    res.sendStatus(404);
+    const { id, review_id } = req.params;
+    const userId = req.user.user_id;
+    await Rating_ReviewModel.deleteAirlineReviewInfo(userId, review_id);
+    res.redirect(301, `/review/airline/${id}`);
+  } catch (deleteAirlineReviewError) {
+    res.status(500).render("errors/500", {
+      pageTitle: "TravelAloha - Bad Request",
+      user: req.user,
+      error: deleteHotelReviewError
+    });
   }
 };

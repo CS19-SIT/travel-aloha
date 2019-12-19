@@ -101,6 +101,7 @@
                                             </div>
                                             <div class="row">
                                             <div class="col-md-6">
+
                                                 <h5>Additional Services</h5>
                                                 <%for(let k = 0; k < upsell[i].length; k++) { %>
                                                     <div class="row">
@@ -163,11 +164,11 @@
     </div>
     <script>
         
-        < !-- 
-        DO NOT AUTO FORMAT THIS LINE!!!
-        VERY DANGEROUS!! EVERYRHING WILL BE BROKE!!
-        --!>
+        // DO NOT AUTO FORMAT THE FOLLOWING LINE. VERY DANGEROUS. EVERYTHING WILL BE BROKEN IF ITS CHANGED
+        //IT SHOULD LOOK LIKE THIS : var price = [ <%=p%> ];
         var price = [ <%=p%> ];
+        //DO NOT AUTO FORMAT THE LINE ABOVE. VERY DANGEROUS
+        //PLEASE PROCEED
 
         function clickUpsell(item) {
             console.log(item);
@@ -245,10 +246,9 @@
 
             // document.getElementById("totalpay").value = total[2];
         }
-        
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-
     </script>
     <%- include('../includes/footer') %>

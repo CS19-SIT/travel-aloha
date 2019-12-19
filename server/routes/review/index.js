@@ -18,16 +18,12 @@ router.post("/hotel/:id", reviewController.postHotelReview, authMiddleware.isAut
 
 router.post("/airline/:id", reviewController.postAirlineReview, authMiddleware.isAuthenticated);
 
-router.delete(
-    "/hotelreview/delete/:id",
+router.get("/hotel/:id/:review_id/delete", authMiddleware.isAuthenticated, reviewController.deleteHotelReview);
+
+  router.get(
+    "/airline/:id/:review_id/delete",
     authMiddleware.isAuthenticated,
     reviewController.deleteHotelReview
-  );
-
-  router.delete(
-    "/airlinereview/delete/:id",
-    authMiddleware.isAuthenticated,
-    reviewController.deleteAirlineReview
   );
 
   router.put(

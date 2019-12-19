@@ -1,0 +1,87 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  /* background: #114d96;
+    background: -webkit-linear-gradient(to right, #114d96, #5ba0f5);
+    background: linear-gradient(to right, #114d96, #5ba0f5); */
+  background: rgb(37, 40, 43);
+  background: linear-gradient(
+    180deg,
+    rgba(37, 40, 43, 1) 0%,
+    rgba(17, 77, 150, 1) 12%,
+    rgba(91, 160, 245, 1) 30%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(255, 255, 255, 1) 85%,
+    rgba(17, 77, 150, 1) 95%,
+    rgba(37, 40, 43, 1) 100%
+  );
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  margin: 10px;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 300;
+  line-height: 68px;
+  color: #25282b;
+}
+
+h2 {
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 40px;
+  color: #25282b;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #25282b;
+}
+
+small {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #a0a4a8;
+}
+
+/*carousel style*/
+
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
+
+/**/
+
+.row {
+  padding: 10px;
+  display: block;
+}
+
+@media screen and (max-width: 750px) {
+  .sidnev {
+    height: auto;
+    padding: 15px;
+  }
+  .row content {
+    height: auto;
+  }
+  h1 {
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 68px;
+    color: #25282b;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 40px;
+    color: #25282b;
+  }
+}

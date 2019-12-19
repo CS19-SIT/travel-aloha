@@ -8,6 +8,10 @@ exports.getIndex = async (req, res) => {
     let dataPlace = await page.countPlace();
     let hotelInfo = await hotel.getAllHotel();
     let flightInfo = await page.getAllFlight();
+    let countAirline = await page.countAirline();
+    let discountInfo = await page.getDiscountRoom();
+    let airlineInfo = await page.getAllAirline();
+    let countAirlineNum = await page.getMostFlightBooking();
 
     res.render("landingPage/userLanding", {
       pageTitle: "TravelAloha",
@@ -16,7 +20,11 @@ exports.getIndex = async (req, res) => {
       dataHotel: dataHotel,
       dataPlace: dataPlace,
       hotelInfo: hotelInfo,
-      flightInfo: flightInfo
+      flightInfo: flightInfo,
+      countAirline:countAirline,
+      discountInfo:discountInfo,
+      airlineInfo:airlineInfo,
+      countAirlineNum:countAirlineNum
     });
   } catch (err) {
     res.sendStatus(404);

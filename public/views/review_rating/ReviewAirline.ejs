@@ -269,6 +269,11 @@
                                 <a class="black-text" href="#">
                                     <h4><%= airlineReview[i].firstname %></h4>
                                 </a>
+                                <% if(user && airlineReview[i].userId == user.user_id) {%>
+                                    <form method="DELETE" action="/review/airline/<%= airlineId %>/<%= airlineReview[i].idAirline_Review %>/delete">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                               <% } %>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-0 mb-0">
