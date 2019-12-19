@@ -123,7 +123,7 @@ exports.postIndex = async (req, res) => {
                             result2.customer_email
                         ])
 
-                    console.log(result);
+                    // console.log(result);
                     res.render("payment/completedPayment_flight", {
                         pageTitle: "TravelAloha-completed-flight",
                         user: req.user,

@@ -4,7 +4,7 @@ exports.getIndex = async (req, res) => {
   let hotel = await Hotel.getHotelName(req.user.user_id);
   let user = await Hotel.getUser(req.user.user_id);
   let flight = await Hotel.getFlightData(req.user.user_id);
-  console.log(hotel);
+  // console.log(hotel);
   res.render("history/index",{
     pageTitle: "TravelAloha - Dashboard - History",
     user: req.user,

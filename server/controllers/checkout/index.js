@@ -131,7 +131,7 @@ exports.postIndex = async (req, res) => {
               
             ])
 
-          console.log(result);
+          // console.log(result);
           res.render("payment/completedPayment", {
             pageTitle: "TravelAloha-completed",
             user: req.user,

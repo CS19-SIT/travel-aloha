@@ -42,14 +42,14 @@ exports.getHotelName = async (
 
       ]);
       const resulthotel = await db.query("SELECT * FROM hotel")
-      console.log(resulthotel[0]);
-      console.log(resultHotelName[0]);
+      // console.log(resulthotel[0]);
+      // console.log(resultHotelName[0]);
       return resultHotelName[0][0];
 
     } catch (err) {
       throw new Error(`[ERR] createUser: ${err}`);
     }
-    console.log(this.getHotelName);
+    // console.log(this.getHotelName);
   };
   exports.getFlightData = async (userID) => {
     try {
@@ -58,7 +58,7 @@ exports.getHotelName = async (
       , [userID]);
       //const resulthotel = await db.query("SELECT * FROM hotel")
       //console.log(resulthotel[0]);
-      console.log(resultFlight[0]);
+      // console.log(resultFlight[0]);
       return resultFlight[0];
 
     } catch (err) {

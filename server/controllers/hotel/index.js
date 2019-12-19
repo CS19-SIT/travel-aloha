@@ -41,7 +41,7 @@ exports.getHotel = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        console.log(place+" "+checkIn+" "+checkOut+" "+adult);
+        // console.log(place+" "+checkIn+" "+checkOut+" "+adult);
         res.redirect("/hotel");
     }
 };
@@ -64,7 +64,7 @@ exports.findFilters = async (req, res) => {
             "hotelName LIKE '%"+place+"%' OR hotelAddress LIKE '%"+place+"%' and d.capacity >= "+persons+"");
 
         if (result[0].length < 1) {
-            console.log("Brak wyników");
+            // console.log("Brak wyników");
             throw new Error(`Cannot find hotel in ${place}.`);
         }
 

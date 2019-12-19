@@ -100,7 +100,7 @@ exports.deleteById = async hotelId => {
 
 exports.findHotelByPlace = async place => {
   try {
-    console.log("trying");
+    // console.log("trying");
     const result = await db.query(
       "SELECT * FROM hotel WHERE hotelName LIKE '%" +
         place +
