@@ -1,5 +1,6 @@
 const example = require("../../../models/example");
 const userdashboard = require("../../../models/userdashboard");
+const multer = require("../../../utils/multer-config");
 
 exports.getDashboard = (req, res) => {
   // const userId = req.params.id;
