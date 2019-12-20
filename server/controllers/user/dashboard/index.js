@@ -25,18 +25,17 @@ exports.getEditProfile = async (req, res) => {
 };
 
 exports.postEditProfile = async (req, res) => {
+  const form = req.body;
   multer.upload(req, res, async err => {
-    const {
-
-    } = req.body
-    const profilepicture = req.files["profile_picture"][0].filename;
+    // const profilepicture = req.files["profile_picture"][0].filename;
     try {
       // console.log(req.body, req.user);
       await userdashboard.updateProfile({
-        ...req.body,
-        user_id: req.user.user_id
+        ...form,
+        user_id: req.user.user_id,
+        birth_date: new Date(form.birth_date)
       });
-      res.sendStatus(204);
+      res.sendStatus(200);
     } catch (err) {
       console.log(err);
       res.sendStatus(404);
