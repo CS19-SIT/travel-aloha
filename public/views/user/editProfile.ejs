@@ -11,7 +11,7 @@
   <div class="container" style="padding: 75px; ">
     <div class="col-md-8 order-md-1">
       <h1 class="mb-3">Edit Profile</h1><br>
-      <form action="/dashboard/editProfile" method="POST" enctype="multipart/form-data">
+      <form action="/dashboard/editProfile" method="POST" enctype="multipart/form-data" >
 
 
         <div class="row">
@@ -76,7 +76,7 @@
           <div class="col-md-6 mb-3">
             <label for="firstName">Birth Date</label>
             <input type="date" class="form-control" name="birth_date" id="birth_date" placeholder="birthdate"
-              value="<%= user.birth_date %>" required>
+              value="<%= user.birth_date %>" > 
             <div class="invalid-feedback">
               Valid firstname is required.
             </div>
@@ -84,9 +84,9 @@
           <div class="col-md-6 mb-3">
             <label for="gender">Gender</label>
             <select class="form-control" name="gender" id="gender">
-              <option value="<%= user.gender %>" selected>select gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
+              <option value="<%= user.gender %>" selected> <%= user.gender %> </option>
+              <option value="M">M</option>
+              <option value="F">F</option>
             </select>
             <div class="invalid-feedback">
               Valid gender is required.
@@ -112,7 +112,7 @@
 
         <div class="mb-3">
           <label for="address">Phone number</label>
-          <input type="text" class="form-control" name="PhoneNum" id="PhoneNum" placeholder="" value="<%= user.PhoneNum %>" required>
+          <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="" value="<%= user.phoneNum %>" required>
           <div class="invalid-feedback">
             Please enter your phone number.
           </div>
@@ -134,7 +134,7 @@
             <select class="form-control" id="country" name="country">
               <option value="" disabled selected hidden>Choose country</option>
               <% country.forEach(element => { %>
-              <option value="<%=element.NAMEINENGLISH%>"><%=element.NAMEINENGLISH%></option>
+              <option value="<%=element.NAMEINENGLISH%>" selected><%=element.NAMEINENGLISH%></option>
               <%});%>
             </select>
             <div class="invalid-feedback">
@@ -168,6 +168,11 @@
     $('#country').select2();
   });
 </script>
+
+<script>
+
+</script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
