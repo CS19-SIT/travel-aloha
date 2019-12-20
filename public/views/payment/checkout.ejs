@@ -15,7 +15,7 @@
             <div class="col-md-4 order-md-3 mb-4">
                 <div>
                     <h6 class="my-0"></h6>
-                    <span class="text-muted">This is checkout for <%= newSession  %></span>
+                    <span class="text-muted">This is checkout for <%= newSession  %></span><br>
                     <span class="text-muted">booking number: <%= booking_head[0].bookingId %></span>
                 </div>
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -37,14 +37,15 @@
                         </div>
                         <span id="coupon-discount" class="text-success">-0฿</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (THB)</span>
-                        <strong id="cart-total-price"><%= room_detail[0].fullPrice %></strong>
-                    </li>
+
 
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Tax</span>
                         <strong id="tax"></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (THB)</span>
+                        <strong id="cart-total-price"><%= room_detail[0].fullPrice %></strong>
                     </li>
 
 
@@ -117,8 +118,7 @@
                                                     <div class="row">
                                                         <% coupon.map(c => { %>
                                                         <div class="col-lg-4 coupon-table-col">
-                                                            <div class="card coupon-card"
-                                                                data-coupon-code=<%= c.code %>
+                                                            <div class="card coupon-card" data-coupon-code=<%= c.code %>
                                                                 data-coupon-discount=<%= c.discount_percentage %>>
                                                                 <div class="card-body">
                                                                     <h5 class="card-title"><%= c.code %></h5>
@@ -159,7 +159,7 @@
         $(".coupon-card").click(function (e) {
             const code = $(e.target).data("coupon-code") || $($(e.target).parents(".coupon-card")).data(
                 "coupon-code");
-            const d =  $(e.target).data("coupon-discount") || $($(e.target).parents(".coupon-card")).data(
+            const d = $(e.target).data("coupon-discount") || $($(e.target).parents(".coupon-card")).data(
                 "coupon-discount");
             $("input[name=coupon-code]").val(code);
             couponCode = code;
@@ -171,8 +171,9 @@
             e.preventDefault()
             $("#coupon-code").text(couponCode);
             $("#coupon-discount").text(discount + "฿");
-            $("#cart-total-price").text((parseFloat($("#cart-total-price").text().split("฿")[0]) - parseFloat(discount)) + "฿")
-            $("#tax").text((parseFloat($("#cart-total-price").text().split("฿")[0]) * 0.07) + "฿")
+            $("#cart-total-price").text((parseFloat($("#cart-total-price").text().split("฿")[0]) - parseFloat(
+                discount)) + "฿")
+            $("#tax").text((parseFloat($("#cart-total-price").text().split("฿")[0]) * 0.07).toFixed(2) + "฿")
         });
     </script>
     <script src="assets/js/payment/card.js"></script>

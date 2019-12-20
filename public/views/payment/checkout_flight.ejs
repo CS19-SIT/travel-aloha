@@ -1,7 +1,8 @@
 <%- include('../includes/header') %>
 <script src="https://js.stripe.com/v3/"></script>
-<link href="/assets/css/paymentElement.css" rel="stylesheet" type="text/css">
-<link href="/assets/css/couponCard.css" rel="stylesheet" type="text/css">
+<link href="assets/css/paymentElement.css" rel="stylesheet" type="text/css">
+<link href="assets/css/couponCard.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="bg-light">
@@ -14,6 +15,7 @@
             <div class="col-md-4 order-md-3 mb-4">
                 <div>
                     <h6 class="my-0"></h6>
+                    <span class="text-muted">This is checkout for <%= newSession  %></span><br>
                     <span class="text-muted">booking number: <%= booking_head[0].bookingId %></span>
                 </div>
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -23,40 +25,27 @@
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0"><%= hotel[1].hotelName %> x <span class="cart-quantity">1</span></h6>
+                            <h6 class="my-0"><%= hotel[0].hotelName %> x <span class="cart-quantity">1</span></h6>
                             <small class="text-muted "><%= booking_head[0].checkinDate %></small>
-                        </div>
-                        <span><span class="text-muted shop-item-price"><%= room_detail[0].fullPrice %></span>฿</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0"><%= hotel[1].hotelName %> x <span class="cart-quantity">2</span></h6>
-                            <small class="text-muted"><%= booking_head[0].checkinDate %></small>
-                        </div>
-                        <span><span class="text-muted shop-item-price"><%= room_detail[0].fullPrice %></span>฿</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0"><%= hotel[1].hotelName %> x <span class="cart-quantity">3</span></h6>
-                            <small class="text-muted"><%= booking_head[0].checkinDate %></small>
                         </div>
                         <span><span class="text-muted shop-item-price"><%= room_detail[0].fullPrice %></span>฿</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <div class="text-success">
                             <h6 class="my-0">Promo code</h6>
-                            <small>EXAMPLECODE</small>
+                            <small id="coupon-code"></small>
                         </div>
-                        <span class="text-success">-30฿</span>
+                        <span id="coupon-discount" class="text-success">-0฿</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (THB)</span>
-                        <strong id="cart-total-price"></strong>
-                    </li>
+
 
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Tax</span>
                         <strong id="tax"></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (THB)</span>
+                        <strong id="cart-total-price"><%= room_detail[0].fullPrice %></strong>
                     </li>
 
 
@@ -107,88 +96,48 @@
                                     </button>
                                     <input type="text" class="form-control" placeholder="Promo code" type="text"
                                         name="coupon-code" data-target="#couponSelectModal">
-                                    <div class="input-group-append"><button type="submit"
+                                    <div class="input-group-append"><button id="add-coupon" type="submit"
                                             class="btn btn-secondary">Redeem</button>
                                     </div>
                                 </div>
-                               <!-- Modal -->
-                               <div class="modal fade" id="couponSelectModal" tabindex="-1" role="dialog"
-                                   aria-labelledby="couponSelectModal" aria-hidden="true">
-                                   <div class="modal-dialog modal-lg" role="document">
-                                       <div class="modal-content">
-                                           <div class="modal-header">
-                                               <h5 class="modal-title" id="couponSelectModalLabel">Available Coupons
-                                               </h5>
-                                               <button type="button" class="close" data-dismiss="modal"
-                                                   aria-label="Close">
-                                                   <span aria-hidden="true">&times;</span>
-                                               </button>
-                                           </div>
-                                           <div class="modal-body">
-                                               <div class="coupon-table">
-                                                   <div class="row">
-                                                       <div class="col-lg-4 coupon-table-col">
-                                                           <div class="card coupon-card"
-                                                               data-coupon-code=<%= coupon[1].code %>>
-                                                               <div class="card-body">
-                                                                   <h5 class="card-title"><%= coupon[1].code %></h5>
-                                                                   <p class="card-text">
-                                                                       <%= coupon[1].discount_percentage%></p>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                       <div class="col-lg-4 coupon-table-col">
-                                                           <div class="card coupon-card"
-                                                               data-coupon-code=<%= coupon[2].code %>>
-                                                               <div class="card-body">
-                                                                   <h5 class="card-title"><%= coupon[2].code %></h5>
-                                                                   <p class="card-text">
-                                                                       <%= coupon[2].discount_percentage%></p>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                       <div class="col-lg-4 coupon-table-col">
-                                                           <div class="card coupon-card"
-                                                               data-coupon-code=<%= coupon[3].code %>>
-                                                               <div class="card-body">
-                                                                   <h5 class="card-title"><%= coupon[3].code %></h5>
-                                                                   <p class="card-text">
-                                                                       <%= coupon[3].discount_percentage%></p>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="row">
-                                                       <div class="col-lg-4 coupon-table-col">
-                                                           <div class="card coupon-card"
-                                                               data-coupon-code=<%= coupon[4].code %>>
-                                                               <div class="card-body">
-                                                                   <h5 class="card-title"><%= coupon[4].code %></h5>
-                                                                   <p class="card-text">
-                                                                       <%= coupon[4].discount_percentage%></p>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                       <div class="col-lg-4 coupon-table-col">
-                                                           <div class="card coupon-card"
-                                                               data-coupon-code=<%= coupon[5].code %>>
-                                                               <div class="card-body">
-                                                                   <h5 class="card-title"><%= coupon[5].code %></h5>
-                                                                   <p class="card-text">
-                                                                       <%= coupon[5].discount_percentage%></p>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="modal-footer">
-                                               <button type="button" class="btn btn-secondary"
-                                                   data-dismiss="modal">Cancel</button>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="couponSelectModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="couponSelectModal" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="couponSelectModalLabel">Available Coupons
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="coupon-table">
+                                                    <div class="row">
+                                                        <% coupon.map(c => { %>
+                                                        <div class="col-lg-4 coupon-table-col">
+                                                            <div class="card coupon-card" data-coupon-code=<%= c.code %>
+                                                                data-coupon-discount=<%= c.discount_percentage %>>
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title"><%= c.code %></h5>
+                                                                    <p class="card-text">
+                                                                        <%= c.discount_percentage%></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% }) %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
 
                         </div>
@@ -205,15 +154,30 @@
     </div>
     <footer class="my-5 pt-5 text-muted text-center text-small"></footer>
     <script>
+        var discount;
+        var couponCode;
         $(".coupon-card").click(function (e) {
             const code = $(e.target).data("coupon-code") || $($(e.target).parents(".coupon-card")).data(
                 "coupon-code");
+            const d = $(e.target).data("coupon-discount") || $($(e.target).parents(".coupon-card")).data(
+                "coupon-discount");
             $("input[name=coupon-code]").val(code);
+            couponCode = code;
+            discount = d;
             $("#couponSelectModal").modal("hide");
         });
+
+        $("#add-coupon").click(e => {
+            e.preventDefault()
+            $("#coupon-code").text(couponCode);
+            $("#coupon-discount").text(discount + "฿");
+            $("#cart-total-price").text((parseFloat($("#cart-total-price").text().split("฿")[0]) - parseFloat(
+                discount)) + "฿")
+            $("#tax").text((parseFloat($("#cart-total-price").text().split("฿")[0]) * 0.07).toFixed(2) + "฿")
+        });
     </script>
-    <script src="/assets/js/Payment/card.js"></script>
-    <script src="/assets/js/Payment/priceCalculate.js"></script>
+    <script src="assets/js/payment/card.js"></script>
+    <script src="assets/js/payment/priceCalculate.js"></script>
 
 
 

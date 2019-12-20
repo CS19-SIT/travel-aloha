@@ -139,7 +139,8 @@ exports.postIndex = async (req, res) => {
             booking_head: data2,
             hotel: data3,
             room_detail: data4,
-            coupon: data5
+            coupon: data5,
+            newSession: req.session.bookingID
           })
         })
 
