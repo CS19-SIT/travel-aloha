@@ -123,6 +123,7 @@ body {
   font-family: "Lato", "Arial", "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: 14px;
+  background-color: #bcc4ff;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -186,9 +187,6 @@ a:active {
 /* ==========================================================================
    #BACKGROUND
    ========================================================================== */
-.bg-img-1 {
-  background: url("../images/bg-img-01.jpg") center center/cover no-repeat;
-}
 
 /* ==========================================================================
    #SPACING

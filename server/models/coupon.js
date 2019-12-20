@@ -121,6 +121,30 @@ const isCouponExists = async code => {
   return db.query("SELECT 1 FROM coupon WHERE code = ?", [code]).then(r => r[0].length > 0);
 }
 
+const validateModel = ({
+  discount_percentage,
+  start_date,
+  expire_date,
+  max_count
+}) => {
+  if (start_date != null && expire_date != null) {
+    start_date = start_date instanceof Date ? start_date : new Date(start_date);
+    expire_date = expire_date instanceof Date ? expire_date : new Date(expire_date);
+
+    if (start_date > expire_date) {
+      throw new Error("start_date > expire_date");
+    }
+  }
+
+  if (discount_percentage < 0) {
+    throw new Error("negative discount_percentage");
+  }
+
+  if (max_count < 0) {
+    throw new Error("negative max_count");
+  }
+}
+
 exports.searchCoupons = async ({
   code,
   name,
@@ -130,17 +154,41 @@ exports.searchCoupons = async ({
   entriesPerPage = 10
 } = {}) => {
   try {
+    const tokenize = str => {
+      if (str == null) {
+        return [];
+      }
+
+      let buf = "";
+      let result = [];
+      for (c of str) {
+        if (/\s/.test(c)) {
+          if (buf != "") {
+            result.push(buf);
+            buf = "";
+          }
+        } else {
+          buf += c;
+        }
+      }
+
+      if (buf != "") {
+        result.push(buf);
+      }
+
+      return result;
+    }
+
+    const codeTokens = tokenize(code);
+    const nameTokens = tokenize(name);
+    const descriptionTokens = tokenize(description);
+
     const params = [
-      code == null && name == null && description == null,
+      codeTokens.length == 0 && nameTokens.length == 0 && descriptionTokens.length == 0,
 
-      code != null,
-      `%${code}%`,
-
-      name != null,
-      `%${name}%`,
-
-      description != null,
-      `%${description}%`,
+      ...codeTokens,
+      ...nameTokens,
+      ...descriptionTokens,
 
       levels,
       levels == null,
@@ -149,28 +197,32 @@ exports.searchCoupons = async ({
       entriesPerPage,
     ];
 
-    // Yikes.
+    const genLikeQuery = (field, n) => {
+      if (n <= 0) {
+        return "FALSE";
+      }
+
+      let concat = "?" + ", '|', ?".repeat(n - 1);
+      return `UPPER(${field}) REGEXP UPPER(CONCAT(${concat}))`;
+    };
+
+    const baseQuery = `
+      SELECT DISTINCT coupon.*
+      FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
+      WHERE (? OR (
+        ${genLikeQuery("coupon.code", codeTokens.length)} OR
+        ${genLikeQuery("name", nameTokens.length)} OR
+        ${genLikeQuery("description", descriptionTokens.length)}
+      )) AND (lvl.level IN (?) OR ?)
+    `;
+
     const countResult = await db.query(`
       SELECT COUNT(*) AS couponCount
-      FROM (
-        SELECT DISTINCT coupon.*
-        FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
-        WHERE ? OR (
-          (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
-          (? AND UPPER(name) LIKE UPPER(?)) OR
-          (? AND UPPER(description) LIKE UPPER(?))
-        ) AND (lvl.level IN (?) OR ?)
-      ) AS t
+      FROM (${baseQuery}) AS t
     `, params);
 
     const dataResult = await db.query(`
-      SELECT DISTINCT coupon.*
-      FROM coupon LEFT JOIN coupon_criteria_level as lvl ON coupon.code = lvl.code
-      WHERE ? OR (
-        (? AND UPPER(coupon.code) LIKE UPPER(?)) OR
-        (? AND UPPER(name) LIKE UPPER(?)) OR
-        (? AND UPPER(description) LIKE UPPER(?))
-      ) AND (lvl.level IN (?) OR ?)
+      ${baseQuery}
       ORDER BY coupon.creation_date DESC
       LIMIT ?, ?
     `, params);
@@ -198,30 +250,35 @@ exports.getCoupon = async code => {
   }
 };
 
-exports.createCoupon = async ({
-  code,
-  name,
-  description,
-  creation_date,
-  create_by_user_id,
-  for_every_hotel,
-  for_every_airline,
-  levels,
-  hotels,
-  airlines,
-  users,
-  discount_percentage,
-  start_date,
-  expire_date,
-  max_count
-}) => {
+exports.createCoupon = async obj => {
+  let {
+    code,
+    name,
+    description,
+    creation_date,
+    create_by_user_id,
+    for_every_hotel,
+    for_every_airline,
+    levels,
+    hotels,
+    airlines,
+    users,
+    discount_percentage,
+    start_date,
+    expire_date,
+    max_count,
+    min_purchase = 0
+  } = obj;
+
   try {
     if (await isCouponExists(code)) {
       throw new Error(`Coupon with code '${code}' already existed`);
     }
 
+    validateModel(obj);
+
     try {
-      await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+      await db.query("INSERT INTO coupon VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
         code,
         discount_percentage,
         creation_date,
@@ -231,7 +288,8 @@ exports.createCoupon = async ({
         for_every_hotel,
         for_every_airline,
         name,
-        description
+        description,
+        min_purchase
       ]);
 
       if (!for_every_hotel && Array.isArray(hotels)) {
@@ -255,7 +313,7 @@ exports.createCoupon = async ({
       }
     } catch (err) {
       // Revert
-      await exports.deleteCoupon(code);
+      await exports.deleteCoupon(code, false);
       throw err;
     }
   } catch (err) {
@@ -263,27 +321,32 @@ exports.createCoupon = async ({
   }
 };
 
-exports.editCoupon = async (oldCode, {
-  code,
-  name,
-  description,
-  creation_date,
-  create_by_user_id,
-  for_every_hotel,
-  for_every_airline,
-  levels,
-  hotels,
-  airlines,
-  users,
-  discount_percentage,
-  start_date,
-  expire_date,
-  max_count
-}, noRevert = false) => {
+exports.editCoupon = async (oldCode, obj, noRevert = false) => {
+  let {
+    code,
+    name,
+    description,
+    creation_date,
+    create_by_user_id,
+    for_every_hotel,
+    for_every_airline,
+    levels,
+    hotels,
+    airlines,
+    users,
+    discount_percentage,
+    start_date,
+    expire_date,
+    max_count,
+    min_purchase = 0
+  } = obj;
+
   try {
     if (!(await isCouponExists(oldCode))) {
       throw new Error(`Coupon with code '${oldCode}' doesn't exists`);
     }
+
+    validateModel(obj);
 
     const oldCoupon = await exports.getCoupon(oldCode);
 
@@ -298,7 +361,8 @@ exports.editCoupon = async (oldCode, {
             for_every_airline = ?,
             discount_percentage = ?,
             start_date = ?,
-            expire_date = ?
+            expire_date = ?,
+            min_purchase = ?
           WHERE code = ?
         `, [
         code,
@@ -309,6 +373,7 @@ exports.editCoupon = async (oldCode, {
         discount_percentage,
         start_date,
         expire_date,
+        min_purchase,
         oldCode
       ]);
 
@@ -404,9 +469,9 @@ exports.editCoupon = async (oldCode, {
   }
 };
 
-exports.deleteCoupon = async code => {
+exports.deleteCoupon = async (code, checkExistence = true) => {
   try {
-    if (!(await isCouponExists(code))) {
+    if (checkExistence && !(await isCouponExists(code))) {
       throw new Error(`Coupon with code '${code}' doesn't exists`);
     }
 

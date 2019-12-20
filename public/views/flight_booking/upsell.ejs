@@ -101,6 +101,7 @@
                                             </div>
                                             <div class="row">
                                             <div class="col-md-6">
+
                                                 <h5>Additional Services</h5>
                                                 <%for(let k = 0; k < upsell[i].length; k++) { %>
                                                     <div class="row">
@@ -163,18 +164,18 @@
     </div>
     <script>
         
-        < !-- 
-        DO NOT AUTO FORMAT THIS LINE!!!
-        VERY DANGEROUS!! EVERYRHING WILL BE BROKE!!
-        --!>
+        // DO NOT AUTO FORMAT THE FOLLOWING LINE. VERY DANGEROUS. EVERYTHING WILL BE BROKEN IF ITS CHANGED
+        //IT SHOULD LOOK LIKE THIS : var price = [ <%=p%> ];
         var price = [ <%=p%> ];
+        //DO NOT AUTO FORMAT THE LINE ABOVE. VERY DANGEROUS
+        //PLEASE PROCEED
 
         function clickUpsell(item) {
-            console.log(item);
+            // console.log(item);
             var product = document.getElementById(item);
             var tmp = item.split("_");
             var path = tmp[1].split("-");
-            console.log(path);
+            // console.log(path);
             // price = document.getElementById("fee"+path[0]);
             if (product.checked) {
                 price[path[0]] = parseFloat(price[path[0]]) + parseFloat(product.value);
@@ -200,7 +201,7 @@
             document.getElementById("sum2").innerHTML = getStringPrice(total[2]) + " &#3647;";
 
             document.getElementById("totalpay").value = total[2];
-            console.log(total[2]);
+            // console.log(total[2]);
         };
 
         function getSum(seatPrice) {
@@ -236,19 +237,18 @@
             Array.prototype.forEach.call(document.getElementsByClassName('upsellCheckbox'), function (item) {
                 if (item.checked) {
                     lis.push(item.id)
-                    console.log(item.id);
+                    // console.log(item.id);
                 }
             })
-            console.log(lis);
+            // console.log(lis);
             const upsellData = JSON.stringify(lis);
             document.getElementById("upsellData").value = upsellData;
 
             // document.getElementById("totalpay").value = total[2];
         }
-        
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-
     </script>
     <%- include('../includes/footer') %>

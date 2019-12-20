@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const flightController = require("../../controllers/flight/index");
-
 const searchFlightController = require("../../controllers/flight/flight_info");
+
+router.post("/find", searchFlightController.getSearchFlight);
 
 router.get("/", searchFlightController.getFlight);
 
