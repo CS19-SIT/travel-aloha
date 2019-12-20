@@ -17,7 +17,7 @@ exports.getFlight = async (req, res) => {
 };
 
 exports.getSearchFlight = async (req, res) => {
-  const { origin, destination, seat_class, check_in, price } = req.body;
+  const { origin, destination, seat_class, check_in, price, airline } = req.body;
   try {
 
    if (!origin | !destination | !check_in ){
