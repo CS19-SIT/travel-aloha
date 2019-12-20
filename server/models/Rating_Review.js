@@ -125,13 +125,13 @@ exports.getHotelReviewInfo = async (
         break;
     }
 
-    console.log(query);
+    // console.log(query);
 
     const hotelReview = await db.query(query, [hotelId]);
     // console.log(hotelReview);
     return hotelReview;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error(`[ERR] getHotelReviewInfo: ${error}`);
   }
 };
@@ -225,7 +225,7 @@ exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Airline_Reviewer,
     );
     return airlineReview;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error(`[ERR] getAirlineReviewInfo: ${err}`);
   }
 };
