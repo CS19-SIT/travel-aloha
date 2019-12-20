@@ -129,58 +129,18 @@
                                             <div class="modal-body">
                                                 <div class="coupon-table">
                                                     <div class="row">
+                                                        <% coupon.map(c => { %>
                                                         <div class="col-lg-4 coupon-table-col">
                                                             <div class="card coupon-card"
-                                                                data-coupon-code=<%= coupon[1].code %>>
+                                                                data-coupon-code=<%= c.code %>>
                                                                 <div class="card-body">
-                                                                    <h5 class="card-title"><%= coupon[1].code %></h5>
+                                                                    <h5 class="card-title"><%= c.code %></h5>
                                                                     <p class="card-text">
-                                                                        <%= coupon[1].discount_percentage%></p>
+                                                                        <%= c.discount_percentage%></p>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 coupon-table-col">
-                                                            <div class="card coupon-card"
-                                                                data-coupon-code=<%= coupon[2].code %>>
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title"><%= coupon[2].code %></h5>
-                                                                    <p class="card-text">
-                                                                        <%= coupon[2].discount_percentage%></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4 coupon-table-col">
-                                                            <div class="card coupon-card"
-                                                                data-coupon-code=<%= coupon[3].code %>>
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title"><%= coupon[3].code %></h5>
-                                                                    <p class="card-text">
-                                                                        <%= coupon[3].discount_percentage%></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-4 coupon-table-col">
-                                                            <div class="card coupon-card"
-                                                                data-coupon-code=<%= coupon[4].code %>>
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title"><%= coupon[4].code %></h5>
-                                                                    <p class="card-text">
-                                                                        <%= coupon[4].discount_percentage%></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4 coupon-table-col">
-                                                            <div class="card coupon-card"
-                                                                data-coupon-code=<%= coupon[5].code %>>
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title"><%= coupon[5].code %></h5>
-                                                                    <p class="card-text">
-                                                                        <%= coupon[5].discount_percentage%></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <% }) %>
                                                     </div>
                                                 </div>
                                             </div>
