@@ -10,7 +10,7 @@ function CartTotal() {
         total +=(parseFloat(price[i].innerText)*parseFloat(quantity[i].innerText));
     }
 
-    document.getElementById("cart-total-price").innerText = total+(total*0.07)-30 + "฿";
+    document.getElementById("cart-total-price").innerText = total+(total*0.07)- parseFloat($("#coupon-discount").text().split("฿")[0]) + "฿";
     document.getElementById("tax").innerText = (total * 0.07) + "฿";
     document.getElementById("point").innerText = Math.trunc((total)/1000) ;
     
