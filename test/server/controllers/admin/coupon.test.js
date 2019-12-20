@@ -15,14 +15,15 @@ describe("Admin Coupon controller", () => {
     const agent = request.agent(app);
     let tracking = [];
 
-    const gen = (len = 32) => {
-      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const gen = (len = 32, chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ") => {
       var result = "";
       for (var i = len; i > 0; --i) {
         result += chars[Math.floor(Math.random() * chars.length)];
       }
       return result;
     }
+
+    const genSpecial = len => gen(len, "!@#$%^*()_+-=.,;[]{}?~`฿"); // need to careful about HTML escaping
 
     const controllerValid = obj => querystring.stringify({
       name: obj.code,
@@ -74,15 +75,13 @@ describe("Admin Coupon controller", () => {
 
         for (let i = 0; i < excludes.length; i++) {
           if (res.text.indexOf(excludes[i]) > 0) {
-            throw new Error("an exclude coupon presented");
+            throw new Error("an exclude coupon presented: " + excludes[i]);
           }
         }
 
         page++;
       }
 
-      // shouldn't happen, as it finds though the last page, the next page will
-      // 404 and error early in the request operation.
       if (left.length > 0) {
         throw new Error("missing coupons: " + left);
       }
@@ -91,7 +90,6 @@ describe("Admin Coupon controller", () => {
     beforeAll(async () => {
       return agent
         .post("/login")
-        .type('form')
         .send("username=coupontest")
         .send("password=coupontest")
         .expect(302);
@@ -180,108 +178,154 @@ describe("Admin Coupon controller", () => {
     })
 
     describe("coupon validation", () => {
-      it("start_date < expire date", async done => {
+      let editCode;
+
+      const testEdit = async data => 
+        await agent.post("/admin/coupon/edit/" + editCode)
+          .send({code: editCode, ...data})
+          .expect(404);
+
+      beforeAll(async () => {
+        editCode = gen();
+        await Coupon.createCoupon(modelValid({code: editCode}));
+        tracking.push(editCode);
+      });
+
+      it("start_date <= expire date", async done => {
         const code = gen();
+        const data = controllerValid({
+          code,
+          start_date: "2019-12-18",
+          expire_date: "2019-11-29",
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
+          .send(data).expect(404);
+        
+        await agent.put("/admin/coupon/new")
           .send(controllerValid({
             code,
-            start_date: "2019-12-18",
-            expire_date: "2019-11-29",
-          })).expect(404);
+            start_date: "2020-01-01",
+            expire_date: "2020-01-01",
+          })).expect(204);
 
-        tracking.pop();
+        testEdit(data);
+
         done();
       });
 
       it("positive discount", async done => {
         const code = gen();
+        const data = controllerValid({
+          code,
+          discount_percentage: "-1",
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
-          .send(controllerValid({
-            code,
-            discount_percentage: "-1",
-          })).expect(404);
+          .send(data).expect(404);
 
         tracking.pop();
+
+        testEdit(data);
+
         done();
       });
 
       it("max_count >= 0", async done => {
         const code = gen();
+        const data = controllerValid({
+          code,
+          max_count: "-1"
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
-          .send(controllerValid({
-            code,
-            max_count: "-1"
-          })).expect(404);
+          .send(data).expect(404);
 
         tracking.pop();
+
+        testEdit(data);
+
         done();
       });
 
       it("users must exist", async done => {
         const code = gen();
+        const data = controllerValid({
+          code,
+          users: ["coupontest", code]
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
-          .send(controllerValid({
-            code,
-            users: ["coupontest", code]
-          })).expect(404);
+          .send(data).expect(404);
 
         tracking.pop();
+
+        testEdit(data);
+
         done();
       });
 
       it("coupon code length <= 50", async done => {
         const code = gen(51);
+        const data = controllerValid({
+          code
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
-          .send(controllerValid({
-            code
-          })).expect(404);
+          .send(data).expect(404);
 
         tracking.pop();
+
+        testEdit(data);
+
         done();
       });
 
       it("hotels must exist", async done => {
         const code = gen();
+        const data = controllerValid({
+          code,
+          hotels: gen()
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
-          .send(controllerValid({
-            code,
-            hotels: gen()
-          })).expect(404);
+          .send(data).expect(404);
 
         tracking.pop();
+
+        testEdit(data);
+
         done();
       });
 
       it("airlines must exist", async done => {
         const code = gen();
+        const data = controllerValid({
+          code,
+          airlines: gen()
+        });
+
         tracking.push(code);
 
         await agent.put("/admin/coupon/new")
-          .type('form')
-          .send(controllerValid({
-            code,
-            airlines: gen()
-          })).expect(404);
+          .send(data).expect(404);
 
         tracking.pop();
+
+        testEdit(data);
+
         done();
       });
     });
@@ -307,17 +351,23 @@ describe("Admin Coupon controller", () => {
 
     describe("search", () => {
       it("search with code should work", async done => {
-        let t = [gen() + "atlas", gen() + "centaur", gen() + "1dar"];
+        const codes = ["atlas", "centaur", "1dar"];
+        let t = [];
         
-        for (code of t) {
+        for (let i = 0; i < codes.length; i++) {
+          const code = genSpecial() + codes[i];
           await Coupon.createCoupon(modelValid({
             code,
             levels: ["testing"]
           }));
+          t.push(code);
           tracking.push(code);
         }
 
-        const findCode = async (q, coupons, excludes = []) => {
+        const findCode = async (q, coupons) => {
+          coupons = coupons.map(i => t[i]);
+          const excludes = t.filter(e => !coupons.includes(e));
+
           return find(coupons, excludes, async page => {
             return agent
               .get("/admin/coupon/" + page)
@@ -330,26 +380,26 @@ describe("Admin Coupon controller", () => {
           });
         };
         
-        await findCode("a", t);
-        await findCode("da", [t[2]]);
-        await findCode("centaur", [t[1]]);
-        await findCode("at", [t[0]]);
-        await findCode("ta", [t[1]]);
-        await findCode("1", [t[2]]);
-        await findCode("", t);
-        await findCode("!#", [], t);
-        await findCode("atla enta ar", t);
+        await findCode("a", [0, 1, 2]);
+        await findCode("da", [2]);
+        await findCode("centaur", [1]);
+        await findCode("at", [0]);
+        await findCode("ta", [1]);
+        await findCode("1", [2]);
+        await findCode("", [0, 1, 2]);
+        await findCode("##########################################", []);
+        await findCode("atla enta ar", [0, 1, 2]);
 
         done();
       }, 15000);
 
       it("search with name should work", async done => {
-        let names = ["thor agena", "delta iv", "thorad"];
+        const names = ["thor agena", "delta iv", "thorad"];
         let t = [];
         
         for (let i = 0; i < names.length; i++) {
           const code = gen();
-          const newName = gen() + names[i];
+          const newName = genSpecial() + names[i] + genSpecial();
 
           await Coupon.createCoupon(modelValid({
             code,
@@ -361,7 +411,10 @@ describe("Admin Coupon controller", () => {
           tracking.push(code);
         }
 
-        const findName = async (q, coupons, excludes = []) => {
+        const findName = async (q, coupons) => {
+          coupons = coupons.map(i => t[i]);
+          const excludes = t.filter(e => !coupons.includes(e));
+
           return find(coupons, excludes, async page => {
             return agent
               .get("/admin/coupon/" + page)
@@ -374,28 +427,28 @@ describe("Admin Coupon controller", () => {
           });
         };
         
-        await findName("a", t);
+        await findName("a", [0, 1, 2]);
         await findName("da", []);
         await findName("centaur", []);
         await findName("at", []);
-        await findName("ta", [t[1]]);
+        await findName("ta", [1]);
         await findName("1", []);
-        await findName("", t);
-        await findName("!#", [], t);
-        await findName("thor delta", t);
-        await findName("thor", [t[0], t[2]]);
-        await findName("thor agena delta", t);
+        await findName("", [0, 1, 2]);
+        await findName("##########################################", []);
+        await findName("thor delta", [0, 1, 2]);
+        await findName("thor", [0, 2]);
+        await findName("thor agena delta", [0, 1, 2]);
 
         done();
       }, 15000);
 
       it("search with description should work", async done => {
-        let descs = ["titan", "iva", "ivb"];
+        const descs = ["titan", "iva", "ivb"];
         let t = [];
         
         for (let i = 0; i < descs.length; i++) {
           const code = gen();
-          const newDesc = gen() + descs[i];
+          const newDesc = genSpecial() + descs[i] + genSpecial();
 
           await Coupon.createCoupon(modelValid({
             code,
@@ -408,7 +461,10 @@ describe("Admin Coupon controller", () => {
           tracking.push(code);
         }
 
-        const findDesc = async (q, coupons, excludes = []) => {
+        const findDesc = async (q, coupons) => {
+          coupons = coupons.map(i => t[i]);
+          const excludes = t.filter(e => !coupons.includes(e));
+
           return find(coupons, excludes, async page => {
             return agent
               .get("/admin/coupon/" + page)
@@ -421,18 +477,18 @@ describe("Admin Coupon controller", () => {
           });
         };
         
-        await findDesc("a", [t[0], t[1]]);
+        await findDesc("a", [0, 1]);
         await findDesc("da", []);
         await findDesc("centaur", []);
         await findDesc("at", []);
-        await findDesc("ta", [t[0]]);
+        await findDesc("ta", [0]);
         await findDesc("1", []);
-        await findDesc("", t);
-        await findDesc("!#", [], t);
+        await findDesc("", [0, 1, 2]);
+        await findDesc("##########################################", []);
         await findDesc("thor delta", []);
         await findDesc("thor", []);
         await findDesc("thor agena delta", []);
-        await findDesc("ita i v", t);
+        await findDesc("ita i v", [0, 1, 2]);
 
         done();
       }, 15000);
@@ -440,16 +496,19 @@ describe("Admin Coupon controller", () => {
       it("search by levels should work", async done => {
         const prefix = gen(9);
 
-        let levelEach = [
-          ["a"],
-          ["a"],
-          [..."ab"],
-          ["b"],
-          ["c"],
-          [..."abc"],
-          [..."abc"],
-          ["b"],
-          ["d"]
+        const levelEach = [
+          "a",
+          "a",
+          "ab",
+          "b",
+          "c",
+          "abc",
+          "bca",
+          "b",
+          "d",
+          "A",
+          "AB",
+          "C"
         ];
         let t = [];
         
@@ -459,15 +518,18 @@ describe("Admin Coupon controller", () => {
           await Coupon.createCoupon(modelValid({
             code,
             name: code,
-            levels: levelEach[i].map(e => prefix + e)
+            levels: [...levelEach[i]].map(e => prefix + e)
           }));
 
           t.push(code);
           tracking.push(code);
         };
         
-        const findLvl = async (levels, coupons, excludes = []) => {
-          return find(coupons.map(i => t[i]), excludes.map(i => t[i]), async page => {
+        const findLvl = async (levels, coupons) => {
+          coupons = coupons.map(i => t[i]);
+          const excludes = t.filter(e => !coupons.includes(e));
+          
+          return find(coupons, excludes, async page => {
             return agent
               .get("/admin/coupon/" + page)
               .query({
@@ -479,14 +541,17 @@ describe("Admin Coupon controller", () => {
           });
         };
 
-        await findLvl("a", [0, 1, 2, 5, 6]);
-        await findLvl("b", [2, 3, 5, 6, 7]);
-        await findLvl("c", [4, 5, 6]);
-        await findLvl("ab", [0, 1, 2, 3, 5, 6, 7]);
-        await findLvl("ac", [0, 1, 2, 4, 5, 6]);
-        await findLvl("bc", [2, 3, 4, 5, 6, 7]);
-        await findLvl("abc", [0, 1, 2, 3, 4, 5, 6, 7]);
+        await findLvl("a", [0, 1, 2, 5, 6, 9, 10]);
+        await findLvl("A", [0, 1, 2, 5, 6, 9, 10]);
+        await findLvl("b", [2, 3, 5, 6, 7, 10]);
+        await findLvl("c", [4, 5, 6, 11]);
+        await findLvl("ab", [0, 1, 2, 3, 5, 6, 7, 9, 10]);
+        await findLvl("ac", [0, 1, 2, 4, 5, 6, 9, 10, 11]);
+        await findLvl("bc", [2, 3, 4, 5, 6, 7, 10, 11]);
+        await findLvl("abc", [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11]);
         await findLvl("d", [8]);
+        await findLvl("e", []);
+        await findLvl("", []);
 
         done();
       }, 15000);

@@ -131,8 +131,8 @@ const validateModel = ({
     start_date = start_date instanceof Date ? start_date : new Date(start_date);
     expire_date = expire_date instanceof Date ? expire_date : new Date(expire_date);
 
-    if (start_date >= expire_date) {
-      throw new Error("start_date >= expire_date");
+    if (start_date > expire_date) {
+      throw new Error("start_date > expire_date");
     }
   }
 

@@ -2,7 +2,7 @@ const db = require("../db/db");
 
 exports.getHotelRating = async (hotelId) => {
   try {
-      let query = `
+    let query = `
 SELECT count(*) AS total,
      sum(case
              when (Cleanliness_Hotel_Rating +
@@ -53,13 +53,14 @@ SELECT count(*) AS total,
 FROM Hotel_Review
 WHERE hotel_hotelId = ?
 `;
-      const hotelRating = await db.query(query, [hotelId]);
-      // console.log(hotelReview);
-      return hotelRating;
+    const hotelRating = await db.query(query, [hotelId]);
+    // console.log(hotelReview);
+    return hotelRating;
   } catch (getHotelRatingError) {
-      throw new Error(`[ERR] getHotelRatingError: ${getHotelRatingError}`);
+    throw new Error(`[ERR] getHotelRatingError: ${getHotelRatingError}`);
   }
 }
+
 
 exports.getHotelReviewInfo = async (
   hotelId,
@@ -68,21 +69,27 @@ exports.getHotelReviewInfo = async (
   Score
 ) => {
   try {
+    console.log(Type_Of_Hotel_Reviewer);
     const ScoreQuery = "(Cleanliness_Hotel_Rating + Comfort_Hotel_Rating + Meal_Hotel_Rating + Location_Hotel_Rating+Service_Hotel_Rating)/5"
     let query =
-    `SELECT idHotel_Review, Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, ${ScoreQuery} as Score, firstname, profile_picture, userId FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? `;
-    
+      `SELECT idHotel_Review, Title_Hotel, Text_Hotel_Review, timestamp, Type_Of_Hotel_Reviewer, ${ScoreQuery} as Score, firstname, profile_picture, userId FROM Hotel_Review INNER JOIN user ON Hotel_Review.userId = user.user_id where hotel_hotelId = ? `;
+
     switch (Type_Of_Hotel_Reviewer) {
       case "Business trip":
         query += "AND Type_Of_Hotel_Reviewer = 'Business Trip' ";
+        break;
       case "Family vacation":
         query += "AND Type_Of_Hotel_Reviewer = 'Family vacation' ";
+        break;
       case "Romantic vacation":
         query += "AND Type_Of_Hotel_Reviewer = 'Romantic vacation' ";
+        break;
       case "Shopping and Culinary":
         query += "AND Type_Of_Hotel_Reviewer = 'Shopping and Culinary' ";
+        break;
       case "Backpacking":
         query += "AND Type_Of_Hotel_Reviewer = 'Backpacking' ";
+        break;
       case "Medical Travel":
         query += "AND Type_Of_Hotel_Reviewer = 'Medical Travel' ";
       default:
@@ -91,20 +98,20 @@ exports.getHotelReviewInfo = async (
 
     switch (Score) {
       case "Wonderful":
-          query += `AND ${ScoreQuery} > 8 `;//9-10
-          break;
+        query += `AND ${ScoreQuery} > 8 `;//9-10
+        break;
       case "Good":
-          query += `AND ${ScoreQuery} > 6 `;//7-8
-          break;
+        query += `AND ${ScoreQuery} > 6 `;//7-8
+        break;
       case "Okey":
-          query += `AND ${ScoreQuery} > 4 `;//5-6
-          break;
+        query += `AND ${ScoreQuery} > 4 `;//5-6
+        break;
       case "Poor":
-          query += `AND ${ScoreQuery} > 2 `;//3-4
-          break;
+        query += `AND ${ScoreQuery} > 2 `;//3-4
+        break;
       default:
-          break;//All
-  }
+        break;//All
+    }
     query += "GROUP BY idHotel_Review "
 
     switch (Sort) {
@@ -124,7 +131,7 @@ exports.getHotelReviewInfo = async (
     // console.log(hotelReview);
     return hotelReview;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error(`[ERR] getHotelReviewInfo: ${error}`);
   }
 };
@@ -152,11 +159,11 @@ SELECT count(*) AS total,
 FROM Airline_Review
 WHERE airlineId_fk = ?
 `;
-      const airlineRating = await db.query(query, [airlineId]);
-      // console.log(hotelReview);
-      return airlineRating;
+    const airlineRating = await db.query(query, [airlineId]);
+    // console.log(hotelReview);
+    return airlineRating;
   } catch (getAirlineRatingError) {
-      throw new Error(`[ERR] getHotelRatingError: ${getAirlineRatingError}`);
+    throw new Error(`[ERR] getHotelRatingError: ${getAirlineRatingError}`);
   }
 }
 
@@ -166,37 +173,41 @@ exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Airline_Reviewer,
   try {
     const ScoreQuery = "(CabinCrewRating_Airline_Rating + Comfort_Airline_Rating + Meal_Airline_Rating + Entertainment_Airline_Rating)/4";
     let query =
-    `SELECT idAirline_Review, Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, ${ScoreQuery} as Score, firstname, profile_picture, userId FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ? `;
+      `SELECT idAirline_Review, Title_Airline, Text_Airline_Review, timestamp, Type_Of_Airline_Reviewer, ${ScoreQuery} as Score, firstname, profile_picture, userId FROM Airline_Review INNER JOIN user ON Airline_Review.userId = user.user_id where airlineId_fk = ? `;
 
     switch (Type_Of_Airline_Reviewer) {
       case "Economic":
         query += "AND Type_Of_Airline_Reviewer = 'Economic' ";
+        break;
       case "Premium Economic":
         query += "AND Type_Of_Airline_Reviewer = 'Premium Economic' ";
+        break;
       case "Business":
         query += "AND Type_Of_Airline_Reviewer = 'Business' ";
+        break;
       case "First Class":
         query += "AND Type_Of_Airline_Reviewer = 'First Class' ";
+        break;
       default:
         break;
     }
 
     switch (Score) {
       case "Wonderful":
-          query += `AND ${ScoreQuery} > 8 `;//9-10
-          break;
+        query += `AND ${ScoreQuery} > 8 `;//9-10
+        break;
       case "Good":
-          query += `AND ${ScoreQuery} > 6 `;//7-8
-          break;
+        query += `AND ${ScoreQuery} > 6 `;//7-8
+        break;
       case "Okey":
-          query += `AND ${ScoreQuery} > 4 `;//5-6
-          break;
+        query += `AND ${ScoreQuery} > 4 `;//5-6
+        break;
       case "Poor":
-          query += `AND ${ScoreQuery} > 2 `;//3-4
-          break;
+        query += `AND ${ScoreQuery} > 2 `;//3-4
+        break;
       default:
-          break;//All
-  }
+        break;//All
+    }
     query += "GROUP BY idAirline_Review "
 
     switch (Sort) {
@@ -214,16 +225,16 @@ exports.getAirlineReviewInfo = async (airline_Id, Type_Of_Airline_Reviewer,
     );
     return airlineReview;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error(`[ERR] getAirlineReviewInfo: ${err}`);
   }
 };
 
-exports.Update_Hotel_Review = async (userId, Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating,Type_Of_Hotel_Reviewer) => {
+exports.Update_Hotel_Review = async (userId, Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating, Type_Of_Hotel_Reviewer) => {
   try {
     await db.query(
       "UPDATE Hotel_Review set Title_Hotel = ?, Text_Hotel_Review = ?, Cleanliness_Hotel_Rating = ?, Comfort_Hotel_Rating = ?, Meal_Hotel_Rating = ?, Location_Hotel_Rating = ?, Service_Hotel_Rating = ?,Type_Of_Hotel_Reviewer = ? WHERE idHotel_Review = ?)",
-      [Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating,Type_Of_Hotel_Reviewer]
+      [Title_Hotel, Text_Hotel_Review, Cleanliness_Hotel_Rating, Comfort_Hotel_Rating, Meal_Hotel_Rating, Location_Hotel_Rating, Service_Hotel_Rating, Type_Of_Hotel_Reviewer]
     );
   } catch (err) {
     throw new Error(`[ERR] modelUpdateHotel: ${err}`);
@@ -331,12 +342,12 @@ exports.insertNewAirlineReviewPicture = async ({
 
 exports.deleteHotelReviewInfo = async (userId, idHotel_Review) => {
   try {
-      return await db.query("DELETE FROM Hotel_Review WHERE idHotel_Review = ? AND userId = ?", [
-          idHotel_Review,
-          userId
-      ]);
+    return await db.query("DELETE FROM Hotel_Review WHERE idHotel_Review = ? AND userId = ?", [
+      idHotel_Review,
+      userId
+    ]);
   } catch (err) {
-      throw new Error(`[ERR] deleteHotelReviewInfo: ${err}`);
+    throw new Error(`[ERR] deleteHotelReviewInfo: ${err}`);
   }
 };
 

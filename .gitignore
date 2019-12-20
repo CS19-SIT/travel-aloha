@@ -86,3 +86,8 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Picture and Document in Contact
+public/assets/uploads/contact/pictures
+public/assets/uploads/contact/documents
+
+
