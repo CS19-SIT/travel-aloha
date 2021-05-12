@@ -18,7 +18,7 @@
     "balanced-match": "^1.0.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
-    "chart.js": "^2.9.1",
+    "chart.js": "^2.9.4",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
